@@ -35,7 +35,7 @@ public:
 	void set(float a[16]);
 };
 
-//static float[4] Euler2Quaternion();
+static float4 Euler2Quaternion();
 
 static Matrix4x4 operator * (Matrix4x4 m1, Matrix4x4 m2);
 

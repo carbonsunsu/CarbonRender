@@ -14,6 +14,11 @@ void Matrix4x4::set(float a[16])
 		matrix[i] = a[i];
 }
 
+float4 Euler2Quaternion()
+{
+	return float4();
+}
+
 Matrix4x4 operator*(Matrix4x4 m1, Matrix4x4 m2)
 {
 	Matrix4x4 resultM;
