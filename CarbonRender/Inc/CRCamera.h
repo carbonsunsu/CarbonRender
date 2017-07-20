@@ -19,7 +19,10 @@ private:
 public:
 	void SetPerspectiveCamera(float fov, float nearClip, float farClip);
 	void SetOrthoCamera();
+	void LookAt(float3 p);
 
+	Matrix4x4 GetViewMatrix();
+	Matrix4x4 GetPerspectiveMatrix();
 };
 
 #endif
