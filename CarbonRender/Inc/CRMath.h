@@ -3,8 +3,9 @@
 
 #include <cmath>
 
-#define pi 3.1415926f;
-#define A2R 0.0174533f;
+#define pi 3.1415926f
+#define A2R pi/180.0f
+#define R2A 180.0f/pi
 
 class float3
 {
@@ -27,6 +28,21 @@ public:
 
 	float4();
 	float4(float a, float b, float c, float d);
+};
+
+class Quaternion
+{
+public :
+	float x = 0.0f;
+	float y = 0.0f;
+	float z = 0.0f;
+	float w = 0.0f;
+
+	Quaternion();
+	Quaternion(float a, float b, float c, float d);
+
+	Quaternion Normailze();
+	Matrix4x4 ToMatrix();
 };
 
 class Matrix3x3
@@ -55,9 +71,10 @@ public:
 
 Matrix4x4 operator * (Matrix4x4 m1, Matrix4x4 m2);
 float4 operator * (float4 v, Matrix4x4 m);
+float4 operator * (float4 v, Quaternion r);
 
-Matrix4x4 Translation(float x, float y, float z);
+Matrix4x4 Translate(float x, float y, float z);
 Matrix4x4 Scale(float x, float y, float z);
-Matrix4x4 Rotate(float x, float y, float z);
+Quaternion Rotate(float3 axis, float angle);
 
 #endif

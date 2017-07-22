@@ -19,6 +19,31 @@ float4::float4(float a, float b, float c, float d)
 	w = d;
 }
 
+
+Quaternion::Quaternion(){}
+
+Quaternion::Quaternion(float a, float b, float c, float d)
+{
+	x = a;
+	y = b;
+	z = c;
+	w = d;
+}
+
+Quaternion Quaternion::Normailze()
+{
+	float lengthR = 1.0 / sqrtf(x*x + y*y + z*z + w*w);
+	return Quaternion(x*lengthR, y*lengthR, z*lengthR, w*lengthR);
+}
+
+Matrix4x4 Quaternion::ToMatrix()
+{
+	float r[16] = {1.0f - 2*(x*x + w*w), 2*(x*y - z*w), 2*(x*z + y*w), 0.0f,
+				   2*(x*y + z*w), 1.0f - 2*(y*y + w*w), 2*(y*z - x*w), 0.0f,
+				   2*(x*z - y*w), 2*(y*z + x*w), 1.0f - 2*(z*z + w*w), 0.0f,
+				   0.0f, 0.0f, 0.0f, 1.0f};
+}
+
 Matrix3x3::Matrix3x3() {}
 
 Matrix3x3::Matrix3x3(float a[9])
@@ -75,7 +100,12 @@ float4 operator*(float4 v, Matrix4x4 m)
 	return result;
 }
 
-Matrix4x4 Translation(float x, float y, float z)
+float4 operator*(float4 v, Quaternion r)
+{
+	return float4(v.x*r.x, v.y*r.y, v.z*r.z, v.w*r.w);
+}
+
+Matrix4x4 Translate(float x, float y, float z)
 {
 	float tArray[16] = {1.0f, 0.0f, 0.0f, 0.0f,
 						0.0f, 1.0f, 0.0f, 0.0f,
@@ -95,4 +125,13 @@ Matrix4x4 Scale(float x, float y, float z)
 	Matrix4x4 s(sArray);
 
 	return s;
+}
+
+Quaternion Rotate(float3 axis, float angle)
+{
+	float r = angle * A2R;
+	return Quaternion(axis.x * sin(angle * 0.5f),
+					  axis.y * sin(angle * 0.5f),
+					  axis.z * sin(angle * 0.5f),
+					  cos(angle * 0.5f));
 }

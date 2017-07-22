@@ -25,7 +25,11 @@ void Object::SetRotation(float3 r)
 
 void Object::UpdateModelMatrix()
 {
-
+	modelMatrix = Scale(transform[3], transform[4], transform[5]) * 
+				  Rotate(float3(1.0f, 0.0f, 0.0f), transform[6]).Normailze().ToMatrix() *
+				  Rotate(float3(0.0f, 1.0f, 0.0f), transform[7]).Normailze().ToMatrix() *
+				  Rotate(float3(0.0f, 0.0f, 1.0f), transform[8]).Normailze().ToMatrix() *
+				  Translate(transform[0], transform[1], transform[2]);
 }
 
 float3 Object::GetPosition()
@@ -60,9 +64,5 @@ float3 Object::GetRotation()
 
 Matrix4x4 Object::GetModelMatrix()
 {
-	Matrix4x4 result;
-	for (int i = 0; i < 16; i++)
-		result.matrix[i] = modelMatrix[i];
-
-	return result;
+	return modelMatrix;
 }

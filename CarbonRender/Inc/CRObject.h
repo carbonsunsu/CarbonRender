@@ -5,16 +5,16 @@
 
 class Object
 {
-private:
-	float transform[9] = { 0.0f, 0.0f, 0.0f,
-						   1.0f, 1.0f, 1.0f,
-						   0.0f, 0.0f, 0.0f};
+protected:
+	float transform[9] = { 0.0f, 0.0f, 0.0f,	//position
+						   1.0f, 1.0f, 1.0f,	//scale
+						   0.0f, 0.0f, 0.0f};	//rotation
 
 	float FRU[9] = { 0.0f, 0.0f, -1.0f,
 					1.0f, 0.0f, 0.0f,
 					0.0f, 1.0f, 0.0f };
 
-	float modelMatrix[16];
+	Matrix4x4 modelMatrix;
 public:
 	Object();
 	void SetPosition(float3 p);
@@ -26,6 +26,8 @@ public:
 	float3 GetScale();
 	float3 GetRotation();
 	Matrix4x4 GetModelMatrix();
+
+	void UpdateModelMatrix();
 };
 
 #endif
