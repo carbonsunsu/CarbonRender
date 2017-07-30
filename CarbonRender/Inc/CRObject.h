@@ -26,8 +26,6 @@ public:
 	float3 GetScale();
 	float3 GetRotation();
 	Matrix4x4 GetModelMatrix();
-
-	void UpdateModelMatrix();
 };
 
 #endif

@@ -19,31 +19,6 @@ float4::float4(float a, float b, float c, float d)
 	w = d;
 }
 
-
-Quaternion::Quaternion(){}
-
-Quaternion::Quaternion(float a, float b, float c, float d)
-{
-	x = a;
-	y = b;
-	z = c;
-	w = d;
-}
-
-Quaternion Quaternion::Normailze()
-{
-	float lengthR = 1.0 / sqrtf(x*x + y*y + z*z + w*w);
-	return Quaternion(x*lengthR, y*lengthR, z*lengthR, w*lengthR);
-}
-
-Matrix4x4 Quaternion::ToMatrix()
-{
-	float r[16] = {1.0f - 2*(x*x + w*w), 2*(x*y - z*w), 2*(x*z + y*w), 0.0f,
-				   2*(x*y + z*w), 1.0f - 2*(y*y + w*w), 2*(y*z - x*w), 0.0f,
-				   2*(x*z - y*w), 2*(y*z + x*w), 1.0f - 2*(z*z + w*w), 0.0f,
-				   0.0f, 0.0f, 0.0f, 1.0f};
-}
-
 Matrix3x3::Matrix3x3() {}
 
 Matrix3x3::Matrix3x3(float a[9])
@@ -70,6 +45,32 @@ void Matrix4x4::operator=(float a[16])
 {
 	for (int i = 0; i < 16; i++)
 		matrix[i] = a[i];
+}
+
+Quaternion::Quaternion() {}
+
+Quaternion::Quaternion(float a, float b, float c, float d)
+{
+	x = a;
+	y = b;
+	z = c;
+	w = d;
+}
+
+Quaternion Quaternion::Normailze()
+{
+	float lengthR = 1.0f / sqrtf(x*x + y*y + z*z + w*w);
+	return Quaternion(x*lengthR, y*lengthR, z*lengthR, w*lengthR);
+}
+
+Matrix4x4 Quaternion::ToMatrix()
+{
+	float r[16] = { 1.0f - 2 * (x*x + w*w), 2 * (x*y - z*w), 2 * (x*z + y*w), 0.0f,
+		2 * (x*y + z*w), 1.0f - 2 * (y*y + w*w), 2 * (y*z - x*w), 0.0f,
+		2 * (x*z - y*w), 2 * (y*z + x*w), 1.0f - 2 * (z*z + w*w), 0.0f,
+		0.0f, 0.0f, 0.0f, 1.0f };
+
+	return Matrix4x4(r);
 }
 
 Matrix4x4 operator*(Matrix4x4 m1, Matrix4x4 m2)

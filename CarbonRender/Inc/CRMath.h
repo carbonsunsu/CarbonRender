@@ -3,9 +3,17 @@
 
 #include <cmath>
 
-#define pi 3.1415926f
-#define A2R pi/180.0f
-#define R2A 180.0f/pi
+#ifndef PI
+#define PI 3.14159265358979323846f
+#endif
+
+#ifndef A2R
+#define A2R PI/180.0f
+#endif
+
+#ifndef R2A
+#define R2A 180.0f/PI
+#endif
 
 class float3
 {
@@ -30,21 +38,6 @@ public:
 	float4(float a, float b, float c, float d);
 };
 
-class Quaternion
-{
-public :
-	float x = 0.0f;
-	float y = 0.0f;
-	float z = 0.0f;
-	float w = 0.0f;
-
-	Quaternion();
-	Quaternion(float a, float b, float c, float d);
-
-	Quaternion Normailze();
-	Matrix4x4 ToMatrix();
-};
-
 class Matrix3x3
 {
 public:
@@ -67,6 +60,21 @@ public:
 	Matrix4x4(float a[16]);
 
 	void operator = (float a[16]);
+};
+
+class Quaternion
+{
+public:
+	float x = 0.0f;
+	float y = 0.0f;
+	float z = 0.0f;
+	float w = 0.0f;
+
+	Quaternion();
+	Quaternion(float a, float b, float c, float d);
+
+	Quaternion Normailze();
+	Matrix4x4 ToMatrix();
 };
 
 Matrix4x4 operator * (Matrix4x4 m1, Matrix4x4 m2);
