@@ -34,6 +34,7 @@ TextFile FileReader::ReadTextFile(char* fileName)
 	TextFile data;
 	data.data = fileData;
 	data.length = fileSize;
+	data.data[data.length] = 0;
 
 	return data;
 }

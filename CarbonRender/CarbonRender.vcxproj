@@ -55,8 +55,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Projects\CarbonRender\CarbonRender\CarbonRender\Inc;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Projects\CarbonRender\CarbonRender\CarbonRender\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)Inc\Thir\FBX;$(ProjectDir)Inc\Thir\GL;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -75,6 +75,14 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Message>
+      </Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>rd /s /q "$(TargetDir)Shader"
+echo A | XCOPY "$(ProjectDir)Shader\*.*" "$(TargetDir)Shader\*.*" </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

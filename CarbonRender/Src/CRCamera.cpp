@@ -2,18 +2,31 @@
 
 void Camera::SetPerspectiveCamera(float fov, float nearClip, float farClip)
 {
+	curCameraMode = Perspective;
+
 	float halfFOV = fov * 0.5f;
 
 	//read from window class later
 	float wWidth = 1920.0f;
 	float wHeight = 1080.0f;
 
-	float w = nearClip * tan(halfFOV * A2R);
+	float hT = 1.0f / (nearClip * tan(halfFOV * A2R) * 2.0f); 
+	float wT = wHeight*hT / wWidth;
 
-	float m[16] = {};
+	float m[16] = {2.0f*nearClip*wT, 0.0f, 0.0f, 0.0f,
+				   0.0f, 2.0f*nearClip*hT, 0.0f, 0.0f,
+				   0.0f, 0.0f, (farClip+nearClip)/(nearClip-farClip), -1.0f,
+				   0.0f, 0.0f, 2*nearClip*farClip/(nearClip-farClip), 0.0f};
 
 	projectionMatrix = m;
 }
+
+void Camera::SetOrthoCamera(float size)
+{
+	curCameraMode = Ortho;
+}
+
+
 
 void Camera::UpdateViewMatrix()
 {

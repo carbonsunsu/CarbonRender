@@ -6,7 +6,7 @@
 
 enum CameraProjectMode
 {
-	Perspective,
+	Perspective = 0,
 	Ortho,
 };
 
