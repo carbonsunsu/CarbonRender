@@ -12,16 +12,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\CRCamera.cpp" />
+    <ClCompile Include="Src\CRFbxImportManager.cpp" />
     <ClCompile Include="Src\CRFileReader.cpp" />
     <ClCompile Include="Src\CRMain.cpp" />
     <ClCompile Include="Src\CRMath.cpp" />
+    <ClCompile Include="Src\CRMeshObject.cpp" />
     <ClCompile Include="Src\CRObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRCamera.h" />
+    <ClInclude Include="Inc\CRFbxImportManager.h" />
     <ClInclude Include="Inc\CRFileReader.h" />
     <ClInclude Include="Inc\CRGloble.h" />
     <ClInclude Include="Inc\CRMath.h" />
+    <ClInclude Include="Inc\CRMeshObject.h" />
     <ClInclude Include="Inc\CRObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -55,8 +59,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)Inc\Thir\FBX;$(ProjectDir)Inc\Thir\GL;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)Third\FBX\include;$(ProjectDir)Third\GL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)Third\FBX\lib;$(ProjectDir)Third\GL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -78,10 +82,16 @@
     <PreBuildEvent>
       <Message>
       </Message>
+      <Command>del "$(TargetDir)*.*"
+echo Y | XCOPY "$(ProjectDir)Third\GL\dll\*.*" "$(TargetDir)"
+echo Y | XCOPY "$(ProjectDir)Third\FBX\dll\*.*" "$(TargetDir)"
+md "$(TargetDir)Resources"
+rd /s /q "$(TargetDir)Resources"
+echo A | XCOPY /s /q "$(ProjectDir)Resources\*.*" "$(TargetDir)Resources\*.*"</Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>rd /s /q "$(TargetDir)Shader"
-echo A | XCOPY "$(ProjectDir)Shader\*.*" "$(TargetDir)Shader\*.*" </Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

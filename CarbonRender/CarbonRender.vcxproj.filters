@@ -30,6 +30,12 @@
     <ClCompile Include="Src\CRObject.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Src\CRMeshObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRFbxImportManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRGloble.h">
@@ -45,6 +51,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Inc\CRObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRMeshObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRFbxImportManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

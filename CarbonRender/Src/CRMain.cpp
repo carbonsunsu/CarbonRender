@@ -1,10 +1,16 @@
 #include "..\Inc\CRGloble.h"
 #include "..\Inc\CRFileReader.h"
 #include "..\Inc\CRMath.h"
+#include "..\Inc\CRFbxImportManager.h"
 
 void mainDisplay()
 {
 	glFlush();
+}
+
+void Init()
+{
+	FbxImportManager::instance();
 }
 
 void main(int argc, char** argv)

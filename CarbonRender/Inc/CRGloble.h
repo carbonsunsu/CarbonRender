@@ -7,12 +7,11 @@
 #include <iostream>
 #include <string>
 
-#include "..\Inc\Thir\GL\glew.h"
+#include "..\Third\GL\include\glew.h"
 #pragma comment(lib, "glew32.lib")
-#include "..\Inc\Thir\GL/glut.h"
+#include "..\Third\GL\include\glut.h"
 #pragma comment(lib, "glut32.lib")
-
-#include "..\Inc\Thir\FBX\fbxsdk.h"
+#include "..\Third\FBX\include\fbxsdk.h"
 #pragma comment(lib, "libfbxsdk.lib")
 
 using namespace std;
