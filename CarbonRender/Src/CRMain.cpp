@@ -2,6 +2,7 @@
 #include "..\Inc\CRFileReader.h"
 #include "..\Inc\CRMath.h"
 #include "..\Inc\CRFbxImportManager.h"
+#include "..\Inc\CRMeshObject.h"
 
 void mainDisplay()
 {
@@ -24,6 +25,10 @@ void main(int argc, char** argv)
 	{
 		std::cout << "GLEW init fail" << std::endl;
 	}
+
+	Init();
+	MeshObject newMesh;
+	FbxImportManager::instance()->importFbxModel("Resources\\Models\\Type59.fbx", &newMesh);
 
 	glutDisplayFunc(mainDisplay);
 	glutMainLoop();

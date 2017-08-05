@@ -1,7 +1,10 @@
 #include "..\Inc\CRCamera.h"
 
-void Camera::SetPerspectiveCamera(float fov, float nearClip, float farClip)
+void Camera::SetPerspectiveCamera(float iFov, float iNearClip, float iFarClip)
 {
+	fov = iFov;
+	nearClip = iNearClip;
+	farClip = iFarClip;
 	curCameraMode = Perspective;
 
 	float halfFOV = fov * 0.5f;

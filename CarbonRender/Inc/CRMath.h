@@ -1,7 +1,7 @@
 #ifndef CR_MATH
 #define CR_MATH
 
-#include <cmath>
+#include "..\Inc\CRGloble.h"
 
 #ifndef PI
 #define PI 3.14159265358979323846f
@@ -24,6 +24,9 @@ public:
 
 	float3();
 	float3(float a, float b, float c);
+
+	void operator = (FbxDouble3 a);
+	void operator = (FbxDouble4 a);
 };
 
 class float4
@@ -36,6 +39,7 @@ public:
 
 	float4();
 	float4(float a, float b, float c, float d);
+	float4(float3 a, float d);
 };
 
 class Matrix3x3

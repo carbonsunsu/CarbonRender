@@ -9,6 +9,20 @@ float3::float3(float a, float b, float c)
 	z = c;
 }
 
+void float3::operator=(FbxDouble3 a)
+{
+	x = (float)a[0];
+	y = (float)a[1];
+	z = (float)a[2];
+}
+
+void float3::operator=(FbxDouble4 a)
+{
+	x = (float)a[0];
+	y = (float)a[1];
+	z = (float)a[2];
+}
+
 float4::float4() {}
 
 float4::float4(float a, float b, float c, float d)
@@ -16,6 +30,14 @@ float4::float4(float a, float b, float c, float d)
 	x = a;
 	y = b;
 	z = c;
+	w = d;
+}
+
+float4::float4(float3 a, float d)
+{
+	x = a.x;
+	y = a.y;
+	z = a.z;
 	w = d;
 }
 
