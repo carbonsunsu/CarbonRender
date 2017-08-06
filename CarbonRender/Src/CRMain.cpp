@@ -3,6 +3,7 @@
 #include "..\Inc\CRMath.h"
 #include "..\Inc\CRFbxImportManager.h"
 #include "..\Inc\CRMeshObject.h"
+#include "..\Inc\CRShaderManager.h"
 
 void mainDisplay()
 {
@@ -11,7 +12,8 @@ void mainDisplay()
 
 void Init()
 {
-	FbxImportManager::instance();
+	FbxImportManager::Instance();
+	ShaderManager::Instance();
 }
 
 void main(int argc, char** argv)
@@ -27,9 +29,7 @@ void main(int argc, char** argv)
 	}
 
 	Init();
-	MeshObject newMesh;
-	FbxImportManager::instance()->importFbxModel("Resources\\Models\\Type59.fbx", &newMesh);
-
+	
 	glutDisplayFunc(mainDisplay);
 	glutMainLoop();
 }

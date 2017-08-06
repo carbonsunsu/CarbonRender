@@ -1,7 +1,6 @@
 #ifndef CR_FILEREADER
 #define CR_FILEREADER
 
-#include <fstream>
 #include "..\Inc\CRGloble.h"
 
 struct  TextFile

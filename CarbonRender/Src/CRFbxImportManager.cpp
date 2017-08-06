@@ -5,17 +5,20 @@ FbxImportManager* FbxImportManager::ins = nullptr;
 FbxImportManager::FbxImportManager()
 {
 	Init();
-}
-
-FbxImportManager::~FbxImportManager()
-{
-	ins = nullptr;
-	fbxManager->Destroy();
 
 	return;
 }
 
-FbxImportManager * FbxImportManager::instance()
+FbxImportManager::~FbxImportManager()
+{
+	fbxManager->Destroy();
+	ioSettings->Destroy();
+	ins = nullptr;	
+
+	return;
+}
+
+FbxImportManager * FbxImportManager::Instance()
 {
 	if (ins == nullptr)
 		ins = new FbxImportManager();
@@ -149,11 +152,11 @@ float4 FbxImportManager::ReadUV(FbxMesh * mesh, int index, int uvIndex)
 
 FbxVector4 FbxImportManager::ReadNormal(FbxMesh * mesh, int index, int vertexID)
 {
-	FbxGeometryElementNormal* eN = mesh->GetElementNormal(0);
 	FbxVector4 n(0.0f, 0.0f, 1.0f, 1.0f);
 	if (mesh->GetElementNormalCount() <= 0)
 		return n;
 
+	FbxGeometryElementNormal* eN = mesh->GetElementNormal(0);
 	switch (eN->GetMappingMode())
 	{
 	default:
@@ -201,11 +204,11 @@ FbxVector4 FbxImportManager::ReadNormal(FbxMesh * mesh, int index, int vertexID)
 
 FbxVector4 FbxImportManager::ReadTangent(FbxMesh * mesh, int index, int vertexID)
 {
-	FbxGeometryElementTangent* eT = mesh->GetElementTangent(0);
 	FbxVector4 t(1.0f, 0.0f, 0.0f, 1.0f);
 	if (mesh->GetElementTangentCount() <= 0)
 		return t;
 
+	FbxGeometryElementTangent* eT = mesh->GetElementTangent(0);
 	switch (eT->GetMappingMode())
 	{
 	default:
@@ -306,10 +309,6 @@ bool FbxImportManager::importFbxModel(char * fileName, MeshObject * out)
 					crMesh.normal = new float[crMesh.vertexCount * 3];
 					crMesh.tangent = new float[crMesh.vertexCount * 3];
 
-					cout << "Vertex Count: " << crMesh.vertexCount << endl;
-					FbxGeometryElementNormal* eN = mesh->GetElementNormal(0);
-					cout << "Normal Count: " << eN->GetDirectArray().GetCount() << endl;
-
 					int vertexID = 0;
 
 					//Read Vertex
@@ -358,8 +357,6 @@ bool FbxImportManager::importFbxModel(char * fileName, MeshObject * out)
 							vertexID++;
 						}
 					}
-
-					
 
 					out->child[readMeshCount] = crMesh;
 					readMeshCount++;

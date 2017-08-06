@@ -18,6 +18,7 @@
     <ClCompile Include="Src\CRMath.cpp" />
     <ClCompile Include="Src\CRMeshObject.cpp" />
     <ClCompile Include="Src\CRObject.cpp" />
+    <ClCompile Include="Src\CRShaderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRCamera.h" />
@@ -27,6 +28,7 @@
     <ClInclude Include="Inc\CRMath.h" />
     <ClInclude Include="Inc\CRMeshObject.h" />
     <ClInclude Include="Inc\CRObject.h" />
+    <ClInclude Include="Inc\CRShaderManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{27CD77C7-6F75-434C-A429-CE1E1D982CBA}</ProjectGuid>
@@ -61,6 +63,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir)Third\FBX\include;$(ProjectDir)Third\GL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)Third\FBX\lib;$(ProjectDir)Third\GL\lib;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(ProjectDir)Third\FBX\dll;$(ProjectDir)Third\GL\dll;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -78,6 +81,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Message>

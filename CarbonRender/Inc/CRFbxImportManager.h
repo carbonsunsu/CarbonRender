@@ -20,7 +20,7 @@ private:
 
 public:
 	~FbxImportManager();
-	static FbxImportManager* instance();
+	static FbxImportManager* Instance();
 	bool importFbxModel(char* fileName, MeshObject* out);
 };
 

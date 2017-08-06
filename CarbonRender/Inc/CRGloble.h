@@ -1,9 +1,9 @@
 #ifndef CR_GLOBLE
 #define CR_GLOBLE
 
-#define GLEW_STATIC
 #define FBXSDK_SHARED
 
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <cmath>
