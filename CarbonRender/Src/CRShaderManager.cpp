@@ -53,9 +53,9 @@ GLuint ShaderManager::LoadShader(char* vShaderName, char* fShaderName)
 	char* log;
 	
 	char* dir = "Resources\\Shader\\";
-	char* realName = strcat(dir, vShaderName);
+	char* realName = FileReader::BindString(dir, vShaderName);
 	GLuint vShader = BuildShader(vShaderName, (const GLchar **)&FileReader::ReadTextFile(realName).data, GL_VERTEX_SHADER);
-	realName = strcat(dir, fShaderName);
+	realName = FileReader::BindString(dir, fShaderName);
 	GLuint fShader = BuildShader(fShaderName, (const GLchar **)&FileReader::ReadTextFile(realName).data, GL_FRAGMENT_SHADER);
 	
 	program = glCreateProgram();

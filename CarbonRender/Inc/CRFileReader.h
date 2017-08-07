@@ -14,7 +14,7 @@ class FileReader
 {
 public :
 	static TextFile ReadTextFile(char* fileName);
-
+	static char* BindString(char* str0, char* str1);
 private :
 	static int GetTextFileSize(char* fileName);
 };

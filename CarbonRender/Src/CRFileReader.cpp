@@ -38,3 +38,13 @@ TextFile FileReader::ReadTextFile(char* fileName)
 
 	return data;
 }
+
+char * FileReader::BindString(char * str0, char * str1)
+{
+	char* bind = (char*)malloc(strlen(str0) + strlen(str1) + 1);
+	memset(bind, 0, sizeof(bind));
+	strcat_s(bind, strlen(str0) + 1, str0);
+	strcat_s(bind, strlen(str0) + strlen(str1) + 1, str1);
+
+	return bind;
+}
