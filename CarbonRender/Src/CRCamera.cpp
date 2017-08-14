@@ -8,7 +8,7 @@ void Camera::SetPerspectiveCamera(float iFov, float iNearClip, float iFarClip)
 	curCameraMode = Perspective;
 
 	float halfFOV = fov * 0.5f;
-
+	
 	//read from window class later
 	float wWidth = 1920.0f;
 	float wHeight = 1080.0f;
@@ -29,14 +29,14 @@ void Camera::SetOrthoCamera(float size)
 	curCameraMode = Ortho;
 }
 
-
-
 void Camera::UpdateViewMatrix()
 {
-	modelMatrix = Translate(transform[0], transform[1], transform[2]) *
-				  Rotate(float3(1.0f, 0.0f, 0.0f), transform[6]).Normailze().ToMatrix() *
-				  Rotate(float3(0.0f, 1.0f, 0.0f), transform[7]).Normailze().ToMatrix() *
-				  Rotate(float3(0.0f, 0.0f, 1.0f), transform[8]).Normailze().ToMatrix();
+	modelMatrix = Rotate(float3(1.0f, 0.0f, 0.0f), -transform[6]).Normailze().ToMatrix() *
+				  Rotate(float3(0.0f, 1.0f, 0.0f), -transform[7]).Normailze().ToMatrix() *
+				  Rotate(float3(0.0f, 0.0f, 1.0f), -transform[8]).Normailze().ToMatrix() *
+				  Translate(-transform[0], -transform[1], -transform[2]);
+
+	return;
 }
 
 Matrix4x4 Camera::GetViewMatrix()

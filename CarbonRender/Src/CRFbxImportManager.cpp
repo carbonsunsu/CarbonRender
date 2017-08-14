@@ -254,7 +254,7 @@ FbxVector4 FbxImportManager::ReadTangent(FbxMesh * mesh, int index, int vertexID
 	return t;
 }
 
-bool FbxImportManager::importFbxModel(char * fileName, MeshObject * out)
+bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out)
 {
 	FbxImporter* importer = FbxImporter::Create(this->fbxManager, "");
 	if (!importer->Initialize(fileName, -1, this->fbxManager->GetIOSettings()))
@@ -272,8 +272,7 @@ bool FbxImportManager::importFbxModel(char * fileName, MeshObject * out)
 	int meshCount = scene->GetGeometryCount();
 	int skeletonCount = rootNode->GetChildCount() - meshCount;
 
-	out->childCount = meshCount;
-	out->child = new Mesh[meshCount];
+	out->SetChildCount(meshCount);
 
 	if (rootNode != NULL)
 	{
@@ -300,12 +299,13 @@ bool FbxImportManager::importFbxModel(char * fileName, MeshObject * out)
 					crMesh.translation = translation;
 					crMesh.rotation = rotation;
 					crMesh.scaling = scaling;
+					crMesh.modelMatrix = CalculateModelMatrix(translation, rotation, scaling);
 					crMesh.vertexCount = mesh->GetControlPointsCount();
 					crMesh.polygonCount = mesh->GetPolygonCount();
 					crMesh.vertex = new float[crMesh.vertexCount * 3];
 					crMesh.color = new float[crMesh.vertexCount * 4];
 					crMesh.uv = new float[crMesh.vertexCount * 4];
-					crMesh.index = new int[crMesh.polygonCount * 3];
+					crMesh.index = new unsigned int[crMesh.polygonCount * 3];
 					crMesh.normal = new float[crMesh.vertexCount * 3];
 					crMesh.tangent = new float[crMesh.vertexCount * 3];
 
@@ -313,18 +313,20 @@ bool FbxImportManager::importFbxModel(char * fileName, MeshObject * out)
 
 					//Read Vertex
 					FbxDouble4* ctrlPoints = mesh->GetControlPoints();
+					int vIndex = 0;
 					for (int i = 0; i < crMesh.vertexCount; i++)
 					{
-						crMesh.vertex[i] = (float)ctrlPoints[i][0];
-						crMesh.vertex[i+1] = (float)ctrlPoints[i][1];
-						crMesh.vertex[i+2] = (float)ctrlPoints[i][2];
+						crMesh.vertex[vIndex] = (float)ctrlPoints[i][0];
+						crMesh.vertex[vIndex+1] = (float)ctrlPoints[i][1];
+						crMesh.vertex[vIndex+2] = (float)ctrlPoints[i][2];
+						vIndex += 3;
 					}
 
 					for (int i = 0; i < mesh->GetPolygonCount(); i++)
 					{
 						for (int j = 0; j < 3; j++)
 						{
-							int index = mesh->GetPolygonVertex(i, j);
+							unsigned int index = (unsigned int)mesh->GetPolygonVertex(i, j);
 							crMesh.index[i * 3 + j] = index;
 
 							//Get Color
@@ -358,7 +360,7 @@ bool FbxImportManager::importFbxModel(char * fileName, MeshObject * out)
 						}
 					}
 
-					out->child[readMeshCount] = crMesh;
+					out->SetChild(crMesh, readMeshCount);
 					readMeshCount++;
 				}
 				break;

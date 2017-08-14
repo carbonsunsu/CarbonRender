@@ -77,3 +77,10 @@ GLuint ShaderManager::LoadShader(char* vShaderName, char* fShaderName)
 
 	return program;
 }
+
+void ShaderManager::UseShader(GLuint shader)
+{
+	glUseProgram(shader);
+
+	return;
+}

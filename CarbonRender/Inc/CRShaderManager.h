@@ -16,6 +16,7 @@ public:
 	~ShaderManager();
 	static ShaderManager* Instance();
 	GLuint LoadShader(char* vShaderName, char* fShaderName);
+	void UseShader(GLuint shader);
 };
 
 #endif

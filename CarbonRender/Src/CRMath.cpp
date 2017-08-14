@@ -9,6 +9,13 @@ float3::float3(float a, float b, float c)
 	z = c;
 }
 
+float3::float3(FbxDouble3 a)
+{
+	x = (float)a[0];
+	y = (float)a[1];
+	z = (float)a[2];
+}
+
 void float3::operator=(FbxDouble3 a)
 {
 	x = (float)a[0];
@@ -55,6 +62,12 @@ void Matrix3x3::operator=(float a[9])
 		matrix[i] = a[i];
 }
 
+void Matrix3x3::operator=(Matrix3x3 mat)
+{
+	for (int i = 0; i < 9; i++)
+		matrix[i] = mat.matrix[i];
+}
+
 Matrix4x4::Matrix4x4(){}
 
 Matrix4x4::Matrix4x4(float a[16])
@@ -67,6 +80,12 @@ void Matrix4x4::operator=(float a[16])
 {
 	for (int i = 0; i < 16; i++)
 		matrix[i] = a[i];
+}
+
+void Matrix4x4::operator=(Matrix4x4 mat)
+{
+	for (int i = 0; i < 16; i++)
+		matrix[i] = mat.matrix[i];
 }
 
 Quaternion::Quaternion() {}
@@ -87,10 +106,16 @@ Quaternion Quaternion::Normailze()
 
 Matrix4x4 Quaternion::ToMatrix()
 {
-	float r[16] = { 1.0f - 2 * (x*x + w*w), 2 * (x*y - z*w), 2 * (x*z + y*w), 0.0f,
-		2 * (x*y + z*w), 1.0f - 2 * (y*y + w*w), 2 * (y*z - x*w), 0.0f,
-		2 * (x*z - y*w), 2 * (y*z + x*w), 1.0f - 2 * (z*z + w*w), 0.0f,
-		0.0f, 0.0f, 0.0f, 1.0f };
+	/**
+	float r[16] = { 2 * (x*x + w*w) - 1.0f, 2 * (x*y - z*w), 2 * (x*z + y*w), 0.0f,
+					2 * (x*y + z*w), 2 * (y*y + w*w) - 1.0f, 2 * (y*z - x*w), 0.0f,
+					2 * (x*z - y*w), 2 * (y*z + x*w), 2 * (z*z + w*w) - 1.0f, 0.0f,
+					0.0f, 0.0f, 0.0f, 1.0f };
+	/**/
+	float r[16] = { 1.0f - 2 * (y*y + z*z), 2 * (x*y - z*w), 2 * (x*z + y*w), 0.0f,
+					2 * (x*y + z*w), 1.0f -  2 * (x*x + z*z), 2 * (y*z - x*w), 0.0f,
+					2 * (x*z - y*w), 2 * (y*z + x*w), 1.0f - 2 * (x*x + y*y), 0.0f,
+					0.0f, 0.0f, 0.0f, 1.0f };
 
 	return Matrix4x4(r);
 }
@@ -157,4 +182,13 @@ Quaternion Rotate(float3 axis, float angle)
 					  axis.y * sin(angle * 0.5f),
 					  axis.z * sin(angle * 0.5f),
 					  cos(angle * 0.5f));
+}
+
+Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal)
+{
+	return Scale(scal.x, scal.y, scal.z) *
+		Rotate(float3(1.0f, 0.0f, 0.0f), rota.x).Normailze().ToMatrix() *
+		Rotate(float3(0.0f, 1.0f, 0.0f), rota.y).Normailze().ToMatrix() *
+		Rotate(float3(0.0f, 0.0f, 1.0f), rota.z).Normailze().ToMatrix() *
+		Translate(trans.x, trans.y, trans.z);
 }

@@ -1,6 +1,7 @@
 #ifndef CR_CAMERA
 #define CR_CAMERA
 
+#include "..\Inc\CRGloble.h"
 #include "..\Inc\CRObject.h"
 #include "..\Inc\CRMath.h"
 
@@ -10,7 +11,7 @@ enum CameraProjectMode
 	Ortho,
 };
 
-class Camera : Object
+class Camera : public Object
 {
 private:
 	float fov = 60.0f;

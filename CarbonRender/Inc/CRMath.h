@@ -24,6 +24,7 @@ public:
 
 	float3();
 	float3(float a, float b, float c);
+	float3(FbxDouble3 a);
 
 	void operator = (FbxDouble3 a);
 	void operator = (FbxDouble4 a);
@@ -52,6 +53,7 @@ public:
 	Matrix3x3(float a[9]);
 
 	void operator = (float a[9]);
+	void operator = (Matrix3x3 mat);
 };
 
 class Matrix4x4
@@ -64,6 +66,7 @@ public:
 	Matrix4x4(float a[16]);
 
 	void operator = (float a[16]);
+	void operator = (Matrix4x4 mat);
 };
 
 class Quaternion
@@ -88,5 +91,5 @@ float4 operator * (float4 v, Quaternion r);
 Matrix4x4 Translate(float x, float y, float z);
 Matrix4x4 Scale(float x, float y, float z);
 Quaternion Rotate(float3 axis, float angle);
-
+Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal);
 #endif

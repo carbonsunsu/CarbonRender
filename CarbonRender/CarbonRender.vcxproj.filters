@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{f0b1d1e4-22bc-44d6-9d29-8cd90c6104c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\CRMain.cpp">
@@ -37,6 +40,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Src\CRShaderManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRCameraManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,5 +71,16 @@
     <ClInclude Include="Inc\CRShaderManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\CRCameraManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shader\Test.vert">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\Test.frag">
+      <Filter>Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>
