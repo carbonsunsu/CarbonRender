@@ -4,12 +4,10 @@ ShaderManager* ShaderManager::ins = nullptr;
 
 ShaderManager::ShaderManager()
 {
-	logFile.open("ErrorLog.log", ios::out);
 }
 
 ShaderManager::~ShaderManager()
 {
-	logFile.close();
 	ins = nullptr;
 }
 
@@ -24,24 +22,14 @@ ShaderManager * ShaderManager::Instance()
 GLuint ShaderManager::BuildShader(char* shaderName, const GLchar ** shaderSrc, GLenum type)
 {
 	GLuint shaderIndex;
-	GLint logLength, bComplied;
-	char* log;
+	GLint bComplied;
 
 	shaderIndex = glCreateShader(type);
 	glShaderSource(shaderIndex, 1, shaderSrc, NULL);
 	glCompileShader(shaderIndex);
 	glGetShaderiv(shaderIndex, GL_COMPILE_STATUS, &bComplied);
 	if (!bComplied)
-	{
-		cout << shaderName << " compling fails, please check log" << endl;
-		
-		glGetShaderiv(shaderIndex, GL_INFO_LOG_LENGTH, &logLength);
-		log = (GLchar*)malloc(logLength);
-		glGetShaderInfoLog(shaderIndex, logLength, &logLength, log);
-		logFile << log;
-		free(log);
-		system("Pause");
-	}
+		cout << shaderName << " compling fails" << endl;
 
 	return shaderIndex;
 }
@@ -51,7 +39,8 @@ GLuint ShaderManager::LoadShader(char* vShaderName, char* fShaderName)
 	GLuint program;
 	GLint logLength, bLinked;
 	char* log;
-	
+	fstream logFile;
+
 	char* dir = "Resources\\Shader\\";
 	char* realName = FileReader::BindString(dir, vShaderName);
 	GLuint vShader = BuildShader(vShaderName, (const GLchar **)&FileReader::ReadTextFile(realName).data, GL_VERTEX_SHADER);
@@ -70,7 +59,9 @@ GLuint ShaderManager::LoadShader(char* vShaderName, char* fShaderName)
 		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &logLength);
 		log = (GLchar*)malloc(logLength);
 		glGetProgramInfoLog(program, logLength, &logLength, log);
+		logFile.open("ErrorLog.log", ios::out | ios::ate | ios::trunc);
 		logFile << log;
+		logFile.close();
 		free(log);
 		system("Pause");
 	}

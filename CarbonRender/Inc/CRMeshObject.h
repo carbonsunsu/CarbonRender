@@ -33,6 +33,10 @@ private:
 	GLuint* vaos;
 	GLuint* ebos;
 	GLuint* vbs;
+	GLuint* cbs;
+	GLuint* ubs;
+	GLuint* nbs;
+	GLuint* tbs;
 	GLuint shaderProgram;
 	bool bReady4Render = false;
 public:

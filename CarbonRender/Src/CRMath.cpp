@@ -16,6 +16,13 @@ float3::float3(FbxDouble3 a)
 	z = (float)a[2];
 }
 
+float3::float3(FbxDouble4 a)
+{
+	x = (float)a[0];
+	y = (float)a[1];
+	z = (float)a[2];
+}
+
 void float3::operator=(FbxDouble3 a)
 {
 	x = (float)a[0];
@@ -56,6 +63,16 @@ Matrix3x3::Matrix3x3(float a[9])
 		matrix[i] = a[i];
 }
 
+Matrix3x3::Matrix3x3(Matrix4x4 &mat)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		matrix[i * 3] = mat.matrix[i * 4];
+		matrix[i * 3 + 1] = mat.matrix[i * 4 + 1];
+		matrix[i * 3 + 2] = mat.matrix[i * 4 + 2];
+	}
+}
+
 void Matrix3x3::operator=(float a[9])
 {
 	for (int i = 0; i < 9; i++)
@@ -66,6 +83,16 @@ void Matrix3x3::operator=(Matrix3x3 mat)
 {
 	for (int i = 0; i < 9; i++)
 		matrix[i] = mat.matrix[i];
+}
+
+void Matrix3x3::operator=(Matrix4x4 mat)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		matrix[i * 3] = mat.matrix[i * 4];
+		matrix[i * 3 + 1] = mat.matrix[i * 4 + 1];
+		matrix[i * 3 + 2] = mat.matrix[i * 4 + 2];
+	}
 }
 
 Matrix4x4::Matrix4x4(){}
@@ -106,17 +133,10 @@ Quaternion Quaternion::Normailze()
 
 Matrix4x4 Quaternion::ToMatrix()
 {
-	/**
-	float r[16] = { 2 * (x*x + w*w) - 1.0f, 2 * (x*y - z*w), 2 * (x*z + y*w), 0.0f,
-					2 * (x*y + z*w), 2 * (y*y + w*w) - 1.0f, 2 * (y*z - x*w), 0.0f,
-					2 * (x*z - y*w), 2 * (y*z + x*w), 2 * (z*z + w*w) - 1.0f, 0.0f,
-					0.0f, 0.0f, 0.0f, 1.0f };
-	/**/
 	float r[16] = { 1.0f - 2 * (y*y + z*z), 2 * (x*y - z*w), 2 * (x*z + y*w), 0.0f,
 					2 * (x*y + z*w), 1.0f -  2 * (x*x + z*z), 2 * (y*z - x*w), 0.0f,
 					2 * (x*z - y*w), 2 * (y*z + x*w), 1.0f - 2 * (x*x + y*y), 0.0f,
 					0.0f, 0.0f, 0.0f, 1.0f };
-
 	return Matrix4x4(r);
 }
 
@@ -177,18 +197,19 @@ Matrix4x4 Scale(float x, float y, float z)
 
 Quaternion Rotate(float3 axis, float angle)
 {
-	float r = angle * A2R;
-	return Quaternion(axis.x * sin(angle * 0.5f),
-					  axis.y * sin(angle * 0.5f),
-					  axis.z * sin(angle * 0.5f),
-					  cos(angle * 0.5f));
+	float r = angle * 0.5f * A2R;
+	return Quaternion(axis.x * sin(r),
+					  axis.y * sin(r),
+					  axis.z * sin(r),
+					  cos(r));
 }
 
 Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal)
 {
-	return Scale(scal.x, scal.y, scal.z) *
-		Rotate(float3(1.0f, 0.0f, 0.0f), rota.x).Normailze().ToMatrix() *
-		Rotate(float3(0.0f, 1.0f, 0.0f), rota.y).Normailze().ToMatrix() *
-		Rotate(float3(0.0f, 0.0f, 1.0f), rota.z).Normailze().ToMatrix() *
-		Translate(trans.x, trans.y, trans.z);
+	return  Scale(scal.x, scal.y, scal.z) *
+			Rotate(float3(1.0f, 0.0f, 0.0f), rota.x).Normailze().ToMatrix() *
+			Rotate(float3(0.0f, 1.0f, 0.0f), rota.y).Normailze().ToMatrix() *
+			Rotate(float3(0.0f, 0.0f, 1.0f), rota.z).Normailze().ToMatrix() *
+			Translate(trans.x, trans.y, trans.z);
+		
 }

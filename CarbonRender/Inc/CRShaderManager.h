@@ -8,7 +8,6 @@ class ShaderManager
 {
 private:
 	static ShaderManager* ins;
-	fstream logFile;
 
 	ShaderManager();
 	GLuint BuildShader(char* shaderName, const GLchar ** shaderSrc, GLenum type);

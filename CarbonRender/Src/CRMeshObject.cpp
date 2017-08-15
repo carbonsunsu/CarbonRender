@@ -8,7 +8,11 @@ MeshObject::~MeshObject()
 {
 	glDeleteVertexArrays(childCount, vaos);
 	glDeleteBuffers(childCount, ebos);
-	glDeleteBuffers(childCount, buffers);
+	glDeleteBuffers(childCount, vbs);
+	glDeleteBuffers(childCount, cbs);
+	glDeleteBuffers(childCount, ubs);
+	glDeleteBuffers(childCount, nbs);
+	glDeleteBuffers(childCount, tbs);
 }
 
 void MeshObject::SetChildCount(uint16_t count)
@@ -45,20 +49,38 @@ void MeshObject::GetReady4Rending()
 	vaos = new GLuint[childCount];
 	ebos = new GLuint[childCount];
 	vbs = new GLuint[childCount];
+	cbs = new GLuint[childCount];
+	ubs = new GLuint[childCount];
+	nbs = new GLuint[childCount];
+	tbs = new GLuint[childCount];
 
 	glGenVertexArrays(childCount, vaos);
 	glGenBuffers(childCount, ebos);
 	glGenBuffers(childCount, vbs);
+	glGenBuffers(childCount, cbs);
+	glGenBuffers(childCount, ubs);
+	glGenBuffers(childCount, nbs);
+	glGenBuffers(childCount, tbs);
 
 	for (int i = 0; i < childCount; i++)
 	{
 		Mesh curMesh = child[i];
 		glBindVertexArray(vaos[i]);
 
-		glBindBuffer(GL_ARRAY_BUFFER, vbs[i]);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float)*curMesh.vertexCount * 3, curMesh.vertex, GL_STATIC_DRAW);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-		glEnableVertexAttribArray(CR_VERTARRTIPOS_POS);
+		SetGLArrayBuffer(vbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.vertex, 3, GL_FLOAT, CR_VERTATTRIPOS_POS);
+		glEnableVertexAttribArray(CR_VERTATTRIPOS_POS);
+
+		SetGLArrayBuffer(cbs[i], sizeof(float)*curMesh.vertexCount * 4, curMesh.color, 4, GL_FLOAT, CR_VERTATTRIPOS_COL);
+		glEnableVertexAttribArray(CR_VERTATTRIPOS_COL);
+
+		SetGLArrayBuffer(ubs[i], sizeof(float)*curMesh.vertexCount * 4, curMesh.uv, 4, GL_FLOAT, CR_VERTATTRIPOS_UVS);
+		glEnableVertexAttribArray(CR_VERTATTRIPOS_UVS);
+
+		SetGLArrayBuffer(nbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.normal, 3, GL_FLOAT, CR_VERTATTRIPOS_NOR);
+		glEnableVertexAttribArray(CR_VERTATTRIPOS_NOR);
+
+		SetGLArrayBuffer(tbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.tangent, 3, GL_FLOAT, CR_VERTATTRIPOS_TAG);
+		glEnableVertexAttribArray(CR_VERTATTRIPOS_TAG);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebos[i]);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int)*curMesh.polygonCount * 3, curMesh.index, GL_STATIC_DRAW);
@@ -77,10 +99,13 @@ void MeshObject::Render()
 	for (int i = 0; i < childCount; i++)
 	{
 		Mesh curMesh = child[i];
-		Matrix4x4 finalMat = modelMatrix * curMesh.modelMatrix;
+		Matrix4x4 finalMat = curMesh.modelMatrix * modelMatrix;// *curMesh.modelMatrix;
+		Matrix3x3 normalMat = finalMat;
 
 		GLint location = glGetUniformLocation(shaderProgram, "modelMat");
 		glUniformMatrix4fv(location, 1, GL_FALSE, finalMat.matrix);
+		location = glGetUniformLocation(shaderProgram, "normalMat");
+		glUniformMatrix3fv(location, 1, GL_FALSE, normalMat.matrix);
 		location = glGetUniformLocation(shaderProgram, "viewMat");
 		glUniformMatrix4fv(location, 1, GL_FALSE, CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix().matrix);
 		location = glGetUniformLocation(shaderProgram, "proMat");
@@ -89,8 +114,7 @@ void MeshObject::Render()
 		ShaderManager::Instance()->UseShader(shaderProgram);
 		glBindVertexArray(vaos[i]);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebos[i]);
-		glPointSize(5.0f);
-		glDrawElements(GL_POINTS, curMesh.vertexCount, GL_UNSIGNED_INT, NULL);
+		glDrawElements(GL_TRIANGLES, curMesh.polygonCount * 3, GL_UNSIGNED_INT, NULL);
 	}
 
 	return;

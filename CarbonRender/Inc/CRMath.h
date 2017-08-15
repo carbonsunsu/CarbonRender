@@ -15,6 +15,12 @@
 #define R2A 180.0f/PI
 #endif
 
+class float3;
+class float4;
+class Matrix3x3;
+class Matrix4x4;
+class Quaternion;
+
 class float3
 {
 public:
@@ -25,6 +31,7 @@ public:
 	float3();
 	float3(float a, float b, float c);
 	float3(FbxDouble3 a);
+	float3(FbxDouble4 a);
 
 	void operator = (FbxDouble3 a);
 	void operator = (FbxDouble4 a);
@@ -51,9 +58,11 @@ public:
 	Matrix3x3();
 
 	Matrix3x3(float a[9]);
+	Matrix3x3(Matrix4x4 &mat);
 
 	void operator = (float a[9]);
 	void operator = (Matrix3x3 mat);
+	void operator = (Matrix4x4 mat);
 };
 
 class Matrix4x4

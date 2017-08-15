@@ -31,10 +31,10 @@ void Camera::SetOrthoCamera(float size)
 
 void Camera::UpdateViewMatrix()
 {
-	modelMatrix = Rotate(float3(1.0f, 0.0f, 0.0f), -transform[6]).Normailze().ToMatrix() *
+	modelMatrix = Translate(-transform[0], -transform[1], -transform[2]) * 
+				  Rotate(float3(1.0f, 0.0f, 0.0f), -transform[6]).Normailze().ToMatrix() *
 				  Rotate(float3(0.0f, 1.0f, 0.0f), -transform[7]).Normailze().ToMatrix() *
-				  Rotate(float3(0.0f, 0.0f, 1.0f), -transform[8]).Normailze().ToMatrix() *
-				  Translate(-transform[0], -transform[1], -transform[2]);
+				  Rotate(float3(0.0f, 0.0f, 1.0f), -transform[8]).Normailze().ToMatrix();
 
 	return;
 }

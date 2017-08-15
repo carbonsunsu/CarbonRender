@@ -29,8 +29,7 @@ void ReSizeCallback(int w, int h)
 void Init()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	glDisable(GL_CULL_FACE);
-	//glCullFace(GL_FRONT);
+	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 
 	FbxImportManager::Instance();
@@ -40,13 +39,13 @@ void Init()
 	//test code
 	Camera cam;
 	cam.SetPerspectiveCamera(90.0f, 0.01f, 1000.0f);
-	cam.SetPosition(float3(0.0f, 0.0f, 10.0f));
+	cam.SetPosition(float3(0.0f, 2.0f, 7.0f));
 	CameraManager::Instance()->Push(cam);
 
-	FbxImportManager::Instance()->ImportFbxModel("Resources\\Models\\box.fbx", &type59);
+	FbxImportManager::Instance()->ImportFbxModel("Resources\\Models\\Type59.fbx", &type59);
 	type59.GetReady4Rending();
 	type59.AttachShader(ShaderManager::Instance()->LoadShader("Test.vert", "Test.frag"));
-	type59.SetRotation(float3(0.0f, 0.0f, 0.0f));
+	type59.SetRotation(float3(0.0f, 45.0f, 0.0f));
 	delete ShaderManager::Instance();
 	//test code
 }
