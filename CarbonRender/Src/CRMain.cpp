@@ -6,6 +6,7 @@
 #include "..\Inc\CRMeshObject.h"
 #include "..\Inc\CRShaderManager.h"
 #include "..\Inc\CRCameraManager.h"
+#include "..\Inc\CRWindowManager.h"
 
 MeshObject type59;
 
@@ -22,19 +23,31 @@ void MainDisplay()
 
 void ReSizeCallback(int w, int h)
 {
-	glViewport(0, 0, w, h);
+	WindowManager::Instance()->ReSize((unsigned int)w, (unsigned int)h);
+	Camera* cam = CameraManager::Instance()->GetCurrentCamera();
+	if (cam != nullptr)
+		cam->UpdateProjectionMatrix();
 }
 
 
-void Init()
+void Init(int argc, char** argv)
 {
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	glEnable(GL_CULL_FACE);
-	glEnable(GL_DEPTH_TEST);
-
 	FbxImportManager::Instance();
 	ShaderManager::Instance();
 	CameraManager::Instance();
+	WindowManager::Instance();
+
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
+
+	WindowManager::Instance()->CreateWindow(1920, 1080, "CarbonRender");
+
+	if (glewInit())
+		std::cout << "GLEW init fail" << std::endl;
+
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_DEPTH_TEST);
 
 	//test code
 	Camera cam;
@@ -52,17 +65,7 @@ void Init()
 
 void main(int argc, char** argv)
 {
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
-	glutInitWindowSize(1920, 1080);
-	glutCreateWindow("CarbonRender");
-
-	if (glewInit())
-	{
-		std::cout << "GLEW init fail" << std::endl;
-	}
-
-	Init();
+	Init(argc, argv);
 	
 	glutDisplayFunc(MainDisplay);
 	glutIdleFunc(MainDisplay);

@@ -45,6 +45,9 @@
     <ClCompile Include="Src\CRCameraManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Src\CRWindowManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRGloble.h">
@@ -72,6 +75,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Inc\CRCameraManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRWindowManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

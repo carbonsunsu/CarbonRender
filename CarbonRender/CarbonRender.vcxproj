@@ -20,6 +20,7 @@
     <ClCompile Include="Src\CRMeshObject.cpp" />
     <ClCompile Include="Src\CRObject.cpp" />
     <ClCompile Include="Src\CRShaderManager.cpp" />
+    <ClCompile Include="Src\CRWindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRCamera.h" />
@@ -31,6 +32,7 @@
     <ClInclude Include="Inc\CRMeshObject.h" />
     <ClInclude Include="Inc\CRObject.h" />
     <ClInclude Include="Inc\CRShaderManager.h" />
+    <ClInclude Include="Inc\CRWindowManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shader\Test.frag" />

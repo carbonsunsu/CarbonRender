@@ -5,28 +5,52 @@ void Camera::SetPerspectiveCamera(float iFov, float iNearClip, float iFarClip)
 	fov = iFov;
 	nearClip = iNearClip;
 	farClip = iFarClip;
-	curCameraMode = Perspective;
+	curCameraMode = CameraProjectMode::Perspective;
 
-	float halfFOV = fov * 0.5f;
-	
-	//read from window class later
-	float wWidth = 1920.0f;
-	float wHeight = 1080.0f;
+	UpdateProjectionMatrix();
 
-	float hT = 1.0f / (nearClip * tan(halfFOV * A2R) * 2.0f); 
-	float wT = wHeight*hT / wWidth;
-
-	float m[16] = {2.0f*nearClip*wT, 0.0f, 0.0f, 0.0f,
-				   0.0f, 2.0f*nearClip*hT, 0.0f, 0.0f,
-				   0.0f, 0.0f, (farClip+nearClip)/(nearClip-farClip), -1.0f,
-				   0.0f, 0.0f, 2*nearClip*farClip/(nearClip-farClip), 0.0f};
-
-	projectionMatrix = m;
+	return;
 }
 
 void Camera::SetOrthoCamera(float size)
 {
-	curCameraMode = Ortho;
+	curCameraMode = CameraProjectMode::Ortho;
+
+	return;
+}
+
+void Camera::UpdateProjectionMatrix()
+{
+	switch (curCameraMode)
+	{
+	default:
+		break;
+	case CameraProjectMode::Perspective:
+	{
+		float halfFOV = fov * 0.5f;
+		WindowSize wSize = WindowManager::Instance()->GetWindowSize();
+		wInPixel = wSize.w;
+		hInPixel = wSize.h;
+
+		float hT = 1.0f / (nearClip * tan(halfFOV * A2R) * 2.0f);
+		float wT = hInPixel*hT / wInPixel;
+
+		float m[16] = { 2.0f*nearClip*wT, 0.0f, 0.0f, 0.0f,
+						0.0f, 2.0f*nearClip*hT, 0.0f, 0.0f,
+						0.0f, 0.0f, (farClip + nearClip) / (nearClip - farClip), -1.0f,
+						0.0f, 0.0f, 2 * nearClip*farClip / (nearClip - farClip), 0.0f };
+
+		projectionMatrix = m;
+	}
+	break;
+	case CameraProjectMode::Ortho:
+	{
+
+	}
+	break;
+	}
+
+	return;
 }
 
 void Camera::UpdateViewMatrix()

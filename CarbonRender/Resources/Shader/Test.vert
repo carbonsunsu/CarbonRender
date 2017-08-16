@@ -12,9 +12,11 @@ uniform mat4 viewMat;
 uniform mat4 proMat;
 
 out vec3 wsN;
+out vec3 T;
 
 void main ()
 {
 	gl_Position = proMat * (viewMat * (modelMat * msPos));
 	wsN = normalMat * msN;
+	T = msT;
 }
