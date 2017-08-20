@@ -7,16 +7,18 @@
 #include "..\Inc\CRShaderManager.h"
 #include "..\Inc\CRCameraManager.h"
 #include "..\Inc\CRWindowManager.h"
+#include "..\Inc\CRSkyRenderPass.h"
+#include "..\Inc\CRFinalPass.h"
+#include "..\Inc\CRRenderPass.h"
 
-MeshObject type59;
+SkyRenderPass skyPass;
+FinalPass finalPass;
 
 void MainDisplay()
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	CameraManager::Instance()->GetCurrentCamera()->UpdateViewMatrix();
-
-	type59.Render();
+	PassOutput* output;
+	output = skyPass.Draw(NULL);
+	finalPass.Draw(output);
 
 	glutSwapBuffers();
 }
@@ -43,23 +45,26 @@ void Init(int argc, char** argv)
 	WindowManager::Instance()->CreateWindow(1920, 1080, "CarbonRender");
 
 	if (glewInit())
-		std::cout << "GLEW init fail" << std::endl;
+		cout << "GLEW init fail" << endl;
+
+	string str = "@carbonsunsu";
+	cout << str << endl;
+	str = string("OpenGL Version: ") + string((GLchar *)glGetString(GL_VERSION));
+	cout << str << endl;
 
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_TEXTURE_2D);
 
 	//test code
 	Camera cam;
 	cam.SetPerspectiveCamera(90.0f, 0.01f, 1000.0f);
-	cam.SetPosition(float3(0.0f, 2.0f, 7.0f));
+	cam.SetPosition(float3(0.0f, 5.0f, 0.0f));
 	CameraManager::Instance()->Push(cam);
 
-	FbxImportManager::Instance()->ImportFbxModel("Resources\\Models\\Type59.fbx", &type59);
-	type59.GetReady4Rending();
-	type59.AttachShader(ShaderManager::Instance()->LoadShader("Test.vert", "Test.frag"));
-	type59.SetRotation(float3(0.0f, 45.0f, 0.0f));
-	delete ShaderManager::Instance();
+	skyPass.Init();
+	finalPass.Init();
 	//test code
 }
 

@@ -2,6 +2,13 @@
 
 float3::float3() {}
 
+float3::float3(float a)
+{
+	x = a;
+	y = a;
+	z = a;
+}
+
 float3::float3(float a, float b, float c)
 {
 	x = a;

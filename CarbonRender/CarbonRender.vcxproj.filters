@@ -48,6 +48,18 @@
     <ClCompile Include="Src\CRWindowManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Src\CRWeatherSystem.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRRenderPass.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRSkyRenderPass.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRFinalPass.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRGloble.h">
@@ -80,12 +92,36 @@
     <ClInclude Include="Inc\CRWindowManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\CRWeatherSystem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRRenderPass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRSkyRenderPass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRFinalPass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shader\Test.vert">
       <Filter>Shader</Filter>
     </None>
     <None Include="Resources\Shader\Test.frag">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\Atmosphere.vert">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\Atmosphere.frag">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\FinalPass.vert">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\FinalPass.frag">
       <Filter>Shader</Filter>
     </None>
   </ItemGroup>

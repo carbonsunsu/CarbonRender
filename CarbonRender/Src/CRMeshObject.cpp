@@ -86,7 +86,6 @@ void MeshObject::GetReady4Rending()
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int)*curMesh.polygonCount * 3, curMesh.index, GL_STATIC_DRAW);
 
 		glBindVertexArray(NULL);
-		glBindBuffer(GL_ARRAY_BUFFER, NULL);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, NULL);
 	}
 
@@ -99,9 +98,10 @@ void MeshObject::Render()
 	for (int i = 0; i < childCount; i++)
 	{
 		Mesh curMesh = child[i];
-		Matrix4x4 finalMat = curMesh.modelMatrix * modelMatrix;// *curMesh.modelMatrix;
+		Matrix4x4 finalMat = curMesh.modelMatrix * modelMatrix;
 		Matrix3x3 normalMat = finalMat;
 
+		ShaderManager::Instance()->UseShader(shaderProgram);
 		GLint location = glGetUniformLocation(shaderProgram, "modelMat");
 		glUniformMatrix4fv(location, 1, GL_FALSE, finalMat.matrix);
 		location = glGetUniformLocation(shaderProgram, "normalMat");
@@ -110,19 +110,17 @@ void MeshObject::Render()
 		glUniformMatrix4fv(location, 1, GL_FALSE, CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix().matrix);
 		location = glGetUniformLocation(shaderProgram, "proMat");
 		glUniformMatrix4fv(location, 1, GL_FALSE, CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix().matrix);
-
-		ShaderManager::Instance()->UseShader(shaderProgram);
+		
 		glBindVertexArray(vaos[i]);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebos[i]);
 		glDrawElements(GL_TRIANGLES, curMesh.polygonCount * 3, GL_UNSIGNED_INT, NULL);
 	}
 
-	return;
+	glBindVertexArray(NULL);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, NULL);
 }
 
 void MeshObject::AttachShader(GLuint shader)
 {
 	shaderProgram = shader;
-
-	return;
 }

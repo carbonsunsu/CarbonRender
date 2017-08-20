@@ -5,8 +5,6 @@ FbxImportManager* FbxImportManager::ins = nullptr;
 FbxImportManager::FbxImportManager()
 {
 	Init();
-
-	return;
 }
 
 FbxImportManager::~FbxImportManager()
@@ -14,8 +12,6 @@ FbxImportManager::~FbxImportManager()
 	fbxManager->Destroy();
 	ioSettings->Destroy();
 	ins = nullptr;	
-
-	return;
 }
 
 FbxImportManager * FbxImportManager::Instance()
@@ -31,8 +27,6 @@ void FbxImportManager::Init()
 	fbxManager = FbxManager::Create();
 	ioSettings = FbxIOSettings::Create(fbxManager, IOSROOT);
 	fbxManager->SetIOSettings(ioSettings);
-
-	return;
 }
 
 FbxColor FbxImportManager::ReadColor(FbxMesh * mesh, int index, int vertexID)
@@ -256,15 +250,17 @@ FbxVector4 FbxImportManager::ReadTangent(FbxMesh * mesh, int index, int vertexID
 
 bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out)
 {
+	char* dir = "Resources\\Models\\";
+	char* fullName = FileReader::BindString(dir, fileName);
 	FbxImporter* importer = FbxImporter::Create(this->fbxManager, "");
-	if (!importer->Initialize(fileName, -1, this->fbxManager->GetIOSettings()))
+	if (!importer->Initialize(fullName, -1, this->fbxManager->GetIOSettings()))
 	{
 		cout << "Fbx Importer init fail" << endl;
 		cout << "Error Log: " << importer->GetStatus().GetErrorString();
 		return false;
 	}
 
-	FbxScene* scene = FbxScene::Create(this->fbxManager, fileName);
+	FbxScene* scene = FbxScene::Create(this->fbxManager, fullName);
 	importer->Import(scene);
 	importer->Destroy();
 

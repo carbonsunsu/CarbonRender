@@ -22,10 +22,18 @@ CameraManager * CameraManager::Instance()
 
 void CameraManager::Push(Camera newCam)
 {
-	this->cam = newCam;
+	cams.push(newCam);
+}
+
+void CameraManager::Pop()
+{
+	cams.pop();
 }
 
 Camera* CameraManager::GetCurrentCamera()
 {
-	return &cam;
+	if (cams.empty())
+		return nullptr;
+
+	return &cams.top();
 }

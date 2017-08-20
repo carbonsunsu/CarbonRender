@@ -9,11 +9,12 @@ class CameraManager
 private:
 	CameraManager();
 	static CameraManager* ins;
-	Camera cam;
+	stack<Camera> cams;
 public:
 	~CameraManager();
 	static CameraManager* Instance();
 	void Push(Camera newCam);
+	void Pop();
 	Camera* GetCurrentCamera();
 };
 

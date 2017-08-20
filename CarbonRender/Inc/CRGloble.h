@@ -13,6 +13,7 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <stack>
 
 #include "..\Third\GL\include\glew.h"
 #pragma comment(lib, "glew32.lib")

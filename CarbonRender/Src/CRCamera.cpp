@@ -8,15 +8,31 @@ void Camera::SetPerspectiveCamera(float iFov, float iNearClip, float iFarClip)
 	curCameraMode = CameraProjectMode::Perspective;
 
 	UpdateProjectionMatrix();
+}
 
-	return;
+void Camera::SetNearFar(float iNearClip, float iFarClip)
+{
+	nearClip = iNearClip;
+	farClip = iFarClip;
+
+	UpdateProjectionMatrix();
+}
+
+void Camera::SetFov(float iFov)
+{
+	fov = iFov;
+
+	UpdateProjectionMatrix();
+}
+
+float3 Camera::GetCameraPara()
+{
+	return float3(fov, nearClip, farClip);
 }
 
 void Camera::SetOrthoCamera(float size)
 {
 	curCameraMode = CameraProjectMode::Ortho;
-
-	return;
 }
 
 void Camera::UpdateProjectionMatrix()
@@ -49,8 +65,6 @@ void Camera::UpdateProjectionMatrix()
 	}
 	break;
 	}
-
-	return;
 }
 
 void Camera::UpdateViewMatrix()
@@ -59,8 +73,6 @@ void Camera::UpdateViewMatrix()
 				  Rotate(float3(1.0f, 0.0f, 0.0f), -transform[6]).Normailze().ToMatrix() *
 				  Rotate(float3(0.0f, 1.0f, 0.0f), -transform[7]).Normailze().ToMatrix() *
 				  Rotate(float3(0.0f, 0.0f, 1.0f), -transform[8]).Normailze().ToMatrix();
-
-	return;
 }
 
 Matrix4x4 Camera::GetViewMatrix()

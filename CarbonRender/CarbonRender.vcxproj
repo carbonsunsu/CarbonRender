@@ -15,26 +15,38 @@
     <ClCompile Include="Src\CRCameraManager.cpp" />
     <ClCompile Include="Src\CRFbxImportManager.cpp" />
     <ClCompile Include="Src\CRFileReader.cpp" />
+    <ClCompile Include="Src\CRFinalPass.cpp" />
     <ClCompile Include="Src\CRMain.cpp" />
     <ClCompile Include="Src\CRMath.cpp" />
     <ClCompile Include="Src\CRMeshObject.cpp" />
     <ClCompile Include="Src\CRObject.cpp" />
     <ClCompile Include="Src\CRShaderManager.cpp" />
+    <ClCompile Include="Src\CRSkyRenderPass.cpp" />
+    <ClCompile Include="Src\CRWeatherSystem.cpp" />
     <ClCompile Include="Src\CRWindowManager.cpp" />
+    <ClCompile Include="Src\CRRenderPass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRCamera.h" />
     <ClInclude Include="Inc\CRCameraManager.h" />
     <ClInclude Include="Inc\CRFbxImportManager.h" />
     <ClInclude Include="Inc\CRFileReader.h" />
+    <ClInclude Include="Inc\CRFinalPass.h" />
     <ClInclude Include="Inc\CRGloble.h" />
     <ClInclude Include="Inc\CRMath.h" />
     <ClInclude Include="Inc\CRMeshObject.h" />
     <ClInclude Include="Inc\CRObject.h" />
     <ClInclude Include="Inc\CRShaderManager.h" />
+    <ClInclude Include="Inc\CRSkyRenderPass.h" />
     <ClInclude Include="Inc\CRWindowManager.h" />
+    <ClInclude Include="Inc\CRRenderPass.h" />
+    <ClInclude Include="Inc\CRWeatherSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Shader\Atmosphere.frag" />
+    <None Include="Resources\Shader\Atmosphere.vert" />
+    <None Include="Resources\Shader\FinalPass.frag" />
+    <None Include="Resources\Shader\FinalPass.vert" />
     <None Include="Resources\Shader\Test.frag" />
     <None Include="Resources\Shader\Test.vert" />
   </ItemGroup>

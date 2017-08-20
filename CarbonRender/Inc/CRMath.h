@@ -29,6 +29,7 @@ public:
 	float z = 0.0f;
 
 	float3();
+	float3(float a);
 	float3(float a, float b, float c);
 	float3(FbxDouble3 a);
 	float3(FbxDouble4 a);
