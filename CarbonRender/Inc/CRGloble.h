@@ -8,6 +8,7 @@
 #define CR_VERTATTRIPOS_TAG 2
 #define CR_VERTATTRIPOS_UVS 3
 #define CR_VERTATTRIPOS_COL 4
+#define FIXEDUPDATE_TIME 0.02f
 
 #include <fstream>
 #include <iostream>

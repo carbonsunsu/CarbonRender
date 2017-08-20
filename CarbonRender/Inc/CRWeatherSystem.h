@@ -7,14 +7,34 @@
 class WeatherSystem
 {
 private:
-	float latitude = 45.0f;
-	int day = 200;
-	float hour = 8.0f;
-	float turbidity = 2.0f;
-	float exposure = 0.04f;
-	float timeSpeed = 1.0f;
+	static WeatherSystem* ins;
+	WeatherSystem();
 
-	static float4 Yxy2RGB(float Y, float x, float y);
+	float latitude;
+	int day;
+	float hour;
+	float turbidity;
+	float exposure;
+	float timeSpeed;
+	float lightR;
+
+	float thetaS;
+	float4 wsSunPos;
+	float Yz, yz, xz;
+
+	float shaderParas[10];
+
+	void Init();
+public:
+	static WeatherSystem* Instance();
+	~WeatherSystem();
+	
+	void Update();
+
+	float4 GetWsSunPos();
+	float4 GetSunColor();
+	float4 GetSkyUpColor();
+	float* GetShaderParas();
 };
 
 #endif

@@ -30,6 +30,20 @@ float3::float3(FbxDouble4 a)
 	z = (float)a[2];
 }
 
+float3::float3(float4 a)
+{
+	x = a.x;
+	y = a.y;
+	z = a.z;
+}
+
+float3 float3::normalize()
+{
+	float l = sqrt(x*x + y*y + z*z);
+
+	return float3(x / l,y / l,z / l);
+}
+
 void float3::operator=(FbxDouble3 a)
 {
 	x = (float)a[0];
@@ -42,6 +56,20 @@ void float3::operator=(FbxDouble4 a)
 	x = (float)a[0];
 	y = (float)a[1];
 	z = (float)a[2];
+}
+
+void float3::operator=(float3 a)
+{
+	x = a.x;
+	y = a.y;
+	z = a.z;
+}
+
+void float3::operator=(float4 a)
+{
+	x = a.x;
+	y = a.y;
+	z = a.z;
 }
 
 float4::float4() {}
@@ -60,6 +88,21 @@ float4::float4(float3 a, float d)
 	y = a.y;
 	z = a.z;
 	w = d;
+}
+
+float4 float4::normalize()
+{
+	float l = sqrt(x*x + y*y + z*z + w*w);
+
+	return float4(x / l, y / l, z / l, w / l);
+}
+
+void float4::operator=(float4 a)
+{
+	x = a.x;
+	y = a.y;
+	z = a.z;
+	w = a.w;
 }
 
 Matrix3x3::Matrix3x3() {}
@@ -180,6 +223,26 @@ float4 operator*(float4 v, Quaternion r)
 	return float4(v.x*r.x, v.y*r.y, v.z*r.z, v.w*r.w);
 }
 
+float3 operator*(float3 v, float s)
+{
+	return float3(v.x*s, v.y*s, v.z*s);
+}
+
+float4 operator*(float4 v, float s)
+{
+	return float4(v.x*s, v.y*s, v.z*s, v.w*s);
+}
+
+float Dot(float3 a, float3 b)
+{
+	return a.x*b.x + a.y*b.y + a.z*b.z;
+}
+
+float Dot(float4 a, float4 b)
+{
+	return a.x*b.x + a.y*b.y + a.z*b.z + a.w*b.w;
+}
+
 Matrix4x4 Translate(float x, float y, float z)
 {
 	float tArray[16] = {1.0f, 0.0f, 0.0f, 0.0f,
@@ -219,4 +282,16 @@ Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal)
 			Rotate(float3(0.0f, 0.0f, 1.0f), rota.z).Normailze().ToMatrix() *
 			Translate(trans.x, trans.y, trans.z);
 		
+}
+
+float4 Yxy2RGB(float Y, float x, float y)
+{
+	//Yxy to XYZ
+	float3 XYZ = float3(x*Y / y, Y, (1.0f - x - y)*Y / y);
+
+	//XYZ to rgb
+	return float4(3.240479f*XYZ.x - 1.53715f*XYZ.y - 0.49853f*XYZ.z,
+				-0.969256f*XYZ.x + 1.875991f*XYZ.y + 0.041556f*XYZ.z,
+				0.055648f*XYZ.x - 0.204043f*XYZ.y + 1.057311f*XYZ.z,
+				1.0f);
 }

@@ -51,6 +51,23 @@ void SkyRenderPass::Render(PassOutput* input)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glCullFace(GL_FRONT);
 	
+	ShaderManager::Instance()->UseShader(shaderProgram);
+	float* shaderParas = WeatherSystem::Instance()->GetShaderParas();
+	GLuint location = glGetUniformLocation(shaderProgram, "t");
+	glUniform1f(location, shaderParas[0]);
+	location = glGetUniformLocation(shaderProgram, "exposure");
+	glUniform1f(location, shaderParas[1]);
+	location = glGetUniformLocation(shaderProgram, "thetaS");
+	glUniform1f(location, shaderParas[2]);
+	location = glGetUniformLocation(shaderProgram, "wsSunPos");
+	glUniform4f(location, shaderParas[3], shaderParas[4], shaderParas[5], shaderParas[6]);
+	location = glGetUniformLocation(shaderProgram, "Yz");
+	glUniform1f(location, shaderParas[7]);
+	location = glGetUniformLocation(shaderProgram, "yz");
+	glUniform1f(location, shaderParas[8]);
+	location = glGetUniformLocation(shaderProgram, "xz");
+	glUniform1f(location, shaderParas[9]);
+
 	sphere.Render();
 
 	glCullFace(GL_BACK);

@@ -7,6 +7,11 @@
 #define PI 3.14159265358979323846f
 #endif
 
+#ifndef e
+#define e 2.718281828459f
+#endif
+
+
 #ifndef A2R
 #define A2R PI/180.0f
 #endif
@@ -33,9 +38,14 @@ public:
 	float3(float a, float b, float c);
 	float3(FbxDouble3 a);
 	float3(FbxDouble4 a);
+	float3(float4 a);
+
+	float3 normalize();
 
 	void operator = (FbxDouble3 a);
 	void operator = (FbxDouble4 a);
+	void operator = (float3 a);
+	void operator = (float4 a);
 };
 
 class float4
@@ -49,6 +59,10 @@ public:
 	float4();
 	float4(float a, float b, float c, float d);
 	float4(float3 a, float d);
+
+	float4 normalize();
+
+	void operator = (float4 a);
 };
 
 class Matrix3x3
@@ -97,9 +111,15 @@ public:
 Matrix4x4 operator * (Matrix4x4 m1, Matrix4x4 m2);
 float4 operator * (float4 v, Matrix4x4 m);
 float4 operator * (float4 v, Quaternion r);
+float3 operator * (float3 v, float s);
+float4 operator * (float4 v, float s);
+float Dot(float3 a, float3 b);
+float Dot(float4 a, float4 b);
 
 Matrix4x4 Translate(float x, float y, float z);
 Matrix4x4 Scale(float x, float y, float z);
 Quaternion Rotate(float3 axis, float angle);
 Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal);
+
+float4 Yxy2RGB(float Y, float x, float y);
 #endif

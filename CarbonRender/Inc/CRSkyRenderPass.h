@@ -8,6 +8,7 @@
 #include "..\Inc\CRWindowManager.h"
 #include "..\Inc\CRCameraManager.h"
 #include "..\Inc\CRShaderManager.h"
+#include "..\Inc\CRWeatherSystem.h"
 
 class SkyRenderPass : public RenderPass
 {
