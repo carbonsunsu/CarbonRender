@@ -61,12 +61,8 @@ void SkyRenderPass::Render(PassOutput* input)
 	glUniform1f(location, shaderParas[2]);
 	location = glGetUniformLocation(shaderProgram, "wsSunPos");
 	glUniform4f(location, shaderParas[3], shaderParas[4], shaderParas[5], shaderParas[6]);
-	location = glGetUniformLocation(shaderProgram, "Yz");
-	glUniform1f(location, shaderParas[7]);
-	location = glGetUniformLocation(shaderProgram, "yz");
-	glUniform1f(location, shaderParas[8]);
-	location = glGetUniformLocation(shaderProgram, "xz");
-	glUniform1f(location, shaderParas[9]);
+	location = glGetUniformLocation(shaderProgram, "zenith");
+	glUniform3f(location, shaderParas[7], shaderParas[8], shaderParas[9]);
 
 	sphere.Render();
 

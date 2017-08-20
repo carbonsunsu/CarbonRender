@@ -113,13 +113,24 @@ float4 operator * (float4 v, Matrix4x4 m);
 float4 operator * (float4 v, Quaternion r);
 float3 operator * (float3 v, float s);
 float4 operator * (float4 v, float s);
+float3 operator * (float3 v1, float3 v2);
+float4 operator * (float4 v1, float4 v2);
+float3 operator / (float3 v, float s);
+float4 operator / (float4 v, float s);
+float3 operator / (float3 v1, float3 v2);
+float4 operator / (float4 v1, float4 v2);
+float3 operator + (float a, float3 v);
+float4 operator + (float a, float4 v);
+float3 operator + (float3 v1, float3 v2);
+float4 operator + (float4 v1, float4 v2);
 float Dot(float3 a, float3 b);
 float Dot(float4 a, float4 b);
+float3 exp(float3 v);
 
 Matrix4x4 Translate(float x, float y, float z);
 Matrix4x4 Scale(float x, float y, float z);
 Quaternion Rotate(float3 axis, float angle);
 Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal);
 
-float4 Yxy2RGB(float Y, float x, float y);
+float4 xyY2RGB(float3 xyY);
 #endif

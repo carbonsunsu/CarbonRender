@@ -6,9 +6,7 @@ uniform float t;
 uniform float exposure;
 uniform float thetaS;
 uniform vec4 wsSunPos;
-uniform float Yz;
-uniform float yz;
-uniform float xz;
+uniform vec3 zenith;
 
 in vec3 wsP;
 
@@ -27,42 +25,19 @@ void main()
 	float gamma = acos(vSovP);
 
 	vec4 skyColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	//Y
-	float A = 0.1787f*t-1.4630f;
-	float B = -0.3554f*t+0.4275f;
-	float C = -0.0227f*t+5.3251f;
-	float D = 0.1206f*t-2.5771f;
-	float E = -0.0670f*t+0.3703f;
+	vec3 A = vec3(-0.0193f*t-0.2592f, -0.0167f*t-0.2608f, 0.1787f*t-1.4630f);
+	vec3 B = vec3(-0.0665f*t+0.0008f, -0.0950f*t+0.0092f, -0.3554f*t+0.4275f);
+	vec3 C = vec3(-0.0004f*t+0.2125f, -0.0079f*t+0.2102f, -0.0227f*t+5.3251f);
+	vec3 D = vec3(-0.0641f*t-0.8989f, -0.0441f*t-1.6537f, 0.1206f*t-2.5771f);
+	vec3 E = vec3(-0.0033f*t+0.0452f, -0.0109f*t+0.0529f, -0.0670f*t+0.3703f);
 
-	float F1 = (1.0f+A*exp(B/cosTheta))*(1.0f+C*exp(D*gamma)+E*pow(vSovP, 2.0f));
-	float F2 = (1.0f+A*exp(B))*(1.0f+C*exp(D*thetaS)+E*pow(cos(thetaS), 2.0f));
-	float Y = Yz*(F1/F2);
-	Y = 1.0f-exp((1.0f/-exposure)*Y);
+	vec3 F1 = (1.0f+A*exp(B/cosTheta))*(1.0f+C*exp(D*gamma)+E*pow(vSovP, 2.0f));
+	vec3 F2 = (1.0f+A*exp(B))*(1.0f+C*exp(D*thetaS)+E*pow(cos(thetaS), 2.0f));
+	vec3 xyY = zenith * (F1/F2);
+	xyY.z = 1.0f-exp((1.0f/-exposure)*xyY.z);
 
-	//x
-	A = -0.0193f*t-0.2592f;
-	B = -0.0665f*t+0.0008f;
-	C = -0.0004f*t+0.2125f;
-	D = -0.0641f*t-0.8989f;
-	E = -0.0033f*t+0.0452f;
-				
-	F1 = (1.0f+A*exp(B/cosTheta))*(1.0f+C*exp(D*gamma)+E*pow(vSovP, 2.0f));
-	F2 = (1.0f+A*exp(B))*(1.0f+C*exp(D*thetaS)+E*pow(cos(thetaS), 2.0f));
-	float x = xz*(F1/F2);
-				
-	//y
-	A = -0.0167f*t-0.2608f;
-	B = -0.0950f*t+0.0092f;
-	C = -0.0079f*t+0.2102f;
-	D = -0.0441f*t-1.6537f;
-	E = -0.0109f*t+0.0529f;								
-					
-	F1 = (1.0f+A*exp(B/cosTheta))*(1.0f+C*exp(D*gamma)+E*pow(vSovP, 2.0f));
-	F2 = (1.0f+A*exp(B))*(1.0f+C*exp(D*thetaS)+E*pow(cos(thetaS), 2.0f));
-	float y = yz*(F1/F2);
-
-	//Yxy to XYZ
-	vec3 XYZ = vec3(x*Y/y, Y, (1.0f-x-y)*Y/y);
+	//xyY to XYZ
+	vec3 XYZ = vec3(xyY.x*xyY.z / xyY.y, xyY.z, (1.0f - xyY.x - xyY.y) * xyY.z/xyY.y);
 
 	//XYZ to RGB
 	skyColor = vec4(3.240479f*XYZ.x-1.53715f*XYZ.y-0.49853f*XYZ.z, 

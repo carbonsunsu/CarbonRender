@@ -233,6 +233,58 @@ float4 operator*(float4 v, float s)
 	return float4(v.x*s, v.y*s, v.z*s, v.w*s);
 }
 
+float3 operator*(float3 v1, float3 v2)
+{
+	return float3(v1.x*v2.x, v1.y*v2.y, v1.z*v2.z);
+}
+
+float4 operator*(float4 v1, float4 v2)
+{
+	return float4(v1.x*v2.x, v1.y*v2.y, v1.z*v2.z, v1.w*v2.w);
+}
+
+float3 operator/(float3 v, float s)
+{
+	float sT = 1.0f / s;
+	return float3(v.x*sT, v.y*sT, v.z*sT);
+}
+
+float4 operator/(float4 v, float s)
+{
+	float sT = 1.0f / s;
+	return float4(v.x*sT, v.y*sT, v.z*sT, v.w*sT);
+}
+
+float3 operator/(float3 v1, float3 v2)
+{
+	return float3(v1.x / v2.x, v1.y / v2.y, v1.z / v2.z);
+}
+
+float4 operator/(float4 v1, float4 v2)
+{
+	return float4(v1.x / v2.x, v1.y / v2.y, v1.z / v2.z, v1.w / v2.w);
+}
+
+float3 operator+(float a, float3 v)
+{
+	return float3(a + v.x, a + v.y, a + v.z);
+}
+
+float4 operator+(float a, float4 v)
+{
+	return float4(a + v.x, a + v.y, a + v.z, a + v.w);
+}
+
+float3 operator+(float3 v1, float3 v2)
+{
+	return float3(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
+}
+
+float4 operator+(float4 v1, float4 v2)
+{
+	return float4(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w);
+}
+
 float Dot(float3 a, float3 b)
 {
 	return a.x*b.x + a.y*b.y + a.z*b.z;
@@ -241,6 +293,11 @@ float Dot(float3 a, float3 b)
 float Dot(float4 a, float4 b)
 {
 	return a.x*b.x + a.y*b.y + a.z*b.z + a.w*b.w;
+}
+
+float3 exp(float3 v)
+{
+	return float3(exp(v.x), exp(v.y), exp(v.z));
 }
 
 Matrix4x4 Translate(float x, float y, float z)
@@ -284,10 +341,10 @@ Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal)
 		
 }
 
-float4 Yxy2RGB(float Y, float x, float y)
+float4 xyY2RGB(float3 xyY)
 {
-	//Yxy to XYZ
-	float3 XYZ = float3(x*Y / y, Y, (1.0f - x - y)*Y / y);
+	//xyY to XYZ
+	float3 XYZ = float3(xyY.x*xyY.z / xyY.y, xyY.z, (1.0f - xyY.x - xyY.y)*xyY.z / xyY.y);
 
 	//XYZ to rgb
 	return float4(3.240479f*XYZ.x - 1.53715f*XYZ.y - 0.49853f*XYZ.z,

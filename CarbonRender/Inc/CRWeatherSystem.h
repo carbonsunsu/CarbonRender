@@ -20,7 +20,7 @@ private:
 
 	float thetaS;
 	float4 wsSunPos;
-	float Yz, yz, xz;
+	float3 zenith; // xyY
 
 	float shaderParas[10];
 
