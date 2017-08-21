@@ -60,6 +60,12 @@
     <ClCompile Include="Src\CRFinalPass.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Src\CRController.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRControllerManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRGloble.h">
@@ -102,6 +108,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Inc\CRFinalPass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRController.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRControllerManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,15 +2,14 @@
 #include "..\Inc\CRFileReader.h"
 #include "..\Inc\CRMath.h"
 #include "..\Inc\CRFbxImportManager.h"
-#include "..\Inc\CRObject.h"
 #include "..\Inc\CRMeshObject.h"
 #include "..\Inc\CRShaderManager.h"
 #include "..\Inc\CRCameraManager.h"
 #include "..\Inc\CRWindowManager.h"
 #include "..\Inc\CRSkyRenderPass.h"
 #include "..\Inc\CRFinalPass.h"
-#include "..\Inc\CRRenderPass.h"
 #include "..\Inc\CRWeatherSystem.h"
+#include "..\Inc\CRControllerManager.h"
 
 SkyRenderPass skyPass;
 FinalPass finalPass;
@@ -38,6 +37,7 @@ void Init(int argc, char** argv)
 	FbxImportManager::Instance();
 	ShaderManager::Instance();
 	CameraManager::Instance();
+	ControllerManager::Instance();
 	WindowManager::Instance();
 	WeatherSystem::Instance();
 
@@ -61,10 +61,13 @@ void Init(int argc, char** argv)
 
 	//test code
 	Camera cam;
-	cam.SetPerspectiveCamera(90.0f, 0.01f, 1000.0f);
-	cam.SetPosition(float3(0.0f, 0.0f, 0.0f));
-	cam.SetRotation(float3(0.0f, 90.0f, 0.0f));
+	cam.SetPerspectiveCamera(60.0f, 0.01f, 1000.0f);
+	cam.SetPosition(float3(0.0f, 0.0f, 5.0f));
 	CameraManager::Instance()->Push(cam);
+
+	Controller ctrl;
+	ctrl.Init();
+	ControllerManager::Instance()->Push(ctrl);
 
 	skyPass.Init();
 	finalPass.Init();
@@ -74,10 +77,31 @@ void Init(int argc, char** argv)
 void FixedUpdate(int value)
 {
 	WeatherSystem::Instance()->Update();
+	ControllerManager::Instance()->GetCurrentController()->Update();
 
 	glutPostRedisplay();
 
 	glutTimerFunc((unsigned int)(FIXEDUPDATE_TIME * 1000.0f), FixedUpdate, 0);
+}
+
+void KeyDownCallback(unsigned char key, int x, int y)
+{
+	ControllerManager::Instance()->GetCurrentController()->KeyDownCallback(key, x, y);
+}
+
+void KeyUpCallback(unsigned char key, int x, int y)
+{
+	ControllerManager::Instance()->GetCurrentController()->KeyUpCallback(key, x, y);
+}
+
+void MouseKeyCallback(int button, int state, int x, int y)
+{
+	ControllerManager::Instance()->GetCurrentController()->MouseKeyCallback(button, state, x, y);
+}
+
+void MouseMotionCallback(int x, int y) 
+{
+	ControllerManager::Instance()->GetCurrentController()->MouseMotionCallback(x, y);
 }
 
 void main(int argc, char** argv)
@@ -88,5 +112,9 @@ void main(int argc, char** argv)
 	glutIdleFunc(MainDisplay);
 	glutReshapeFunc(ReSizeCallback);
 	glutTimerFunc((unsigned int)(FIXEDUPDATE_TIME * 1000.0f), FixedUpdate, 0);
+	glutKeyboardFunc(KeyDownCallback);
+	glutKeyboardUpFunc(KeyUpCallback);
+	glutMouseFunc(MouseKeyCallback);
+	glutMotionFunc(MouseMotionCallback);
 	glutMainLoop();
 }

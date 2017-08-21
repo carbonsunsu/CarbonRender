@@ -8,6 +8,8 @@ CameraManager::CameraManager()
 
 CameraManager::~CameraManager()
 {
+	while (!cams.empty())
+		cams.pop();
 
 	ins = nullptr;
 }

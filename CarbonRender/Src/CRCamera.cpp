@@ -70,9 +70,11 @@ void Camera::UpdateProjectionMatrix()
 void Camera::UpdateViewMatrix()
 {
 	modelMatrix = Translate(-transform[0], -transform[1], -transform[2]) * 
-				  Rotate(float3(1.0f, 0.0f, 0.0f), -transform[6]).Normailze().ToMatrix() *
 				  Rotate(float3(0.0f, 1.0f, 0.0f), -transform[7]).Normailze().ToMatrix() *
+				  Rotate(float3(1.0f, 0.0f, 0.0f), -transform[6]).Normailze().ToMatrix() *
 				  Rotate(float3(0.0f, 0.0f, 1.0f), -transform[8]).Normailze().ToMatrix();
+
+	UpdateLocalCoord();
 }
 
 Matrix4x4 Camera::GetViewMatrix()
