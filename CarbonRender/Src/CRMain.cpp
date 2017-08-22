@@ -10,6 +10,7 @@
 #include "..\Inc\CRFinalPass.h"
 #include "..\Inc\CRWeatherSystem.h"
 #include "..\Inc\CRControllerManager.h"
+#include "..\Inc\CRTextureManager.h"
 
 SkyRenderPass skyPass;
 FinalPass finalPass;
@@ -34,8 +35,10 @@ void ReSizeCallback(int w, int h)
 
 void Init(int argc, char** argv)
 {
-	FbxImportManager::Instance();
+	TextureManager::Instance();
 	ShaderManager::Instance();
+	FbxImportManager::Instance();
+	
 	CameraManager::Instance();
 	ControllerManager::Instance();
 	WindowManager::Instance();

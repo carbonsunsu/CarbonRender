@@ -23,6 +23,7 @@ public:
 	float* normal;
 	float* tangent;
 	float* uv;
+	GLuint texs[3];
 };
 
 class MeshObject : public Object

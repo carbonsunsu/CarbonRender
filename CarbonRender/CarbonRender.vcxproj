@@ -24,6 +24,7 @@
     <ClCompile Include="Src\CRObject.cpp" />
     <ClCompile Include="Src\CRShaderManager.cpp" />
     <ClCompile Include="Src\CRSkyRenderPass.cpp" />
+    <ClCompile Include="Src\CRTextureManager.cpp" />
     <ClCompile Include="Src\CRWeatherSystem.cpp" />
     <ClCompile Include="Src\CRWindowManager.cpp" />
     <ClCompile Include="Src\CRRenderPass.cpp" />
@@ -42,6 +43,7 @@
     <ClInclude Include="Inc\CRObject.h" />
     <ClInclude Include="Inc\CRShaderManager.h" />
     <ClInclude Include="Inc\CRSkyRenderPass.h" />
+    <ClInclude Include="Inc\CRTextureManager.h" />
     <ClInclude Include="Inc\CRWindowManager.h" />
     <ClInclude Include="Inc\CRRenderPass.h" />
     <ClInclude Include="Inc\CRWeatherSystem.h" />
@@ -85,15 +87,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)Third\FBX\include;$(ProjectDir)Third\GL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)Third\FBX\lib;$(ProjectDir)Third\GL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)Third\FBX\include;$(ProjectDir)Third\GL\include;$(ProjectDir)Third\Simple OpenGL Image Library\src;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)Third\FBX\lib;$(ProjectDir)Third\GL\lib;$(ProjectDir)Third\Simple OpenGL Image Library\lib;$(LibraryPath)</LibraryPath>
     <ExecutablePath>$(ProjectDir)Third\FBX\dll;$(ProjectDir)Third\GL\dll;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)Third\FBX\include;$(ProjectDir)Third\GL\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Third\FBX\include;$(ProjectDir)Third\GL\include;$(ProjectDir)Third\Simple OpenGL Image Library\src;$(IncludePath)</IncludePath>
     <ExecutablePath>$(ProjectDir)Third\FBX\dll;$(ProjectDir)Third\GL\dll;$(ExecutablePath)</ExecutablePath>
-    <LibraryPath>$(ProjectDir)Third\FBX\lib;$(ProjectDir)Third\GL\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)Third\FBX\lib;$(ProjectDir)Third\GL\lib;$(ProjectDir)Third\Simple OpenGL Image Library\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

@@ -66,6 +66,9 @@
     <ClCompile Include="Src\CRControllerManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Src\CRTextureManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRGloble.h">
@@ -114,6 +117,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Inc\CRControllerManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRTextureManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

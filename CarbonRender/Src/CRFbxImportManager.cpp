@@ -248,6 +248,18 @@ FbxVector4 FbxImportManager::ReadTangent(FbxMesh * mesh, int index, int vertexID
 	return t;
 }
 
+void FbxImportManager::ReadTexture(Mesh* mesh)
+{
+	//textures should be named by mesh name and function (_D: Diffuse, _S: Metal and smoothness, _N: Normal)
+	string meshName = mesh->name;
+	char* fullName = FileReader::BindString((char*)meshName.c_str(), "_D.tga");
+	mesh->texs[0] = TextureManager::Instance()->LoadTexture(fullName);
+	fullName = FileReader::BindString((char*)meshName.c_str(), "_N.tga");
+	mesh->texs[1] = TextureManager::Instance()->LoadTexture(fullName);
+	fullName = FileReader::BindString((char*)meshName.c_str(), "_S.tga");
+	mesh->texs[2] = TextureManager::Instance()->LoadTexture(fullName);
+}
+
 bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out)
 {
 	char* dir = "Resources\\Models\\";
@@ -304,6 +316,9 @@ bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out)
 					crMesh.index = new unsigned int[crMesh.polygonCount * 3];
 					crMesh.normal = new float[crMesh.vertexCount * 3];
 					crMesh.tangent = new float[crMesh.vertexCount * 3];
+
+					//Get Textures
+					ReadTexture(&crMesh);
 
 					int vertexID = 0;
 

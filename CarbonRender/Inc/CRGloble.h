@@ -15,6 +15,7 @@
 #include <string>
 #include <cmath>
 #include <stack>
+#include <unordered_map>
 
 #include "..\Third\GL\include\glew.h"
 #pragma comment(lib, "glew32.lib")
@@ -22,6 +23,8 @@
 #pragma comment(lib, "glut32.lib")
 #include "..\Third\FBX\include\fbxsdk.h"
 #pragma comment(lib, "libfbxsdk.lib")
+#include "..\Third\Simple OpenGL Image Library\src\SOIL.h"
+#pragma comment(lib, "SOIL.lib")
 
 using namespace std;
 

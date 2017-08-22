@@ -3,6 +3,7 @@
 
 #include "..\Inc\CRGloble.h"
 #include "..\Inc\CRMeshObject.h"
+#include "..\Inc\CRTextureManager.h"
 
 class FbxImportManager
 {
@@ -17,6 +18,7 @@ private:
 	float4 ReadUV(FbxMesh* mesh, int index, int uvIndex);
 	FbxVector4 ReadNormal(FbxMesh* mesh, int index, int vertexID);
 	FbxVector4 ReadTangent(FbxMesh* mesh, int index, int vertexID);
+	void ReadTexture(Mesh* mesh);
 
 public:
 	~FbxImportManager();
