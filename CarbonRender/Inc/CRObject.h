@@ -21,7 +21,6 @@ public:
 	void SetScale(float3 s);
 	void SetRotation(float3 r);
 	void UpdateModelMatrix();
-	void UpdateLocalCoord();
 
 	float3 GetPosition();
 	float3 GetScale();

@@ -69,6 +69,9 @@
     <ClCompile Include="Src\CRTextureManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Src\CRGPass.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRGloble.h">
@@ -122,6 +125,9 @@
     <ClInclude Include="Inc\CRTextureManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\CRGPass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shader\Test.vert">
@@ -140,6 +146,12 @@
       <Filter>Shader</Filter>
     </None>
     <None Include="Resources\Shader\FinalPass.frag">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\GPass.frag">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\GPass.vert">
       <Filter>Shader</Filter>
     </None>
   </ItemGroup>

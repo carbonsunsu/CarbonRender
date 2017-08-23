@@ -69,12 +69,55 @@ void Camera::UpdateProjectionMatrix()
 
 void Camera::UpdateViewMatrix()
 {
-	modelMatrix = Translate(-transform[0], -transform[1], -transform[2]) * 
-				  Rotate(float3(0.0f, 1.0f, 0.0f), -transform[7]).Normailze().ToMatrix() *
-				  Rotate(float3(1.0f, 0.0f, 0.0f), -transform[6]).Normailze().ToMatrix() *
-				  Rotate(float3(0.0f, 0.0f, 1.0f), -transform[8]).Normailze().ToMatrix();
+	{
+		float4 xAxis(1.0f, 0.0f, 0.0f, 0.0f);
+		float4 yAxis(0.0f, 1.0f, 0.0f, 0.0f);
+		float4 zAxis(0.0f, 0.0f, 1.0f, 0.0f);
 
-	UpdateLocalCoord();
+		modelMatrix = Translate(-transform[0], -transform[1], -transform[2]) *
+			Rotate(xAxis, -transform[6]).Normailze().ToMatrix();
+
+		yAxis = yAxis * Rotate(xAxis, -transform[6]).Normailze().ToMatrix();
+		zAxis = zAxis * Rotate(xAxis, -transform[6]).Normailze().ToMatrix();
+
+		modelMatrix = modelMatrix * Rotate(float3(yAxis), -transform[7]).Normailze().ToMatrix();
+
+		xAxis = xAxis * Rotate(float3(yAxis), -transform[7]).Normailze().ToMatrix();
+		zAxis = zAxis * Rotate(float3(yAxis), -transform[7]).Normailze().ToMatrix();
+
+		modelMatrix = modelMatrix * Rotate(float3(zAxis), -transform[8]).Normailze().ToMatrix();
+
+		xAxis = xAxis * Rotate(float3(zAxis), -transform[8]).Normailze().ToMatrix();
+		yAxis = zAxis * Rotate(float3(zAxis), -transform[8]).Normailze().ToMatrix();
+	}
+	
+	//update localCoord
+	{
+		float4 xAxis(1.0f, 0.0f, 0.0f, 0.0f);
+		float4 yAxis(0.0f, 1.0f, 0.0f, 0.0f);
+		float4 zAxis(0.0f, 0.0f, 1.0f, 0.0f);
+
+		yAxis = yAxis * Rotate(xAxis, transform[6]).Normailze().ToMatrix();
+		zAxis = zAxis * Rotate(xAxis, transform[6]).Normailze().ToMatrix();
+
+		xAxis = xAxis * Rotate(float3(yAxis), transform[7]).Normailze().ToMatrix();
+		zAxis = zAxis * Rotate(float3(yAxis), transform[7]).Normailze().ToMatrix();
+
+		xAxis = xAxis * Rotate(float3(zAxis), transform[8]).Normailze().ToMatrix();
+		yAxis = zAxis * Rotate(float3(zAxis), transform[8]).Normailze().ToMatrix();
+
+		localCoord[0] = xAxis.x;
+		localCoord[1] = xAxis.y;
+		localCoord[2] = xAxis.z;
+
+		localCoord[3] = yAxis.x;
+		localCoord[4] = yAxis.y;
+		localCoord[5] = yAxis.z;
+
+		localCoord[6] = zAxis.x;
+		localCoord[7] = zAxis.y;
+		localCoord[8] = zAxis.z;
+	}
 }
 
 Matrix4x4 Camera::GetViewMatrix()

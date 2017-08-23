@@ -307,7 +307,7 @@ bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out)
 					crMesh.translation = translation;
 					crMesh.rotation = rotation;
 					crMesh.scaling = scaling;
-					crMesh.modelMatrix = CalculateModelMatrix(translation, rotation, scaling);
+					crMesh.modelMatrix = CalculateModelMatrix(crMesh.localCoord, translation, rotation, scaling);
 					crMesh.vertexCount = mesh->GetControlPointsCount();
 					crMesh.polygonCount = mesh->GetPolygonCount();
 					crMesh.vertex = new float[crMesh.vertexCount * 3];

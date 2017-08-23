@@ -331,14 +331,43 @@ Quaternion Rotate(float3 axis, float angle)
 					  cos(r));
 }
 
-Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal)
+Matrix4x4 CalculateModelMatrix(float* localCoord, float3 trans, float3 rota, float3 scal)
 {
-	return  Scale(scal.x, scal.y, scal.z) *
-			Rotate(float3(1.0f, 0.0f, 0.0f), rota.x).Normailze().ToMatrix() *
-			Rotate(float3(0.0f, 1.0f, 0.0f), rota.y).Normailze().ToMatrix() *
-			Rotate(float3(0.0f, 0.0f, 1.0f), rota.z).Normailze().ToMatrix() *
-			Translate(trans.x, trans.y, trans.z);
-		
+	float4 xAxis(1.0f, 0.0f, 0.0f, 0.0f);
+	float4 yAxis(0.0f, 1.0f, 0.0f, 0.0f);
+	float4 zAxis(0.0f, 0.0f, 1.0f, 0.0f);
+
+	Matrix4x4 mMatrix = Scale(scal.x, scal.y, scal.z) *
+						Rotate(xAxis, rota.x).Normailze().ToMatrix();
+
+	yAxis = yAxis * Rotate(xAxis, rota.x).Normailze().ToMatrix();
+	zAxis = zAxis * Rotate(xAxis, rota.x).Normailze().ToMatrix();
+
+	mMatrix = mMatrix * Rotate(float3(yAxis), rota.y).Normailze().ToMatrix();
+
+	xAxis = xAxis * Rotate(float3(yAxis), rota.y).Normailze().ToMatrix();
+	zAxis = zAxis * Rotate(float3(yAxis), rota.y).Normailze().ToMatrix();
+
+	mMatrix = mMatrix * Rotate(float3(zAxis), rota.z).Normailze().ToMatrix();
+
+	xAxis = xAxis * Rotate(float3(zAxis), rota.z).Normailze().ToMatrix();
+	yAxis = zAxis * Rotate(float3(zAxis), rota.z).Normailze().ToMatrix();
+
+	mMatrix = mMatrix * Translate(trans.x, trans.y, trans.z);
+
+	localCoord[0] = xAxis.x;
+	localCoord[1] = xAxis.y;
+	localCoord[2] = xAxis.z;
+
+	localCoord[3] = yAxis.x;
+	localCoord[4] = yAxis.y;
+	localCoord[5] = yAxis.z;
+
+	localCoord[6] = zAxis.x;
+	localCoord[7] = zAxis.y;
+	localCoord[8] = zAxis.z;
+
+	return  mMatrix;
 }
 
 float4 xyY2RGB(float3 xyY)

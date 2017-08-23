@@ -5,7 +5,7 @@ void Controller::Init()
 	sensitivity[0] = 0.2f;
 	sensitivity[1] = 0.1f;
 
-	moveSpeed = 2.0f;
+	moveSpeed = 5.0f;
 	v = float3(0.0f);
 }
 
@@ -13,7 +13,7 @@ void Controller::Update()
 {
 	Camera* curCam = CameraManager::Instance()->GetCurrentCamera();
 	float3 curPos = curCam->GetPosition();
-	curPos = curPos + (curCam->GetForward() * v.x + curCam->GetRight() * v.y) * FIXEDUPDATE_TIME;
+	curPos = curPos + (curCam->GetForward().normalize() * v.x + curCam->GetRight().normalize() * v.y) * FIXEDUPDATE_TIME;
 	CameraManager::Instance()->GetCurrentCamera()->SetPosition(curPos);
 }
 

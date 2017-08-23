@@ -14,7 +14,10 @@ class RenderPass
 protected:
 	GLuint shaderProgram;
 	GLuint fbo;
+	GLuint dBuffer;
+
 	GLuint quadVao;
+	
 	GLuint quadBos[3];//VertexBuffer, UVBuffer, ElementBuffer
 	PassOutput output;
 	bool fullScreenQuadReady = false;

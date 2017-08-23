@@ -130,7 +130,7 @@ float3 exp(float3 v);
 Matrix4x4 Translate(float x, float y, float z);
 Matrix4x4 Scale(float x, float y, float z);
 Quaternion Rotate(float3 axis, float angle);
-Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal);
+Matrix4x4 CalculateModelMatrix(float* localCoord, float3 trans, float3 rota, float3 scal);
 
 float4 xyY2RGB(float3 xyY);
 #endif

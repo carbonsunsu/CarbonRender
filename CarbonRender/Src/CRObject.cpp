@@ -25,31 +25,10 @@ void Object::SetRotation(float3 r)
 
 void Object::UpdateModelMatrix()
 {
-	modelMatrix = CalculateModelMatrix(float3(transform[0], transform[1], transform[2]),
+	modelMatrix = CalculateModelMatrix(localCoord,
+										float3(transform[0], transform[1], transform[2]),
 										float3(transform[6], transform[7], transform[8]),
 										float3(transform[3], transform[4], transform[5]));
-}
-
-void Object::UpdateLocalCoord()
-{
-	float4 xAxis(localCoord[0], localCoord[1], localCoord[2], 0.0f);
-	xAxis = xAxis * modelMatrix;
-	float4 yAxis(localCoord[3], localCoord[4], localCoord[5], 0.0f);
-	yAxis = yAxis * modelMatrix;
-	float4 zAxis(localCoord[6], localCoord[7], localCoord[8], 0.0f);
-	zAxis = zAxis * modelMatrix;
-
-	localCoord[0] = xAxis.x;
-	localCoord[1] = xAxis.y;
-	localCoord[2] = xAxis.z;
-
-	localCoord[3] = yAxis.x;
-	localCoord[4] = yAxis.y;
-	localCoord[5] = yAxis.z;
-
-	localCoord[6] = zAxis.x;
-	localCoord[7] = zAxis.y;
-	localCoord[8] = zAxis.z;
 }
 
 float3 Object::GetPosition()

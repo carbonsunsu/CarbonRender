@@ -101,6 +101,12 @@ void MeshObject::Render()
 		Matrix4x4 finalMat = curMesh.modelMatrix * modelMatrix;
 		Matrix3x3 normalMat = finalMat;
 
+		for (int i = 0; i < 3; i++)
+		{
+			glActiveTexture(GL_TEXTURE1 + i);
+			glBindTexture(GL_TEXTURE_2D, curMesh.texs[i]);
+		}
+
 		ShaderManager::Instance()->UseShader(shaderProgram);
 		GLint location = glGetUniformLocation(shaderProgram, "modelMat");
 		glUniformMatrix4fv(location, 1, GL_FALSE, finalMat.matrix);
@@ -110,6 +116,12 @@ void MeshObject::Render()
 		glUniformMatrix4fv(location, 1, GL_FALSE, CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix().matrix);
 		location = glGetUniformLocation(shaderProgram, "proMat");
 		glUniformMatrix4fv(location, 1, GL_FALSE, CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix().matrix);
+		location = glGetUniformLocation(shaderProgram, "albedoMap");
+		glUniform1i(location, 1);
+		location = glGetUniformLocation(shaderProgram, "normalMap");
+		glUniform1i(location, 2);
+		location = glGetUniformLocation(shaderProgram, "msMap");
+		glUniform1i(location, 3);
 		
 		glBindVertexArray(vaos[i]);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebos[i]);

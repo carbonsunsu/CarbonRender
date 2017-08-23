@@ -4,6 +4,7 @@ RenderPass::~RenderPass()
 {
 	glDeleteFramebuffers(1, &fbo);
 	glDeleteTextures(output.cout, output.RTS);
+	glDeleteBuffers(1, &dBuffer);
 	glDeleteVertexArrays(1, &quadVao);
 	glDeleteBuffers(3, quadBos);
 }

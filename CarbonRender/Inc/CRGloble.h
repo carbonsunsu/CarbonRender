@@ -37,4 +37,34 @@ inline void SetGLArrayBuffer(GLuint bIndex, GLsizeiptr bSize, const GLvoid* bDat
 	glBindBuffer(GL_ARRAY_BUFFER, NULL);
 }
 
+inline GLuint SetGLRenderTexture(GLsizei w, GLsizei h, GLint internalFormat, GLenum format, GLenum type, GLenum attach)
+{
+	GLuint rt;
+	glGenTextures(1, &rt);
+	glBindTexture(GL_TEXTURE_2D, rt);
+	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, w, h, 0, format, type, NULL);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, attach, GL_TEXTURE_2D, rt, 0);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	return rt;
+}
+
+inline GLuint SetGLDepthBuffer(GLsizei w, GLsizei h)
+{
+	GLuint buffer;
+	glGenRenderbuffers(1, &buffer);
+	glBindRenderbuffer(GL_RENDERBUFFER, buffer);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, w, h);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, buffer);
+
+	glBindRenderbuffer(GL_RENDERBUFFER, 0);
+
+	return buffer;
+}
+
 #endif

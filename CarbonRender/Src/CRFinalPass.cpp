@@ -16,12 +16,23 @@ void FinalPass::Render(PassOutput* input)
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
 
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, input->RTS[0]);
+	for (int i = 0; i < input->cout; i++)
+	{
+		glActiveTexture(GL_TEXTURE1 + i);
+		glBindTexture(GL_TEXTURE_2D, input->RTS[i]);
+	}
 
 	ShaderManager::Instance()->UseShader(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "skyRT");
 	glUniform1i(location, 1);
+	location = glGetUniformLocation(shaderProgram, "albedoMap");
+	glUniform1i(location, 2);
+	location = glGetUniformLocation(shaderProgram, "normalMap");
+	glUniform1i(location, 3);
+	location = glGetUniformLocation(shaderProgram, "wsPMap");
+	glUniform1i(location, 4);
+	location = glGetUniformLocation(shaderProgram, "tMap");
+	glUniform1i(location, 5);
 
 	DrawFullScreenQuad();
 

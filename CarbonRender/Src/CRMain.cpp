@@ -6,20 +6,31 @@
 #include "..\Inc\CRShaderManager.h"
 #include "..\Inc\CRCameraManager.h"
 #include "..\Inc\CRWindowManager.h"
-#include "..\Inc\CRSkyRenderPass.h"
-#include "..\Inc\CRFinalPass.h"
 #include "..\Inc\CRWeatherSystem.h"
 #include "..\Inc\CRControllerManager.h"
 #include "..\Inc\CRTextureManager.h"
 
+#include "..\Inc\CRSkyRenderPass.h"
+#include "..\Inc\CRFinalPass.h"
+#include "..\Inc\CRGPass.h"
+
 SkyRenderPass skyPass;
 FinalPass finalPass;
+GPass gPass;
 
 void MainDisplay()
 {
-	PassOutput* output;
-	output = skyPass.Draw(NULL);
-	finalPass.Draw(output);
+	PassOutput* sky = skyPass.Draw(NULL);
+	PassOutput* g = gPass.Draw(NULL);
+	PassOutput newOutput;
+	newOutput.cout = sky->cout + g->cout;
+	newOutput.RTS = new GLuint[newOutput.cout];
+	newOutput.RTS[0] = sky->RTS[0];
+	newOutput.RTS[1] = g->RTS[0];
+	newOutput.RTS[2] = g->RTS[1];
+	newOutput.RTS[3] = g->RTS[2];
+	newOutput.RTS[4] = g->RTS[3];
+	finalPass.Draw(&newOutput);
 
 	glutSwapBuffers();
 }
@@ -74,6 +85,7 @@ void Init(int argc, char** argv)
 
 	skyPass.Init();
 	finalPass.Init();
+	gPass.Init();
 	//test code
 }
 

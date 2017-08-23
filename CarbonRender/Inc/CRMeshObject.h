@@ -11,6 +11,9 @@ struct Mesh
 {
 public:
 	string name;
+	float localCoord[9] = { 1.0f, 0.0f, 0.0f,
+							0.0f, 1.0f, 0.0f,
+							0.0f, 0.0f, 1.0f };
 	float3 translation;
 	float3 rotation;
 	float3 scaling;
