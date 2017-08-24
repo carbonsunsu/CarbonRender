@@ -25,7 +25,8 @@ void main ()
 	vec3 wsL = wsSunPos;
 	wsL = normalize(wsL);
 	float NoL = clamp(dot(wsN, wsL), 0.0f, 1.0f);
+	float NoU = clamp(dot(wsN, vec3(0.0f, 1.0f, 0.0f)), 0.0f, 1.0f);
 
-	lColor.xyz = vec3(NoL);// * zenithColor;
+	lColor = NoL * sunColor + NoU * zenithColor;
 	lColor.a = albedo.a;
 }

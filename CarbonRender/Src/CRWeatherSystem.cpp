@@ -24,7 +24,7 @@ void WeatherSystem::Init()
 {
 	latitude = 45.0f;
 	day = 200;
-	hour = 16.0f;
+	hour = 5.0f;
 	turbidity = 2.0f;
 	exposure = 30.0f;
 	timeSpeed = 0.0f;
@@ -82,11 +82,7 @@ float4 WeatherSystem::GetSunColor()
 	float3 up(0.0f, 1.0f, 0.0f);
 
 	float3 vP = wsSunPos.normalize();
-	vP.y = abs(vP.y);
 	float cosTheta = Dot(vP, up);
-	float3 vS = wsSunPos.normalize();
-	float vSovP = Dot(vS, vP);
-	float gamma = acos(vSovP);
 
 	float4 skyColor(0.0f, 0.0f, 0.0f, 1.0f);
 	float3 A(-0.0193f*turbidity - 0.2592f, -0.0167f*turbidity - 0.2608f, 0.1787f*turbidity - 1.4630f);
@@ -95,7 +91,7 @@ float4 WeatherSystem::GetSunColor()
 	float3 D(-0.0641f*turbidity - 0.8989f, -0.0441f*turbidity - 1.6537f, 0.1206f*turbidity - 2.5771f);
 	float3 E(-0.0033f*turbidity + 0.0452f, -0.0109f*turbidity + 0.0529f, -0.0670f*turbidity + 0.3703f);
 
-	float3 F1 = (1.0f + A*exp(B / cosTheta))*(1.0f + C*exp(D*gamma) + E*pow(vSovP, 2.0f));
+	float3 F1 = (1.0f + A*exp(B / cosTheta))*(1.0f + C + E);
 	float3 F2 = (1.0f + A*exp(B))*(1.0f + C*exp(D*thetaS) + E*pow(cos(thetaS), 2.0f));
 	float3 xyY = zenith*(F1 / F2);
 	xyY.z = 1.0f - exp((-1.0f/exposure)*xyY.z);
@@ -107,7 +103,26 @@ float4 WeatherSystem::GetSunColor()
 
 float4 WeatherSystem::GetSkyUpColor()
 {
-	return xyY2RGB(zenith);
+	float3 vP(0.0f, 1.0f, 0.0f);
+	float3 vS = wsSunPos.normalize();
+	float vSovP = Dot(vS, vP);
+	float gamma = acos(vSovP);
+
+	float4 zenithColor(0.0f, 0.0f, 0.0f, 1.0f);
+	float3 A(-0.0193f*turbidity - 0.2592f, -0.0167f*turbidity - 0.2608f, 0.1787f*turbidity - 1.4630f);
+	float3 B(-0.0665f*turbidity + 0.0008f, -0.0950f*turbidity + 0.0092f, -0.3554f*turbidity + 0.4275f);
+	float3 C(-0.0004f*turbidity + 0.2125f, -0.0079f*turbidity + 0.2102f, -0.0227f*turbidity + 5.3251f);
+	float3 D(-0.0641f*turbidity - 0.8989f, -0.0441f*turbidity - 1.6537f, 0.1206f*turbidity - 2.5771f);
+	float3 E(-0.0033f*turbidity + 0.0452f, -0.0109f*turbidity + 0.0529f, -0.0670f*turbidity + 0.3703f);
+
+	float3 F1 = (1.0f + A*exp(B))*(1.0f + C*exp(D*gamma) + E*pow(vSovP, 2.0f));
+	float3 F2 = (1.0f + A*exp(B))*(1.0f + C*exp(D*thetaS) + E*pow(cos(thetaS), 2.0f));
+	float3 xyY = zenith*(F1 / F2);
+	xyY.z = 1.0f - exp((-1.0f / exposure)*xyY.z);
+
+	zenithColor = xyY2RGB(xyY);
+
+	return zenithColor;
 }
 
 float * WeatherSystem::GetShaderParas()
