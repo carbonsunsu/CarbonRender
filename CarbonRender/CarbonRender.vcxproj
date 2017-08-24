@@ -19,6 +19,7 @@
     <ClCompile Include="Src\CRFileReader.cpp" />
     <ClCompile Include="Src\CRFinalPass.cpp" />
     <ClCompile Include="Src\CRGPass.cpp" />
+    <ClCompile Include="Src\CRLightPass.cpp" />
     <ClCompile Include="Src\CRMain.cpp" />
     <ClCompile Include="Src\CRMath.cpp" />
     <ClCompile Include="Src\CRMeshObject.cpp" />
@@ -40,6 +41,7 @@
     <ClInclude Include="Inc\CRFinalPass.h" />
     <ClInclude Include="Inc\CRGloble.h" />
     <ClInclude Include="Inc\CRGPass.h" />
+    <ClInclude Include="Inc\CRLightPass.h" />
     <ClInclude Include="Inc\CRMath.h" />
     <ClInclude Include="Inc\CRMeshObject.h" />
     <ClInclude Include="Inc\CRObject.h" />
@@ -54,11 +56,10 @@
     <None Include="Resources\Shader\Atmosphere.frag" />
     <None Include="Resources\Shader\Atmosphere.vert" />
     <None Include="Resources\Shader\FinalPass.frag" />
-    <None Include="Resources\Shader\FinalPass.vert" />
     <None Include="Resources\Shader\GPass.frag" />
     <None Include="Resources\Shader\GPass.vert" />
-    <None Include="Resources\Shader\Test.frag" />
-    <None Include="Resources\Shader\Test.vert" />
+    <None Include="Resources\Shader\LightPass.frag" />
+    <None Include="Resources\Shader\ScreenQuad.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{27CD77C7-6F75-434C-A429-CE1E1D982CBA}</ProjectGuid>

@@ -48,10 +48,9 @@ void main()
 	if (dot(normalize(wsSunPos.xyz), vP) > SunSize)
 		skyColor = skyColor*5.0f;
 
-	//to linear space
-	skyColor.x = pow(skyColor.x, 1.0f/2.2f);
-	skyColor.y = pow(skyColor.y, 1.0f/2.2f);
-	skyColor.z = pow(skyColor.z, 1.0f/2.2f);
-
+	//night 
+	if (wsSunPos.y <= 0.0f)
+		skyColor.xyz *= 0.0f;
+	
 	bColor = skyColor;
 }

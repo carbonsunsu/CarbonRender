@@ -16,133 +16,142 @@
     <Filter Include="Shader">
       <UniqueIdentifier>{f0b1d1e4-22bc-44d6-9d29-8cd90c6104c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Rendering">
+      <UniqueIdentifier>{18cacf50-c711-4087-88a4-9582f9e5c0d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Rendering">
+      <UniqueIdentifier>{7066d008-973e-4a9d-9b9d-9f6992db41f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Core">
+      <UniqueIdentifier>{c954078d-449f-481d-b8b5-21d7294d89be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Core">
+      <UniqueIdentifier>{db8fedfd-1625-46e9-bbaf-892a3e4121e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\CRMain.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Src\CRFileReader.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\CRCamera.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\CRMath.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\CRObject.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\CRMeshObject.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\CRFbxImportManager.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\CRShaderManager.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\CRCameraManager.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\CRWindowManager.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\CRWeatherSystem.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="Src\CRGPass.cpp">
+      <Filter>源文件\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Src\CRRenderPass.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Src\CRSkyRenderPass.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Src\CRFinalPass.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRWeatherSystem.cpp">
+      <Filter>源文件\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRCamera.cpp">
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRCameraManager.cpp">
+      <Filter>源文件\Core</Filter>
     </ClCompile>
     <ClCompile Include="Src\CRController.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\Core</Filter>
     </ClCompile>
     <ClCompile Include="Src\CRControllerManager.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRFbxImportManager.cpp">
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRFileReader.cpp">
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRMath.cpp">
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRMeshObject.cpp">
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRObject.cpp">
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRShaderManager.cpp">
+      <Filter>源文件\Core</Filter>
     </ClCompile>
     <ClCompile Include="Src\CRTextureManager.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Src\CRGPass.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="Src\CRWindowManager.cpp">
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRLightPass.cpp">
+      <Filter>源文件\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Inc\CRGloble.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRFileReader.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRCamera.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRMath.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRObject.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRMeshObject.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRFbxImportManager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRShaderManager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRCameraManager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRWindowManager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRWeatherSystem.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRRenderPass.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRSkyRenderPass.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Inc\CRFinalPass.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRController.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRControllerManager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRTextureManager.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Inc\CRGPass.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRRenderPass.h">
+      <Filter>头文件\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRSkyRenderPass.h">
+      <Filter>头文件\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRWeatherSystem.h">
+      <Filter>头文件\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRCamera.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRCameraManager.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRController.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRControllerManager.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRFbxImportManager.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRFileReader.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRGloble.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRMath.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRMeshObject.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRObject.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRShaderManager.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRTextureManager.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRWindowManager.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRLightPass.h">
+      <Filter>头文件\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Shader\Test.vert">
-      <Filter>Shader</Filter>
-    </None>
-    <None Include="Resources\Shader\Test.frag">
-      <Filter>Shader</Filter>
-    </None>
     <None Include="Resources\Shader\Atmosphere.vert">
       <Filter>Shader</Filter>
     </None>
     <None Include="Resources\Shader\Atmosphere.frag">
-      <Filter>Shader</Filter>
-    </None>
-    <None Include="Resources\Shader\FinalPass.vert">
       <Filter>Shader</Filter>
     </None>
     <None Include="Resources\Shader\FinalPass.frag">
@@ -152,6 +161,12 @@
       <Filter>Shader</Filter>
     </None>
     <None Include="Resources\Shader\GPass.vert">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\LightPass.frag">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\ScreenQuad.vert">
       <Filter>Shader</Filter>
     </None>
   </ItemGroup>

@@ -2,7 +2,7 @@
 
 void FinalPass::Init()
 {
-	shaderProgram = ShaderManager::Instance()->LoadShader("FinalPass.vert", "FinalPass.frag");
+	shaderProgram = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "FinalPass.frag");
 }
 
 void FinalPass::GetReady4Render(PassOutput* input)
@@ -23,16 +23,10 @@ void FinalPass::Render(PassOutput* input)
 	}
 
 	ShaderManager::Instance()->UseShader(shaderProgram);
-	GLint location = glGetUniformLocation(shaderProgram, "skyRT");
+	GLint location = glGetUniformLocation(shaderProgram, "skyBuffer");
 	glUniform1i(location, 1);
-	location = glGetUniformLocation(shaderProgram, "albedoMap");
+	location = glGetUniformLocation(shaderProgram, "lightBuffer");
 	glUniform1i(location, 2);
-	location = glGetUniformLocation(shaderProgram, "normalMap");
-	glUniform1i(location, 3);
-	location = glGetUniformLocation(shaderProgram, "wsPMap");
-	glUniform1i(location, 4);
-	location = glGetUniformLocation(shaderProgram, "tMap");
-	glUniform1i(location, 5);
 
 	DrawFullScreenQuad();
 
