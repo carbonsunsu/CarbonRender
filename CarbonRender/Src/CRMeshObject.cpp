@@ -53,6 +53,7 @@ void MeshObject::GetReady4Rending()
 	ubs = new GLuint[childCount];
 	nbs = new GLuint[childCount];
 	tbs = new GLuint[childCount];
+	bbs = new GLuint[childCount];
 
 	glGenVertexArrays(childCount, vaos);
 	glGenBuffers(childCount, ebos);
@@ -61,6 +62,7 @@ void MeshObject::GetReady4Rending()
 	glGenBuffers(childCount, ubs);
 	glGenBuffers(childCount, nbs);
 	glGenBuffers(childCount, tbs);
+	glGenBuffers(childCount, bbs);
 
 	for (int i = 0; i < childCount; i++)
 	{
@@ -81,6 +83,9 @@ void MeshObject::GetReady4Rending()
 
 		SetGLArrayBuffer(tbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.tangent, 3, GL_FLOAT, CR_VERTATTRIPOS_TAG);
 		glEnableVertexAttribArray(CR_VERTATTRIPOS_TAG);
+
+		SetGLArrayBuffer(bbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.binormal, 3, GL_FLOAT, CR_VERTATTRIPOS_BNL);
+		glEnableVertexAttribArray(CR_VERTATTRIPOS_BNL);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebos[i]);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int)*curMesh.polygonCount * 3, curMesh.index, GL_STATIC_DRAW);

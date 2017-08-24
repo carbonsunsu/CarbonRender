@@ -18,6 +18,7 @@ private:
 	float4 ReadUV(FbxMesh* mesh, int index, int uvIndex);
 	FbxVector4 ReadNormal(FbxMesh* mesh, int index, int vertexID);
 	FbxVector4 ReadTangent(FbxMesh* mesh, int index, int vertexID);
+	FbxVector4 ReadBinormal(FbxMesh * mesh, int index, int vertexID);
 	void ReadTexture(Mesh* mesh);
 
 public:

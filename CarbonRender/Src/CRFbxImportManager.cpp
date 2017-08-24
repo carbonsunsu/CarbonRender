@@ -248,6 +248,58 @@ FbxVector4 FbxImportManager::ReadTangent(FbxMesh * mesh, int index, int vertexID
 	return t;
 }
 
+FbxVector4 FbxImportManager::ReadBinormal(FbxMesh * mesh, int index, int vertexID)
+{
+	FbxVector4 b(1.0f, 0.0f, 0.0f, 1.0f);
+	if (mesh->GetElementBinormalCount() <= 0)
+		return b;
+
+	FbxGeometryElementBinormal* eB = mesh->GetElementBinormal(0);
+	switch (eB->GetMappingMode())
+	{
+	default:
+		break;
+	case FbxGeometryElement::eByControlPoint:
+	{
+		switch (eB->GetReferenceMode())
+		{
+		default:
+			break;
+		case FbxGeometryElement::eDirect:
+			b = eB->GetDirectArray().GetAt(index);
+			break;
+		case FbxGeometryElement::eIndexToDirect:
+		{
+			int id = eB->GetIndexArray().GetAt(index);
+			b = eB->GetDirectArray().GetAt(id);
+		}
+		break;
+		}
+	}
+	break;
+	case FbxGeometryElement::eByPolygonVertex:
+	{
+		switch (eB->GetReferenceMode())
+		{
+		default:
+			break;
+		case FbxGeometryElement::eDirect:
+			b = eB->GetDirectArray().GetAt(vertexID);
+			break;
+		case FbxGeometryElement::eIndexToDirect:
+		{
+			int id = eB->GetIndexArray().GetAt(vertexID);
+			b = eB->GetDirectArray().GetAt(id);
+		}
+		break;
+		}
+	}
+	break;
+	}
+
+	return b;
+}
+
 void FbxImportManager::ReadTexture(Mesh* mesh)
 {
 	//textures should be named by mesh name and function (_D: Diffuse, _S: Metal and smoothness, _N: Normal)
@@ -318,6 +370,7 @@ bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out)
 					crMesh.index = new unsigned int[crMesh.polygonCount * 3];
 					crMesh.normal = new float[crMesh.vertexCount * 3];
 					crMesh.tangent = new float[crMesh.vertexCount * 3];
+					crMesh.binormal = new float[crMesh.vertexCount * 3];
 
 					//Get Textures
 					ReadTexture(&crMesh);
@@ -368,6 +421,12 @@ bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out)
 							crMesh.tangent[index * 3] = t[0];
 							crMesh.tangent[index * 3 + 1] = t[1];
 							crMesh.tangent[index * 3 + 2] = t[2];
+
+							//Get Binormal
+							FbxVector4 b = ReadBinormal(mesh, index, vertexID);
+							crMesh.binormal[index * 3] = b[0];
+							crMesh.binormal[index * 3 + 1] = b[1];
+							crMesh.binormal[index * 3 + 2] = b[2];
 
 							vertexID++;
 						}

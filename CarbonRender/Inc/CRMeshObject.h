@@ -25,6 +25,7 @@ public:
 	float* color;
 	float* normal;
 	float* tangent;
+	float* binormal;
 	float* uv;
 	GLuint texs[3];
 };
@@ -41,6 +42,7 @@ private:
 	GLuint* ubs;
 	GLuint* nbs;
 	GLuint* tbs;
+	GLuint* bbs;
 	GLuint shaderProgram;
 	bool bReady4Render = false;
 public:
