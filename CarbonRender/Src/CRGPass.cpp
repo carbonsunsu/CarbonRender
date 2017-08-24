@@ -52,4 +52,6 @@ void GPass::Init()
 	scene.AttachShader(shaderProgram);
 	type59.GetReady4Rending();
 	type59.AttachShader(shaderProgram);
+
+	type59.SetPosition(float3(0.0f, -0.5f, -17.5f));
 }

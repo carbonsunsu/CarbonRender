@@ -37,7 +37,7 @@ void LightPass::Render(PassOutput * input)
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "normalMap");
 	glUniform1i(location, 2);
-	location = glGetUniformLocation(shaderProgram, "sMap");
+	location = glGetUniformLocation(shaderProgram, "pMap");
 	glUniform1i(location, 3);
 	
 	float4 zColor = WeatherSystem::Instance()->GetSkyUpColor();

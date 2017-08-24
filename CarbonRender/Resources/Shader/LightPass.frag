@@ -9,24 +9,24 @@ uniform vec4 sunColor;
 uniform vec3 wsSunPos;
 uniform sampler2D albedoMap;
 uniform sampler2D normalMap;
-uniform sampler2D sMap;
+uniform sampler2D pMap;
 
 void main ()
 {
 	vec4 albedo = texture2D(albedoMap, uv);
 	vec4 N = texture2D(normalMap, uv);
-	vec4 S = texture2D(sMap, uv);
+	vec4 P = texture2D(pMap, uv);
 
 	vec3 wsN = normalize(N.xyz);
-	vec3 wsP = vec3(N.a, S.b, S.a);
-	float metal = S.r;
-	float smoothness = S.g;
+	vec3 wsP = P.xyz;
+	float metal = N.a;
+	float smoothness = P.a;
 	
 	vec3 wsL = wsSunPos;
 	wsL = normalize(wsL);
 	float NoL = clamp(dot(wsN, wsL), 0.0f, 1.0f);
 	float NoU = clamp(dot(wsN, vec3(0.0f, 1.0f, 0.0f)), 0.0f, 1.0f);
 
-	lColor = NoL * sunColor + NoU * zenithColor;
+	lColor = NoL * sunColor * albedo + NoU * zenithColor * albedo;
 	lColor.a = albedo.a;
 }

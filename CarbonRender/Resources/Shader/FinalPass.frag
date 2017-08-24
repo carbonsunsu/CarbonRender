@@ -16,7 +16,6 @@ void main ()
 	fColor.a = 1.0f;
 
 	//to linear space
-	fColor.x = pow(fColor.x, 1.0f/2.2f);
-	fColor.y = pow(fColor.y, 1.0f/2.2f);
-	fColor.z = pow(fColor.z, 1.0f/2.2f);
+	fColor.xyz = max(fColor.xyz, vec3(0.0f, 0.0f, 0.0f));
+	fColor.xyz = max(1.055f * pow(fColor.xyz, vec3(0.416666667f)) - 0.055f, 0.0f);
 }
