@@ -14,6 +14,7 @@ class GPass : public RenderPass
 {
 private:
 	MeshObject scene;
+	MeshObject type59;
 
 	void GetReady4Render(PassOutput* input);
 	void Render(PassOutput* input);

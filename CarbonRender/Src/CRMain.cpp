@@ -75,7 +75,7 @@ void Init(int argc, char** argv)
 
 	//test code
 	Camera cam;
-	cam.SetPerspectiveCamera(60.0f, 0.01f, 1000.0f);
+	cam.SetPerspectiveCamera(60.0f, 0.01f, 10000.0f);
 	cam.SetPosition(float3(0.0f, 0.0f, 5.0f));
 	CameraManager::Instance()->Push(cam);
 

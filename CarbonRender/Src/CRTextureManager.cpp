@@ -31,7 +31,7 @@ GLuint TextureManager::LoadTexture(string dir)
 		SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y);
 
 	if (tex == 0)
-		cout << "SOIL loading error: " << SOIL_last_result() << endl;
+		cout << "SOIL loading error: " << SOIL_last_result() << " : " << dir << endl;
 	else
 		texturesMap[dir] = tex;
 

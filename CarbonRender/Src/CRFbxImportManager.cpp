@@ -252,11 +252,13 @@ void FbxImportManager::ReadTexture(Mesh* mesh)
 {
 	//textures should be named by mesh name and function (_D: Diffuse, _S: Metal and smoothness, _N: Normal)
 	string meshName = mesh->name;
-	char* fullName = FileReader::BindString((char*)meshName.c_str(), "_D.tga");
+	char* dir = "Resources\\Models\\";
+	dir = FileReader::BindString(dir, (char*)meshName.c_str());
+	char* fullName = FileReader::BindString(dir, "_D.tga");
 	mesh->texs[0] = TextureManager::Instance()->LoadTexture(fullName);
-	fullName = FileReader::BindString((char*)meshName.c_str(), "_N.tga");
+	fullName = FileReader::BindString(dir, "_N.tga");
 	mesh->texs[1] = TextureManager::Instance()->LoadTexture(fullName);
-	fullName = FileReader::BindString((char*)meshName.c_str(), "_S.tga");
+	fullName = FileReader::BindString(dir, "_S.tga");
 	mesh->texs[2] = TextureManager::Instance()->LoadTexture(fullName);
 }
 

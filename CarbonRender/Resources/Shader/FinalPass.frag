@@ -17,6 +17,6 @@ void main ()
 	vec4 wsP = texture2D(wsPMap, uv);
 	vec4 skyColor = texture2D(skyRT, uv) * (1.0f - albedo.a);
 
-	fColor = skyColor + wsP;
+	fColor = skyColor + albedo;
 	fColor.a = 1.0f;
 }
