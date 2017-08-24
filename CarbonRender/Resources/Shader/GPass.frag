@@ -16,7 +16,7 @@ uniform sampler2D normalMap;
 
 void main ()
 {
-	vec3 N = vec3(0.0f, 0.0f, 1.0f);//texture2D(normalMap, uv).xyz;
+	vec3 N = texture2D(normalMap, uv).xyz;
 	N = N * 2.0f - 1.0f;
 	vec4 ms = texture2D(msMap, uv);
 	vec4 albedo = texture2D(albedoMap, uv);
@@ -27,7 +27,6 @@ void main ()
 	vec3 wsN = normalMat * TBN * N;
 
 	wsN = normalize(wsN);
-	wsN = wsN * 0.5f + 0.5f;
 
 	aColor = vec4(albedo.xyz, 1.0f);
 	nColor = vec4(wsN.x, wsN.y, wsN.z, wsP.x);

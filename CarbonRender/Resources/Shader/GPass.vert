@@ -22,9 +22,9 @@ void main ()
 	vec3 T = normalize(msT);
 	vec3 N = normalize(msN);
 	vec3 B = normalize(msB);
-	TBN = (mat3(T.x, B.x, N.x,
-				T.y, B.y, N.y,
-				T.z, B.z, N.z));
+	TBN = (mat3(T.x, T.y, T.z,
+				B.x, B.y, B.z,
+				N.x, N.y, N.z));
 	
 	wsP = (modelMat * msPos).xyz;
 	uv = uvs.xy;

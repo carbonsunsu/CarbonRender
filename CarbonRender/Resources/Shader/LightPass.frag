@@ -15,7 +15,6 @@ void main ()
 {
 	vec4 albedo = texture2D(albedoMap, uv);
 	vec4 N = texture2D(normalMap, uv);
-	N = N * 2.0f - 1.0f;
 	vec4 S = texture2D(sMap, uv);
 
 	vec3 wsN = normalize(N.xyz);

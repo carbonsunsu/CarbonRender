@@ -16,7 +16,7 @@ void main ()
 	fColor.a = 1.0f;
 
 	//to linear space
-	//fColor.x = pow(fColor.x, 1.0f/2.2f);
-	//fColor.y = pow(fColor.y, 1.0f/2.2f);
-	//fColor.z = pow(fColor.z, 1.0f/2.2f);
+	fColor.x = pow(fColor.x, 1.0f/2.2f);
+	fColor.y = pow(fColor.y, 1.0f/2.2f);
+	fColor.z = pow(fColor.z, 1.0f/2.2f);
 }
