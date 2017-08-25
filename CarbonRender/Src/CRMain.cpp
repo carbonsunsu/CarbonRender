@@ -46,15 +46,6 @@ void ReSizeCallback(int w, int h)
 
 void Init(int argc, char** argv)
 {
-	TextureManager::Instance();
-	ShaderManager::Instance();
-	FbxImportManager::Instance();
-	
-	CameraManager::Instance();
-	ControllerManager::Instance();
-	WindowManager::Instance();
-	WeatherSystem::Instance();
-
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 

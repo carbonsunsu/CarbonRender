@@ -5,11 +5,11 @@ void GPass::GetReady4Render(PassOutput * input)
 	glGenFramebuffers(1, &fbo);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-	GLuint rt_n, rt_albedo, rt_s;
+	GLuint rt_n, rt_albedo, rt_p;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	rt_albedo = SetGLRenderTexture(size.w, size.h, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT0);
+	rt_albedo = SetGLRenderTexture(size.w, size.h, GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE, GL_COLOR_ATTACHMENT0);
 	rt_n = SetGLRenderTexture(size.w, size.h, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT1);
-	rt_s = SetGLRenderTexture(size.w, size.h, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT2);
+	rt_p = SetGLRenderTexture(size.w, size.h, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT2);
 
 	dBuffer = SetGLDepthBuffer(size.w, size.h);
 
@@ -22,7 +22,7 @@ void GPass::GetReady4Render(PassOutput * input)
 	output.RTS = new GLuint[output.cout];
 	output.RTS[0] = rt_albedo;
 	output.RTS[1] = rt_n;
-	output.RTS[2] = rt_s;
+	output.RTS[2] = rt_p;
 }
 
 void GPass::Render(PassOutput * input)

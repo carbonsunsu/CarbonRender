@@ -19,7 +19,7 @@ private:
 	FbxVector4 ReadNormal(FbxMesh* mesh, int index, int vertexID);
 	FbxVector4 ReadTangent(FbxMesh* mesh, int index, int vertexID);
 	FbxVector4 ReadBinormal(FbxMesh * mesh, int index, int vertexID);
-	void ReadTexture(Mesh* mesh);
+	void ReadTexture(FbxMesh* mesh, Mesh* crMesh, char* meshFileName);
 
 public:
 	~FbxImportManager();

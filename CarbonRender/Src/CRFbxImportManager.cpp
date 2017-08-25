@@ -300,18 +300,51 @@ FbxVector4 FbxImportManager::ReadBinormal(FbxMesh * mesh, int index, int vertexI
 	return b;
 }
 
-void FbxImportManager::ReadTexture(Mesh* mesh)
+void FbxImportManager::ReadTexture(FbxMesh* mesh, Mesh* crMesh, char* meshFileName)
 {
-	//textures should be named by mesh name and function (_D: Diffuse, _S: Metal and smoothness, _N: Normal)
-	string meshName = mesh->name;
-	char* dir = "Resources\\Models\\";
-	dir = FileReader::BindString(dir, (char*)meshName.c_str());
-	char* fullName = FileReader::BindString(dir, "_D.tga");
-	mesh->texs[0] = TextureManager::Instance()->LoadTexture(fullName);
-	fullName = FileReader::BindString(dir, "_N.tga");
-	mesh->texs[1] = TextureManager::Instance()->LoadTexture(fullName);
-	fullName = FileReader::BindString(dir, "_S.tga");
-	mesh->texs[2] = TextureManager::Instance()->LoadTexture(fullName);
+	if (mesh->GetNode()->GetMaterialCount() > 0)
+	{
+		//surport just 1 material on 1 mesh for now
+		FbxSurfaceMaterial* mat = mesh->GetNode()->GetMaterial(0);
+		FbxProperty p;
+
+		p = mat->FindProperty(FbxLayerElement::sTextureChannelNames[0]);
+		if (p.IsValid())
+		{
+			int texCount = p.GetSrcObjectCount<FbxTexture>();
+			for (int k = 0; k < texCount; k++)
+			{
+				FbxTexture* fbxTex = FbxCast<FbxTexture>(p.GetSrcObject<FbxTexture>(k));
+				if (fbxTex && strlen(fbxTex->GetInitialName()) != 0)
+				{
+					char* dir = "Resources\\Models\\";
+					char* fullName = FileReader::BindString(dir, (char*)fbxTex->GetInitialName());
+					fullName = FileReader::BindString(fullName, ".tga");
+					GLuint tex = TextureManager::Instance()->LoadTexture(fullName);
+					if (strstr(fbxTex->GetInitialName(), "_D"))
+						crMesh->texs[0] = tex;
+					if (strstr(fbxTex->GetInitialName(), "_N"))
+						crMesh->texs[1] = tex;
+					if (strstr(fbxTex->GetInitialName(), "_S"))
+						crMesh->texs[2] = tex;
+				}
+			}
+
+			if (crMesh->texs[0] == 0)
+				crMesh->texs[0] = TextureManager::Instance()->LoadDefaultD();
+			if (crMesh->texs[1] == 0)
+				crMesh->texs[1] = TextureManager::Instance()->LoadDefaultN();
+			if (crMesh->texs[2] == 0)
+				crMesh->texs[2] = TextureManager::Instance()->LoadDefaultS();
+
+			return;
+		}
+	}
+
+	crMesh->texs[0] = TextureManager::Instance()->LoadDefaultD();
+	crMesh->texs[1] = TextureManager::Instance()->LoadDefaultN();
+	crMesh->texs[2] = TextureManager::Instance()->LoadDefaultS();
+	
 }
 
 bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out)
@@ -373,7 +406,7 @@ bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out)
 					crMesh.binormal = new float[crMesh.vertexCount * 3];
 
 					//Get Textures
-					ReadTexture(&crMesh);
+					ReadTexture(mesh, &crMesh, fullName);
 
 					int vertexID = 0;
 
