@@ -46,8 +46,8 @@ void GPass::Render(PassOutput * input)
 void GPass::Init()
 {
 	shaderProgram = ShaderManager::Instance()->LoadShader("GPass.vert", "GPass.frag");
-	FbxImportManager::Instance()->ImportFbxModel("Terrain.fbx", &scene);
-	FbxImportManager::Instance()->ImportFbxModel("Type59.fbx", &type59);
+	FbxImportManager::Instance()->ImportFbxModel("Terrain", &scene);
+	FbxImportManager::Instance()->ImportFbxModel("Type59", &type59);
 	scene.GetReady4Rending();
 	scene.AttachShader(shaderProgram);
 	type59.GetReady4Rending();

@@ -3,7 +3,7 @@
 void SkyRenderPass::Init()
 {
 	shaderProgram = ShaderManager::Instance()->LoadShader("Atmosphere.vert", "Atmosphere.frag");
-	FbxImportManager::Instance()->ImportFbxModel("sphere.fbx", &sphere);
+	FbxImportManager::Instance()->ImportFbxModel("sphere", &sphere);
 	sphere.GetReady4Rending();
 	sphere.AttachShader(shaderProgram);
 	sphere.SetScale(float3(10000.0f));
