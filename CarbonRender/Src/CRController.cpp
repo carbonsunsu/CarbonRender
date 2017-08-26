@@ -150,6 +150,8 @@ void Controller::MouseMotionCallback(int x, int y)
 		float3 curR = CameraManager::Instance()->GetCurrentCamera()->GetRotation();
 		curR.y += (x - lastMousePos[0]) * sensitivity[0];
 		curR.x += (y - lastMousePos[1]) * sensitivity[1];
+		if (curR.x > 90.0f) curR.x = 90.0f;
+		if (curR.x < -90.0f) curR.x = -90.0f;
 		CameraManager::Instance()->GetCurrentCamera()->SetRotation(curR);
 		break;
 	//case GLUT_RIGHT_BUTTON:

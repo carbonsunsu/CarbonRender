@@ -9,28 +9,12 @@
 #include "..\Inc\CRWeatherSystem.h"
 #include "..\Inc\CRControllerManager.h"
 #include "..\Inc\CRTextureManager.h"
-
-#include "..\Inc\CRSkyRenderPass.h"
-#include "..\Inc\CRFinalPass.h"
-#include "..\Inc\CRGPass.h"
-#include "..\Inc\CRLightPass.h"
-
-SkyRenderPass skyPass;
-FinalPass finalPass;
-GPass gPass;
-LightPass lightPass;
+#include "..\Inc\CRSceneManager.h"
+#include "..\Inc\CRRenderPassManager.h"
 
 void MainDisplay()
 {
-	PassOutput* sky = skyPass.Draw(NULL);
-	PassOutput* g = gPass.Draw(NULL);
-	PassOutput* light = lightPass.Draw(g);
-	PassOutput newOutput;
-	newOutput.cout = sky->cout + light->cout;
-	newOutput.RTS = new GLuint[newOutput.cout];
-	newOutput.RTS[0] = sky->RTS[0];
-	newOutput.RTS[1] = light->RTS[0];
-	finalPass.Draw(&newOutput);
+	RenderPassManager::Instance()->Draw();
 
 	glutSwapBuffers();
 }
@@ -64,21 +48,10 @@ void Init(int argc, char** argv)
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
 
-	//test code
-	Camera cam;
-	cam.SetPerspectiveCamera(60.0f, 0.01f, 10000.0f);
-	cam.SetPosition(float3(0.0f, 1.0f, 5.0f));
-	CameraManager::Instance()->Push(cam);
+	SceneManager::Instance()->Init();
+	SceneManager::Instance()->LoadScene();
 
-	Controller ctrl;
-	ctrl.Init();
-	ControllerManager::Instance()->Push(ctrl);
-
-	skyPass.Init();
-	finalPass.Init();
-	gPass.Init();
-	lightPass.Init();
-	//test code
+	RenderPassManager::Instance()->Init();
 }
 
 void FixedUpdate(int value)

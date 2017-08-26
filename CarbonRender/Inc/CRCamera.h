@@ -15,7 +15,8 @@ enum CameraProjectMode
 class Camera : public Object
 {
 private:
-	float fov = 60.0f;
+	float fov = 60.0f;//vertical direction
+	float orthoSize = 5.0f;//half of height
 	float nearClip = 0.01f;
 	float farClip = 1000.0f;
 	float wInPixel = 1920.0f;
@@ -27,8 +28,9 @@ public:
 	void SetPerspectiveCamera(float iFov, float iNearClip, float iFarClip);
 	void SetNearFar(float iNearClip, float iFarClip);
 	void SetFov(float iFov);
+	void SetOrthoSize(float size);
 	float3 GetCameraPara();
-	void SetOrthoCamera(float size);
+	void SetOrthoCamera(float size, float iNearClip, float iFarClip);
 	void LookAt(float3 p);
 
 	void UpdateProjectionMatrix();

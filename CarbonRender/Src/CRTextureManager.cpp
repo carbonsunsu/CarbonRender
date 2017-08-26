@@ -12,7 +12,7 @@ TextureManager::TextureManager()
 	{
 		for (j = 0; j < 64; j++) 
 		{
-			c = (((i & 0x8) == 0) ^ ((j & 0x8)) == 0) * 255;
+			c = ( ((i & 0x8) == 0) ^ ((j & 0x8) == 0) ) * 255;
 			if (c <= 0) c = 192;
 			D[i][j][0] = (GLubyte)c;
 			D[i][j][1] = (GLubyte)c;

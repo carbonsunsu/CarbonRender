@@ -43,7 +43,6 @@ private:
 	GLuint* nbs;
 	GLuint* tbs;
 	GLuint* bbs;
-	GLuint shaderProgram;
 	bool bReady4Render = false;
 public:
 	MeshObject();
@@ -54,8 +53,7 @@ public:
 	Mesh* GetChild(unsigned int index);
 	Mesh* GetAllChild();
 	void GetReady4Rending();
-	void Render();
-	void AttachShader(GLuint shader);
+	void Render(GLuint shaderProgram);
 };
 
 #endif

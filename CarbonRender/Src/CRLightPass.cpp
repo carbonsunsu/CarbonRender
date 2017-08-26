@@ -39,6 +39,8 @@ void LightPass::Render(PassOutput * input)
 	glUniform1i(location, 2);
 	location = glGetUniformLocation(shaderProgram, "pMap");
 	glUniform1i(location, 3);
+	location = glGetUniformLocation(shaderProgram, "sMap");
+	glUniform1i(location, 4);
 	
 	float4 zColor = WeatherSystem::Instance()->GetSkyUpColor();
 	float4 sColor = WeatherSystem::Instance()->GetSunColor();
@@ -54,6 +56,12 @@ void LightPass::Render(PassOutput * input)
 
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
+
+	for (int i = 0; i < input->cout; i++)
+	{
+		glActiveTexture(GL_TEXTURE1 + i);
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
 }
 
 void LightPass::Init()

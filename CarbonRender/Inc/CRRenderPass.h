@@ -2,11 +2,13 @@
 #define CR_PASSOBJ
 
 #include "..\Inc\CRGloble.h"
+#include "..\Inc\CRMath.h"
 
 struct PassOutput
 {
 	int cout = 0;
 	GLuint* RTS;
+	Matrix4x4* mats;
 };
 
 class RenderPass

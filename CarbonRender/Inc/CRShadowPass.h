@@ -1,14 +1,12 @@
-#ifndef CR_GPASS
-#define CR_GPASS
+#ifndef CR_SHADOWPASS
+#define CR_SHADOWPASS
 
 #include "..\Inc\CRGloble.h"
 #include "..\Inc\CRRenderPass.h"
-#include "..\Inc\CRWindowManager.h"
-#include "..\Inc\CRCameraManager.h"
 #include "..\Inc\CRShaderManager.h"
-#include "..\Inc\CRSceneManager.h"
+#include "..\Inc\CRWindowManager.h"
 
-class GPass : public RenderPass
+class ShadowPass : public RenderPass
 {
 private:
 	void GetReady4Render(PassOutput* input);

@@ -25,14 +25,43 @@ void Camera::SetFov(float iFov)
 	UpdateProjectionMatrix();
 }
 
+void Camera::SetOrthoSize(float size)
+{
+	orthoSize = size;
+
+	UpdateProjectionMatrix();
+}
+
 float3 Camera::GetCameraPara()
 {
 	return float3(fov, nearClip, farClip);
 }
 
-void Camera::SetOrthoCamera(float size)
+void Camera::SetOrthoCamera(float size, float iNearClip, float iFarClip)
 {
+	orthoSize = size;
+	nearClip = iNearClip;
+	farClip = iFarClip;
 	curCameraMode = CameraProjectMode::Ortho;
+
+	UpdateProjectionMatrix();
+}
+
+void Camera::LookAt(float3 p)
+{
+	float3 v = p - float3(transform[0], transform[1], transform[2]);
+	float3 vXZ = float3(v.x, 0.0f, v.z).normalize();
+	v = v.normalize();
+
+	float thetaY = Dot(float3(0.0f, 0.0f, -1.0f), vXZ);
+	thetaY = acos(thetaY) * R2A;
+	if (v.x < 0.0f) thetaY = -thetaY;
+
+	float thetaX = Dot(v, vXZ);
+	thetaX = acos(thetaX) * R2A;
+	if (v.y > 0.0f) thetaX = -thetaX;
+
+	SetRotation(float3(thetaX, thetaY, transform[8]));
 }
 
 void Camera::UpdateProjectionMatrix()
@@ -61,7 +90,18 @@ void Camera::UpdateProjectionMatrix()
 	break;
 	case CameraProjectMode::Ortho:
 	{
+		WindowSize wSize = WindowManager::Instance()->GetWindowSize();
+		wInPixel = wSize.w;
+		hInPixel = wSize.h;
 
+		float halfW = (orthoSize * wInPixel) / hInPixel;
+
+		float m[16] = { 1.0f / halfW, 0.0f, 0.0f, 0.0f,
+						0.0f, 1.0f / orthoSize, 0.0f, 0.0f,
+						0.0f, 0.0f, 2.0f / (nearClip - farClip), 0.0f,
+						0.0f, 0.0f, (farClip + nearClip) / (nearClip - farClip), 1.0f };
+		
+		projectionMatrix = m;
 	}
 	break;
 	}

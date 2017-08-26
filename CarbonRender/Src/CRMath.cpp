@@ -285,6 +285,11 @@ float4 operator+(float4 v1, float4 v2)
 	return float4(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w);
 }
 
+float3 operator-(float3 v1, float3 v2)
+{
+	return float3(v1.x-v2.x, v1.y-v2.y, v1.z-v2.z);
+}
+
 float Dot(float3 a, float3 b)
 {
 	return a.x*b.x + a.y*b.y + a.z*b.z;

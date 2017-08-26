@@ -10,12 +10,14 @@ uniform vec3 wsSunPos;
 uniform sampler2D albedoMap;
 uniform sampler2D normalMap;
 uniform sampler2D pMap;
+uniform sampler2D sMap;
 
 void main ()
 {
 	vec4 albedo = texture2D(albedoMap, uv);
 	vec4 N = texture2D(normalMap, uv);
 	vec4 P = texture2D(pMap, uv);
+	float sFactor = texture2D(sMap, uv).x;
 
 	vec3 wsN = normalize(N.xyz);
 	vec3 wsP = P.xyz;
@@ -27,6 +29,6 @@ void main ()
 	float NoL = clamp(dot(wsN, wsL), 0.0f, 1.0f);
 	float NoU = clamp(dot(wsN, vec3(0.0f, 1.0f, 0.0f)), 0.0f, 1.0f);
 
-	lColor = NoL * sunColor * albedo + NoU * zenithColor * albedo;
+	lColor = NoL * sunColor * albedo * sFactor + NoU * zenithColor * albedo;
 	lColor.a = albedo.a;
 }

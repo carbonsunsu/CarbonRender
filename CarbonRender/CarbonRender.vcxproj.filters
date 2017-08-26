@@ -87,6 +87,18 @@
     <ClCompile Include="Src\CRLightPass.cpp">
       <Filter>源文件\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Src\CRRenderPassManager.cpp">
+      <Filter>源文件\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRSceneManager.cpp">
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRSMPass.cpp">
+      <Filter>源文件\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRShadowPass.cpp">
+      <Filter>源文件\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRFinalPass.h">
@@ -146,6 +158,18 @@
     <ClInclude Include="Inc\CRLightPass.h">
       <Filter>头文件\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\CRRenderPassManager.h">
+      <Filter>头文件\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRSceneManager.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRSMPass.h">
+      <Filter>头文件\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRShadowPass.h">
+      <Filter>头文件\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shader\Atmosphere.vert">
@@ -167,6 +191,15 @@
       <Filter>Shader</Filter>
     </None>
     <None Include="Resources\Shader\ScreenQuad.vert">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\SM.frag">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\SM.vert">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\ShadowPass.frag">
       <Filter>Shader</Filter>
     </None>
   </ItemGroup>

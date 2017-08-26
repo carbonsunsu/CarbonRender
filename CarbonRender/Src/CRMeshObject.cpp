@@ -97,7 +97,7 @@ void MeshObject::GetReady4Rending()
 	bReady4Render = true;
 }
 
-void MeshObject::Render()
+void MeshObject::Render(GLuint shaderProgram)
 {
 	UpdateModelMatrix();
 	for (int i = 0; i < childCount; i++)
@@ -112,7 +112,6 @@ void MeshObject::Render()
 			glBindTexture(GL_TEXTURE_2D, curMesh.texs[i]);
 		}
 
-		ShaderManager::Instance()->UseShader(shaderProgram);
 		GLint location = glGetUniformLocation(shaderProgram, "modelMat");
 		glUniformMatrix4fv(location, 1, GL_FALSE, finalMat.matrix);
 		location = glGetUniformLocation(shaderProgram, "normalMat");
@@ -131,13 +130,14 @@ void MeshObject::Render()
 		glBindVertexArray(vaos[i]);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebos[i]);
 		glDrawElements(GL_TRIANGLES, curMesh.polygonCount * 3, GL_UNSIGNED_INT, NULL);
+
+		for (int i = 0; i < 3; i++)
+		{
+			glActiveTexture(GL_TEXTURE1 + i);
+			glBindTexture(GL_TEXTURE_2D, 0);
+		}
 	}
 
 	glBindVertexArray(NULL);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, NULL);
-}
-
-void MeshObject::AttachShader(GLuint shader)
-{
-	shaderProgram = shader;
 }

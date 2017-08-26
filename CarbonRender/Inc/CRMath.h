@@ -123,6 +123,7 @@ float3 operator + (float a, float3 v);
 float4 operator + (float a, float4 v);
 float3 operator + (float3 v1, float3 v2);
 float4 operator + (float4 v1, float4 v2);
+float3 operator - (float3 v1, float3 v2);
 float Dot(float3 a, float3 b);
 float Dot(float4 a, float4 b);
 float3 exp(float3 v);

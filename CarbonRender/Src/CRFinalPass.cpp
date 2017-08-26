@@ -32,4 +32,10 @@ void FinalPass::Render(PassOutput* input)
 
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
+
+	for (int i = 0; i < input->cout; i++)
+	{
+		glActiveTexture(GL_TEXTURE1 + i);
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
 }

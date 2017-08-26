@@ -7,7 +7,6 @@ layout(location = 2) out vec4 pColor;
 in vec3 wsP;
 in vec2 uv;
 in mat3 TBN;
-in vec3 n;
 
 uniform mat3 normalMat;
 uniform sampler2D albedoMap;

@@ -1,5 +1,5 @@
-#ifndef CR_GPASS
-#define CR_GPASS
+#ifndef CR_SMPASS
+#define CR_SMPASS
 
 #include "..\Inc\CRGloble.h"
 #include "..\Inc\CRRenderPass.h"
@@ -7,8 +7,9 @@
 #include "..\Inc\CRCameraManager.h"
 #include "..\Inc\CRShaderManager.h"
 #include "..\Inc\CRSceneManager.h"
+#include "..\Inc\CRWeatherSystem.h"
 
-class GPass : public RenderPass
+class SMPass : public RenderPass
 {
 private:
 	void GetReady4Render(PassOutput* input);

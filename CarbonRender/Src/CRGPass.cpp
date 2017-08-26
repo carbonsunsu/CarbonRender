@@ -35,8 +35,8 @@ void GPass::Render(PassOutput * input)
 	glBindRenderbuffer(GL_RENDERBUFFER, dBuffer);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	scene.Render();
-	type59.Render();
+	ShaderManager::Instance()->UseShader(shaderProgram);
+	SceneManager::Instance()->DrawScene(shaderProgram);
 
 	glDisable(GL_DEPTH_TEST);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -46,12 +46,4 @@ void GPass::Render(PassOutput * input)
 void GPass::Init()
 {
 	shaderProgram = ShaderManager::Instance()->LoadShader("GPass.vert", "GPass.frag");
-	FbxImportManager::Instance()->ImportFbxModel("Terrain", &scene);
-	FbxImportManager::Instance()->ImportFbxModel("Type59", &type59);
-	scene.GetReady4Rending();
-	scene.AttachShader(shaderProgram);
-	type59.GetReady4Rending();
-	type59.AttachShader(shaderProgram);
-
-	type59.SetPosition(float3(0.0f, -0.5f, -17.5f));
 }

@@ -5,7 +5,6 @@ void SkyRenderPass::Init()
 	shaderProgram = ShaderManager::Instance()->LoadShader("Atmosphere.vert", "Atmosphere.frag");
 	FbxImportManager::Instance()->ImportFbxModel("sphere", &sphere);
 	sphere.GetReady4Rending();
-	sphere.AttachShader(shaderProgram);
 	sphere.SetScale(float3(10000.0f));
 }
 
@@ -56,7 +55,7 @@ void SkyRenderPass::Render(PassOutput* input)
 	location = glGetUniformLocation(shaderProgram, "zenith");
 	glUniform3f(location, shaderParas[7], shaderParas[8], shaderParas[9]);
 
-	sphere.Render();
+	sphere.Render(shaderProgram);
 
 	glCullFace(GL_BACK);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
