@@ -311,6 +311,9 @@ void FbxImportManager::ReadTexture(FbxMesh* mesh, Mesh* crMesh, char* meshFileNa
 		p = mat->FindProperty(FbxLayerElement::sTextureChannelNames[0]);
 		if (p.IsValid())
 		{
+			crMesh->texs[0] = 0;
+			crMesh->texs[1] = 0;
+			crMesh->texs[2] = 0;
 			int texCount = p.GetSrcObjectCount<FbxTexture>();
 			for (int k = 0; k < texCount; k++)
 			{

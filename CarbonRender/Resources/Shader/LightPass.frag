@@ -15,6 +15,14 @@ uniform sampler2D pMap;
 uniform sampler2D sMap;
 uniform samplerCube cubeMap;
 
+vec3 IndirectSpecular (samplerCube tex, vec3 r, float smoothness)
+{
+	float s = smoothness * (1.7f - 0.7f * smoothness);
+	float mip = smoothness * 6;
+
+	return textureLod(cubeMap, r, mip).rgb;
+}
+
 void main ()
 {
 	vec4 albedo = texture2D(albedoMap, uv);
@@ -31,9 +39,11 @@ void main ()
 	wsL = normalize(wsL);
 	vec3 wsE = wsCamPos - wsP;
 	wsE = normalize(wsE);
+	vec3 wsR = reflect(-wsE, wsN);
+	
 	float NoL = clamp(dot(wsN, wsL), 0.0f, 1.0f);
 	float NoU = clamp(dot(wsN, vec3(0.0f, 1.0f, 0.0f)), 0.0f, 1.0f);
 
-	lColor = NoL * sunColor * albedo * sFactor + NoU * zenithColor * albedo;
+	lColor.rgb = (NoL * sunColor * albedo * sFactor + NoU * zenithColor * albedo).rgb;
 	lColor.a = albedo.a;
 }
