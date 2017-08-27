@@ -12,6 +12,7 @@
 class SMPass : public RenderPass
 {
 private:
+	int shadowMapScale = 4;
 	void GetReady4Render(PassOutput* input);
 	void Render(PassOutput* input);
 public:

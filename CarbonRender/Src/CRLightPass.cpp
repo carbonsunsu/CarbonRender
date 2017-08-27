@@ -26,11 +26,13 @@ void LightPass::Render(PassOutput * input)
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
 
-	for (int i = 0; i < input->cout; i++)
+	for (int i = 0; i < input->cout - 1; i++)
 	{
 		glActiveTexture(GL_TEXTURE1 + i);
 		glBindTexture(GL_TEXTURE_2D, input->RTS[i]);
 	}
+	glActiveTexture(GL_TEXTURE1 + input->cout - 1);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, input->RTS[input->cout - 1]);
 
 	ShaderManager::Instance()->UseShader(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "albedoMap");
@@ -41,27 +43,34 @@ void LightPass::Render(PassOutput * input)
 	glUniform1i(location, 3);
 	location = glGetUniformLocation(shaderProgram, "sMap");
 	glUniform1i(location, 4);
+	location = glGetUniformLocation(shaderProgram, "cubeMap");
+	glUniform1i(location, 5);
 	
 	float4 zColor = WeatherSystem::Instance()->GetSkyUpColor();
 	float4 sColor = WeatherSystem::Instance()->GetSunColor();
 	float3 wsSunPos = WeatherSystem::Instance()->GetWsSunPos();
+	float3 wsCamPos = CameraManager::Instance()->GetCurrentCamera()->GetPosition();
 	location = glGetUniformLocation(shaderProgram, "zenithColor");
 	glUniform4f(location, zColor.x, zColor.y, zColor.z, zColor.w);
 	location = glGetUniformLocation(shaderProgram, "sunColor");
 	glUniform4f(location, sColor.x, sColor.y, sColor.z, sColor.w);
 	location = glGetUniformLocation(shaderProgram, "wsSunPos");
 	glUniform3f(location, wsSunPos.x, wsSunPos.y, wsSunPos.z);
+	location = glGetUniformLocation(shaderProgram, "wsCamPos");
+	glUniform3f(location, wsCamPos.x, wsCamPos.y, wsCamPos.z);
 
 	DrawFullScreenQuad();
 
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 
-	for (int i = 0; i < input->cout; i++)
+	for (int i = 0; i < input->cout - 1; i++)
 	{
 		glActiveTexture(GL_TEXTURE1 + i);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
+	glActiveTexture(GL_TEXTURE1 + input->cout - 1);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 }
 
 void LightPass::Init()

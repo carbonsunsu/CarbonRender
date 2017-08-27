@@ -13,18 +13,23 @@ void SkyRenderPass::GetReady4Render(PassOutput* input)
 	glGenFramebuffers(1, &fbo);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-	GLuint rt0;
+	GLuint rt0, cubeRt;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
 	rt0 = SetGLRenderTexture(size.w, size.h, GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE, GL_COLOR_ATTACHMENT0);
 
 	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
 	glDrawBuffers(1, drawBuffers);
 
+	glGenFramebuffers(1, &fboCube);
+	glBindFramebuffer(GL_FRAMEBUFFER, fboCube);
+	cubeRt = SetGLCubeRenderTexture(cubeSize, GL_RGB, GL_RGB, GL_UNSIGNED_BYTE);
+
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	output.cout = 1;
-	output.RTS = new GLuint[1];
+	output.cout = 2;
+	output.RTS = new GLuint[output.cout];
 	output.RTS[0] = rt0;
+	output.RTS[1] = cubeRt;
 }
 
 void SkyRenderPass::Render(PassOutput* input)
@@ -37,6 +42,8 @@ void SkyRenderPass::Render(PassOutput* input)
 	cam.SetRotation(CameraManager::Instance()->GetCurrentCamera()->GetRotation());
 	cam.UpdateViewMatrix();
 	CameraManager::Instance()->Push(cam);
+	WindowSize size = WindowManager::Instance()->GetWindowSize();
+	glViewport(0, 0, size.w, size.h);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -56,6 +63,36 @@ void SkyRenderPass::Render(PassOutput* input)
 	glUniform3f(location, shaderParas[7], shaderParas[8], shaderParas[9]);
 
 	sphere.Render(shaderProgram);
+
+	//render cube
+	Camera camCube;
+	camCube.SetPerspectiveCamera(90.0f, 1000.0f, 20000.0f, cubeSize);
+	camCube.SetPosition(CameraManager::Instance()->GetCurrentCamera()->GetPosition());
+	camCube.SetRotation(CameraManager::Instance()->GetCurrentCamera()->GetRotation());
+	camCube.UpdateViewMatrix();
+	CameraManager::Instance()->Push(camCube);
+	glViewport(0, 0, cubeSize, cubeSize);
+
+	float3 rs[6] = { float3(180.0f, -90.0f, 0.0f),
+					float3(180.0f, 90.0f, 0.0f),
+					float3(-90.0f, 0.0f, 0.0f),
+					float3(90.0f, 0.0f, 0.0f) ,
+					float3(0.0f, 180.0f, 180.0f) ,
+					float3(0.0f, 0.0f, 180.0f) };
+
+	glBindFramebuffer(GL_FRAMEBUFFER, fboCube);
+	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT1 };
+	glDrawBuffers(1, drawBuffers);
+	for (int i = 0; i < 6; i++)
+	{
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, output.RTS[1], 0);
+		CameraManager::Instance()->GetCurrentCamera()->SetRotation(rs[i]);
+		CameraManager::Instance()->GetCurrentCamera()->UpdateViewMatrix();
+		sphere.Render(shaderProgram);
+	}
+
+	glViewport(0, 0, size.w, size.h);
+	CameraManager::Instance()->Pop();
 
 	glCullFace(GL_BACK);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);

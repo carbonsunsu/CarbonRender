@@ -7,10 +7,10 @@ void SMPass::GetReady4Render(PassOutput * input)
 
 	GLuint rt_sm, rt_vpl;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	rt_sm = SetGLRenderTexture(size.w, size.h, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT0);
-	rt_vpl = SetGLRenderTexture(size.w, size.h, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT1);
+	rt_sm = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT0);
+	rt_vpl = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT1);
 
-	dBuffer = SetGLDepthBuffer(size.w, size.h);
+	dBuffer = SetGLDepthBuffer(size.w * shadowMapScale, size.h * shadowMapScale);
 
 	GLenum drawBuffers[2] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
 	glDrawBuffers(2, drawBuffers);
@@ -36,6 +36,8 @@ void SMPass::Render(PassOutput * input)
 	output.mats[0] = CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix() * CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix();
 
 	glEnable(GL_DEPTH_TEST);
+	WindowSize size = WindowManager::Instance()->GetWindowSize();
+	glViewport(0, 0, size.w * shadowMapScale, size.h * shadowMapScale);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 	glBindRenderbuffer(GL_RENDERBUFFER, dBuffer);
@@ -47,11 +49,13 @@ void SMPass::Render(PassOutput * input)
 	glDisable(GL_DEPTH_TEST);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glBindRenderbuffer(GL_RENDERBUFFER, 0);
+	glViewport(0, 0, size.w, size.h);
 
 	CameraManager::Instance()->Pop();
 }
 
 void SMPass::Init()
 {
+	shadowMapScale = 4;
 	shaderProgram = ShaderManager::Instance()->LoadShader("SM.vert", "SM.frag");
 }

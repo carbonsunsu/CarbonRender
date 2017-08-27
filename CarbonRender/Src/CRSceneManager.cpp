@@ -38,7 +38,7 @@ void SceneManager::LoadScene()
 	scene.GetReady4Rending();
 	type59.GetReady4Rending();
 
-	type59.SetPosition(float3(0.0f, -0.5f, -17.5f));
+	type59.SetPosition(float3(-1.0f, -0.6f, -17.5f));
 }
 
 void SceneManager::DrawScene(GLuint shaderProgram)

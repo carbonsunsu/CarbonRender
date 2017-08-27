@@ -16,15 +16,17 @@ void main ()
 	vec3 wsP = P.xyz;
 	vec4 smP = smMat * vec4(wsP, 1.0f);
 	float d = smP.z / smP.w;
-	//d -= 0.00003f;
 	vec2 smUV = smP.xy * 0.5f + 0.5f;
-	float smD = texture2D(smMap, smUV).a;
 	float sFactor = 1.0f;
 	if (smUV.x >= 0.0f && 
 		smUV.x <= 1.0f &&
 		smUV.y >= 0.0f &&
 		smUV.y <= 1.0f )
-		sFactor = exp(200.0f * (smD - d));
+	{	
+		vec4 sMap = texture2D(smMap, smUV);
+		float smD = sMap.a;
+		sFactor = exp(10000.0f * (sMap.a - d));
+	}
 
 	sColor = sFactor.xxxx;
 }

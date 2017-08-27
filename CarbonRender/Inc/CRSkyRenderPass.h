@@ -14,6 +14,8 @@ class SkyRenderPass : public RenderPass
 {
 private:
 	MeshObject sphere;
+	int cubeSize = 256;
+	GLuint fboCube;
 	
 	void GetReady4Render(PassOutput* input);
 	void Render(PassOutput* input);

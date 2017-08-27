@@ -26,6 +26,7 @@ private:
 	CameraProjectMode curCameraMode;
 public:
 	void SetPerspectiveCamera(float iFov, float iNearClip, float iFarClip);
+	void SetPerspectiveCamera(float iFov, float iNearClip, float iFarClip, int size);
 	void SetNearFar(float iNearClip, float iFarClip);
 	void SetFov(float iFov);
 	void SetOrthoSize(float size);

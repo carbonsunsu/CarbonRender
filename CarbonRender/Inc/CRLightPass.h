@@ -6,6 +6,7 @@
 #include "..\Inc\CRShaderManager.h"
 #include "..\Inc\CRWindowManager.h"
 #include "..\Inc\CRWeatherSystem.h"
+#include "..\Inc\CRCameraManager.h"
 
 class LightPass : public RenderPass
 {
