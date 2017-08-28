@@ -25,7 +25,7 @@ void main ()
 	{	
 		vec4 sMap = texture2D(smMap, smUV);
 		float smD = sMap.a;
-		sFactor = exp(10000.0f * (smD - d));
+		sFactor = exp(100000.0f * (smD - d));
 	}
 
 	float lightSize = 10.0f;

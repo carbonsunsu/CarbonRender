@@ -49,15 +49,15 @@ void main()
 						1.0f);
 
 		if (dot(normalize(wsSunPos.xyz), vP) > SunSize)
-			skyColor = skyColor*5.0f;
+			skyColor.rgb = skyColor.rgb*5.0f;
 
 		//night 
 		if (wsSunPos.y <= 0.0f)
-			skyColor.xyz *= 0.0f;
+			skyColor.rgb *= 0.0f;
 	}
 	else
 	{
-		skyColor = vec4(0.5f, 0.5f, 0.5f, 1.0f);
+		skyColor = vec4(0.5f, 0.5f, 0.5f, 0.0f);
 	}
 	
 	bColor = skyColor;

@@ -27,10 +27,11 @@ void SMPass::GetReady4Render(PassOutput * input)
 void SMPass::Render(PassOutput * input)
 {
 	float farCip = 10000.0f;
+	float3 lookPos = followCam ? CameraManager::Instance()->GetCurrentCamera()->GetPosition() : float3(-1.0f, -0.6f, -17.5f);
 	Camera cam;
-	cam.SetOrthoCamera(20.0f, 1.0f, farCip);
-	cam.SetPosition(WeatherSystem::Instance()->GetWsSunPos().normalize() * farCip * 0.5f + CameraManager::Instance()->GetCurrentCamera()->GetPosition());
-	cam.LookAt(CameraManager::Instance()->GetCurrentCamera()->GetPosition());
+	cam.SetOrthoCamera(10.0f, 1.0f, farCip);
+	cam.SetPosition(WeatherSystem::Instance()->GetWsSunPos().normalize() * farCip * 0.5f + lookPos);
+	cam.LookAt(lookPos);
 	CameraManager::Instance()->Push(cam);
 	CameraManager::Instance()->GetCurrentCamera()->UpdateViewMatrix();
 	output.mats[0] = CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix() * CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix();
@@ -57,5 +58,6 @@ void SMPass::Render(PassOutput * input)
 void SMPass::Init()
 {
 	shadowMapScale = 4;
+	followCam = false;
 	shaderProgram = ShaderManager::Instance()->LoadShader("SM.vert", "SM.frag");
 }
