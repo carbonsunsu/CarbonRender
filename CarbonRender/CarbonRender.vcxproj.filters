@@ -99,6 +99,9 @@
     <ClCompile Include="Src\CRShadowPass.cpp">
       <Filter>源文件\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Src\CRShadowBlurPass.cpp">
+      <Filter>源文件\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRFinalPass.h">
@@ -170,6 +173,9 @@
     <ClInclude Include="Inc\CRShadowPass.h">
       <Filter>头文件\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\CRShadowBlurPass.h">
+      <Filter>头文件\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shader\Atmosphere.vert">
@@ -200,6 +206,9 @@
       <Filter>Shader</Filter>
     </None>
     <None Include="Resources\Shader\ShadowPass.frag">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\ShadowBlur.frag">
       <Filter>Shader</Filter>
     </None>
   </ItemGroup>

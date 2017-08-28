@@ -25,8 +25,11 @@ void main ()
 	{	
 		vec4 sMap = texture2D(smMap, smUV);
 		float smD = sMap.a;
-		sFactor = exp(10000.0f * (sMap.a - d));
+		sFactor = exp(10000.0f * (smD - d));
 	}
 
-	sColor = sFactor.xxxx;
+	float lightSize = 10.0f;
+	float searchR = 10.0f - 1.0f / abs(d);
+
+	sColor = vec4(sFactor, abs(searchR) * 0.001f, 1.0f, 1.0f);
 }

@@ -118,7 +118,7 @@ void main ()
 	float metallic = N.a;
 	float roughness = P.a;
 	float directShadow = shadowFactor.r;
-	float indirectShadow = 1.0f;//shadowFactor.b;
+	float indirectShadow = shadowFactor.b;
 	
 	vec3 wsL = wsSunPos;
 	wsL = normalize(wsL);

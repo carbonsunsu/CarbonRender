@@ -9,6 +9,7 @@
 #include "..\Inc\CRLightPass.h"
 #include "..\Inc\CRSMPass.h"
 #include "..\Inc\CRShadowPass.h"
+#include "..\Inc\CRShadowBlurPass.h"
 
 class RenderPassManager
 {
@@ -22,6 +23,7 @@ private:
 	LightPass lightPass;
 	SMPass smPass;
 	ShadowPass shadowPass;
+	ShadowBlurPass shadowBlurPass;
 
 public:
 	~RenderPassManager();
