@@ -12,7 +12,7 @@ void main ()
 	vec4 sBuffer = texture2D(skyBuffer, uv);
 	vec4 lBuffer = texture2D(lightBuffer, uv);
 
-	fColor = lBuffer + sBuffer * (1.0f - lBuffer.a);
+	fColor.rgb = mix(sBuffer.rgb, lBuffer.rgb, lBuffer.a);
 	fColor.a = 1.0f;
 
 	//to linear space

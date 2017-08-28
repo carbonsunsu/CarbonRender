@@ -26,7 +26,7 @@ void SMPass::GetReady4Render(PassOutput * input)
 
 void SMPass::Render(PassOutput * input)
 {
-	float farCip = 5000.0f;
+	float farCip = 10000.0f;
 	Camera cam;
 	cam.SetOrthoCamera(50.0f, 1.0f, farCip);
 	cam.SetPosition(WeatherSystem::Instance()->GetWsSunPos().normalize() * farCip * 0.5f + CameraManager::Instance()->GetCurrentCamera()->GetPosition());

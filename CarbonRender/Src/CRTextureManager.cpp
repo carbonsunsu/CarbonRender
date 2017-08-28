@@ -34,8 +34,8 @@ TextureManager::TextureManager()
 	{
 		for (j = 0; j < 8; j++)
 		{
-			S[i][j][0] = (GLubyte)0;
-			S[i][j][1] = (GLubyte)128;
+			S[i][j][0] = (GLubyte)255;
+			S[i][j][1] = (GLubyte)0;
 			S[i][j][2] = (GLubyte)0;
 		}
 	}
