@@ -52,9 +52,7 @@ void RenderPassManager::Draw()
 	aoInput.RTS[1] = g->RTS[2];
 	aoInput.RTS[2] = shadow->RTS[0];
 	PassOutput* ao = ssaoPass.Draw(&aoInput);//shadow and ao
-
 	PassOutput* shadowBlured = shadowBlurPass.Draw(ao);
-
 
 	PassOutput lInput;
 	lInput.cout = g->cout + 2;

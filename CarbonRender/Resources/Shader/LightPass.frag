@@ -145,7 +145,7 @@ void main ()
 		lColor.rgb = BRDF(diffColor, specColor, oneMinusMetallic, roughness, 
 							wsN, wsV, wsL, sunColor.rgb * directShadow * indirectShadow, 
 							indirectDiff, inditectSpec);
-		lColor.rgb = indirectShadow.xxx;
+
 		lColor.a = 1.0f;
 	}
 }
