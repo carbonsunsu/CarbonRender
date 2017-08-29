@@ -27,6 +27,7 @@ void RenderPassManager::Init()
 	smPass.Init();
 	shadowPass.Init();
 	shadowBlurPass.Init();
+	ssaoPass.Init();
 }
 
 void RenderPassManager::Draw()
@@ -42,12 +43,17 @@ void RenderPassManager::Draw()
 	sInput.RTS[1] = sm->RTS[0];
 	sInput.mats = new Matrix4x4[1];
 	sInput.mats[0] = sm->mats[0];
-	PassOutput* shadow = shadowPass.Draw(&sInput);
+	PassOutput* shadow = shadowPass.Draw(&sInput);//shadow
 
-	//add ao later
+	PassOutput aoInput;
+	aoInput.cout = 3;
+	aoInput.RTS = new GLuint[aoInput.cout];
+	aoInput.RTS[0] = g->RTS[1];
+	aoInput.RTS[1] = g->RTS[2];
+	aoInput.RTS[2] = shadow->RTS[0];
+	PassOutput* ao = ssaoPass.Draw(&aoInput);//shadow and ao
 
-
-	PassOutput* shadowBlured = shadowBlurPass.Draw(shadow);
+	PassOutput* shadowBlured = shadowBlurPass.Draw(ao);
 
 
 	PassOutput lInput;
@@ -57,7 +63,7 @@ void RenderPassManager::Draw()
 		lInput.RTS[i] = g->RTS[i];
 	lInput.RTS[lInput.cout - 2] = shadowBlured->RTS[0];
 	lInput.RTS[lInput.cout - 1] = sky->RTS[1];
-	PassOutput* light = lightPass.Draw(&lInput);
+	PassOutput* light = lightPass.Draw(&lInput);//light
 
 	PassOutput finalInput;
 	finalInput.cout = sky->cout + light->cout;

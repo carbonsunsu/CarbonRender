@@ -16,8 +16,7 @@ float GausianFacotr (vec2 uv, float s)
 
 void main ()
 {
-	float sumColor = 0.0f;
-	float sampleColor;
+	vec2 sumColor = vec2(0.0f);
 	float sumFactor = 0.0f;
 	float gFactor;
 	vec2 sampleBias;
@@ -25,18 +24,19 @@ void main ()
 	gFactor = GausianFacotr(steps.zw * 0, SIGMA);
 	sumFactor += gFactor;
 	vec4 sMap = texture2D(shadowMap, uv);
-	sumColor += sMap.r * gFactor;
+	sumColor += sMap.rb * gFactor;
 
 	for (int i = 1; i < 5; i++)
 	{
 		gFactor = GausianFacotr(steps.zw * i, SIGMA);
 		sumFactor += gFactor;
-		sumColor += texture2D(shadowMap, uv + steps.xy * i).r * gFactor;
+		sumColor += texture2D(shadowMap, uv + steps.xy * i).rb * gFactor;
 
 		gFactor = GausianFacotr(steps.zw * -i, SIGMA);
 		sumFactor += gFactor;
-		sumColor += texture2D(shadowMap, uv + steps.xy * -i).r * gFactor;
+		sumColor += texture2D(shadowMap, uv + steps.xy * -i).rb * gFactor;
 	}
+	sumColor = sumColor / sumFactor;
 
-	sColor = vec4(sumColor.x / sumFactor, 0.0f, sMap.b, 1.0f);
+	sColor = vec4(sumColor.r, 0.0f, sumColor.g, 1.0f);
 }

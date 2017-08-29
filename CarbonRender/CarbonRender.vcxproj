@@ -31,6 +31,7 @@
     <ClCompile Include="Src\CRShadowPass.cpp" />
     <ClCompile Include="Src\CRSMPass.cpp" />
     <ClCompile Include="Src\CRSkyRenderPass.cpp" />
+    <ClCompile Include="Src\CRSSAOPass.cpp" />
     <ClCompile Include="Src\CRTextureManager.cpp" />
     <ClCompile Include="Src\CRWeatherSystem.cpp" />
     <ClCompile Include="Src\CRWindowManager.cpp" />
@@ -57,6 +58,7 @@
     <ClInclude Include="Inc\CRShadowPass.h" />
     <ClInclude Include="Inc\CRSMPass.h" />
     <ClInclude Include="Inc\CRSkyRenderPass.h" />
+    <ClInclude Include="Inc\CRSSAOPass.h" />
     <ClInclude Include="Inc\CRTextureManager.h" />
     <ClInclude Include="Inc\CRWindowManager.h" />
     <ClInclude Include="Inc\CRRenderPass.h" />
@@ -74,6 +76,7 @@
     <None Include="Resources\Shader\GPass.vert" />
     <None Include="Resources\Shader\LightPass.frag" />
     <None Include="Resources\Shader\ScreenQuad.vert" />
+    <None Include="Resources\Shader\SSAO.frag" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{27CD77C7-6F75-434C-A429-CE1E1D982CBA}</ProjectGuid>

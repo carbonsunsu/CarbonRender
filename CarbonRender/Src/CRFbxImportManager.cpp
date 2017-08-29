@@ -320,11 +320,8 @@ void FbxImportManager::ReadTexture(FbxMesh* mesh, Mesh* crMesh, char* meshFileNa
 				FbxTexture* fbxTex = FbxCast<FbxTexture>(p.GetSrcObject<FbxTexture>(k));
 				if (fbxTex && strlen(fbxTex->GetInitialName()) != 0)
 				{
-					char* dir = "Resources\\Textures\\";
-					char* fullName = FileReader::BindString(dir, meshFileName);
-					fullName = FileReader::BindString(fullName, "\\");
+					char* fullName = FileReader::BindString(meshFileName, "\\");
 					fullName = FileReader::BindString(fullName, (char*)fbxTex->GetInitialName());
-					fullName = FileReader::BindString(fullName, ".tga");
 					GLuint tex = TextureManager::Instance()->LoadTexture(fullName);
 					if (strstr(fbxTex->GetInitialName(), "_D"))
 						crMesh->texs[0] = tex;

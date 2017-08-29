@@ -80,18 +80,21 @@ TextureManager * TextureManager::Instance()
 
 GLuint TextureManager::LoadTexture(string dir)
 {
-	if (texturesMap.find(dir) != texturesMap.end())
-		return texturesMap[dir];
+	char* fullDir = "Resources\\Textures\\";
+	fullDir = FileReader::BindString(fullDir, (char*)dir.c_str());
+	fullDir = FileReader::BindString(fullDir, ".tga");
+	if (texturesMap.find(fullDir) != texturesMap.end())
+		return texturesMap[fullDir];
 
-	GLuint tex = SOIL_load_OGL_texture(dir.c_str(),
+	GLuint tex = SOIL_load_OGL_texture(fullDir,
 		SOIL_LOAD_AUTO, 
 		SOIL_CREATE_NEW_ID, 
-		SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y);
+		SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_TEXTURE_REPEATS);
 
 	if (tex == 0)
-		cout << "SOIL loading error: " << SOIL_last_result() << " : " << dir << endl;
+		cout << "SOIL loading error: " << SOIL_last_result() << " : " << fullDir << endl;
 	else
-		texturesMap[dir] = tex;
+		texturesMap[fullDir] = tex;
 
 	return tex;
 }

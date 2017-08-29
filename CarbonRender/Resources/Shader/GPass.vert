@@ -14,6 +14,7 @@ uniform mat4 proMat;
 out vec3 wsP;
 out vec2 uv;
 out mat3 TBN;
+out float d;
 
 void main ()
 {
@@ -27,4 +28,5 @@ void main ()
 	
 	wsP = (modelMat * msPos).xyz;
 	uv = uvs.xy;
+	d = abs(gl_Position.z);
 }

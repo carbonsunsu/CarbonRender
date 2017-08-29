@@ -17,6 +17,7 @@ uniform sampler2D albedoMap;
 uniform sampler2D normalMap;
 uniform sampler2D pMap;
 uniform sampler2D sMap;
+uniform sampler2D stenMap;
 uniform samplerCube cubeMap;
 
 vec3 IndirectSpecular (samplerCube tex, vec3 r, float roughness)
@@ -108,37 +109,43 @@ vec3 BRDF(vec3 diff, vec3 spec, float oneMinusMetallic, float roughness,
 
 void main ()
 {
-	vec4 albedo = texture2D(albedoMap, uv);
-	vec4 N = texture2D(normalMap, uv);
-	vec4 P = texture2D(pMap, uv);
-	vec4 shadowFactor = texture2D(sMap, uv);
+	vec4 stencil = texture2D(stenMap, uv);
+	if (stencil.r <= 0)
+		discard;
+	else
+	{
+		vec4 albedo = texture2D(albedoMap, uv);
+		vec4 N = texture2D(normalMap, uv);
+		vec4 P = texture2D(pMap, uv);
+		vec4 shadowFactor = texture2D(sMap, uv);
 
-	vec3 wsN = normalize(N.xyz);
-	vec3 wsP = P.xyz;
-	float metallic = N.a;
-	float roughness = P.a;
-	float directShadow = shadowFactor.r;
-	float indirectShadow = shadowFactor.b;
+		vec3 wsN = N.xyz;
+		vec3 wsP = P.xyz;
+		float metallic = albedo.a;
+		float roughness = P.a;
+		float directShadow = shadowFactor.r;
+		float indirectShadow = shadowFactor.b;
 	
-	vec3 wsL = wsSunPos;
-	wsL = normalize(wsL);
-	vec3 wsV = wsCamPos - wsP;
-	wsV = normalize(wsV);
-	vec3 wsR = reflect(-wsV, wsN);
+		vec3 wsL = wsSunPos;
+		wsL = normalize(wsL);
+		vec3 wsV = wsCamPos - wsP;
+		wsV = normalize(wsV);
+		vec3 wsR = reflect(-wsV, wsN);
 	
-	float NoL = clamp(dot(wsN, wsL), 0.0f, 1.0f);
-	float NoU = clamp(dot(wsN, vec3(0.0f, 1.0f, 0.0f)), 0.0f, 1.0f);
+		float NoL = clamp(dot(wsN, wsL), 0.0f, 1.0f);
+		float NoU = clamp(dot(wsN, vec3(0.0f, 1.0f, 0.0f)), 0.0f, 1.0f);
 
-	vec3 diffColor;
-	vec3 specColor;
-	float oneMinusMetallic;
-	GetDiffSpec(albedo.rgb, metallic, diffColor, specColor, oneMinusMetallic);
-	vec3 indirectDiff = NoU * zenithColor.rgb * indirectShadow;
-	vec3 inditectSpec = IndirectSpecular (cubeMap, wsR, roughness) * indirectShadow;
+		vec3 diffColor;
+		vec3 specColor;
+		float oneMinusMetallic;
+		GetDiffSpec(albedo.rgb, metallic, diffColor, specColor, oneMinusMetallic);
+		vec3 indirectDiff = NoU * zenithColor.rgb * indirectShadow;
+		vec3 inditectSpec = IndirectSpecular (cubeMap, wsR, roughness) * indirectShadow;
 
-	lColor.rgb = BRDF(diffColor, specColor, oneMinusMetallic, roughness, 
-						wsN, wsV, wsL, sunColor.rgb * directShadow * indirectShadow, 
-						indirectDiff, inditectSpec);
-
-	lColor.a = albedo.a;
+		lColor.rgb = BRDF(diffColor, specColor, oneMinusMetallic, roughness, 
+							wsN, wsV, wsL, sunColor.rgb * directShadow * indirectShadow, 
+							indirectDiff, inditectSpec);
+		lColor.rgb = indirectShadow.xxx;
+		lColor.a = 1.0f;
+	}
 }

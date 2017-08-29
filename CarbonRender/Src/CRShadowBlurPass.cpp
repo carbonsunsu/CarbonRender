@@ -42,7 +42,7 @@ void ShadowBlurPass::Render(PassOutput * input)
 	glUniform4f(location, step / size.w, 0.0f, step, 0.0f);
 
 	DrawFullScreenQuad();
-	/**/
+
 	//blur y
 	drawBuffers[0] = GL_COLOR_ATTACHMENT1;
 	glDrawBuffers(1, drawBuffers);
@@ -56,7 +56,7 @@ void ShadowBlurPass::Render(PassOutput * input)
 	glUniform4f(location, 0.0f, step / size.h, 0.0f, step);
 
 	DrawFullScreenQuad();
-	/**/
+
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 
