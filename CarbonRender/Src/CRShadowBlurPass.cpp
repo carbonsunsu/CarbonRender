@@ -72,5 +72,5 @@ void ShadowBlurPass::Render(PassOutput * input)
 void ShadowBlurPass::Init()
 {
 	shaderProgram = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "ShadowBlur.frag");
-	step = 2.0f;
+	step = 1.0f;
 }

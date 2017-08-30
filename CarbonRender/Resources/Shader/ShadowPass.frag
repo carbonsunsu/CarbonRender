@@ -15,7 +15,7 @@ void main ()
 	vec4 P = texture2D(pMap, uv);
 	vec3 wsP = P.xyz;
 	vec4 smP = smMat * vec4(wsP, 1.0f);
-	float d = smP.z / smP.w;
+	float d = smP.z;
 	vec2 smUV = smP.xy * 0.5f + 0.5f;
 	float sFactor = 1.0f;
 	if (smUV.x >= 0.0f && 
@@ -25,11 +25,11 @@ void main ()
 	{	
 		vec4 sMap = texture2D(smMap, smUV);
 		float smD = sMap.a;
-		sFactor = exp(100000.0f * (smD - d));
+		sFactor = exp(20000.0f * (smD - d));
 	}
 
 	float lightSize = 10.0f;
 	float searchR = 10.0f - 1.0f / abs(d);
 
-	sColor = vec4(sFactor, abs(searchR) * 0.001f, 1.0f, 1.0f);
+	sColor = vec4(sFactor, 0.0f, 1.0f, 1.0f);
 }

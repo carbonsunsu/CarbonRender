@@ -137,16 +137,17 @@ void main ()
 	float NoL = clamp(dot(wsN, wsL), 0.0f, 1.0f);
 	float NoU = clamp(dot(wsN, vec3(0.0f, 1.0f, 0.0f)), 0.0f, 1.0f);
 
+	vec3 lightColor = sunColor.rgb * directShadow * indirectShadow;
 	vec3 diffColor;
 	vec3 specColor;
 	float oneMinusMetallic;
 	GetDiffSpec(albedo.rgb, metallic, diffColor, specColor, oneMinusMetallic);
-	vec3 indirectDiff = NoU * zenithColor.rgb * indirectShadow;
+	vec3 indirectDiff = textureLod(cubeMap, wsN, 8).rgb * indirectShadow * lightColor;//NoU * zenithColor.rgb * indirectShadow;
 	vec3 inditectSpec = IndirectSpecular (cubeMap, wsR, roughness) * indirectShadow;
 
 	lColor.rgb = BRDF(diffColor, specColor, oneMinusMetallic, roughness, 
-						wsN, wsV, wsL, sunColor.rgb * directShadow * indirectShadow, 
+						wsN, wsV, wsL, lightColor, 
 						indirectDiff, inditectSpec);
-
+	//lColor.rgb = inditectSpec.rgb;//directShadow.rrr * indirectShadow.rrr;
 	lColor.a = 1.0f;
 }
