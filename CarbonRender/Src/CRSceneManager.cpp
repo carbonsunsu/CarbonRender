@@ -34,11 +34,13 @@ void SceneManager::LoadScene()
 	ControllerManager::Instance()->Push(ctrl);
 
 	FbxImportManager::Instance()->ImportFbxModel("Terrain", &scene);
-	FbxImportManager::Instance()->ImportFbxModel("Type59", &type59);
+	FbxImportManager::Instance()->ImportFbxModel("Chieftain MK6", &type59);
 	scene.GetReady4Rending();
 	type59.GetReady4Rending();
 
 	type59.SetPosition(float3(-1.0f, -0.6f, -17.5f));
+	//type59.SetPosition(float3(-1.0f, 2.0f, -17.5f));
+	type59.SetRotation(float3(0.0f, 180.0f, 0.0f));
 }
 
 void SceneManager::DrawScene(GLuint shaderProgram)

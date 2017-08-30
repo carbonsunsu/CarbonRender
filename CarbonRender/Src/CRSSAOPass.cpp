@@ -44,10 +44,13 @@ void SSAOPass::Render(PassOutput * input)
 	location = glGetUniformLocation(shaderProgram, "rnMap");
 	glUniform1i(location, 4);
 
-	float3 wsCamPos = CameraManager::Instance()->GetCurrentCamera()->GetPosition();
+	WindowSize size = WindowManager::Instance()->GetWindowSize();
 	float3 para = CameraManager::Instance()->GetCurrentCamera()->GetCameraPara();
 	location = glGetUniformLocation(shaderProgram, "scalePara");
-	glUniform1f(location, para.z - para.y);
+	glUniform3f(location, 1.0f / size.w, 1.0f / size.h, para.z - para.y);
+	location = glGetUniformLocation(shaderProgram, "viewMat");
+	Matrix3x3 normalMat = CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix();
+	glUniformMatrix3fv(location, 1, GL_FALSE, normalMat.matrix);
 
 	DrawFullScreenQuad();
 
