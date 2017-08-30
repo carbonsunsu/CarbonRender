@@ -72,6 +72,16 @@ void WeatherSystem::Update()
 	zenith.y = ThetaS_3 * temp.x + ThetaS_2 * temp.y + thetaS * temp.z + temp.w;
 }
 
+void WeatherSystem::SetHour(float h)
+{
+	hour = h;
+}
+
+float WeatherSystem::GetHour()
+{
+	return hour;
+}
+
 float4 WeatherSystem::GetWsSunPos()
 {
 	return wsSunPos;

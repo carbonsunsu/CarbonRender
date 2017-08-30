@@ -3,6 +3,7 @@
 
 #include "..\Inc\CRGloble.h"
 #include "..\Inc\CRCameraManager.h"
+#include "..\Inc\CRWeatherSystem.h"
 
 class Controller
 {

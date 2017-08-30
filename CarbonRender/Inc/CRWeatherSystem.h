@@ -31,6 +31,8 @@ public:
 	
 	void Update();
 
+	void SetHour(float h);
+	float GetHour();
 	float4 GetWsSunPos();
 	float4 GetSunColor();
 	float4 GetSkyUpColor();

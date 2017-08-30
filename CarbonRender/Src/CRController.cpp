@@ -61,6 +61,16 @@ void Controller::KeyDownCallback(unsigned char key, int x, int y)
 		v.z = -moveSpeed;
 	}
 	break;
+	case '=':
+	{
+		WeatherSystem::Instance()->SetHour(WeatherSystem::Instance()->GetHour() + 0.5f);
+	}
+	break;
+	case '-':
+	{
+		WeatherSystem::Instance()->SetHour(WeatherSystem::Instance()->GetHour() - 0.5f);
+	}
+	break;
 	}
 }
 

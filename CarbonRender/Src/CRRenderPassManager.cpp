@@ -64,7 +64,7 @@ void RenderPassManager::Draw()
 	PassOutput* light = lightPass.Draw(&lInput);//light
 
 	PassOutput finalInput;
-	finalInput.cout = sky->cout + light->cout;
+	finalInput.cout = sky->cout - 1 + light->cout;
 	finalInput.RTS = new GLuint[finalInput.cout];
 	finalInput.RTS[0] = sky->RTS[0];
 	finalInput.RTS[1] = light->RTS[0];
