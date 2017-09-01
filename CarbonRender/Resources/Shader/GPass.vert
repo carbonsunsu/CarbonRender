@@ -28,5 +28,5 @@ void main ()
 	
 	wsP = (modelMat * msPos).xyz;
 	uv = uvs.xy;
-	d = abs(gl_Position.z);
+	d = abs(gl_Position.w);
 }

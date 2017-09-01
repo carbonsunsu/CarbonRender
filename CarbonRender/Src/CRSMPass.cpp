@@ -30,7 +30,7 @@ void SMPass::Render(PassOutput * input)
 	float3 lookPos = followCam ? CameraManager::Instance()->GetCurrentCamera()->GetPosition() : float3(-1.0f, -0.6f, -17.5f);
 	Camera cam;
 	cam.SetOrthoCamera(10.0f, 1.0f, farCip);
-	cam.SetPosition(WeatherSystem::Instance()->GetWsSunPos().normalize() * farCip * 0.5f + lookPos);
+	cam.SetPosition(WeatherSystem::Instance()->GetWsSunPos().normalize() * farCip * 0.9f + lookPos);
 	cam.LookAt(lookPos);
 	CameraManager::Instance()->Push(cam);
 	CameraManager::Instance()->GetCurrentCamera()->UpdateViewMatrix();

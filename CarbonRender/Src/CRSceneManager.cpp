@@ -25,7 +25,7 @@ void SceneManager::Init()
 void SceneManager::LoadScene()
 {
 	Camera cam;
-	cam.SetPerspectiveCamera(60.0f, 0.01f, 10000.0f);
+	cam.SetPerspectiveCamera(60.0f, 0.01f, 3000.0f);
 	cam.SetPosition(float3(0.0f, 2.0f, 0.0f));
 	CameraManager::Instance()->Push(cam);
 
@@ -34,7 +34,7 @@ void SceneManager::LoadScene()
 	ControllerManager::Instance()->Push(ctrl);
 
 	FbxImportManager::Instance()->ImportFbxModel("Terrain", &scene);
-	FbxImportManager::Instance()->ImportFbxModel("Chieftain MK6", &type59);
+	FbxImportManager::Instance()->ImportFbxModel("Type59", &type59);
 	scene.GetReady4Rending();
 	type59.GetReady4Rending();
 
