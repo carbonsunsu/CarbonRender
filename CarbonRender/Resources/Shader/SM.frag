@@ -12,7 +12,7 @@ uniform sampler2D albedoMap;
 void main ()
 {
 	vec4 albedo = texture2D(albedoMap, uv);
-	albedo = albedo * (albedo * (albedo * 0.305306011f + 0.682171111f) + 0.012522878f);
+	albedo.rgb = pow(albedo.rgb, vec3(2.2f));
 
 	smColor = vec4(wsP, d);
 	vplColor = albedo.xyz;

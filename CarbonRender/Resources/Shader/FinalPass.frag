@@ -14,8 +14,4 @@ void main ()
 
 	fColor.rgb = mix(sBuffer.rgb, lBuffer.rgb, lBuffer.a);
 	fColor.a = 1.0f;
-
-	//to linear space
-	fColor.xyz = max(fColor.xyz, vec3(0.0f, 0.0f, 0.0f));
-	fColor.xyz = max(1.055f * pow(fColor.xyz, vec3(0.416666667f)) - 0.055f, 0.0f);
 }

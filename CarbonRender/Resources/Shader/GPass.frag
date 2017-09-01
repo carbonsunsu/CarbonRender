@@ -21,7 +21,7 @@ void main ()
 	N = N * 2.0f - 1.0f;
 	vec4 ms = texture2D(msMap, uv);
 	vec4 albedo = texture2D(albedoMap, uv);
-	albedo = albedo * (albedo * (albedo * 0.305306011f + 0.682171111f) + 0.012522878f);
+	albedo.rgb = pow(albedo.rgb, vec3(2.2f));
 
 	vec3 wsN = normalMat * TBN * N;
 

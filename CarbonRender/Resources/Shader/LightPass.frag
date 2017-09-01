@@ -100,9 +100,9 @@ vec3 BRDF(vec3 diff, vec3 spec, float oneMinusMetallic, float roughness,
 	float reduction = 1.0f / (roughness2*roughness2 + 1.0f); 
 
 	float grazingTerm = clamp(1.0f - roughness + (1-oneMinusMetallic), 0.0f, 1.0f);
-    vec3 color =   diff * (indDiff + lColor * diffTerm)
-                    + specTerm * lColor * FresnelTerm (spec, LoH)
-                    + reduction * indSpec * FresnelLerp (spec, grazingTerm.xxx, NoV);
+    vec3 color = diff * (indDiff + lColor * diffTerm)
+                 + specTerm * lColor * FresnelTerm (spec, LoH)
+                 + reduction * indSpec * FresnelLerp (spec, grazingTerm.xxx, NoV);
 
 	return color;
 }
@@ -142,12 +142,12 @@ void main ()
 	vec3 specColor;
 	float oneMinusMetallic;
 	GetDiffSpec(albedo.rgb, metallic, diffColor, specColor, oneMinusMetallic);
-	vec3 indirectDiff = textureLod(cubeMap, wsN, 8).rgb * indirectShadow * lightColor;//NoU * zenithColor.rgb * indirectShadow;
+	vec3 indirectDiff = textureLod(cubeMap, wsN, 6).rgb * indirectShadow * sunColor.rgb;
 	vec3 inditectSpec = IndirectSpecular (cubeMap, wsR, roughness) * indirectShadow;
 
 	lColor.rgb = BRDF(diffColor, specColor, oneMinusMetallic, roughness, 
 						wsN, wsV, wsL, lightColor, 
 						indirectDiff, inditectSpec);
-	
+	lColor.rgb = pow(lColor.rgb, vec3(0.45454545f));
 	lColor.a = 1.0f;
 }

@@ -59,6 +59,6 @@ void main()
 	{
 		skyColor = vec4(0.5f, 0.5f, 0.5f, 0.0f);
 	}
-	
+	skyColor.rgb = pow(skyColor.rgb, vec3(0.45454545f));
 	bColor = skyColor;
 }

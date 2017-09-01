@@ -19,6 +19,10 @@ public:
 	void Update();
 	void KeyDownCallback(unsigned char key, int x, int y);
 	void KeyUpCallback(unsigned char key, int x, int y);
+
+	void SpecialKeyDownCallback(int key, int x, int y);
+	void SpecialKeyUpCallback(int key, int x, int y);
+
 	void MouseKeyCallback(int button, int state, int x, int y);
 	void MouseMotionCallback(int x, int y);
 };

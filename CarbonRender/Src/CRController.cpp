@@ -13,9 +13,9 @@ void Controller::Update()
 {
 	Camera* curCam = CameraManager::Instance()->GetCurrentCamera();
 	float3 curPos = curCam->GetPosition();
-	curPos = curPos + (curCam->GetForward().normalize() * v.x +
-						curCam->GetRight().normalize() * v.y +
-						curCam->GetUp().normalize() * v.z) * FIXEDUPDATE_TIME;
+	curPos = curPos + (curCam->GetForward().normalize() * v.x  * moveSpeed +
+						curCam->GetRight().normalize() * v.y  * moveSpeed +
+						curCam->GetUp().normalize() * v.z  * moveSpeed) * FIXEDUPDATE_TIME;
 	CameraManager::Instance()->GetCurrentCamera()->SetPosition(curPos);
 }
 
@@ -28,37 +28,37 @@ void Controller::KeyDownCallback(unsigned char key, int x, int y)
 	case 'w':
 	case 'W':
 	{
-		v.x = moveSpeed;
+		v.x = 1.0f;
 	}
 	break;
 	case 's':
 	case 'S':
 	{
-		v.x = -moveSpeed;
+		v.x = -1.0f;
 	}
 	break;
 	case 'a':
 	case 'A':
 	{
-		v.y = -moveSpeed;
+		v.y = -1.0f;
 	}
 	break;
 	case 'd':
 	case 'D':
 	{
-		v.y = moveSpeed;
+		v.y = 1.0f;
 	}
 	break;
 	case 'q':
 	case 'Q':
 	{
-		v.z = moveSpeed;
+		v.z = 1.0f;
 	}
 	break;
 	case 'e':
 	case 'E':
 	{
-		v.z = -moveSpeed;
+		v.z = -1.0f;
 	}
 	break;
 	case '=':
@@ -114,6 +114,34 @@ void Controller::KeyUpCallback(unsigned char key, int x, int y)
 	case 'E':
 	{
 		v.z = 0.0f;
+	}
+	break;
+	}
+}
+
+void Controller::SpecialKeyDownCallback(int key, int x, int y)
+{
+	switch (key)
+	{
+	default:
+		break;
+	case GLUT_ACTIVE_SHIFT:
+	{
+		moveSpeed *= 10.0f;
+	}
+	break;
+	}
+}
+
+void Controller::SpecialKeyUpCallback(int key, int x, int y)
+{
+	switch (key)
+	{
+	default:
+		break;
+	case GLUT_ACTIVE_SHIFT:
+	{
+		moveSpeed *= 0.1f;
 	}
 	break;
 	}

@@ -74,6 +74,16 @@ void KeyUpCallback(unsigned char key, int x, int y)
 	ControllerManager::Instance()->GetCurrentController()->KeyUpCallback(key, x, y);
 }
 
+void SpecialKeyDownCallback(int key, int x, int y)
+{
+	ControllerManager::Instance()->GetCurrentController()->SpecialKeyDownCallback(key, x, y);
+}
+
+void SpecialKeyUpCallback(int key, int x, int y)
+{
+	ControllerManager::Instance()->GetCurrentController()->SpecialKeyUpCallback(key, x, y);
+}
+
 void MouseKeyCallback(int button, int state, int x, int y)
 {
 	ControllerManager::Instance()->GetCurrentController()->MouseKeyCallback(button, state, x, y);
@@ -91,10 +101,17 @@ void main(int argc, char** argv)
 	glutDisplayFunc(MainDisplay);
 	glutIdleFunc(MainDisplay);
 	glutReshapeFunc(ReSizeCallback);
+
 	glutTimerFunc((unsigned int)(FIXEDUPDATE_TIME * 1000.0f), FixedUpdate, 0);
+
 	glutKeyboardFunc(KeyDownCallback);
 	glutKeyboardUpFunc(KeyUpCallback);
+
+	glutSpecialFunc(SpecialKeyDownCallback);
+	glutSpecialUpFunc(SpecialKeyUpCallback);
+
 	glutMouseFunc(MouseKeyCallback);
 	glutMotionFunc(MouseMotionCallback);
+
 	glutMainLoop();
 }
