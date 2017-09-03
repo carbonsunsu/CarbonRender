@@ -22,9 +22,9 @@ WeatherSystem::~WeatherSystem()
 
 void WeatherSystem::Init()
 {
-	latitude = 45.0f;
-	day = 200;
-	hour = 18.5f;
+	latitude = 0.0f;
+	day = 180;
+	hour = 17.0f;
 	turbidity = 2.0f;
 	exposure = 30.0f;
 	timeSpeed = 0.0f;

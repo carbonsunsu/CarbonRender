@@ -48,8 +48,8 @@ void main()
 						0.055648f*XYZ.x-0.204043f*XYZ.y+1.057311f*XYZ.z,
 						1.0f);
 
-		if (dot(normalize(wsSunPos.xyz), vP) > SunSize)
-			skyColor.rgb = skyColor.rgb*5.0f;
+		if (vSovP > SunSize)
+			skyColor.rgb = skyColor.rgb*2.5f;
 
 		//night 
 		if (wsSunPos.y <= 0.0f)
