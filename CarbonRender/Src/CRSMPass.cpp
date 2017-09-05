@@ -5,22 +5,24 @@ void SMPass::GetReady4Render(PassOutput * input)
 	glGenFramebuffers(1, &fbo);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-	GLuint rt_sm, rt_vpl;
+	GLuint posDepth, vplAlbedo, vplNormal;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	rt_sm = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT0);
-	rt_vpl = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT1);
+	posDepth = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT0);
+	vplAlbedo = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT1);
+	vplNormal = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT2);
 
 	dBuffer = SetGLDepthBuffer(size.w * shadowMapScale, size.h * shadowMapScale);
 
-	GLenum drawBuffers[2] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
-	glDrawBuffers(2, drawBuffers);
+	GLenum drawBuffers[3] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 };
+	glDrawBuffers(3, drawBuffers);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	output.cout = 2;
+	output.cout = 3;
 	output.RTS = new GLuint[output.cout];
-	output.RTS[0] = rt_sm;
-	output.RTS[1] = rt_vpl;
+	output.RTS[0] = posDepth;
+	output.RTS[1] = vplAlbedo;
+	output.RTS[2] = vplNormal;
 	output.mats = new Matrix4x4[1];
 }
 

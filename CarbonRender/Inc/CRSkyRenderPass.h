@@ -16,7 +16,8 @@ private:
 	MeshObject sphere;
 	int cubeSize = 256;
 	GLuint fboCube;
-	
+	GLuint milkwayTex;
+
 	void GetReady4Render(PassOutput* input);
 	void Render(PassOutput* input);
 public:

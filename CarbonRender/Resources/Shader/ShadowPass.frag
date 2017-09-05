@@ -8,8 +8,6 @@ uniform sampler2D pMap;
 uniform sampler2D smMap;
 uniform mat4 smMat;
 
-uniform sampler2D albedoMap;
-
 void main ()
 {
 	vec4 P = texture2D(pMap, uv);

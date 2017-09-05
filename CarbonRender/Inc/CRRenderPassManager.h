@@ -11,6 +11,7 @@
 #include "..\Inc\CRShadowPass.h"
 #include "..\Inc\CRShadowBlurPass.h"
 #include "..\Inc\CRSSAOPass.h"
+#include "..\Inc\CRGIPass.h"
 
 class RenderPassManager
 {
@@ -26,6 +27,7 @@ private:
 	ShadowPass shadowPass;
 	ShadowBlurPass shadowBlurPass;
 	SSAOPass ssaoPass;
+	GIPass giPass;
 
 public:
 	~RenderPassManager();

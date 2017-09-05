@@ -19,6 +19,7 @@ uniform sampler2D pMap;
 uniform sampler2D sMap;
 uniform sampler2D stenMap;
 uniform samplerCube cubeMap;
+uniform sampler2D giMap;
 
 vec3 IndirectSpecular (samplerCube tex, vec3 r, float roughness)
 {
@@ -120,6 +121,7 @@ void main ()
 	vec4 N = texture2D(normalMap, uv);
 	vec4 P = texture2D(pMap, uv);
 	vec4 shadowFactor = texture2D(sMap, uv);
+	vec4 gi = texture2D(giMap, uv);
 
 	vec3 wsN = N.xyz;
 	vec3 wsP = P.xyz;
@@ -142,12 +144,14 @@ void main ()
 	vec3 specColor;
 	float oneMinusMetallic;
 	GetDiffSpec(albedo.rgb, metallic, diffColor, specColor, oneMinusMetallic);
-	vec3 indirectDiff = textureLod(cubeMap, wsN, 6).rgb * indirectShadow * sunColor.rgb;
+	vec3 indirectDiff = textureLod(cubeMap, wsN, 6).rgb * indirectShadow * sunColor.rgb + gi.rgb;
 	vec3 inditectSpec = IndirectSpecular (cubeMap, wsR, roughness) * indirectShadow;
 
 	lColor.rgb = BRDF(diffColor, specColor, oneMinusMetallic, roughness, 
 						wsN, wsV, wsL, lightColor, 
 						indirectDiff, inditectSpec);
+
+	//lColor.rgb = gi.rgb;
 	lColor.rgb = pow(lColor.rgb, vec3(0.45454545f));
 	lColor.a = 1.0f;
 }

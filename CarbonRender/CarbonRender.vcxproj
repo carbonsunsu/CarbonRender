@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\CRGIPass.cpp" />
     <ClCompile Include="Src\CRShadowBlurPass.cpp" />
     <ClCompile Include="Src\CRCamera.cpp" />
     <ClCompile Include="Src\CRCameraManager.cpp" />
@@ -38,6 +39,7 @@
     <ClCompile Include="Src\CRRenderPass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Inc\CRGIPass.h" />
     <ClInclude Include="Inc\CRShadowBlurPass.h" />
     <ClInclude Include="Inc\CRCamera.h" />
     <ClInclude Include="Inc\CRCameraManager.h" />
@@ -67,6 +69,7 @@
   <ItemGroup>
     <None Include="Resources\Shader\Atmosphere.frag" />
     <None Include="Resources\Shader\Atmosphere.vert" />
+    <None Include="Resources\Shader\GIPass.frag" />
     <None Include="Resources\Shader\ShadowBlur.frag" />
     <None Include="Resources\Shader\ShadowPass.frag" />
     <None Include="Resources\Shader\SM.frag" />

@@ -89,6 +89,9 @@ float4 WeatherSystem::GetWsSunPos()
 
 float4 WeatherSystem::GetSunColor()
 {
+	if (wsSunPos.y <= 0.0f)
+		return float4(0.0f, 0.0f, 0.0f, 0.0f);
+
 	float3 up(0.0f, 1.0f, 0.0f);
 
 	float3 vP = wsSunPos.normalize();

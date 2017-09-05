@@ -105,6 +105,9 @@
     <ClCompile Include="Src\CRSSAOPass.cpp">
       <Filter>源文件\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Src\CRGIPass.cpp">
+      <Filter>源文件\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRFinalPass.h">
@@ -182,6 +185,9 @@
     <ClInclude Include="Inc\CRSSAOPass.h">
       <Filter>头文件\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\CRGIPass.h">
+      <Filter>头文件\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shader\Atmosphere.vert">
@@ -218,6 +224,9 @@
       <Filter>Shader</Filter>
     </None>
     <None Include="Resources\Shader\SSAO.frag">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\GIPass.frag">
       <Filter>Shader</Filter>
     </None>
   </ItemGroup>
