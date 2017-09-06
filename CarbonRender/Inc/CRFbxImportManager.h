@@ -24,7 +24,7 @@ private:
 public:
 	~FbxImportManager();
 	static FbxImportManager* Instance();
-	bool ImportFbxModel(char* fileName, MeshObject* out);
+	bool ImportFbxModel(char* fileName, MeshObject* out, bool loadTex = true);
 };
 
 #endif

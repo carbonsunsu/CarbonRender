@@ -4,19 +4,17 @@ TextureManager* TextureManager::ins = nullptr;
 
 TextureManager::TextureManager()
 {
-	GLubyte D[64][64][3];
+	GLubyte D[8][8][3];
 	GLubyte N[8][8][3];
 	GLubyte S[8][8][3];
 	int i, j, c;
-	for (i = 0; i < 64; i++) 
+	for (i = 0; i < 8; i++) 
 	{
-		for (j = 0; j < 64; j++) 
+		for (j = 0; j < 8; j++) 
 		{
-			c = ( ((i & 0x8) == 0) ^ ((j & 0x8) == 0) ) * 255;
-			if (c <= 0) c = 192;
-			D[i][j][0] = (GLubyte)c;
-			D[i][j][1] = (GLubyte)c;
-			D[i][j][2] = (GLubyte)c;
+			D[i][j][0] = (GLubyte)255;
+			D[i][j][1] = (GLubyte)255;
+			D[i][j][2] = (GLubyte)255;
 		}
 	}
 
@@ -46,7 +44,7 @@ TextureManager::TextureManager()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 64, 64, 0, GL_RGB, GL_UNSIGNED_BYTE, D);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 8, 8, 0, GL_RGB, GL_UNSIGNED_BYTE, D);
 
 	glBindTexture(GL_TEXTURE_2D, defaultTex[1]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

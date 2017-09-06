@@ -7,9 +7,9 @@ void SMPass::GetReady4Render(PassOutput * input)
 
 	GLuint posDepth, vplAlbedo, vplNormal;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	posDepth = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT0);
-	vplAlbedo = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT1);
-	vplNormal = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT2);
+	posDepth = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT0, true);
+	vplAlbedo = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT1, true);
+	vplNormal = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT2, true);
 
 	dBuffer = SetGLDepthBuffer(size.w * shadowMapScale, size.h * shadowMapScale);
 
@@ -31,7 +31,7 @@ void SMPass::Render(PassOutput * input)
 	float farCip = 10000.0f;
 	float3 lookPos = followCam ? CameraManager::Instance()->GetCurrentCamera()->GetPosition() : float3(-1.0f, -0.6f, -17.5f);
 	Camera cam;
-	cam.SetOrthoCamera(10.0f, 1.0f, farCip);
+	cam.SetOrthoCamera(30.0f, 1.0f, farCip);
 	cam.SetPosition(WeatherSystem::Instance()->GetWsSunPos().normalize() * farCip * 0.9f + lookPos);
 	cam.LookAt(lookPos);
 	CameraManager::Instance()->Push(cam);

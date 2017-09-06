@@ -22,7 +22,7 @@ void main ()
 	gl_Position = proMat * (viewMat * (modelMat * msPos));
 	
 	wsP = (modelMat * msPos).xyz;
-	wsN = normalMat * msN;
+	wsN = normalize(normalMat * msN);
 	uv = uvs.xy;
 	d = gl_Position.z;
 }

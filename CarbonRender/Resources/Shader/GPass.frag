@@ -24,7 +24,6 @@ void main ()
 	albedo.rgb = pow(albedo.rgb, vec3(2.2f));
 
 	vec3 wsN = normalMat * TBN * N;
-
 	wsN = normalize(wsN);
 
 	aColor = vec4(albedo.xyz, ms.g);

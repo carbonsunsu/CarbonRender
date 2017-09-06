@@ -24,7 +24,7 @@ void WeatherSystem::Init()
 {
 	latitude = 0.0f;
 	day = 180;
-	hour = 17.0f;
+	hour = 12.0f;
 	turbidity = 2.0f;
 	exposure = 30.0f;
 	timeSpeed = 0.0f;

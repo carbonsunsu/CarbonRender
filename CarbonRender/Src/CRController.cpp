@@ -63,12 +63,12 @@ void Controller::KeyDownCallback(unsigned char key, int x, int y)
 	break;
 	case '=':
 	{
-		WeatherSystem::Instance()->SetHour(WeatherSystem::Instance()->GetHour() + 0.5f);
+		WeatherSystem::Instance()->SetHour(WeatherSystem::Instance()->GetHour() + 0.1f);
 	}
 	break;
 	case '-':
 	{
-		WeatherSystem::Instance()->SetHour(WeatherSystem::Instance()->GetHour() - 0.5f);
+		WeatherSystem::Instance()->SetHour(WeatherSystem::Instance()->GetHour() - 0.1f);
 	}
 	break;
 	}

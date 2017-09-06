@@ -349,7 +349,7 @@ void FbxImportManager::ReadTexture(FbxMesh* mesh, Mesh* crMesh, char* meshFileNa
 	
 }
 
-bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out)
+bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out, bool loadTex)
 {
 	char* dir = "Resources\\Models\\";
 	char* fullName = FileReader::BindString(dir, fileName);
@@ -409,7 +409,14 @@ bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out)
 					crMesh.binormal = new float[crMesh.vertexCount * 3];
 
 					//Get Textures
-					ReadTexture(mesh, &crMesh, fileName);
+					if (loadTex)
+						ReadTexture(mesh, &crMesh, fileName);
+					else
+					{
+						crMesh.texs[0] = TextureManager::Instance()->LoadDefaultD();
+						crMesh.texs[1] = TextureManager::Instance()->LoadDefaultN();
+						crMesh.texs[2] = TextureManager::Instance()->LoadDefaultS();
+					}
 
 					int vertexID = 0;
 

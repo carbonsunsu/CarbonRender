@@ -12,7 +12,8 @@ private:
 	SceneManager();
 	static SceneManager* ins;
 
-	MeshObject scene;
+	MeshObject terrain;
+	MeshObject sponza;
 	MeshObject type59;
 
 public:

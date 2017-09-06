@@ -11,6 +11,8 @@ class GIPass : public RenderPass
 private:
 	void GetReady4Render(PassOutput* input);
 	void Render(PassOutput* input);
+
+	float targetScale = 0.25f;
 public:
 	void Init();
 };
