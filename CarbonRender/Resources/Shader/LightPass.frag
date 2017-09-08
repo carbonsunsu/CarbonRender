@@ -144,7 +144,7 @@ void main ()
 	vec3 specColor;
 	float oneMinusMetallic;
 	GetDiffSpec(albedo.rgb, metallic, diffColor, specColor, oneMinusMetallic);
-	vec3 indirectDiff = gi.rgb * indirectShadow * sunColor.rgb + textureLod(cubeMap, wsN, 6).rgb * indirectShadow * sunColor.rgb;
+	vec3 indirectDiff = (gi.rgb + textureLod(cubeMap, wsN, 6).rgb * 0.0f) * indirectShadow * sunColor.rgb;
 	vec3 inditectSpec = IndirectSpecular (cubeMap, wsR, roughness) * indirectShadow;
 
 	lColor.rgb = BRDF(diffColor, specColor, oneMinusMetallic, roughness, 

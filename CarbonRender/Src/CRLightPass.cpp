@@ -33,7 +33,6 @@ void LightPass::Render(PassOutput * input)
 	}
 	glActiveTexture(GL_TEXTURE1 + input->cout - 1);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, input->RTS[input->cout - 1]);
-	glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
 
 	ShaderManager::Instance()->UseShader(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "albedoMap");

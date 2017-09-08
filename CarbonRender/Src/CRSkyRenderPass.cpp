@@ -98,6 +98,9 @@ void SkyRenderPass::Render(PassOutput* input)
 		sphere.Render(shaderProgram);
 	}
 
+	glBindTexture(GL_TEXTURE_CUBE_MAP, output.RTS[1]);
+	glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
+
 	glViewport(0, 0, size.w, size.h);
 	CameraManager::Instance()->Pop();
 

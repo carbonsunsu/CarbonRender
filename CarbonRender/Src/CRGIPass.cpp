@@ -33,7 +33,6 @@ void GIPass::Render(PassOutput * input)
 	{
 		glActiveTexture(GL_TEXTURE1 + i);
 		glBindTexture(GL_TEXTURE_2D, input->RTS[i]);
-		if (i == 3 || i == 2 || i == 4)glGenerateMipmap(GL_TEXTURE_2D);
 	}
 
 	ShaderManager::Instance()->UseShader(shaderProgram);
@@ -69,6 +68,6 @@ void GIPass::Render(PassOutput * input)
 
 void GIPass::Init()
 {
-	targetScale = 0.5f;
+	targetScale = 0.25f;
 	shaderProgram = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "GIPass.frag");
 }

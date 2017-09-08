@@ -398,8 +398,8 @@ bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out, bool lo
 					crMesh.rotation = rotation;
 					crMesh.scaling = scaling;
 					crMesh.modelMatrix = CalculateModelMatrix(crMesh.localCoord, translation, rotation, scaling);
-					crMesh.vertexCount = mesh->GetControlPointsCount();
 					crMesh.polygonCount = mesh->GetPolygonCount();
+					crMesh.vertexCount = crMesh.polygonCount * 3;
 					crMesh.vertex = new float[crMesh.vertexCount * 3];
 					crMesh.color = new float[crMesh.vertexCount * 4];
 					crMesh.uv = new float[crMesh.vertexCount * 4];
@@ -418,60 +418,54 @@ bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out, bool lo
 						crMesh.texs[2] = TextureManager::Instance()->LoadDefaultS();
 					}
 
-					int vertexID = 0;
-
-					//Read Vertex
+					int vertexID;
 					FbxDouble4* ctrlPoints = mesh->GetControlPoints();
-					int vIndex = 0;
-					for (int i = 0; i < crMesh.vertexCount; i++)
-					{
-						crMesh.vertex[vIndex] = (float)ctrlPoints[i][0];
-						crMesh.vertex[vIndex+1] = (float)ctrlPoints[i][1];
-						crMesh.vertex[vIndex+2] = (float)ctrlPoints[i][2];
-						vIndex += 3;
-					}
 
 					for (int i = 0; i < mesh->GetPolygonCount(); i++)
 					{
 						for (int j = 0; j < 3; j++)
 						{
+							vertexID = i * 3 + j;
 							unsigned int index = (unsigned int)mesh->GetPolygonVertex(i, j);
-							crMesh.index[i * 3 + j] = index;
+							crMesh.index[vertexID] = vertexID;
+
+							//Get Vertex
+							crMesh.vertex[vertexID * 3] = (float)ctrlPoints[index][0];
+							crMesh.vertex[vertexID * 3 + 1] = (float)ctrlPoints[index][1];
+							crMesh.vertex[vertexID * 3 + 2] = (float)ctrlPoints[index][2];
 
 							//Get Color
 							FbxColor color = ReadColor(mesh, index, vertexID);
-							crMesh.color[index * 4] = color.mRed;
-							crMesh.color[index * 4 + 1] = color.mGreen;
-							crMesh.color[index * 4 + 2] = color.mBlue;
-							crMesh.color[index * 4 + 3] = color.mAlpha;
+							crMesh.color[vertexID * 4] = color.mRed;
+							crMesh.color[vertexID * 4 + 1] = color.mGreen;
+							crMesh.color[vertexID * 4 + 2] = color.mBlue;
+							crMesh.color[vertexID * 4 + 3] = color.mAlpha;
 
 							//Get UV
 							int uvIndex = mesh->GetTextureUVIndex(i, j);
 							float4 uv = ReadUV(mesh, index, uvIndex);
-							crMesh.uv[index * 4] = uv.x;
-							crMesh.uv[index * 4 + 1] = uv.y;
-							crMesh.uv[index * 4 + 2] = uv.z;
-							crMesh.uv[index * 4 + 3] = uv.w;
+							crMesh.uv[vertexID * 4] = uv.x;
+							crMesh.uv[vertexID * 4 + 1] = uv.y;
+							crMesh.uv[vertexID * 4 + 2] = uv.z;
+							crMesh.uv[vertexID * 4 + 3] = uv.w;
 
 							//Get Normal
 							FbxVector4 n = ReadNormal(mesh, index, vertexID);
-							crMesh.normal[index * 3] = n[0];
-							crMesh.normal[index * 3 + 1] = n[1];
-							crMesh.normal[index * 3 + 2] = n[2];
+							crMesh.normal[vertexID * 3] = n[0];
+							crMesh.normal[vertexID * 3 + 1] = n[1];
+							crMesh.normal[vertexID * 3 + 2] = n[2];
 
 							//Get Tangent
 							FbxVector4 t = ReadTangent(mesh, index, vertexID);
-							crMesh.tangent[index * 3] = t[0];
-							crMesh.tangent[index * 3 + 1] = t[1];
-							crMesh.tangent[index * 3 + 2] = t[2];
+							crMesh.tangent[vertexID * 3] = t[0];
+							crMesh.tangent[vertexID * 3 + 1] = t[1];
+							crMesh.tangent[vertexID * 3 + 2] = t[2];
 
 							//Get Binormal
 							FbxVector4 b = ReadBinormal(mesh, index, vertexID);
-							crMesh.binormal[index * 3] = b[0];
-							crMesh.binormal[index * 3 + 1] = b[1];
-							crMesh.binormal[index * 3 + 2] = b[2];
-
-							vertexID++;
+							crMesh.binormal[vertexID * 3] = b[0];
+							crMesh.binormal[vertexID * 3 + 1] = b[1];
+							crMesh.binormal[vertexID * 3 + 2] = b[2];
 						}
 					}
 

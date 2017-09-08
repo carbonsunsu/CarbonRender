@@ -49,6 +49,13 @@ void SMPass::Render(PassOutput * input)
 	ShaderManager::Instance()->UseShader(shaderProgram);
 	SceneManager::Instance()->DrawScene(shaderProgram);
 
+	glBindTexture(GL_TEXTURE_2D, output.RTS[0]);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, output.RTS[1]);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, output.RTS[2]);
+	glGenerateMipmap(GL_TEXTURE_2D);
+
 	glDisable(GL_DEPTH_TEST);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glBindRenderbuffer(GL_RENDERBUFFER, 0);
