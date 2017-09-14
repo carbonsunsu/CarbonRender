@@ -39,6 +39,7 @@ public:
 	float3(FbxDouble3 a);
 	float3(FbxDouble4 a);
 	float3(float4 a);
+	float3(FbxColor a);
 
 	float3 normalize();
 
@@ -46,6 +47,7 @@ public:
 	void operator = (FbxDouble4 a);
 	void operator = (float3 a);
 	void operator = (float4 a);
+	void operator = (FbxColor a);
 };
 
 class float4
@@ -59,10 +61,12 @@ public:
 	float4();
 	float4(float a, float b, float c, float d);
 	float4(float3 a, float d);
+	float4(FbxColor a);
 
 	float4 normalize();
 
 	void operator = (float4 a);
+	void operator = (FbxColor a);
 };
 
 class Matrix3x3
@@ -132,6 +136,9 @@ Matrix4x4 Translate(float x, float y, float z);
 Matrix4x4 Scale(float x, float y, float z);
 Quaternion Rotate(float3 axis, float angle);
 Matrix4x4 CalculateModelMatrix(float* localCoord, float3 trans, float3 rota, float3 scal);
+Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal);
+float Distance(float3 a, float3 b);
+float Distance(float4 a, float4 b);
 
 float4 xyY2RGB(float3 xyY);
 #endif

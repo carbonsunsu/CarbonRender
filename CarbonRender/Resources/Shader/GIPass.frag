@@ -38,10 +38,9 @@ void main ()
 		vec3 vplColor = textureLod(vplAMap, vplUv, vplLod).xyz;
 		vec3 vplN = textureLod(vplNMap, vplUv, vplLod).xyz;
 		vec3 v = normalize(wsP - vplPos);
-		float d = distance(wsP, vplPos);
+		float d = max(distance(wsP, vplPos), 1.0f);
 
-		if (d > 1.0f)
-			gi += vplColor * max(0.0f, dot(vplN, v)) * max(0.0f, dot(wsN, -v)) / (d*d*d*d);
+		gi += vplColor * max(0.0f, dot(vplN, v)) * max(0.0f, dot(wsN, -v)) / (d*d*d*d);
 	}
 
 	giColor = vec4(gi, 1.0f);

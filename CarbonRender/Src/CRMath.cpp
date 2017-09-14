@@ -37,6 +37,13 @@ float3::float3(float4 a)
 	z = a.z;
 }
 
+float3::float3(FbxColor a)
+{
+	x = a.mRed;
+	y = a.mGreen;
+	z = a.mBlue;
+}
+
 float3 float3::normalize()
 {
 	float l = sqrt(x*x + y*y + z*z);
@@ -72,6 +79,13 @@ void float3::operator=(float4 a)
 	z = a.z;
 }
 
+void float3::operator=(FbxColor a)
+{
+	x = a.mRed;
+	y = a.mGreen;
+	z = a.mBlue;
+}
+
 float4::float4() {}
 
 float4::float4(float a, float b, float c, float d)
@@ -90,6 +104,14 @@ float4::float4(float3 a, float d)
 	w = d;
 }
 
+float4::float4(FbxColor a)
+{
+	x = a.mRed;
+	y = a.mGreen;
+	z = a.mBlue;
+	w = a.mAlpha;
+}
+
 float4 float4::normalize()
 {
 	float l = sqrt(x*x + y*y + z*z + w*w);
@@ -103,6 +125,14 @@ void float4::operator=(float4 a)
 	y = a.y;
 	z = a.z;
 	w = a.w;
+}
+
+void float4::operator=(FbxColor a)
+{
+	x = a.mRed;
+	y = a.mGreen;
+	z = a.mBlue;
+	w = a.mAlpha;
 }
 
 Matrix3x3::Matrix3x3() {}
@@ -373,6 +403,38 @@ Matrix4x4 CalculateModelMatrix(float* localCoord, float3 trans, float3 rota, flo
 	localCoord[8] = zAxis.z;
 
 	return  mMatrix;
+}
+
+Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal)
+{
+	float4 xAxis(1.0f, 0.0f, 0.0f, 0.0f);
+	float4 yAxis(0.0f, 1.0f, 0.0f, 0.0f);
+	float4 zAxis(0.0f, 0.0f, 1.0f, 0.0f);
+
+	Matrix4x4 mMatrix = Scale(scal.x, scal.y, scal.z) *
+		Rotate(yAxis, rota.y).Normailze().ToMatrix() *
+		Rotate(xAxis, rota.x).Normailze().ToMatrix() *
+		Rotate(zAxis, rota.z).Normailze().ToMatrix() *
+		Translate(trans.x, trans.y, trans.z);
+
+	return  mMatrix;
+}
+
+float Distance(float3 a, float3 b)
+{
+	float x = a.x - b.x;
+	float y = a.y - b.y;
+	float z = a.z - b.z;
+	return sqrtf(x*x + y*y + z*z);
+}
+
+float Distance(float4 a, float4 b)
+{
+	float x = a.x - b.x;
+	float y = a.y - b.y;
+	float z = a.z - b.z;
+	float w = a.w - b.w;
+	return sqrtf(x*x + y*y + z*z + w*w);
 }
 
 float4 xyY2RGB(float3 xyY)

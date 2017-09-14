@@ -11,7 +11,7 @@ FbxImportManager::~FbxImportManager()
 {
 	fbxManager->Destroy();
 	ioSettings->Destroy();
-	ins = nullptr;	
+	ins = nullptr;
 }
 
 FbxImportManager * FbxImportManager::Instance()
@@ -87,8 +87,8 @@ float4 FbxImportManager::ReadUV(FbxMesh * mesh, int index, int uvIndex)
 	if (elementCount <= 0)
 		return uvf;
 
-	float uva[4] = {-1.0f, -1.0f, -1.0f, -1.0f};
-	
+	float uva[4] = { -1.0f, -1.0f, -1.0f, -1.0f };
+
 	for (int i = 0; i < elementCount; i++)
 	{
 		FbxGeometryElementUV* eUV = mesh->GetElementUV(i);
@@ -106,7 +106,7 @@ float4 FbxImportManager::ReadUV(FbxMesh * mesh, int index, int uvIndex)
 				break;
 			case FbxGeometryElement::eDirect:
 				uv = eUV->GetDirectArray().GetAt(index);
-			break;
+				break;
 			case FbxGeometryElement::eIndexToDirect:
 			{
 				int id = eUV->GetIndexArray().GetAt(index);
@@ -118,7 +118,7 @@ float4 FbxImportManager::ReadUV(FbxMesh * mesh, int index, int uvIndex)
 		break;
 		case FbxGeometryElement::eByPolygonVertex:
 		{
-			
+
 			switch (eUV->GetReferenceMode())
 			{
 			default:
@@ -126,7 +126,7 @@ float4 FbxImportManager::ReadUV(FbxMesh * mesh, int index, int uvIndex)
 			case FbxGeometryElement::eDirect:
 			case FbxGeometryElement::eIndexToDirect:
 				uv = eUV->GetDirectArray().GetAt(uvIndex);
-			break;
+				break;
 			}
 		}
 		break;
@@ -140,7 +140,7 @@ float4 FbxImportManager::ReadUV(FbxMesh * mesh, int index, int uvIndex)
 	uvf.y = uva[1];
 	uvf.z = uva[2];
 	uvf.w = uva[3];
-	
+
 	return uvf;
 }
 
@@ -163,7 +163,7 @@ FbxVector4 FbxImportManager::ReadNormal(FbxMesh * mesh, int index, int vertexID)
 			break;
 		case FbxGeometryElement::eDirect:
 			n = eN->GetDirectArray().GetAt(index);
-		break;
+			break;
 		case FbxGeometryElement::eIndexToDirect:
 		{
 			int id = eN->GetIndexArray().GetAt(index);
@@ -181,7 +181,7 @@ FbxVector4 FbxImportManager::ReadNormal(FbxMesh * mesh, int index, int vertexID)
 			break;
 		case FbxGeometryElement::eDirect:
 			n = eN->GetDirectArray().GetAt(vertexID);
-		break;
+			break;
 		case FbxGeometryElement::eIndexToDirect:
 		{
 			int id = eN->GetIndexArray().GetAt(vertexID);
@@ -346,7 +346,7 @@ void FbxImportManager::ReadTexture(FbxMesh* mesh, Mesh* crMesh, char* meshFileNa
 	crMesh->texs[0] = TextureManager::Instance()->LoadDefaultD();
 	crMesh->texs[1] = TextureManager::Instance()->LoadDefaultN();
 	crMesh->texs[2] = TextureManager::Instance()->LoadDefaultS();
-	
+
 }
 
 bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out, bool loadTex)
@@ -375,9 +375,9 @@ bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out, bool lo
 	if (rootNode != NULL)
 	{
 		int readMeshCount = 0;
-		for (int i = 0; i < rootNode->GetChildCount(); i++)
+		for (int nodeIndex = 0; nodeIndex < rootNode->GetChildCount(); nodeIndex++)
 		{
-			FbxNode* node = rootNode->GetChild(i);
+			FbxNode* node = rootNode->GetChild(nodeIndex);
 
 			if (node->GetNodeAttribute())
 			{
@@ -393,6 +393,7 @@ bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out, bool lo
 
 					FbxMesh* mesh = node->GetMesh();
 					Mesh crMesh;
+					int ctrlPointsCount = mesh->GetControlPointsCount();
 					crMesh.name = mesh->GetName();
 					crMesh.translation = translation;
 					crMesh.rotation = rotation;
@@ -400,13 +401,18 @@ bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out, bool lo
 					crMesh.modelMatrix = CalculateModelMatrix(crMesh.localCoord, translation, rotation, scaling);
 					crMesh.polygonCount = mesh->GetPolygonCount();
 					crMesh.vertexCount = crMesh.polygonCount * 3;
-					crMesh.vertex = new float[crMesh.vertexCount * 3];
-					crMesh.color = new float[crMesh.vertexCount * 4];
-					crMesh.uv = new float[crMesh.vertexCount * 4];
 					crMesh.index = new unsigned int[crMesh.polygonCount * 3];
-					crMesh.normal = new float[crMesh.vertexCount * 3];
-					crMesh.tangent = new float[crMesh.vertexCount * 3];
-					crMesh.binormal = new float[crMesh.vertexCount * 3];
+
+					bool* mark = new bool[ctrlPointsCount];
+					for (int i = 0; i < ctrlPointsCount; i++)
+						mark[i] = false;
+					int* multiNormalIndex = new int[ctrlPointsCount * 30];
+					float* tempVertex = new float[crMesh.vertexCount * 3];
+					float* tempColor = new float[crMesh.vertexCount * 4];
+					float* tempUV = new float[crMesh.vertexCount * 4];
+					float* tempNormal = new float[crMesh.vertexCount * 3];
+					float* tempTangent = new float[crMesh.vertexCount * 3];
+					float* tempBinormal = new float[crMesh.vertexCount * 3];
 
 					//Get Textures
 					if (loadTex)
@@ -418,56 +424,122 @@ bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out, bool lo
 						crMesh.texs[2] = TextureManager::Instance()->LoadDefaultS();
 					}
 
-					int vertexID;
+					int addVertexCount = 0;
 					FbxDouble4* ctrlPoints = mesh->GetControlPoints();
-
-					for (int i = 0; i < mesh->GetPolygonCount(); i++)
+					for (int polygonIndex = 0; polygonIndex < mesh->GetPolygonCount(); polygonIndex++)
 					{
-						for (int j = 0; j < 3; j++)
+						for (int vertexIndex = 0; vertexIndex < 3; vertexIndex++)
 						{
-							vertexID = i * 3 + j;
-							unsigned int index = (unsigned int)mesh->GetPolygonVertex(i, j);
-							crMesh.index[vertexID] = vertexID;
+							int vertexID = polygonIndex * 3 + vertexIndex;
+							unsigned int index = (unsigned int)mesh->GetPolygonVertex(polygonIndex, vertexIndex);
+							crMesh.index[vertexID] = index;
 
 							//Get Vertex
-							crMesh.vertex[vertexID * 3] = (float)ctrlPoints[index][0];
-							crMesh.vertex[vertexID * 3 + 1] = (float)ctrlPoints[index][1];
-							crMesh.vertex[vertexID * 3 + 2] = (float)ctrlPoints[index][2];
+							float3 v(ctrlPoints[index][0], ctrlPoints[index][1], ctrlPoints[index][2]);
 
 							//Get Color
 							FbxColor color = ReadColor(mesh, index, vertexID);
-							crMesh.color[vertexID * 4] = color.mRed;
-							crMesh.color[vertexID * 4 + 1] = color.mGreen;
-							crMesh.color[vertexID * 4 + 2] = color.mBlue;
-							crMesh.color[vertexID * 4 + 3] = color.mAlpha;
 
 							//Get UV
-							int uvIndex = mesh->GetTextureUVIndex(i, j);
+							int uvIndex = mesh->GetTextureUVIndex(polygonIndex, vertexIndex);
 							float4 uv = ReadUV(mesh, index, uvIndex);
-							crMesh.uv[vertexID * 4] = uv.x;
-							crMesh.uv[vertexID * 4 + 1] = uv.y;
-							crMesh.uv[vertexID * 4 + 2] = uv.z;
-							crMesh.uv[vertexID * 4 + 3] = uv.w;
 
 							//Get Normal
-							FbxVector4 n = ReadNormal(mesh, index, vertexID);
-							crMesh.normal[vertexID * 3] = n[0];
-							crMesh.normal[vertexID * 3 + 1] = n[1];
-							crMesh.normal[vertexID * 3 + 2] = n[2];
+							float3 n = ReadNormal(mesh, index, vertexID);
 
 							//Get Tangent
-							FbxVector4 t = ReadTangent(mesh, index, vertexID);
-							crMesh.tangent[vertexID * 3] = t[0];
-							crMesh.tangent[vertexID * 3 + 1] = t[1];
-							crMesh.tangent[vertexID * 3 + 2] = t[2];
+							float3 t = ReadTangent(mesh, index, vertexID);
 
 							//Get Binormal
-							FbxVector4 b = ReadBinormal(mesh, index, vertexID);
-							crMesh.binormal[vertexID * 3] = b[0];
-							crMesh.binormal[vertexID * 3 + 1] = b[1];
-							crMesh.binormal[vertexID * 3 + 2] = b[2];
+							float3 b = ReadBinormal(mesh, index, vertexID);
+
+							int finalIndex = index;
+							if (!mark[index])
+							{
+								mark[index] = true;
+								multiNormalIndex[index * 30] = 1;
+								multiNormalIndex[index * 30 + 1] = index;
+							}
+							else
+							{
+								bool hasSame = false;
+								int sameIndex = 0;
+								for (int i = 1; i <= multiNormalIndex[index * 30]; i++)
+								{
+									int sampleIndex = multiNormalIndex[index * 30 + i];
+									float nDiff = Distance(n, float3(tempNormal[sampleIndex * 3],
+										tempNormal[sampleIndex * 3 + 1],
+										tempNormal[sampleIndex * 3 + 2]));
+									float uvDiff = Distance(uv, float4(tempUV[sampleIndex * 4],
+										tempUV[sampleIndex * 4 + 1],
+										tempUV[sampleIndex * 4 + 2],
+										tempUV[sampleIndex * 4 + 3]));
+
+									if (nDiff == 0.0f && uvDiff == 0.0f)
+									{
+										hasSame = true;
+										sameIndex = sampleIndex;
+										break;
+									}
+								}
+
+								if (!hasSame)
+								{
+									finalIndex = ctrlPointsCount + addVertexCount;
+									crMesh.index[vertexID] = finalIndex;
+
+									multiNormalIndex[index * 30]++;
+									multiNormalIndex[index * 30 + multiNormalIndex[index * 30]] = finalIndex;
+									addVertexCount++;
+								}
+								else
+								{
+									crMesh.index[vertexID] = sameIndex;
+									continue;
+								}
+							}
+
+							tempVertex[finalIndex * 3] = v.x;
+							tempVertex[finalIndex * 3 + 1] = v.y;
+							tempVertex[finalIndex * 3 + 2] = v.z;
+
+							tempColor[finalIndex * 4] = color.mRed;
+							tempColor[finalIndex * 4 + 1] = color.mGreen;
+							tempColor[finalIndex * 4 + 2] = color.mBlue;
+							tempColor[finalIndex * 4 + 3] = color.mAlpha;
+
+							tempUV[finalIndex * 4] = uv.x;
+							tempUV[finalIndex * 4 + 1] = uv.y;
+							tempUV[finalIndex * 4 + 2] = uv.z;
+							tempUV[finalIndex * 4 + 3] = uv.w;
+
+							tempNormal[finalIndex * 3] = n.x;
+							tempNormal[finalIndex * 3 + 1] = n.y;
+							tempNormal[finalIndex * 3 + 2] = n.z;
+
+							tempTangent[finalIndex * 3] = t.x;
+							tempTangent[finalIndex * 3 + 1] = t.y;
+							tempTangent[finalIndex * 3 + 2] = t.z;
+
+							tempBinormal[finalIndex * 3] = b.x;
+							tempBinormal[finalIndex * 3 + 1] = b.y;
+							tempBinormal[finalIndex * 3 + 2] = b.z;
 						}
 					}
+
+					crMesh.vertexCount = ctrlPointsCount + addVertexCount;
+					crMesh.vertex = new float[crMesh.vertexCount * 3];
+					crMesh.color = new float[crMesh.vertexCount * 4];
+					crMesh.uv = new float[crMesh.vertexCount * 4];
+					crMesh.normal = new float[crMesh.vertexCount * 3];
+					crMesh.tangent = new float[crMesh.vertexCount * 3];
+					crMesh.binormal = new float[crMesh.vertexCount * 3];
+					memcpy(crMesh.vertex, tempVertex, sizeof(float)*crMesh.vertexCount * 3);
+					memcpy(crMesh.color, tempColor, sizeof(float)*crMesh.vertexCount * 4);
+					memcpy(crMesh.uv, tempUV, sizeof(float)*crMesh.vertexCount * 4);
+					memcpy(crMesh.normal, tempNormal, sizeof(float)*crMesh.vertexCount * 3);
+					memcpy(crMesh.tangent, tempTangent, sizeof(float)*crMesh.vertexCount * 3);
+					memcpy(crMesh.binormal, tempBinormal, sizeof(float)*crMesh.vertexCount * 3);
 
 					out->SetChild(crMesh, readMeshCount);
 					readMeshCount++;

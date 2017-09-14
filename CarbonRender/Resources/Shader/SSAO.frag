@@ -38,7 +38,7 @@ void main ()
 	vec2 rnUV = uv * 20.0f;
 	vec4 shadow = texture2D(sMap, uv);
 	vec4 wsN = texture2D(nMap, uv);
-	vec3 rn = texture2D(rnMap, uv).rgb;
+	vec3 rn = texture2D(rnMap, uv * 20.0f).rgb;
 	vec3 wsPos = texture2D(pMap, uv).rgb;
 
 	float aoFactor = 0.0f;

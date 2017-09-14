@@ -108,6 +108,11 @@ vec3 BRDF(vec3 diff, vec3 spec, float oneMinusMetallic, float roughness,
 	return color;
 }
 
+float Luminance(vec3 color)
+{
+	return dot(color, vec3(0.0396819152f, 0.458021790f, 0.00609653955f));
+}
+
 void main ()
 {
 	vec4 stencil = texture2D(stenMap, uv);
@@ -144,7 +149,7 @@ void main ()
 	vec3 specColor;
 	float oneMinusMetallic;
 	GetDiffSpec(albedo.rgb, metallic, diffColor, specColor, oneMinusMetallic);
-	vec3 indirectDiff = (gi.rgb + textureLod(cubeMap, wsN, 6).rgb * 0.0f) * indirectShadow * sunColor.rgb;
+	vec3 indirectDiff = (gi.rgb + textureLod(cubeMap, wsN, 6).rgb * 0.2f) * indirectShadow * sunColor.rgb;
 	vec3 inditectSpec = IndirectSpecular (cubeMap, wsR, roughness) * indirectShadow;
 
 	lColor.rgb = BRDF(diffColor, specColor, oneMinusMetallic, roughness, 
