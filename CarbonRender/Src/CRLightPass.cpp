@@ -5,18 +5,22 @@ void LightPass::GetReady4Render(PassOutput * input)
 	glGenFramebuffers(1, &fbo);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-	GLuint lRt;
+	GLuint lRt, pureLRt, paraRt;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	lRt = SetGLRenderTexture(size.w, size.h, GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE, GL_COLOR_ATTACHMENT0);
+	lRt = SetGLRenderTexture(size.w, size.h, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT0, true);
+	pureLRt = SetGLRenderTexture(size.w, size.h, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT1);
+	paraRt = SetGLRenderTexture(size.w, size.h, GL_RGB, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT2);
 
-	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
-	glDrawBuffers(1, drawBuffers);
+	GLenum drawBuffers[3] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 };
+	glDrawBuffers(3, drawBuffers);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	output.cout = 1;
+	output.cout = 3;
 	output.RTS = new GLuint[output.cout];
 	output.RTS[0] = lRt;
+	output.RTS[1] = pureLRt;
+	output.RTS[2] = paraRt;
 }
 
 void LightPass::Render(PassOutput * input)
@@ -48,7 +52,7 @@ void LightPass::Render(PassOutput * input)
 	location = glGetUniformLocation(shaderProgram, "giMap");
 	glUniform1i(location, 6);
 	location = glGetUniformLocation(shaderProgram, "cubeMap");
-	glUniform1i(location, 7);
+	glUniform1i(location, input->cout);
 	
 	float4 zColor = WeatherSystem::Instance()->GetSkyUpColor();
 	float4 sColor = WeatherSystem::Instance()->GetSunColor();
@@ -64,6 +68,9 @@ void LightPass::Render(PassOutput * input)
 	glUniform3f(location, wsCamPos.x, wsCamPos.y, wsCamPos.z);
 
 	DrawFullScreenQuad();
+
+	glBindTexture(GL_TEXTURE_2D, output.RTS[0]);
+	glGenerateMipmap(GL_TEXTURE_2D);
 
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);

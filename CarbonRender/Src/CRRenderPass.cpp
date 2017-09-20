@@ -25,9 +25,16 @@ PassOutput* RenderPass::Draw(PassOutput* input)
 		GetReady4Render(input);
 		bReady = true;
 	}
+	if (!enable)
+		return &output;
 	Render(input);
 
 	return &output;
+}
+
+void RenderPass::Enable(bool bEnable)
+{
+	enable = bEnable;
 }
 
 void RenderPass::GetReady4Render(PassOutput * input)

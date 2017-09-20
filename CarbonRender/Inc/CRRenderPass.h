@@ -24,6 +24,7 @@ protected:
 	PassOutput output;
 	bool fullScreenQuadReady = false;
 	bool bReady = false;
+	bool enable = true;
 	
 	virtual void GetReady4Render(PassOutput* input);
 	virtual void Render(PassOutput* input);
@@ -33,6 +34,7 @@ public:
 	void AttachShader(GLuint program);
 	virtual void Init();
 	PassOutput* Draw(PassOutput* input);
+	void Enable(bool bEnable = true);
 };
 
 #endif

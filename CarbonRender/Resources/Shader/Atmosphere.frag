@@ -70,5 +70,5 @@ void main()
 
 	float lum = dot(dayColor, vec4(0.22, 0.707, 0.071, 0.0));
 	bColor = dayColor + nightColor * (1.0f - lum);
-	bColor.rgb = pow(bColor.rgb, vec3(0.45454545f));
+	//bColor.rgb = pow(bColor.rgb, vec3(0.45454545f));
 }

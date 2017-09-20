@@ -27,6 +27,10 @@ void FinalPass::Render(PassOutput* input)
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "lightBuffer");
 	glUniform1i(location, 2);
+	location = glGetUniformLocation(shaderProgram, "reflectionBuffer");
+	glUniform1i(location, 3);
+	location = glGetUniformLocation(shaderProgram, "stencilBuffer");
+	glUniform1i(location, 4);
 
 	DrawFullScreenQuad();
 

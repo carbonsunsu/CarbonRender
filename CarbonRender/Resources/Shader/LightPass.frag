@@ -3,9 +3,11 @@
 #define PI 3.14159265359f
 #define PI_INV 0.31830988618f
 
-#define StandardDielectricCoef vec4(0.04, 0.04, 0.04, 1.0 - 0.04)
+#define StandardDielectricCoef vec4(0.04f, 0.04f, 0.04f, 0.96f)
 
 layout(location = 0) out vec4 lColor;
+layout(location = 1) out vec4 pureLColor;
+layout(location = 2) out vec4 para;
 
 in vec2 uv;
 
@@ -77,7 +79,8 @@ vec3 FresnelLerp (vec3 F0, vec3 F90, float cosA)
 
 vec3 BRDF(vec3 diff, vec3 spec, float oneMinusMetallic, float roughness, 
 			vec3 wsN, vec3 wsV, vec3 wsL, 
-			vec3 lColor, vec3 indDiff, vec3 indSpec)
+			vec3 lColor, vec3 indDiff, vec3 indSpec,
+			out vec3 noCube, out vec3 indSpecPara)
 {
 	vec3 wsH = normalize(wsV + wsL);
 
@@ -101,9 +104,11 @@ vec3 BRDF(vec3 diff, vec3 spec, float oneMinusMetallic, float roughness,
 	float reduction = 1.0f / (roughness2*roughness2 + 1.0f); 
 
 	float grazingTerm = clamp(1.0f - roughness + (1-oneMinusMetallic), 0.0f, 1.0f);
-    vec3 color = diff * (indDiff + lColor * diffTerm)
-                 + specTerm * lColor * FresnelTerm (spec, LoH)
-                 + reduction * indSpec * FresnelLerp (spec, grazingTerm.xxx, NoV);
+	noCube = diff * (indDiff + lColor * diffTerm)
+             + specTerm * lColor * FresnelTerm (spec, LoH);
+	indSpecPara = reduction * FresnelLerp (spec, grazingTerm.xxx, NoV);
+    vec3 color = noCube
+                 + indSpec * indSpecPara;
 
 	return color;
 }
@@ -144,18 +149,19 @@ void main ()
 	float NoL = clamp(dot(wsN, wsL), 0.0f, 1.0f);
 	float NoU = clamp(dot(wsN, vec3(0.0f, 1.0f, 0.0f)), 0.0f, 1.0f);
 
-	vec3 lightColor = sunColor.rgb * directShadow * indirectShadow;
+	vec3 lightColor = sunColor.rgb * directShadow;
 	vec3 diffColor;
 	vec3 specColor;
 	float oneMinusMetallic;
 	GetDiffSpec(albedo.rgb, metallic, diffColor, specColor, oneMinusMetallic);
-	vec3 indirectDiff = (gi.rgb + textureLod(cubeMap, wsN, 6).rgb * 0.2f) * indirectShadow * sunColor.rgb;
-	vec3 inditectSpec = IndirectSpecular (cubeMap, wsR, roughness) * indirectShadow;
+	vec3 indirectDiff = (gi.rgb + textureLod(cubeMap, wsN, 6).rgb * 0.2f) * sunColor.rgb;
+	vec3 inditectSpec = IndirectSpecular (cubeMap, wsR, roughness);
 
 	lColor.rgb = BRDF(diffColor, specColor, oneMinusMetallic, roughness, 
 						wsN, wsV, wsL, lightColor, 
-						indirectDiff, inditectSpec);
+						indirectDiff, inditectSpec, pureLColor.rgb, para.rgb) * indirectShadow;
 	
-	lColor.rgb = pow(lColor.rgb, vec3(0.45454545f));
+	//lColor.rgb = pow(lColor.rgb, vec3(0.45454545f));
+	para *= indirectShadow;
 	lColor.a = 1.0f;
 }
