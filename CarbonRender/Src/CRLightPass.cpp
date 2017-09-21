@@ -5,11 +5,11 @@ void LightPass::GetReady4Render(PassOutput * input)
 	glGenFramebuffers(1, &fbo);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-	GLuint lRt, pureLRt, paraRt;
+	GLuint pureLRt, refRt, paraRt;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	lRt = SetGLRenderTexture(size.w, size.h, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT0, true);
-	pureLRt = SetGLRenderTexture(size.w, size.h, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT1);
-	paraRt = SetGLRenderTexture(size.w, size.h, GL_RGB, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT2);
+	pureLRt = SetGLRenderTexture(size.w, size.h, GL_RGB16F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT0);
+	refRt = SetGLRenderTexture(size.w, size.h, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT1);
+	paraRt = SetGLRenderTexture(size.w, size.h, GL_RGB16F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT2);
 
 	GLenum drawBuffers[3] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 };
 	glDrawBuffers(3, drawBuffers);
@@ -18,8 +18,8 @@ void LightPass::GetReady4Render(PassOutput * input)
 
 	output.cout = 3;
 	output.RTS = new GLuint[output.cout];
-	output.RTS[0] = lRt;
-	output.RTS[1] = pureLRt;
+	output.RTS[0] = pureLRt;
+	output.RTS[1] = refRt;
 	output.RTS[2] = paraRt;
 }
 
@@ -68,9 +68,6 @@ void LightPass::Render(PassOutput * input)
 	glUniform3f(location, wsCamPos.x, wsCamPos.y, wsCamPos.z);
 
 	DrawFullScreenQuad();
-
-	glBindTexture(GL_TEXTURE_2D, output.RTS[0]);
-	glGenerateMipmap(GL_TEXTURE_2D);
 
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);

@@ -4,11 +4,11 @@ layout(location = 0) out vec4 rColor;
 
 in vec2 uv;
 
-uniform sampler2D colorMap;
+uniform sampler2D pureLightMap;
+uniform sampler2D refMap;
+uniform sampler2D paraMap;
 uniform sampler2D nMap;
 uniform sampler2D pMap;
-uniform sampler2D paraMap;
-uniform samplerCube cubeMap;
 uniform mat4 viewMat;
 uniform mat4 projectMat;
 uniform vec4 wsCamPos;
@@ -17,24 +17,10 @@ const float maxStepSize = 1.0f;
 const int MaxStep = 16;
 const float edgeFadingStart = 0.75f;
 
-vec3 IndirectSpecular (samplerCube tex, vec3 r, float roughness)
-{
-	float s = roughness * (1.7f - 0.7f * roughness);
-	float mip = roughness * 6;
-
-	return textureLod(cubeMap, r, mip).rgb;
-}
-
-float Luminance(vec3 color)
-{
-	return dot(color, vec3(0.0396819152f, 0.458021790f, 0.00609653955f));
-}
-
 void main ()
 {
 	vec4 para = texture2D(paraMap, uv);
 	vec4 wsP = texture2D(pMap, uv);
-	float roughness = wsP.a;
 	vec4 wsN = texture2D(nMap, uv);
 	vec3 wsV = wsP.xyz - wsCamPos.xyz;
 	wsV = normalize(wsV);
@@ -70,9 +56,8 @@ void main ()
 			fadingFactor *=  1.0f - dot(wsN.xyz, sampleN.xyz);
 			fadingFactor *= 1.0f / (d + 1.0f);
 			fadingFactor = clamp(fadingFactor, 0.0f, 1.0f);
-			reflection.rgb = textureLod(colorMap, sampleUV, roughness * 10.0f).rgb;
-			reflection.a = 1.0f;
-			reflection *= fadingFactor;
+			reflection.rgb = texture2D(pureLightMap, sampleUV).rgb + texture2D(refMap, sampleUV).rgb;
+			reflection.a = fadingFactor;
 			break;
 		 }
 		 else
@@ -80,7 +65,7 @@ void main ()
 			stepSize = maxStepSize;
 		 }
 	}
-	vec3 cube = IndirectSpecular(cubeMap, wsR, roughness);
 
-	rColor.rgb = mix(cube, reflection.rgb, reflection.a) * para.rgb;
+	rColor.rgb = reflection.rgb * para.rgb;
+	rColor.a = reflection.a;
 }

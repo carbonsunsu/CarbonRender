@@ -5,8 +5,8 @@
 
 #define StandardDielectricCoef vec4(0.04f, 0.04f, 0.04f, 0.96f)
 
-layout(location = 0) out vec4 lColor;
-layout(location = 1) out vec4 pureLColor;
+layout(location = 0) out vec4 pureLColor;
+layout(location = 1) out vec4 refColor;
 layout(location = 2) out vec4 para;
 
 in vec2 uv;
@@ -77,10 +77,10 @@ vec3 FresnelLerp (vec3 F0, vec3 F90, float cosA)
     return mix(F0, F90, t);
 }
 
-vec3 BRDF(vec3 diff, vec3 spec, float oneMinusMetallic, float roughness, 
+void BRDF(vec3 diff, vec3 spec, float oneMinusMetallic, float roughness, 
 			vec3 wsN, vec3 wsV, vec3 wsL, 
 			vec3 lColor, vec3 indDiff, vec3 indSpec,
-			out vec3 noCube, out vec3 indSpecPara)
+			out vec3 pureLight, out vec3 indSpecPara)
 {
 	vec3 wsH = normalize(wsV + wsL);
 
@@ -104,13 +104,9 @@ vec3 BRDF(vec3 diff, vec3 spec, float oneMinusMetallic, float roughness,
 	float reduction = 1.0f / (roughness2*roughness2 + 1.0f); 
 
 	float grazingTerm = clamp(1.0f - roughness + (1-oneMinusMetallic), 0.0f, 1.0f);
-	noCube = diff * (indDiff + lColor * diffTerm)
-             + specTerm * lColor * FresnelTerm (spec, LoH);
+	pureLight = diff * (indDiff + lColor * diffTerm)
+				+ specTerm * lColor * FresnelTerm (spec, LoH);
 	indSpecPara = reduction * FresnelLerp (spec, grazingTerm.xxx, NoV);
-    vec3 color = noCube
-                 + indSpec * indSpecPara;
-
-	return color;
 }
 
 float Luminance(vec3 color)
@@ -157,11 +153,11 @@ void main ()
 	vec3 indirectDiff = (gi.rgb + textureLod(cubeMap, wsN, 6).rgb * 0.2f) * sunColor.rgb;
 	vec3 inditectSpec = IndirectSpecular (cubeMap, wsR, roughness);
 
-	lColor.rgb = BRDF(diffColor, specColor, oneMinusMetallic, roughness, 
-						wsN, wsV, wsL, lightColor, 
-						indirectDiff, inditectSpec, pureLColor.rgb, para.rgb) * indirectShadow;
-	
-	//lColor.rgb = pow(lColor.rgb, vec3(0.45454545f));
-	para *= indirectShadow;
-	lColor.a = 1.0f;
+	BRDF(diffColor, specColor, oneMinusMetallic, roughness, 
+		wsN, wsV, wsL, lightColor, 
+		indirectDiff, inditectSpec, pureLColor.rgb, para.rgb);
+
+	para.rgb *= indirectShadow;
+	refColor.rgb = inditectSpec * para.rgb;
+	refColor.a = roughness;
 }

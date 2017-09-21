@@ -78,24 +78,25 @@ void RenderPassManager::Draw()
 	lInput.RTS[4] = shadowBlured->RTS[0];
 	lInput.RTS[5] = gi->RTS[0];
 	lInput.RTS[6] = sky->RTS[1];
-	PassOutput* light = lightPass.Draw(&lInput);//light, pureLight, indSpecPara
+	PassOutput* light = lightPass.Draw(&lInput);//pureLight, refColor, indSpecPara
 
 	PassOutput rInput;
 	rInput.cout = 5;
 	rInput.RTS = new GLuint[rInput.cout];
 	rInput.RTS[0] = light->RTS[0];
-	rInput.RTS[1] = g->RTS[1];
-	rInput.RTS[2] = g->RTS[2];
-	rInput.RTS[3] = light->RTS[2];
-	rInput.RTS[4] = sky->RTS[1];
+	rInput.RTS[1] = light->RTS[1];
+	rInput.RTS[2] = light->RTS[2];
+	rInput.RTS[3] = g->RTS[1];
+	rInput.RTS[4] = g->RTS[2];
 	PassOutput* ssr = ssrPass.Draw(&rInput);//SSR
 
 	PassOutput finalInput;
-	finalInput.cout = 4;
+	finalInput.cout = 5;
 	finalInput.RTS = new GLuint[finalInput.cout];
 	finalInput.RTS[0] = sky->RTS[0];
-	finalInput.RTS[1] = light->RTS[1];
-	finalInput.RTS[2] = ssr->RTS[0];
-	finalInput.RTS[3] = g->RTS[3];
+	finalInput.RTS[1] = light->RTS[0];
+	finalInput.RTS[2] = light->RTS[1];
+	finalInput.RTS[3] = ssr->RTS[0];
+	finalInput.RTS[4] = g->RTS[3];
 	finalPass.Draw(&finalInput);
 }

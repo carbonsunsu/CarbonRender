@@ -7,7 +7,7 @@ void SSRPass::GetReady4Render(PassOutput * input)
 
 	GLuint reflectionRt;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	reflectionRt = SetGLRenderTexture(size.w * targetScale, size.h * targetScale, GL_RGB16F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT0);
+	reflectionRt = SetGLRenderTexture(size.w * targetScale, size.h * targetScale, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT0, true);
 
 	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
 	glDrawBuffers(1, drawBuffers);
@@ -34,21 +34,19 @@ void SSRPass::Render(PassOutput * input)
 		glActiveTexture(GL_TEXTURE1 + i);
 		glBindTexture(GL_TEXTURE_2D, input->RTS[i]);
 	}
-	glActiveTexture(GL_TEXTURE1 + input->cout - 1);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, input->RTS[input->cout - 1]);
 
 	float3 camPos = CameraManager::Instance()->GetCurrentCamera()->GetPosition();
 	ShaderManager::Instance()->UseShader(shaderProgram);
-	GLint location = glGetUniformLocation(shaderProgram, "colorMap");
+	GLint location = glGetUniformLocation(shaderProgram, "pureLightMap");
 	glUniform1i(location, 1);
-	location = glGetUniformLocation(shaderProgram, "nMap");
+	location = glGetUniformLocation(shaderProgram, "refMap");
 	glUniform1i(location, 2);
-	location = glGetUniformLocation(shaderProgram, "pMap");
-	glUniform1i(location, 3);
 	location = glGetUniformLocation(shaderProgram, "paraMap");
+	glUniform1i(location, 3);
+	location = glGetUniformLocation(shaderProgram, "nMap");
 	glUniform1i(location, 4);
-	location = glGetUniformLocation(shaderProgram, "cubeMap");
-	glUniform1i(location, input->cout);
+	location = glGetUniformLocation(shaderProgram, "pMap");
+	glUniform1i(location, 5);
 	location = glGetUniformLocation(shaderProgram, "viewMat");
 	glUniformMatrix4fv(location, 1, GL_FALSE, CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix().matrix);
 	location = glGetUniformLocation(shaderProgram, "projectMat");
@@ -57,6 +55,9 @@ void SSRPass::Render(PassOutput * input)
 	glUniform4f(location, camPos.x, camPos.y, camPos.z, 1.0f);
 
 	DrawFullScreenQuad();
+
+	glBindTexture(GL_TEXTURE_2D, output.RTS[0]);
+	glGenerateMipmap(GL_TEXTURE_2D);
 
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
