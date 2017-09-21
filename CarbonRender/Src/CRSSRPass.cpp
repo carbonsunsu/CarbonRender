@@ -71,6 +71,6 @@ void SSRPass::Render(PassOutput * input)
 
 void SSRPass::Init()
 {
-	targetScale = 1.0f;
+	targetScale = 0.5f;
 	shaderProgram = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "SSR.frag");
 }
