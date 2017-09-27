@@ -97,7 +97,7 @@ void MeshObject::GetReady4Rending()
 	bReady4Render = true;
 }
 
-void MeshObject::Render(GLuint shaderProgram)
+void MeshObject::Render(GLuint shaderProgram, bool useTex)
 {
 	UpdateModelMatrix();
 	for (int i = 0; i < childCount; i++)
@@ -106,10 +106,13 @@ void MeshObject::Render(GLuint shaderProgram)
 		Matrix4x4 finalMat = curMesh.modelMatrix * modelMatrix;
 		Matrix3x3 normalMat = finalMat;
 
-		for (int i = 0; i < 3; i++)
+		if (useTex)
 		{
-			glActiveTexture(GL_TEXTURE1 + i);
-			glBindTexture(GL_TEXTURE_2D, curMesh.texs[i]);
+			for (int i = 0; i < 3; i++)
+			{
+				glActiveTexture(GL_TEXTURE1 + i);
+				glBindTexture(GL_TEXTURE_2D, curMesh.texs[i]);
+			}
 		}
 
 		GLint location = glGetUniformLocation(shaderProgram, "modelMat");
@@ -131,10 +134,13 @@ void MeshObject::Render(GLuint shaderProgram)
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebos[i]);
 		glDrawElements(GL_TRIANGLES, curMesh.polygonCount * 3, GL_UNSIGNED_INT, NULL);
 
-		for (int i = 0; i < 3; i++)
+		if (useTex)
 		{
-			glActiveTexture(GL_TEXTURE1 + i);
-			glBindTexture(GL_TEXTURE_2D, 0);
+			for (int i = 0; i < 3; i++)
+			{
+				glActiveTexture(GL_TEXTURE1 + i);
+				glBindTexture(GL_TEXTURE_2D, 0);
+			}
 		}
 	}
 

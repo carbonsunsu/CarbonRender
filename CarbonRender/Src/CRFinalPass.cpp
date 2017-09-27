@@ -33,6 +33,8 @@ void FinalPass::Render(PassOutput* input)
 	glUniform1i(location, 4);
 	location = glGetUniformLocation(shaderProgram, "stencilBuffer");
 	glUniform1i(location, 5);
+	location = glGetUniformLocation(shaderProgram, "cloudBuffer");
+	glUniform1i(location, 6);
 
 	DrawFullScreenQuad();
 

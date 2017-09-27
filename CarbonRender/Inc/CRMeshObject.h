@@ -53,7 +53,7 @@ public:
 	Mesh* GetChild(unsigned int index);
 	Mesh* GetAllChild();
 	void GetReady4Rending();
-	void Render(GLuint shaderProgram);
+	void Render(GLuint shaderProgram, bool useTex = true);
 };
 
 #endif

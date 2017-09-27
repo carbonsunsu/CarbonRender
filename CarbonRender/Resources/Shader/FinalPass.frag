@@ -9,6 +9,7 @@ uniform sampler2D lightBuffer;
 uniform sampler2D cubeBuffer;
 uniform sampler2D ssrBuffer;
 uniform sampler2D stencilBuffer;
+uniform sampler2D cloudBuffer;
 
 void main ()
 {
@@ -17,8 +18,11 @@ void main ()
 	vec4 cubeColor = texture2D(cubeBuffer, uv);
 	vec4 ssrColor = textureLod(ssrBuffer, uv, cubeColor.a * 6.0f);
 	vec4 stencil = texture2D(stencilBuffer, uv);
+	vec4 cloudColor = texture2D(cloudBuffer, uv);
 
-	fColor.rgb = mix(skyColor.rgb, lightColor.rgb + mix(cubeColor.rgb, ssrColor.rgb, ssrColor.a), stencil.r);
+	fColor.rgb = mix((1.0f - cloudColor.a) * skyColor.rgb + cloudColor.rgb,
+					 lightColor.rgb + mix(cubeColor.rgb, ssrColor.rgb, ssrColor.a), 
+					 stencil.r);
 	fColor.rgb = pow(fColor.rgb, vec3(0.45454545f));
 	fColor.a = 1.0f;
 }

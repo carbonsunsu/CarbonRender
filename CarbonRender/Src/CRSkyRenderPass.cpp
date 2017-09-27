@@ -6,6 +6,7 @@ void SkyRenderPass::Init()
 	FbxImportManager::Instance()->ImportFbxModel("sphere", &sphere);
 	sphere.GetReady4Rending();
 	sphere.SetScale(float3(10000.0f));
+	sphere.SetPosition(float3(0.0f));
 	sphere.SetRotation(float3(45.0f, 90.0f, 45.0f));
 	milkwayTex = TextureManager::Instance()->LoadTexture("Milkway");
 }
@@ -36,11 +37,10 @@ void SkyRenderPass::GetReady4Render(PassOutput* input)
 
 void SkyRenderPass::Render(PassOutput* input)
 {
-	sphere.SetPosition(CameraManager::Instance()->GetCurrentCamera()->GetPosition());
 	float3 para = CameraManager::Instance()->GetCurrentCamera()->GetCameraPara();
 	Camera cam;
 	cam.SetPerspectiveCamera(para.x, 1000.0f, 20000.0f);
-	cam.SetPosition(CameraManager::Instance()->GetCurrentCamera()->GetPosition());
+	cam.SetPosition(float3(0.0f));
 	cam.SetRotation(CameraManager::Instance()->GetCurrentCamera()->GetRotation());
 	cam.UpdateViewMatrix();
 	CameraManager::Instance()->Push(cam);

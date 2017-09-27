@@ -13,6 +13,7 @@
 #include "..\Inc\CRSSAOPass.h"
 #include "..\Inc\CRGIPass.h"
 #include "..\Inc\CRSSRPass.h"
+#include "..\Inc\CRVolumetricCloudPass.h"
 
 class RenderPassManager
 {
@@ -30,6 +31,7 @@ private:
 	SSAOPass ssaoPass;
 	GIPass giPass;
 	SSRPass ssrPass;
+	VolumetricCloudPass cloudPass;
 
 public:
 	~RenderPassManager();

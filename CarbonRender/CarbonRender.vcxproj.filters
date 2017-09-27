@@ -111,6 +111,9 @@
     <ClCompile Include="Src\CRSSRPass.cpp">
       <Filter>源文件\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Src\CRVolumetricCloudPass.cpp">
+      <Filter>源文件\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRFinalPass.h">
@@ -194,6 +197,9 @@
     <ClInclude Include="Inc\CRSSRPass.h">
       <Filter>头文件\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\CRVolumetricCloudPass.h">
+      <Filter>头文件\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shader\Atmosphere.vert">
@@ -236,6 +242,12 @@
       <Filter>Shader</Filter>
     </None>
     <None Include="Resources\Shader\SSR.frag">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\VolumatricCloud.frag">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Resources\Shader\VolumatricCloud.vert">
       <Filter>Shader</Filter>
     </None>
   </ItemGroup>

@@ -88,6 +88,14 @@ void float3::operator=(FbxColor a)
 
 float4::float4() {}
 
+float4::float4(float a)
+{
+	x = a;
+	y = a;
+	z = a;
+	w = a;
+}
+
 float4::float4(float a, float b, float c, float d)
 {
 	x = a;
@@ -320,6 +328,11 @@ float3 operator-(float3 v1, float3 v2)
 	return float3(v1.x-v2.x, v1.y-v2.y, v1.z-v2.z);
 }
 
+float4 operator-(float4 v1, float4 v2)
+{
+	return float4(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w);
+}
+
 float Dot(float3 a, float3 b)
 {
 	return a.x*b.x + a.y*b.y + a.z*b.z;
@@ -435,6 +448,81 @@ float Distance(float4 a, float4 b)
 	float z = a.z - b.z;
 	float w = a.w - b.w;
 	return sqrtf(x*x + y*y + z*z + w*w);
+}
+
+float3 Floor(float3 a)
+{
+	return float3(floorf(a.x), floorf(a.y), floorf(a.z));
+}
+
+float4 Floor(float4 a)
+{
+	return float4(floorf(a.x), floorf(a.y), floorf(a.z), floorf(a.w));
+}
+
+float3 Mod(float3 a, float b)
+{
+	return float3(fmodf(a.x, b), fmodf(a.y, b), fmodf(a.z, b));
+}
+
+float4 Mod(float4 a, float b)
+{
+	return float4(fmodf(a.x, b), fmodf(a.y, b), fmodf(a.z, b), fmodf(a.w, b));
+}
+
+float3 Fract(float3 a)
+{
+	return a - Floor(a);
+}
+
+float4 Fract(float4 a)
+{
+	return a - Floor(a);
+}
+
+float3 Max(float3 a, float3 b)
+{
+	return float3(fmaxf(a.x, b.x), fmaxf(a.y, b.y), fmaxf(a.z, b.z));
+}
+
+float4 Max(float4 a, float4 b)
+{
+	return float4(fmaxf(a.x, b.x), fmaxf(a.y, b.y), fmaxf(a.z, b.z), fmaxf(a.w, b.w));
+}
+
+float3 Min(float3 a, float3 b)
+{
+	return float3(fminf(a.x, b.x), fminf(a.y, b.y), fminf(a.z, b.z));
+}
+
+float4 Min(float4 a, float4 b)
+{
+	return float4(fminf(a.x, b.x), fminf(a.y, b.y), fminf(a.z, b.z), fminf(a.w, b.w));
+}
+
+float3 Abs(float3 a)
+{
+	return float3(fabsf(a.x), fabsf(a.y), fabsf(a.z));
+}
+
+float4 Abs(float4 a)
+{
+	return float4(fabsf(a.x), fabsf(a.y), fabsf(a.z), fabsf(a.w));
+}
+
+float Lerp(float a, float b, float c)
+{
+	return a + (b - a) * c;
+}
+
+float3 Lerp(float3 a, float3 b, float c)
+{
+	return a + (b - a) * c;
+}
+
+float4 Lerp(float4 a, float4 b, float c)
+{
+	return a + (b - a) * c;
 }
 
 float4 xyY2RGB(float3 xyY)

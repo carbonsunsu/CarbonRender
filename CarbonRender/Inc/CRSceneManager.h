@@ -15,6 +15,7 @@ private:
 	MeshObject terrain;
 	MeshObject sponza;
 	MeshObject type59;
+	MeshObject dragon;
 
 public:
 	~SceneManager();

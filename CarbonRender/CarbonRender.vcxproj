@@ -35,6 +35,7 @@
     <ClCompile Include="Src\CRSSAOPass.cpp" />
     <ClCompile Include="Src\CRSSRPass.cpp" />
     <ClCompile Include="Src\CRTextureManager.cpp" />
+    <ClCompile Include="Src\CRVolumetricCloudPass.cpp" />
     <ClCompile Include="Src\CRWeatherSystem.cpp" />
     <ClCompile Include="Src\CRWindowManager.cpp" />
     <ClCompile Include="Src\CRRenderPass.cpp" />
@@ -64,6 +65,7 @@
     <ClInclude Include="Inc\CRSSAOPass.h" />
     <ClInclude Include="Inc\CRSSRPass.h" />
     <ClInclude Include="Inc\CRTextureManager.h" />
+    <ClInclude Include="Inc\CRVolumetricCloudPass.h" />
     <ClInclude Include="Inc\CRWindowManager.h" />
     <ClInclude Include="Inc\CRRenderPass.h" />
     <ClInclude Include="Inc\CRWeatherSystem.h" />
@@ -83,6 +85,8 @@
     <None Include="Resources\Shader\ScreenQuad.vert" />
     <None Include="Resources\Shader\SSAO.frag" />
     <None Include="Resources\Shader\SSR.frag" />
+    <None Include="Resources\Shader\VolumatricCloud.frag" />
+    <None Include="Resources\Shader\VolumatricCloud.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{27CD77C7-6F75-434C-A429-CE1E1D982CBA}</ProjectGuid>
@@ -138,6 +142,8 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <StackReserveSize>
+      </StackReserveSize>
     </Link>
     <PreBuildEvent>
       <Message>
@@ -171,6 +177,8 @@ echo A | XCOPY /s /q "$(ProjectDir)Resources\*.*" "$(TargetDir)Resources\*.*"</C
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
+      <StackReserveSize>
+      </StackReserveSize>
     </Link>
     <PreBuildEvent>
       <Command>del "$(TargetDir)*.*"

@@ -30,6 +30,7 @@ void RenderPassManager::Init()
 	ssaoPass.Init();
 	giPass.Init();
 	ssrPass.Init();
+	cloudPass.Init();
 }
 
 void RenderPassManager::Draw()
@@ -37,6 +38,7 @@ void RenderPassManager::Draw()
 	PassOutput* sm = smPass.Draw(NULL);//vpl pos and depth, vpl albedo
 	PassOutput* sky = skyPass.Draw(NULL);//sky
 	PassOutput* g = gPass.Draw(NULL);//albedo, normal, position, stensil
+	PassOutput* cloud = cloudPass.Draw(NULL);//cloud
 
 	PassOutput sInput;
 	sInput.cout = 2;
@@ -91,12 +93,13 @@ void RenderPassManager::Draw()
 	PassOutput* ssr = ssrPass.Draw(&rInput);//SSR
 
 	PassOutput finalInput;
-	finalInput.cout = 5;
+	finalInput.cout = 6;
 	finalInput.RTS = new GLuint[finalInput.cout];
 	finalInput.RTS[0] = sky->RTS[0];
 	finalInput.RTS[1] = light->RTS[0];
 	finalInput.RTS[2] = light->RTS[1];
 	finalInput.RTS[3] = ssr->RTS[0];
 	finalInput.RTS[4] = g->RTS[3];
+	finalInput.RTS[5] = cloud->RTS[0];
 	finalPass.Draw(&finalInput);
 }

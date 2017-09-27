@@ -59,6 +59,7 @@ public:
 	float w = 0.0f;
 
 	float4();
+	float4(float a);
 	float4(float a, float b, float c, float d);
 	float4(float3 a, float d);
 	float4(FbxColor a);
@@ -128,6 +129,7 @@ float4 operator + (float a, float4 v);
 float3 operator + (float3 v1, float3 v2);
 float4 operator + (float4 v1, float4 v2);
 float3 operator - (float3 v1, float3 v2);
+float4 operator - (float4 v1, float4 v2);
 float Dot(float3 a, float3 b);
 float Dot(float4 a, float4 b);
 float3 exp(float3 v);
@@ -139,6 +141,21 @@ Matrix4x4 CalculateModelMatrix(float* localCoord, float3 trans, float3 rota, flo
 Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal);
 float Distance(float3 a, float3 b);
 float Distance(float4 a, float4 b);
+float3 Floor(float3 a);
+float4 Floor(float4 a);
+float3 Mod(float3 a, float b);
+float4 Mod(float4 a, float b);
+float3 Fract(float3 a);
+float4 Fract(float4 a);
+float3 Max(float3 a, float3 b);
+float4 Max(float4 a, float4 b);
+float3 Min(float3 a, float3 b);
+float4 Min(float4 a, float4 b);
+float3 Abs(float3 a);
+float4 Abs(float4 a);
+float Lerp(float a, float b, float c);
+float3 Lerp(float3 a, float3 b, float c);
+float4 Lerp(float4 a, float4 b, float c);
 
 float4 xyY2RGB(float3 xyY);
 #endif
