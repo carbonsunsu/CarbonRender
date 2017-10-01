@@ -111,7 +111,7 @@ float4 WeatherSystem::GetSunColor()
 
 	skyColor = xyY2RGB(xyY);
 
-	return skyColor;
+	return Min(skyColor * 10.0f, 1.0f);
 }
 
 float4 WeatherSystem::GetSkyUpColor()

@@ -113,6 +113,33 @@ public:
 	Matrix4x4 ToMatrix();
 };
 
+class Noise
+{
+private:
+	static const int perm[256];
+
+	static const float3 grab[16];
+
+	static float3 PerlinFade(float3 a);
+	static float PerlinGrab(int a, float3 b);
+	static float PerlinPermute(int a);
+
+	static float3 WorleyPermute(float3 a);
+	static float4 WorleyPermute(float4 a);
+	static float3 Length(float3 a, float3 b, float3 c);
+	static float4 Length(float4 a, float4 b, float4 c);
+
+public:
+	static float PerlinNoise(float3 uv);
+	static float PerlinFbm(float3 uv);
+
+	static float WorleyNoise(float3 uv);
+	static float WorleyNoiseFast(float3 uv);
+	static float WorleyFbm(float3 uv);
+
+	static float CurlNoise(float3 uv);
+};
+
 Matrix4x4 operator * (Matrix4x4 m1, Matrix4x4 m2);
 float4 operator * (float4 v, Matrix4x4 m);
 float4 operator * (float4 v, Quaternion r);
@@ -156,6 +183,7 @@ float4 Abs(float4 a);
 float Lerp(float a, float b, float c);
 float3 Lerp(float3 a, float3 b, float c);
 float4 Lerp(float4 a, float4 b, float c);
+float Remap(float a, float oldMin, float oldMax, float newMin, float newMax);
 
 float4 xyY2RGB(float3 xyY);
 #endif

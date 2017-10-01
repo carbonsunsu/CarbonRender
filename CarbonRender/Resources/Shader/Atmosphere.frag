@@ -66,7 +66,7 @@ void main()
 					1.0f);
 
 	if (vSovP > SunSize)
-		dayColor.rgb = dayColor.rgb*2.5f;
+		dayColor.rgb = dayColor.rgb*5.0f;
 
 	float lum = dot(dayColor, vec4(0.22, 0.707, 0.071, 0.0));
 	bColor = dayColor + nightColor * (1.0f - lum);

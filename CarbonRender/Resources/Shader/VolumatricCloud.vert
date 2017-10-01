@@ -12,11 +12,9 @@ uniform mat4 viewMat;
 uniform mat4 proMat;
 
 out vec3 wsP;
-out vec2 uv;
 
 void main ()
 {
 	gl_Position = proMat * (viewMat * (modelMat * msPos));
 	wsP = (modelMat * msPos).xyz;
-	uv = uvs.xy;
 }

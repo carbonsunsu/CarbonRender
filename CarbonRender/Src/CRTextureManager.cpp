@@ -12,9 +12,9 @@ TextureManager::TextureManager()
 	{
 		for (j = 0; j < 8; j++) 
 		{
-			D[i][j][0] = (GLubyte)255;
-			D[i][j][1] = (GLubyte)255;
-			D[i][j][2] = (GLubyte)255;
+			D[i][j][0] = (GLubyte)128;
+			D[i][j][1] = (GLubyte)128;
+			D[i][j][2] = (GLubyte)128;
 		}
 	}
 

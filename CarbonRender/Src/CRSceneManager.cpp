@@ -38,17 +38,17 @@ void SceneManager::LoadScene()
 	return;
 	FbxImportManager::Instance()->ImportFbxModel("Sponza", &sponza);
 	sponza.GetReady4Rending();
-	sponza.SetPosition(float3(-1.0f, -0.6f, -17.5f));
+	sponza.SetPosition(float3(-1.0f, -0.2f, 0.0f));
 	sponza.SetRotation(float3(0.0f, 180.0f, 0.0f));
 
 	FbxImportManager::Instance()->ImportFbxModel("Type59", &type59);
 	type59.GetReady4Rending();
-	type59.SetPosition(float3(-1.0f, -0.6f, -17.5f));
+	type59.SetPosition(float3(-1.0f, -0.2f, 0.0f));
 	type59.SetRotation(float3(0.0f, 0.0f, 0.0f));
 
 	FbxImportManager::Instance()->ImportFbxModel("dragon", &dragon);
 	dragon.GetReady4Rending();
-	dragon.SetPosition(float3(-2.0f, -0.6f, -3.5f));
+	dragon.SetPosition(float3(-2.0f, 0.1f, 14.0f));
 	dragon.SetRotation(float3(0.0f, 180.0f, 0.0f));
 }
 

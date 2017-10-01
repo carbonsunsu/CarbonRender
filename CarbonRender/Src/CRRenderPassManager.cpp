@@ -36,9 +36,14 @@ void RenderPassManager::Init()
 void RenderPassManager::Draw()
 {
 	PassOutput* sm = smPass.Draw(NULL);//vpl pos and depth, vpl albedo
-	PassOutput* sky = skyPass.Draw(NULL);//sky
-	PassOutput* g = gPass.Draw(NULL);//albedo, normal, position, stensil
-	PassOutput* cloud = cloudPass.Draw(NULL);//cloud
+	PassOutput* sky = skyPass.Draw(NULL);//sky, sky cube
+	PassOutput* g = gPass.Draw(NULL);//albedo, normal and depth, position, stensil
+
+	PassOutput cInput;
+	cInput.cout = 1;
+	cInput.RTS = new GLuint[cInput.cout];
+	cInput.RTS[0] = g->RTS[1];
+	PassOutput* cloud = cloudPass.Draw(&cInput);//cloud
 
 	PassOutput sInput;
 	sInput.cout = 2;
