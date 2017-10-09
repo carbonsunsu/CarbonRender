@@ -5,7 +5,7 @@ void SkyRenderPass::Init()
 	shaderProgram = ShaderManager::Instance()->LoadShader("Atmosphere.vert", "Atmosphere.frag");
 	FbxImportManager::Instance()->ImportFbxModel("sphere", &sphere);
 	sphere.GetReady4Rending();
-	sphere.SetScale(float3(10000.0f));
+	sphere.SetScale(float3(10000.0f, 5000.0f, 10000.0f));
 	sphere.SetPosition(float3(0.0f));
 	sphere.SetRotation(float3(45.0f, 90.0f, 45.0f));
 	milkwayTex = TextureManager::Instance()->LoadTexture("Milkway");

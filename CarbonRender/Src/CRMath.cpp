@@ -288,8 +288,9 @@ float4 Noise::Length(float4 a, float4 b, float4 c)
 	return a * a + b * b + c * c;
 }
 
-float Noise::PerlinNoise(float3 uv)
+float Noise::PerlinNoise(float3 uv, float freq)
 {
+	uv = uv * freq;
 	float3 P = Mod(Floor(uv), 256.0f);
 	uv = uv - Floor(uv);
 	float3 f = PerlinFade(uv);
@@ -315,18 +316,20 @@ float Noise::PerlinNoise(float3 uv)
 	return n;
 }
 
-float Noise::PerlinFbm(float3 uv)
+float Noise::PerlinFbm(float3 uv, float freq)
 {
-	float fbm = PerlinNoise(uv * 5.0f) +
-		0.5f * PerlinNoise(uv * 10.0f) +
-		0.25f * PerlinNoise(uv * 20.0f) +
-		0.125f * PerlinNoise(uv * 40.0f) +
-		0.0625f * PerlinNoise(uv * 80.0f);
+	uv = uv * freq;
+	float fbm = PerlinNoise(uv, 5.0f) +
+		0.5f * PerlinNoise(uv, 10.0f) +
+		0.25f * PerlinNoise(uv, 20.0f) +
+		0.125f * PerlinNoise(uv, 40.0f) +
+		0.0625f * PerlinNoise(uv, 80.0f);
 	return fbm * 0.25f + 0.5f;
 }
 
-float Noise::WorleyNoise(float3 uv)
+float Noise::WorleyNoise(float3 uv, float freq)
 {
+	uv = uv * freq;
 	const float jitter = 1.0f;
 	const float K = 0.142857f; // 1/7
 	const float Ko = 0.428571f; // 1/2-K/2
@@ -474,8 +477,9 @@ float Noise::WorleyNoise(float3 uv)
 	return 1.0f - sqrt(d11.x);
 }
 
-float Noise::WorleyNoiseFast(float3 uv)
+float Noise::WorleyNoiseFast(float3 uv, float freq)
 {
+	uv = uv * freq;
 	const float jitter = 0.8f;
 	const float K = 0.142857f; // 1/7
 	const float Ko = 0.428571f; // 1/2-K/2
@@ -531,13 +535,14 @@ float Noise::WorleyNoiseFast(float3 uv)
 	return 1.0f - sqrt(d.x);
 }
 
-float Noise::WorleyFbm(float3 uv)
+float Noise::WorleyFbm(float3 uv, float freq)
 {
-	float fbm = WorleyNoise(uv) +
-		0.5f * WorleyNoise(uv * 5.0f) +
-		0.25f * WorleyNoise(uv * 10.0f) +
-		0.125f * WorleyNoise(uv * 20.0f) +
-		0.0625f * WorleyNoise(uv * 40.0f);
+	uv = uv * freq;
+	float fbm = WorleyNoise(uv, 1.0f) +
+		0.5f * WorleyNoise(uv, 5.0f) +
+		0.25f * WorleyNoise(uv, 10.0f) +
+		0.125f * WorleyNoise(uv, 20.0f) +
+		0.0625f * WorleyNoise(uv, 40.0f);
 	return fbm * 0.5f;
 }
 

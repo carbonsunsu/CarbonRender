@@ -22,9 +22,14 @@ private:
 	float4 wsSunPos;
 	float3 zenith; // xyY
 
+	float4 windDir;
+	float3 cloudBias;
+
 	float shaderParas[10];
 
 	void Init();
+	void UpdateAtmosphere();
+	void UpdateCloud();
 public:
 	static WeatherSystem* Instance();
 	~WeatherSystem();
@@ -37,6 +42,8 @@ public:
 	float4 GetSunColor();
 	float4 GetSkyUpColor();
 	float* GetShaderParas();
+
+	float3 GetCloudBias();
 };
 
 #endif

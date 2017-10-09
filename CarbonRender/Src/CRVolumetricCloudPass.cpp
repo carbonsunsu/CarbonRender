@@ -42,16 +42,20 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	glBindTexture(GL_TEXTURE_3D, noises[1]);
 	glActiveTexture(GL_TEXTURE3);
 	glBindTexture(GL_TEXTURE_2D, noises[2]);
+	glActiveTexture(GL_TEXTURE4);
+	glBindTexture(GL_TEXTURE_2D, weatherData);
 
 	for (int i = 0; i < input->cout; i++)
 	{
-		glActiveTexture(GL_TEXTURE4 + i);
+		glActiveTexture(GL_TEXTURE5 + i);
 		glBindTexture(GL_TEXTURE_2D, input->RTS[i]);
 	}
 
 	float3 camPos = CameraManager::Instance()->GetCurrentCamera()->GetPosition();
 	float4 sunColor = WeatherSystem::Instance()->GetSunColor();
 	float4 zenithColor = WeatherSystem::Instance()->GetSkyUpColor();
+	float4 sunPos = WeatherSystem::Instance()->GetWsSunPos();
+	float3 cloudBias = WeatherSystem::Instance()->GetCloudBias();
 	ShaderManager::Instance()->UseShader(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "perlinWorleyMap");
 	glUniform1i(location, 1);
@@ -59,8 +63,10 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	glUniform1i(location, 2);
 	location = glGetUniformLocation(shaderProgram, "curlMap");
 	glUniform1i(location, 3);
-	location = glGetUniformLocation(shaderProgram, "depthMap");
+	location = glGetUniformLocation(shaderProgram, "weatherMap");
 	glUniform1i(location, 4);
+	location = glGetUniformLocation(shaderProgram, "depthMap");
+	glUniform1i(location, 5);
 	location = glGetUniformLocation(shaderProgram, "wsCamPos");
 	glUniform3f(location, camPos.x, camPos.y, camPos.z);
 	location = glGetUniformLocation(shaderProgram, "cloudBoxSize");
@@ -69,6 +75,10 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	glUniform3f(location, sunColor.x, sunColor.y, sunColor.z);
 	location = glGetUniformLocation(shaderProgram, "zenithColor");
 	glUniform3f(location, zenithColor.x, zenithColor.y, zenithColor.z);
+	location = glGetUniformLocation(shaderProgram, "wsSunPos");
+	glUniform3f(location, sunPos.x, sunPos.y, sunPos.z);
+	location = glGetUniformLocation(shaderProgram, "cloudBias");
+	glUniform3f(location, cloudBias.x, cloudBias.y, cloudBias.z);
 
 	cloudBox.Render(shaderProgram, false);
 
@@ -83,10 +93,12 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	glBindTexture(GL_TEXTURE_3D, 0);
 	glActiveTexture(GL_TEXTURE3);
 	glBindTexture(GL_TEXTURE_2D, 0);
+	glActiveTexture(GL_TEXTURE4);
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 	for (int i = 0; i < input->cout; i++)
 	{
-		glActiveTexture(GL_TEXTURE4 + i);
+		glActiveTexture(GL_TEXTURE5 + i);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
@@ -140,25 +152,26 @@ void VolumetricCloudPass::GenerateTex()
 				}
 				else
 				{
-					float noise = (Remap(Noise::PerlinFbm(uv), 0.0f, 1.0f, Noise::WorleyFbm(uv * 10.0f), 1.0f)) * 255;
+					float noise = (Remap(Noise::PerlinFbm(uv, 1.0f), 0.0f, 1.0f, Noise::WorleyFbm(uv, 10.0f), 1.0f)) * 255;
 					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 0] = (GLubyte)noise;
 					pwNoiseFile << noise << endl;
 
-					noise = Noise::WorleyFbm(uv * 10.0f) * 255;
+					noise = Noise::WorleyFbm(uv, 10.0f) * 255;
 					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 1] = (GLubyte)noise;
 					pwNoiseFile << noise << endl;
 
-					noise = Noise::WorleyFbm(uv * 20.0f) * 255;
+					noise = Noise::WorleyFbm(uv, 20.0f) * 255;
 					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 2] = (GLubyte)noise;
 					pwNoiseFile << noise << endl;
 
-					noise = Noise::WorleyFbm(uv * 40.0f) * 255;
+					noise = Noise::WorleyFbm(uv, 40.0f) * 255;
 					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 3] = (GLubyte)noise;
 					pwNoiseFile << noise << endl;
 				}
 			}
 	pwNoiseFile.close();
 
+	fileExist = true;
 	fstream wNoiseFile;
 	wNoiseFile.open("Resources\\Textures\\Worley.noise", ios::in);
 	if (!wNoiseFile)
@@ -185,15 +198,15 @@ void VolumetricCloudPass::GenerateTex()
 				}
 				else
 				{
-					float noise = Noise::WorleyNoise(uv * 20.0f) * 255;
+					float noise = Noise::WorleyNoise(uv, 20.0f) * 255;
 					worley[i * 32 * 32 * 3 + j * 32 * 3 + k * 3 + 0] = (GLubyte)noise;
 					wNoiseFile << noise << endl;
 
-					noise = Noise::WorleyNoise(uv * 40.0f) * 255;
+					noise = Noise::WorleyNoise(uv, 40.0f) * 255;
 					worley[i * 32 * 32 * 3 + j * 32 * 3 + k * 3 + 1] = (GLubyte)noise;
 					wNoiseFile << noise << endl;
 
-					noise = Noise::WorleyNoise(uv * 80.0f) * 255;
+					noise = Noise::WorleyNoise(uv, 80.0f) * 255;
 					worley[i * 32 * 32 * 3 + j * 32 * 3 + k * 3 + 2] = (GLubyte)noise;
 					wNoiseFile << noise << endl;
 				}
@@ -224,5 +237,5 @@ void VolumetricCloudPass::GenerateTex()
 	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_REPEAT);
 	glTexImage3D(GL_TEXTURE_3D, 0, GL_RGB, 32, 32, 32, 0, GL_RGB, GL_UNSIGNED_BYTE, worley);
 
-
+	weatherData = TextureManager::Instance()->LoadTexture("Weather");
 }

@@ -59,8 +59,6 @@ void FixedUpdate(int value)
 	WeatherSystem::Instance()->Update();
 	ControllerManager::Instance()->GetCurrentController()->Update();
 
-	glutPostRedisplay();
-
 	glutTimerFunc((unsigned int)(FIXEDUPDATE_TIME * 1000.0f), FixedUpdate, 0);
 }
 

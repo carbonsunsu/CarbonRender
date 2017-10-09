@@ -19,6 +19,7 @@ private:
 	GLuint dBuffer;
 	MeshObject cloudBox;
 	GLuint noises[3];//PerlinWorley, Worley, Curl
+	GLuint weatherData;
 	float4 cloudBoxScale;
 
 	void GenerateTex(); 

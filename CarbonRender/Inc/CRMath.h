@@ -130,12 +130,12 @@ private:
 	static float4 Length(float4 a, float4 b, float4 c);
 
 public:
-	static float PerlinNoise(float3 uv);
-	static float PerlinFbm(float3 uv);
+	static float PerlinNoise(float3 uv, float freq);
+	static float PerlinFbm(float3 uv, float freq);
 
-	static float WorleyNoise(float3 uv);
-	static float WorleyNoiseFast(float3 uv);
-	static float WorleyFbm(float3 uv);
+	static float WorleyNoise(float3 uv, float freq);
+	static float WorleyNoiseFast(float3 uv, float freq);
+	static float WorleyFbm(float3 uv, float freq);
 
 	static float CurlNoise(float3 uv);
 };

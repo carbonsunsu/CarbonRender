@@ -27,18 +27,16 @@ void WeatherSystem::Init()
 	hour = 12.0f;
 	turbidity = 2.0f;
 	exposure = 30.0f;
-	timeSpeed = 0.0f;
+	timeSpeed = 1000.0f;
 	lightR = 1000.0f;
+	windDir = float4(0.5f, 0.0f, 1.0f, 1000.0f);
+	cloudBias = float3(0.0f);
 
 	Update();
 }
 
-void WeatherSystem::Update()
+void WeatherSystem::UpdateAtmosphere()
 {
-	hour += FIXEDUPDATE_TIME * 0.0002778f * timeSpeed;
-	if (hour >= 24.0f)
-		hour = 0.0f;
-
 	//X->E	-X->W
 	//Z->S	-Z->N
 	float l = latitude * A2R;
@@ -60,16 +58,31 @@ void WeatherSystem::Update()
 	float ThetaS_2 = pow(thetaS, 2.0f);
 	float T_2 = turbidity * turbidity;
 	float4 temp(T_2 * 0.00166f - turbidity * 0.02903f + 0.11693f,
-				-T_2 * 0.00375f + turbidity * 0.06377f - 0.21196f,
-				T_2 * 0.00209f - turbidity * 0.03202f + 0.06052f,
-				turbidity * 0.00394f + 0.25886f);
+		-T_2 * 0.00375f + turbidity * 0.06377f - 0.21196f,
+		T_2 * 0.00209f - turbidity * 0.03202f + 0.06052f,
+		turbidity * 0.00394f + 0.25886f);
 	zenith.x = ThetaS_3 * temp.x + ThetaS_2 * temp.y + thetaS * temp.z + temp.w;
 
 	temp = float4(T_2 * 0.00275f - turbidity * 0.04214f + 0.15346f,
-				-T_2 * 0.00610f + turbidity * 0.08970f - 0.26756f,
-				T_2 * 0.00317f - turbidity * 0.04156f + 0.06670f,
-				turbidity * 0.00516f + 0.26688f);
+		-T_2 * 0.00610f + turbidity * 0.08970f - 0.26756f,
+		T_2 * 0.00317f - turbidity * 0.04156f + 0.06670f,
+		turbidity * 0.00516f + 0.26688f);
 	zenith.y = ThetaS_3 * temp.x + ThetaS_2 * temp.y + thetaS * temp.z + temp.w;
+}
+
+void WeatherSystem::UpdateCloud()
+{
+	cloudBias = float3(windDir.x, windDir.y, windDir.z).normalize() * windDir.w * FIXEDUPDATE_TIME + cloudBias;
+}
+
+void WeatherSystem::Update()
+{
+	hour += FIXEDUPDATE_TIME * 0.0002778f * timeSpeed;
+	if (hour >= 24.0f)
+		hour = 0.0f;
+
+	UpdateAtmosphere();
+	UpdateCloud();
 }
 
 void WeatherSystem::SetHour(float h)
@@ -111,7 +124,7 @@ float4 WeatherSystem::GetSunColor()
 
 	skyColor = xyY2RGB(xyY);
 
-	return Min(skyColor * 10.0f, 1.0f);
+	return Min(skyColor * 5.0f, 1.0f);
 }
 
 float4 WeatherSystem::GetSkyUpColor()
@@ -152,4 +165,9 @@ float * WeatherSystem::GetShaderParas()
 	shaderParas[9] = zenith.z;
 
 	return shaderParas;
+}
+
+float3 WeatherSystem::GetCloudBias()
+{
+	return cloudBias;
 }
