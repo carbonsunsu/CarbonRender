@@ -29,7 +29,7 @@ void WeatherSystem::Init()
 	exposure = 30.0f;
 	timeSpeed = 1000.0f;
 	lightR = 1000.0f;
-	windDir = float4(0.5f, 0.0f, 1.0f, 1000.0f);
+	windDir = float4(0.5f, 0.0f, 1.0f, 10.0f * timeSpeed);
 	cloudBias = float3(0.0f);
 
 	Update();

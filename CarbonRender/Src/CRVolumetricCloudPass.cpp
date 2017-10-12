@@ -24,7 +24,7 @@ void VolumetricCloudPass::Render(PassOutput * input)
 {
 	Camera cam;
 	Camera* curCam = CameraManager::Instance()->GetCurrentCamera();
-	cam.SetPerspectiveCamera(curCam->GetCameraPara().x, 1.0f, 100000.0f);
+	cam.SetPerspectiveCamera(curCam->GetCameraPara().x, 0.01f, 2.0f);
 	cam.SetPosition(curCam->GetPosition());
 	cam.SetRotation(curCam->GetRotation());
 	cam.UpdateViewMatrix();
@@ -51,7 +51,7 @@ void VolumetricCloudPass::Render(PassOutput * input)
 		glBindTexture(GL_TEXTURE_2D, input->RTS[i]);
 	}
 
-	float3 camPos = CameraManager::Instance()->GetCurrentCamera()->GetPosition();
+	float3 camPos = cam.GetPosition();
 	float4 sunColor = WeatherSystem::Instance()->GetSunColor();
 	float4 zenithColor = WeatherSystem::Instance()->GetSkyUpColor();
 	float4 sunPos = WeatherSystem::Instance()->GetWsSunPos();
@@ -67,19 +67,21 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	glUniform1i(location, 4);
 	location = glGetUniformLocation(shaderProgram, "depthMap");
 	glUniform1i(location, 5);
-	location = glGetUniformLocation(shaderProgram, "wsCamPos");
-	glUniform3f(location, camPos.x, camPos.y, camPos.z);
-	location = glGetUniformLocation(shaderProgram, "cloudBoxSize");
-	glUniform4f(location, cloudBoxScale.x, cloudBoxScale.y, cloudBoxScale.z, cloudBoxScale.w);
+
 	location = glGetUniformLocation(shaderProgram, "sunColor");
 	glUniform3f(location, sunColor.x, sunColor.y, sunColor.z);
 	location = glGetUniformLocation(shaderProgram, "zenithColor");
 	glUniform3f(location, zenithColor.x, zenithColor.y, zenithColor.z);
+
+	location = glGetUniformLocation(shaderProgram, "wsCamPos");
+	glUniform3f(location, camPos.x, camPos.y, camPos.z);
 	location = glGetUniformLocation(shaderProgram, "wsSunPos");
 	glUniform3f(location, sunPos.x, sunPos.y, sunPos.z);
+
 	location = glGetUniformLocation(shaderProgram, "cloudBias");
 	glUniform3f(location, cloudBias.x, cloudBias.y, cloudBias.z);
 
+	cloudBox.SetPosition(camPos);
 	cloudBox.Render(shaderProgram, false);
 
 	glDisable(GL_DEPTH_TEST);
@@ -107,11 +109,8 @@ void VolumetricCloudPass::Render(PassOutput * input)
 
 void VolumetricCloudPass::Init()
 {
-	cloudBoxScale = float4(20000.0f, 1250.0f, 20000.0f, 2750.0f);
-	FbxImportManager::Instance()->ImportFbxModel("Box", &cloudBox);
+	FbxImportManager::Instance()->ImportFbxModel("sphere", &cloudBox);
 	cloudBox.GetReady4Rending();
-	cloudBox.SetPosition(float3(0.0f, cloudBoxScale.w, 0.0f));
-	cloudBox.SetScale(float3(cloudBoxScale.x, cloudBoxScale.y, cloudBoxScale.z));
 	shaderProgram = ShaderManager::Instance()->LoadShader("VolumatricCloud.vert", "VolumatricCloud.frag");
 	GenerateTex();
 }
