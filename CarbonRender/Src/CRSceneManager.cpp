@@ -32,32 +32,32 @@ void SceneManager::LoadScene()
 	Controller ctrl;
 	ctrl.Init();
 	ControllerManager::Instance()->Push(ctrl);
-	//return;
-	FbxImportManager::Instance()->ImportFbxModel("terrain", &terrain);
+
+	FbxImportManager::Instance()->ImportFbxModel("Plane", &terrain);
 	terrain.GetReady4Rending();
-	return;
+
+	FbxImportManager::Instance()->ImportFbxModel("HappyRecon", &recon);
+	recon.GetReady4Rending();
+	recon.SetPosition(float3(-6.0f, 0.0f, 6.0f));
+
+	FbxImportManager::Instance()->ImportFbxModel("dragon", &dragon);
+	dragon.GetReady4Rending();
+	dragon.SetPosition(float3(-6.0f, 0.0f, -4.0f));
+	dragon.SetRotation(float3(0.0f, 90.0f, 0.0f));
+
 	FbxImportManager::Instance()->ImportFbxModel("Sponza", &sponza);
 	sponza.GetReady4Rending();
-	sponza.SetPosition(float3(-1.0f, -0.2f, 0.0f));
 	sponza.SetRotation(float3(0.0f, 180.0f, 0.0f));
 
 	FbxImportManager::Instance()->ImportFbxModel("Type59", &type59);
 	type59.GetReady4Rending();
-	type59.SetPosition(float3(-1.0f, -0.2f, 0.0f));
-	type59.SetRotation(float3(0.0f, 0.0f, 0.0f));
-
-	FbxImportManager::Instance()->ImportFbxModel("dragon", &dragon);
-	dragon.GetReady4Rending();
-	dragon.SetPosition(float3(-2.0f, 0.1f, 14.0f));
-	dragon.SetRotation(float3(0.0f, 180.0f, 0.0f));
 }
 
 void SceneManager::DrawScene(GLuint shaderProgram)
 {
-	//return;
 	terrain.Render(shaderProgram);
-	return;
 	sponza.Render(shaderProgram);
-	type59.Render(shaderProgram);
 	dragon.Render(shaderProgram);
+	type59.Render(shaderProgram);
+	recon.Render(shaderProgram);
 }

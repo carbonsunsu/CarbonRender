@@ -114,6 +114,14 @@ float Luminance(vec3 color)
 	return dot(color, vec3(0.0396819152f, 0.458021790f, 0.00609653955f));
 }
 
+vec3 random3(vec3 p, float seed)
+{
+	float x = fract(sin(dot(p.xy * seed, vec2(12.9898f, 78.233f))) * 43758.5453f);
+	float y = fract(sin(dot(p.yz * seed, vec2(12.9898f, 78.233f))) * 43758.5453f);
+	float z = fract(sin(dot(p.zx * seed, vec2(12.9898f, 78.233f))) * 43758.5453f);
+	return vec3(x,y,z);
+}
+
 void main ()
 {
 	vec4 stencil = texture2D(stenMap, uv);
@@ -145,19 +153,28 @@ void main ()
 	float NoL = clamp(dot(wsN, wsL), 0.0f, 1.0f);
 	float NoU = clamp(dot(wsN, vec3(0.0f, 1.0f, 0.0f)), 0.0f, 1.0f);
 
-	vec3 lightColor = sunColor.rgb * directShadow;
+	vec3 lightColor = sunColor.rgb * directShadow + gi.rgb;
 	vec3 diffColor;
 	vec3 specColor;
 	float oneMinusMetallic;
 	GetDiffSpec(albedo.rgb, metallic, diffColor, specColor, oneMinusMetallic);
-	vec3 indirectDiff = (gi.rgb + textureLod(cubeMap, wsN, 10).rgb * 1.0f) * sunColor.rgb;
-	vec3 inditectSpec = IndirectSpecular (cubeMap, wsR, roughness);
+	vec3 ambientColor = vec3(0.0f);
+	for (int i = 0; i < 4; i++)
+	{
+		vec3 wsNoiseN = normalize(random3(wsN, i+1));
+		wsNoiseN = wsN + wsNoiseN * 1.0f;
+		wsNoiseN = normalize(wsNoiseN);
+		ambientColor += textureCube(cubeMap, wsNoiseN).rgb;
+	}
+	ambientColor *= 0.25f;
+	
+	vec3 indirectDiff = (gi.rgb + ambientColor) * indirectShadow;
+	vec3 inditectSpec = IndirectSpecular (cubeMap, wsR, roughness) * indirectShadow;
 
 	BRDF(diffColor, specColor, oneMinusMetallic, roughness, 
 		wsN, wsV, wsL, lightColor, 
 		indirectDiff, inditectSpec, pureLColor.rgb, para.rgb);
 
-	para.rgb *= indirectShadow;
 	refColor.rgb = inditectSpec * para.rgb;
 	refColor.a = roughness;
 }

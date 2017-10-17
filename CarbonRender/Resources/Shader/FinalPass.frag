@@ -24,7 +24,7 @@ void main ()
 					 lightColor.rgb + mix(cubeColor.rgb, ssrColor.rgb, ssrColor.a), 
 					 stencil.r);
 	
-	fColor.rgb = (1.0f - cloudColor.a) * fColor.rgb + cloudColor.rgb;
+	fColor.rgb = mix(fColor.rgb, cloudColor.rgb, cloudColor.a);
 	fColor.rgb = pow(fColor.rgb, vec3(0.45454545f));
 	fColor.a = 1.0f;
 }

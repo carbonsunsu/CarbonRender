@@ -30,28 +30,31 @@ const float CLOUD_HEIGHT = MAX_CLOUD_ALTITUDE - MIN_CLOUD_ALTITUDE;
 const int SAMPLE_COUNT_MAX = 128;
 const int SAMPLE_COUNT_MIN = 64;
 const float STEP_SIZE_MIN = 20.0f;
-const float STEP_SIZE_MAX = 50.0f;
+const float STEP_SIZE_MAX = 40.0f;
 const float Pi = 3.1415926f;
+const vec3 randomV[5] = vec3[5](vec3(-0.010735935, 0.01647018, 0.0062425877),
+			                     vec3(-0.06533369, 0.3647007, -0.13746321),
+								 vec3(-0.6539235, -0.016726388, -0.53000957),
+								 vec3(0.40958285, 0.0052428036, -0.5591124),
+								 vec3(-0.1465366, 0.09899267, 0.15571679));
 
 float Remap(float value, float oldMin, float oldMax, float newMin, float newMax)
 {
 	return newMin + (value - oldMin) / (oldMax - oldMin) * (newMax - newMin);
 }
 
-float GetHeightAttenFactor(vec3 pos)
+float GetHeightGradient(vec3 pos)
 {
 	float a = distance(pos, PLANET_CENTER);
 	a = (a - MIN_CLOUD_ALTITUDE - PLANET_RADIUS) / CLOUD_HEIGHT;
 	a = clamp(a, 0.0f, 1.0f);
-	a = pow(a, 0.3f);
+
 	return a;
 }
 
-float GetCloudTypeFactor(vec3 pos, vec4 typePara)
+float GetCloudTypeGradient(float heightGrad, vec4 typePara)
 {
-	float a = distance(pos, PLANET_CENTER);
-	a = (a - MIN_CLOUD_ALTITUDE - PLANET_RADIUS) / CLOUD_HEIGHT;
-	a = Remap(a, typePara.x, typePara.y, 0.0f, 1.0f) * Remap(a, typePara.z, typePara.w, 1.0, 0.0);
+	float a = Remap(heightGrad, typePara.x, typePara.y, 0.0f, 1.0f) * Remap(heightGrad, typePara.z, typePara.w, 1.0, 0.0);
 	a = clamp(a, 0.0f, 1.0f);
 
 	return a;	
@@ -74,7 +77,7 @@ vec3 UVW(vec3 p, float scale)
 float PowderBeers (float d, float p)
 {
 	float Powder = 1.0f - exp(-d * 2.0f);
-	float Beers = exp(-d * p);// max(exp(-d), exp(-d * 0.25f) * 0.7f);
+	float Beers = exp(-d * p) + 0.1f;
 
 	return clamp(2.0f * Powder * Beers, 0.0f, 1.0f);
 }
@@ -96,27 +99,28 @@ float SampleCloudDensity(vec3 pos, vec4 weather)
 	float lfFbm = noise.g * 0.625f + noise.b * 0.25f + noise.a * 0.125f;
 	lfFbm = Remap(1.0f - noise.r, -(1.0f - lfFbm), 1.0f, 0.0f, 1.0f);
 
-	vec4 stratusF = vec4(0.0f, 0.15f, 0.15f, 0.3f);
+	float heightGrad = GetHeightGradient(samplePos);
+
+	vec4 stratusF = vec4(0.0f, 0.1f, 0.2f, 0.3f);
 	stratusF *= 1.0f - clamp(weather.b * 2.0f, 0.0f, 1.0f);
-	vec4 cumulusF =vec4(0.1f, 0.3f, 0.4f, 0.6f);
+	vec4 cumulusF =vec4(0.1f, 0.2f, 0.5f, 0.6f);
 	cumulusF *= 1.0f - abs(weather.b - 0.5f) * 2.0f;
-	vec4 cumulonumbisF = vec4(0.0f, 0.2f, 0.7f, 0.9f);
+	vec4 cumulonumbisF = vec4(0.0f, 0.1f, 0.8f, 0.9f);
 	cumulonumbisF *= clamp(weather.b - 0.5f, 0.0f, 1.0f) * 2.0f;
-	float typeFactor = GetCloudTypeFactor(samplePos, stratusF + cumulusF + cumulonumbisF);
+	float typeGrad = GetCloudTypeGradient(heightGrad, stratusF + cumulusF + cumulonumbisF);
 	
-	float heightF = GetHeightAttenFactor(samplePos);
-	
-	lfFbm *= typeFactor * heightF;
+	lfFbm *= typeGrad;
 
 	lfFbm = Remap(lfFbm, weather.r, 1.0f, 0.0f, 1.0f);
 	lfFbm *= 1.0f - weather.r;
 
 	//do curl
-	//samplePos.xy += vec2(0.0f, 0.0f);
+	vec4 curlNoise = texture2D(curlMap, uvw.xy);
+	samplePos.xy += curlNoise.xy * (1.0f - heightGrad) * 100.0f;
 
-	noise = texture(worleyMap, uvw);
+	noise = texture(worleyMap, uvw * 0.1f);
 	float hfFbm = noise.r * 0.625f + noise.g * 0.25f + noise.b * 0.125f;
-	hfFbm = mix(hfFbm, 1.0f - hfFbm, clamp(heightF * 10.0f, 0.0f, 1.0f));
+	hfFbm = mix(hfFbm, 1.0f - hfFbm, clamp(heightGrad * 10.0f, 0.0f, 1.0f));
 	
 	float density = Remap(lfFbm, hfFbm * 0.2f, 1.0f, 0.0f, 1.0f);
 
@@ -131,8 +135,8 @@ void main ()
 		return;
 	}
 
-	float Coverage = 0.9f;
-	float Precipitation = 1.0f;
+	float Coverage = 0.8f;
+	float Precipitation = 0.3f;
 
 	vec3 ray = normalize(wsP - wsCamPos);
 	vec3 vL = normalize(PLANET_CENTER - wsCamPos);
@@ -185,17 +189,19 @@ void main ()
 			
 			for (int j = 0; j < 5; j++)
 			{
-				lightSamplePos += lightRay * STEP_SIZE_MAX;
+				vec3 bias = randomV[j];
+				bias = normalize(bias);
+				lightSamplePos = samplePos + normalize(lightRay + bias * (j+1)) * STEP_SIZE_MAX * (j+1);
 
 				lightRayDensity += SampleCloudDensity(lightSamplePos, weatherData);
 			}
 			
 			float pb = PowderBeers(lightRayDensity, weatherData.y);
 			float hg = HG(-ray, normalize(-wsSunPos));
-			vec3 sampleColor = sunColor * hg * pb + zenithColor * pb;
+			vec3 sampleColor = sunColor * hg * pb;
+			sampleColor += zenithColor * pow(GetHeightGradient(samplePos), 0.5f) * max(pb, 0.7f);
 
-			//sampleColor *= baseCloudDensity;
-			sampleColor *= max(1.0f - cloudColor.a, 0.1f);
+			sampleColor *= max(1.0f - cloudColor.a, 0.0f);
 			cloudColor.rgb += sampleColor;
 
 			cloudColor.a += baseCloudDensity;

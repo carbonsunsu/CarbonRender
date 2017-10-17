@@ -236,5 +236,7 @@ void VolumetricCloudPass::GenerateTex()
 	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_REPEAT);
 	glTexImage3D(GL_TEXTURE_3D, 0, GL_RGB, 32, 32, 32, 0, GL_RGB, GL_UNSIGNED_BYTE, worley);
 
+	noises[2] = TextureManager::Instance()->LoadTexture("CurlNoise");
+
 	weatherData = TextureManager::Instance()->LoadTexture("Weather");
 }
