@@ -22,9 +22,6 @@ void SSRPass::GetReady4Render(PassOutput * input)
 void SSRPass::Render(PassOutput * input)
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glDisable(GL_DEPTH_TEST);
-	glDisable(GL_CULL_FACE);
 
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
 	glViewport(0, 0, size.w * targetScale, size.h * targetScale);
@@ -47,6 +44,8 @@ void SSRPass::Render(PassOutput * input)
 	glUniform1i(location, 4);
 	location = glGetUniformLocation(shaderProgram, "pMap");
 	glUniform1i(location, 5);
+	location = glGetUniformLocation(shaderProgram, "stenMap");
+	glUniform1i(location, 6);
 	location = glGetUniformLocation(shaderProgram, "viewMat");
 	glUniformMatrix4fv(location, 1, GL_FALSE, CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix().matrix);
 	location = glGetUniformLocation(shaderProgram, "projectMat");
@@ -59,15 +58,13 @@ void SSRPass::Render(PassOutput * input)
 	glBindTexture(GL_TEXTURE_2D, output.RTS[0]);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
-	glEnable(GL_CULL_FACE);
-	glEnable(GL_DEPTH_TEST);
-	glViewport(0, 0, size.w, size.h);
-
 	for (int i = 0; i < input->cout; i++)
 	{
 		glActiveTexture(GL_TEXTURE1 + i);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
+
+	glViewport(0, 0, size.w, size.h);
 }
 
 void SSRPass::Init()

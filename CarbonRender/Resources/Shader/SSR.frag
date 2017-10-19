@@ -9,6 +9,7 @@ uniform sampler2D refMap;
 uniform sampler2D paraMap;
 uniform sampler2D nMap;
 uniform sampler2D pMap;
+uniform sampler2D stenMap;
 uniform mat4 viewMat;
 uniform mat4 projectMat;
 uniform vec4 wsCamPos;
@@ -19,6 +20,13 @@ const float edgeFadingStart = 0.75f;
 
 void main ()
 {
+	vec4 stencil = texture2D(stenMap, uv);
+	if (stencil.r <= 0)
+	{
+		discard;
+		return;
+	}
+
 	vec4 para = texture2D(paraMap, uv);
 	vec4 wsP = texture2D(pMap, uv);
 	vec4 wsN = texture2D(nMap, uv);
@@ -41,6 +49,7 @@ void main ()
 		 vec2 sampleUV = ssP.xy * 0.5f + 0.5f;
 		 if (sampleUV.x > 1.0f || sampleUV.x < 0.0f || sampleUV.y > 1.0f || sampleUV.y < 0.0f) continue;
 		 vec4 sampleN = texture2D(nMap, sampleUV);
+
 		 if (abs(ssP.w) - sampleN.a > 0.0f)
 		 {
 			v -= wsR * stepSize;

@@ -63,6 +63,13 @@ inline GLuint SetGLRenderTexture(GLsizei w, GLsizei h, GLint internalFormat, GLe
 	return rt;
 }
 
+inline void SetGLRenderTexture(GLuint rt, GLenum attach)
+{
+	glFramebufferTexture2D(GL_FRAMEBUFFER, attach, GL_TEXTURE_2D, rt, 0);
+
+	return;
+}
+
 inline GLuint SetGLCubeRenderTexture(GLsizei size, GLint internalFormat, GLenum format, GLenum type)
 {
 	GLuint rt;

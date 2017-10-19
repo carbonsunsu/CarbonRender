@@ -39,12 +39,13 @@ void SMPass::Render(PassOutput * input)
 	output.mats[0] = CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix() * CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix();
 
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
 	glViewport(0, 0, size.w * shadowMapScale, size.h * shadowMapScale);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 	glBindRenderbuffer(GL_RENDERBUFFER, dBuffer);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_DEPTH_BUFFER_BIT);
 
 	ShaderManager::Instance()->UseShader(shaderProgram);
 	SceneManager::Instance()->DrawScene(shaderProgram);
@@ -57,6 +58,7 @@ void SMPass::Render(PassOutput * input)
 	glGenerateMipmap(GL_TEXTURE_2D);
 
 	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_CULL_FACE);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glBindRenderbuffer(GL_RENDERBUFFER, 0);
 	glViewport(0, 0, size.w, size.h);

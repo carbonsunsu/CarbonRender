@@ -26,9 +26,6 @@ void LightPass::GetReady4Render(PassOutput * input)
 void LightPass::Render(PassOutput * input)
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glDisable(GL_DEPTH_TEST);
-	glDisable(GL_CULL_FACE);
 
 	for (int i = 0; i < input->cout - 1; i++)
 	{
@@ -68,9 +65,6 @@ void LightPass::Render(PassOutput * input)
 	glUniform3f(location, wsCamPos.x, wsCamPos.y, wsCamPos.z);
 
 	DrawFullScreenQuad();
-
-	glEnable(GL_CULL_FACE);
-	glEnable(GL_DEPTH_TEST);
 
 	for (int i = 0; i < input->cout - 1; i++)
 	{

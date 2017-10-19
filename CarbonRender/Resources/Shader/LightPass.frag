@@ -135,7 +135,7 @@ void main ()
 	vec4 N = texture2D(normalMap, uv);
 	vec4 P = texture2D(pMap, uv);
 	vec4 shadowFactor = texture2D(sMap, uv);
-	vec4 gi = texture2D(giMap, uv);
+	vec4 gi = texture2D(giMap, uv) * 5.0f;
 
 	vec3 wsN = N.xyz;
 	vec3 wsP = P.xyz;
@@ -153,7 +153,7 @@ void main ()
 	float NoL = clamp(dot(wsN, wsL), 0.0f, 1.0f);
 	float NoU = clamp(dot(wsN, vec3(0.0f, 1.0f, 0.0f)), 0.0f, 1.0f);
 
-	vec3 lightColor = sunColor.rgb * directShadow + gi.rgb;
+	vec3 lightColor = sunColor.rgb * directShadow;
 	vec3 diffColor;
 	vec3 specColor;
 	float oneMinusMetallic;

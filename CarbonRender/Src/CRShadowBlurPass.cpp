@@ -5,24 +5,20 @@ void ShadowBlurPass::GetReady4Render(PassOutput * input)
 	glGenFramebuffers(1, &fbo);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-	GLuint sRt0;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
 	tempRt = SetGLRenderTexture(size.w, size.h, GL_RGB, GL_RGB, GL_UNSIGNED_BYTE, GL_COLOR_ATTACHMENT0);
-	sRt0 = SetGLRenderTexture(size.w, size.h, GL_RGB, GL_RGB, GL_UNSIGNED_BYTE, GL_COLOR_ATTACHMENT1);
+	SetGLRenderTexture(input->RTS[0], GL_COLOR_ATTACHMENT1);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	output.cout = 1;
 	output.RTS = new GLuint[output.cout];
-	output.RTS[0] = sRt0;
+	output.RTS[0] = input->RTS[0];
 }
 
 void ShadowBlurPass::Render(PassOutput * input)
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glDisable(GL_DEPTH_TEST);
-	glDisable(GL_CULL_FACE);
 
 	//blur x
 	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
@@ -38,6 +34,8 @@ void ShadowBlurPass::Render(PassOutput * input)
 	ShaderManager::Instance()->UseShader(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "shadowMap");
 	glUniform1i(location, 1);
+	location = glGetUniformLocation(shaderProgram, "stenMap");
+	glUniform1i(location, 2);
 	location = glGetUniformLocation(shaderProgram, "steps");
 	glUniform4f(location, step / size.w, 0.0f, step, 0.0f);
 
@@ -50,15 +48,14 @@ void ShadowBlurPass::Render(PassOutput * input)
 	glActiveTexture(GL_TEXTURE1 + input->cout);
 	glBindTexture(GL_TEXTURE_2D, tempRt);
 
-	location = glGetUniformLocation(shaderProgram, "shadowMap");
+	location = glGetUniformLocation(shaderProgram, "stenMap");
 	glUniform1i(location, 2);
+	location = glGetUniformLocation(shaderProgram, "shadowMap");
+	glUniform1i(location, 3);
 	location = glGetUniformLocation(shaderProgram, "steps");
 	glUniform4f(location, 0.0f, step / size.h, 0.0f, step);
 
 	DrawFullScreenQuad();
-
-	glEnable(GL_CULL_FACE);
-	glEnable(GL_DEPTH_TEST);
 
 	for (int i = 0; i < input->cout; i++)
 	{

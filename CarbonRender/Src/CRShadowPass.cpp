@@ -22,9 +22,6 @@ void ShadowPass::GetReady4Render(PassOutput * input)
 void ShadowPass::Render(PassOutput * input)
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glDisable(GL_DEPTH_TEST);
-	glDisable(GL_CULL_FACE);
 
 	for (int i = 0; i < input->cout; i++)
 	{
@@ -37,14 +34,13 @@ void ShadowPass::Render(PassOutput * input)
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "smMap");
 	glUniform1i(location, 2);
+	location = glGetUniformLocation(shaderProgram, "stenMap");
+	glUniform1i(location, 3);
 
 	location = glGetUniformLocation(shaderProgram, "smMat");
 	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[0].matrix);
 
 	DrawFullScreenQuad();
-
-	glEnable(GL_CULL_FACE);
-	glEnable(GL_DEPTH_TEST);
 
 	for (int i = 0; i < input->cout; i++)
 	{

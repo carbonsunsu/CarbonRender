@@ -32,6 +32,7 @@ void GPass::Render(PassOutput * input)
 	CameraManager::Instance()->GetCurrentCamera()->UpdateViewMatrix();
 
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 	glBindRenderbuffer(GL_RENDERBUFFER, dBuffer);
@@ -40,9 +41,11 @@ void GPass::Render(PassOutput * input)
 	ShaderManager::Instance()->UseShader(shaderProgram);
 	SceneManager::Instance()->DrawScene(shaderProgram);
 
-	glDisable(GL_DEPTH_TEST);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glBindRenderbuffer(GL_RENDERBUFFER, 0);
+
+	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_CULL_FACE);
 }
 
 void GPass::Init()

@@ -12,9 +12,6 @@ void FinalPass::GetReady4Render(PassOutput* input)
 void FinalPass::Render(PassOutput* input)
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glDisable(GL_DEPTH_TEST);
-	glDisable(GL_CULL_FACE);
 
 	for (int i = 0; i < input->cout; i++)
 	{
@@ -37,9 +34,6 @@ void FinalPass::Render(PassOutput* input)
 	glUniform1i(location, 6);
 
 	DrawFullScreenQuad();
-
-	glEnable(GL_CULL_FACE);
-	glEnable(GL_DEPTH_TEST);
 
 	for (int i = 0; i < input->cout; i++)
 	{

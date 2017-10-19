@@ -6,10 +6,18 @@ in vec2 uv;
 
 uniform sampler2D pMap;
 uniform sampler2D smMap;
+uniform sampler2D stenMap;
 uniform mat4 smMat;
 
 void main ()
 {
+	vec4 stencil = texture2D(stenMap, uv);
+	if (stencil.r <= 0)
+	{
+		discard;
+		return;
+	}
+
 	vec4 P = texture2D(pMap, uv);
 	vec3 wsP = P.xyz;
 	vec4 smP = smMat * vec4(wsP, 1.0f);

@@ -10,6 +10,7 @@ uniform sampler2D nMap;
 uniform sampler2D pMap;
 uniform sampler2D sMap;
 uniform sampler2D rnMap;
+uniform sampler2D stenMap;
 uniform vec3 scalePara;
 uniform mat3 viewMat;
 
@@ -35,6 +36,13 @@ const vec3 vSphere[12] = vec3[](vec3(-0.010735935, 0.01647018, 0.0062425877),
 
 void main ()
 {
+	vec4 stencil = texture2D(stenMap, uv);
+	if (stencil.r <= 0)
+	{
+		discard;
+		return;
+	}
+
 	vec2 rnUV = uv * 20.0f;
 	vec4 shadow = texture2D(sMap, uv);
 	vec4 wsN = texture2D(nMap, uv);

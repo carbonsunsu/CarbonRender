@@ -14,7 +14,7 @@ private:
 
 	MeshObject terrain;
 	MeshObject sponza;
-	MeshObject type59;
+	MeshObject tank;
 	MeshObject dragon;
 	MeshObject recon;
 

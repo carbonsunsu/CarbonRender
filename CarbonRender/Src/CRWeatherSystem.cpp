@@ -27,7 +27,7 @@ void WeatherSystem::Init()
 	hour = 12.0f;
 	turbidity = 2.0f;
 	exposure = 30.0f;
-	timeSpeed = 100.0f;
+	timeSpeed = 1000.0f;
 	lightR = 1000.0f;
 	windDir = float4(0.5f, 0.0f, 1.0f, 10.0f * timeSpeed);
 	cloudBias = float3(0.0f);

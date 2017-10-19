@@ -44,9 +44,8 @@ void Init(int argc, char** argv)
 	cout << str << endl;
 
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	glEnable(GL_CULL_FACE);
-	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_TEXTURE_3D);
 
 	SceneManager::Instance()->Init();
 	SceneManager::Instance()->LoadScene();

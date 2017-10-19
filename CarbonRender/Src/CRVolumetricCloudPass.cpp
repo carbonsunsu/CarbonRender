@@ -29,8 +29,10 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	cam.SetRotation(curCam->GetRotation());
 	cam.UpdateViewMatrix();
 	CameraManager::Instance()->Push(cam);
+
 	glEnable(GL_DEPTH_TEST);
-	glDisable(GL_CULL_FACE);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_FRONT);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 	glBindRenderbuffer(GL_RENDERBUFFER, dBuffer);
@@ -84,8 +86,6 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	cloudBox.SetPosition(camPos);
 	cloudBox.Render(shaderProgram, false);
 
-	glDisable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glBindRenderbuffer(GL_RENDERBUFFER, 0);
 
@@ -103,6 +103,10 @@ void VolumetricCloudPass::Render(PassOutput * input)
 		glActiveTexture(GL_TEXTURE5 + i);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
+
+	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
 
 	CameraManager::Instance()->Pop();
 }

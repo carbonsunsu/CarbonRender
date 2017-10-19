@@ -46,31 +46,40 @@ void RenderPassManager::Draw()
 	PassOutput* cloud = cloudPass.Draw(&cInput);//cloud
 
 	PassOutput sInput;
-	sInput.cout = 2;
+	sInput.cout = 3;
 	sInput.RTS = new GLuint[sInput.cout];
 	sInput.RTS[0] = g->RTS[2];
 	sInput.RTS[1] = sm->RTS[0];
+	sInput.RTS[2] = g->RTS[3];
 	sInput.mats = new Matrix4x4[1];
 	sInput.mats[0] = sm->mats[0];
 	PassOutput* shadow = shadowPass.Draw(&sInput);//shadow
 
 	PassOutput aoInput;
-	aoInput.cout = 3;
+	aoInput.cout = 4;
 	aoInput.RTS = new GLuint[aoInput.cout];
 	aoInput.RTS[0] = g->RTS[1];
 	aoInput.RTS[1] = g->RTS[2];
 	aoInput.RTS[2] = shadow->RTS[0];
+	aoInput.RTS[3] = g->RTS[3];
 	PassOutput* ao = ssaoPass.Draw(&aoInput);//shadow and ao
-	PassOutput* shadowBlured = shadowBlurPass.Draw(ao);
+
+	PassOutput blurInput;
+	blurInput.cout = 2;
+	blurInput.RTS = new GLuint[blurInput.cout];
+	blurInput.RTS[0] = ao->RTS[0];
+	blurInput.RTS[1] = g->RTS[3];
+	PassOutput* shadowBlured = shadowBlurPass.Draw(&blurInput);
 
 	PassOutput giInput;
-	giInput.cout = 5;
+	giInput.cout = 6;
 	giInput.RTS = new GLuint[giInput.cout];
 	giInput.RTS[0] = g->RTS[2];
 	giInput.RTS[1] = g->RTS[1];
 	giInput.RTS[2] = sm->RTS[0];
 	giInput.RTS[3] = sm->RTS[1];
 	giInput.RTS[4] = sm->RTS[2];
+	giInput.RTS[5] = g->RTS[3];
 	giInput.mats = new Matrix4x4[1];
 	giInput.mats[0] = sm->mats[0];
 	PassOutput* gi = giPass.Draw(&giInput);//GI
@@ -88,13 +97,14 @@ void RenderPassManager::Draw()
 	PassOutput* light = lightPass.Draw(&lInput);//pureLight, refColor, indSpecPara
 
 	PassOutput rInput;
-	rInput.cout = 5;
+	rInput.cout = 6;
 	rInput.RTS = new GLuint[rInput.cout];
 	rInput.RTS[0] = light->RTS[0];
 	rInput.RTS[1] = light->RTS[1];
 	rInput.RTS[2] = light->RTS[2];
 	rInput.RTS[3] = g->RTS[1];
 	rInput.RTS[4] = g->RTS[2];
+	rInput.RTS[5] = g->RTS[3];
 	PassOutput* ssr = ssrPass.Draw(&rInput);//SSR
 
 	PassOutput finalInput;

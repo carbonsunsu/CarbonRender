@@ -18,7 +18,7 @@ void SkyRenderPass::GetReady4Render(PassOutput* input)
 
 	GLuint rt0, cubeRt;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	rt0 = SetGLRenderTexture(size.w, size.h, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT0);
+	rt0 = SetGLRenderTexture(size.w, size.h, GL_RGB16F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT0);
 
 	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
 	glDrawBuffers(1, drawBuffers);
@@ -47,9 +47,10 @@ void SkyRenderPass::Render(PassOutput* input)
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
 	glViewport(0, 0, size.w, size.h);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_CULL_FACE);
 	glCullFace(GL_FRONT);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 	
 	ShaderManager::Instance()->UseShader(shaderProgram);
 	float* shaderParas = WeatherSystem::Instance()->GetShaderParas();
@@ -104,11 +105,13 @@ void SkyRenderPass::Render(PassOutput* input)
 	glViewport(0, 0, size.w, size.h);
 	CameraManager::Instance()->Pop();
 
-	glCullFace(GL_BACK);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	glActiveTexture(GL_TEXTURE4);
 	glBindTexture(GL_TEXTURE_2D, 0);
+
+	glDisable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
 
 	CameraManager::Instance()->Pop();
 }

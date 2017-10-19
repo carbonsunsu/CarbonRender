@@ -35,7 +35,7 @@ void SceneManager::LoadScene()
 
 	FbxImportManager::Instance()->ImportFbxModel("Plane", &terrain);
 	terrain.GetReady4Rending();
-
+	
 	FbxImportManager::Instance()->ImportFbxModel("HappyRecon", &recon);
 	recon.GetReady4Rending();
 	recon.SetPosition(float3(-6.0f, 0.0f, 6.0f));
@@ -49,8 +49,8 @@ void SceneManager::LoadScene()
 	sponza.GetReady4Rending();
 	sponza.SetRotation(float3(0.0f, 180.0f, 0.0f));
 
-	FbxImportManager::Instance()->ImportFbxModel("Type59", &type59);
-	type59.GetReady4Rending();
+	FbxImportManager::Instance()->ImportFbxModel("M48", &tank);
+	tank.GetReady4Rending();
 }
 
 void SceneManager::DrawScene(GLuint shaderProgram)
@@ -58,6 +58,6 @@ void SceneManager::DrawScene(GLuint shaderProgram)
 	terrain.Render(shaderProgram);
 	sponza.Render(shaderProgram);
 	dragon.Render(shaderProgram);
-	type59.Render(shaderProgram);
+	tank.Render(shaderProgram);
 	recon.Render(shaderProgram);
 }
