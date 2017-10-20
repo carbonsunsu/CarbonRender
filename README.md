@@ -1,21 +1,21 @@
 # CarbonRender
 A real-time rendering engine based on C++ and OpenGL
 
-# **Features:**
-**1** .Deferred Shading pipeline
+### **Features:**
+* Deferred Shading pipeline
 
-**2** .Physically based rendering
+* Physically based rendering
 
-**3** .Linear space lighting
+* Linear space lighting
 
-**4** .ESM shadow
+* ESM shadow
 
-**5** .Alchemy AO
+* Alchemy AO
 
-**6** .Real-time RSM GI, no precomputing
+* Real-time RSM GI, no precomputing
 
-**7** .Screen space reflection
+* Screen space reflection
 
-**8** .Real-time volumetric cloud
+* Real-time volumetric cloud
 
-**9** .Real-time atmosphere scattering
+* Real-time atmosphere scattering
