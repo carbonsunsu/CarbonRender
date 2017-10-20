@@ -15,7 +15,7 @@ uniform mat4 projectMat;
 uniform vec4 wsCamPos;
 
 const float maxStepSize = 1.0f;
-const int MaxStep = 16;
+const int MaxStep = 32;
 const float edgeFadingStart = 0.75f;
 
 void main ()

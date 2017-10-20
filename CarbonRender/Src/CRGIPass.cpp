@@ -65,6 +65,6 @@ void GIPass::Render(PassOutput * input)
 
 void GIPass::Init()
 {
-	targetScale = 0.25f;
+	targetScale = 0.5f;
 	shaderProgram = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "GIPass.frag");
 }

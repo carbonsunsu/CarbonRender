@@ -29,6 +29,7 @@ void ShadowPass::Render(PassOutput * input)
 		glBindTexture(GL_TEXTURE_2D, input->RTS[i]);
 	}
 
+	WindowSize size = WindowManager::Instance()->GetWindowSize();
 	ShaderManager::Instance()->UseShader(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "pMap");
 	glUniform1i(location, 1);
@@ -36,6 +37,8 @@ void ShadowPass::Render(PassOutput * input)
 	glUniform1i(location, 2);
 	location = glGetUniformLocation(shaderProgram, "stenMap");
 	glUniform1i(location, 3);
+	location = glGetUniformLocation(shaderProgram, "stepUnit");
+	glUniform2f(location, 1.0f / size.w, 1.0f / size.h);
 
 	location = glGetUniformLocation(shaderProgram, "smMat");
 	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[0].matrix);

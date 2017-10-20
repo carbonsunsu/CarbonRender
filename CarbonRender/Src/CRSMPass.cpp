@@ -8,7 +8,7 @@ void SMPass::GetReady4Render(PassOutput * input)
 	GLuint posDepth, vplAlbedo, vplNormal;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
 	posDepth = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT0, true);
-	vplAlbedo = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT1, true);
+	vplAlbedo = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT1);
 	vplNormal = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT2, true);
 
 	dBuffer = SetGLDepthBuffer(size.w * shadowMapScale, size.h * shadowMapScale);
@@ -52,8 +52,6 @@ void SMPass::Render(PassOutput * input)
 
 	glBindTexture(GL_TEXTURE_2D, output.RTS[0]);
 	glGenerateMipmap(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, output.RTS[1]);
-	glGenerateMipmap(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, output.RTS[2]);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
@@ -68,7 +66,7 @@ void SMPass::Render(PassOutput * input)
 
 void SMPass::Init()
 {
-	shadowMapScale = 4;
+	shadowMapScale = 2;
 	followCam = false;
 	shaderProgram = ShaderManager::Instance()->LoadShader("SM.vert", "SM.frag");
 }
