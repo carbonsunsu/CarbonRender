@@ -5,6 +5,7 @@
 #include "..\Inc\CRFbxImportManager.h"
 #include "..\Inc\CRCameraManager.h"
 #include "..\Inc\CRControllerManager.h"
+#include "..\Inc\CRFileReader.h"
 
 class SceneManager
 {
@@ -18,6 +19,7 @@ private:
 	MeshObject dragon;
 	MeshObject recon;
 
+	MeshObject bunny[10];
 public:
 	~SceneManager();
 	static SceneManager* Instance();
