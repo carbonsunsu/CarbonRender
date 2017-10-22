@@ -250,5 +250,8 @@
     <None Include="Resources\Shader\VolumatricCloud.vert">
       <Filter>Shader</Filter>
     </None>
+    <None Include="Resources\Shader\GIDenoise.frag">
+      <Filter>Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

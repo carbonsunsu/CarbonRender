@@ -73,6 +73,7 @@
   <ItemGroup>
     <None Include="Resources\Shader\Atmosphere.frag" />
     <None Include="Resources\Shader\Atmosphere.vert" />
+    <None Include="Resources\Shader\GIDenoise.frag" />
     <None Include="Resources\Shader\GIPass.frag" />
     <None Include="Resources\Shader\ShadowBlur.frag" />
     <None Include="Resources\Shader\ShadowPass.frag" />

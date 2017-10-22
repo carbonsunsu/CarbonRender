@@ -12,7 +12,7 @@ private:
 	void GetReady4Render(PassOutput* input);
 	void Render(PassOutput* input);
 
-	float step = 1.0f;
+	float stepSize = 1.0f;
 	GLuint tempRt;
 public:
 	void Init();

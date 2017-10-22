@@ -12,7 +12,7 @@ uniform sampler2D vplAMap;
 uniform sampler2D vplNMap;
 uniform sampler2D stenMap;
 uniform mat4 smMat;
-uniform vec2 scale;
+uniform vec2 stepUnit;
 
 const float vplLod = 5.5f;
 const int r = 50;
@@ -54,7 +54,7 @@ void main ()
 	vec3 smP = (smMat * vec4(wsP, 1.0f)).xyz;
 	vec2 smUV = smP.xy * 0.5f + 0.5f;
 	vec3 gi = vec3(0.0f, 0.0f, 0.0f);
-	vec2 sampleR = scale * r;
+	vec2 sampleR = stepUnit * r;
 	int sampleNum2 = sampleNum * sampleNum;
 
 	for (int i = 0; i < sampleNum2; i++)

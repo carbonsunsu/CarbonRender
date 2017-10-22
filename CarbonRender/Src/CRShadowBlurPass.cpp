@@ -36,8 +36,8 @@ void ShadowBlurPass::Render(PassOutput * input)
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "stenMap");
 	glUniform1i(location, 2);
-	location = glGetUniformLocation(shaderProgram, "steps");
-	glUniform4f(location, step / size.w, 0.0f, step, 0.0f);
+	location = glGetUniformLocation(shaderProgram, "stepUnit");
+	glUniform3f(location, stepSize / size.w, 0.0f, stepSize);
 
 	DrawFullScreenQuad();
 
@@ -52,8 +52,8 @@ void ShadowBlurPass::Render(PassOutput * input)
 	glUniform1i(location, 2);
 	location = glGetUniformLocation(shaderProgram, "shadowMap");
 	glUniform1i(location, 3);
-	location = glGetUniformLocation(shaderProgram, "steps");
-	glUniform4f(location, 0.0f, step / size.h, 0.0f, step);
+	location = glGetUniformLocation(shaderProgram, "stepUnit");
+	glUniform3f(location, 0.0f, stepSize / size.h, stepSize);
 
 	DrawFullScreenQuad();
 
@@ -69,5 +69,5 @@ void ShadowBlurPass::Render(PassOutput * input)
 void ShadowBlurPass::Init()
 {
 	shaderProgram = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "ShadowBlur.frag");
-	step = 1.0f;
+	stepSize = 1.0f;
 }

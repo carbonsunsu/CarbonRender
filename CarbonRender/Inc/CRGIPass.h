@@ -13,6 +13,9 @@ private:
 	void Render(PassOutput* input);
 
 	float targetScale = 0.25f;
+	GLuint denoiseShaderProgram;
+	GLuint denoiseRt;
+	float denoiseStepSize;
 public:
 	void Init();
 };

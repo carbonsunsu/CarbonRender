@@ -135,7 +135,7 @@ void main ()
 	vec4 N = texture2D(normalMap, uv);
 	vec4 P = texture2D(pMap, uv);
 	vec4 shadowFactor = texture2D(sMap, uv);
-	vec4 gi = texture2D(giMap, uv) * 25.0f;
+	vec4 gi = texture2D(giMap, uv) * 50.0f;
 
 	vec3 wsN = N.xyz;
 	vec3 wsP = P.xyz;

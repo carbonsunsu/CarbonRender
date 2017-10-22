@@ -1,18 +1,18 @@
 #version 430
 #define PI 3.14159265359f
-#define SIGMA 10.0
+#define SIGMA 10.0f
 
 layout(location = 0) out vec4 sColor;
 
 in vec2 uv;
 
-uniform vec4 steps;
+uniform vec3 stepUnit;
 uniform sampler2D shadowMap;
 uniform sampler2D stenMap;
 
-float GausianFacotr (vec2 uv, float s)
+float GetWeight (float dis)
 {
-	return 0.5f * exp( -(uv.x*uv.x + uv.y*uv.y)/(2*s*s) ) / (PI*s*s);
+	return exp(-0.5f * pow(dis / SIGMA, 2.0f));
 }
 
 void main ()
@@ -25,26 +25,22 @@ void main ()
 	}
 
 	vec2 sumColor = vec2(0.0f);
-	float sumFactor = 0.0f;
-	float gFactor;
-	vec2 sampleBias;
+	float sumWeight = 0.0f;
+	float weight;
 	
-	gFactor = GausianFacotr(steps.zw * 0, SIGMA);
-	sumFactor += gFactor;
+	weight = GetWeight(0);
+	sumWeight += weight;
 	vec4 sMap = texture2D(shadowMap, uv);
-	sumColor += sMap.rb * gFactor;
+	sumColor += sMap.rb * weight;
 
-	for (int i = 1; i < 5; i++)
+	for (int i = 1; i < 9; i++)
 	{
-		gFactor = GausianFacotr(steps.zw * i, SIGMA);
-		sumFactor += gFactor;
-		sumColor += texture2D(shadowMap, uv + steps.xy * i).rb * gFactor;
-
-		gFactor = GausianFacotr(steps.zw * -i, SIGMA);
-		sumFactor += gFactor;
-		sumColor += texture2D(shadowMap, uv + steps.xy * -i).rb * gFactor;
+		weight = GetWeight(stepUnit.z * i);
+		sumWeight += weight * 2.0f;
+		sumColor += texture2D(shadowMap, uv + stepUnit.xy * i).rb * weight;
+		sumColor += texture2D(shadowMap, uv + stepUnit.xy * -i).rb * weight;
 	}
-	sumColor = sumColor / sumFactor;
+	sumColor = sumColor / sumWeight;
 
 	sColor = vec4(sumColor.r, 0.0f, sumColor.g, 1.0f);
 }
