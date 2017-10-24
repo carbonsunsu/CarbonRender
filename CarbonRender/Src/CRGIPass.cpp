@@ -34,6 +34,7 @@ void GIPass::Render(PassOutput * input)
 	}
 
 	ShaderManager::Instance()->UseShader(shaderProgram);
+	float4 sunColor = WeatherSystem::Instance()->GetSunColor() * 50.0f;
 	GLint location = glGetUniformLocation(shaderProgram, "pMap");
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "nMap");
@@ -52,6 +53,8 @@ void GIPass::Render(PassOutput * input)
 
 	location = glGetUniformLocation(shaderProgram, "stepUnit");
 	glUniform2f(location, 1.0f / size.w, 1.0f / size.h);
+	location = glGetUniformLocation(shaderProgram, "sunColor");
+	glUniform3f(location, sunColor.x, sunColor.y, sunColor.z);
 
 	DrawFullScreenQuad();
 

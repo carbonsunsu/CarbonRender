@@ -13,6 +13,7 @@ uniform sampler2D vplNMap;
 uniform sampler2D stenMap;
 uniform mat4 smMat;
 uniform vec2 stepUnit;
+uniform vec3 sunColor;
 
 const float vplLod = 5.5f;
 const int r = 50;
@@ -69,5 +70,5 @@ void main ()
 		gi += SampleVPL(vplUv, wsP, wsN);
 	}
 
-	giColor = vec4(gi / sampleNum, 1.0f);
+	giColor = vec4(gi / sampleNum * sunColor, 1.0f);
 }

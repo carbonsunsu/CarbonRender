@@ -11,8 +11,7 @@ layout(location = 2) out vec4 para;
 
 in vec2 uv;
 
-uniform vec4 zenithColor;
-uniform vec4 sunColor;
+uniform vec3 sunColor;
 uniform vec3 wsSunPos;
 uniform vec3 wsCamPos;
 uniform sampler2D albedoMap;
@@ -23,12 +22,27 @@ uniform sampler2D stenMap;
 uniform samplerCube cubeMap;
 uniform sampler2D giMap;
 
-vec3 IndirectSpecular (samplerCube tex, vec3 r, float roughness)
+vec3 Random(vec3 p, float seed)
 {
-	float s = roughness * (1.7f - 0.7f * roughness);
-	float mip = roughness * 6;
+	float x = fract(sin(dot(p.xy * seed, vec2(12.9898f, 78.233f))) * 43758.5453f);
+	float y = fract(sin(dot(p.yz * seed, vec2(12.9898f, 78.233f))) * 43758.5453f);
+	float z = fract(sin(dot(p.zx * seed, vec2(12.9898f, 78.233f))) * 43758.5453f);
+	return vec3(x,y,z);
+}
 
-	return textureLod(cubeMap, r, mip).rgb;
+vec3 ConeTracingCube (vec3 uvw, float roughness)
+{
+	vec3 ambientColor = vec3(0.0f);
+	for (int i = 0; i < 4; i++)
+	{
+		vec3 wsNoiseR = normalize(Random(uvw, i * 10.0f + 10.0f));
+		wsNoiseR = uvw + wsNoiseR * roughness;
+		wsNoiseR = normalize(wsNoiseR);
+		ambientColor += textureCube(cubeMap, wsNoiseR).rgb;
+	}
+	ambientColor *= 0.25f;
+
+	return ambientColor;
 }
 
 void GetDiffSpec (vec3 albedo, float metallic, out vec3 diffColor, out vec3 specColor, out float oneMinusMetallic)
@@ -114,14 +128,6 @@ float Luminance(vec3 color)
 	return dot(color, vec3(0.0396819152f, 0.458021790f, 0.00609653955f));
 }
 
-vec3 random3(vec3 p, float seed)
-{
-	float x = fract(sin(dot(p.xy * seed, vec2(12.9898f, 78.233f))) * 43758.5453f);
-	float y = fract(sin(dot(p.yz * seed, vec2(12.9898f, 78.233f))) * 43758.5453f);
-	float z = fract(sin(dot(p.zx * seed, vec2(12.9898f, 78.233f))) * 43758.5453f);
-	return vec3(x,y,z);
-}
-
 void main ()
 {
 	vec4 stencil = texture2D(stenMap, uv);
@@ -135,7 +141,7 @@ void main ()
 	vec4 N = texture2D(normalMap, uv);
 	vec4 P = texture2D(pMap, uv);
 	vec4 shadowFactor = texture2D(sMap, uv);
-	vec4 gi = texture2D(giMap, uv) * 50.0f;
+	vec4 gi = texture2D(giMap, uv);
 
 	vec3 wsN = N.xyz;
 	vec3 wsP = P.xyz;
@@ -158,18 +164,10 @@ void main ()
 	vec3 specColor;
 	float oneMinusMetallic;
 	GetDiffSpec(albedo.rgb, metallic, diffColor, specColor, oneMinusMetallic);
-	vec3 ambientColor = vec3(0.0f);
-	for (int i = 0; i < 4; i++)
-	{
-		vec3 wsNoiseN = normalize(random3(wsN, i+1));
-		wsNoiseN = wsN + wsNoiseN * 1.0f;
-		wsNoiseN = normalize(wsNoiseN);
-		ambientColor += textureCube(cubeMap, wsNoiseN).rgb;
-	}
-	ambientColor *= 0.25f;
 	
-	vec3 indirectDiff = (gi.rgb + ambientColor) * indirectShadow;
-	vec3 inditectSpec = IndirectSpecular (cubeMap, wsR, roughness) * indirectShadow;
+	vec3 inditectSpec = ConeTracingCube(wsR, roughness) * indirectShadow;
+	vec3 indirectDiff = roughness >= 1.0f ? inditectSpec : ConeTracingCube(wsN, 1.0f) * indirectShadow;
+	indirectDiff += gi.rgb * indirectShadow;
 
 	BRDF(diffColor, specColor, oneMinusMetallic, roughness, 
 		wsN, wsV, wsL, lightColor, 

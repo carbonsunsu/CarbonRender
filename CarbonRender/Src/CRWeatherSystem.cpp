@@ -27,7 +27,7 @@ void WeatherSystem::Init()
 	hour = 12.0f;
 	turbidity = 2.0f;
 	exposure = 30.0f;
-	timeSpeed = 10.0f;
+	timeSpeed = 15.0f;
 	lightR = 1000.0f;
 	windDir = float4(0.5f, 0.0f, 1.0f, 10.0f * timeSpeed);
 	cloudBias = float3(0.0f);
@@ -103,7 +103,7 @@ float4 WeatherSystem::GetWsSunPos()
 float4 WeatherSystem::GetSunColor()
 {
 	if (wsSunPos.y <= 0.0f)
-		return float4(0.0f, 0.0f, 0.0f, 0.0f);
+		return float4(0.002f, 0.002f, 0.002f, 0.002f);
 
 	float3 up(0.0f, 1.0f, 0.0f);
 
@@ -124,11 +124,14 @@ float4 WeatherSystem::GetSunColor()
 
 	skyColor = xyY2RGB(xyY);
 
-	return Min(skyColor * 5.0f, 1.0f);
+	return skyColor;
 }
 
 float4 WeatherSystem::GetSkyUpColor()
 {
+	if (wsSunPos.y <= 0.0f)
+		return float4(0.002f, 0.002f, 0.002f, 0.002f);
+
 	float3 vP(0.0f, 1.0f, 0.0f);
 	float3 vS = wsSunPos.normalize();
 	float vSovP = Dot(vS, vP);

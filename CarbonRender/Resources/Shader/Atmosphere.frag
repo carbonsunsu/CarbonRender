@@ -12,6 +12,11 @@ uniform sampler2D milkwayTex;
 in vec3 wsP;
 in vec2 uv;
 
+float Luminance(vec3 color)
+{
+	return dot(color, vec3(0.0396819152f, 0.458021790f, 0.00609653955f));
+}
+
 void main()
 {
 	float SunSize = 0.9997;
@@ -23,13 +28,12 @@ void main()
 	
 	vec4 dayColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 	vec4 nightColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	//nightColor = texture2D(milkwayTex, uv);
-	//nightColor.rgb = pow(nightColor.rgb, vec3(2.2f));
+	nightColor = texture2D(milkwayTex, uv);
+	nightColor.rgb = pow(nightColor.rgb, vec3(2.2f));
 	//night 
 	if (wsSunPos.y <= 0.0f)
 	{
-		bColor = nightColor;//vec4 (0.0f, 0.0f, 0.0f, 1.0f);
-		bColor.rgb = pow(bColor.rgb, vec3(0.45454545f));
+		bColor = nightColor;
 		return;
 	}
 
@@ -68,6 +72,7 @@ void main()
 	if (vSovP > SunSize)
 		dayColor.rgb = dayColor.rgb*5.0f;
 
-	float lum = dot(dayColor, vec4(0.22, 0.707, 0.071, 0.0));
+	float lum = Luminance(dayColor.rgb * 10.0f);
+	lum = clamp(lum, 0.0f, 1.0f);
 	bColor = dayColor + nightColor * (1.0f - lum);
 }

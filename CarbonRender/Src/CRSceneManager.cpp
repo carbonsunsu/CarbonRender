@@ -58,7 +58,7 @@ void SceneManager::LoadScene()
 	sponza.SetRotation(float3(0.0f, 180.0f, 0.0f));
 
 	FbxImportManager::Instance()->ImportFbxModel("M48", &tank);
-	tank.GetReady4Rending();
+	tank.GetReady4Rending(); 
 	/**/
 }
 
