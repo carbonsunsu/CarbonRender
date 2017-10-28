@@ -42,6 +42,7 @@ public:
 	float3(FbxColor a);
 
 	float3 normalize();
+	float Length();
 
 	void operator = (FbxDouble3 a);
 	void operator = (FbxDouble4 a);

@@ -53,10 +53,11 @@ void VolumetricCloudPass::Render(PassOutput * input)
 		glBindTexture(GL_TEXTURE_2D, input->RTS[i]);
 	}
 
+	Light* sun = LightManager::Instance()->GetLight(0);
 	float3 camPos = cam.GetPosition();
-	float4 sunColor = WeatherSystem::Instance()->GetSunColor();
-	float4 zenithColor = WeatherSystem::Instance()->GetSkyUpColor();
-	float4 sunPos = WeatherSystem::Instance()->GetWsSunPos();
+	float3 sunColor = sun->GetColor();
+	float4 zenithColor = LightManager::Instance()->GetZenithColor();
+	float3 sunPos = sun->GetPosition();
 	float3 cloudBias = WeatherSystem::Instance()->GetCloudBias();
 	ShaderManager::Instance()->UseShader(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "perlinWorleyMap");

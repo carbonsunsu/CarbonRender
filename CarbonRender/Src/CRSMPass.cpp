@@ -28,12 +28,13 @@ void SMPass::GetReady4Render(PassOutput * input)
 
 void SMPass::Render(PassOutput * input)
 {
-	float farCip = 10000.0f;
-	float3 lookPos = followCam ? CameraManager::Instance()->GetCurrentCamera()->GetPosition() : float3(-1.0f, -0.6f, -17.5f);
+	Light* sun = LightManager::Instance()->GetLight(0);
+	float farCip = sun->GetPosition().Length() * 1.5f;
+	float3 lookPos = followCam ? CameraManager::Instance()->GetCurrentCamera()->GetPosition() : float3(0.0f);
 	Camera cam;
 	cam.SetOrthoCamera(30.0f, 1.0f, farCip);
-	cam.SetPosition(WeatherSystem::Instance()->GetWsSunPos().normalize() * farCip * 0.9f + lookPos);
-	cam.LookAt(lookPos);
+	cam.SetPosition(sun->GetPosition() + lookPos);
+	cam.SetRotation(sun->GetRotation());
 	CameraManager::Instance()->Push(cam);
 	CameraManager::Instance()->GetCurrentCamera()->UpdateViewMatrix();
 	output.mats[0] = CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix() * CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix();

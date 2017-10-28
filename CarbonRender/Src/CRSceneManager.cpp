@@ -4,6 +4,7 @@ SceneManager* SceneManager::ins = nullptr;
 
 SceneManager::SceneManager()
 {
+	Init();
 }
 
 SceneManager::~SceneManager()
@@ -22,59 +23,117 @@ void SceneManager::Init()
 {
 }
 
-void SceneManager::LoadScene()
+void SceneManager::LoadScene(char* sceneName)
 {
+	char* realDir = "Resources\\Scene\\";
+	realDir = FileReader::BindString(realDir, sceneName);
+	realDir = FileReader::BindString(realDir, ".xml");
+
+	TextFile sceneFile = FileReader::ReadTextFile(realDir);
+	xml_document<> sceneData;
+	sceneData.parse<0>(sceneFile.data);
+
+	xml_node<>* root = sceneData.first_node();
+	xml_node<>* l1Node = root->first_node();
+	xml_node<>* l2Node = l1Node->first_node("Latitude");
+	xml_attribute<>* attri;
+	WeatherSystem::Instance()->SetLatitude(atof(l2Node->value()));
+	l2Node = l1Node->first_node("Day");
+	WeatherSystem::Instance()->SetDay(atoi(l2Node->value()));
+	l2Node = l1Node->first_node("Time");
+	WeatherSystem::Instance()->SetHour(atof(l2Node->value()));
+	l2Node = l1Node->first_node("Turbidity");
+	WeatherSystem::Instance()->SetTurbidity(atof(l2Node->value()));
+	l2Node = l1Node->first_node("Exposure");
+	WeatherSystem::Instance()->SetExposure(atof(l2Node->value()));
+	l2Node = l1Node->first_node("TimeSpeed");
+	WeatherSystem::Instance()->SetTimeSpeed(atof(l2Node->value()));
+	l2Node = l1Node->first_node("WindDirection");
+	attri = l2Node->first_attribute();
+	float a[3];
+	for (int i = 0; i < 3; i++)
+	{
+		a[i] = atof(attri->value());
+		attri = attri->next_attribute();
+	}
+	WeatherSystem::Instance()->SetWindDirection(float3(a[0], a[1], a[2]));
+	WeatherSystem::Instance()->SetWindStrength(atof(attri->value()));
+
 	Camera cam;
-	cam.SetPerspectiveCamera(60.0f, 0.01f, 3000.0f);
-	cam.SetPosition(float3(0.0f, 2.0f, 0.0f));
+	l1Node = root->first_node("Camera");
+	l2Node = l1Node->first_node("Position");
+	attri = l2Node->first_attribute();
+	for (int i = 0; i < 3; i++)
+	{
+		a[i] = atof(attri->value());
+		attri = attri->next_attribute();
+	}
+	cam.SetPosition(float3(a[0], a[1], a[2]));
+	l2Node = l1Node->first_node("Rotation");
+	attri = l2Node->first_attribute();
+	for (int i = 0; i < 3; i++)
+	{
+		a[i] = atof(attri->value());
+		attri = attri->next_attribute();
+	}
+	cam.SetRotation(float3(a[0], a[1], a[2]));
+	l2Node = l1Node->first_node("FOV");
+	a[0] = atof(l2Node->value());
+	l2Node = l1Node->first_node("NearClip");
+	a[1] = atof(l2Node->value());
+	l2Node = l1Node->first_node("FarClip");
+	a[2] = atof(l2Node->value());
+	cam.SetPerspectiveCamera(a[0], a[1], a[2]);
 	CameraManager::Instance()->Push(cam);
 
 	Controller ctrl;
 	ctrl.Init();
 	ControllerManager::Instance()->Push(ctrl);
-	/**
-	string num[10] = { " (1)", " (2)", " (3)", " (4)", " (5)", " (6)", " (7)", " (8)", " (9)", " (10)" };
-	for (int i = 0; i < 10; i++)
+
+	l1Node = root->first_node("Objects");
+	l2Node = l1Node->first_node("StaticMeshObjects");
+	int count = atoi(l2Node->first_attribute()->value());
+	xml_node<>* l3Node = l2Node->first_node();
+	xml_node<>* l4Node;
+	for (int i = 0; i < count; i++)
 	{
-		FbxImportManager::Instance()->ImportFbxModel(FileReader::BindString("Bunny", (char *)num[i].c_str()), &bunny[i]);
-		bunny[i].GetReady4Rending();
-		bunny[i].SetPosition(float3(0.0f, 0.0f, i * 2.0f));
+		MeshObject staticMeshObject;
+		
+		FbxImportManager::Instance()->ImportFbxModel(l3Node->first_attribute()->value(), &staticMeshObject);
+		staticMeshObject.GetReady4Rending();
+		l4Node = l3Node->first_node("Position");
+		attri = l4Node->first_attribute();
+		for (int i = 0; i < 3; i++)
+		{
+			a[i] = atof(attri->value());
+			attri = attri->next_attribute();
+		}
+		staticMeshObject.SetPosition(float3(a[0], a[1], a[2]));
+		l4Node = l3Node->first_node("Rotation");
+		attri = l4Node->first_attribute();
+		for (int i = 0; i < 3; i++)
+		{
+			a[i] = atof(attri->value());
+			attri = attri->next_attribute();
+		}
+		staticMeshObject.SetRotation(float3(a[0], a[1], a[2]));
+		l4Node = l3Node->first_node("Scale");
+		attri = l4Node->first_attribute();
+		for (int i = 0; i < 3; i++)
+		{
+			a[i] = atof(attri->value());
+			attri = attri->next_attribute();
+		}
+		staticMeshObject.SetScale(float3(a[0], a[1], a[2]));
+		staticMeshObjects.emplace_back(staticMeshObject);
+		l3Node = l3Node->next_sibling();
 	}
-	/**/
-	FbxImportManager::Instance()->ImportFbxModel("Plane", &terrain);
-	terrain.GetReady4Rending();
-	/**/
-	FbxImportManager::Instance()->ImportFbxModel("HappyRecon", &recon);
-	recon.GetReady4Rending();
-	recon.SetPosition(float3(-6.0f, 0.0f, 6.0f));
-
-	FbxImportManager::Instance()->ImportFbxModel("dragon", &dragon);
-	dragon.GetReady4Rending();
-	dragon.SetPosition(float3(-6.0f, 0.0f, -4.0f));
-	dragon.SetRotation(float3(0.0f, 90.0f, 0.0f));
-
-	FbxImportManager::Instance()->ImportFbxModel("Sponza", &sponza);
-	sponza.GetReady4Rending();
-	sponza.SetRotation(float3(0.0f, 180.0f, 0.0f));
-
-	FbxImportManager::Instance()->ImportFbxModel("M48", &tank);
-	tank.GetReady4Rending(); 
-	/**/
 }
 
 void SceneManager::DrawScene(GLuint shaderProgram)
 {
-	/**
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < staticMeshObjects.size(); i++)
 	{
-		bunny[i].Render(shaderProgram);
+		staticMeshObjects[i].Render(shaderProgram);
 	}
-	/**/
-	terrain.Render(shaderProgram);
-	/**/
-	sponza.Render(shaderProgram);
-	dragon.Render(shaderProgram);
-	tank.Render(shaderProgram);
-	recon.Render(shaderProgram);
-	/**/
 }

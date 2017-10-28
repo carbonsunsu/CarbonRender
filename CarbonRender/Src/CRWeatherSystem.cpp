@@ -27,10 +27,12 @@ void WeatherSystem::Init()
 	hour = 12.0f;
 	turbidity = 2.0f;
 	exposure = 30.0f;
-	timeSpeed = 15.0f;
-	lightR = 1000.0f;
-	windDir = float4(0.5f, 0.0f, 1.0f, 10.0f * timeSpeed);
+	timeSpeed = 150.0f;
+	lightR = 10000.0f;
+	windDir = float4(0.5f, 0.0f, 1.0f, 10.0f);
 	cloudBias = float3(0.0f);
+	Light sun(LightType::Direction, 1.0f);
+	sunLight = LightManager::Instance()->AddLight(sun);
 
 	Update();
 }
@@ -50,7 +52,7 @@ void WeatherSystem::UpdateAtmosphere()
 	wsSunPos.x = -lightR * sin(thetaS) * sin(Phi);
 	wsSunPos.z = lightR * sin(thetaS) * cos(Phi);
 	wsSunPos.w = 1.0f;
-
+	
 	float X = ((4.0f / 9.0f) - (turbidity / 120.0f)) * (PI - 2.0f * thetaS);
 	zenith.z = (4.0453f * turbidity - 4.9710f) * tan(X) - 0.2155f * turbidity + 2.4192f;
 
@@ -68,11 +70,17 @@ void WeatherSystem::UpdateAtmosphere()
 		T_2 * 0.00317f - turbidity * 0.04156f + 0.06670f,
 		turbidity * 0.00516f + 0.26688f);
 	zenith.y = ThetaS_3 * temp.x + ThetaS_2 * temp.y + thetaS * temp.z + temp.w;
+
+	Light* sun = LightManager::Instance()->GetLight(sunLight);
+	sun->SetPosition(wsSunPos);
+	sun->SetColor(GetSunColor());
+	sun->LookAt(float3(0.0f));
+	LightManager::Instance()->SetZenithColor(GetZenithColor());
 }
 
 void WeatherSystem::UpdateCloud()
 {
-	cloudBias = float3(windDir.x, windDir.y, windDir.z).normalize() * windDir.w * FIXEDUPDATE_TIME + cloudBias;
+	cloudBias = float3(windDir.x, windDir.y, windDir.z).normalize() * windDir.w * timeSpeed * FIXEDUPDATE_TIME + cloudBias;
 }
 
 void WeatherSystem::Update()
@@ -85,6 +93,26 @@ void WeatherSystem::Update()
 	UpdateCloud();
 }
 
+void WeatherSystem::SetLatitude(float l)
+{
+	latitude = l;
+}
+
+float WeatherSystem::GetLatitude()
+{
+	return latitude;
+}
+
+void WeatherSystem::SetDay(int d)
+{
+	day = d;
+}
+
+int WeatherSystem::GetDay()
+{
+	return day;
+}
+
 void WeatherSystem::SetHour(float h)
 {
 	hour = h;
@@ -95,9 +123,56 @@ float WeatherSystem::GetHour()
 	return hour;
 }
 
-float4 WeatherSystem::GetWsSunPos()
+void WeatherSystem::SetTurbidity(float t)
 {
-	return wsSunPos;
+	turbidity = t;
+}
+
+float WeatherSystem::GetTurbidity()
+{
+	return turbidity;
+}
+
+void WeatherSystem::SetExposure(float exp)
+{
+	exposure = exp;
+}
+
+float WeatherSystem::GetExposure()
+{
+	return exposure;
+}
+
+void WeatherSystem::SetTimeSpeed(float t)
+{
+	timeSpeed = t;
+}
+
+float WeatherSystem::GetTimeSpeed()
+{
+	return timeSpeed;
+}
+
+void WeatherSystem::SetWindDirection(float3 d)
+{
+	windDir.x = d.x;
+	windDir.y = d.y;
+	windDir.z = d.z;
+}
+
+float3 WeatherSystem::GetWindDirection()
+{
+	return windDir;
+}
+
+void WeatherSystem::SetWindStrength(float s)
+{
+	windDir.w = s;
+}
+
+float WeatherSystem::GetWindStrength()
+{
+	return windDir.w;
 }
 
 float4 WeatherSystem::GetSunColor()
@@ -127,7 +202,7 @@ float4 WeatherSystem::GetSunColor()
 	return skyColor;
 }
 
-float4 WeatherSystem::GetSkyUpColor()
+float4 WeatherSystem::GetZenithColor()
 {
 	if (wsSunPos.y <= 0.0f)
 		return float4(0.002f, 0.002f, 0.002f, 0.002f);

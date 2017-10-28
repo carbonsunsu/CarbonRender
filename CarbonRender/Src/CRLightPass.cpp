@@ -51,8 +51,9 @@ void LightPass::Render(PassOutput * input)
 	location = glGetUniformLocation(shaderProgram, "cubeMap");
 	glUniform1i(location, input->cout);
 	
-	float4 sColor = WeatherSystem::Instance()->GetSunColor() * 3.0f;
-	float3 wsSunPos = WeatherSystem::Instance()->GetWsSunPos();
+	Light* sun = LightManager::Instance()->GetLight(0);
+	float3 sColor = sun->GetColor() * 3.0f;
+	float3 wsSunPos = sun->GetPosition();
 	float3 wsCamPos = CameraManager::Instance()->GetCurrentCamera()->GetPosition();
 	location = glGetUniformLocation(shaderProgram, "sunColor");
 	glUniform3f(location, sColor.x, sColor.y, sColor.z);

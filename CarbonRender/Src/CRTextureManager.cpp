@@ -7,7 +7,7 @@ TextureManager::TextureManager()
 	GLubyte D[8][8][3];
 	GLubyte N[8][8][3];
 	GLubyte S[8][8][3];
-	int i, j, c;
+	int i, j;
 	for (i = 0; i < 8; i++) 
 	{
 		for (j = 0; j < 8; j++) 

@@ -6,6 +6,7 @@
 #include "..\Inc\CRCameraManager.h"
 #include "..\Inc\CRControllerManager.h"
 #include "..\Inc\CRFileReader.h"
+#include "..\Inc\CRWeatherSystem.h"
 
 class SceneManager
 {
@@ -13,18 +14,14 @@ private:
 	SceneManager();
 	static SceneManager* ins;
 
-	MeshObject terrain;
-	MeshObject sponza;
-	MeshObject tank;
-	MeshObject dragon;
-	MeshObject recon;
+	vector<MeshObject> staticMeshObjects;
 
-	MeshObject bunny[10];
+	void Init();
 public:
 	~SceneManager();
 	static SceneManager* Instance();
-	void Init();
-	void LoadScene();
+	
+	void LoadScene(char* sceneName);
 	void DrawScene(GLuint shaderProgram);
 };
 

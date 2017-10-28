@@ -65,23 +65,6 @@ void Camera::SetOrthoCamera(float size, float iNearClip, float iFarClip)
 	UpdateProjectionMatrix();
 }
 
-void Camera::LookAt(float3 p)
-{
-	float3 v = p - float3(transform[0], transform[1], transform[2]);
-	float3 vXZ = float3(v.x, 0.0f, v.z).normalize();
-	v = v.normalize();
-
-	float thetaY = Dot(float3(0.0f, 0.0f, -1.0f), vXZ);
-	thetaY = acos(thetaY) * R2A;
-	if (v.x < 0.0f) thetaY = -thetaY;
-
-	float thetaX = Dot(v, vXZ);
-	thetaX = acos(thetaX) * R2A;
-	if (v.y > 0.0f) thetaX = -thetaX;
-
-	SetRotation(float3(thetaX, thetaY, transform[8]));
-}
-
 void Camera::UpdateProjectionMatrix()
 {
 	switch (curCameraMode)

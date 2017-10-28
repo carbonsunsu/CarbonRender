@@ -28,6 +28,12 @@
     <Filter Include="源文件\Core">
       <UniqueIdentifier>{db8fedfd-1625-46e9-bbaf-892a3e4121e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{eb55161b-b2ee-4349-831f-6affac9d0a39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{a7a4223d-2eb8-4902-8916-1d0607b759bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\CRMain.cpp">
@@ -43,9 +49,6 @@
       <Filter>源文件\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Src\CRFinalPass.cpp">
-      <Filter>源文件\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\CRWeatherSystem.cpp">
       <Filter>源文件\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Src\CRCamera.cpp">
@@ -114,6 +117,18 @@
     <ClCompile Include="Src\CRVolumetricCloudPass.cpp">
       <Filter>源文件\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Src\CRWeatherSystem.cpp">
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRLight.cpp">
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRLightManager.cpp">
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CRConfigManager.cpp">
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRFinalPass.h">
@@ -126,9 +141,6 @@
       <Filter>头文件\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Inc\CRSkyRenderPass.h">
-      <Filter>头文件\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CRWeatherSystem.h">
       <Filter>头文件\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Inc\CRCamera.h">
@@ -200,6 +212,18 @@
     <ClInclude Include="Inc\CRVolumetricCloudPass.h">
       <Filter>头文件\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\CRWeatherSystem.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRLight.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRLightManager.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRConfigManager.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shader\Atmosphere.vert">
@@ -253,5 +277,19 @@
     <None Include="Resources\Shader\GIDenoise.frag">
       <Filter>Shader</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Config.xml">
+      <Filter>Config</Filter>
+    </Xml>
+    <Xml Include="Resources\Scene\Bunnies.xml">
+      <Filter>Scene</Filter>
+    </Xml>
+    <Xml Include="Resources\Scene\Sponza.xml">
+      <Filter>Scene</Filter>
+    </Xml>
+    <Xml Include="Resources\Scene\Tank.xml">
+      <Filter>Scene</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

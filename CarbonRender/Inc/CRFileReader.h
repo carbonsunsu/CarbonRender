@@ -6,7 +6,7 @@
 struct  TextFile
 {
 public :
-	GLchar* data;
+	char* data;
 	int length;
 };
 

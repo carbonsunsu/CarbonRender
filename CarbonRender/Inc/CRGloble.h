@@ -17,6 +17,7 @@
 #include <cmath>
 #include <stack>
 #include <unordered_map>
+#include <vector>
 
 #include "..\Third\GL\include\glew.h"
 #pragma comment(lib, "glew32.lib")
@@ -26,8 +27,10 @@
 #pragma comment(lib, "libfbxsdk.lib")
 #include "..\Third\Simple OpenGL Image Library\src\SOIL.h"
 #pragma comment(lib, "SOIL.lib")
+#include "..\Third\RapidXML\rapidxml.hpp"
 
 using namespace std;
+using namespace rapidxml;
 
 inline void SetGLArrayBuffer(GLuint bIndex, GLsizeiptr bSize, const GLvoid* bData, GLuint eSize, GLenum eType, GLuint aPos)
 {

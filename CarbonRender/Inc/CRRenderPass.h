@@ -3,6 +3,7 @@
 
 #include "..\Inc\CRGloble.h"
 #include "..\Inc\CRMath.h"
+#include "..\Inc\CRLightManager.h"
 
 struct PassOutput
 {

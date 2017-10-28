@@ -1,0 +1,78 @@
+<Scene>
+	<World>
+		<Latitude>0.0</Latitude>
+		<Day>180</Day>
+		<Time>12.0</Time>
+		<Turbidity>2.0</Turbidity>
+		<Exposure>30.0</Exposure>
+		<TimeSpeed>150.0</TimeSpeed>
+		<WindDirection x = "0.5" y = "0.0" z = "1.0" w = "10.0"></WindDirection>
+	</World>
+	<Camera>
+		<Position x = "-5.0" y = "2.0" z = "0.0"></Position>
+		<Rotation x = "0.0" y = "90.0" z = "0.0"></Rotation>
+		<FOV>60.0</FOV>
+		<NearClip>0.01</NearClip>
+		<FarClip>3000.0</FarClip>
+	</Camera>
+	<Objects>
+		<StaticMeshObjects count = "11">
+			<StaticMeshObject path = "Plane">
+				<Position x = "0.0" y = "0.0" z = "0.0"></Position>
+				<Rotation x = "0.0" y = "0.0" z = "0.0"></Rotation>
+				<Scale x = "1.0" y = "1.0" z = "1.0"></Scale>
+			</StaticMeshObject>
+			<StaticMeshObject path = "Bunny (1)">
+				<Position x = "0.0" y = "0.0" z = "-9.0"></Position>
+				<Rotation x = "0.0" y = "0.0" z = "0.0"></Rotation>
+				<Scale x = "1.0" y = "1.0" z = "1.0"></Scale>
+			</StaticMeshObject>
+			<StaticMeshObject path = "Bunny (2)">
+				<Position x = "0.0" y = "0.0" z = "-7.0"></Position>
+				<Rotation x = "0.0" y = "0.0" z = "0.0"></Rotation>
+				<Scale x = "1.0" y = "1.0" z = "1.0"></Scale>
+			</StaticMeshObject>
+			<StaticMeshObject path = "Bunny (3)">
+				<Position x = "0.0" y = "0.0" z = "-5.0"></Position>
+				<Rotation x = "0.0" y = "0.0" z = "0.0"></Rotation>
+				<Scale x = "1.0" y = "1.0" z = "1.0"></Scale>
+			</StaticMeshObject>
+			<StaticMeshObject path = "Bunny (4)">
+				<Position x = "0.0" y = "0.0" z = "-3.0"></Position>
+				<Rotation x = "0.0" y = "0.0" z = "0.0"></Rotation>
+				<Scale x = "1.0" y = "1.0" z = "1.0"></Scale>
+			</StaticMeshObject>
+			<StaticMeshObject path = "Bunny (5)">
+				<Position x = "0.0" y = "0.0" z = "-1.0"></Position>
+				<Rotation x = "0.0" y = "0.0" z = "0.0"></Rotation>
+				<Scale x = "1.0" y = "1.0" z = "1.0"></Scale>
+			</StaticMeshObject>
+			<StaticMeshObject path = "Bunny (6)">
+				<Position x = "0.0" y = "0.0" z = "1.0"></Position>
+				<Rotation x = "0.0" y = "0.0" z = "0.0"></Rotation>
+				<Scale x = "1.0" y = "1.0" z = "1.0"></Scale>
+			</StaticMeshObject>
+			<StaticMeshObject path = "Bunny (7)">
+				<Position x = "0.0" y = "0.0" z = "3.0"></Position>
+				<Rotation x = "0.0" y = "0.0" z = "0.0"></Rotation>
+				<Scale x = "1.0" y = "1.0" z = "1.0"></Scale>
+			</StaticMeshObject>
+			<StaticMeshObject path = "Bunny (8)">
+				<Position x = "0.0" y = "0.0" z = "5.0"></Position>
+				<Rotation x = "0.0" y = "0.0" z = "0.0"></Rotation>
+				<Scale x = "1.0" y = "1.0" z = "1.0"></Scale>
+			</StaticMeshObject>
+			<StaticMeshObject path = "Bunny (9)">
+				<Position x = "0.0" y = "0.0" z = "7.0"></Position>
+				<Rotation x = "0.0" y = "0.0" z = "0.0"></Rotation>
+				<Scale x = "1.0" y = "1.0" z = "1.0"></Scale>
+			</StaticMeshObject>
+			<StaticMeshObject path = "Bunny (10)">
+				<Position x = "0.0" y = "0.0" z = "9.0"></Position>
+				<Rotation x = "0.0" y = "0.0" z = "0.0"></Rotation>
+				<Scale x = "1.0" y = "1.0" z = "1.0"></Scale>
+			</StaticMeshObject>
+		</StaticMeshObjects>
+	</Objects>
+	
+</Scene>

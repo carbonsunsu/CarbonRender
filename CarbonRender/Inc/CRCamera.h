@@ -32,7 +32,6 @@ public:
 	void SetOrthoSize(float size);
 	float3 GetCameraPara();
 	void SetOrthoCamera(float size, float iNearClip, float iFarClip);
-	void LookAt(float3 p);
 
 	void UpdateProjectionMatrix();
 	void UpdateViewMatrix();

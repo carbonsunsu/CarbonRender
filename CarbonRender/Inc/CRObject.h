@@ -29,6 +29,7 @@ public:
 	float3 GetRight();
 	float3 GetUp();
 	Matrix4x4 GetModelMatrix();
+	void LookAt(float3 p);
 };
 
 #endif

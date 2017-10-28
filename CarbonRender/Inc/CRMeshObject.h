@@ -47,6 +47,7 @@ private:
 public:
 	MeshObject();
 	~MeshObject();
+	void Delete();
 	void SetChildCount(uint16_t count);
 	void SetChild(Mesh newChild, unsigned int index);
 	uint16_t GetChildCount();

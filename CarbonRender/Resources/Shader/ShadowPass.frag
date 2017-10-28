@@ -51,7 +51,7 @@ void main ()
 		}
 		smD *= 0.125f;
 		
-		sFactor = exp(2000000.0f * (smD - d + 0.00005f));
+		sFactor = exp(2000000.0f * (smD - d + 0.000008f));
 	}
 
 	float lightSize = 10.0f;

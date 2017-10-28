@@ -7,7 +7,6 @@
 #include "..\Inc\CRCameraManager.h"
 #include "..\Inc\CRShaderManager.h"
 #include "..\Inc\CRSceneManager.h"
-#include "..\Inc\CRWeatherSystem.h"
 
 class SMPass : public RenderPass
 {

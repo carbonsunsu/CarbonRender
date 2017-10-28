@@ -6,6 +6,10 @@ MeshObject::MeshObject()
 
 MeshObject::~MeshObject()
 {
+}
+
+void MeshObject::Delete()
+{
 	glDeleteVertexArrays(childCount, vaos);
 	glDeleteBuffers(childCount, ebos);
 	glDeleteBuffers(childCount, vbs);
@@ -13,6 +17,8 @@ MeshObject::~MeshObject()
 	glDeleteBuffers(childCount, ubs);
 	glDeleteBuffers(childCount, nbs);
 	glDeleteBuffers(childCount, tbs);
+
+	delete this;
 }
 
 void MeshObject::SetChildCount(uint16_t count)

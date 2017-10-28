@@ -3,6 +3,7 @@
 
 #include "..\Inc\CRGloble.h"
 #include "..\Inc\CRMath.h"
+#include "..\Inc\CRLightManager.h"
 
 class WeatherSystem
 {
@@ -27,22 +28,38 @@ private:
 
 	float shaderParas[10];
 
+	int sunLight;
+
 	void Init();
 	void UpdateAtmosphere();
 	void UpdateCloud();
+
+	float4 GetSunColor();
+	float4 GetZenithColor();
 public:
 	static WeatherSystem* Instance();
 	~WeatherSystem();
 	
 	void Update();
 
+	void SetLatitude(float l);
+	float GetLatitude();
+	void SetDay(int d);
+	int GetDay();
 	void SetHour(float h);
 	float GetHour();
-	float4 GetWsSunPos();
-	float4 GetSunColor();
-	float4 GetSkyUpColor();
-	float* GetShaderParas();
+	void SetTurbidity(float t);
+	float GetTurbidity();
+	void SetExposure(float exp);
+	float GetExposure();
+	void SetTimeSpeed(float t);
+	float GetTimeSpeed();
+	void SetWindDirection(float3 d);
+	float3 GetWindDirection();
+	void SetWindStrength(float s);
+	float GetWindStrength();
 
+	float* GetShaderParas();
 	float3 GetCloudBias();
 };
 

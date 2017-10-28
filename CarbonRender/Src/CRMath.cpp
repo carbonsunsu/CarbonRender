@@ -46,9 +46,14 @@ float3::float3(FbxColor a)
 
 float3 float3::normalize()
 {
-	float l = sqrt(x*x + y*y + z*z);
+	float l = sqrtf(x*x + y*y + z*z);
 
 	return float3(x / l,y / l,z / l);
+}
+
+float float3::Length()
+{
+	return sqrtf(x*x + y*y + z*z);
 }
 
 void float3::operator=(FbxDouble3 a)
@@ -122,7 +127,7 @@ float4::float4(FbxColor a)
 
 float4 float4::normalize()
 {
-	float l = sqrt(x*x + y*y + z*z + w*w);
+	float l = sqrtf(x*x + y*y + z*z + w*w);
 
 	return float4(x / l, y / l, z / l, w / l);
 }
@@ -474,7 +479,7 @@ float Noise::WorleyNoise(float3 uv, float freq)
 	d11.z = fminf(d11.z, d12.y);
 	d11.y = fminf(d11.y, d12.z);
 	d11.y = fminf(d11.y, d11.z);
-	return 1.0f - sqrt(d11.x);
+	return 1.0f - sqrtf(d11.x);
 }
 
 float Noise::WorleyNoiseFast(float3 uv, float freq)
@@ -532,7 +537,7 @@ float Noise::WorleyNoiseFast(float3 uv, float freq)
 	d.y = fminf(d.y, d.w);
 	d.y = fminf(d.y, d2.x);
 
-	return 1.0f - sqrt(d.x);
+	return 1.0f - sqrtf(d.x);
 }
 
 float Noise::WorleyFbm(float3 uv, float freq)

@@ -11,6 +11,7 @@
 #include "..\Inc\CRTextureManager.h"
 #include "..\Inc\CRSceneManager.h"
 #include "..\Inc\CRRenderPassManager.h"
+#include "..\Inc\CRConfigManager.h"
 
 void MainDisplay()
 {
@@ -30,6 +31,8 @@ void ReSizeCallback(int w, int h)
 
 void Init(int argc, char** argv)
 {
+	ConfigManager::Instance()->LoadConfig();
+
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 
@@ -47,8 +50,9 @@ void Init(int argc, char** argv)
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_TEXTURE_3D);
 
-	SceneManager::Instance()->Init();
-	SceneManager::Instance()->LoadScene();
+	WeatherSystem::Instance();
+
+	SceneManager::Instance()->LoadScene(ConfigManager::Instance()->GetScenePath());
 
 	RenderPassManager::Instance()->Init();
 }
