@@ -291,5 +291,8 @@
     <Xml Include="Resources\Scene\Tank.xml">
       <Filter>Scene</Filter>
     </Xml>
+    <Xml Include="Resources\Scene\Empty.xml">
+      <Filter>Scene</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

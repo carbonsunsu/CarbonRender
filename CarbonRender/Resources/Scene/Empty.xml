@@ -16,13 +16,8 @@
 		<FarClip>3000.0</FarClip>
 	</Camera>
 	<Objects>
-		<StaticMeshObjects count = "2">
+		<StaticMeshObjects count = "1">
 			<StaticMeshObject path = "Plane">
-				<Position x = "0.0" y = "0.0" z = "0.0"></Position>
-				<Rotation x = "0.0" y = "0.0" z = "0.0"></Rotation>
-				<Scale x = "1.0" y = "1.0" z = "1.0"></Scale>
-			</StaticMeshObject>
-			<StaticMeshObject path = "M48">
 				<Position x = "0.0" y = "0.0" z = "0.0"></Position>
 				<Rotation x = "0.0" y = "0.0" z = "0.0"></Rotation>
 				<Scale x = "1.0" y = "1.0" z = "1.0"></Scale>

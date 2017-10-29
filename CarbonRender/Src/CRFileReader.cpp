@@ -17,8 +17,8 @@ int FileReader::GetTextFileSize(char* fileName)
 TextFile FileReader::ReadTextFile(char* fileName)
 {
 	fstream file;
-	int fileSize = GetTextFileSize(fileName);
-	GLchar* fileData;
+	TextFile data;
+	data.length = GetTextFileSize(fileName);
 	
 	file.open(fileName, ios::in);
 	if (!file)
@@ -27,14 +27,11 @@ TextFile FileReader::ReadTextFile(char* fileName)
 		system("pause");
 	}
 
-	fileData = (GLchar*)malloc(fileSize);
-	file.read(fileData, fileSize);
+	data.data = (GLchar*)malloc(data.length + 1);
+	file.read(data.data, data.length);
 	file.close();
 
-	TextFile data;
-	data.data = fileData;
-	data.length = fileSize;
-	data.data[data.length] = 0;
+	data.data[data.length] = '\0';
 
 	return data;
 }
