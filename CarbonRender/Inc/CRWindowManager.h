@@ -22,7 +22,7 @@ public :
 	~WindowManager();
 	static WindowManager* Instance();
 	void ReSize(unsigned int w, unsigned h);
-	void CreateWindow(unsigned int w, unsigned int h, char* tittle);
+	void CreateWindow(unsigned int w, unsigned int h, char* tittle, bool fullScreen);
 	WindowSize GetWindowSize();
 
 };

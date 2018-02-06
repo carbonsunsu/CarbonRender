@@ -279,20 +279,20 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="Config.xml">
+    <Xml Include="Resources\Scene\Sponza.scene">
+      <Filter>Scene</Filter>
+    </Xml>
+    <Xml Include="Resources\Scene\Bunnies.scene">
+      <Filter>Scene</Filter>
+    </Xml>
+    <Xml Include="Resources\Scene\Empty.scene">
+      <Filter>Scene</Filter>
+    </Xml>
+    <Xml Include="Resources\Scene\Tank.scene">
+      <Filter>Scene</Filter>
+    </Xml>
+    <Xml Include="Config.cfg">
       <Filter>Config</Filter>
-    </Xml>
-    <Xml Include="Resources\Scene\Bunnies.xml">
-      <Filter>Scene</Filter>
-    </Xml>
-    <Xml Include="Resources\Scene\Sponza.xml">
-      <Filter>Scene</Filter>
-    </Xml>
-    <Xml Include="Resources\Scene\Tank.xml">
-      <Filter>Scene</Filter>
-    </Xml>
-    <Xml Include="Resources\Scene\Empty.xml">
-      <Filter>Scene</Filter>
     </Xml>
   </ItemGroup>
 </Project>

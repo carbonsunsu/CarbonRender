@@ -96,13 +96,13 @@
     <None Include="Resources\Shader\VolumatricCloud.vert" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="Config.xml">
+    <Xml Include="Config.cfg">
       <SubType>Designer</SubType>
     </Xml>
-    <Xml Include="Resources\Scene\Bunnies.xml" />
-    <Xml Include="Resources\Scene\Empty.xml" />
-    <Xml Include="Resources\Scene\Sponza.xml" />
-    <Xml Include="Resources\Scene\Tank.xml" />
+    <Xml Include="Resources\Scene\Bunnies.scene" />
+    <Xml Include="Resources\Scene\Empty.scene" />
+    <Xml Include="Resources\Scene\Sponza.scene" />
+    <Xml Include="Resources\Scene\Tank.scene" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{27CD77C7-6F75-434C-A429-CE1E1D982CBA}</ProjectGuid>

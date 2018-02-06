@@ -36,7 +36,8 @@ void Init(int argc, char** argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 
-	WindowManager::Instance()->CreateWindow(1600, 900, "CarbonRender");
+	WindowSize size = ConfigManager::Instance()->GetScreenSize();
+	WindowManager::Instance()->CreateWindow(size.w, size.h, "CarbonRender", ConfigManager::Instance()->IsFullScreen());
 
 	if (glewInit())
 		cout << "GLEW init fail" << endl;

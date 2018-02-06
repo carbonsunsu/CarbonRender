@@ -3,6 +3,7 @@
 
 #include "..\Inc\CRGloble.h"
 #include "..\Inc\CRFileReader.h"
+#include "..\Inc\CRWindowManager.h"
 
 class ConfigManager
 {
@@ -11,6 +12,8 @@ private:
 	static ConfigManager* ins;
 
 	char* scenePath;
+	bool bFullScreen;
+	WindowSize screenSize;
 
 public:
 	~ConfigManager();
@@ -18,6 +21,8 @@ public:
 
 	void LoadConfig();
 	char* GetScenePath();
+	bool IsFullScreen();
+	WindowSize GetScreenSize();
 };
 
 #endif

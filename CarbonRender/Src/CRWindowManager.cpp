@@ -27,13 +27,15 @@ void WindowManager::ReSize(unsigned int newW, unsigned newH)
 	glViewport(0, 0, (GLsizei)size.w, (GLsizei)size.h);
 }
 
-void WindowManager::CreateWindow(unsigned int w, unsigned int h, char * title)
+void WindowManager::CreateWindow(unsigned int w, unsigned int h, char * title, bool fullScreen)
 {
 	size.w = w;
 	size.h = h;
 	glutInitWindowSize((int)size.w, (int)size.h);
 	glutCreateWindow(title);
 	glViewport(0, 0, (GLsizei)size.w, (GLsizei)size.h);
+	if (fullScreen)
+		glutFullScreen();
 }
 
 WindowSize WindowManager::GetWindowSize()

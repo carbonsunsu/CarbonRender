@@ -27,7 +27,7 @@ void SceneManager::LoadScene(char* sceneName)
 {
 	char* realDir = "Resources\\Scene\\";
 	realDir = FileReader::BindString(realDir, sceneName);
-	realDir = FileReader::BindString(realDir, ".xml");
+	realDir = FileReader::BindString(realDir, ".scene");
 
 	TextFile sceneFile = FileReader::ReadTextFile(realDir);
 	xml_document<> sceneData;
