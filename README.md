@@ -35,7 +35,7 @@ A real-time rendering engine based on C++ and OpenGL
 ![GI](CarbonRender/ScreenShots/VolumetricCloud.gif)
 
 
-### **Features Work:**
+### **Future Work:**
 
 * HDR
 
