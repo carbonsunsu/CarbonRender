@@ -136,7 +136,7 @@ void main ()
 	}
 
 	float Coverage = 0.3f;
-	float Precipitation = 0.3f;
+	float Precipitation = 4.0f;//0.8f;
 
 	vec3 ray = normalize(wsP - wsCamPos);
 	vec3 vL = normalize(PLANET_CENTER - wsCamPos);
@@ -174,14 +174,17 @@ void main ()
 
 		vec4 weatherData = texture2D(weatherMap, UVW(samplePos + cloudBias * 0.5f, 1.0f).xz);
 		weatherData.r = 1.0f - weatherData.r * Coverage;
-		weatherData.g = mix(3.0f, 9.0f, weatherData.g);
-		weatherData.g *= Precipitation;
+		//weatherData.g = mix(3.0f, 9.0f, weatherData.g);
+		//weatherData.g *= Precipitation;
+		weatherData.g = Precipitation;
 		weatherData.a = 1.0f;
 
 		float baseCloudDensity = SampleCloudDensity(samplePos, weatherData);
 
 		if (baseCloudDensity > 0.0f)
 		{
+			cloudColor.a += baseCloudDensity;
+
 			//Light
 			vec3 lightSamplePos = samplePos;
 			float lightRayDensity = 0.0f;
@@ -196,20 +199,20 @@ void main ()
 				lightRayDensity += SampleCloudDensity(lightSamplePos, weatherData);
 			}
 			
-			float pb = PowderBeers(lightRayDensity, weatherData.y);
+			float pb = PowderBeers(lightRayDensity, weatherData.g);
 			float hg = HG(-ray, normalize(-wsSunPos));
 			vec3 sampleColor = sunColor * hg * pb;
 
 			//ambient
+			pb = PowderBeers(cloudColor.a, weatherData.g);
 			float heightGrad = GetHeightGradient(samplePos);
 			vec3 ambientColor = mix(zenithColor, sunColor, heightGrad);
 			ambientColor = ambientColor * heightGrad * pb;
 			sampleColor += ambientColor;
-
-			sampleColor *= pb * 0.5f;
+			
+			sampleColor *= pb;
 			cloudColor.rgb += sampleColor;
-
-			cloudColor.a += baseCloudDensity;
+			
 			stepSize = STEP_SIZE_MIN;
 
 			if (cloudColor.a >= 1.0f) break;

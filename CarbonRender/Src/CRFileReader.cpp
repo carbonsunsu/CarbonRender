@@ -23,7 +23,7 @@ TextFile FileReader::ReadTextFile(char* fileName)
 	file.open(fileName, ios::in);
 	if (!file)
 	{
-		cout << "Fail to open file" << endl;
+		cout << "Fail to open file: " << fileName << endl;
 		system("pause");
 	}
 
