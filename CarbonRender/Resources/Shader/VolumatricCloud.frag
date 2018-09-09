@@ -24,13 +24,13 @@ uniform vec3 cloudBias;
 const float PLANET_RADIUS = 6500000.0f;
 const vec3 PLANET_CENTER = vec3(0.0f, -PLANET_RADIUS, 0.0f);
 const float MIN_CLOUD_ALTITUDE = 1500.0f;
-const float MAX_CLOUD_ALTITUDE = 4000.0f;
+const float MAX_CLOUD_ALTITUDE = 8000.0f;
 const float CLOUD_HEIGHT = MAX_CLOUD_ALTITUDE - MIN_CLOUD_ALTITUDE;
 
 const int SAMPLE_COUNT_MAX = 128;
 const int SAMPLE_COUNT_MIN = 64;
-const float STEP_SIZE_MIN = 20.0f;
-const float STEP_SIZE_MAX = 60.0f;
+const float STEP_SIZE_SHORT = 64.0f;
+const float STEP_SIZE_LONG = 256.0f;
 const float Pi = 3.1415926f;
 const vec3 randomV[5] = vec3[5](vec3(-0.010735935, 0.01647018, 0.0062425877),
 			                     vec3(-0.06533369, 0.3647007, -0.13746321),
@@ -54,7 +54,7 @@ float GetHeightGradient(vec3 pos)
 
 float GetCloudTypeGradient(float heightGrad, vec4 typePara)
 {
-	float a = Remap(heightGrad, typePara.x, typePara.y, 0.0f, 1.0f) * Remap(heightGrad, typePara.z, typePara.w, 1.0, 0.0);
+	float a = Remap(heightGrad, typePara.x, typePara.y, 0.0f, 1.0f) * Remap(heightGrad, typePara.z, typePara.w, 1.0f, 0.0f);
 	a = clamp(a, 0.0f, 1.0f);
 
 	return a;	
@@ -63,7 +63,7 @@ float GetCloudTypeGradient(float heightGrad, vec4 typePara)
 bool IsInCloud(vec3 pos)
 {
 	float a = distance(pos, PLANET_CENTER) - PLANET_RADIUS;
-	return a >= MIN_CLOUD_ALTITUDE && a <= MAX_CLOUD_ALTITUDE;
+	return a > MIN_CLOUD_ALTITUDE && a < MAX_CLOUD_ALTITUDE;
 }
 
 vec3 UVW(vec3 p, float scale)
@@ -79,52 +79,55 @@ float PowderBeers (float d, float p)
 	float Powder = 1.0f - exp(-d * 2.0f);
 	float Beers = exp(-d * p);
 
-	return clamp(2.0f * Powder * Beers, 0.0f, 1.0f);
+	return 2.0f * Beers * Powder;
 }
 
 float HG (vec3 v, vec3 l)
 {
 	float VoL = dot(v, l);
-	float g = 0.5f;
+	float g = 0.25f;
 	float HG = (1.0f - g*g) / (4.0f * Pi * pow(1.0f + g*g - 2.0f * g * VoL, 1.5f));
 
-	return clamp(pow(HG, 0.5f), 0.0f, 1.0f);
+	return HG;
 }
 
-float SampleCloudDensity(vec3 pos, vec4 weather)
+float SampleCloudDensity(vec3 pos, vec4 weather, float mipmap, bool useCheapWay)
 {
 	vec3 samplePos = pos;
-	vec3 uvw = UVW(samplePos + cloudBias, 8.0f);
-	vec4 noise = texture(perlinWorleyMap, uvw);
+	vec3 uvw = UVW(samplePos + cloudBias, 4.0f);
+	vec4 noise = textureLod(perlinWorleyMap, uvw, mipmap);
 	float lfFbm = noise.g * 0.625f + noise.b * 0.25f + noise.a * 0.125f;
 	lfFbm = Remap(noise.r, lfFbm - 1.0f, 1.0f, 0.0f, 1.0f);
+	lfFbm = clamp(lfFbm, 0.0f, 1.0f);
 
 	float heightGrad = GetHeightGradient(samplePos);
 
 	vec4 stratusF = vec4(0.0f, 0.1f, 0.2f, 0.3f);
 	stratusF *= 1.0f - clamp(weather.b * 2.0f, 0.0f, 1.0f);
-	vec4 cumulusF =vec4(0.1f, 0.2f, 0.5f, 0.6f);
+	vec4 cumulusF =vec4(0.05f, 0.25f, 0.45f, 0.65f);
 	cumulusF *= 1.0f - abs(weather.b - 0.5f) * 2.0f;
-	vec4 cumulonumbisF = vec4(0.0f, 0.1f, 0.8f, 0.9f);
+	vec4 cumulonumbisF = vec4(0.0f, 0.2f, 0.7f, 0.9f);
 	cumulonumbisF *= clamp(weather.b - 0.5f, 0.0f, 1.0f) * 2.0f;
 	float typeGrad = GetCloudTypeGradient(heightGrad, stratusF + cumulusF + cumulonumbisF);
 	
 	lfFbm *= typeGrad;
 
 	lfFbm = Remap(lfFbm, weather.r, 1.0f, 0.0f, 1.0f);
-	lfFbm *= 1.0f - weather.r;
+	lfFbm *= weather.r;
 
-	//do curl
-	vec4 curlNoise = texture2D(curlMap, uvw.xy);
-	samplePos.xy += curlNoise.xy * (1.0f - heightGrad) * 100.0f;
+	if (!useCheapWay)
+	{
+		//do curl
+		vec4 curlNoise = texture2D(curlMap, uvw.xy);
+		//uvw.xy += curlNoise.xy * (1.0f - heightGrad) * 1.0f;
 
-	noise = texture(worleyMap, uvw * 0.1f);
-	float hfFbm = noise.r * 0.625f + noise.g * 0.25f + noise.b * 0.125f;
-	hfFbm = mix(hfFbm, 1.0f - hfFbm, clamp(heightGrad * 10.0f, 0.0f, 1.0f));
-	
-	float density = Remap(lfFbm, hfFbm * 0.2f, 1.0f, 0.0f, 1.0f);
+		noise = textureLod(worleyMap, uvw * 0.1f, mipmap);
+		float hfFbm = noise.r * 0.625f + noise.g * 0.25f + noise.b * 0.125f;
+		hfFbm = mix(hfFbm, 1.0f - hfFbm, clamp(heightGrad * 10.0f, 0.0f, 1.0f));
+		lfFbm = Remap(lfFbm, hfFbm * 0.2f, 1.0f, 0.0f, 1.0f);
+	}
 
-	return density;
+	return clamp(lfFbm, 0.0f, 1.0f);
 }
 
 void main ()
@@ -135,10 +138,11 @@ void main ()
 		return;
 	}
 
-	float Coverage = 0.3f;
-	float Precipitation = 4.0f;//0.8f;
+	float Coverage = 1.0f;
+	float Precipitation = 1.0f;
 
 	vec3 ray = normalize(wsP - wsCamPos);
+	vec3 lightRay = normalize(wsSunPos);
 	vec3 vL = normalize(PLANET_CENTER - wsCamPos);
 	float L = distance(PLANET_CENTER, wsCamPos);
 	float alpha = dot(vL, ray);
@@ -152,78 +156,98 @@ void main ()
 	float sampleCount = mix(SAMPLE_COUNT_MAX, SAMPLE_COUNT_MIN, VoU);
 
 	vec3 samplePos = IsInCloud(wsCamPos) ? wsCamPos : nearPos - ray;
-	float stepSize = STEP_SIZE_MAX;
-	int stepCount = 0;
+	float stepSize = STEP_SIZE_LONG;
 	vec4 cloudColor = vec4(0.0f);
-
-	while(stepCount <= sampleCount) 
+	float densityTest = 0.0f;
+	int zeroCount = 0;
+	
+	for(int i = 0; i < sampleCount; i++)
 	{
 		vec4 ssP = (proMat * (viewMat * vec4(samplePos.x, samplePos.y, samplePos.z, 1.0f)));
 		ssP.xy = ssP.xy / ssP.w;
 		ssP.xy = ssP.xy * 0.5f + 0.5f;
 
 		vec4 objN = texture2D(depthMap, ssP.xy);
-		if (ssP.w >= objN.w && distance(objN.xyz, vec3(0.0f)) > 0.0f) break;
-		if (samplePos.y < 0.0f) break;
+		if ((ssP.w >= objN.w && distance(objN.xyz, vec3(0.0f)) > 0.0f)
+			|| samplePos.y < 0.0f
+			//|| cloudColor.a >= 1.0f
+			) break;
+
 		if (!IsInCloud(samplePos))
 		{
-			samplePos += ray * stepSize;
-			stepCount++;
+			samplePos += ray * STEP_SIZE_LONG;
 			continue;
 		}
 
-		vec4 weatherData = texture2D(weatherMap, UVW(samplePos + cloudBias * 0.5f, 1.0f).xz);
-		weatherData.r = 1.0f - weatherData.r * Coverage;
-		//weatherData.g = mix(3.0f, 9.0f, weatherData.g);
-		//weatherData.g *= Precipitation;
-		weatherData.g = Precipitation;
+		vec4 weatherData = texture2D(weatherMap, UVW(samplePos + cloudBias * 0.5f, 1.0f).xz);//R - coverage; G - precipitation; B - cloud type
+		weatherData.r = weatherData.r * Coverage;
+		weatherData.g = mix(3.0f, 3.0f, weatherData.g); 
+		weatherData.g *= Precipitation;
 		weatherData.a = 1.0f;
 
-		float baseCloudDensity = SampleCloudDensity(samplePos, weatherData);
+		weatherData.r = 0.15f;
+		weatherData.b = 1.0f;
+		float mipmapLev = 0.0f;
 
-		if (baseCloudDensity > 0.0f)
+		if (densityTest > 0.0f)
 		{
-			cloudColor.a += baseCloudDensity;
+			float sampleDensity = SampleCloudDensity(samplePos, weatherData, mipmapLev, false);
 
-			//Light
-			vec3 lightSamplePos = samplePos;
-			float lightRayDensity = 0.0f;
-			vec3 lightRay = normalize(wsSunPos - lightSamplePos);
-			
-			for (int j = 0; j < 5; j++)
+			if (sampleDensity <= 0.0f)
+				zeroCount++;
+
+			if (zeroCount < 6)
 			{
-				vec3 bias = randomV[j];
-				bias = normalize(bias);
-				lightSamplePos = samplePos + normalize(lightRay + bias * (j+1)) * STEP_SIZE_MIN * (j+1);
+				cloudColor.a += sampleDensity;
+				if (sampleDensity > 0.0f)
+				{
+					//Light
+					vec3 lightSamplePos = samplePos;
+					float lightRayDensity = 0.0f;
+			
+					for (int j = 0; j < 6; j++)
+					{
+						vec3 bias = randomV[j];
+						bias = normalize(bias);
+						lightSamplePos = samplePos + lightRay * 64.0f * (j+1) + bias * (j+1) * 5.0f;
+						float density;
 
-				lightRayDensity += SampleCloudDensity(lightSamplePos, weatherData);
+						if (lightRayDensity < 0.3f)
+							density = SampleCloudDensity(lightSamplePos, weatherData, mipmapLev + 1.0f, false);
+						else
+							density = SampleCloudDensity(lightSamplePos, weatherData, mipmapLev + 1.0f, true);
+						lightRayDensity += density;
+						//if (lightRayDensity >= 1.0f) break;
+					}
+
+					float pb0 = PowderBeers(lightRayDensity + cloudColor.a, weatherData.g);
+					float pb1 = PowderBeers(cloudColor.a, weatherData.g);
+					float hg = HG(-ray, normalize(-wsSunPos));
+					vec3 sampleColor = sunColor * pb0 * hg ;
+			
+					//ambient
+					//float heightGrad = GetHeightGradient(samplePos);
+					//vec3 ambientColor = mix(zenithColor, sunColor, heightGrad);
+					//ambientColor = ambientColor * pb1;
+					//sampleColor += ambientColor;
+
+					cloudColor.rgb += sampleColor;
+				}
+				
+				samplePos += ray * STEP_SIZE_SHORT;
 			}
-			
-			float pb = PowderBeers(lightRayDensity, weatherData.g);
-			float hg = HG(-ray, normalize(-wsSunPos));
-			vec3 sampleColor = sunColor * hg * pb;
-
-			//ambient
-			pb = PowderBeers(cloudColor.a, weatherData.g);
-			float heightGrad = GetHeightGradient(samplePos);
-			vec3 ambientColor = mix(zenithColor, sunColor, heightGrad);
-			ambientColor = ambientColor * heightGrad * pb;
-			sampleColor += ambientColor;
-			
-			sampleColor *= pb;
-			cloudColor.rgb += sampleColor;
-			
-			stepSize = STEP_SIZE_MIN;
-
-			if (cloudColor.a >= 1.0f) break;
+			else
+			{
+				densityTest = 0.0f;
+				zeroCount = 0;
+			}
 		}
 		else
 		{
-			stepSize = STEP_SIZE_MAX;
+			densityTest = SampleCloudDensity(samplePos, weatherData, mipmapLev, true);
+			if (densityTest <= 0.0f)
+				samplePos += ray * STEP_SIZE_LONG;
 		}
-		
-		samplePos += ray * stepSize;
-		stepCount++;
 	}
 
 	cColor = cloudColor;
