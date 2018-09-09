@@ -192,14 +192,14 @@ float4 WeatherSystem::GetSunColor()
 	float3 D(-0.0641f*turbidity - 0.8989f, -0.0441f*turbidity - 1.6537f, 0.1206f*turbidity - 2.5771f);
 	float3 E(-0.0033f*turbidity + 0.0452f, -0.0109f*turbidity + 0.0529f, -0.0670f*turbidity + 0.3703f);
 
-	float3 F1 = (1.0f + A*exp(B / cosTheta))*(1.0f + C + E);
-	float3 F2 = (1.0f + A*exp(B))*(1.0f + C*exp(D*thetaS) + E*pow(cos(thetaS), 2.0f));
+	float3 F1 = (1.0f + A*Exp(B / cosTheta))*(1.0f + C + E);
+	float3 F2 = (1.0f + A*Exp(B))*(1.0f + C*Exp(D*thetaS) + E*pow(cos(thetaS), 2.0f));
 	float3 xyY = zenith*(F1 / F2);
 	xyY.z = 1.0f - exp((-1.0f/exposure)*xyY.z);
 
 	skyColor = xyY2RGB(xyY);
 
-	return skyColor;
+	return Min(skyColor * 3.0f, float4(1.0f));
 }
 
 float4 WeatherSystem::GetZenithColor()
@@ -219,8 +219,8 @@ float4 WeatherSystem::GetZenithColor()
 	float3 D(-0.0641f*turbidity - 0.8989f, -0.0441f*turbidity - 1.6537f, 0.1206f*turbidity - 2.5771f);
 	float3 E(-0.0033f*turbidity + 0.0452f, -0.0109f*turbidity + 0.0529f, -0.0670f*turbidity + 0.3703f);
 
-	float3 F1 = (1.0f + A*exp(B))*(1.0f + C*exp(D*gamma) + E*pow(vSovP, 2.0f));
-	float3 F2 = (1.0f + A*exp(B))*(1.0f + C*exp(D*thetaS) + E*pow(cos(thetaS), 2.0f));
+	float3 F1 = (1.0f + A*Exp(B))*(1.0f + C*Exp(D*gamma) + E*pow(vSovP, 2.0f));
+	float3 F2 = (1.0f + A*Exp(B))*(1.0f + C*Exp(D*thetaS) + E*pow(cos(thetaS), 2.0f));
 	float3 xyY = zenith*(F1 / F2);
 	xyY.z = 1.0f - exp((-1.0f / exposure)*xyY.z);
 

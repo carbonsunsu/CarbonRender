@@ -55,7 +55,7 @@ void VolumetricCloudPass::Render(PassOutput * input)
 
 	Light* sun = LightManager::Instance()->GetLight(0);
 	float3 camPos = cam.GetPosition();
-	float3 sunColor = sun->GetColor();
+	float3 sunColor = sun->GetColor() * 2.0f;
 	float4 zenithColor = LightManager::Instance()->GetZenithColor();
 	float3 sunPos = sun->GetPosition();
 	float3 cloudBias = WeatherSystem::Instance()->GetCloudBias();
@@ -156,19 +156,23 @@ void VolumetricCloudPass::GenerateTex()
 				}
 				else
 				{
-					float noise = (Remap(Noise::PerlinFbm(uv, 1.0f), 0.0f, 1.0f, Noise::WorleyFbm(uv, 10.0f), 1.0f)) * 255;
+					float freqs0[3] = { 2.0f, 8.0f, 14.0f };
+					float noise = Remap(Noise::PerlinFbm(uv, 8.0f, 3), 0.0f, 1.0f, Noise::WorleyFbm(uv, 4.0f, freqs0), 1.0f) * 255;
 					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 0] = (GLubyte)noise;
 					pwNoiseFile << noise << endl;
 
-					noise = Noise::WorleyFbm(uv, 10.0f) * 255;
+					float freqs1[3] = { 1.0f, 2.0f, 4.0f };
+					noise = Noise::WorleyFbm(uv, 4.0f, freqs1) * 255;
 					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 1] = (GLubyte)noise;
 					pwNoiseFile << noise << endl;
 
-					noise = Noise::WorleyFbm(uv, 20.0f) * 255;
+					float freqs2[3] = { 2.0f, 4.0f, 8.0f };
+					noise = Noise::WorleyFbm(uv, 4.0f, freqs2) * 255;
 					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 2] = (GLubyte)noise;
 					pwNoiseFile << noise << endl;
 
-					noise = Noise::WorleyFbm(uv, 40.0f) * 255;
+					float freqs3[3] = { 4.0f, 8.0f, 14.0f };
+					noise = Noise::WorleyFbm(uv, 4.0f, freqs3) * 255;
 					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 3] = (GLubyte)noise;
 					pwNoiseFile << noise << endl;
 				}
@@ -202,15 +206,18 @@ void VolumetricCloudPass::GenerateTex()
 				}
 				else
 				{
-					float noise = Noise::WorleyNoise(uv, 20.0f) * 255;
+					float freqs0[3] = { 1.0f, 2.0f, 4.0f };
+					float noise = Noise::WorleyFbm(uv, 2.0f, freqs0) * 255;
 					worley[i * 32 * 32 * 3 + j * 32 * 3 + k * 3 + 0] = (GLubyte)noise;
 					wNoiseFile << noise << endl;
 
-					noise = Noise::WorleyNoise(uv, 40.0f) * 255;
+					float freqs1[3] = { 2.0f, 4.0f, 8.0f };
+					noise = Noise::WorleyFbm(uv, 2.0f, freqs1) * 255;
 					worley[i * 32 * 32 * 3 + j * 32 * 3 + k * 3 + 1] = (GLubyte)noise;
 					wNoiseFile << noise << endl;
 
-					noise = Noise::WorleyNoise(uv, 80.0f) * 255;
+					float freqs2[3] = { 4.0f, 8.0f, 16.0f };
+					noise = Noise::WorleyFbm(uv, 2.0f, freqs2) * 255;
 					worley[i * 32 * 32 * 3 + j * 32 * 3 + k * 3 + 2] = (GLubyte)noise;
 					wNoiseFile << noise << endl;
 				}
@@ -232,6 +239,7 @@ void VolumetricCloudPass::GenerateTex()
 	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_REPEAT);
 	glTexImage3D(GL_TEXTURE_3D, 0, GL_RGBA, 128, 128, 128, 0, GL_RGBA, GL_UNSIGNED_BYTE, perlinWorley);
+	glGenerateMipmap(GL_TEXTURE_3D);
 
 	glBindTexture(GL_TEXTURE_3D, noises[1]);
 	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -240,8 +248,9 @@ void VolumetricCloudPass::GenerateTex()
 	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_REPEAT);
 	glTexImage3D(GL_TEXTURE_3D, 0, GL_RGB, 32, 32, 32, 0, GL_RGB, GL_UNSIGNED_BYTE, worley);
+	glGenerateMipmap(GL_TEXTURE_3D);
 
 	noises[2] = TextureManager::Instance()->LoadTexture("CurlNoise");
 
-	weatherData = TextureManager::Instance()->LoadTexture("Weather");
+	weatherData = TextureManager::Instance()->LoadTexture("Weather1");
 }

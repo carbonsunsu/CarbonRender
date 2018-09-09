@@ -117,28 +117,27 @@ public:
 class Noise
 {
 private:
-	static const int perm[256];
-
-	static const float3 grab[16];
-
-	static float3 PerlinFade(float3 a);
-	static float PerlinGrab(int a, float3 b);
-	static float PerlinPermute(int a);
-
-	static float3 WorleyPermute(float3 a);
-	static float4 WorleyPermute(float4 a);
-	static float3 Length(float3 a, float3 b, float3 c);
-	static float4 Length(float4 a, float4 b, float4 c);
+	static float4 Permute(float4 a);
+	static float3 Fade(float3 a);
+	static float4 Fade(float4 a);
 
 public:
-	static float PerlinNoise(float3 uv, float freq);
-	static float PerlinFbm(float3 uv, float freq);
+	static float PerlinNoise(float3 pos, float freq);
+	static float PerlinFbm(float3 pos, float freq, int octaveCount);
 
-	static float WorleyNoise(float3 uv, float freq);
-	static float WorleyNoiseFast(float3 uv, float freq);
-	static float WorleyFbm(float3 uv, float freq);
+	static float WorleyNoise(float3 pos, float cellCount);
+	static float WorleyFbm(float3 pos, float cellCount, float freqs[3]);
 
-	static float CurlNoise(float3 uv);
+	static float CurlNoise(float3 pos);
+};
+
+class Random
+{
+public:
+	static float Hash(float a);
+	static float3 Hash(float3 a);
+	static float Lcg(float a);
+	static float3 Lcg(float3 a);
 };
 
 Matrix4x4 operator * (Matrix4x4 m1, Matrix4x4 m2);
@@ -160,30 +159,52 @@ float3 operator - (float3 v1, float3 v2);
 float4 operator - (float4 v1, float4 v2);
 float Dot(float3 a, float3 b);
 float Dot(float4 a, float4 b);
-float3 exp(float3 v);
+float Exp(float a);
+float3 Exp(float3 v);
+float4 Exp(float4 v);
+float Sin(float a);
+float3 Sin(float3 v);
+float4 Sin(float4 v);
+float FastInvSqrt(float a);
+float3 FastInvSqrt(float3 a);
+float4 FastInvSqrt(float4 a);
 
 Matrix4x4 Translate(float x, float y, float z);
 Matrix4x4 Scale(float x, float y, float z);
 Quaternion Rotate(float3 axis, float angle);
 Matrix4x4 CalculateModelMatrix(float* localCoord, float3 trans, float3 rota, float3 scal);
 Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal);
+
 float Distance(float3 a, float3 b);
 float Distance(float4 a, float4 b);
+
+float Floor(float a);
 float3 Floor(float3 a);
 float4 Floor(float4 a);
+float Mod(float a, float b);
 float3 Mod(float3 a, float b);
 float4 Mod(float4 a, float b);
+float Fract(float a);
 float3 Fract(float3 a);
 float4 Fract(float4 a);
+float Max(float a, float b);
 float3 Max(float3 a, float3 b);
 float4 Max(float4 a, float4 b);
+float Min(float a, float b);
 float3 Min(float3 a, float3 b);
 float4 Min(float4 a, float4 b);
+float Abs(float a);
 float3 Abs(float3 a);
 float4 Abs(float4 a);
 float Lerp(float a, float b, float c);
 float3 Lerp(float3 a, float3 b, float c);
 float4 Lerp(float4 a, float4 b, float c);
+float Step(float a, float b);
+float3 Step(float3 a, float b);
+float4 Step(float4 a, float b);
+float3 Step(float3 a, float3 b);
+float4 Step(float4 a, float4 b);
+
 float Remap(float a, float oldMin, float oldMax, float newMin, float newMax);
 
 float4 xyY2RGB(float3 xyY);
