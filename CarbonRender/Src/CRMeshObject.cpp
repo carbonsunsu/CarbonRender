@@ -75,22 +75,22 @@ void MeshObject::GetReady4Rending()
 		Mesh curMesh = child[i];
 		glBindVertexArray(vaos[i]);
 
-		SetGLArrayBuffer(vbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.vertex, 3, GL_FLOAT, CR_VERTATTRIPOS_POS);
+		GLHelper::SetGLArrayBuffer(vbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.vertex, 3, GL_FLOAT, CR_VERTATTRIPOS_POS);
 		glEnableVertexAttribArray(CR_VERTATTRIPOS_POS);
 
-		SetGLArrayBuffer(cbs[i], sizeof(float)*curMesh.vertexCount * 4, curMesh.color, 4, GL_FLOAT, CR_VERTATTRIPOS_COL);
+		GLHelper::SetGLArrayBuffer(cbs[i], sizeof(float)*curMesh.vertexCount * 4, curMesh.color, 4, GL_FLOAT, CR_VERTATTRIPOS_COL);
 		glEnableVertexAttribArray(CR_VERTATTRIPOS_COL);
 
-		SetGLArrayBuffer(ubs[i], sizeof(float)*curMesh.vertexCount * 4, curMesh.uv, 4, GL_FLOAT, CR_VERTATTRIPOS_UVS);
+		GLHelper::SetGLArrayBuffer(ubs[i], sizeof(float)*curMesh.vertexCount * 4, curMesh.uv, 4, GL_FLOAT, CR_VERTATTRIPOS_UVS);
 		glEnableVertexAttribArray(CR_VERTATTRIPOS_UVS);
 
-		SetGLArrayBuffer(nbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.normal, 3, GL_FLOAT, CR_VERTATTRIPOS_NOR);
+		GLHelper::SetGLArrayBuffer(nbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.normal, 3, GL_FLOAT, CR_VERTATTRIPOS_NOR);
 		glEnableVertexAttribArray(CR_VERTATTRIPOS_NOR);
 
-		SetGLArrayBuffer(tbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.tangent, 3, GL_FLOAT, CR_VERTATTRIPOS_TAG);
+		GLHelper::SetGLArrayBuffer(tbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.tangent, 3, GL_FLOAT, CR_VERTATTRIPOS_TAG);
 		glEnableVertexAttribArray(CR_VERTATTRIPOS_TAG);
 
-		SetGLArrayBuffer(bbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.binormal, 3, GL_FLOAT, CR_VERTATTRIPOS_BNL);
+		GLHelper::SetGLArrayBuffer(bbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.binormal, 3, GL_FLOAT, CR_VERTATTRIPOS_BNL);
 		glEnableVertexAttribArray(CR_VERTATTRIPOS_BNL);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebos[i]);

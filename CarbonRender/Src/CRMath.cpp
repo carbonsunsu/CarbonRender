@@ -235,7 +235,7 @@ Matrix4x4 Quaternion::ToMatrix()
 
 float4 Noise::Permute(float4 a)
 {
-	return Mod(a * a * 34.0f + a, 289.0f);
+	return Math::Mod(a * a * 34.0f + a, 289.0f);
 }
 
 float3 Noise::Fade(float3 a)
@@ -253,9 +253,9 @@ float Noise::PerlinNoise(float3 pos, float freq)
 	pos = pos * freq;
 	float4 p = float4(pos, 0.0f);
 
-	float4 Pi0 = Mod(Floor(p), freq);
-	float4 Pi1 = Mod(Pi0 + 1.0f, freq);
-	float4 Pf0 = Fract(p);
+	float4 Pi0 = Math::Mod(Math::Floor(p), freq);
+	float4 Pi1 = Math::Mod(Pi0 + 1.0f, freq);
+	float4 Pf0 = Math::Fract(p);
 	float4 Pf1 = Pf0 - 1.0f;
 	float4 ix = float4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
 	float4 iy = float4(Pi0.y, Pi0.y, Pi1.y, Pi1.y);
@@ -273,48 +273,48 @@ float Noise::PerlinNoise(float3 pos, float freq)
 	float4 ixy11 = Noise::Permute(ixy1 + iw1);
 
 	float4 gx00 = ixy00 / 7.0f;
-	float4 gy00 = Floor(gx00) / 7.0f;
-	float4 gz00 = Floor(gy00) / 6.0f;
-	gx00 = Fract(gx00) - 0.5f;
-	gy00 = Fract(gy00) - 0.5f;
-	gz00 = Fract(gz00) - 0.5f;
-	float4 gw00 = 0.5f - Abs(gx00) - Abs(gy00) - Abs(gz00);
-	float4 sw00 = Step(float4(0.0f), gw00);
-	gx00 = gx00 - sw00 * (Step(gx00, 0.0f) - 0.5f);
-	gy00 = gy00 - sw00 * (Step(gy00, 0.0f) - 0.5f);
+	float4 gy00 = Math::Floor(gx00) / 7.0f;
+	float4 gz00 = Math::Floor(gy00) / 6.0f;
+	gx00 = Math::Fract(gx00) - 0.5f;
+	gy00 = Math::Fract(gy00) - 0.5f;
+	gz00 = Math::Fract(gz00) - 0.5f;
+	float4 gw00 = 0.5f - Math::Abs(gx00) - Math::Abs(gy00) - Math::Abs(gz00);
+	float4 sw00 = Math::Step(float4(0.0f), gw00);
+	gx00 = gx00 - sw00 * (Math::Step(gx00, 0.0f) - 0.5f);
+	gy00 = gy00 - sw00 * (Math::Step(gy00, 0.0f) - 0.5f);
 
 	float4 gx01 = ixy01 / 7.0f;
-	float4 gy01 = Floor(gx01) / 7.0f;
-	float4 gz01 = Floor(gy01) / 6.0f;
-	gx01 = Fract(gx01) - 0.5f;
-	gy01 = Fract(gy01) - 0.5f;
-	gz01 = Fract(gz01) - 0.5f;
-	float4 gw01 = 0.5f - Abs(gx01) - Abs(gy01) - Abs(gz01);
-	float4 sw01 = Step(float4(0.0f), gw01);
-	gx01 = gx01 - sw01 * (Step(gx01, 0.0f) - 0.5f);
-	gy01 = gy01 - sw01 * (Step(gy01, 0.0f) - 0.5f);
+	float4 gy01 = Math::Floor(gx01) / 7.0f;
+	float4 gz01 = Math::Floor(gy01) / 6.0f;
+	gx01 = Math::Fract(gx01) - 0.5f;
+	gy01 = Math::Fract(gy01) - 0.5f;
+	gz01 = Math::Fract(gz01) - 0.5f;
+	float4 gw01 = 0.5f - Math::Abs(gx01) - Math::Abs(gy01) - Math::Abs(gz01);
+	float4 sw01 = Math::Step(float4(0.0f), gw01);
+	gx01 = gx01 - sw01 * (Math::Step(gx01, 0.0f) - 0.5f);
+	gy01 = gy01 - sw01 * (Math::Step(gy01, 0.0f) - 0.5f);
 
 	float4 gx10 = ixy10 / 7.0f;
-	float4 gy10 = Floor(gx10) / 7.0f;
-	float4 gz10 = Floor(gy10) / 6.0f;
-	gx10 = Fract(gx10) - 0.5f;
-	gy10 = Fract(gy10) - 0.5f;
-	gz10 = Fract(gz10) - 0.5f;
-	float4 gw10 = 0.5f - Abs(gx10) - Abs(gy10) - Abs(gz10);
-	float4 sw10 = Step(float4(0.0f), gw10);
-	gx10 = gx10 - sw10 * (Step(gx10, 0.0f) - 0.5f);
-	gy10 = gy10 - sw10 * (Step(gy10, 0.0f) - 0.5f);
+	float4 gy10 = Math::Floor(gx10) / 7.0f;
+	float4 gz10 = Math::Floor(gy10) / 6.0f;
+	gx10 = Math::Fract(gx10) - 0.5f;
+	gy10 = Math::Fract(gy10) - 0.5f;
+	gz10 = Math::Fract(gz10) - 0.5f;
+	float4 gw10 = 0.5f - Math::Abs(gx10) - Math::Abs(gy10) - Math::Abs(gz10);
+	float4 sw10 = Math::Step(float4(0.0f), gw10);
+	gx10 = gx10 - sw10 * (Math::Step(gx10, 0.0f) - 0.5f);
+	gy10 = gy10 - sw10 * (Math::Step(gy10, 0.0f) - 0.5f);
 
 	float4 gx11 = ixy11 / 7.0f;
-	float4 gy11 = Floor(gx11) / 7.0f;
-	float4 gz11 = Floor(gy11) / 6.0f;
-	gx11 = Fract(gx11) - 0.5f;
-	gy11 = Fract(gy11) - 0.5f;
-	gz11 = Fract(gz11) - 0.5f;
-	float4 gw11 = 0.5f - Abs(gx11) - Abs(gy11) - Abs(gz11);
-	float4 sw11 = Step(float4(0.0f), gw11);
-	gx11 = gx11 - sw11 * (Step(gx11, 0.0f) - 0.5f);
-	gy11 = gy11 - sw11 * (Step(gy11, 0.0f) - 0.5f);
+	float4 gy11 = Math::Floor(gx11) / 7.0f;
+	float4 gz11 = Math::Floor(gy11) / 6.0f;
+	gx11 = Math::Fract(gx11) - 0.5f;
+	gy11 = Math::Fract(gy11) - 0.5f;
+	gz11 = Math::Fract(gz11) - 0.5f;
+	float4 gw11 = 0.5f - Math::Abs(gx11) - Math::Abs(gy11) - Math::Abs(gz11);
+	float4 sw11 = Math::Step(float4(0.0f), gw11);
+	gx11 = gx11 - sw11 * (Math::Step(gx11, 0.0f) - 0.5f);
+	gy11 = gy11 - sw11 * (Math::Step(gy11, 0.0f) - 0.5f);
 
 	float4 g0000 = float4(gx00.x, gy00.x, gz00.x, gw00.x);
 	float4 g1000 = float4(gx00.y, gy00.y, gz00.y, gw00.y);
@@ -336,52 +336,52 @@ float Noise::PerlinNoise(float3 pos, float freq)
 	float4 g0111 = float4(gx11.z, gy11.z, gz11.z, gw11.z);
 	float4 g1111 = float4(gx11.w, gy11.w, gz11.w, gw11.w);
 
-	float4 norm00 = FastInvSqrt(float4(Dot(g0000, g0000), Dot(g0100, g0100), Dot(g1000, g1000), Dot(g1100, g1100)));
+	float4 norm00 = Math::FastInvSqrt(float4(Math::Dot(g0000, g0000), Math::Dot(g0100, g0100), Math::Dot(g1000, g1000), Math::Dot(g1100, g1100)));
 	g0000 = g0000 * norm00.x;
 	g0100 = g0100 * norm00.y;
 	g1000 = g1000 * norm00.z;
 	g1100 = g1100 * norm00.w;
-	float4 norm01 = FastInvSqrt(float4(Dot(g0001, g0001), Dot(g0101, g0101), Dot(g1001, g1001), Dot(g1101, g1101)));
+	float4 norm01 = Math::FastInvSqrt(float4(Math::Dot(g0001, g0001), Math::Dot(g0101, g0101), Math::Dot(g1001, g1001), Math::Dot(g1101, g1101)));
 	g0001 = g0001 * norm01.x;
 	g0101 = g0101 * norm01.y;
 	g1001 = g1001 * norm01.z;
 	g1101 = g1101 * norm01.w;
 
-	float4 norm10 = FastInvSqrt(float4(Dot(g0010, g0010), Dot(g0110, g0110), Dot(g1010, g1010), Dot(g1110, g1110)));
+	float4 norm10 = Math::FastInvSqrt(float4(Math::Dot(g0010, g0010), Math::Dot(g0110, g0110), Math::Dot(g1010, g1010), Math::Dot(g1110, g1110)));
 	g0010 = g0010 * norm10.x;
 	g0110 = g0110 * norm10.y;
 	g1010 = g1010 * norm10.z;
 	g1110 = g1110 * norm10.w;
 
-	float4 norm11 = FastInvSqrt(float4(Dot(g0011, g0011), Dot(g0111, g0111), Dot(g1011, g1011), Dot(g1111, g1111)));
+	float4 norm11 = Math::FastInvSqrt(float4(Math::Dot(g0011, g0011), Math::Dot(g0111, g0111), Math::Dot(g1011, g1011), Math::Dot(g1111, g1111)));
 	g0011 = g0011 * norm11.x;
 	g0111 = g0111 * norm11.y;
 	g1011 = g1011 * norm11.z;
 	g1111 = g1111 * norm11.w;
 
-	float n0000 = Dot(g0000, Pf0);
-	float n1000 = Dot(g1000, float4(Pf1.x, Pf0.y, Pf0.z, Pf0.w));
-	float n0100 = Dot(g0100, float4(Pf0.x, Pf1.y, Pf0.z, Pf0.w));
-	float n1100 = Dot(g1100, float4(Pf1.x, Pf1.y, Pf0.z, Pf0.w));
-	float n0010 = Dot(g0010, float4(Pf0.x, Pf0.y, Pf1.z, Pf0.w));
-	float n1010 = Dot(g1010, float4(Pf1.x, Pf0.y, Pf1.z, Pf0.w));
-	float n0110 = Dot(g0110, float4(Pf0.x, Pf1.y, Pf1.z, Pf0.w));
-	float n1110 = Dot(g1110, float4(Pf1.x, Pf1.y, Pf1.z, Pf0.w));
-	float n0001 = Dot(g0001, float4(Pf0.x, Pf0.y, Pf0.z, Pf1.w));
-	float n1001 = Dot(g1001, float4(Pf1.x, Pf0.y, Pf0.z, Pf1.w));
-	float n0101 = Dot(g0101, float4(Pf0.x, Pf1.y, Pf0.z, Pf1.w));
-	float n1101 = Dot(g1101, float4(Pf1.x, Pf1.y, Pf0.z, Pf1.w));
-	float n0011 = Dot(g0011, float4(Pf0.x, Pf0.y, Pf1.z, Pf1.w));
-	float n1011 = Dot(g1011, float4(Pf1.x, Pf0.y, Pf1.z, Pf1.w));
-	float n0111 = Dot(g0111, float4(Pf0.x, Pf1.y, Pf1.z, Pf1.w));
-	float n1111 = Dot(g1111, Pf1);
+	float n0000 = Math::Dot(g0000, Pf0);
+	float n1000 = Math::Dot(g1000, float4(Pf1.x, Pf0.y, Pf0.z, Pf0.w));
+	float n0100 = Math::Dot(g0100, float4(Pf0.x, Pf1.y, Pf0.z, Pf0.w));
+	float n1100 = Math::Dot(g1100, float4(Pf1.x, Pf1.y, Pf0.z, Pf0.w));
+	float n0010 = Math::Dot(g0010, float4(Pf0.x, Pf0.y, Pf1.z, Pf0.w));
+	float n1010 = Math::Dot(g1010, float4(Pf1.x, Pf0.y, Pf1.z, Pf0.w));
+	float n0110 = Math::Dot(g0110, float4(Pf0.x, Pf1.y, Pf1.z, Pf0.w));
+	float n1110 = Math::Dot(g1110, float4(Pf1.x, Pf1.y, Pf1.z, Pf0.w));
+	float n0001 = Math::Dot(g0001, float4(Pf0.x, Pf0.y, Pf0.z, Pf1.w));
+	float n1001 = Math::Dot(g1001, float4(Pf1.x, Pf0.y, Pf0.z, Pf1.w));
+	float n0101 = Math::Dot(g0101, float4(Pf0.x, Pf1.y, Pf0.z, Pf1.w));
+	float n1101 = Math::Dot(g1101, float4(Pf1.x, Pf1.y, Pf0.z, Pf1.w));
+	float n0011 = Math::Dot(g0011, float4(Pf0.x, Pf0.y, Pf1.z, Pf1.w));
+	float n1011 = Math::Dot(g1011, float4(Pf1.x, Pf0.y, Pf1.z, Pf1.w));
+	float n0111 = Math::Dot(g0111, float4(Pf0.x, Pf1.y, Pf1.z, Pf1.w));
+	float n1111 = Math::Dot(g1111, Pf1);
 
 	float4 fade = Noise::Fade(Pf0);
-	float4 n0w = Lerp(float4(n0000, n1000, n0100, n1100), float4(n0001, n1001, n0101, n1101), fade.w);
-	float4 n1w = Lerp(float4(n0010, n1010, n0110, n1110), float4(n0011, n1011, n0111, n1111), fade.w);
-	float4 nzw = Lerp(n0w, n1w, fade.z);
-	float3 nyzw = Lerp(float3(nzw.x, nzw.y, 0.0f), float3(nzw.z, nzw.w, 0.0f), fade.y);
-	float nxyzw = Lerp(nyzw.x, nyzw.y, fade.x);
+	float4 n0w = Math::Lerp(float4(n0000, n1000, n0100, n1100), float4(n0001, n1001, n0101, n1101), fade.w);
+	float4 n1w = Math::Lerp(float4(n0010, n1010, n0110, n1110), float4(n0011, n1011, n0111, n1111), fade.w);
+	float4 nzw = Math::Lerp(n0w, n1w, fade.z);
+	float3 nyzw = Math::Lerp(float3(nzw.x, nzw.y, 0.0f), float3(nzw.z, nzw.w, 0.0f), fade.y);
+	float nxyzw = Math::Lerp(nyzw.x, nyzw.y, fade.x);
 
 	return 2.2f * nxyzw * 0.5f + 0.5f;
 }
@@ -403,8 +403,8 @@ float Noise::PerlinFbm(float3 pos, float freq, int octaveCount)
 		freq *= 2.0f;
 	}
 
-	float fbm = Min(sum / weightSum, 1.0f);
-	fbm = Max(fbm, 0.0f);
+	float fbm = Math::Min(sum / weightSum, 1.0f);
+	fbm = Math::Max(fbm, 0.0f);
 	return fbm;
 }
 
@@ -417,30 +417,30 @@ float Noise::WorleyNoise(float3 pos, float cellCount)
 		for(int j = -1; j <= 1; j++)
 			for (int k = -1; k <= 1; k++)
 			{
-				float3 tp = Floor(pCell) + float3(i, j, k);
-				float3 tpMod = Mod(tp, cellCount);
-				float3 inte = Floor(tpMod);
-				float3 frac = Fract(tpMod);
+				float3 tp = Math::Floor(pCell) + float3(i, j, k);
+				float3 tpMod = Math::Mod(tp, cellCount);
+				float3 inte = Math::Floor(tpMod);
+				float3 frac = Math::Fract(tpMod);
 
 				frac = frac * frac * (3.0f - 2.0f * frac);
 				float n = inte.x + inte.y * 57.0f + inte.z * 113.0f;
-				float noise = Lerp( 
-					Lerp( 
-						Lerp(Random::Hash(n + 0.0f), Random::Hash(n + 1.0f), frac.x),
-						Lerp(Random::Hash(n + 57.0f), Random::Hash(n + 58.0f), frac.x),
+				float noise = Math::Lerp( 
+					Math::Lerp( 
+						Math::Lerp(Random::Hash(n + 0.0f), Random::Hash(n + 1.0f), frac.x),
+						Math::Lerp(Random::Hash(n + 57.0f), Random::Hash(n + 58.0f), frac.x),
 						frac.y),
-					Lerp(
-						Lerp(Random::Hash(n + 113.0f), Random::Hash(n + 114.0f), frac.x),
-						Lerp(Random::Hash(n + 170.0f), Random::Hash(n + 171.0f), frac.x),
+					Math::Lerp(
+						Math::Lerp(Random::Hash(n + 113.0f), Random::Hash(n + 114.0f), frac.x),
+						Math::Lerp(Random::Hash(n + 170.0f), Random::Hash(n + 171.0f), frac.x),
 						frac.y),
 					frac.z);
 
 				tp = pCell - tp - noise;
-				cellNoise = Min(cellNoise, Dot(tp, tp));
+				cellNoise = Math::Min(cellNoise, Math::Dot(tp, tp));
 			}
 
-	cellNoise = Min(cellNoise, 1.0f);
-	cellNoise = Max(cellNoise, 0.0f);
+	cellNoise = Math::Min(cellNoise, 1.0f);
+	cellNoise = Math::Max(cellNoise, 0.0f);
 
 	return 1.0f - cellNoise;
 }
@@ -469,9 +469,9 @@ Matrix4x4 operator*(Matrix4x4 m1, Matrix4x4 m2)
 		int r = (int)temp * 4;
 		int l = (int)i % 4;
 		resultM.matrix[i] = m1.matrix[0 + r] * m2.matrix[0 + l] +
-							m1.matrix[1 + r] * m2.matrix[4 + l] +
-							m1.matrix[2 + r] * m2.matrix[8 + l] +
-							m1.matrix[3 + r] * m2.matrix[12 + l];
+			m1.matrix[1 + r] * m2.matrix[4 + l] +
+			m1.matrix[2 + r] * m2.matrix[8 + l] +
+			m1.matrix[3 + r] * m2.matrix[12 + l];
 	}
 
 	return resultM;
@@ -493,9 +493,19 @@ float4 operator*(float4 v, Quaternion r)
 	return float4(v.x*r.x, v.y*r.y, v.z*r.z, v.w*r.w);
 }
 
+float3 operator*(float s, float3 v)
+{
+	return float3(v.x*s, v.y*s, v.z*s);
+}
+
 float3 operator*(float3 v, float s)
 {
 	return float3(v.x*s, v.y*s, v.z*s);
+}
+
+float4 operator*(float s, float4 v)
+{
+	return float4(v.x*s, v.y*s, v.z*s, v.w*s);
 }
 
 float4 operator*(float4 v, float s)
@@ -540,7 +550,17 @@ float3 operator+(float a, float3 v)
 	return float3(a + v.x, a + v.y, a + v.z);
 }
 
+float3 operator+(float3 v, float a)
+{
+	return float3(a + v.x, a + v.y, a + v.z);
+}
+
 float4 operator+(float a, float4 v)
+{
+	return float4(a + v.x, a + v.y, a + v.z, a + v.w);
+}
+
+float4 operator+(float4 v, float a)
 {
 	return float4(a + v.x, a + v.y, a + v.z, a + v.w);
 }
@@ -565,47 +585,47 @@ float4 operator-(float4 v1, float4 v2)
 	return float4(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w);
 }
 
-float Dot(float3 a, float3 b)
+float Math::Dot(float3 a, float3 b)
 {
 	return a.x*b.x + a.y*b.y + a.z*b.z;
 }
 
-float Dot(float4 a, float4 b)
+float Math::Dot(float4 a, float4 b)
 {
 	return a.x*b.x + a.y*b.y + a.z*b.z + a.w*b.w;
 }
 
-float Exp(float a)
+float Math::Exp(float a)
 {
 	return exp(a);
 }
 
-float3 Exp(float3 v)
+float3 Math::Exp(float3 v)
 {
 	return float3(exp(v.x), exp(v.y), exp(v.z));
 }
 
-float4 Exp(float4 v)
+float4 Math::Exp(float4 v)
 {
 	return float4(exp(v.x), exp(v.y), exp(v.z), exp(v.w));
 }
 
-float Sin(float a)
+float Math::Sin(float a)
 {
 	return sinf(a);
 }
 
-float3 Sin(float3 v)
+float3 Math::Sin(float3 v)
 {
 	return float3(sinf(v.x), sinf(v.y), sinf(v.z));
 }
 
-float4 Sin(float4 v)
+float4 Math::Sin(float4 v)
 {
 	return float4(sinf(v.x), sinf(v.y), sinf(v.z), sinf(v.w));
 }
 
-float FastInvSqrt(float a)
+float Math::FastInvSqrt(float a)
 {
 	float half = a * 0.5f;
 	int i = *(int*)&a;
@@ -615,7 +635,7 @@ float FastInvSqrt(float a)
 	return a;
 }
 
-float3 FastInvSqrt(float3 a)
+float3 Math::FastInvSqrt(float3 a)
 {
 	float3 half = a * 0.5f;
 
@@ -637,7 +657,7 @@ float3 FastInvSqrt(float3 a)
 	return a;
 }
 
-float4 FastInvSqrt(float4 a)
+float4 Math::FastInvSqrt(float4 a)
 {
 	float4 half = a * 0.5f;
 
@@ -664,7 +684,7 @@ float4 FastInvSqrt(float4 a)
 	return a;
 }
 
-Matrix4x4 Translate(float x, float y, float z)
+Matrix4x4 Math::Translate(float x, float y, float z)
 {
 	float tArray[16] = {1.0f, 0.0f, 0.0f, 0.0f,
 						0.0f, 1.0f, 0.0f, 0.0f,
@@ -675,7 +695,7 @@ Matrix4x4 Translate(float x, float y, float z)
 	return t;
 }
 
-Matrix4x4 Scale(float x, float y, float z)
+Matrix4x4 Math::Scale(float x, float y, float z)
 {
 	float sArray[16] = {x, 0.0f, 0.0f, 0.0f,
 						0.0f, y, 0.0f, 0.0f,
@@ -686,7 +706,7 @@ Matrix4x4 Scale(float x, float y, float z)
 	return s;
 }
 
-Quaternion Rotate(float3 axis, float angle)
+Quaternion Math::Rotate(float3 axis, float angle)
 {
 	float r = angle * 0.5f * A2R;
 	return Quaternion(axis.x * sin(r),
@@ -695,29 +715,29 @@ Quaternion Rotate(float3 axis, float angle)
 					  cos(r));
 }
 
-Matrix4x4 CalculateModelMatrix(float* localCoord, float3 trans, float3 rota, float3 scal)
+Matrix4x4 Math::CalculateModelMatrix(float* localCoord, float3 trans, float3 rota, float3 scal)
 {
 	float4 xAxis(1.0f, 0.0f, 0.0f, 0.0f);
 	float4 yAxis(0.0f, 1.0f, 0.0f, 0.0f);
 	float4 zAxis(0.0f, 0.0f, 1.0f, 0.0f);
 
-	Matrix4x4 mMatrix = Scale(scal.x, scal.y, scal.z) *
-						Rotate(xAxis, rota.x).Normailze().ToMatrix();
+	Matrix4x4 mMatrix = Math::Scale(scal.x, scal.y, scal.z) *
+						Math::Rotate(xAxis, rota.x).Normailze().ToMatrix();
 
-	yAxis = yAxis * Rotate(xAxis, rota.x).Normailze().ToMatrix();
-	zAxis = zAxis * Rotate(xAxis, rota.x).Normailze().ToMatrix();
+	yAxis = yAxis * Math::Rotate(xAxis, rota.x).Normailze().ToMatrix();
+	zAxis = zAxis * Math::Rotate(xAxis, rota.x).Normailze().ToMatrix();
 
-	mMatrix = mMatrix * Rotate(float3(yAxis), rota.y).Normailze().ToMatrix();
+	mMatrix = mMatrix * Math::Rotate(float3(yAxis), rota.y).Normailze().ToMatrix();
 
-	xAxis = xAxis * Rotate(float3(yAxis), rota.y).Normailze().ToMatrix();
-	zAxis = zAxis * Rotate(float3(yAxis), rota.y).Normailze().ToMatrix();
+	xAxis = xAxis * Math::Rotate(float3(yAxis), rota.y).Normailze().ToMatrix();
+	zAxis = zAxis * Math::Rotate(float3(yAxis), rota.y).Normailze().ToMatrix();
 
-	mMatrix = mMatrix * Rotate(float3(zAxis), rota.z).Normailze().ToMatrix();
+	mMatrix = mMatrix * Math::Rotate(float3(zAxis), rota.z).Normailze().ToMatrix();
 
-	xAxis = xAxis * Rotate(float3(zAxis), rota.z).Normailze().ToMatrix();
-	yAxis = zAxis * Rotate(float3(zAxis), rota.z).Normailze().ToMatrix();
+	xAxis = xAxis * Math::Rotate(float3(zAxis), rota.z).Normailze().ToMatrix();
+	yAxis = zAxis * Math::Rotate(float3(zAxis), rota.z).Normailze().ToMatrix();
 
-	mMatrix = mMatrix * Translate(trans.x, trans.y, trans.z);
+	mMatrix = mMatrix * Math::Translate(trans.x, trans.y, trans.z);
 
 	localCoord[0] = xAxis.x;
 	localCoord[1] = xAxis.y;
@@ -734,22 +754,22 @@ Matrix4x4 CalculateModelMatrix(float* localCoord, float3 trans, float3 rota, flo
 	return  mMatrix;
 }
 
-Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal)
+Matrix4x4 Math::CalculateModelMatrix(float3 trans, float3 rota, float3 scal)
 {
 	float4 xAxis(1.0f, 0.0f, 0.0f, 0.0f);
 	float4 yAxis(0.0f, 1.0f, 0.0f, 0.0f);
 	float4 zAxis(0.0f, 0.0f, 1.0f, 0.0f);
 
-	Matrix4x4 mMatrix = Scale(scal.x, scal.y, scal.z) *
-		Rotate(yAxis, rota.y).Normailze().ToMatrix() *
-		Rotate(xAxis, rota.x).Normailze().ToMatrix() *
-		Rotate(zAxis, rota.z).Normailze().ToMatrix() *
-		Translate(trans.x, trans.y, trans.z);
+	Matrix4x4 mMatrix = Math::Scale(scal.x, scal.y, scal.z) *
+		Math::Rotate(yAxis, rota.y).Normailze().ToMatrix() *
+		Math::Rotate(xAxis, rota.x).Normailze().ToMatrix() *
+		Math::Rotate(zAxis, rota.z).Normailze().ToMatrix() *
+		Math::Translate(trans.x, trans.y, trans.z);
 
 	return  mMatrix;
 }
 
-float Distance(float3 a, float3 b)
+float Math::Distance(float3 a, float3 b)
 {
 	float x = a.x - b.x;
 	float y = a.y - b.y;
@@ -757,7 +777,7 @@ float Distance(float3 a, float3 b)
 	return sqrtf(x*x + y*y + z*z);
 }
 
-float Distance(float4 a, float4 b)
+float Math::Distance(float4 a, float4 b)
 {
 	float x = a.x - b.x;
 	float y = a.y - b.y;
@@ -766,124 +786,124 @@ float Distance(float4 a, float4 b)
 	return sqrtf(x*x + y*y + z*z + w*w);
 }
 
-float Floor(float a)
+float Math::Floor(float a)
 {
 	return floorf(a);
 }
 
-float3 Floor(float3 a)
+float3 Math::Floor(float3 a)
 {
 	return float3(floorf(a.x), floorf(a.y), floorf(a.z));
 }
 
-float4 Floor(float4 a)
+float4 Math::Floor(float4 a)
 {
 	return float4(floorf(a.x), floorf(a.y), floorf(a.z), floorf(a.w));
 }
 
-float Mod(float a, float b)
+float Math::Mod(float a, float b)
 {
 	return fmodf(a, b);
 }
 
-float3 Mod(float3 a, float b)
+float3 Math::Mod(float3 a, float b)
 {
 	return float3(fmodf(a.x, b), fmodf(a.y, b), fmodf(a.z, b));
 }
 
-float4 Mod(float4 a, float b)
+float4 Math::Mod(float4 a, float b)
 {
 	return float4(fmodf(a.x, b), fmodf(a.y, b), fmodf(a.z, b), fmodf(a.w, b));
 }
 
-float Fract(float a)
+float Math::Fract(float a)
 {
-	return a - Floor(a);
+	return a - Math::Floor(a);
 }
 
-float3 Fract(float3 a)
+float3 Math::Fract(float3 a)
 {
-	return a - Floor(a);
+	return a - Math::Floor(a);
 }
 
-float4 Fract(float4 a)
+float4 Math::Fract(float4 a)
 {
-	return a - Floor(a);
+	return a - Math::Floor(a);
 }
 
-float Max(float a, float b)
+float Math::Max(float a, float b)
 {
 	return fmaxf(a, b);
 }
 
-float3 Max(float3 a, float3 b)
+float3 Math::Max(float3 a, float3 b)
 {
 	return float3(fmaxf(a.x, b.x), fmaxf(a.y, b.y), fmaxf(a.z, b.z));
 }
 
-float4 Max(float4 a, float4 b)
+float4 Math::Max(float4 a, float4 b)
 {
 	return float4(fmaxf(a.x, b.x), fmaxf(a.y, b.y), fmaxf(a.z, b.z), fmaxf(a.w, b.w));
 }
 
-float Min(float a, float b)
+float Math::Min(float a, float b)
 {
 	return fminf(a, b);
 }
 
-float3 Min(float3 a, float3 b)
+float3 Math::Min(float3 a, float3 b)
 {
 	return float3(fminf(a.x, b.x), fminf(a.y, b.y), fminf(a.z, b.z));
 }
 
-float4 Min(float4 a, float4 b)
+float4 Math::Min(float4 a, float4 b)
 {
 	return float4(fminf(a.x, b.x), fminf(a.y, b.y), fminf(a.z, b.z), fminf(a.w, b.w));
 }
 
-float Abs(float a)
+float Math::Abs(float a)
 {
 	return fabsf(a);
 }
 
-float3 Abs(float3 a)
+float3 Math::Abs(float3 a)
 {
 	return float3(fabsf(a.x), fabsf(a.y), fabsf(a.z));
 }
 
-float4 Abs(float4 a)
+float4 Math::Abs(float4 a)
 {
 	return float4(fabsf(a.x), fabsf(a.y), fabsf(a.z), fabsf(a.w));
 }
 
-float Lerp(float a, float b, float c)
+float Math::Lerp(float a, float b, float c)
 {
 	return a + (b - a) * c;
 }
 
-float3 Lerp(float3 a, float3 b, float c)
+float3 Math::Lerp(float3 a, float3 b, float c)
 {
 	return a + (b - a) * c;
 }
 
-float4 Lerp(float4 a, float4 b, float c)
+float4 Math::Lerp(float4 a, float4 b, float c)
 {
 	return a + (b - a) * c;
 }
 
-float Step(float a, float b)
+float Math::Step(float a, float b)
 {
 	return a >= b ? 1.0f : 0.0f;
 }
 
-float3 Step(float3 a, float b)
+float3 Math::Step(float3 a, float b)
 {
 	return float3(a.x >= b ? 1.0f : 0.0f,
 		a.y >= b ? 1.0f : 0.0f,
 		a.z >= b ? 1.0f : 0.0f);
 }
 
-float4 Step(float4 a, float b)
+float4 Math::Step(float4 a, float b)
 {
 	return float4(a.x >= b ? 1.0f : 0.0f,
 		a.y >= b ? 1.0f : 0.0f,
@@ -891,14 +911,14 @@ float4 Step(float4 a, float b)
 		a.w >= b ? 1.0f : 0.0f);
 }
 
-float3 Step(float3 a, float3 b)
+float3 Math::Step(float3 a, float3 b)
 {
 	return float3(a.x >= b.x ? 1.0f : 0.0f,
 		a.y >= b.y ? 1.0f : 0.0f,
 		a.z >= b.z ? 1.0f : 0.0f);
 }
 
-float4 Step(float4 a, float4 b)
+float4 Math::Step(float4 a, float4 b)
 {
 	return float4(a.x >= b.x ? 1.0f : 0.0f,
 		a.y >= b.y ? 1.0f : 0.0f,
@@ -906,12 +926,12 @@ float4 Step(float4 a, float4 b)
 		a.w >= b.w ? 1.0f : 0.0f);
 }
 
-float Remap(float a, float oldMin, float oldMax, float newMin, float newMax)
+float Math::Remap(float a, float oldMin, float oldMax, float newMin, float newMax)
 {
 	return newMin + (newMax - newMin) * (a - oldMin) / (oldMax - oldMin);
 }
 
-float4 xyY2RGB(float3 xyY)
+float4 Math::xyY2RGB(float3 xyY)
 {
 	//xyY to XYZ
 	float3 XYZ = float3(xyY.x*xyY.z / xyY.y, xyY.z, (1.0f - xyY.x - xyY.y)*xyY.z / xyY.y);
@@ -925,12 +945,12 @@ float4 xyY2RGB(float3 xyY)
 
 float Random::Hash(float a)
 {
-	return Fract(Sin(a + 1.951f) * 43758.5453123f);
+	return Math::Fract(Math::Sin(a + 1.951f) * 43758.5453123f);
 }
 
 float3 Random::Hash(float3 a)
 {
-	return Fract(Sin(a + 1.951f) * 43758.5453123f);
+	return Math::Fract(Math::Sin(a + 1.951f) * 43758.5453123f);
 }
 
 float Random::Lcg(float a)

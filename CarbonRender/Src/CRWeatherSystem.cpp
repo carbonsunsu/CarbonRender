@@ -183,7 +183,7 @@ float4 WeatherSystem::GetSunColor()
 	float3 up(0.0f, 1.0f, 0.0f);
 
 	float3 vP = wsSunPos.normalize();
-	float cosTheta = Dot(vP, up);
+	float cosTheta = Math::Dot(vP, up);
 
 	float4 skyColor(0.0f, 0.0f, 0.0f, 1.0f);
 	float3 A(-0.0193f*turbidity - 0.2592f, -0.0167f*turbidity - 0.2608f, 0.1787f*turbidity - 1.4630f);
@@ -192,14 +192,14 @@ float4 WeatherSystem::GetSunColor()
 	float3 D(-0.0641f*turbidity - 0.8989f, -0.0441f*turbidity - 1.6537f, 0.1206f*turbidity - 2.5771f);
 	float3 E(-0.0033f*turbidity + 0.0452f, -0.0109f*turbidity + 0.0529f, -0.0670f*turbidity + 0.3703f);
 
-	float3 F1 = (1.0f + A*Exp(B / cosTheta))*(1.0f + C + E);
-	float3 F2 = (1.0f + A*Exp(B))*(1.0f + C*Exp(D*thetaS) + E*pow(cos(thetaS), 2.0f));
+	float3 F1 = (1.0f + A*Math::Exp(B / cosTheta))*(1.0f + C + E);
+	float3 F2 = (1.0f + A*Math::Exp(B))*(1.0f + C*Math::Exp(D*thetaS) + E*pow(cos(thetaS), 2.0f));
 	float3 xyY = zenith*(F1 / F2);
 	xyY.z = 1.0f - exp((-1.0f/exposure)*xyY.z);
 
-	skyColor = xyY2RGB(xyY);
+	skyColor = Math::xyY2RGB(xyY);
 
-	return Min(skyColor * 3.0f, float4(1.0f));
+	return Math::Min(skyColor * 3.0f, float4(1.0f));
 }
 
 float4 WeatherSystem::GetZenithColor()
@@ -209,7 +209,7 @@ float4 WeatherSystem::GetZenithColor()
 
 	float3 vP(0.0f, 1.0f, 0.0f);
 	float3 vS = wsSunPos.normalize();
-	float vSovP = Dot(vS, vP);
+	float vSovP = Math::Dot(vS, vP);
 	float gamma = acos(vSovP);
 
 	float4 zenithColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -219,12 +219,12 @@ float4 WeatherSystem::GetZenithColor()
 	float3 D(-0.0641f*turbidity - 0.8989f, -0.0441f*turbidity - 1.6537f, 0.1206f*turbidity - 2.5771f);
 	float3 E(-0.0033f*turbidity + 0.0452f, -0.0109f*turbidity + 0.0529f, -0.0670f*turbidity + 0.3703f);
 
-	float3 F1 = (1.0f + A*Exp(B))*(1.0f + C*Exp(D*gamma) + E*pow(vSovP, 2.0f));
-	float3 F2 = (1.0f + A*Exp(B))*(1.0f + C*Exp(D*thetaS) + E*pow(cos(thetaS), 2.0f));
+	float3 F1 = (1.0f + A*Math::Exp(B))*(1.0f + C*Math::Exp(D*gamma) + E*pow(vSovP, 2.0f));
+	float3 F2 = (1.0f + A*Math::Exp(B))*(1.0f + C*Math::Exp(D*thetaS) + E*pow(cos(thetaS), 2.0f));
 	float3 xyY = zenith*(F1 / F2);
 	xyY.z = 1.0f - exp((-1.0f / exposure)*xyY.z);
 
-	zenithColor = xyY2RGB(xyY);
+	zenithColor = Math::xyY2RGB(xyY);
 
 	return zenithColor;
 }

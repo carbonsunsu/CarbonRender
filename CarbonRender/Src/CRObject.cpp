@@ -25,7 +25,7 @@ void Object::SetRotation(float3 r)
 
 void Object::UpdateModelMatrix()
 {
-	modelMatrix = CalculateModelMatrix(localCoord,
+	modelMatrix = Math::CalculateModelMatrix(localCoord,
 										float3(transform[0], transform[1], transform[2]),
 										float3(transform[6], transform[7], transform[8]),
 										float3(transform[3], transform[4], transform[5]));
@@ -87,11 +87,11 @@ void Object::LookAt(float3 p)
 	float3 vXZ = float3(v.x, 0.0f, v.z).normalize();
 	v = v.normalize();
 
-	float thetaY = Dot(float3(0.0f, 0.0f, -1.0f), vXZ);
+	float thetaY = Math::Dot(float3(0.0f, 0.0f, -1.0f), vXZ);
 	thetaY = acos(thetaY) * R2A;
 	if (v.x < 0.0f) thetaY = -thetaY;
 
-	float thetaX = Dot(v, vXZ);
+	float thetaX = Math::Dot(v, vXZ);
 	thetaX = acos(thetaX) * R2A;
 	if (v.y > 0.0f) thetaX = -thetaX;
 

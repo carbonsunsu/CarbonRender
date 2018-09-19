@@ -5,7 +5,7 @@ void SSAOPass::GetReady4Render(PassOutput * input)
 	glGenFramebuffers(1, &fbo);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-	SetGLRenderTexture(input->RTS[2], GL_COLOR_ATTACHMENT0);
+	GLHelper::SetGLRenderTexture(input->RTS[2], GL_COLOR_ATTACHMENT0);
 
 	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
 	glDrawBuffers(1, drawBuffers);

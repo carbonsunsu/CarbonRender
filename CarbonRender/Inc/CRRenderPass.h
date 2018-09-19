@@ -4,6 +4,7 @@
 #include "..\Inc\CRGloble.h"
 #include "..\Inc\CRMath.h"
 #include "..\Inc\CRLightManager.h"
+#include "..\Inc\CRGLHelper.h"
 
 struct PassOutput
 {

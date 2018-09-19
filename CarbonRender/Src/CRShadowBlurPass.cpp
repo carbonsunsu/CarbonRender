@@ -6,8 +6,8 @@ void ShadowBlurPass::GetReady4Render(PassOutput * input)
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	tempRt = SetGLRenderTexture(size.w, size.h, GL_RGB, GL_RGB, GL_UNSIGNED_BYTE, GL_COLOR_ATTACHMENT0);
-	SetGLRenderTexture(input->RTS[0], GL_COLOR_ATTACHMENT1);
+	tempRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB, GL_RGB, GL_UNSIGNED_BYTE, GL_COLOR_ATTACHMENT0, false);
+	GLHelper::SetGLRenderTexture(input->RTS[0], GL_COLOR_ATTACHMENT1);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 

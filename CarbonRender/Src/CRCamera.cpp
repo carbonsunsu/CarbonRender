@@ -107,21 +107,21 @@ void Camera::UpdateViewMatrix()
 		float4 yAxis(0.0f, 1.0f, 0.0f, 0.0f);
 		float4 zAxis(0.0f, 0.0f, 1.0f, 0.0f);
 
-		modelMatrix = Translate(-transform[0], -transform[1], -transform[2]);
-		modelMatrix = modelMatrix * Rotate(xAxis, -transform[6]).Normailze().ToMatrix();
+		modelMatrix = Math::Translate(-transform[0], -transform[1], -transform[2]);
+		modelMatrix = modelMatrix * Math::Rotate(xAxis, -transform[6]).Normailze().ToMatrix();
 
-		yAxis = yAxis * Rotate(xAxis, -transform[6]).Normailze().ToMatrix();
-		zAxis = zAxis * Rotate(xAxis, -transform[6]).Normailze().ToMatrix();
+		yAxis = yAxis * Math::Rotate(xAxis, -transform[6]).Normailze().ToMatrix();
+		zAxis = zAxis * Math::Rotate(xAxis, -transform[6]).Normailze().ToMatrix();
 
-		modelMatrix = modelMatrix * Rotate(float3(yAxis), -transform[7]).Normailze().ToMatrix();
+		modelMatrix = modelMatrix * Math::Rotate(float3(yAxis), -transform[7]).Normailze().ToMatrix();
 
-		xAxis = xAxis * Rotate(float3(yAxis), -transform[7]).Normailze().ToMatrix();
-		zAxis = zAxis * Rotate(float3(yAxis), -transform[7]).Normailze().ToMatrix();
+		xAxis = xAxis * Math::Rotate(float3(yAxis), -transform[7]).Normailze().ToMatrix();
+		zAxis = zAxis * Math::Rotate(float3(yAxis), -transform[7]).Normailze().ToMatrix();
 
-		modelMatrix = modelMatrix * Rotate(float3(zAxis), -transform[8]).Normailze().ToMatrix();
+		modelMatrix = modelMatrix * Math::Rotate(float3(zAxis), -transform[8]).Normailze().ToMatrix();
 
-		xAxis = xAxis * Rotate(float3(zAxis), -transform[8]).Normailze().ToMatrix();
-		yAxis = zAxis * Rotate(float3(zAxis), -transform[8]).Normailze().ToMatrix();
+		xAxis = xAxis * Math::Rotate(float3(zAxis), -transform[8]).Normailze().ToMatrix();
+		yAxis = zAxis * Math::Rotate(float3(zAxis), -transform[8]).Normailze().ToMatrix();
 	}
 	
 	//update localCoord
@@ -130,14 +130,14 @@ void Camera::UpdateViewMatrix()
 		float4 yAxis(0.0f, 1.0f, 0.0f, 0.0f);
 		float4 zAxis(0.0f, 0.0f, 1.0f, 0.0f);
 
-		//yAxis = yAxis * Rotate(xAxis, transform[6]).Normailze().ToMatrix();
-		zAxis = zAxis * Rotate(xAxis, transform[6]).Normailze().ToMatrix();
+		//yAxis = yAxis * Math::Rotate(xAxis, transform[6]).Normailze().ToMatrix();
+		zAxis = zAxis * Math::Rotate(xAxis, transform[6]).Normailze().ToMatrix();
 
-		xAxis = xAxis * Rotate(yAxis, transform[7]).Normailze().ToMatrix();
-		zAxis = zAxis * Rotate(yAxis, transform[7]).Normailze().ToMatrix();
+		xAxis = xAxis * Math::Rotate(yAxis, transform[7]).Normailze().ToMatrix();
+		zAxis = zAxis * Math::Rotate(yAxis, transform[7]).Normailze().ToMatrix();
 
-		xAxis = xAxis * Rotate(zAxis, transform[8]).Normailze().ToMatrix();
-		//yAxis = zAxis * Rotate(zAxis, transform[8]).Normailze().ToMatrix();
+		xAxis = xAxis * Math::Rotate(zAxis, transform[8]).Normailze().ToMatrix();
+		//yAxis = zAxis * Math::Rotate(zAxis, transform[8]).Normailze().ToMatrix();
 
 		localCoord[0] = xAxis.x;
 		localCoord[1] = xAxis.y;

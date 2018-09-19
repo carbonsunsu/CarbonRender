@@ -66,9 +66,9 @@ void RenderPass::DrawFullScreenQuad()
 		glGenBuffers(3, quadBos);
 
 		glBindVertexArray(quadVao);
-		SetGLArrayBuffer(quadBos[0], sizeof(vert), vert, 2, GL_FLOAT, CR_VERTATTRIPOS_POS);
+		GLHelper::SetGLArrayBuffer(quadBos[0], sizeof(vert), vert, 2, GL_FLOAT, CR_VERTATTRIPOS_POS);
 		glEnableVertexAttribArray(CR_VERTATTRIPOS_POS);
-		SetGLArrayBuffer(quadBos[1], sizeof(uv), uv, 2, GL_FLOAT, CR_VERTATTRIPOS_UVS);
+		GLHelper::SetGLArrayBuffer(quadBos[1], sizeof(uv), uv, 2, GL_FLOAT, CR_VERTATTRIPOS_UVS);
 		glEnableVertexAttribArray(CR_VERTATTRIPOS_UVS);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quadBos[2]);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(index), index, GL_STATIC_DRAW);

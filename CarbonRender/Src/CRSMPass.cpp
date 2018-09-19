@@ -7,11 +7,11 @@ void SMPass::GetReady4Render(PassOutput * input)
 
 	GLuint posDepth, vplAlbedo, vplNormal;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	posDepth = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT0, true);
-	vplAlbedo = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT1);
-	vplNormal = SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT2, true);
+	posDepth = GLHelper::SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT0, true);
+	vplAlbedo = GLHelper::SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT1, false);
+	vplNormal = GLHelper::SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT2, true);
 
-	dBuffer = SetGLDepthBuffer(size.w * shadowMapScale, size.h * shadowMapScale);
+	dBuffer = GLHelper::SetGLDepthBuffer(size.w * shadowMapScale, size.h * shadowMapScale);
 
 	GLenum drawBuffers[3] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 };
 	glDrawBuffers(3, drawBuffers);

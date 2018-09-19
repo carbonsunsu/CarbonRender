@@ -6,6 +6,7 @@
 #include "..\Inc\CRObject.h"
 #include "..\Inc\CRShaderManager.h"
 #include "..\Inc\CRCameraManager.h"
+#include "..\Inc\CRGLHelper.h"
 
 struct Mesh
 {

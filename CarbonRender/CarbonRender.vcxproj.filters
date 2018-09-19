@@ -129,6 +129,9 @@
     <ClCompile Include="Src\CRConfigManager.cpp">
       <Filter>源文件\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Src\CRGLHelper.cpp">
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRFinalPass.h">
@@ -222,6 +225,9 @@
       <Filter>头文件\Core</Filter>
     </ClInclude>
     <ClInclude Include="Inc\CRConfigManager.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRGLHelper.h">
       <Filter>头文件\Core</Filter>
     </ClInclude>
   </ItemGroup>

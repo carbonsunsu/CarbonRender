@@ -7,8 +7,8 @@ void VolumetricCloudPass::GetReady4Render(PassOutput * input)
 
 	GLuint couldRt;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	couldRt = SetGLRenderTexture(size.w, size.h, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT0);
-	dBuffer = SetGLDepthBuffer(size.w, size.h);
+	couldRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT0, false);
+	dBuffer = GLHelper::SetGLDepthBuffer(size.w, size.h);
 
 	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
 	glDrawBuffers(1, drawBuffers);
@@ -24,7 +24,7 @@ void VolumetricCloudPass::Render(PassOutput * input)
 {
 	Camera cam;
 	Camera* curCam = CameraManager::Instance()->GetCurrentCamera();
-	cam.SetPerspectiveCamera(curCam->GetCameraPara().x, 0.01f, 2.0f);
+	cam.SetPerspectiveCamera(curCam->GetCameraPara().x, 0.01f, 100.0f);
 	cam.SetPosition(curCam->GetPosition());
 	cam.SetRotation(curCam->GetRotation());
 	cam.UpdateViewMatrix();
@@ -55,7 +55,8 @@ void VolumetricCloudPass::Render(PassOutput * input)
 
 	Light* sun = LightManager::Instance()->GetLight(0);
 	float3 camPos = cam.GetPosition();
-	float3 sunColor = sun->GetColor() * 2.0f;
+	float3 camRot = cam.GetRotation();
+	float3 sunColor = sun->GetColor();
 	float4 zenithColor = LightManager::Instance()->GetZenithColor();
 	float3 sunPos = sun->GetPosition();
 	float3 cloudBias = WeatherSystem::Instance()->GetCloudBias();
@@ -85,6 +86,8 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	glUniform3f(location, cloudBias.x, cloudBias.y, cloudBias.z);
 
 	cloudBox.SetPosition(camPos);
+	cloudBox.SetScale(float3(10.0f, 10.0f, 10.0f));
+	cloudBox.SetRotation(camRot);
 	cloudBox.Render(shaderProgram, false);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -114,7 +117,7 @@ void VolumetricCloudPass::Render(PassOutput * input)
 
 void VolumetricCloudPass::Init()
 {
-	FbxImportManager::Instance()->ImportFbxModel("sphere", &cloudBox);
+	FbxImportManager::Instance()->ImportFbxModel("Box", &cloudBox);
 	cloudBox.GetReady4Rending();
 	shaderProgram = ShaderManager::Instance()->LoadShader("VolumatricCloud.vert", "VolumatricCloud.frag");
 	GenerateTex();
@@ -157,7 +160,7 @@ void VolumetricCloudPass::GenerateTex()
 				else
 				{
 					float freqs0[3] = { 2.0f, 8.0f, 14.0f };
-					float noise = Remap(Noise::PerlinFbm(uv, 8.0f, 3), 0.0f, 1.0f, Noise::WorleyFbm(uv, 4.0f, freqs0), 1.0f) * 255;
+					float noise = Math::Remap(Noise::PerlinFbm(uv, 8.0f, 3), 0.0f, 1.0f, Noise::WorleyFbm(uv, 4.0f, freqs0), 1.0f) * 255;
 					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 0] = (GLubyte)noise;
 					pwNoiseFile << noise << endl;
 

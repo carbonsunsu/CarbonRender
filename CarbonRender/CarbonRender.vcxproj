@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="Src\CRConfigManager.cpp" />
     <ClCompile Include="Src\CRGIPass.cpp" />
+    <ClCompile Include="Src\CRGLHelper.cpp" />
     <ClCompile Include="Src\CRLight.cpp" />
     <ClCompile Include="Src\CRLightManager.cpp" />
     <ClCompile Include="Src\CRShadowBlurPass.cpp" />
@@ -46,6 +47,7 @@
   <ItemGroup>
     <ClInclude Include="Inc\CRConfigManager.h" />
     <ClInclude Include="Inc\CRGIPass.h" />
+    <ClInclude Include="Inc\CRGLHelper.h" />
     <ClInclude Include="Inc\CRLight.h" />
     <ClInclude Include="Inc\CRLightManager.h" />
     <ClInclude Include="Inc\CRShadowBlurPass.h" />

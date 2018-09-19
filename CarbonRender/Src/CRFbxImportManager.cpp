@@ -398,7 +398,7 @@ bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out, bool lo
 					crMesh.translation = translation;
 					crMesh.rotation = rotation;
 					crMesh.scaling = scaling;
-					crMesh.modelMatrix = CalculateModelMatrix(crMesh.localCoord, translation, rotation, scaling);
+					crMesh.modelMatrix = Math::CalculateModelMatrix(crMesh.localCoord, translation, rotation, scaling);
 					crMesh.polygonCount = mesh->GetPolygonCount();
 					crMesh.vertexCount = crMesh.polygonCount * 3;
 					crMesh.index = new unsigned int[crMesh.polygonCount * 3];
@@ -467,10 +467,10 @@ bool FbxImportManager::ImportFbxModel(char * fileName, MeshObject * out, bool lo
 								for (int i = 1; i <= multiNormalIndex[index * 30]; i++)
 								{
 									int sampleIndex = multiNormalIndex[index * 30 + i];
-									float nDiff = Distance(n, float3(tempNormal[sampleIndex * 3],
+									float nDiff = Math::Distance(n, float3(tempNormal[sampleIndex * 3],
 										tempNormal[sampleIndex * 3 + 1],
 										tempNormal[sampleIndex * 3 + 2]));
-									float uvDiff = Distance(uv, float4(tempUV[sampleIndex * 4],
+									float uvDiff = Math::Distance(uv, float4(tempUV[sampleIndex * 4],
 										tempUV[sampleIndex * 4 + 1],
 										tempUV[sampleIndex * 4 + 2],
 										tempUV[sampleIndex * 4 + 3]));
