@@ -11,10 +11,10 @@ uniform mat4 modelMat;
 uniform mat4 viewMat;
 uniform mat4 proMat;
 
-out vec3 wsP;
+out vec4 wsP;
 
 void main ()
 {
-	gl_Position = proMat * (viewMat * (modelMat * msPos));
-	wsP = (modelMat * msPos).xyz;
+	wsP = modelMat * msPos;
+	gl_Position = proMat * (viewMat * wsP);
 }
