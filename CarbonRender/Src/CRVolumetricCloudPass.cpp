@@ -24,7 +24,7 @@ void VolumetricCloudPass::Render(PassOutput * input)
 {
 	Camera cam;
 	Camera* curCam = CameraManager::Instance()->GetCurrentCamera();
-	cam.SetPerspectiveCamera(curCam->GetCameraPara().x, 10.0f, 1000000.0f);
+	cam.SetPerspectiveCamera(curCam->GetCameraPara().x, 1.0f, 100.0f);
 	cam.SetPosition(curCam->GetPosition());
 	cam.SetRotation(curCam->GetRotation());
 	cam.UpdateViewMatrix();
@@ -85,9 +85,9 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	location = glGetUniformLocation(shaderProgram, "cloudBias");
 	glUniform3f(location, cloudBias.x, cloudBias.y, cloudBias.z);
 
-	cloudBox.SetPosition(float3(0.0f, -6500000.0f, 0.0f));
-	cloudBox.SetScale(float3(6501500.0f, 6501500.0f, 6501500.0f));
-	//cloudBox.SetRotation(camRot);
+	cloudBox.SetPosition(camPos);
+	cloudBox.SetScale(float3(5.0f, 5.0f, 5.0f));
+	cloudBox.SetRotation(camRot);
 	cloudBox.Render(shaderProgram, false);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -117,7 +117,7 @@ void VolumetricCloudPass::Render(PassOutput * input)
 
 void VolumetricCloudPass::Init()
 {
-	FbxImportManager::Instance()->ImportFbxModel("sphere", &cloudBox);
+	FbxImportManager::Instance()->ImportFbxModel("Box", &cloudBox);
 	cloudBox.GetReady4Rending();
 	shaderProgram = ShaderManager::Instance()->LoadShader("VolumatricCloud.vert", "VolumatricCloud.frag");
 	GenerateTex();
@@ -256,5 +256,5 @@ void VolumetricCloudPass::GenerateTex()
 
 	noises[2] = TextureManager::Instance()->LoadTexture("CurlNoise");
 
-	weatherData = TextureManager::Instance()->LoadTexture("Weather0");
+	weatherData = TextureManager::Instance()->LoadTexture("Weather2");
 }

@@ -159,7 +159,7 @@ void main ()
 	float NoL = clamp(dot(wsN, wsL), 0.0f, 1.0f);
 	float NoU = clamp(dot(wsN, vec3(0.0f, 1.0f, 0.0f)), 0.0f, 1.0f);
 
-	vec3 lightColor = sunColor.rgb * directShadow;
+	vec3 lightColor = sunColor.rgb * 1.5f * directShadow;
 	vec3 diffColor;
 	vec3 specColor;
 	float oneMinusMetallic;

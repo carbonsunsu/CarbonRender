@@ -199,7 +199,7 @@ float4 WeatherSystem::GetSunColor()
 
 	skyColor = Math::xyY2RGB(xyY);
 
-	return Math::Min(skyColor * 3.0f, float4(1.0f));
+	return skyColor;
 }
 
 float4 WeatherSystem::GetZenithColor()
