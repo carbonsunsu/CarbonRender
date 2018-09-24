@@ -28,7 +28,7 @@ const float MAX_CLOUD_ALTITUDE = 4000.0f;
 const float CLOUD_HEIGHT = MAX_CLOUD_ALTITUDE - MIN_CLOUD_ALTITUDE;
 const float CLOUD_HEIGHT_INV = 1.0f / CLOUD_HEIGHT;
 
-const int SAMPLE_COUNT = 256;
+const int SAMPLE_COUNT = 128;
 const float Pi = 3.1415926f;
 const vec3 randomV[5] = vec3[5](vec3(-0.010735935, 0.01647018, 0.0062425877),
 			                     vec3(-0.06533369, 0.3647007, -0.13746321),
@@ -90,7 +90,7 @@ float PowderBeers (float d, float p)
 float HG (vec3 v, vec3 l)
 {
 	float VoL = dot(v, l);
-	float g = 0.5f;
+	float g = 0.25f;
 	float HG = (1.0f - g*g) / (4.0f * Pi * pow(1.0f + g*g - 2.0f * g * VoL, 1.5f));
 
 	return HG;
@@ -130,7 +130,7 @@ float SampleCloudDensity(vec3 pos, vec3 weather, float heightF, float mipmap, bo
 	return clamp(lfFbm, 0.0f, 1.0f);
 }
 
-vec3 ConeTracingLight(vec3 pos, float density, vec3 lightRay, vec3 viewRay, vec3 weatherData, float mipmapLev)
+vec3 ConeTracingLight(vec3 pos, float density, float heightF, vec3 lightRay, vec3 viewRay, vec3 weatherData, float mipmapLev)
 {
 	vec3 lightSamplePos;
 	float lightRayDensity = 0.0f;
@@ -148,17 +148,14 @@ vec3 ConeTracingLight(vec3 pos, float density, vec3 lightRay, vec3 viewRay, vec3
 	}
 
 	float pb0 = PowderBeers(lightRayDensity + density, weatherData.g);
-	//float pb1 = PowderBeers(density, weatherData.g);
+	float pb1 = PowderBeers(density, weatherData.g);
 	float hg = HG(-viewRay, normalize(-wsSunPos));
-	vec3 sampleColor = sunColor * pb0 * hg;
+	vec3 sampleColor = sunColor * pb0 * pb0 * hg * 3.0f;
 	
-	/*		
 	//ambient
-	float heightGrad = GetHeightGradient(pos);
-	vec3 ambientColor = mix(zenithColor, sunColor, heightGrad);
-	ambientColor = ambientColor * pb1;
-	sampleColor += ambientColor;
-	*/
+	vec3 ambientColor = sunColor * heightF;
+	ambientColor = ambientColor * pb1 * pb1;
+	sampleColor += ambientColor * 2.0f;
 	
 	return sampleColor;
 }
@@ -187,7 +184,7 @@ void main ()
 	vec3 farPos = alpha >= 0.0f ? wsCamPos + viewRay * (l1 + l2) : wsCamPos + viewRay * (l2 - l1);
 
 	int sampleCount = SAMPLE_COUNT;
-	float stepSizeShort = distance(nearPos, farPos) / sampleCount;
+	float stepSizeShort = distance(nearPos, farPos) * 0.5f / sampleCount;
 	float stepSizeLong = stepSizeShort * 2.0f;
 
 	vec3 samplePos = IsInCloud(wsCamPos) ? wsCamPos : nearPos;
@@ -231,7 +228,7 @@ void main ()
 				cloudColor.a += sampleDensity;
 
 				if (sampleDensity > 0.0f)
-					cloudColor.rgb += ConeTracingLight(samplePos, cloudColor.a, lightRay, viewRay, weatherData, mipmapLev);
+					cloudColor.rgb += ConeTracingLight(samplePos, cloudColor.a, heightF, lightRay, viewRay, weatherData, mipmapLev);
 				
 				samplePos += viewRay * stepSizeShort;
 			}
