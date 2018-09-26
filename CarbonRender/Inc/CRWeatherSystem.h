@@ -17,6 +17,7 @@ private:
 	float turbidity;
 	float exposure;
 	float timeSpeed;
+	bool isTimeStop;
 	float lightR;
 
 	float thetaS;
@@ -29,6 +30,8 @@ private:
 	float shaderParas[10];
 
 	int sunLight;
+
+	float cloudCoverage;
 
 	void Init();
 	void UpdateAtmosphere();
@@ -58,6 +61,12 @@ public:
 	float3 GetWindDirection();
 	void SetWindStrength(float s);
 	float GetWindStrength();
+	void SetCloudCoverage(float c);
+	void AddCloudCoverage(float c);
+	float GetCloudCoverage();
+	void ToggleTimeLapse();
+	void SetTimeStop(bool bStop);
+	bool IsTimeStop();
 
 	float* GetShaderParas();
 	float3 GetCloudBias();

@@ -23,6 +23,7 @@ void Controller::KeyDownCallback(unsigned char key, int x, int y)
 {
 	switch (key)
 	{
+
 	default:
 		break;
 	case 'w':
@@ -71,6 +72,23 @@ void Controller::KeyDownCallback(unsigned char key, int x, int y)
 		WeatherSystem::Instance()->SetHour(WeatherSystem::Instance()->GetHour() - 0.1f);
 	}
 	break;
+	case '0':
+	{
+		WeatherSystem::Instance()->AddCloudCoverage(0.001f);
+	}
+	break;
+	case '9':
+	{
+		WeatherSystem::Instance()->AddCloudCoverage(-0.001f);
+	}
+	break;
+	case 't':
+	case 'T':
+	{
+		WeatherSystem::Instance()->ToggleTimeLapse();
+	}
+	break;
+
 	}
 }
 

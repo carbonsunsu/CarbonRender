@@ -85,6 +85,9 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	location = glGetUniformLocation(shaderProgram, "cloudBias");
 	glUniform3f(location, cloudBias.x, cloudBias.y, cloudBias.z);
 
+	location = glGetUniformLocation(shaderProgram, "Coverage");
+	glUniform1f(location, WeatherSystem::Instance()->GetCloudCoverage());
+
 	cloudBox.SetPosition(camPos);
 	cloudBox.SetScale(float3(5.0f, 5.0f, 5.0f));
 	cloudBox.SetRotation(camRot);
@@ -227,14 +230,6 @@ void VolumetricCloudPass::GenerateTex()
 			}
 	wNoiseFile.close();
 
-	/**
-	fstream cNoiseFile;
-	for (int i = 0; i < 128; i++)
-		for (int j = 0; j < 128; j++)
-		{
-			float3 uv = float3(i / 32.0f, j / 32.0f, 0.0f);
-		}
-	/**/
 	glGenTextures(3, noises);
 	glBindTexture(GL_TEXTURE_3D, noises[0]);
 	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

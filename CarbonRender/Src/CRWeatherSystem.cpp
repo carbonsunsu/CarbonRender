@@ -28,11 +28,13 @@ void WeatherSystem::Init()
 	turbidity = 2.0f;
 	exposure = 30.0f;
 	timeSpeed = 150.0f;
+	isTimeStop = true;
 	lightR = 10000.0f;
 	windDir = float4(0.5f, 0.0f, 1.0f, 10.0f);
 	cloudBias = float3(0.0f);
 	Light sun(LightType::Direction, 1.0f);
 	sunLight = LightManager::Instance()->AddLight(sun);
+	cloudCoverage = 0.32f;
 
 	Update();
 }
@@ -80,12 +82,12 @@ void WeatherSystem::UpdateAtmosphere()
 
 void WeatherSystem::UpdateCloud()
 {
-	cloudBias = float3(windDir.x, windDir.y, windDir.z).normalize() * windDir.w * timeSpeed * FIXEDUPDATE_TIME + cloudBias;
+	cloudBias = float3(windDir.x, windDir.y, windDir.z).normalize() * windDir.w * FIXEDUPDATE_TIME * timeSpeed * (isTimeStop ? 0.0f : 1.0f) + cloudBias;
 }
 
 void WeatherSystem::Update()
 {
-	hour += FIXEDUPDATE_TIME * 0.0002778f * timeSpeed;
+	hour += FIXEDUPDATE_TIME * 0.0002778f * timeSpeed * (isTimeStop ? 0.0f : 1.0f);
 	if (hour >= 24.0f)
 		hour = 0.0f;
 
@@ -173,6 +175,41 @@ void WeatherSystem::SetWindStrength(float s)
 float WeatherSystem::GetWindStrength()
 {
 	return windDir.w;
+}
+
+void WeatherSystem::SetCloudCoverage(float c)
+{
+	cloudCoverage = c;
+	cloudCoverage = Math::Max(cloudCoverage, 0.0f);
+	cloudCoverage = Math::Min(cloudCoverage, 1.0f);
+}
+
+void WeatherSystem::AddCloudCoverage(float c)
+{
+	cloudCoverage += c;
+	cloudCoverage = Math::Max(cloudCoverage, 0.0f);
+	cloudCoverage = Math::Min(cloudCoverage, 1.0f);
+	cout << cloudCoverage << endl;
+}
+
+float WeatherSystem::GetCloudCoverage()
+{
+	return cloudCoverage;
+}
+
+void WeatherSystem::ToggleTimeLapse()
+{
+	isTimeStop = !isTimeStop;
+}
+
+void WeatherSystem::SetTimeStop(bool bStop)
+{
+	isTimeStop = bStop;
+}
+
+bool WeatherSystem::IsTimeStop()
+{
+	return isTimeStop;
 }
 
 float4 WeatherSystem::GetSunColor()
