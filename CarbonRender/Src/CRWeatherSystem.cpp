@@ -25,7 +25,7 @@ void WeatherSystem::Init()
 	latitude = 0.0f;
 	day = 180;
 	hour = 12.0f;
-	turbidity = 2.0f;
+	turbidity = 4.0f;
 	exposure = 30.0f;
 	timeSpeed = 150.0f;
 	isTimeStop = true;
@@ -189,7 +189,6 @@ void WeatherSystem::AddCloudCoverage(float c)
 	cloudCoverage += c;
 	cloudCoverage = Math::Max(cloudCoverage, 0.0f);
 	cloudCoverage = Math::Min(cloudCoverage, 1.0f);
-	cout << cloudCoverage << endl;
 }
 
 float WeatherSystem::GetCloudCoverage()

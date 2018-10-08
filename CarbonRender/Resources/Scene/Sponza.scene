@@ -3,9 +3,9 @@
 		<Latitude>0.0</Latitude>
 		<Day>180</Day>
 		<Time>12.0</Time>
-		<Turbidity>2.0</Turbidity>
+		<Turbidity>4.0</Turbidity>
 		<Exposure>30.0</Exposure>
-		<TimeSpeed>150.0</TimeSpeed>
+		<TimeSpeed>1500.0</TimeSpeed>
 		<WindDirection x = "0.5" y = "0.0" z = "1.0" w = "10.0"></WindDirection>
 	</World>
 	<Camera>

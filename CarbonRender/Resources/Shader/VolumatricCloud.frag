@@ -89,7 +89,7 @@ float PowderBeers (float d, float p)
 float HG (vec3 v, vec3 l)
 {
 	float VoL = dot(v, l);
-	float g = 0.2f;
+	float g = 0.15f;
 	float HG = (1.0f - g*g) / (4.0f * Pi * pow(1.0f + g*g - 2.0f * g * VoL, 1.5f));
 
 	return HG;
@@ -132,7 +132,7 @@ float SampleCloudDensity(vec3 pos, vec3 weather, float heightF, float mipmap, bo
 vec3 ConeTracingLight(vec3 pos, float density, float heightF, vec3 lightRay, vec3 viewRay, vec3 weatherData, float mipmapLev)
 {
 	vec3 lightSamplePos;
-	vec3 sColor = clamp(sunColor * 3.0f, 0.0f, 1.0f);
+	vec3 sColor = sunColor;
 	float lightRayDensity = 0.0f;
 	
 	for (int j = 0; j < 4; j++)
@@ -150,7 +150,7 @@ vec3 ConeTracingLight(vec3 pos, float density, float heightF, vec3 lightRay, vec
 	float pb0 = PowderBeers(lightRayDensity, weatherData.g);
 	float pb1 = PowderBeers(density, weatherData.g);
 	float hg = HG(-viewRay, normalize(-wsSunPos));
-	vec3 sampleColor = sColor * pb0 * pb1 * hg * 6.0f;
+	vec3 sampleColor = sColor * pb0 * pb1 * hg * 10.0f;
 	
 	return sampleColor;
 }

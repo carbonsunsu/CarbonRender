@@ -1,5 +1,5 @@
-#ifndef GL_HELPER
-#define GL_HELPER
+#ifndef CR_GLHELPER
+#define CR_GLHELPER
 
 #include "..\Inc\CRGloble.h"
 
