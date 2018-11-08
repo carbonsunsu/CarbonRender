@@ -861,6 +861,21 @@ float4 Math::Min(float4 a, float4 b)
 	return float4(fminf(a.x, b.x), fminf(a.y, b.y), fminf(a.z, b.z), fminf(a.w, b.w));
 }
 
+float Math::Clamp(float a, float min, float max)
+{
+	return Max(Min(a, max), min);
+}
+
+float3 Math::Clamp(float3 a, float min, float max)
+{
+	return Max(Min(a, max), min);
+}
+
+float4 Math::Clamp(float4 a, float min, float max)
+{
+	return Max(Min(a, max), min);
+}
+
 float Math::Abs(float a)
 {
 	return fabsf(a);

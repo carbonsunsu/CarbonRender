@@ -143,57 +143,60 @@ public:
 class Math
 {
 public:
-	static float Math::Dot(float3 a, float3 b);
-	static float Math::Dot(float4 a, float4 b);
-	static float Math::Exp(float a);
-	static float3 Math::Exp(float3 v);
-	static float4 Math::Exp(float4 v);
-	static float Math::Sin(float a);
-	static float3 Math::Sin(float3 v);
-	static float4 Math::Sin(float4 v);
-	static float Math::FastInvSqrt(float a);
-	static float3 Math::FastInvSqrt(float3 a);
-	static float4 Math::FastInvSqrt(float4 a);
+	static float Dot(float3 a, float3 b);
+	static float Dot(float4 a, float4 b);
+	static float Exp(float a);
+	static float3 Exp(float3 v);
+	static float4 Exp(float4 v);
+	static float Sin(float a);
+	static float3 Sin(float3 v);
+	static float4 Sin(float4 v);
+	static float FastInvSqrt(float a);
+	static float3 FastInvSqrt(float3 a);
+	static float4 FastInvSqrt(float4 a);
 
-	static Matrix4x4 Math::Translate(float x, float y, float z);
-	static Matrix4x4 Math::Scale(float x, float y, float z);
-	static Quaternion Math::Rotate(float3 axis, float angle);
-	static Matrix4x4 Math::CalculateModelMatrix(float* localCoord, float3 trans, float3 rota, float3 scal);
-	static Matrix4x4 Math::CalculateModelMatrix(float3 trans, float3 rota, float3 scal);
+	static Matrix4x4 Translate(float x, float y, float z);
+	static Matrix4x4 Scale(float x, float y, float z);
+	static Quaternion Rotate(float3 axis, float angle);
+	static Matrix4x4 CalculateModelMatrix(float* localCoord, float3 trans, float3 rota, float3 scal);
+	static Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal);
 
-	static float Math::Distance(float3 a, float3 b);
-	static float Math::Distance(float4 a, float4 b);
+	static float Distance(float3 a, float3 b);
+	static float Distance(float4 a, float4 b);
 
-	static float Math::Floor(float a);
-	static float3 Math::Floor(float3 a);
-	static float4 Math::Floor(float4 a);
-	static float Math::Mod(float a, float b);
-	static float3 Math::Mod(float3 a, float b);
-	static float4 Math::Mod(float4 a, float b);
-	static float Math::Fract(float a);
-	static float3 Math::Fract(float3 a);
-	static float4 Math::Fract(float4 a);
-	static float Math::Max(float a, float b);
-	static float3 Math::Max(float3 a, float3 b);
-	static float4 Math::Max(float4 a, float4 b);
-	static float Math::Min(float a, float b);
-	static float3 Math::Min(float3 a, float3 b);
-	static float4 Math::Min(float4 a, float4 b);
-	static float Math::Abs(float a);
-	static float3 Math::Abs(float3 a);
-	static float4 Math::Abs(float4 a);
-	static float Math::Lerp(float a, float b, float c);
-	static float3 Math::Lerp(float3 a, float3 b, float c);
-	static float4 Math::Lerp(float4 a, float4 b, float c);
-	static float Math::Step(float a, float b);
-	static float3 Math::Step(float3 a, float b);
-	static float4 Math::Step(float4 a, float b);
-	static float3 Math::Step(float3 a, float3 b);
-	static float4 Math::Step(float4 a, float4 b);
+	static float Floor(float a);
+	static float3 Floor(float3 a);
+	static float4 Floor(float4 a);
+	static float Mod(float a, float b);
+	static float3 Mod(float3 a, float b);
+	static float4 Mod(float4 a, float b);
+	static float Fract(float a);
+	static float3 Fract(float3 a);
+	static float4 Fract(float4 a);
+	static float Max(float a, float b);
+	static float3 Max(float3 a, float3 b);
+	static float4 Max(float4 a, float4 b);
+	static float Min(float a, float b);
+	static float3 Min(float3 a, float3 b);
+	static float4 Min(float4 a, float4 b);
+	static float Clamp(float a, float min, float max);
+	static float3 Clamp(float3 a, float min, float max);
+	static float4 Clamp(float4 a, float min, float max);
+	static float Abs(float a);
+	static float3 Abs(float3 a);
+	static float4 Abs(float4 a);
+	static float Lerp(float a, float b, float c);
+	static float3 Lerp(float3 a, float3 b, float c);
+	static float4 Lerp(float4 a, float4 b, float c);
+	static float Step(float a, float b);
+	static float3 Step(float3 a, float b);
+	static float4 Step(float4 a, float b);
+	static float3 Step(float3 a, float3 b);
+	static float4 Step(float4 a, float4 b);
 
-	static float Math::Remap(float a, float oldMin, float oldMax, float newMin, float newMax);
+	static float Remap(float a, float oldMin, float oldMax, float newMin, float newMax);
 
-	static float4 Math::xyY2RGB(float3 xyY);
+	static float4 xyY2RGB(float3 xyY);
 
 };
 
