@@ -1,7 +1,6 @@
 #ifndef CR_TEXMANAGER
 #define CR_TEXMANAGER
 
-#include "..\Inc\CRGloble.h"
 #include "..\Inc\CRFileReader.h"
 
 class TextureManager

@@ -1,5 +1,14 @@
 #include "..\Inc\CRCamera.h"
 
+Camera::Camera()
+{
+	objType = ObjectType::eCamera;
+}
+
+Camera::~Camera()
+{
+}
+
 void Camera::SetPerspectiveCamera(float iFov, float iNearClip, float iFarClip)
 {
 	fov = iFov;
@@ -8,7 +17,7 @@ void Camera::SetPerspectiveCamera(float iFov, float iNearClip, float iFarClip)
 	WindowSize wSize = WindowManager::Instance()->GetWindowSize();
 	wInPixel = wSize.w;
 	hInPixel = wSize.h;
-	curCameraMode = CameraProjectMode::Perspective;
+	curCameraMode = CameraProjectMode::ePerspective;
 
 	UpdateProjectionMatrix();
 }
@@ -20,7 +29,7 @@ void Camera::SetPerspectiveCamera(float iFov, float iNearClip, float iFarClip, i
 	farClip = iFarClip;
 	wInPixel = size;
 	hInPixel = size;
-	curCameraMode = CameraProjectMode::Perspective;
+	curCameraMode = CameraProjectMode::ePerspective;
 
 	UpdateProjectionMatrix();
 }
@@ -60,7 +69,7 @@ void Camera::SetOrthoCamera(float size, float iNearClip, float iFarClip)
 	WindowSize wSize = WindowManager::Instance()->GetWindowSize();
 	wInPixel = wSize.w;
 	hInPixel = wSize.h;
-	curCameraMode = CameraProjectMode::Ortho;
+	curCameraMode = CameraProjectMode::eOrtho;
 
 	UpdateProjectionMatrix();
 }
@@ -71,7 +80,7 @@ void Camera::UpdateProjectionMatrix()
 	{
 	default:
 		break;
-	case CameraProjectMode::Perspective:
+	case CameraProjectMode::ePerspective:
 	{
 		float halfFOV = fov * 0.5f;
 		float hT = 1.0f / (nearClip * tan(halfFOV * A2R) * 2.0f);
@@ -85,7 +94,7 @@ void Camera::UpdateProjectionMatrix()
 		projectionMatrix = m;
 	}
 	break;
-	case CameraProjectMode::Ortho:
+	case CameraProjectMode::eOrtho:
 	{
 		float halfW = (orthoSize * wInPixel) / hInPixel;
 

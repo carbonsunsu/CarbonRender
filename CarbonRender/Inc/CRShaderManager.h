@@ -1,7 +1,6 @@
 #ifndef CR_SHADERMANAGER
 #define CR_SHADERMANAGER
 
-#include "..\Inc\CRGloble.h"
 #include "..\Inc\CRFileReader.h"
 
 class ShaderManager

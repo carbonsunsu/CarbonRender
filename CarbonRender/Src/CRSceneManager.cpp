@@ -21,6 +21,7 @@ SceneManager * SceneManager::Instance()
 
 void SceneManager::Init()
 {
+	rootNode = new Object();
 }
 
 void SceneManager::LoadScene(char* sceneName)
@@ -97,10 +98,11 @@ void SceneManager::LoadScene(char* sceneName)
 	xml_node<>* l4Node;
 	for (int i = 0; i < count; i++)
 	{
-		MeshObject staticMeshObject;
+		Object meshObj;
+		MeshObject* staticMeshObject;
 		
-		FbxImportManager::Instance()->ImportFbxModel(l3Node->first_attribute()->value(), &staticMeshObject);
-		staticMeshObject.GetReady4Rending();
+		FbxImportManager::Instance()->ImportFbxModel(l3Node->first_attribute()->value(), staticMeshObject);
+		staticMeshObject->GetReady4Rending();
 		l4Node = l3Node->first_node("Position");
 		attri = l4Node->first_attribute();
 		for (int i = 0; i < 3; i++)
@@ -108,7 +110,7 @@ void SceneManager::LoadScene(char* sceneName)
 			a[i] = atof(attri->value());
 			attri = attri->next_attribute();
 		}
-		staticMeshObject.SetPosition(float3(a[0], a[1], a[2]));
+		staticMeshObject->SetPosition(float3(a[0], a[1], a[2]));
 		l4Node = l3Node->first_node("Rotation");
 		attri = l4Node->first_attribute();
 		for (int i = 0; i < 3; i++)
@@ -116,7 +118,7 @@ void SceneManager::LoadScene(char* sceneName)
 			a[i] = atof(attri->value());
 			attri = attri->next_attribute();
 		}
-		staticMeshObject.SetRotation(float3(a[0], a[1], a[2]));
+		staticMeshObject->SetRotation(float3(a[0], a[1], a[2]));
 		l4Node = l3Node->first_node("Scale");
 		attri = l4Node->first_attribute();
 		for (int i = 0; i < 3; i++)
@@ -124,16 +126,25 @@ void SceneManager::LoadScene(char* sceneName)
 			a[i] = atof(attri->value());
 			attri = attri->next_attribute();
 		}
-		staticMeshObject.SetScale(float3(a[0], a[1], a[2]));
-		staticMeshObjects.emplace_back(staticMeshObject);
+		staticMeshObject->SetScale(float3(a[0], a[1], a[2]));
+		rootNode->AddChild((Object*)&staticMeshObject);
 		l3Node = l3Node->next_sibling();
 	}
 }
 
+void SceneManager::SaveScene(char * sceneName)
+{
+}
+
 void SceneManager::DrawScene(GLuint shaderProgram)
 {
-	for (int i = 0; i < staticMeshObjects.size(); i++)
+	while (true)
 	{
-		staticMeshObjects[i].Render(shaderProgram);
+
 	}
+}
+
+Object * SceneManager::GetRootNode()
+{
+	return rootNode;
 }

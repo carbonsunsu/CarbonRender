@@ -1,21 +1,19 @@
 #ifndef CR_LIGHT
 #define CR_LIGHT
 
-#include "..\Inc\CRGloble.h"
 #include "..\Inc\CRObject.h"
-#include "..\Inc\CRMath.h"
 
 enum LightType
 {
-	Direction = 0,
-	Point = 1,
-	Spot = 2,
+	eDirection = 0,
+	ePoint = 1,
+	eSpot = 2,
 };
 
 class Light : public Object
 {
 private:
-	LightType type;
+	LightType lightType;
 	float intensity;
 	float3 color;
 

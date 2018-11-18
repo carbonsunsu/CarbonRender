@@ -36,6 +36,13 @@ TextFile FileReader::ReadTextFile(char* fileName)
 	return data;
 }
 
+void FileReader::WriteTextFile(TextFile fileData)
+{
+	fstream file;
+
+	//rapidxml::print();
+}
+
 char * FileReader::BindString(char * str0, char * str1)
 {
 	char* bind = (char*)malloc(strlen(str0) + strlen(str1) + 1);

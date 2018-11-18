@@ -1,11 +1,7 @@
 #ifndef CR_GIPASS
 #define CR_GIPASS
 
-#include "..\Inc\CRGloble.h"
 #include "..\Inc\CRRenderPass.h"
-#include "..\Inc\CRShaderManager.h"
-#include "..\Inc\CRWindowManager.h"
-#include "..\Inc\CRWeatherSystem.h"
 
 class GIPass : public RenderPass
 {

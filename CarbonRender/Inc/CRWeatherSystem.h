@@ -1,8 +1,6 @@
 #ifndef CR_WEATHERSYS
 #define CR_WEATHERSYS
 
-#include "..\Inc\CRGloble.h"
-#include "..\Inc\CRMath.h"
 #include "..\Inc\CRLightManager.h"
 
 class WeatherSystem

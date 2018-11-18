@@ -1,6 +1,17 @@
 #include "..\Inc\CRObject.h"
 
-Object::Object(){}
+Object::Object()
+{
+	firstChild = nullptr;
+	parent = nullptr;
+	childCount = 0;
+	name = "Object";
+	objType = ObjectType::eNull;
+}
+
+Object::~Object()
+{
+}
 
 void Object::SetPosition(float3 p)
 {
@@ -29,6 +40,40 @@ void Object::UpdateModelMatrix()
 										float3(transform[0], transform[1], transform[2]),
 										float3(transform[6], transform[7], transform[8]),
 										float3(transform[3], transform[4], transform[5]));
+}
+
+void Object::SetName(string n)
+{
+	name = n;
+}
+
+void Object::SetChildCount(unsigned int count)
+{
+	childCount = count;
+}
+
+void Object::SetChild(Object * child, unsigned int)
+{
+}
+
+void Object::AddChild(Object * child)
+{
+	child->parent = this;
+	if (childCount == 0)
+		firstChild = child;
+	else
+	{
+		Object* last = GetLastChild();
+		last->next = child;
+	}
+
+	childCount++;
+}
+
+void Object::SetParent(Object * prnt)
+{
+	parent = prnt;
+	prnt->AddChild(this);
 }
 
 float3 Object::GetPosition()
@@ -79,6 +124,31 @@ float3 Object::GetUp()
 Matrix4x4 Object::GetModelMatrix()
 {
 	return modelMatrix;
+}
+
+string Object::GetName()
+{
+	return name;
+}
+
+unsigned int Object::GetChildCount()
+{
+	return childCount;
+}
+
+Object * Object::GetLastChild()
+{
+	if (childCount == 0)
+		return nullptr;
+
+	Object* current = firstChild;
+	while (true)
+	{
+		if (current->next == nullptr)
+			return current;
+		else
+			current = current->next;
+	}
 }
 
 void Object::LookAt(float3 p)

@@ -1,15 +1,13 @@
 #ifndef CR_CAMERA
 #define CR_CAMERA
 
-#include "..\Inc\CRGloble.h"
 #include "..\Inc\CRObject.h"
-#include "..\Inc\CRMath.h"
 #include "..\Inc\CRWindowManager.h"
 
 enum CameraProjectMode
 {
-	Perspective = 0,
-	Ortho,
+	ePerspective = 0,
+	eOrtho,
 };
 
 class Camera : public Object
@@ -25,6 +23,8 @@ private:
 
 	CameraProjectMode curCameraMode;
 public:
+	Camera();
+	~Camera();
 	void SetPerspectiveCamera(float iFov, float iNearClip, float iFarClip);
 	void SetPerspectiveCamera(float iFov, float iNearClip, float iFarClip, int size);
 	void SetNearFar(float iNearClip, float iFarClip);

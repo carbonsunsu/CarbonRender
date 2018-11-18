@@ -32,7 +32,7 @@ void WeatherSystem::Init()
 	lightR = 10000.0f;
 	windDir = float4(0.5f, 0.0f, 1.0f, 10.0f);
 	cloudBias = float3(0.0f);
-	Light sun(LightType::Direction, 1.0f);
+	Light sun(LightType::eDirection, 1.0f);
 	sunLight = LightManager::Instance()->AddLight(sun);
 	cloudCoverage = 0.32f;
 

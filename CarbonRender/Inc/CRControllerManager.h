@@ -1,9 +1,6 @@
 #ifndef CR_CTRLMANAGER
 #define CR_CTRLMANAGER
 
-#include "..\Inc\CRGloble.h"
-#include "..\Inc\CRCamera.h"
-#include "..\Inc\CRCameraManager.h"
 #include "..\Inc\CRController.h"
 
 class ControllerManager 

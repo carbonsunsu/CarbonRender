@@ -1,7 +1,6 @@
 #ifndef CR_FBXMANAGER
 #define CR_FBXMANAGER
 
-#include "..\Inc\CRGloble.h"
 #include "..\Inc\CRMeshObject.h"
 #include "..\Inc\CRTextureManager.h"
 
@@ -19,12 +18,12 @@ private:
 	FbxVector4 ReadNormal(FbxMesh* mesh, int index, int vertexID);
 	FbxVector4 ReadTangent(FbxMesh* mesh, int index, int vertexID);
 	FbxVector4 ReadBinormal(FbxMesh * mesh, int index, int vertexID);
-	void ReadTexture(FbxMesh* mesh, Mesh* crMesh, char* meshFileName);
+	void ReadTexture(FbxMesh* mesh, MeshObject* meshObj, char* meshFileName);
 
 public:
 	~FbxImportManager();
 	static FbxImportManager* Instance();
-	bool ImportFbxModel(char* fileName, MeshObject* out, bool loadTex = true);
+	int ImportFbxModel(char* fileName, MeshObject* out, bool loadTex = true);
 };
 
 #endif

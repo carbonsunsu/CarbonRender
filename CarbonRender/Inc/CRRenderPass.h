@@ -1,10 +1,10 @@
 #ifndef CR_PASSOBJ
 #define CR_PASSOBJ
 
-#include "..\Inc\CRGloble.h"
-#include "..\Inc\CRMath.h"
-#include "..\Inc\CRLightManager.h"
 #include "..\Inc\CRGLHelper.h"
+#include "..\Inc\CRLightManager.h"
+#include "..\Inc\CRShaderManager.h"
+#include "..\Inc\CRWindowManager.h"
 
 struct PassOutput
 {

@@ -1,7 +1,6 @@
 #ifndef CR_CONFIG_MANAGER
 #define CR_CONFIG_MANAGER
 
-#include "..\Inc\CRGloble.h"
 #include "..\Inc\CRFileReader.h"
 #include "..\Inc\CRWindowManager.h"
 

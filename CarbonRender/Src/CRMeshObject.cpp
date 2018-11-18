@@ -2,6 +2,14 @@
 
 MeshObject::MeshObject()
 {
+	objType = ObjectType::eMesh;
+	indexArray = nullptr;
+	vertexArray = nullptr;
+	colorArray = nullptr;
+	normalArray = nullptr;
+	tangentArray = nullptr;
+	binormalArray = nullptr;
+	uvArray = nullptr;
 }
 
 MeshObject::~MeshObject()
@@ -10,41 +18,130 @@ MeshObject::~MeshObject()
 
 void MeshObject::Delete()
 {
-	glDeleteVertexArrays(childCount, vaos);
-	glDeleteBuffers(childCount, ebos);
-	glDeleteBuffers(childCount, vbs);
-	glDeleteBuffers(childCount, cbs);
-	glDeleteBuffers(childCount, ubs);
-	glDeleteBuffers(childCount, nbs);
-	glDeleteBuffers(childCount, tbs);
+	glDeleteVertexArrays(1, &vao);
+	glDeleteBuffers(1, &ebo);
+	glDeleteBuffers(1, &vBuffer);
+	glDeleteBuffers(1, &cBuffer);
+	glDeleteBuffers(1, &uvBuffer);
+	glDeleteBuffers(1, &nBuffer);
+	glDeleteBuffers(1, &tBuffer);
 
 	delete this;
 }
 
-void MeshObject::SetChildCount(uint16_t count)
+void MeshObject::CreateArraies()
 {
-	childCount = count;
-	child = new Mesh[childCount];
+	CreateIndexArray(polygonCount * 3);
+	CreateVertexArray(vertexCount * 3);
+	CreateVertexColorArray(vertexCount * 4);
+	CreateNormalArray(vertexCount * 3);
+	CreateTangentArray(vertexCount * 3);
+	CreateBinormalArray(vertexCount * 3);
+	CreateUVArray(vertexCount * 4);
 }
 
-void MeshObject::SetChild(Mesh newChild, unsigned int index)
+void MeshObject::CreateIndexArray(unsigned int size)
 {
-	child[index] = newChild;
+	indexArray = new unsigned int[size];
 }
 
-uint16_t MeshObject::GetChildCount()
+void MeshObject::CreateVertexArray(unsigned int size)
 {
-	return childCount;
+	vertexArray = new float[size];
 }
 
-Mesh * MeshObject::GetChild(unsigned int index)
+void MeshObject::CreateVertexColorArray(unsigned int size)
 {
-	return &child[index];
+	colorArray = new float[size];
 }
 
-Mesh * MeshObject::GetAllChild()
+void MeshObject::CreateNormalArray(unsigned int size)
 {
-	return child;
+	normalArray = new float[size];
+}
+
+void MeshObject::CreateTangentArray(unsigned int size)
+{
+	tangentArray = new float[size];
+}
+
+void MeshObject::CreateBinormalArray(unsigned int size)
+{
+	binormalArray = new float[size];
+}
+
+void MeshObject::CreateUVArray(unsigned int size)
+{
+	uvArray = new float[size];
+}
+
+void MeshObject::SetVertexCount(unsigned int count)
+{
+	vertexCount = Math::Max(count, 0);
+}
+
+void MeshObject::SetPolygonCount(unsigned int count)
+{
+	polygonCount = Math::Max(count, 0);
+}
+
+void MeshObject::SetTexture(unsigned int i, GLuint tex)
+{
+	if (i >= 0 && i < 3)
+		texs[i] = tex;
+}
+
+void MeshObject::SetIndexAt(unsigned int i, unsigned index)
+{
+	indexArray[i] = index;
+}
+
+void MeshObject::CopyToVertexArray(float * data)
+{
+	memcpy(vertexArray, data, sizeof(float) * GetVertexCount() * 3);
+}
+
+void MeshObject::CopyToVertexColorArray(float * data)
+{
+	memcpy(colorArray, data, sizeof(float) * GetVertexCount() * 4);
+}
+
+void MeshObject::CopyToNormalrray(float * data)
+{
+	memcpy(normalArray, data, sizeof(float) * GetVertexCount() * 3);
+}
+
+void MeshObject::CopyToTangentArray(float * data)
+{
+	memcpy(tangentArray, data, sizeof(float) * GetVertexCount() * 3);
+}
+
+void MeshObject::CopyToBinormalArray(float * data)
+{
+	memcpy(binormalArray, data, sizeof(float) * GetVertexCount() * 3);
+}
+
+void MeshObject::CopyToUVArray(float * data)
+{
+	memcpy(uvArray, data, sizeof(float) * GetVertexCount() * 4);
+}
+
+unsigned int MeshObject::GetVertexCount()
+{
+	return vertexCount;
+}
+
+unsigned int MeshObject::GetPolygonCount()
+{
+	return polygonCount;
+}
+
+GLuint MeshObject::GetTexture(unsigned int i)
+{
+	if (i >= 0 && i < 3)
+		return texs[i];
+	else
+		return 0;
 }
 
 void MeshObject::GetReady4Rending()
@@ -52,53 +149,40 @@ void MeshObject::GetReady4Rending()
 	if (bReady4Render)
 		return;
 
-	vaos = new GLuint[childCount];
-	ebos = new GLuint[childCount];
-	vbs = new GLuint[childCount];
-	cbs = new GLuint[childCount];
-	ubs = new GLuint[childCount];
-	nbs = new GLuint[childCount];
-	tbs = new GLuint[childCount];
-	bbs = new GLuint[childCount];
+	glGenVertexArrays(1, &vao);
+	glGenBuffers(1, &ebo);
+	glGenBuffers(1, &vBuffer);
+	glGenBuffers(1, &cBuffer);
+	glGenBuffers(1, &uvBuffer);
+	glGenBuffers(1, &nBuffer);
+	glGenBuffers(1, &tBuffer);
+	glGenBuffers(1, &bBuffer);
 
-	glGenVertexArrays(childCount, vaos);
-	glGenBuffers(childCount, ebos);
-	glGenBuffers(childCount, vbs);
-	glGenBuffers(childCount, cbs);
-	glGenBuffers(childCount, ubs);
-	glGenBuffers(childCount, nbs);
-	glGenBuffers(childCount, tbs);
-	glGenBuffers(childCount, bbs);
+	glBindVertexArray(vao);
 
-	for (int i = 0; i < childCount; i++)
-	{
-		Mesh curMesh = child[i];
-		glBindVertexArray(vaos[i]);
+	GLHelper::SetGLArrayBuffer(vBuffer, sizeof(float)*vertexCount * 3, vertexArray, 3, GL_FLOAT, CR_VERTATTRIPOS_POS);
+	glEnableVertexAttribArray(CR_VERTATTRIPOS_POS);
 
-		GLHelper::SetGLArrayBuffer(vbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.vertex, 3, GL_FLOAT, CR_VERTATTRIPOS_POS);
-		glEnableVertexAttribArray(CR_VERTATTRIPOS_POS);
+	GLHelper::SetGLArrayBuffer(cBuffer, sizeof(float)*vertexCount * 4, colorArray, 4, GL_FLOAT, CR_VERTATTRIPOS_COL);
+	glEnableVertexAttribArray(CR_VERTATTRIPOS_COL);
 
-		GLHelper::SetGLArrayBuffer(cbs[i], sizeof(float)*curMesh.vertexCount * 4, curMesh.color, 4, GL_FLOAT, CR_VERTATTRIPOS_COL);
-		glEnableVertexAttribArray(CR_VERTATTRIPOS_COL);
+	GLHelper::SetGLArrayBuffer(uvBuffer, sizeof(float)*vertexCount * 4, uvArray, 4, GL_FLOAT, CR_VERTATTRIPOS_UVS);
+	glEnableVertexAttribArray(CR_VERTATTRIPOS_UVS);
 
-		GLHelper::SetGLArrayBuffer(ubs[i], sizeof(float)*curMesh.vertexCount * 4, curMesh.uv, 4, GL_FLOAT, CR_VERTATTRIPOS_UVS);
-		glEnableVertexAttribArray(CR_VERTATTRIPOS_UVS);
+	GLHelper::SetGLArrayBuffer(nBuffer, sizeof(float)*vertexCount * 3, normalArray, 3, GL_FLOAT, CR_VERTATTRIPOS_NOR);
+	glEnableVertexAttribArray(CR_VERTATTRIPOS_NOR);
 
-		GLHelper::SetGLArrayBuffer(nbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.normal, 3, GL_FLOAT, CR_VERTATTRIPOS_NOR);
-		glEnableVertexAttribArray(CR_VERTATTRIPOS_NOR);
+	GLHelper::SetGLArrayBuffer(tBuffer, sizeof(float)*vertexCount * 3, tangentArray, 3, GL_FLOAT, CR_VERTATTRIPOS_TAG);
+	glEnableVertexAttribArray(CR_VERTATTRIPOS_TAG);
 
-		GLHelper::SetGLArrayBuffer(tbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.tangent, 3, GL_FLOAT, CR_VERTATTRIPOS_TAG);
-		glEnableVertexAttribArray(CR_VERTATTRIPOS_TAG);
+	GLHelper::SetGLArrayBuffer(bBuffer, sizeof(float)*vertexCount * 3, binormalArray, 3, GL_FLOAT, CR_VERTATTRIPOS_BNL);
+	glEnableVertexAttribArray(CR_VERTATTRIPOS_BNL);
 
-		GLHelper::SetGLArrayBuffer(bbs[i], sizeof(float)*curMesh.vertexCount * 3, curMesh.binormal, 3, GL_FLOAT, CR_VERTATTRIPOS_BNL);
-		glEnableVertexAttribArray(CR_VERTATTRIPOS_BNL);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int)*polygonCount * 3, indexArray, GL_STATIC_DRAW);
 
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebos[i]);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int)*curMesh.polygonCount * 3, curMesh.index, GL_STATIC_DRAW);
-
-		glBindVertexArray(NULL);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, NULL);
-	}
+	glBindVertexArray(NULL);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, NULL);
 
 	bReady4Render = true;
 }
@@ -106,47 +190,48 @@ void MeshObject::GetReady4Rending()
 void MeshObject::Render(GLuint shaderProgram, bool useTex)
 {
 	UpdateModelMatrix();
-	for (int i = 0; i < childCount; i++)
+
+	Matrix4x4 finalMat;
+	if (parent != nullptr)
+		finalMat = modelMatrix * parent->GetModelMatrix();
+	else
+		finalMat = modelMatrix;
+	Matrix3x3 normalMat = finalMat;
+
+	if (useTex)
 	{
-		Mesh curMesh = child[i];
-		Matrix4x4 finalMat = curMesh.modelMatrix * modelMatrix;
-		Matrix3x3 normalMat = finalMat;
-
-		if (useTex)
+		for (int i = 0; i < 3; i++)
 		{
-			for (int i = 0; i < 3; i++)
-			{
-				glActiveTexture(GL_TEXTURE1 + i);
-				glBindTexture(GL_TEXTURE_2D, curMesh.texs[i]);
-			}
+			glActiveTexture(GL_TEXTURE1 + i);
+			glBindTexture(GL_TEXTURE_2D, texs[i]);
 		}
+	}
 
-		GLint location = glGetUniformLocation(shaderProgram, "modelMat");
-		glUniformMatrix4fv(location, 1, GL_FALSE, finalMat.matrix);
-		location = glGetUniformLocation(shaderProgram, "normalMat");
-		glUniformMatrix3fv(location, 1, GL_FALSE, normalMat.matrix);
-		location = glGetUniformLocation(shaderProgram, "viewMat");
-		glUniformMatrix4fv(location, 1, GL_FALSE, CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix().matrix);
-		location = glGetUniformLocation(shaderProgram, "proMat");
-		glUniformMatrix4fv(location, 1, GL_FALSE, CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix().matrix);
-		location = glGetUniformLocation(shaderProgram, "albedoMap");
-		glUniform1i(location, 1);
-		location = glGetUniformLocation(shaderProgram, "normalMap");
-		glUniform1i(location, 2);
-		location = glGetUniformLocation(shaderProgram, "msMap");
-		glUniform1i(location, 3);
-		
-		glBindVertexArray(vaos[i]);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebos[i]);
-		glDrawElements(GL_TRIANGLES, curMesh.polygonCount * 3, GL_UNSIGNED_INT, NULL);
+	GLint location = glGetUniformLocation(shaderProgram, "modelMat");
+	glUniformMatrix4fv(location, 1, GL_FALSE, finalMat.matrix);
+	location = glGetUniformLocation(shaderProgram, "normalMat");
+	glUniformMatrix3fv(location, 1, GL_FALSE, normalMat.matrix);
+	location = glGetUniformLocation(shaderProgram, "viewMat");
+	glUniformMatrix4fv(location, 1, GL_FALSE, CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix().matrix);
+	location = glGetUniformLocation(shaderProgram, "proMat");
+	glUniformMatrix4fv(location, 1, GL_FALSE, CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix().matrix);
+	location = glGetUniformLocation(shaderProgram, "albedoMap");
+	glUniform1i(location, 1);
+	location = glGetUniformLocation(shaderProgram, "normalMap");
+	glUniform1i(location, 2);
+	location = glGetUniformLocation(shaderProgram, "msMap");
+	glUniform1i(location, 3);
 
-		if (useTex)
+	glBindVertexArray(vao);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	glDrawElements(GL_TRIANGLES, polygonCount * 3, GL_UNSIGNED_INT, NULL);
+
+	if (useTex)
+	{
+		for (int i = 0; i < 3; i++)
 		{
-			for (int i = 0; i < 3; i++)
-			{
-				glActiveTexture(GL_TEXTURE1 + i);
-				glBindTexture(GL_TEXTURE_2D, 0);
-			}
+			glActiveTexture(GL_TEXTURE1 + i);
+			glBindTexture(GL_TEXTURE_2D, 0);
 		}
 	}
 

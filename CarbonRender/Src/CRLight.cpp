@@ -2,8 +2,9 @@
 
 Light::Light(LightType iType, float iIntensity)
 {
-	type = iType;
-	intensity = iIntensity;
+	objType = ObjectType::eLight;
+	lightType = iType;
+	SetIntensity(iIntensity);
 }
 
 Light::~Light()
@@ -12,7 +13,7 @@ Light::~Light()
 
 LightType Light::GetType()
 {
-	return type;
+	return lightType;
 }
 
 float Light::GetIntensity()
@@ -22,7 +23,7 @@ float Light::GetIntensity()
 
 void Light::SetIntensity(float iIntensity)
 {
-	intensity = iIntensity;
+	intensity = Math::Max(0.0f, iIntensity);
 }
 
 float3 Light::GetColor()

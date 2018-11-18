@@ -1,7 +1,6 @@
 #ifndef CR_CONTROLLER
 #define CR_CONTROLLER
 
-#include "..\Inc\CRGloble.h"
 #include "..\Inc\CRCameraManager.h"
 #include "..\Inc\CRWeatherSystem.h"
 

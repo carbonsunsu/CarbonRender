@@ -1,7 +1,6 @@
 #ifndef CR_CAMERAMANAGER
 #define CR_CAMERAMANAGER
 
-#include "..\Inc\CRGloble.h"
 #include "..\Inc\CRCamera.h"
 
 class CameraManager

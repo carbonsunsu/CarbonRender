@@ -1,7 +1,6 @@
 #ifndef CR_LIGHT_MANAGER
 #define CR_LIGHT_MANAGER
 
-#include "..\Inc\CRGloble.h"
 #include "..\Inc\CRLight.h"
 /**/
 class LightManager

@@ -1,13 +1,9 @@
 #ifndef CR_VOLCLOUD
 #define	CR_VOLCLOUD
 
-#include "..\Inc\CRGloble.h"
 #include "..\Inc\CRRenderPass.h"
-#include "..\Inc\CRMeshObject.h"
 #include "..\Inc\CRFbxImportManager.h"
-#include "..\Inc\CRWindowManager.h"
 #include "..\Inc\CRCameraManager.h"
-#include "..\Inc\CRShaderManager.h"
 #include "..\Inc\CRWeatherSystem.h"
 
 class VolumetricCloudPass : public RenderPass
