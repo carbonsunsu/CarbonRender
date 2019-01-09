@@ -22,6 +22,7 @@ SceneManager * SceneManager::Instance()
 void SceneManager::Init()
 {
 	rootNode = new Object();
+	rootNode->SetName("Root");
 }
 
 void SceneManager::LoadScene(char* sceneName)
@@ -98,11 +99,9 @@ void SceneManager::LoadScene(char* sceneName)
 	xml_node<>* l4Node;
 	for (int i = 0; i < count; i++)
 	{
-		Object meshObj;
-		MeshObject* staticMeshObject;
+		Object* meshObj = new Object();
 		
-		FbxImportManager::Instance()->ImportFbxModel(l3Node->first_attribute()->value(), staticMeshObject);
-		staticMeshObject->GetReady4Rending();
+		FbxImportManager::Instance()->ImportFbxModel(l3Node->first_attribute()->value(), meshObj);
 		l4Node = l3Node->first_node("Position");
 		attri = l4Node->first_attribute();
 		for (int i = 0; i < 3; i++)
@@ -110,7 +109,7 @@ void SceneManager::LoadScene(char* sceneName)
 			a[i] = atof(attri->value());
 			attri = attri->next_attribute();
 		}
-		staticMeshObject->SetPosition(float3(a[0], a[1], a[2]));
+		meshObj->SetPosition(float3(a[0], a[1], a[2]));
 		l4Node = l3Node->first_node("Rotation");
 		attri = l4Node->first_attribute();
 		for (int i = 0; i < 3; i++)
@@ -118,7 +117,7 @@ void SceneManager::LoadScene(char* sceneName)
 			a[i] = atof(attri->value());
 			attri = attri->next_attribute();
 		}
-		staticMeshObject->SetRotation(float3(a[0], a[1], a[2]));
+		meshObj->SetRotation(float3(a[0], a[1], a[2]));
 		l4Node = l3Node->first_node("Scale");
 		attri = l4Node->first_attribute();
 		for (int i = 0; i < 3; i++)
@@ -126,8 +125,8 @@ void SceneManager::LoadScene(char* sceneName)
 			a[i] = atof(attri->value());
 			attri = attri->next_attribute();
 		}
-		staticMeshObject->SetScale(float3(a[0], a[1], a[2]));
-		rootNode->AddChild((Object*)&staticMeshObject);
+		meshObj->SetScale(float3(a[0], a[1], a[2]));
+		rootNode->AddChild(meshObj);
 		l3Node = l3Node->next_sibling();
 	}
 }
@@ -136,12 +135,34 @@ void SceneManager::SaveScene(char * sceneName)
 {
 }
 
-void SceneManager::DrawScene(GLuint shaderProgram)
+void SceneManager::Draw(Object * node, GLuint shaderProgram)
 {
+	//draw node if the type is Mesh
+	if (node->GetType() == ObjectType::eMesh)
+	{
+		MeshObject* meshObj = (MeshObject*)node;
+		meshObj->Render(shaderProgram);
+	}
+
+	//draw children
+	Object* child = node->GetFirstChild();
+	if (child == nullptr)
+		return;
+
 	while (true)
 	{
+		Draw(child, shaderProgram);
 
+		if (child->GetNext() == nullptr)
+			break;
+
+		child = child->GetNext();
 	}
+}
+
+void SceneManager::DrawScene(GLuint shaderProgram)
+{
+	Draw(rootNode, shaderProgram);
 }
 
 Object * SceneManager::GetRootNode()

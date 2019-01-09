@@ -2,6 +2,8 @@
 
 MeshObject::MeshObject()
 {
+	Object();
+
 	objType = ObjectType::eMesh;
 	indexArray = nullptr;
 	vertexArray = nullptr;
@@ -193,7 +195,10 @@ void MeshObject::Render(GLuint shaderProgram, bool useTex)
 
 	Matrix4x4 finalMat;
 	if (parent != nullptr)
+	{
+		parent->UpdateModelMatrix();
 		finalMat = modelMatrix * parent->GetModelMatrix();
+	}
 	else
 		finalMat = modelMatrix;
 	Matrix3x3 normalMat = finalMat;

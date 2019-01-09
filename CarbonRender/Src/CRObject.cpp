@@ -4,6 +4,7 @@ Object::Object()
 {
 	firstChild = nullptr;
 	parent = nullptr;
+	next = nullptr;
 	childCount = 0;
 	name = "Object";
 	objType = ObjectType::eNull;
@@ -136,6 +137,21 @@ unsigned int Object::GetChildCount()
 	return childCount;
 }
 
+Object * Object::GetParent()
+{
+	return parent;
+}
+
+Object * Object::GetFirstChild()
+{
+	return firstChild;
+}
+
+Object * Object::GetNext()
+{
+	return next;
+}
+
 Object * Object::GetLastChild()
 {
 	if (childCount == 0)
@@ -149,6 +165,11 @@ Object * Object::GetLastChild()
 		else
 			current = current->next;
 	}
+}
+
+ObjectType Object::GetType()
+{
+	return objType;
 }
 
 void Object::LookAt(float3 p)

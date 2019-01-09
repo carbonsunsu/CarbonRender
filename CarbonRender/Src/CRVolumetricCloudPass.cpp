@@ -91,7 +91,8 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	cloudBox.SetPosition(camPos);
 	cloudBox.SetScale(float3(5.0f, 5.0f, 5.0f));
 	cloudBox.SetRotation(camRot);
-	cloudBox.Render(shaderProgram, false);
+	MeshObject* cloudBoxMesh = (MeshObject*)cloudBox.GetFirstChild();
+	cloudBoxMesh->Render(shaderProgram, false);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glBindRenderbuffer(GL_RENDERBUFFER, 0);
@@ -121,7 +122,6 @@ void VolumetricCloudPass::Render(PassOutput * input)
 void VolumetricCloudPass::Init()
 {
 	FbxImportManager::Instance()->ImportFbxModel("Box", &cloudBox);
-	cloudBox.GetReady4Rending();
 	shaderProgram = ShaderManager::Instance()->LoadShader("VolumatricCloud.vert", "VolumatricCloud.frag");
 	GenerateTex();
 }

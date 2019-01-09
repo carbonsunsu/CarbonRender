@@ -4,7 +4,6 @@ void SkyRenderPass::Init()
 {
 	shaderProgram = ShaderManager::Instance()->LoadShader("Atmosphere.vert", "Atmosphere.frag");
 	FbxImportManager::Instance()->ImportFbxModel("sphere", &sphere);
-	sphere.GetReady4Rending();
 	sphere.SetScale(float3(10000.0f, 5000.0f, 10000.0f));
 	sphere.SetPosition(float3(0.0f));
 	sphere.SetRotation(float3(45.0f, 135.0f, 0.0f));
@@ -70,7 +69,8 @@ void SkyRenderPass::Render(PassOutput* input)
 	location = glGetUniformLocation(shaderProgram, "milkwayTex");
 	glUniform1i(location, 4);
 
-	sphere.Render(shaderProgram);
+	MeshObject* sphereMesh = (MeshObject*)sphere.GetFirstChild();
+	sphereMesh->Render(shaderProgram);
 
 	//render cube
 	Camera camCube;
@@ -96,7 +96,7 @@ void SkyRenderPass::Render(PassOutput* input)
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, output.RTS[1], 0);
 		CameraManager::Instance()->GetCurrentCamera()->SetRotation(rs[i]);
 		CameraManager::Instance()->GetCurrentCamera()->UpdateViewMatrix();
-		sphere.Render(shaderProgram);
+		sphereMesh->Render(shaderProgram);
 	}
 
 	glBindTexture(GL_TEXTURE_CUBE_MAP, output.RTS[1]);

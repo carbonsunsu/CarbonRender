@@ -349,8 +349,9 @@ void FbxImportManager::ReadTexture(FbxMesh* mesh, MeshObject* meshObj, char* mes
 
 }
 
-int FbxImportManager::ImportFbxModel(char * fileName, MeshObject* out, bool loadTex)
+int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool loadTex)
 {
+	root->SetName(fileName);
 	char* dir = "Resources\\Models\\";
 	char* fullName = FileReader::BindString(dir, fileName);
 	fullName = FileReader::BindString(fullName, ".fbx");
@@ -390,36 +391,36 @@ int FbxImportManager::ImportFbxModel(char * fileName, MeshObject* out, bool load
 					FbxDouble3 scaling = node->LclScaling.Get();
 
 					FbxMesh* mesh = node->GetMesh();
-					MeshObject newMeshObj;
+					MeshObject* newMeshObj = new MeshObject();
 					int ctrlPointsCount = mesh->GetControlPointsCount();
-					newMeshObj.SetName(mesh->GetName());
-					newMeshObj.SetPosition(translation);
-					newMeshObj.SetRotation(rotation);
-					newMeshObj.SetScale(scaling);
+					newMeshObj->SetName(mesh->GetName());
+					newMeshObj->SetPosition(translation);
+					newMeshObj->SetRotation(rotation);
+					newMeshObj->SetScale(scaling);
 					//newMeshObj.modelMatrix = Math::CalculateModelMatrix(newMeshObj.localCoord, translation, rotation, scaling);
-					newMeshObj.SetPolygonCount(mesh->GetPolygonCount());
-					newMeshObj.SetVertexCount(newMeshObj.GetPolygonCount() * 3);
-					newMeshObj.CreateIndexArray(newMeshObj.GetPolygonCount() * 3);
+					newMeshObj->SetPolygonCount(mesh->GetPolygonCount());
+					newMeshObj->SetVertexCount(newMeshObj->GetPolygonCount() * 3);
+					newMeshObj->CreateIndexArray(newMeshObj->GetPolygonCount() * 3);
 
 					bool* mark = new bool[ctrlPointsCount];
 					for (int i = 0; i < ctrlPointsCount; i++)
 						mark[i] = false;
 					int* multiNormalIndex = new int[ctrlPointsCount * 30];
-					float* tempVertexArray = new float[newMeshObj.GetVertexCount() * 3];
-					float* tempColorArray = new float[newMeshObj.GetVertexCount() * 4];
-					float* tempUVArray = new float[newMeshObj.GetVertexCount() * 4];
-					float* tempNormalArray = new float[newMeshObj.GetVertexCount() * 3];
-					float* tempTangentArray = new float[newMeshObj.GetVertexCount() * 3];
-					float* tempBinormalArray = new float[newMeshObj.GetVertexCount() * 3];
+					float* tempVertexArray = new float[newMeshObj->GetVertexCount() * 3];
+					float* tempColorArray = new float[newMeshObj->GetVertexCount() * 4];
+					float* tempUVArray = new float[newMeshObj->GetVertexCount() * 4];
+					float* tempNormalArray = new float[newMeshObj->GetVertexCount() * 3];
+					float* tempTangentArray = new float[newMeshObj->GetVertexCount() * 3];
+					float* tempBinormalArray = new float[newMeshObj->GetVertexCount() * 3];
 
 					//Get Textures
 					if (loadTex)
-						ReadTexture(mesh, &newMeshObj, fileName);
+						ReadTexture(mesh, newMeshObj, fileName);
 					else
 					{
-						newMeshObj.SetTexture(0, TextureManager::Instance()->LoadDefaultD());
-						newMeshObj.SetTexture(1, TextureManager::Instance()->LoadDefaultN());
-						newMeshObj.SetTexture(2, TextureManager::Instance()->LoadDefaultS());
+						newMeshObj->SetTexture(0, TextureManager::Instance()->LoadDefaultD());
+						newMeshObj->SetTexture(1, TextureManager::Instance()->LoadDefaultN());
+						newMeshObj->SetTexture(2, TextureManager::Instance()->LoadDefaultS());
 					}
 
 					int addVertexCount = 0;
@@ -430,7 +431,7 @@ int FbxImportManager::ImportFbxModel(char * fileName, MeshObject* out, bool load
 						{
 							int vertexID = polygonIndex * 3 + vertexIndex;
 							unsigned int index = (unsigned int)mesh->GetPolygonVertex(polygonIndex, vertexIndex);
-							newMeshObj.SetIndexAt(vertexID, index);
+							newMeshObj->SetIndexAt(vertexID, index);
 
 							//Get Vertex
 							float3 v(ctrlPoints[index][0], ctrlPoints[index][1], ctrlPoints[index][2]);
@@ -484,7 +485,7 @@ int FbxImportManager::ImportFbxModel(char * fileName, MeshObject* out, bool load
 								if (!hasSame)
 								{
 									finalIndex = ctrlPointsCount + addVertexCount;
-									newMeshObj.SetIndexAt(vertexID, finalIndex);
+									newMeshObj->SetIndexAt(vertexID, finalIndex);
 
 									multiNormalIndex[index * 30]++;
 									multiNormalIndex[index * 30 + multiNormalIndex[index * 30]] = finalIndex;
@@ -492,7 +493,7 @@ int FbxImportManager::ImportFbxModel(char * fileName, MeshObject* out, bool load
 								}
 								else
 								{
-									newMeshObj.SetIndexAt(vertexID, sameIndex);
+									newMeshObj->SetIndexAt(vertexID, sameIndex);
 									continue;
 								}
 							}
@@ -525,26 +526,24 @@ int FbxImportManager::ImportFbxModel(char * fileName, MeshObject* out, bool load
 						}
 					}
 
-					newMeshObj.SetVertexCount(ctrlPointsCount + addVertexCount);
-					newMeshObj.CreateVertexArray(newMeshObj.GetVertexCount() * 3);
-					newMeshObj.CreateVertexColorArray(newMeshObj.GetVertexCount() * 4);
-					newMeshObj.CreateUVArray(newMeshObj.GetVertexCount() * 4);
-					newMeshObj.CreateNormalArray(newMeshObj.GetVertexCount() * 3);
-					newMeshObj.CreateTangentArray(newMeshObj.GetVertexCount() * 3);
-					newMeshObj.CreateBinormalArray(newMeshObj.GetVertexCount() * 3);
-					newMeshObj.CopyToVertexArray(tempVertexArray);
-					newMeshObj.CopyToVertexColorArray(tempColorArray);
-					newMeshObj.CopyToUVArray(tempUVArray);
-					newMeshObj.CopyToNormalrray(tempNormalArray);
-					newMeshObj.CopyToTangentArray(tempTangentArray);
-					newMeshObj.CopyToBinormalArray(tempBinormalArray);
+					newMeshObj->SetVertexCount(ctrlPointsCount + addVertexCount);
+					newMeshObj->CreateVertexArray(newMeshObj->GetVertexCount() * 3);
+					newMeshObj->CreateVertexColorArray(newMeshObj->GetVertexCount() * 4);
+					newMeshObj->CreateUVArray(newMeshObj->GetVertexCount() * 4);
+					newMeshObj->CreateNormalArray(newMeshObj->GetVertexCount() * 3);
+					newMeshObj->CreateTangentArray(newMeshObj->GetVertexCount() * 3);
+					newMeshObj->CreateBinormalArray(newMeshObj->GetVertexCount() * 3);
+					newMeshObj->CopyToVertexArray(tempVertexArray);
+					newMeshObj->CopyToVertexColorArray(tempColorArray);
+					newMeshObj->CopyToUVArray(tempUVArray);
+					newMeshObj->CopyToNormalrray(tempNormalArray);
+					newMeshObj->CopyToTangentArray(tempTangentArray);
+					newMeshObj->CopyToBinormalArray(tempBinormalArray);
 
-					if (readMeshCount == 0)
-						out = &newMeshObj;
-					else
-						out->AddChild((Object*)&newMeshObj);
+					newMeshObj->GetReady4Rending();
+					root->AddChild((Object*)newMeshObj);
 					
-					readMeshCount++;
+  					readMeshCount++;
 				}
 				break;
 				case FbxNodeAttribute::eSkeleton:

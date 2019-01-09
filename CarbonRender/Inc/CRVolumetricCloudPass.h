@@ -13,7 +13,7 @@ private:
 	void Render(PassOutput* input);
 
 	GLuint dBuffer;
-	MeshObject cloudBox;
+	Object cloudBox;
 	GLuint noises[3];//PerlinWorley, Worley, Curl
 	GLuint weatherData;
 	float4 cloudBoxScale;

@@ -54,7 +54,11 @@ public:
 	Matrix4x4 GetModelMatrix();
 	string GetName();
 	unsigned int GetChildCount();
+	Object* GetParent();
+	Object* GetFirstChild();
+	Object* GetNext();
 	Object* GetLastChild();
+	ObjectType GetType();
 	void LookAt(float3 p);
 };
 

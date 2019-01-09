@@ -19,6 +19,7 @@ public:
 	
 	void LoadScene(char* sceneName);
 	void SaveScene(char* sceneName);
+	void Draw (Object* node, GLuint shaderProgram);
 	void DrawScene(GLuint shaderProgram);
 
 	Object* GetRootNode();
