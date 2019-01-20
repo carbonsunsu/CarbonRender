@@ -10,7 +10,7 @@ private:
 	SceneManager();
 	static SceneManager* ins;
 	
-	Object* rootNode;
+	Object* sceneRoot;
 
 	void Init();
 public:
@@ -18,6 +18,7 @@ public:
 	static SceneManager* Instance();
 	
 	void LoadScene(char* sceneName);
+	void AddObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent, Object* obj);
 	void SaveScene(char* sceneName);
 	void Draw (Object* node, GLuint shaderProgram);
 	void DrawScene(GLuint shaderProgram);

@@ -394,6 +394,7 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool loadTex
 					MeshObject* newMeshObj = new MeshObject();
 					int ctrlPointsCount = mesh->GetControlPointsCount();
 					newMeshObj->SetName(mesh->GetName());
+					newMeshObj->SetPath(fileName, mesh->GetName());
 					newMeshObj->SetPosition(translation);
 					newMeshObj->SetRotation(rotation);
 					newMeshObj->SetScale(scaling);

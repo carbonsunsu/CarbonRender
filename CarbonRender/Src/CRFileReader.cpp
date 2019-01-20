@@ -14,6 +14,22 @@ int FileReader::GetTextFileSize(char* fileName)
 	return size;
 }
 
+TextFile FileReader::XML2Text(xml_node<>* xmlDoc)
+{
+	TextFile xmlData;
+
+	string xmlStr;
+	print(back_inserter(xmlStr), *xmlDoc, 0);
+	xmlData.length = xmlStr.length();
+	xmlData.data = (GLchar*)malloc(xmlData.length + 1);
+	memcpy(xmlData.data, xmlStr.c_str(), xmlData.length);
+	xmlData.data[xmlData.length] = '\0';
+
+	cout << xmlStr << endl;
+
+	return xmlData;
+}
+
 TextFile FileReader::ReadTextFile(char* fileName)
 {
 	fstream file;
@@ -36,11 +52,13 @@ TextFile FileReader::ReadTextFile(char* fileName)
 	return data;
 }
 
-void FileReader::WriteTextFile(TextFile fileData)
+void FileReader::WriteTextFile(char* fileName, TextFile fileData)
 {
 	fstream file;
 
-	//rapidxml::print();
+	file.open(fileName, ios::out);
+	file.write(fileData.data, fileData.length);
+	file.close();
 }
 
 char * FileReader::BindString(char * str0, char * str1)

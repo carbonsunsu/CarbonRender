@@ -28,6 +28,7 @@
 #include "..\Third\Simple OpenGL Image Library\src\SOIL.h"
 #pragma comment(lib, "SOIL.lib")
 #include "..\Third\RapidXML\rapidxml.hpp"
+#include "..\Third\RapidXML\rapidxml_print.hpp"
 
 using namespace std;
 using namespace rapidxml;

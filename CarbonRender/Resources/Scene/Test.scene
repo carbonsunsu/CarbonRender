@@ -1,0 +1,72 @@
+<Scene>
+	<World>
+		<Latitude>0.000000</Latitude>
+		<Day>180</Day>
+		<Time>12.000000</Time>
+		<Turbidity>4.000000</Turbidity>
+		<Exposure>30.000000</Exposure>
+		<TimeSpeed>1500.000000</TimeSpeed>
+		<WindDirection x="0.500000" y="0.000000" z="1.000000" w="10.000000"/>
+	</World>
+	<Camera>
+		<Position x="0.000000" y="2.000000" z="7.000000"/>
+		<Rotation x="0.000000" y="0.000000" z="0.000000"/>
+		<FOV>60.000000</FOV>
+		<NearClip>0.010000</NearClip>
+		<FarClip>3000.000000</FarClip>
+	</Camera>
+	<Objects>
+		<Object Name="Plane">
+			<StaticMeshObject Name="Plane" Path="Plane" SubMesh="Plane"/>
+		</Object>
+		<Object Name="HappyRecon">
+			<StaticMeshObject Name="happy_vrip" Path="HappyRecon" SubMesh="happy_vrip"/>
+		</Object>
+		<Object Name="dragon">
+			<StaticMeshObject Name="dragon_vrip.001" Path="dragon" SubMesh="dragon_vrip.001"/>
+		</Object>
+		<Object Name="Sponza">
+			<StaticMeshObject Name="sponza_06" Path="Sponza" SubMesh="sponza_06"/>
+			<StaticMeshObject Name="sponza_119" Path="Sponza" SubMesh="sponza_119"/>
+			<StaticMeshObject Name="sponza_122" Path="Sponza" SubMesh="sponza_122"/>
+			<StaticMeshObject Name="sponza_17" Path="Sponza" SubMesh="sponza_17"/>
+			<StaticMeshObject Name="sponza_20" Path="Sponza" SubMesh="sponza_20"/>
+			<StaticMeshObject Name="sponza_22" Path="Sponza" SubMesh="sponza_22"/>
+			<StaticMeshObject Name="sponza_224" Path="Sponza" SubMesh="sponza_224"/>
+			<StaticMeshObject Name="sponza_282" Path="Sponza" SubMesh="sponza_282"/>
+			<StaticMeshObject Name="sponza_283" Path="Sponza" SubMesh="sponza_283"/>
+			<StaticMeshObject Name="sponza_284" Path="Sponza" SubMesh="sponza_284"/>
+			<StaticMeshObject Name="sponza_285" Path="Sponza" SubMesh="sponza_285"/>
+			<StaticMeshObject Name="sponza_286" Path="Sponza" SubMesh="sponza_286"/>
+			<StaticMeshObject Name="sponza_287" Path="Sponza" SubMesh="sponza_287"/>
+			<StaticMeshObject Name="sponza_288" Path="Sponza" SubMesh="sponza_288"/>
+			<StaticMeshObject Name="sponza_289" Path="Sponza" SubMesh="sponza_289"/>
+			<StaticMeshObject Name="sponza_320" Path="Sponza" SubMesh="sponza_320"/>
+			<StaticMeshObject Name="sponza_321" Path="Sponza" SubMesh="sponza_321"/>
+			<StaticMeshObject Name="sponza_322" Path="Sponza" SubMesh="sponza_322"/>
+			<StaticMeshObject Name="sponza_323" Path="Sponza" SubMesh="sponza_323"/>
+			<StaticMeshObject Name="sponza_324" Path="Sponza" SubMesh="sponza_324"/>
+			<StaticMeshObject Name="sponza_325" Path="Sponza" SubMesh="sponza_325"/>
+			<StaticMeshObject Name="sponza_326" Path="Sponza" SubMesh="sponza_326"/>
+			<StaticMeshObject Name="sponza_327" Path="Sponza" SubMesh="sponza_327"/>
+			<StaticMeshObject Name="sponza_328" Path="Sponza" SubMesh="sponza_328"/>
+			<StaticMeshObject Name="sponza_329" Path="Sponza" SubMesh="sponza_329"/>
+			<StaticMeshObject Name="sponza_35.001" Path="Sponza" SubMesh="sponza_35.001"/>
+			<StaticMeshObject Name="sponza_36.003" Path="Sponza" SubMesh="sponza_36.003"/>
+			<StaticMeshObject Name="sponza_36.008" Path="Sponza" SubMesh="sponza_36.008"/>
+			<StaticMeshObject Name="Line371" Path="Sponza" SubMesh="Line371"/>
+			<StaticMeshObject Name="______01" Path="Sponza" SubMesh="______01"/>
+		</Object>
+		<Object Name="M48">
+			<StaticMeshObject Name="chassis_LShape" Path="M48" SubMesh="chassis_LShape"/>
+			<StaticMeshObject Name="chassis_RShape" Path="M48" SubMesh="chassis_RShape"/>
+			<StaticMeshObject Name="gun_03_Shape" Path="M48" SubMesh="gun_03_Shape"/>
+			<StaticMeshObject Name="Hull" Path="M48" SubMesh="Hull"/>
+			<StaticMeshObject Name="segment1.002" Path="M48" SubMesh="segment1.002"/>
+			<StaticMeshObject Name="segment1.003" Path="M48" SubMesh="segment1.003"/>
+			<StaticMeshObject Name="segment2.002" Path="M48" SubMesh="segment2.002"/>
+			<StaticMeshObject Name="segment2.003" Path="M48" SubMesh="segment2.003"/>
+			<StaticMeshObject Name="Turret_01" Path="M48" SubMesh="Turret_01"/>
+		</Object>
+	</Objects>
+</Scene>

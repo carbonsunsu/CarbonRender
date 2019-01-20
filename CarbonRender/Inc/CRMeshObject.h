@@ -5,6 +5,7 @@
 #include "..\Inc\CRShaderManager.h"
 #include "..\Inc\CRCameraManager.h"
 #include "..\Inc\CRGLHelper.h"
+#include "..\Inc\CRMaterialManager.h"
 
 class MeshObject : public Object
 {
@@ -28,6 +29,9 @@ private:
 	float* binormalArray;
 	float* uvArray;
 	GLuint texs[3];
+	Material material;
+	string path;
+	string subMeshName;
 
 	bool bReady4Render = false;
 public:
@@ -48,6 +52,7 @@ public:
 	void SetPolygonCount(unsigned int count);
 	void SetTexture(unsigned int i, GLuint tex);
 	void SetIndexAt(unsigned int i, unsigned index);
+	void SetPath(string pathStr, string subMeshStr);
 
 	void CopyToVertexArray(float* data);
 	void CopyToVertexColorArray(float* data);
@@ -59,6 +64,8 @@ public:
 	unsigned int GetVertexCount();
 	unsigned int GetPolygonCount();
 	GLuint GetTexture(unsigned int i);
+	string GetPath();
+	string GetSubMeshName();
 
 	void GetReady4Rending();
 

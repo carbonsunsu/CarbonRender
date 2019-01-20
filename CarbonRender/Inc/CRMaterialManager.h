@@ -15,9 +15,13 @@ public:
 	Material();
 	~Material();
 	void SetRoughness(float r);
-	float GetRoughness();
 	void SetMetallic(float m);
+	void SetDiffuse(string dir);
+	void SetNormal(string dir);
+	void SetSpecular(string dir);
+
 	float GetMetallic();
+	float GetRoughness();
 };
 
 class MaterialManager

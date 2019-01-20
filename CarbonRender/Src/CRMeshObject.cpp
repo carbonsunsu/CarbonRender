@@ -98,6 +98,12 @@ void MeshObject::SetIndexAt(unsigned int i, unsigned index)
 	indexArray[i] = index;
 }
 
+void MeshObject::SetPath(string pathStr, string subMeshStr)
+{
+	path = pathStr;
+	subMeshName = subMeshStr;
+}
+
 void MeshObject::CopyToVertexArray(float * data)
 {
 	memcpy(vertexArray, data, sizeof(float) * GetVertexCount() * 3);
@@ -144,6 +150,16 @@ GLuint MeshObject::GetTexture(unsigned int i)
 		return texs[i];
 	else
 		return 0;
+}
+
+string MeshObject::GetPath()
+{
+	return path;
+}
+
+string MeshObject::GetSubMeshName()
+{
+	return subMeshName;
 }
 
 void MeshObject::GetReady4Rending()
