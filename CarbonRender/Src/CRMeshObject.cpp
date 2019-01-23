@@ -12,6 +12,7 @@ MeshObject::MeshObject()
 	tangentArray = nullptr;
 	binormalArray = nullptr;
 	uvArray = nullptr;
+	material = nullptr;
 }
 
 MeshObject::~MeshObject()

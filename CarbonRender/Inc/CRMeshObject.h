@@ -29,7 +29,7 @@ private:
 	float* binormalArray;
 	float* uvArray;
 	GLuint texs[3];
-	Material material;
+	Material* material;
 	string path;
 	string subMeshName;
 

@@ -25,8 +25,6 @@ TextFile FileReader::XML2Text(xml_node<>* xmlDoc)
 	memcpy(xmlData.data, xmlStr.c_str(), xmlData.length);
 	xmlData.data[xmlData.length] = '\0';
 
-	cout << xmlStr << endl;
-
 	return xmlData;
 }
 

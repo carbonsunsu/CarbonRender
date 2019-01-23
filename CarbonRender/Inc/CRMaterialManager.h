@@ -22,6 +22,9 @@ public:
 
 	float GetMetallic();
 	float GetRoughness();
+	string GetDiffuse();
+	string GetNormal();
+	string GetSpecular();
 };
 
 class MaterialManager
@@ -29,10 +32,14 @@ class MaterialManager
 private:
 	MaterialManager();
 	static MaterialManager* ins;
+	
+	vector<Material> materials;
 
 public:
 	~MaterialManager();
 	static MaterialManager* Instance();
+
+	Material* CreateMaterial();
 };
 
 #endif

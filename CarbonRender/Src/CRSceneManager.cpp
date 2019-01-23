@@ -133,21 +133,21 @@ void SceneManager::LoadScene(char* sceneName)
 	SaveScene("Test");
 }
 
-void SceneManager::AddObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent, Object * obj)
+void SceneManager::WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent, Object * obj)
 {
 	if (obj == nullptr)
 		return;
 
 	while (true)
 	{
-		xml_node<>* l1Node;
+		xml_node<>* l1Node = sceneDoc->allocate_node(node_element);
 		xml_attribute<>* attrib;
 		switch (obj->GetType())
 		{
 		case ObjectType::eMesh:
 		{
 			MeshObject* meshObj = (MeshObject*)obj;
-			l1Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("StaticMeshObject"));
+			l1Node->name(sceneDoc->allocate_string("StaticMeshObject"));
 			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("Name"), sceneDoc->allocate_string(meshObj->GetName().c_str()));
 			l1Node->append_attribute(attrib);
 			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("Path"), sceneDoc->allocate_string(meshObj->GetPath().c_str()));
@@ -155,22 +155,59 @@ void SceneManager::AddObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent, 
 			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("SubMesh"), sceneDoc->allocate_string(meshObj->GetSubMeshName().c_str()));
 			l1Node->append_attribute(attrib);
 			parent->append_node(l1Node);
-
-			AddObj2XMLNode(sceneDoc, l1Node, obj->GetFirstChild()); 
 		}
 			break;
 		case ObjectType::eNull:
 		{
-			l1Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Object"));
+			l1Node->name(sceneDoc->allocate_string("Object"));
 			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("Name"), sceneDoc->allocate_string(obj->GetName().c_str()));
 			l1Node->append_attribute(attrib);
 			parent->append_node(l1Node);
-
-			AddObj2XMLNode(sceneDoc, l1Node, obj->GetFirstChild());
 		}
 			break;
 		default:
 			break;
+		}
+
+		//write position
+		float3 info = obj->GetPosition();
+		xml_node<>* l2Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Position"));
+		attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("x"), sceneDoc->allocate_string(to_string(info.x).c_str()));
+		l2Node->append_attribute(attrib);
+		attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("y"), sceneDoc->allocate_string(to_string(info.y).c_str()));
+		l2Node->append_attribute(attrib);
+		attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("z"), sceneDoc->allocate_string(to_string(info.z).c_str()));
+		l2Node->append_attribute(attrib);
+		l1Node->append_node(l2Node);
+
+		//write rotation
+		info = obj->GetRotation();
+		l2Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Rotation"));
+		attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("x"), sceneDoc->allocate_string(to_string(info.x).c_str()));
+		l2Node->append_attribute(attrib);
+		attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("y"), sceneDoc->allocate_string(to_string(info.y).c_str()));
+		l2Node->append_attribute(attrib);
+		attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("z"), sceneDoc->allocate_string(to_string(info.z).c_str()));
+		l2Node->append_attribute(attrib);
+		l1Node->append_node(l2Node);
+
+		//write scale
+		info = obj->GetScale();
+		l2Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Scale"));
+		attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("x"), sceneDoc->allocate_string(to_string(info.x).c_str()));
+		l2Node->append_attribute(attrib);
+		attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("y"), sceneDoc->allocate_string(to_string(info.y).c_str()));
+		l2Node->append_attribute(attrib);
+		attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("z"), sceneDoc->allocate_string(to_string(info.z).c_str()));
+		l2Node->append_attribute(attrib);
+		l1Node->append_node(l2Node);
+
+		//write child objects
+		if (obj->GetFirstChild() != nullptr)
+		{
+			l2Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Children"));
+			l1Node->append_node(l2Node);
+			WriteObj2XMLNode(sceneDoc, l2Node, obj->GetFirstChild());
 		}
 
 		obj = obj->GetNext();
@@ -281,7 +318,7 @@ void SceneManager::SaveScene(char * sceneName)
 	l0Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("Objects"), nullptr);
 	rootNode->append_node(l0Node);
 
-	AddObj2XMLNode(&sceneDoc, l0Node, sceneRoot->GetFirstChild());
+	WriteObj2XMLNode(&sceneDoc, l0Node, sceneRoot->GetFirstChild());
 
 	TextFile sceneData = FileReader::XML2Text(rootNode);
 	FileReader::WriteTextFile(realDir, sceneData);

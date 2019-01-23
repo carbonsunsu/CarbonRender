@@ -17,56 +17,249 @@
 	</Camera>
 	<Objects>
 		<Object Name="Plane">
-			<StaticMeshObject Name="Plane" Path="Plane" SubMesh="Plane"/>
+			<Position x="0.000000" y="0.000000" z="0.000000"/>
+			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
+			<Scale x="1.000000" y="1.000000" z="1.000000"/>
+			<Children>
+				<StaticMeshObject Name="Plane" Path="Plane" SubMesh="Plane">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="90.000008" y="0.000000" z="-179.999985"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+			</Children>
 		</Object>
 		<Object Name="HappyRecon">
-			<StaticMeshObject Name="happy_vrip" Path="HappyRecon" SubMesh="happy_vrip"/>
+			<Position x="-6.000000" y="0.000000" z="6.000000"/>
+			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
+			<Scale x="1.000000" y="1.000000" z="1.000000"/>
+			<Children>
+				<StaticMeshObject Name="happy_vrip" Path="HappyRecon" SubMesh="happy_vrip">
+					<Position x="0.000000" y="-1.000347" z="0.000000"/>
+					<Rotation x="0.000003" y="180.000000" z="-0.000000"/>
+					<Scale x="20.000000" y="20.000000" z="20.000000"/>
+				</StaticMeshObject>
+			</Children>
 		</Object>
 		<Object Name="dragon">
-			<StaticMeshObject Name="dragon_vrip.001" Path="dragon" SubMesh="dragon_vrip.001"/>
+			<Position x="-6.000000" y="0.000000" z="-4.000000"/>
+			<Rotation x="0.000000" y="90.000000" z="0.000000"/>
+			<Scale x="1.000000" y="1.000000" z="1.000000"/>
+			<Children>
+				<StaticMeshObject Name="dragon_vrip.001" Path="dragon" SubMesh="dragon_vrip.001">
+					<Position x="0.000000" y="-1.049830" z="0.000000"/>
+					<Rotation x="0.000009" y="-179.999985" z="0.000000"/>
+					<Scale x="19.999998" y="19.999998" z="19.999998"/>
+				</StaticMeshObject>
+			</Children>
 		</Object>
 		<Object Name="Sponza">
-			<StaticMeshObject Name="sponza_06" Path="Sponza" SubMesh="sponza_06"/>
-			<StaticMeshObject Name="sponza_119" Path="Sponza" SubMesh="sponza_119"/>
-			<StaticMeshObject Name="sponza_122" Path="Sponza" SubMesh="sponza_122"/>
-			<StaticMeshObject Name="sponza_17" Path="Sponza" SubMesh="sponza_17"/>
-			<StaticMeshObject Name="sponza_20" Path="Sponza" SubMesh="sponza_20"/>
-			<StaticMeshObject Name="sponza_22" Path="Sponza" SubMesh="sponza_22"/>
-			<StaticMeshObject Name="sponza_224" Path="Sponza" SubMesh="sponza_224"/>
-			<StaticMeshObject Name="sponza_282" Path="Sponza" SubMesh="sponza_282"/>
-			<StaticMeshObject Name="sponza_283" Path="Sponza" SubMesh="sponza_283"/>
-			<StaticMeshObject Name="sponza_284" Path="Sponza" SubMesh="sponza_284"/>
-			<StaticMeshObject Name="sponza_285" Path="Sponza" SubMesh="sponza_285"/>
-			<StaticMeshObject Name="sponza_286" Path="Sponza" SubMesh="sponza_286"/>
-			<StaticMeshObject Name="sponza_287" Path="Sponza" SubMesh="sponza_287"/>
-			<StaticMeshObject Name="sponza_288" Path="Sponza" SubMesh="sponza_288"/>
-			<StaticMeshObject Name="sponza_289" Path="Sponza" SubMesh="sponza_289"/>
-			<StaticMeshObject Name="sponza_320" Path="Sponza" SubMesh="sponza_320"/>
-			<StaticMeshObject Name="sponza_321" Path="Sponza" SubMesh="sponza_321"/>
-			<StaticMeshObject Name="sponza_322" Path="Sponza" SubMesh="sponza_322"/>
-			<StaticMeshObject Name="sponza_323" Path="Sponza" SubMesh="sponza_323"/>
-			<StaticMeshObject Name="sponza_324" Path="Sponza" SubMesh="sponza_324"/>
-			<StaticMeshObject Name="sponza_325" Path="Sponza" SubMesh="sponza_325"/>
-			<StaticMeshObject Name="sponza_326" Path="Sponza" SubMesh="sponza_326"/>
-			<StaticMeshObject Name="sponza_327" Path="Sponza" SubMesh="sponza_327"/>
-			<StaticMeshObject Name="sponza_328" Path="Sponza" SubMesh="sponza_328"/>
-			<StaticMeshObject Name="sponza_329" Path="Sponza" SubMesh="sponza_329"/>
-			<StaticMeshObject Name="sponza_35.001" Path="Sponza" SubMesh="sponza_35.001"/>
-			<StaticMeshObject Name="sponza_36.003" Path="Sponza" SubMesh="sponza_36.003"/>
-			<StaticMeshObject Name="sponza_36.008" Path="Sponza" SubMesh="sponza_36.008"/>
-			<StaticMeshObject Name="Line371" Path="Sponza" SubMesh="Line371"/>
-			<StaticMeshObject Name="______01" Path="Sponza" SubMesh="______01"/>
+			<Position x="0.000000" y="0.000000" z="0.000000"/>
+			<Rotation x="0.000000" y="180.000000" z="0.000000"/>
+			<Scale x="1.000000" y="1.000000" z="1.000000"/>
+			<Children>
+				<StaticMeshObject Name="sponza_06" Path="Sponza" SubMesh="sponza_06">
+					<Position x="0.000000" y="-0.010509" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_119" Path="Sponza" SubMesh="sponza_119">
+					<Position x="0.000000" y="-0.010509" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_122" Path="Sponza" SubMesh="sponza_122">
+					<Position x="0.000000" y="-0.010509" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_17" Path="Sponza" SubMesh="sponza_17">
+					<Position x="0.000000" y="-0.010509" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_20" Path="Sponza" SubMesh="sponza_20">
+					<Position x="0.000000" y="-0.010509" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_22" Path="Sponza" SubMesh="sponza_22">
+					<Position x="0.000000" y="-0.010509" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_224" Path="Sponza" SubMesh="sponza_224">
+					<Position x="0.000000" y="-0.010509" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_282" Path="Sponza" SubMesh="sponza_282">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_283" Path="Sponza" SubMesh="sponza_283">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_284" Path="Sponza" SubMesh="sponza_284">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_285" Path="Sponza" SubMesh="sponza_285">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_286" Path="Sponza" SubMesh="sponza_286">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_287" Path="Sponza" SubMesh="sponza_287">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_288" Path="Sponza" SubMesh="sponza_288">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_289" Path="Sponza" SubMesh="sponza_289">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_320" Path="Sponza" SubMesh="sponza_320">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_321" Path="Sponza" SubMesh="sponza_321">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_322" Path="Sponza" SubMesh="sponza_322">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_323" Path="Sponza" SubMesh="sponza_323">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_324" Path="Sponza" SubMesh="sponza_324">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_325" Path="Sponza" SubMesh="sponza_325">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_326" Path="Sponza" SubMesh="sponza_326">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_327" Path="Sponza" SubMesh="sponza_327">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_328" Path="Sponza" SubMesh="sponza_328">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_329" Path="Sponza" SubMesh="sponza_329">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_35.001" Path="Sponza" SubMesh="sponza_35.001">
+					<Position x="0.000000" y="-7.355992" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_36.003" Path="Sponza" SubMesh="sponza_36.003">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="sponza_36.008" Path="Sponza" SubMesh="sponza_36.008">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="0.015000" y="0.015000" z="0.015000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Line371" Path="Sponza" SubMesh="Line371">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="-89.999992" z="0.000000"/>
+					<Scale x="0.002000" y="0.002000" z="0.002000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="______01" Path="Sponza" SubMesh="______01">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000009" y="-89.999992" z="0.000000"/>
+					<Scale x="0.002000" y="0.002000" z="0.002000"/>
+				</StaticMeshObject>
+			</Children>
 		</Object>
 		<Object Name="M48">
-			<StaticMeshObject Name="chassis_LShape" Path="M48" SubMesh="chassis_LShape"/>
-			<StaticMeshObject Name="chassis_RShape" Path="M48" SubMesh="chassis_RShape"/>
-			<StaticMeshObject Name="gun_03_Shape" Path="M48" SubMesh="gun_03_Shape"/>
-			<StaticMeshObject Name="Hull" Path="M48" SubMesh="Hull"/>
-			<StaticMeshObject Name="segment1.002" Path="M48" SubMesh="segment1.002"/>
-			<StaticMeshObject Name="segment1.003" Path="M48" SubMesh="segment1.003"/>
-			<StaticMeshObject Name="segment2.002" Path="M48" SubMesh="segment2.002"/>
-			<StaticMeshObject Name="segment2.003" Path="M48" SubMesh="segment2.003"/>
-			<StaticMeshObject Name="Turret_01" Path="M48" SubMesh="Turret_01"/>
+			<Position x="0.000000" y="0.000000" z="0.000000"/>
+			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
+			<Scale x="1.000000" y="1.000000" z="1.000000"/>
+			<Children>
+				<StaticMeshObject Name="chassis_LShape" Path="M48" SubMesh="chassis_LShape">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="90.000008" y="0.000000" z="-179.999985"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="chassis_RShape" Path="M48" SubMesh="chassis_RShape">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="90.000008" y="0.000000" z="-179.999985"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="gun_03_Shape" Path="M48" SubMesh="gun_03_Shape">
+					<Position x="0.000000" y="2.084023" z="1.763082"/>
+					<Rotation x="90.000008" y="0.000000" z="-179.999985"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Hull" Path="M48" SubMesh="Hull">
+					<Position x="0.000000" y="1.254370" z="0.000000"/>
+					<Rotation x="90.000008" y="0.000000" z="-179.999985"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="segment1.002" Path="M48" SubMesh="segment1.002">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="-90.000008" y="-0.000005" z="179.999985"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="segment1.003" Path="M48" SubMesh="segment1.003">
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="-90.000008" y="-0.000005" z="179.999985"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="segment2.002" Path="M48" SubMesh="segment2.002">
+					<Position x="0.000000" y="0.000000" z="0.090500"/>
+					<Rotation x="-90.000008" y="-0.000005" z="179.999985"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="segment2.003" Path="M48" SubMesh="segment2.003">
+					<Position x="0.000000" y="0.000000" z="0.090500"/>
+					<Rotation x="-90.000008" y="-0.000005" z="179.999985"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Turret_01" Path="M48" SubMesh="Turret_01">
+					<Position x="-0.001963" y="1.689462" z="0.577502"/>
+					<Rotation x="90.000008" y="0.000000" z="-179.999985"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+			</Children>
 		</Object>
 	</Objects>
 </Scene>
