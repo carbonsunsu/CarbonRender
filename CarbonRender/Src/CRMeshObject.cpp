@@ -88,12 +88,6 @@ void MeshObject::SetPolygonCount(unsigned int count)
 	polygonCount = Math::Max(count, 0);
 }
 
-void MeshObject::SetTexture(unsigned int i, GLuint tex)
-{
-	if (i >= 0 && i < 3)
-		texs[i] = tex;
-}
-
 void MeshObject::SetIndexAt(unsigned int i, unsigned index)
 {
 	indexArray[i] = index;
@@ -103,6 +97,11 @@ void MeshObject::SetPath(string pathStr, string subMeshStr)
 {
 	path = pathStr;
 	subMeshName = subMeshStr;
+}
+
+void MeshObject::SetMaterial(Material * mat)
+{
+	material = mat;
 }
 
 void MeshObject::CopyToVertexArray(float * data)
@@ -145,14 +144,6 @@ unsigned int MeshObject::GetPolygonCount()
 	return polygonCount;
 }
 
-GLuint MeshObject::GetTexture(unsigned int i)
-{
-	if (i >= 0 && i < 3)
-		return texs[i];
-	else
-		return 0;
-}
-
 string MeshObject::GetPath()
 {
 	return path;
@@ -161,6 +152,11 @@ string MeshObject::GetPath()
 string MeshObject::GetSubMeshName()
 {
 	return subMeshName;
+}
+
+Material * MeshObject::GetMaterial()
+{
+	return material;
 }
 
 void MeshObject::GetReady4Rending()
@@ -220,13 +216,16 @@ void MeshObject::Render(GLuint shaderProgram, bool useTex)
 		finalMat = modelMatrix;
 	Matrix3x3 normalMat = finalMat;
 
-	if (useTex)
+	if (material != nullptr)
 	{
-		for (int i = 0; i < 3; i++)
-		{
-			glActiveTexture(GL_TEXTURE1 + i);
-			glBindTexture(GL_TEXTURE_2D, texs[i]);
-		}
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, material->GetDiffuse());
+
+		glActiveTexture(GL_TEXTURE2);
+		glBindTexture(GL_TEXTURE_2D, material->GetNormal());
+
+		glActiveTexture(GL_TEXTURE3);
+		glBindTexture(GL_TEXTURE_2D, material->GetSpecular());
 	}
 
 	GLint location = glGetUniformLocation(shaderProgram, "modelMat");

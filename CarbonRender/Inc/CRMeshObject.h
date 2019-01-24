@@ -28,7 +28,6 @@ private:
 	float* tangentArray;
 	float* binormalArray;
 	float* uvArray;
-	GLuint texs[3];
 	Material* material;
 	string path;
 	string subMeshName;
@@ -50,9 +49,9 @@ public:
 
 	void SetVertexCount(unsigned int count);
 	void SetPolygonCount(unsigned int count);
-	void SetTexture(unsigned int i, GLuint tex);
 	void SetIndexAt(unsigned int i, unsigned index);
 	void SetPath(string pathStr, string subMeshStr);
+	void SetMaterial(Material* mat);
 
 	void CopyToVertexArray(float* data);
 	void CopyToVertexColorArray(float* data);
@@ -63,9 +62,9 @@ public:
 
 	unsigned int GetVertexCount();
 	unsigned int GetPolygonCount();
-	GLuint GetTexture(unsigned int i);
 	string GetPath();
 	string GetSubMeshName();
+	Material* GetMaterial();
 
 	void GetReady4Rending();
 

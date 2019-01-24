@@ -2,6 +2,7 @@
 #define CR_MATMANAGER
 
 #include "..\Inc\CRMath.h"
+#include "..\Inc\CRTextureManager.h"
 
 class Material
 {
@@ -22,9 +23,12 @@ public:
 
 	float GetMetallic();
 	float GetRoughness();
-	string GetDiffuse();
-	string GetNormal();
-	string GetSpecular();
+	string GetDiffusePath();
+	GLuint GetDiffuse();
+	string GetNormalPath();
+	GLuint GetNormal();
+	string GetSpecularPath();
+	GLuint GetSpecular();
 };
 
 class MaterialManager
@@ -39,7 +43,7 @@ public:
 	~MaterialManager();
 	static MaterialManager* Instance();
 
-	Material* CreateMaterial();
+	Material* CreateNewMaterial();
 };
 
 #endif

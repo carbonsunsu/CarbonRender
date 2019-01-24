@@ -311,9 +311,6 @@ void FbxImportManager::ReadTexture(FbxMesh* mesh, MeshObject* meshObj, char* mes
 		p = mat->FindProperty(FbxLayerElement::sTextureChannelNames[0]);
 		if (p.IsValid())
 		{
-			meshObj->SetTexture(0, 0);
-			meshObj->SetTexture(1, 0);
-			meshObj->SetTexture(2, 0);
 			int texCount = p.GetSrcObjectCount<FbxTexture>();
 			for (int k = 0; k < texCount; k++)
 			{
@@ -322,31 +319,29 @@ void FbxImportManager::ReadTexture(FbxMesh* mesh, MeshObject* meshObj, char* mes
 				{
 					char* fullName = FileReader::BindString(meshFileName, "\\");
 					fullName = FileReader::BindString(fullName, (char*)fbxTex->GetInitialName());
-					GLuint tex = TextureManager::Instance()->LoadTexture(fullName);
 					if (strstr(fbxTex->GetInitialName(), "_D"))
-						meshObj->SetTexture(0, tex);
+						meshObj->GetMaterial()->SetDiffuse(fullName);
 					if (strstr(fbxTex->GetInitialName(), "_N"))
-						meshObj->SetTexture(1, tex);
+						meshObj->GetMaterial()->SetNormal(fullName);
 					if (strstr(fbxTex->GetInitialName(), "_S"))
-						meshObj->SetTexture(2, tex);
+						meshObj->GetMaterial()->SetSpecular(fullName);
 				}
 			}
 
-			if (meshObj->GetTexture(0) == 0)
-				meshObj->SetTexture(0, TextureManager::Instance()->LoadDefaultD());
-			if (meshObj->GetTexture(1) == 0)
-				meshObj->SetTexture(1, TextureManager::Instance()->LoadDefaultN());
-			if (meshObj->GetTexture(2) == 0)
-				meshObj->SetTexture(2, TextureManager::Instance()->LoadDefaultS());
+			if (meshObj->GetMaterial()->GetDiffuse() == 0)
+				meshObj->GetMaterial()->SetDiffuse("");
+			if (meshObj->GetMaterial()->GetNormal() == 0)
+				meshObj->GetMaterial()->SetNormal("");
+			if (meshObj->GetMaterial()->GetSpecular() == 0)
+				meshObj->GetMaterial()->SetSpecular("");
 
 			return;
 		}
 	}
 
-	meshObj->SetTexture(0, TextureManager::Instance()->LoadDefaultD());
-	meshObj->SetTexture(1, TextureManager::Instance()->LoadDefaultN());
-	meshObj->SetTexture(2, TextureManager::Instance()->LoadDefaultS());
-
+	meshObj->GetMaterial()->SetDiffuse("");
+	meshObj->GetMaterial()->SetNormal("");
+	meshObj->GetMaterial()->SetSpecular("");
 }
 
 int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool loadTex)
@@ -415,13 +410,14 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool loadTex
 					float* tempBinormalArray = new float[newMeshObj->GetVertexCount() * 3];
 
 					//Get Textures
+					newMeshObj->SetMaterial(MaterialManager::Instance()->CreateNewMaterial());
 					if (loadTex)
 						ReadTexture(mesh, newMeshObj, fileName);
 					else
 					{
-						newMeshObj->SetTexture(0, TextureManager::Instance()->LoadDefaultD());
-						newMeshObj->SetTexture(1, TextureManager::Instance()->LoadDefaultN());
-						newMeshObj->SetTexture(2, TextureManager::Instance()->LoadDefaultS());
+						newMeshObj->GetMaterial()->SetDiffuse("");
+						newMeshObj->GetMaterial()->SetNormal("");
+						newMeshObj->GetMaterial()->SetSpecular("");
 					}
 
 					int addVertexCount = 0;

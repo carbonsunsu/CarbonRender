@@ -2,7 +2,6 @@
 #define CR_FBXMANAGER
 
 #include "..\Inc\CRMeshObject.h"
-#include "..\Inc\CRTextureManager.h"
 
 class FbxImportManager
 {
