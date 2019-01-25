@@ -92,6 +92,7 @@ void SceneManager::LoadScene(char* sceneName)
 	ctrl.Init();
 	ControllerManager::Instance()->Push(ctrl);
 
+	/**
 	l1Node = root->first_node("Objects");
 	l2Node = l1Node->first_node("StaticMeshObjects");
 	int count = atoi(l2Node->first_attribute()->value());
@@ -131,6 +132,12 @@ void SceneManager::LoadScene(char* sceneName)
 	}
 
 	SaveScene("Test");
+	/**/
+
+	l1Node = root->first_node("Objects");
+	l2Node = l1Node->first_node();
+
+	ReadObjFromXMLNode(l2Node, sceneRoot);
 }
 
 void SceneManager::WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent, Object * obj)
@@ -155,6 +162,20 @@ void SceneManager::WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent
 			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("SubMesh"), sceneDoc->allocate_string(meshObj->GetSubMeshName().c_str()));
 			l1Node->append_attribute(attrib);
 			parent->append_node(l1Node);
+
+			//write material 
+			xml_node<>* l2Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Material"));
+			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("Metallic"), sceneDoc->allocate_string(to_string(meshObj->GetMaterial()->GetMetallic()).c_str()));
+			l2Node->append_attribute(attrib);
+			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("Roughness"), sceneDoc->allocate_string(to_string(meshObj->GetMaterial()->GetRoughness()).c_str()));
+			l2Node->append_attribute(attrib);
+			xml_node<>* l3Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Diffuse"), sceneDoc->allocate_string(meshObj->GetMaterial()->GetDiffusePath().c_str()));
+			l2Node->append_node(l3Node);
+			l3Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Normal"), sceneDoc->allocate_string(meshObj->GetMaterial()->GetNormalPath().c_str()));
+			l2Node->append_node(l3Node);
+			l3Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Specular"), sceneDoc->allocate_string(meshObj->GetMaterial()->GetSpecularPath().c_str()));
+			l2Node->append_node(l3Node);
+			l1Node->append_node(l2Node);
 		}
 			break;
 		case ObjectType::eNull:
@@ -214,6 +235,70 @@ void SceneManager::WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent
 		if (obj == nullptr)
 			break;
 	}
+}
+
+void SceneManager::ReadObjFromXMLNode(xml_node<>* xmlNode, Object * sceneNodeParent)
+{
+	if (strcmp(xmlNode->name(), "Object") == 0)
+	{
+		Object* newObj = new Object();
+		sceneNodeParent->AddChild(newObj);
+
+	}
+	else if (strcmp(xmlNode->name(), "StaticMeshObject") == 0)
+	{
+		MeshObject* newMeshObj = new MeshObject();
+		sceneNodeParent->AddChild(newMeshObj);
+
+		newMeshObj->SetPath(xmlNode->first_attribute("Path")->value(), xmlNode->first_attribute("SubMesh")->value());
+		FbxImportManager::Instance()->ImportFbxModel(newMeshObj);
+
+		newMeshObj->SetMaterial(MaterialManager::Instance()->CreateNewMaterial());
+		xml_node<>* matNode = xmlNode->first_node("Material");
+		newMeshObj->GetMaterial()->SetMetallic(atof(matNode->first_attribute("Metallic")->value()));
+		newMeshObj->GetMaterial()->SetRoughness(atof(matNode->first_attribute("Roughness")->value()));
+		newMeshObj->GetMaterial()->SetDiffuse(matNode->first_node("Diffuse")->value());
+		newMeshObj->GetMaterial()->SetNormal(matNode->first_node("Normal")->value());
+		newMeshObj->GetMaterial()->SetSpecular(matNode->first_node("Specular")->value());
+	}
+
+	//read transform info
+	Object* newObj = sceneNodeParent->GetLastChild();
+
+	newObj->SetName(xmlNode->first_attribute("Name")->value());
+
+	float3 transInfo;
+	xml_node<>* l0Node = xmlNode->first_node("Position");
+	transInfo.x = atof(l0Node->first_attribute("x")->value());
+	transInfo.y = atof(l0Node->first_attribute("y")->value());
+	transInfo.z = atof(l0Node->first_attribute("z")->value());
+	newObj->SetPosition(transInfo);
+
+	transInfo;
+	l0Node = xmlNode->first_node("Rotation");
+	transInfo.x = atof(l0Node->first_attribute("x")->value());
+	transInfo.y = atof(l0Node->first_attribute("y")->value());
+	transInfo.z = atof(l0Node->first_attribute("z")->value());
+	newObj->SetRotation(transInfo);
+
+	transInfo;
+	l0Node = xmlNode->first_node("Scale");
+	transInfo.x = atof(l0Node->first_attribute("x")->value());
+	transInfo.y = atof(l0Node->first_attribute("y")->value());
+	transInfo.z = atof(l0Node->first_attribute("z")->value());
+	newObj->SetScale(transInfo);
+
+	//read child
+	xml_node<>* childRoot = xmlNode->first_node("Children");
+	if (childRoot != nullptr)
+	{
+		xml_node<>* child = childRoot->first_node();
+		ReadObjFromXMLNode(child, newObj);
+	}
+
+	//read next
+	if (xmlNode->next_sibling() != nullptr)
+		ReadObjFromXMLNode(xmlNode->next_sibling(), sceneNodeParent);
 }
 
 void SceneManager::SaveScene(char * sceneName)

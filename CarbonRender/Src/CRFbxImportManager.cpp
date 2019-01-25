@@ -555,3 +555,8 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool loadTex
 
 	return meshCount;
 }
+
+int FbxImportManager::ImportFbxModel(MeshObject * meshObj)
+{
+	return 0;
+}
