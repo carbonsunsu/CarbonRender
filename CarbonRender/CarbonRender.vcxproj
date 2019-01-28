@@ -17,6 +17,7 @@
     <ClCompile Include="Src\CRLight.cpp" />
     <ClCompile Include="Src\CRLightManager.cpp" />
     <ClCompile Include="Src\CRMaterialManager.cpp" />
+    <ClCompile Include="Src\CRMeshManager.cpp" />
     <ClCompile Include="Src\CRShadowBlurPass.cpp" />
     <ClCompile Include="Src\CRCamera.cpp" />
     <ClCompile Include="Src\CRCameraManager.cpp" />
@@ -52,6 +53,7 @@
     <ClInclude Include="Inc\CRLight.h" />
     <ClInclude Include="Inc\CRLightManager.h" />
     <ClInclude Include="Inc\CRMaterialManager.h" />
+    <ClInclude Include="Inc\CRMeshManager.h" />
     <ClInclude Include="Inc\CRShadowBlurPass.h" />
     <ClInclude Include="Inc\CRCamera.h" />
     <ClInclude Include="Inc\CRCameraManager.h" />

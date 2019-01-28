@@ -12,6 +12,8 @@
 #include "..\Inc\CRSceneManager.h"
 #include "..\Inc\CRRenderPassManager.h"
 #include "..\Inc\CRConfigManager.h"
+#include "..\Inc\CRMaterialManager.h"
+#include "..\Inc\CRMeshManager.h"
 
 void MainDisplay()
 {
@@ -51,6 +53,8 @@ void Init(int argc, char** argv)
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_TEXTURE_3D);
 
+	TextureManager::Instance();
+	MeshManager::Instance();
 	WeatherSystem::Instance();
 
 	SceneManager::Instance()->LoadScene(ConfigManager::Instance()->GetScenePath());

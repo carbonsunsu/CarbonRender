@@ -92,7 +92,7 @@ void SceneManager::LoadScene(char* sceneName)
 	ctrl.Init();
 	ControllerManager::Instance()->Push(ctrl);
 
-	/**
+	/**/
 	l1Node = root->first_node("Objects");
 	l2Node = l1Node->first_node("StaticMeshObjects");
 	int count = atoi(l2Node->first_attribute()->value());
@@ -131,13 +131,14 @@ void SceneManager::LoadScene(char* sceneName)
 		l3Node = l3Node->next_sibling();
 	}
 
-	SaveScene("Test");
+	//SaveScene("Test");
 	/**/
-
+	/**
 	l1Node = root->first_node("Objects");
 	l2Node = l1Node->first_node();
 
 	ReadObjFromXMLNode(l2Node, sceneRoot);
+	/**/
 }
 
 void SceneManager::WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent, Object * obj)
@@ -157,9 +158,9 @@ void SceneManager::WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent
 			l1Node->name(sceneDoc->allocate_string("StaticMeshObject"));
 			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("Name"), sceneDoc->allocate_string(meshObj->GetName().c_str()));
 			l1Node->append_attribute(attrib);
-			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("Path"), sceneDoc->allocate_string(meshObj->GetPath().c_str()));
+			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("Path"), sceneDoc->allocate_string(meshObj->GetMeshData()->GetPath().c_str()));
 			l1Node->append_attribute(attrib);
-			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("SubMesh"), sceneDoc->allocate_string(meshObj->GetSubMeshName().c_str()));
+			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("SubMesh"), sceneDoc->allocate_string(meshObj->GetMeshData()->GetSubMeshName().c_str()));
 			l1Node->append_attribute(attrib);
 			parent->append_node(l1Node);
 
@@ -250,8 +251,8 @@ void SceneManager::ReadObjFromXMLNode(xml_node<>* xmlNode, Object * sceneNodePar
 		MeshObject* newMeshObj = new MeshObject();
 		sceneNodeParent->AddChild(newMeshObj);
 
-		newMeshObj->SetPath(xmlNode->first_attribute("Path")->value(), xmlNode->first_attribute("SubMesh")->value());
-		FbxImportManager::Instance()->ImportFbxModel(newMeshObj);
+		//newMeshObj->GetMeshData()->SetPath(xmlNode->first_attribute("Path")->value(), xmlNode->first_attribute("SubMesh")->value());
+		//FbxImportManager::Instance()->ImportFbxModel(newMeshObj);
 
 		newMeshObj->SetMaterial(MaterialManager::Instance()->CreateNewMaterial());
 		xml_node<>* matNode = xmlNode->first_node("Material");

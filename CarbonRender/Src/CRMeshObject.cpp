@@ -5,98 +5,12 @@ MeshObject::MeshObject()
 	Object();
 
 	objType = ObjectType::eMesh;
-	indexArray = nullptr;
-	vertexArray = nullptr;
-	colorArray = nullptr;
-	normalArray = nullptr;
-	tangentArray = nullptr;
-	binormalArray = nullptr;
-	uvArray = nullptr;
 	material = nullptr;
+	meshData = nullptr;
 }
 
 MeshObject::~MeshObject()
 {
-}
-
-void MeshObject::Delete()
-{
-	glDeleteVertexArrays(1, &vao);
-	glDeleteBuffers(1, &ebo);
-	glDeleteBuffers(1, &vBuffer);
-	glDeleteBuffers(1, &cBuffer);
-	glDeleteBuffers(1, &uvBuffer);
-	glDeleteBuffers(1, &nBuffer);
-	glDeleteBuffers(1, &tBuffer);
-
-	delete this;
-}
-
-void MeshObject::CreateArraies()
-{
-	CreateIndexArray(polygonCount * 3);
-	CreateVertexArray(vertexCount * 3);
-	CreateVertexColorArray(vertexCount * 4);
-	CreateNormalArray(vertexCount * 3);
-	CreateTangentArray(vertexCount * 3);
-	CreateBinormalArray(vertexCount * 3);
-	CreateUVArray(vertexCount * 4);
-}
-
-void MeshObject::CreateIndexArray(unsigned int size)
-{
-	indexArray = new unsigned int[size];
-}
-
-void MeshObject::CreateVertexArray(unsigned int size)
-{
-	vertexArray = new float[size];
-}
-
-void MeshObject::CreateVertexColorArray(unsigned int size)
-{
-	colorArray = new float[size];
-}
-
-void MeshObject::CreateNormalArray(unsigned int size)
-{
-	normalArray = new float[size];
-}
-
-void MeshObject::CreateTangentArray(unsigned int size)
-{
-	tangentArray = new float[size];
-}
-
-void MeshObject::CreateBinormalArray(unsigned int size)
-{
-	binormalArray = new float[size];
-}
-
-void MeshObject::CreateUVArray(unsigned int size)
-{
-	uvArray = new float[size];
-}
-
-void MeshObject::SetVertexCount(unsigned int count)
-{
-	vertexCount = Math::Max(count, 0);
-}
-
-void MeshObject::SetPolygonCount(unsigned int count)
-{
-	polygonCount = Math::Max(count, 0);
-}
-
-void MeshObject::SetIndexAt(unsigned int i, unsigned index)
-{
-	indexArray[i] = index;
-}
-
-void MeshObject::SetPath(string pathStr, string subMeshStr)
-{
-	path = pathStr;
-	subMeshName = subMeshStr;
 }
 
 void MeshObject::SetMaterial(Material * mat)
@@ -104,54 +18,9 @@ void MeshObject::SetMaterial(Material * mat)
 	material = mat;
 }
 
-void MeshObject::CopyToVertexArray(float * data)
+void MeshObject::SetMeshData(MeshData * data)
 {
-	memcpy(vertexArray, data, sizeof(float) * GetVertexCount() * 3);
-}
-
-void MeshObject::CopyToVertexColorArray(float * data)
-{
-	memcpy(colorArray, data, sizeof(float) * GetVertexCount() * 4);
-}
-
-void MeshObject::CopyToNormalrray(float * data)
-{
-	memcpy(normalArray, data, sizeof(float) * GetVertexCount() * 3);
-}
-
-void MeshObject::CopyToTangentArray(float * data)
-{
-	memcpy(tangentArray, data, sizeof(float) * GetVertexCount() * 3);
-}
-
-void MeshObject::CopyToBinormalArray(float * data)
-{
-	memcpy(binormalArray, data, sizeof(float) * GetVertexCount() * 3);
-}
-
-void MeshObject::CopyToUVArray(float * data)
-{
-	memcpy(uvArray, data, sizeof(float) * GetVertexCount() * 4);
-}
-
-unsigned int MeshObject::GetVertexCount()
-{
-	return vertexCount;
-}
-
-unsigned int MeshObject::GetPolygonCount()
-{
-	return polygonCount;
-}
-
-string MeshObject::GetPath()
-{
-	return path;
-}
-
-string MeshObject::GetSubMeshName()
-{
-	return subMeshName;
+	meshData = data;
 }
 
 Material * MeshObject::GetMaterial()
@@ -159,47 +28,9 @@ Material * MeshObject::GetMaterial()
 	return material;
 }
 
-void MeshObject::GetReady4Rending()
+MeshData * MeshObject::GetMeshData()
 {
-	if (bReady4Render)
-		return;
-
-	glGenVertexArrays(1, &vao);
-	glGenBuffers(1, &ebo);
-	glGenBuffers(1, &vBuffer);
-	glGenBuffers(1, &cBuffer);
-	glGenBuffers(1, &uvBuffer);
-	glGenBuffers(1, &nBuffer);
-	glGenBuffers(1, &tBuffer);
-	glGenBuffers(1, &bBuffer);
-
-	glBindVertexArray(vao);
-
-	GLHelper::SetGLArrayBuffer(vBuffer, sizeof(float)*vertexCount * 3, vertexArray, 3, GL_FLOAT, CR_VERTATTRIPOS_POS);
-	glEnableVertexAttribArray(CR_VERTATTRIPOS_POS);
-
-	GLHelper::SetGLArrayBuffer(cBuffer, sizeof(float)*vertexCount * 4, colorArray, 4, GL_FLOAT, CR_VERTATTRIPOS_COL);
-	glEnableVertexAttribArray(CR_VERTATTRIPOS_COL);
-
-	GLHelper::SetGLArrayBuffer(uvBuffer, sizeof(float)*vertexCount * 4, uvArray, 4, GL_FLOAT, CR_VERTATTRIPOS_UVS);
-	glEnableVertexAttribArray(CR_VERTATTRIPOS_UVS);
-
-	GLHelper::SetGLArrayBuffer(nBuffer, sizeof(float)*vertexCount * 3, normalArray, 3, GL_FLOAT, CR_VERTATTRIPOS_NOR);
-	glEnableVertexAttribArray(CR_VERTATTRIPOS_NOR);
-
-	GLHelper::SetGLArrayBuffer(tBuffer, sizeof(float)*vertexCount * 3, tangentArray, 3, GL_FLOAT, CR_VERTATTRIPOS_TAG);
-	glEnableVertexAttribArray(CR_VERTATTRIPOS_TAG);
-
-	GLHelper::SetGLArrayBuffer(bBuffer, sizeof(float)*vertexCount * 3, binormalArray, 3, GL_FLOAT, CR_VERTATTRIPOS_BNL);
-	glEnableVertexAttribArray(CR_VERTATTRIPOS_BNL);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int)*polygonCount * 3, indexArray, GL_STATIC_DRAW);
-
-	glBindVertexArray(NULL);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, NULL);
-
-	bReady4Render = true;
+	return meshData;
 }
 
 void MeshObject::Render(GLuint shaderProgram, bool useTex)
@@ -243,9 +74,9 @@ void MeshObject::Render(GLuint shaderProgram, bool useTex)
 	location = glGetUniformLocation(shaderProgram, "msMap");
 	glUniform1i(location, 3);
 
-	glBindVertexArray(vao);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-	glDrawElements(GL_TRIANGLES, polygonCount * 3, GL_UNSIGNED_INT, NULL);
+	glBindVertexArray(meshData->GetVertexArrayObject());
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, meshData->GetElementBufferObject());
+	glDrawElements(GL_TRIANGLES, meshData->GetPolygonCount() * 3, GL_UNSIGNED_INT, NULL);
 
 	if (useTex)
 	{
