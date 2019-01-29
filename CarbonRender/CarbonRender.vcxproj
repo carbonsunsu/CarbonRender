@@ -17,6 +17,7 @@
     <ClCompile Include="Src\CRLight.cpp" />
     <ClCompile Include="Src\CRLightManager.cpp" />
     <ClCompile Include="Src\CRMaterialManager.cpp" />
+    <ClCompile Include="Src\CRMenuManager.cpp" />
     <ClCompile Include="Src\CRMeshManager.cpp" />
     <ClCompile Include="Src\CRShadowBlurPass.cpp" />
     <ClCompile Include="Src\CRCamera.cpp" />
@@ -53,6 +54,7 @@
     <ClInclude Include="Inc\CRLight.h" />
     <ClInclude Include="Inc\CRLightManager.h" />
     <ClInclude Include="Inc\CRMaterialManager.h" />
+    <ClInclude Include="Inc\CRMenuManager.h" />
     <ClInclude Include="Inc\CRMeshManager.h" />
     <ClInclude Include="Inc\CRShadowBlurPass.h" />
     <ClInclude Include="Inc\CRCamera.h" />
@@ -106,11 +108,7 @@
       <SubType>Designer</SubType>
     </Xml>
     <Xml Include="Resources\Scene\Bunnies.scene" />
-    <Xml Include="Resources\Scene\Empty.scene" />
     <Xml Include="Resources\Scene\Sponza.scene">
-      <SubType>Designer</SubType>
-    </Xml>
-    <Xml Include="Resources\Scene\Tank.scene">
       <SubType>Designer</SubType>
     </Xml>
   </ItemGroup>

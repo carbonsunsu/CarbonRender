@@ -14,6 +14,7 @@
 #include "..\Inc\CRConfigManager.h"
 #include "..\Inc\CRMaterialManager.h"
 #include "..\Inc\CRMeshManager.h"
+#include "..\Inc\CRMenuManager.h"
 
 void MainDisplay()
 {
@@ -40,6 +41,7 @@ void Init(int argc, char** argv)
 
 	WindowSize size = ConfigManager::Instance()->GetScreenSize();
 	WindowManager::Instance()->CreateWindow(size.w, size.h, "CarbonRender", ConfigManager::Instance()->IsFullScreen());
+	MenuManager::Instance();
 
 	if (glewInit())
 		cout << "GLEW init fail" << endl;
