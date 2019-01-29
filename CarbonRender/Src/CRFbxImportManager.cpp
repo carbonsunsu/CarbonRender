@@ -386,143 +386,147 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMes
 					FbxDouble3 scaling = node->LclScaling.Get();
 
 					FbxMesh* mesh = node->GetMesh();
-					MeshData* meshData = new MeshData();;
-
-					int ctrlPointsCount = mesh->GetControlPointsCount();
-					meshData->SetPath(fileName, mesh->GetName());
-					meshData->SetPolygonCount(mesh->GetPolygonCount());
-					meshData->SetVertexCount(meshData->GetPolygonCount() * 3);
-					meshData->CreateIndexArray(meshData->GetPolygonCount() * 3);
-
-					bool* mark = new bool[ctrlPointsCount];
-					for (int i = 0; i < ctrlPointsCount; i++)
-						mark[i] = false;
-					int* multiNormalIndex = new int[ctrlPointsCount * 30];
-					float* tempVertexArray = new float[meshData->GetVertexCount() * 3];
-					float* tempColorArray = new float[meshData->GetVertexCount() * 4];
-					float* tempUVArray = new float[meshData->GetVertexCount() * 4];
-					float* tempNormalArray = new float[meshData->GetVertexCount() * 3];
-					float* tempTangentArray = new float[meshData->GetVertexCount() * 3];
-					float* tempBinormalArray = new float[meshData->GetVertexCount() * 3];				
-
-					int addVertexCount = 0;
-					FbxDouble4* ctrlPoints = mesh->GetControlPoints();
-					for (int polygonIndex = 0; polygonIndex < mesh->GetPolygonCount(); polygonIndex++)
+					MeshData* meshData = MeshManager::Instance()->GetMeshData(fileName, mesh->GetName());
+					if (meshData == nullptr)
 					{
-						for (int vertexIndex = 0; vertexIndex < 3; vertexIndex++)
+						meshData = new MeshData();
+
+						int ctrlPointsCount = mesh->GetControlPointsCount();
+						meshData->SetPath(fileName, mesh->GetName());
+						meshData->SetPolygonCount(mesh->GetPolygonCount());
+						meshData->SetVertexCount(meshData->GetPolygonCount() * 3);
+						meshData->CreateIndexArray(meshData->GetPolygonCount() * 3);
+
+						bool* mark = new bool[ctrlPointsCount];
+						for (int i = 0; i < ctrlPointsCount; i++)
+							mark[i] = false;
+						int* multiNormalIndex = new int[ctrlPointsCount * 30];
+						float* tempVertexArray = new float[meshData->GetVertexCount() * 3];
+						float* tempColorArray = new float[meshData->GetVertexCount() * 4];
+						float* tempUVArray = new float[meshData->GetVertexCount() * 4];
+						float* tempNormalArray = new float[meshData->GetVertexCount() * 3];
+						float* tempTangentArray = new float[meshData->GetVertexCount() * 3];
+						float* tempBinormalArray = new float[meshData->GetVertexCount() * 3];
+
+						int addVertexCount = 0;
+						FbxDouble4* ctrlPoints = mesh->GetControlPoints();
+						for (int polygonIndex = 0; polygonIndex < mesh->GetPolygonCount(); polygonIndex++)
 						{
-							int vertexID = polygonIndex * 3 + vertexIndex;
-							unsigned int index = (unsigned int)mesh->GetPolygonVertex(polygonIndex, vertexIndex);
-							meshData->SetIndexAt(vertexID, index);
-
-							//Get Vertex
-							float3 v(ctrlPoints[index][0], ctrlPoints[index][1], ctrlPoints[index][2]);
-
-							//Get Color
-							FbxColor color = ReadColor(mesh, index, vertexID);
-
-							//Get UV
-							int uvIndex = mesh->GetTextureUVIndex(polygonIndex, vertexIndex);
-							float4 uv = ReadUV(mesh, index, uvIndex);
-
-							//Get Normal
-							float3 n = ReadNormal(mesh, index, vertexID);
-
-							//Get Tangent
-							float3 t = ReadTangent(mesh, index, vertexID);
-
-							//Get Binormal
-							float3 b = ReadBinormal(mesh, index, vertexID);
-
-							int finalIndex = index;
-							if (!mark[index])
+							for (int vertexIndex = 0; vertexIndex < 3; vertexIndex++)
 							{
-								mark[index] = true;
-								multiNormalIndex[index * 30] = 1;
-								multiNormalIndex[index * 30 + 1] = index;
-							}
-							else
-							{
-								bool hasSame = false;
-								int sameIndex = 0;
-								for (int i = 1; i <= multiNormalIndex[index * 30]; i++)
+								int vertexID = polygonIndex * 3 + vertexIndex;
+								unsigned int index = (unsigned int)mesh->GetPolygonVertex(polygonIndex, vertexIndex);
+								meshData->SetIndexAt(vertexID, index);
+
+								//Get Vertex
+								float3 v(ctrlPoints[index][0], ctrlPoints[index][1], ctrlPoints[index][2]);
+
+								//Get Color
+								FbxColor color = ReadColor(mesh, index, vertexID);
+
+								//Get UV
+								int uvIndex = mesh->GetTextureUVIndex(polygonIndex, vertexIndex);
+								float4 uv = ReadUV(mesh, index, uvIndex);
+
+								//Get Normal
+								float3 n = ReadNormal(mesh, index, vertexID);
+
+								//Get Tangent
+								float3 t = ReadTangent(mesh, index, vertexID);
+
+								//Get Binormal
+								float3 b = ReadBinormal(mesh, index, vertexID);
+
+								int finalIndex = index;
+								if (!mark[index])
 								{
-									int sampleIndex = multiNormalIndex[index * 30 + i];
-									float nDiff = Math::Distance(n, float3(tempNormalArray[sampleIndex * 3],
-										tempNormalArray[sampleIndex * 3 + 1],
-										tempNormalArray[sampleIndex * 3 + 2]));
-									float uvDiff = Math::Distance(uv, float4(tempUVArray[sampleIndex * 4],
-										tempUVArray[sampleIndex * 4 + 1],
-										tempUVArray[sampleIndex * 4 + 2],
-										tempUVArray[sampleIndex * 4 + 3]));
-
-									if (nDiff == 0.0f && uvDiff == 0.0f)
-									{
-										hasSame = true;
-										sameIndex = sampleIndex;
-										break;
-									}
-								}
-
-								if (!hasSame)
-								{
-									finalIndex = ctrlPointsCount + addVertexCount;
-									meshData->SetIndexAt(vertexID, finalIndex);
-
-									multiNormalIndex[index * 30]++;
-									multiNormalIndex[index * 30 + multiNormalIndex[index * 30]] = finalIndex;
-									addVertexCount++;
+									mark[index] = true;
+									multiNormalIndex[index * 30] = 1;
+									multiNormalIndex[index * 30 + 1] = index;
 								}
 								else
 								{
-									meshData->SetIndexAt(vertexID, sameIndex);
-									continue;
+									bool hasSame = false;
+									int sameIndex = 0;
+									for (int i = 1; i <= multiNormalIndex[index * 30]; i++)
+									{
+										int sampleIndex = multiNormalIndex[index * 30 + i];
+										float nDiff = Math::Distance(n, float3(tempNormalArray[sampleIndex * 3],
+											tempNormalArray[sampleIndex * 3 + 1],
+											tempNormalArray[sampleIndex * 3 + 2]));
+										float uvDiff = Math::Distance(uv, float4(tempUVArray[sampleIndex * 4],
+											tempUVArray[sampleIndex * 4 + 1],
+											tempUVArray[sampleIndex * 4 + 2],
+											tempUVArray[sampleIndex * 4 + 3]));
+
+										if (nDiff == 0.0f && uvDiff == 0.0f)
+										{
+											hasSame = true;
+											sameIndex = sampleIndex;
+											break;
+										}
+									}
+
+									if (!hasSame)
+									{
+										finalIndex = ctrlPointsCount + addVertexCount;
+										meshData->SetIndexAt(vertexID, finalIndex);
+
+										multiNormalIndex[index * 30]++;
+										multiNormalIndex[index * 30 + multiNormalIndex[index * 30]] = finalIndex;
+										addVertexCount++;
+									}
+									else
+									{
+										meshData->SetIndexAt(vertexID, sameIndex);
+										continue;
+									}
 								}
+
+								tempVertexArray[finalIndex * 3] = v.x;
+								tempVertexArray[finalIndex * 3 + 1] = v.y;
+								tempVertexArray[finalIndex * 3 + 2] = v.z;
+
+								tempColorArray[finalIndex * 4] = color.mRed;
+								tempColorArray[finalIndex * 4 + 1] = color.mGreen;
+								tempColorArray[finalIndex * 4 + 2] = color.mBlue;
+								tempColorArray[finalIndex * 4 + 3] = color.mAlpha;
+
+								tempUVArray[finalIndex * 4] = uv.x;
+								tempUVArray[finalIndex * 4 + 1] = uv.y;
+								tempUVArray[finalIndex * 4 + 2] = uv.z;
+								tempUVArray[finalIndex * 4 + 3] = uv.w;
+
+								tempNormalArray[finalIndex * 3] = n.x;
+								tempNormalArray[finalIndex * 3 + 1] = n.y;
+								tempNormalArray[finalIndex * 3 + 2] = n.z;
+
+								tempTangentArray[finalIndex * 3] = t.x;
+								tempTangentArray[finalIndex * 3 + 1] = t.y;
+								tempTangentArray[finalIndex * 3 + 2] = t.z;
+
+								tempBinormalArray[finalIndex * 3] = b.x;
+								tempBinormalArray[finalIndex * 3 + 1] = b.y;
+								tempBinormalArray[finalIndex * 3 + 2] = b.z;
 							}
-
-							tempVertexArray[finalIndex * 3] = v.x;
-							tempVertexArray[finalIndex * 3 + 1] = v.y;
-							tempVertexArray[finalIndex * 3 + 2] = v.z;
-
-							tempColorArray[finalIndex * 4] = color.mRed;
-							tempColorArray[finalIndex * 4 + 1] = color.mGreen;
-							tempColorArray[finalIndex * 4 + 2] = color.mBlue;
-							tempColorArray[finalIndex * 4 + 3] = color.mAlpha;
-
-							tempUVArray[finalIndex * 4] = uv.x;
-							tempUVArray[finalIndex * 4 + 1] = uv.y;
-							tempUVArray[finalIndex * 4 + 2] = uv.z;
-							tempUVArray[finalIndex * 4 + 3] = uv.w;
-
-							tempNormalArray[finalIndex * 3] = n.x;
-							tempNormalArray[finalIndex * 3 + 1] = n.y;
-							tempNormalArray[finalIndex * 3 + 2] = n.z;
-
-							tempTangentArray[finalIndex * 3] = t.x;
-							tempTangentArray[finalIndex * 3 + 1] = t.y;
-							tempTangentArray[finalIndex * 3 + 2] = t.z;
-
-							tempBinormalArray[finalIndex * 3] = b.x;
-							tempBinormalArray[finalIndex * 3 + 1] = b.y;
-							tempBinormalArray[finalIndex * 3 + 2] = b.z;
 						}
-					}
 
-					meshData->SetVertexCount(ctrlPointsCount + addVertexCount);
-					meshData->CreateVertexArray(meshData->GetVertexCount() * 3);
-					meshData->CreateVertexColorArray(meshData->GetVertexCount() * 4);
-					meshData->CreateUVArray(meshData->GetVertexCount() * 4);
-					meshData->CreateNormalArray(meshData->GetVertexCount() * 3);
-					meshData->CreateTangentArray(meshData->GetVertexCount() * 3);
-					meshData->CreateBinormalArray(meshData->GetVertexCount() * 3);
-					meshData->CopyToVertexArray(tempVertexArray);
-					meshData->CopyToVertexColorArray(tempColorArray);
-					meshData->CopyToUVArray(tempUVArray);
-					meshData->CopyToNormalrray(tempNormalArray);
-					meshData->CopyToTangentArray(tempTangentArray);
-					meshData->CopyToBinormalArray(tempBinormalArray);
+						meshData->SetVertexCount(ctrlPointsCount + addVertexCount);
+						meshData->CreateVertexArray(meshData->GetVertexCount() * 3);
+						meshData->CreateVertexColorArray(meshData->GetVertexCount() * 4);
+						meshData->CreateUVArray(meshData->GetVertexCount() * 4);
+						meshData->CreateNormalArray(meshData->GetVertexCount() * 3);
+						meshData->CreateTangentArray(meshData->GetVertexCount() * 3);
+						meshData->CreateBinormalArray(meshData->GetVertexCount() * 3);
+						meshData->CopyToVertexArray(tempVertexArray);
+						meshData->CopyToVertexColorArray(tempColorArray);
+						meshData->CopyToUVArray(tempUVArray);
+						meshData->CopyToNormalrray(tempNormalArray);
+						meshData->CopyToTangentArray(tempTangentArray);
+						meshData->CopyToBinormalArray(tempBinormalArray);
 
-					MeshManager::Instance()->AddMeshData(meshData);
+						MeshManager::Instance()->AddMeshData(meshData);
+					}				
 
 					if (newAMeshObj)
 					{

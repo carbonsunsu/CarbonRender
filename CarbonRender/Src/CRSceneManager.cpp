@@ -95,7 +95,8 @@ void SceneManager::LoadScene(char* sceneName)
 	l1Node = root->first_node("Objects");
 	l2Node = l1Node->first_node();
 
-	ReadObjFromXMLNode(l2Node, sceneRoot);
+	if (l2Node != nullptr)
+		ReadObjFromXMLNode(l2Node, sceneRoot);
 }
 
 void SceneManager::WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent, Object * obj)
