@@ -22,8 +22,8 @@ private:
 public:
 	~FbxImportManager();
 	static FbxImportManager* Instance();
-	int ImportFbxModel(char* fileName, Object* root, bool loadTex = true);
-	int ImportFbxModel(MeshObject* meshObj);
+	int ImportFbxModel(char* fileName, Object* root, bool newAMeshObj = true, bool loadTex = true);
+	MeshData* ImportFbxModel(string pathStr, string subMeshStr);
 };
 
 #endif

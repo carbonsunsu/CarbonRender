@@ -92,53 +92,10 @@ void SceneManager::LoadScene(char* sceneName)
 	ctrl.Init();
 	ControllerManager::Instance()->Push(ctrl);
 
-	/**/
-	l1Node = root->first_node("Objects");
-	l2Node = l1Node->first_node("StaticMeshObjects");
-	int count = atoi(l2Node->first_attribute()->value());
-	xml_node<>* l3Node = l2Node->first_node();
-	xml_node<>* l4Node;
-	for (int i = 0; i < count; i++)
-	{
-		Object* meshObj = new Object();
-		
-		FbxImportManager::Instance()->ImportFbxModel(l3Node->first_attribute()->value(), meshObj);
-		l4Node = l3Node->first_node("Position");
-		attri = l4Node->first_attribute();
-		for (int i = 0; i < 3; i++)
-		{
-			a[i] = atof(attri->value());
-			attri = attri->next_attribute();
-		}
-		meshObj->SetPosition(float3(a[0], a[1], a[2]));
-		l4Node = l3Node->first_node("Rotation");
-		attri = l4Node->first_attribute();
-		for (int i = 0; i < 3; i++)
-		{
-			a[i] = atof(attri->value());
-			attri = attri->next_attribute();
-		}
-		meshObj->SetRotation(float3(a[0], a[1], a[2]));
-		l4Node = l3Node->first_node("Scale");
-		attri = l4Node->first_attribute();
-		for (int i = 0; i < 3; i++)
-		{
-			a[i] = atof(attri->value());
-			attri = attri->next_attribute();
-		}
-		meshObj->SetScale(float3(a[0], a[1], a[2]));
-		sceneRoot->AddChild(meshObj);
-		l3Node = l3Node->next_sibling();
-	}
-
-	//SaveScene("Test");
-	/**/
-	/**
 	l1Node = root->first_node("Objects");
 	l2Node = l1Node->first_node();
 
 	ReadObjFromXMLNode(l2Node, sceneRoot);
-	/**/
 }
 
 void SceneManager::WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent, Object * obj)
@@ -251,8 +208,8 @@ void SceneManager::ReadObjFromXMLNode(xml_node<>* xmlNode, Object * sceneNodePar
 		MeshObject* newMeshObj = new MeshObject();
 		sceneNodeParent->AddChild(newMeshObj);
 
-		//newMeshObj->GetMeshData()->SetPath(xmlNode->first_attribute("Path")->value(), xmlNode->first_attribute("SubMesh")->value());
-		//FbxImportManager::Instance()->ImportFbxModel(newMeshObj);
+		MeshData* data = FbxImportManager::Instance()->ImportFbxModel(xmlNode->first_attribute("Path")->value(), xmlNode->first_attribute("SubMesh")->value());
+		newMeshObj->SetMeshData(data);
 
 		newMeshObj->SetMaterial(MaterialManager::Instance()->CreateNewMaterial());
 		xml_node<>* matNode = xmlNode->first_node("Material");

@@ -255,3 +255,11 @@ MeshData * MeshManager::GetMeshData(string meshPath, string subMeshName)
 	else
 		return nullptr;
 }
+
+bool MeshManager::Find(string meshPath, string subMeshName)
+{
+	char* index = FileReader::BindString((char*)meshPath.c_str(), ":");
+	index = FileReader::BindString(index, (char*)subMeshName.c_str());
+
+	return meshDatas.find(index) != meshDatas.end();
+}

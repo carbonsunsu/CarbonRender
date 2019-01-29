@@ -81,6 +81,7 @@ public:
 	void AddMeshData(MeshData* data);
 
 	MeshData* GetMeshData(string meshPath, string subMeshName);
+	bool Find(string meshPath, string subMeshName);
 };
 
 #endif

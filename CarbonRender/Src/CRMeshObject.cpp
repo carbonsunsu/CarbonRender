@@ -35,6 +35,9 @@ MeshData * MeshObject::GetMeshData()
 
 void MeshObject::Render(GLuint shaderProgram, bool useTex)
 {
+	if (meshData == nullptr)
+		return;
+
 	UpdateModelMatrix();
 
 	Matrix4x4 finalMat;

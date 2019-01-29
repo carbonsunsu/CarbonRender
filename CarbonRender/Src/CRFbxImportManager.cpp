@@ -344,9 +344,9 @@ void FbxImportManager::ReadTexture(FbxMesh* mesh, MeshObject* meshObj, char* mes
 	meshObj->GetMaterial()->SetSpecular("");
 }
 
-int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool loadTex)
+int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMeshObj, bool loadTex)
 {
-	root->SetName(fileName);
+	if (root != nullptr) root->SetName(fileName);
 	char* dir = "Resources\\Models\\";
 	char* fullName = FileReader::BindString(dir, fileName);
 	fullName = FileReader::BindString(fullName, ".fbx");
@@ -386,13 +386,7 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool loadTex
 					FbxDouble3 scaling = node->LclScaling.Get();
 
 					FbxMesh* mesh = node->GetMesh();
-					MeshObject* newMeshObj = new MeshObject();
 					MeshData* meshData = new MeshData();;
-					
-					newMeshObj->SetName(mesh->GetName());			
-					newMeshObj->SetPosition(translation);
-					newMeshObj->SetRotation(rotation);
-					newMeshObj->SetScale(scaling);
 
 					int ctrlPointsCount = mesh->GetControlPointsCount();
 					meshData->SetPath(fileName, mesh->GetName());
@@ -409,18 +403,7 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool loadTex
 					float* tempUVArray = new float[meshData->GetVertexCount() * 4];
 					float* tempNormalArray = new float[meshData->GetVertexCount() * 3];
 					float* tempTangentArray = new float[meshData->GetVertexCount() * 3];
-					float* tempBinormalArray = new float[meshData->GetVertexCount() * 3];
-
-					//Get Textures
-					newMeshObj->SetMaterial(MaterialManager::Instance()->CreateNewMaterial());
-					if (loadTex)
-						ReadTexture(mesh, newMeshObj, fileName);
-					else
-					{
-						newMeshObj->GetMaterial()->SetDiffuse("");
-						newMeshObj->GetMaterial()->SetNormal("");
-						newMeshObj->GetMaterial()->SetSpecular("");
-					}
+					float* tempBinormalArray = new float[meshData->GetVertexCount() * 3];				
 
 					int addVertexCount = 0;
 					FbxDouble4* ctrlPoints = mesh->GetControlPoints();
@@ -539,9 +522,30 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool loadTex
 					meshData->CopyToTangentArray(tempTangentArray);
 					meshData->CopyToBinormalArray(tempBinormalArray);
 
-					newMeshObj->SetMeshData(meshData);
 					MeshManager::Instance()->AddMeshData(meshData);
-					root->AddChild((Object*)newMeshObj);
+
+					if (newAMeshObj)
+					{
+						MeshObject* newMeshObj = new MeshObject();
+						newMeshObj->SetName(mesh->GetName());
+						newMeshObj->SetPosition(translation);
+						newMeshObj->SetRotation(rotation);
+						newMeshObj->SetScale(scaling);
+
+						//Get Textures
+						newMeshObj->SetMaterial(MaterialManager::Instance()->CreateNewMaterial());
+						if (loadTex)
+							ReadTexture(mesh, newMeshObj, fileName);
+						else
+						{
+							newMeshObj->GetMaterial()->SetDiffuse("");
+							newMeshObj->GetMaterial()->SetNormal("");
+							newMeshObj->GetMaterial()->SetSpecular("");
+						}
+
+						newMeshObj->SetMeshData(meshData);
+						if (root != nullptr) root->AddChild((Object*)newMeshObj);
+					}
 					
   					readMeshCount++;
 				}
@@ -559,7 +563,13 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool loadTex
 	return meshCount;
 }
 
-int FbxImportManager::ImportFbxModel(MeshObject * meshObj)
+MeshData * FbxImportManager::ImportFbxModel(string pathStr, string subMeshStr)
 {
-	return 0;
+	MeshData* data = MeshManager::Instance()->GetMeshData(pathStr, subMeshStr);
+	if (data != nullptr)
+		return data;
+
+	ImportFbxModel((char*)pathStr.c_str(), (Object*)nullptr, false, false);
+
+	return MeshManager::Instance()->GetMeshData(pathStr, subMeshStr);
 }
