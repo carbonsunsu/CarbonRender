@@ -73,8 +73,10 @@ void MenuManager::UpdateModelList()
 
 	modelList.clear();
 	int itemCount = glutGet(GLUT_MENU_NUM_ITEMS);
-	for (int i = 1; i <= itemCount; i++)
-		glutRemoveMenuItem(i);
+	for (int i = 2; i <= itemCount; i++)
+		glutRemoveMenuItem(2);
+
+	itemCount = glutGet(GLUT_MENU_NUM_ITEMS);
 	
 	string path = "Resources\\Models";
 	for (const auto & entry : directory_iterator(path))
@@ -86,6 +88,8 @@ void MenuManager::UpdateModelList()
 			glutAddMenuEntry((const char*)path.c_str(), modelList.size());
 		}
 	}
+
+	itemCount = glutGet(GLUT_MENU_NUM_ITEMS);
 }
 
 MenuManager::~MenuManager()
