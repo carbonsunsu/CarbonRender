@@ -1,0 +1,14 @@
+{
+	"version": "1.0",
+	"components": [
+		"Microsoft.VisualStudio.Workload.ManagedGame",
+		"Microsoft.VisualStudio.Workload.VisualStudioExtension",
+		"microsoft.visualstudio.component.texttemplating",
+		"microsoft.visualstudio.component.vc.coreide",
+		"microsoft.visualstudio.component.vc.tools.x86.x64",
+		"microsoft.visualstudio.component.graphics.win81",
+		"microsoft.component.vc.runtime.ucrtsdk",
+		"microsoft.visualstudio.component.windows81sdk",
+		"component.unityengine.x86"
+	]
+}
