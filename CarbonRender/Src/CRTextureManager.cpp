@@ -80,7 +80,8 @@ GLuint TextureManager::LoadTexture(string dir)
 {
 	char* fullDir = "Resources\\Textures\\";
 	fullDir = FileReader::BindString(fullDir, (char*)dir.c_str());
-	fullDir = FileReader::BindString(fullDir, ".tga");
+	if (strstr(fullDir, ".tga") == nullptr)
+		fullDir = FileReader::BindString(fullDir, ".tga");
 	if (texturesMap.find(fullDir) != texturesMap.end())
 		return texturesMap[fullDir];
 

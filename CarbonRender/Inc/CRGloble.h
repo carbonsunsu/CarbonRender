@@ -18,6 +18,7 @@
 #include <stack>
 #include <unordered_map>
 #include <vector>
+#include <filesystem>
 
 #include "..\Third\GL\include\glew.h"
 #pragma comment(lib, "glew32.lib")
@@ -32,5 +33,6 @@
 
 using namespace std;
 using namespace rapidxml;
+using namespace std::filesystem;
 
 #endif

@@ -349,7 +349,8 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMes
 	if (root != nullptr) root->SetName(fileName);
 	char* dir = "Resources\\Models\\";
 	char* fullName = FileReader::BindString(dir, fileName);
-	fullName = FileReader::BindString(fullName, ".fbx");
+	if (strstr(fullName, ".fbx") == nullptr)
+		fullName = FileReader::BindString(fullName, ".fbx");
 	FbxImporter* importer = FbxImporter::Create(this->fbxManager, "");
 	if (!importer->Initialize(fullName, -1, this->fbxManager->GetIOSettings()))
 	{

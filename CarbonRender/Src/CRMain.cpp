@@ -42,6 +42,7 @@ void Init(int argc, char** argv)
 	WindowSize size = ConfigManager::Instance()->GetScreenSize();
 	WindowManager::Instance()->CreateWindow(size.w, size.h, "CarbonRender", ConfigManager::Instance()->IsFullScreen());
 	MenuManager::Instance();
+	MenuManager::InitMenu();
 
 	if (glewInit())
 		cout << "GLEW init fail" << endl;
