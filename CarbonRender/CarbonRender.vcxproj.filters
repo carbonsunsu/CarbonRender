@@ -301,6 +301,12 @@
     <None Include="Resources\Shader\GIDenoise.frag">
       <Filter>Shader</Filter>
     </None>
+    <None Include="Resources\Scene\Empty.scene">
+      <Filter>Scene</Filter>
+    </None>
+    <None Include="Resources\Scene\LivingRoom.scene">
+      <Filter>Scene</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Resources\Scene\Sponza.scene">

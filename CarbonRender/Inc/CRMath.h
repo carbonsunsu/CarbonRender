@@ -143,6 +143,10 @@ public:
 class Math
 {
 public:
+	static float3 UnitAxisX();
+	static float3 UnitAxisY();
+	static float3 UnitAxisZ();
+
 	static float Dot(float3 a, float3 b);
 	static float Dot(float4 a, float4 b);
 	static float Exp(float a);
@@ -158,7 +162,7 @@ public:
 	static Matrix4x4 Translate(float x, float y, float z);
 	static Matrix4x4 Scale(float x, float y, float z);
 	static Quaternion Rotate(float3 axis, float angle);
-	static Matrix4x4 CalculateModelMatrix(float* localCoord, float3 trans, float3 rota, float3 scal);
+	static Matrix4x4 CalculateModelMatrix(float* localCoord, float3 trans, float3 rota, float3 scal, bool useLocalAxis = true);
 	static Matrix4x4 CalculateModelMatrix(float3 trans, float3 rota, float3 scal);
 
 	static float Distance(float3 a, float3 b);

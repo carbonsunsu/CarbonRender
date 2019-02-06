@@ -85,6 +85,12 @@
     <ClInclude Include="Inc\CRWeatherSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Scene\Empty.scene">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\Scene\LivingRoom.scene">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Resources\Shader\Atmosphere.frag" />
     <None Include="Resources\Shader\Atmosphere.vert" />
     <None Include="Resources\Shader\GIDenoise.frag" />
@@ -107,7 +113,9 @@
     <Xml Include="Config.cfg">
       <SubType>Designer</SubType>
     </Xml>
-    <Xml Include="Resources\Scene\Bunnies.scene" />
+    <Xml Include="Resources\Scene\Bunnies.scene">
+      <SubType>Designer</SubType>
+    </Xml>
     <Xml Include="Resources\Scene\Sponza.scene">
       <SubType>Designer</SubType>
     </Xml>

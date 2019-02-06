@@ -32,7 +32,7 @@ void SMPass::Render(PassOutput * input)
 	float farCip = sun->GetPosition().Length() * 1.5f;
 	float3 lookPos = followCam ? CameraManager::Instance()->GetCurrentCamera()->GetPosition() : float3(0.0f);
 	Camera cam;
-	cam.SetOrthoCamera(30.0f, 1.0f, farCip);
+	cam.SetOrthoCamera(8.0f, 1.0f, farCip);
 	cam.SetPosition(sun->GetPosition() + lookPos);
 	cam.SetRotation(sun->GetRotation());
 	CameraManager::Instance()->Push(cam);
@@ -40,7 +40,7 @@ void SMPass::Render(PassOutput * input)
 	output.mats[0] = CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix() * CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix();
 
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
+	glDisable(GL_CULL_FACE);
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
 	glViewport(0, 0, size.w * shadowMapScale, size.h * shadowMapScale);
 
@@ -57,7 +57,7 @@ void SMPass::Render(PassOutput * input)
 	glGenerateMipmap(GL_TEXTURE_2D);
 
 	glDisable(GL_DEPTH_TEST);
-	glDisable(GL_CULL_FACE);
+	glEnable(GL_CULL_FACE);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glBindRenderbuffer(GL_RENDERBUFFER, 0);
 	glViewport(0, 0, size.w, size.h);

@@ -40,7 +40,7 @@ void Object::UpdateModelMatrix()
 	modelMatrix = Math::CalculateModelMatrix(localCoord,
 										float3(transform[0], transform[1], transform[2]),
 										float3(transform[6], transform[7], transform[8]),
-										float3(transform[3], transform[4], transform[5]));
+										float3(transform[3], transform[4], transform[5]), false);
 }
 
 void Object::SetName(string n)

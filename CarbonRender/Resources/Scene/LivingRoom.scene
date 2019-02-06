@@ -1,0 +1,984 @@
+<Scene>
+	<World>
+		<Latitude>0.000000</Latitude>
+		<Day>180</Day>
+		<Time>12.000000</Time>
+		<Turbidity>4.000000</Turbidity>
+		<Exposure>30.000000</Exposure>
+		<TimeSpeed>1500.000000</TimeSpeed>
+		<WindDirection x="0.500000" y="0.000000" z="1.000000" w="10.000000"/>
+	</World>
+	<Camera>
+		<Position x="1.814577" y="0.989461" z="-1.210921"/>
+		<Rotation x="13.299998" y="-700.400024" z="0.000000"/>
+		<FOV>60.000000</FOV>
+		<NearClip>0.010000</NearClip>
+		<FarClip>3000.000000</FarClip>
+	</Camera>
+	<Objects>
+		<Object Name="Plane">
+			<Position x="0.000000" y="0.000000" z="0.000000"/>
+			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
+			<Scale x="1.000000" y="1.000000" z="1.000000"/>
+			<Children>
+				<StaticMeshObject Name="Plane" Path="Plane" SubMesh="Plane">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse>Plane\Plane_D</Diffuse>
+						<Normal>Plane\Plane_N</Normal>
+						<Specular>Plane\Plane_S</Specular>
+					</Material>
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="90.000008" y="-0.000000" z="-179.999985"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+			</Children>
+		</Object>
+		<Object Name="LivingRoom2">
+			<Position x="0.000000" y="0.000000" z="0.000000"/>
+			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
+			<Scale x="1.000000" y="1.000000" z="1.000000"/>
+			<Children>
+				<StaticMeshObject Name="Mesh016.001" Path="LivingRoom2" SubMesh="Mesh016.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.481510" y="1.030520" z="-0.101527"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh015.001" Path="LivingRoom2" SubMesh="Mesh015.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.279676" y="1.030549" z="-0.101533"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh016" Path="LivingRoom2" SubMesh="Mesh016">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.481511" y="1.361687" z="-0.101528"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh015" Path="LivingRoom2" SubMesh="Mesh015">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.279683" y="1.361687" z="-0.101528"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh064.001" Path="LivingRoom2" SubMesh="Mesh064.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.118845" y="0.533653" z="-3.117239"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh063.001" Path="LivingRoom2" SubMesh="Mesh063.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.877966" y="1.613693" z="-0.030121"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh062.001" Path="LivingRoom2" SubMesh="Mesh062.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.901600" y="0.305255" z="-3.123804"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh061.001" Path="LivingRoom2" SubMesh="Mesh061.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.872970" y="0.097410" z="-1.884534"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh059.001" Path="LivingRoom2" SubMesh="Mesh059.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.957696" y="1.510477" z="-2.105860"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh057.001" Path="LivingRoom2" SubMesh="Mesh057.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.561002" y="2.879001" z="-1.816399"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh056.001" Path="LivingRoom2" SubMesh="Mesh056.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.892485" y="0.030057" z="-0.064604"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh055.002" Path="LivingRoom2" SubMesh="Mesh055.002">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="-0.259454" y="1.442977" z="-0.586576"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh054.001" Path="LivingRoom2" SubMesh="Mesh054.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.882599" y="0.412652" z="0.185878"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh053.001" Path="LivingRoom2" SubMesh="Mesh053.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.726740" y="1.113462" z="-0.107922"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh052.001" Path="LivingRoom2" SubMesh="Mesh052.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.008586" y="0.758483" z="0.429385"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh051.001" Path="LivingRoom2" SubMesh="Mesh051.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.561003" y="2.825366" z="-1.816400"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh050.001" Path="LivingRoom2" SubMesh="Mesh050.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.000170" y="1.159923" z="0.471485"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh049.001" Path="LivingRoom2" SubMesh="Mesh049.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="0.749392" y="0.759665" z="0.427982"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh048.001" Path="LivingRoom2" SubMesh="Mesh048.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.000170" y="1.974790" z="0.543539"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh047.001" Path="LivingRoom2" SubMesh="Mesh047.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.903922" y="0.333432" z="-3.341878"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh046.001" Path="LivingRoom2" SubMesh="Mesh046.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="0.748763" y="1.159923" z="0.471485"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh045.001" Path="LivingRoom2" SubMesh="Mesh045.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.877964" y="1.613693" z="-0.023468"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh043.001" Path="LivingRoom2" SubMesh="Mesh043.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="0.758588" y="1.502879" z="0.250778"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh042.001" Path="LivingRoom2" SubMesh="Mesh042.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="0.822328" y="0.295717" z="-0.587734"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh041.001" Path="LivingRoom2" SubMesh="Mesh041.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.056033" y="1.769325" z="-3.583209"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh040.001" Path="LivingRoom2" SubMesh="Mesh040.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="0.816515" y="1.769962" z="-3.586607"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh039.001" Path="LivingRoom2" SubMesh="Mesh039.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.006641" y="1.531735" z="0.414266"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh038.001" Path="LivingRoom2" SubMesh="Mesh038.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="-0.259454" y="1.442977" z="-2.532049"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh037.001" Path="LivingRoom2" SubMesh="Mesh037.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.947152" y="0.099583" z="-1.693894"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh036.001" Path="LivingRoom2" SubMesh="Mesh036.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.088250" y="1.725389" z="-3.587420"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh035.001" Path="LivingRoom2" SubMesh="Mesh035.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.055698" y="1.770007" z="-3.618675"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh034.001" Path="LivingRoom2" SubMesh="Mesh034.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.910017" y="0.571304" z="-3.375148"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh033.001" Path="LivingRoom2" SubMesh="Mesh033.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="0.748763" y="1.974791" z="0.543539"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh031.001" Path="LivingRoom2" SubMesh="Mesh031.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.947152" y="0.337350" z="-1.693894"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh029.001" Path="LivingRoom2" SubMesh="Mesh029.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="0.759914" y="1.532063" z="0.414280"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh028.001" Path="LivingRoom2" SubMesh="Mesh028.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="0.816440" y="1.770007" z="-3.618675"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh027.001" Path="LivingRoom2" SubMesh="Mesh027.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.999895" y="1.501964" z="0.250602"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh024.001" Path="LivingRoom2" SubMesh="Mesh024.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.882601" y="0.582819" z="-0.094677"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh023.001" Path="LivingRoom2" SubMesh="Mesh023.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.850244" y="0.799440" z="-1.606753"/>
+					<Rotation x="15.000002" y="20.000000" z="-90.000008"/>
+					<Scale x="0.348962" y="0.348962" z="0.348962"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh022.001" Path="LivingRoom2" SubMesh="Mesh022.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="0.816775" y="1.769325" z="-3.583209"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh021.001" Path="LivingRoom2" SubMesh="Mesh021.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.907070" y="0.050010" z="-3.257993"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh019.001" Path="LivingRoom2" SubMesh="Mesh019.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.429496" y="0.000000" z="-1.720965"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh014.001" Path="LivingRoom2" SubMesh="Mesh014.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.335420" y="0.520220" z="-3.158632"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh013.001" Path="LivingRoom2" SubMesh="Mesh013.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.714823" y="0.533653" z="-3.113814"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh012.001" Path="LivingRoom2" SubMesh="Mesh012.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.870895" y="1.018425" z="-0.095025"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh011.001" Path="LivingRoom2" SubMesh="Mesh011.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.726740" y="1.113455" z="-0.082095"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh006.001" Path="LivingRoom2" SubMesh="Mesh006.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.850109" y="0.799022" z="-1.602055"/>
+					<Rotation x="15.000002" y="20.000000" z="-90.000008"/>
+					<Scale x="0.348962" y="0.348962" z="0.348962"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh003.001" Path="LivingRoom2" SubMesh="Mesh003.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.850084" y="0.796279" z="-1.596996"/>
+					<Rotation x="15.000002" y="20.000000" z="-90.000008"/>
+					<Scale x="0.348962" y="0.348962" z="0.348962"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh000.001" Path="LivingRoom2" SubMesh="Mesh000.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.947152" y="0.599363" z="-1.693894"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh178" Path="LivingRoom2" SubMesh="Mesh178">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.289724" y="1.300533" z="-3.475063"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh170" Path="LivingRoom2" SubMesh="Mesh170">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.858829" y="2.062303" z="-3.618478"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="0.890669" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh169" Path="LivingRoom2" SubMesh="Mesh169">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.876067" y="1.348057" z="-3.618439"/>
+					<Rotation x="0.000009" y="-89.999992" z="0.000000"/>
+					<Scale x="0.999846" y="0.695221" z="1.122289"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh163" Path="LivingRoom2" SubMesh="Mesh163">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.254094" y="1.291624" z="-3.427234"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh161" Path="LivingRoom2" SubMesh="Mesh161">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.454730" y="0.685744" z="-3.378741"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh154" Path="LivingRoom2" SubMesh="Mesh154">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.275695" y="1.396532" z="-3.447892"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh142" Path="LivingRoom2" SubMesh="Mesh142">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.263572" y="1.302073" z="-3.425853"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh133" Path="LivingRoom2" SubMesh="Mesh133">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.287659" y="1.302052" z="-3.471177"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh131" Path="LivingRoom2" SubMesh="Mesh131">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.491869" y="1.906227" z="-3.613685"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh129" Path="LivingRoom2" SubMesh="Mesh129">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.491870" y="2.213678" z="-3.612946"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh123" Path="LivingRoom2" SubMesh="Mesh123">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.279114" y="1.424754" z="-3.446540"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh107" Path="LivingRoom2" SubMesh="Mesh107">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.456757" y="0.625217" z="-3.290647"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh105" Path="LivingRoom2" SubMesh="Mesh105">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.858828" y="2.062026" z="-3.619194"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="0.890669" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh098" Path="LivingRoom2" SubMesh="Mesh098">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.260453" y="1.906227" z="-3.613685"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh096" Path="LivingRoom2" SubMesh="Mesh096">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.876072" y="1.348167" z="-3.613635"/>
+					<Rotation x="0.000009" y="-89.999992" z="0.000000"/>
+					<Scale x="0.999846" y="0.695221" z="1.122289"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh093" Path="LivingRoom2" SubMesh="Mesh093">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.275419" y="1.301423" z="-3.448138"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh092" Path="LivingRoom2" SubMesh="Mesh092">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="0.484636" y="0.622025" z="-3.457993"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh084" Path="LivingRoom2" SubMesh="Mesh084">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.194573" y="1.318649" z="-3.457305"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh077" Path="LivingRoom2" SubMesh="Mesh077">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.260452" y="2.213678" z="-3.612946"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh074" Path="LivingRoom2" SubMesh="Mesh074">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.294701" y="1.312746" z="-3.402739"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh068" Path="LivingRoom2" SubMesh="Mesh068">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.491871" y="1.906056" z="-3.613968"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh062" Path="LivingRoom2" SubMesh="Mesh062">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="0.538004" y="0.775073" z="-3.452881"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh061" Path="LivingRoom2" SubMesh="Mesh061">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.176982" y="0.639961" z="-1.657706"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh060" Path="LivingRoom2" SubMesh="Mesh060">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.275445" y="1.349567" z="-3.447937"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh059" Path="LivingRoom2" SubMesh="Mesh059">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="0.532550" y="0.748524" z="-3.463247"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh056" Path="LivingRoom2" SubMesh="Mesh056">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.260453" y="1.906056" z="-3.613968"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh055" Path="LivingRoom2" SubMesh="Mesh055">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.260453" y="2.213847" z="-3.612660"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh051" Path="LivingRoom2" SubMesh="Mesh051">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.081228" y="0.766742" z="-1.849285"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh048" Path="LivingRoom2" SubMesh="Mesh048">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.264369" y="1.300293" z="-3.427124"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh029" Path="LivingRoom2" SubMesh="Mesh029">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.275440" y="1.208787" z="-3.449548"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh018" Path="LivingRoom2" SubMesh="Mesh018">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.296795" y="1.312746" z="-3.406679"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh012" Path="LivingRoom2" SubMesh="Mesh012">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.195225" y="1.318735" z="-3.456948"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh009" Path="LivingRoom2" SubMesh="Mesh009">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.292958" y="1.312960" z="-3.399323"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh008" Path="LivingRoom2" SubMesh="Mesh008">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.895034" y="0.015551" z="-2.801444"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh004" Path="LivingRoom2" SubMesh="Mesh004">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.200031" y="0.661369" z="-1.690187"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh003" Path="LivingRoom2" SubMesh="Mesh003">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.197942" y="0.634846" z="-1.691830"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh002" Path="LivingRoom2" SubMesh="Mesh002">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.080001" y="0.697286" z="-1.849444"/>
+					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh001" Path="LivingRoom2" SubMesh="Mesh001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.295748" y="1.312961" z="-3.404572"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh000" Path="LivingRoom2" SubMesh="Mesh000">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="3.297788" y="1.312746" z="-3.408547"/>
+					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh055.001" Path="LivingRoom2" SubMesh="Mesh055.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.492553" y="2.213847" z="-3.612660"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh003.002" Path="LivingRoom2" SubMesh="Mesh003.002">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.037501" y="0.634846" z="-1.726189"/>
+					<Rotation x="0.000009" y="60.259800" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh004.002" Path="LivingRoom2" SubMesh="Mesh004.002">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.037110" y="0.661369" z="-1.723561"/>
+					<Rotation x="0.000009" y="60.259800" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh061.002" Path="LivingRoom2" SubMesh="Mesh061.002">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="1.997474" y="0.639961" z="-1.727461"/>
+					<Rotation x="0.000009" y="60.259800" z="-0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh105.001" Path="LivingRoom2" SubMesh="Mesh105.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.353244" y="2.062026" z="-3.619194"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="0.890669" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Mesh170.001" Path="LivingRoom2" SubMesh="Mesh170.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse/>
+						<Normal/>
+						<Specular/>
+					</Material>
+					<Position x="2.353244" y="2.062304" z="-3.618478"/>
+					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
+					<Scale x="1.000000" y="0.890669" z="1.000000"/>
+				</StaticMeshObject>
+			</Children>
+		</Object>
+	</Objects>
+</Scene>

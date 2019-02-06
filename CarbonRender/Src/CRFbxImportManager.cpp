@@ -382,11 +382,8 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMes
 					break;
 				case FbxNodeAttribute::eMesh:
 				{
-					FbxDouble3 translation = node->LclTranslation.Get();
-					FbxDouble3 rotation = node->LclRotation.Get();
-					FbxDouble3 scaling = node->LclScaling.Get();
+					FbxMesh* mesh = node->GetMesh();									
 
-					FbxMesh* mesh = node->GetMesh();
 					MeshData* meshData = MeshManager::Instance()->GetMeshData(fileName, mesh->GetName());
 					if (meshData == nullptr)
 					{
@@ -401,7 +398,8 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMes
 						bool* mark = new bool[ctrlPointsCount];
 						for (int i = 0; i < ctrlPointsCount; i++)
 							mark[i] = false;
-						int* multiNormalIndex = new int[ctrlPointsCount * 30];
+						int maxShareFace = 60;
+						int* multiNormalIndex = new int[ctrlPointsCount * maxShareFace];
 						float* tempVertexArray = new float[meshData->GetVertexCount() * 3];
 						float* tempColorArray = new float[meshData->GetVertexCount() * 4];
 						float* tempUVArray = new float[meshData->GetVertexCount() * 4];
@@ -441,17 +439,19 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMes
 								int finalIndex = index;
 								if (!mark[index])
 								{
+									//new vertex
 									mark[index] = true;
-									multiNormalIndex[index * 30] = 1;
-									multiNormalIndex[index * 30 + 1] = index;
+									multiNormalIndex[index * maxShareFace] = 1;
+									multiNormalIndex[index * maxShareFace + 1] = index;
 								}
 								else
 								{
+									//two triangle share one vertex
 									bool hasSame = false;
 									int sameIndex = 0;
-									for (int i = 1; i <= multiNormalIndex[index * 30]; i++)
+									for (int i = 1; i <= multiNormalIndex[index * maxShareFace]; i++)
 									{
-										int sampleIndex = multiNormalIndex[index * 30 + i];
+										int sampleIndex = multiNormalIndex[index * maxShareFace + i];
 										float nDiff = Math::Distance(n, float3(tempNormalArray[sampleIndex * 3],
 											tempNormalArray[sampleIndex * 3 + 1],
 											tempNormalArray[sampleIndex * 3 + 2]));
@@ -468,13 +468,14 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMes
 										}
 									}
 
+									//if the vertex has different normal or uv property, then treat it as a new one
 									if (!hasSame)
 									{
 										finalIndex = ctrlPointsCount + addVertexCount;
 										meshData->SetIndexAt(vertexID, finalIndex);
 
-										multiNormalIndex[index * 30]++;
-										multiNormalIndex[index * 30 + multiNormalIndex[index * 30]] = finalIndex;
+										multiNormalIndex[index * maxShareFace]++;
+										multiNormalIndex[index * maxShareFace + multiNormalIndex[index * maxShareFace]] = finalIndex;
 										addVertexCount++;
 									}
 									else
@@ -527,10 +528,24 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMes
 						meshData->CopyToBinormalArray(tempBinormalArray);
 
 						MeshManager::Instance()->AddMeshData(meshData);
+
+						delete mark;
+						delete multiNormalIndex;
+						delete tempVertexArray;
+						delete tempColorArray;
+						delete tempUVArray;
+						delete tempNormalArray;
+						delete tempTangentArray;
+						delete tempBinormalArray;
 					}				
 
 					if (newAMeshObj)
 					{
+						FbxDouble3 translation = node->LclTranslation.Get();
+						FbxDouble3 rotation = node->LclRotation.Get();
+						rotation[1] *= -1.0f;
+						FbxDouble3 scaling = node->LclScaling.Get();
+
 						MeshObject* newMeshObj = new MeshObject();
 						newMeshObj->SetName(mesh->GetName());
 						newMeshObj->SetPosition(translation);
@@ -564,6 +579,8 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMes
 			}
 		}
 	}
+
+	scene->Destroy();
 
 	return meshCount;
 }

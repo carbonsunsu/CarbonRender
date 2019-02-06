@@ -220,7 +220,7 @@ Quaternion::Quaternion(float a, float b, float c, float d)
 
 Quaternion Quaternion::Normailze()
 {
-	float lengthR = 1.0f / sqrtf(x*x + y*y + z*z + w*w);
+	float lengthR = 1.0f / sqrtf(x*x + y * y + z * z + w * w);
 	return Quaternion(x*lengthR, y*lengthR, z*lengthR, w*lengthR);
 }
 
@@ -230,7 +230,16 @@ Matrix4x4 Quaternion::ToMatrix()
 					2 * (x*y + z*w), 1.0f -  2 * (x*x + z*z), 2 * (y*z - x*w), 0.0f,
 					2 * (x*z - y*w), 2 * (y*z + x*w), 1.0f - 2 * (x*x + y*y), 0.0f,
 					0.0f, 0.0f, 0.0f, 1.0f };
-	return Matrix4x4(r);
+
+	float q1[16] = { w, -z, y, -x,
+					z, w, -x, -y,
+					-y, x, w, -z,
+					x, y, z, w };
+	float q2[16] = { w, -z, y, x,
+					z, w, -x, y,
+					-y, x, w, z,
+					-x, -y, -z, w };
+	return Matrix4x4(r);// *Matrix4x4(q1);
 }
 
 float4 Noise::Permute(float4 a)
@@ -585,6 +594,21 @@ float4 operator-(float4 v1, float4 v2)
 	return float4(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w);
 }
 
+float3 Math::UnitAxisX()
+{
+	return float3(1.0f, 0.0f, 0.0f);
+}
+
+float3 Math::UnitAxisY()
+{
+	return float3(0.0f, 1.0f, 0.0f);
+}
+
+float3 Math::UnitAxisZ()
+{
+	return float3(0.0f, 0.0f, 1.0f);
+}
+
 float Math::Dot(float3 a, float3 b)
 {
 	return a.x*b.x + a.y*b.y + a.z*b.z;
@@ -715,27 +739,34 @@ Quaternion Math::Rotate(float3 axis, float angle)
 					  cos(r));
 }
 
-Matrix4x4 Math::CalculateModelMatrix(float* localCoord, float3 trans, float3 rota, float3 scal)
+Matrix4x4 Math::CalculateModelMatrix(float* localCoord, float3 trans, float3 rota, float3 scal, bool useLocalAxis)
 {
 	float4 xAxis(1.0f, 0.0f, 0.0f, 0.0f);
 	float4 yAxis(0.0f, 1.0f, 0.0f, 0.0f);
 	float4 zAxis(0.0f, 0.0f, 1.0f, 0.0f);
 
-	Matrix4x4 mMatrix = Math::Scale(scal.x, scal.y, scal.z) *
-						Math::Rotate(xAxis, rota.x).Normailze().ToMatrix();
+	Matrix4x4 mMatrix = Math::Scale(scal.x, scal.y, scal.z);
 
-	yAxis = yAxis * Math::Rotate(xAxis, rota.x).Normailze().ToMatrix();
-	zAxis = zAxis * Math::Rotate(xAxis, rota.x).Normailze().ToMatrix();
+	float angle;
+	float3 axis;
 
-	mMatrix = mMatrix * Math::Rotate(float3(yAxis), rota.y).Normailze().ToMatrix();
+	angle = rota.x;
+	axis = useLocalAxis ? xAxis : Math::UnitAxisX();
+	mMatrix = mMatrix * Math::Rotate(float3(axis), angle).Normailze().ToMatrix();
+	yAxis = yAxis * Math::Rotate(float3(axis), angle).Normailze().ToMatrix();
+	zAxis = zAxis * Math::Rotate(float3(axis), angle).Normailze().ToMatrix();
 
-	xAxis = xAxis * Math::Rotate(float3(yAxis), rota.y).Normailze().ToMatrix();
-	zAxis = zAxis * Math::Rotate(float3(yAxis), rota.y).Normailze().ToMatrix();
+	angle = rota.y;
+	axis = useLocalAxis ? yAxis : Math::UnitAxisY();
+	mMatrix = mMatrix * Math::Rotate(float3(axis), angle).Normailze().ToMatrix();
+	xAxis = xAxis * Math::Rotate(float3(axis), angle).Normailze().ToMatrix();
+	zAxis = zAxis * Math::Rotate(float3(axis), angle).Normailze().ToMatrix();
 
-	mMatrix = mMatrix * Math::Rotate(float3(zAxis), rota.z).Normailze().ToMatrix();
-
-	xAxis = xAxis * Math::Rotate(float3(zAxis), rota.z).Normailze().ToMatrix();
-	yAxis = zAxis * Math::Rotate(float3(zAxis), rota.z).Normailze().ToMatrix();
+	angle = rota.z;
+	axis = useLocalAxis ? zAxis : Math::UnitAxisZ();
+	mMatrix = mMatrix * Math::Rotate(float3(zAxis), angle).Normailze().ToMatrix();
+	xAxis = xAxis * Math::Rotate(float3(zAxis), angle).Normailze().ToMatrix();
+	yAxis = yAxis * Math::Rotate(float3(zAxis), angle).Normailze().ToMatrix();
 
 	mMatrix = mMatrix * Math::Translate(trans.x, trans.y, trans.z);
 
