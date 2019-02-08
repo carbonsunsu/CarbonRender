@@ -5,7 +5,7 @@ void Controller::Init()
 	sensitivity[0] = 0.2f;
 	sensitivity[1] = 0.1f;
 
-	moveSpeed = 1.0f;
+	moveSpeed = 20.0f;
 	v = float3(0.0f);
 }
 

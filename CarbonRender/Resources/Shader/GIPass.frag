@@ -70,5 +70,5 @@ void main ()
 		gi += SampleVPL(vplUv, wsP, wsN);
 	}
 
-	giColor = vec4(gi, 1.0f);// / sampleNum * sunColor, 1.0f);
+	giColor = vec4(gi / sampleNum * sunColor, 1.0f);
 }

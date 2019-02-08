@@ -14,6 +14,8 @@ uniform mat3 normalMat;
 uniform sampler2D albedoMap;
 uniform sampler2D msMap;
 uniform sampler2D normalMap;
+uniform float roughnessScale;
+uniform float metallicScale;
 
 void main ()
 {
@@ -26,8 +28,8 @@ void main ()
 	vec3 wsN = normalMat * TBN * N;
 	wsN = normalize(wsN);
 
-	aColor = vec4(albedo.xyz, ms.g);
+	aColor = vec4(albedo.xyz, min(ms.g * metallicScale, 1.0f));
 	nColor = vec4(wsN.x, wsN.y, wsN.z, d);
-	pColor = vec4(wsP.x, wsP.y, wsP.z, ms.r);
+	pColor = vec4(wsP.x, wsP.y, wsP.z, min(ms.r * roughnessScale, 1.0f));
 	sColor = vec4(1,0,0,0);
 }

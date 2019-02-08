@@ -95,7 +95,11 @@ void Material::SetDiffuse(string dir)
 	if (dir.empty())
 		texIns[0] = TextureManager::Instance()->LoadDefaultD();
 	else
+	{
 		texIns[0] = TextureManager::Instance()->LoadTexture(dir);
+		if (texIns[0] == 0)
+			texIns[0] = TextureManager::Instance()->LoadDefaultD();
+	}
 }
 
 void Material::SetNormal(string dir)
@@ -104,7 +108,11 @@ void Material::SetNormal(string dir)
 	if (dir.empty())
 		texIns[1] = TextureManager::Instance()->LoadDefaultN();
 	else
+	{
 		texIns[1] = TextureManager::Instance()->LoadTexture(dir);
+		if (texIns[1] == 0)
+			texIns[1] = TextureManager::Instance()->LoadDefaultN();
+	}
 }
 
 void Material::SetSpecular(string dir)
@@ -113,5 +121,9 @@ void Material::SetSpecular(string dir)
 	if (dir.empty())
 		texIns[2] = TextureManager::Instance()->LoadDefaultS();
 	else
+	{
 		texIns[2] = TextureManager::Instance()->LoadTexture(dir);
+		if (texIns[2] == 0)
+			texIns[3] = TextureManager::Instance()->LoadDefaultS();
+	}
 }

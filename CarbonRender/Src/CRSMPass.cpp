@@ -32,7 +32,7 @@ void SMPass::Render(PassOutput * input)
 	float farCip = sun->GetPosition().Length() * 1.5f;
 	float3 lookPos = followCam ? CameraManager::Instance()->GetCurrentCamera()->GetPosition() : float3(0.0f);
 	Camera cam;
-	cam.SetOrthoCamera(8.0f, 1.0f, farCip);
+	cam.SetOrthoCamera(30.0f, 1.0f, farCip);
 	cam.SetPosition(sun->GetPosition() + lookPos);
 	cam.SetRotation(sun->GetRotation());
 	CameraManager::Instance()->Push(cam);
