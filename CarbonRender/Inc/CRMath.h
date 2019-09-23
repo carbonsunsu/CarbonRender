@@ -74,6 +74,11 @@ public:
 class Matrix3x3
 {
 public:
+	/*
+	0, 3, 6,
+	1, 4, 7,
+	2, 5, 8
+	*/
 	float matrix[9] = { 0.0f };
 
 	Matrix3x3();
@@ -89,6 +94,12 @@ public:
 class Matrix4x4
 {
 public:
+	/*
+	0, 4, 8, 12
+	1, 5, 9, 13
+	2, 6, 10, 14
+	3, 7, 11, 15
+	*/
 	float matrix[16] = {0.0f};
 
 	Matrix4x4();

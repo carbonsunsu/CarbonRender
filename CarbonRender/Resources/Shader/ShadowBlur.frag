@@ -9,6 +9,7 @@ in vec2 uv;
 uniform vec3 stepUnit;
 uniform sampler2D shadowMap;
 uniform sampler2D stenMap;
+uniform sampler2D nMap;
 
 float GetWeight (float dis)
 {
@@ -24,23 +25,43 @@ void main ()
 		return;
 	}
 
-	vec2 sumColor = vec2(0.0f);
-	float sumWeight = 0.0f;
-	float weight;
+	vec2 blurResult = vec2(0.0f);
+	vec2 sumWeight = vec2(0.0f);
+	vec2 weight = vec2(0.0f);
 	
-	weight = GetWeight(0);
+	weight.rg = GetWeight(0).rr;
 	sumWeight += weight;
 	vec4 sMap = texture2D(shadowMap, uv);
-	sumColor += sMap.rb * weight;
+	vec4 normalDepth = texture2D(nMap, uv);
+	blurResult += sMap.rb * weight;
 
 	for (int i = 1; i < 9; i++)
 	{
-		weight = GetWeight(stepUnit.z * i);
-		sumWeight += weight * 2.0f;
-		sumColor += texture2D(shadowMap, uv + stepUnit.xy * i).rb * weight;
-		sumColor += texture2D(shadowMap, uv + stepUnit.xy * -i).rb * weight;
-	}
-	sumColor = sumColor / sumWeight;
+		vec4 sampleUV;
+		sampleUV.xy = uv + stepUnit.xy * i;
+		sampleUV.zw = uv + stepUnit.xy * -i;
+		vec4 normalDepth0 = texture2D(nMap, sampleUV.xy);
+		vec4 normalDepth1 = texture2D(nMap, sampleUV.zw);
+		vec2 mask = vec2(1.0f);
+		mask.r = (1.0f - min(abs(normalDepth.w - normalDepth0.w), 1.0f)) * max(dot(normalDepth0.xyz, normalDepth.xyz), 0.0f);
+		mask.g = (1.0f - min(abs(normalDepth.w - normalDepth1.w), 1.0f)) * max(dot(normalDepth1.xyz, normalDepth.xyz), 0.0f);
 
-	sColor = vec4(sumColor.r, 0.0f, sumColor.g, 1.0f);
+		vec4 sample0 = texture2D(shadowMap, sampleUV.xy);
+		vec4 sample1 = texture2D(shadowMap, sampleUV.zw);
+
+		weight.r = GetWeight(stepUnit.z * i);
+		blurResult.r += sample0.r * weight.r * mask.r;
+		sumWeight.r += weight.r * mask.r;
+		blurResult.r += sample1.r * weight.r * mask.g;
+		sumWeight.r += weight.r * mask.g;
+		
+		weight.g = GetWeight(stepUnit.z * i);
+		blurResult.g += sample0.b * weight.g * mask.r;
+		sumWeight.g += weight.g * mask.r;
+		blurResult.g += sample1.b * weight.g * mask.g;
+		sumWeight.g += weight.g * mask.g;
+	}
+	blurResult = blurResult / sumWeight;
+
+	sColor = vec4(sMap.r, 0.0f, blurResult.g, 1.0f);
 }

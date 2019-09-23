@@ -7,10 +7,12 @@ in vec2 uv;
 uniform sampler2D pMap;
 uniform sampler2D smMap;
 uniform sampler2D stenMap;
-uniform mat4 smMat;
+uniform mat4 smViewMat;
+uniform mat4 smProMat;
 uniform vec2 stepUnit;
+uniform float depthClampPara;
 
-const int rad = 2;
+const int rad = 1;
 
 float Random(vec3 p, float seed)
 {
@@ -22,6 +24,11 @@ float Random(vec3 p, float seed)
     return fract(sin(sn) * c);
 }
 
+bool IsInScreen (vec2 ssPos)
+{
+	return ssPos.x >= 0.0f && ssPos.x <= 1.0f && ssPos.y >= 0.0f && ssPos.y <= 1.0f;
+}
+
 void main ()
 {
 	vec4 stencil = texture2D(stenMap, uv);
@@ -30,32 +37,39 @@ void main ()
 		discard;
 		return;
 	}
-
-	vec4 P = texture2D(pMap, uv);
-	vec3 wsP = P.xyz;
-	vec4 smP = smMat * vec4(wsP, 1.0f);
-	float d = smP.z * 0.5f + 0.5f;
-	vec2 smUV = smP.xy * 0.5f + 0.5f;
+	
+	vec4 pMapSample = texture2D(pMap, uv);
+	vec3 wsPos = pMapSample.xyz;
+	vec4 smPos = smViewMat * vec4(wsPos, 1.0f);
+	float d = -smPos.z;
+	smPos = smProMat * smPos;
+	vec2 smUV = smPos.xy * 0.5f + 0.5f;
+	
 	float sFactor = 1.0f;
-	if (smUV.x >= 0.0f && 
-		smUV.x <= 1.0f &&
-		smUV.y >= 0.0f &&
-		smUV.y <= 1.0f )
+	if (IsInScreen(smUV))
 	{	
-		float smD = 0.0f;
-		for (int i = 0; i < 8; i++)
-		{
-			vec2 random = vec2(Random(wsP, i * 10.0f), Random(wsP, i * 20.0f));
-			vec4 sMap = texture2D(smMap, smUV + random * stepUnit * rad);
-			smD += sMap.a * 0.5f + 0.5f;
-		}
-		smD *= 0.125f;
+		float occluderDepth = texture2D(smMap, smUV).a;
+		float multiSampleDepth = occluderDepth;
 		
-		sFactor = exp(2000000.0f * (smD - d + 0.000008f));
+		
+		int sampleCount = 4;
+		for (int i = 0; i < sampleCount; i++)
+		{
+			vec2 random = vec2(Random(wsPos, i * 10.0f), Random(wsPos, i * 20.0f));
+			vec2 sampleUV = smUV + random * stepUnit * rad;
+			if (IsInScreen(sampleUV))
+				multiSampleDepth += texture2D(smMap, sampleUV).a;
+			else
+				multiSampleDepth += occluderDepth;
+		}
+		multiSampleDepth /= (sampleCount + 1);
+
+		sFactor = multiSampleDepth - d + 0.1f < 0.0f ? 0.0f : 1.0f;
+		//sFactor = exp(1.0f * (multiSampleDepth - d));
 	}
 
 	float lightSize = 10.0f;
 	float searchR = 10.0f - 1.0f / abs(d);
 
-	sColor = vec4(sFactor, 0.0f, 1.0f, 1.0f);
+	sColor = vec4(sFactor, d, 1.0f, 1.0f);
 }

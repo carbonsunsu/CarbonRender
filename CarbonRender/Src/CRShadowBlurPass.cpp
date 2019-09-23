@@ -36,6 +36,8 @@ void ShadowBlurPass::Render(PassOutput * input)
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "stenMap");
 	glUniform1i(location, 2);
+	location = glGetUniformLocation(shaderProgram, "nMap");
+	glUniform1i(location, 3);
 	location = glGetUniformLocation(shaderProgram, "stepUnit");
 	glUniform3f(location, stepSize / size.w, 0.0f, stepSize);
 
@@ -51,6 +53,8 @@ void ShadowBlurPass::Render(PassOutput * input)
 	location = glGetUniformLocation(shaderProgram, "stenMap");
 	glUniform1i(location, 2);
 	location = glGetUniformLocation(shaderProgram, "shadowMap");
+	glUniform1i(location, 1 + input->cout);
+	location = glGetUniformLocation(shaderProgram, "nMap");
 	glUniform1i(location, 3);
 	location = glGetUniformLocation(shaderProgram, "stepUnit");
 	glUniform3f(location, 0.0f, stepSize / size.h, stepSize);

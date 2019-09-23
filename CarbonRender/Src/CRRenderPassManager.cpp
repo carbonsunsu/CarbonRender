@@ -35,7 +35,7 @@ void RenderPassManager::Init()
 
 void RenderPassManager::Draw()
 {
-	PassOutput* sm = smPass.Draw(NULL);//vpl pos and depth, vpl albedo
+	PassOutput* sm = smPass.Draw(NULL);//pos and depth, albedo, normal
 	PassOutput* sky = skyPass.Draw(NULL);//sky, sky cube
 	PassOutput* g = gPass.Draw(NULL);//albedo, normal and depth, position, stensil
 
@@ -51,8 +51,7 @@ void RenderPassManager::Draw()
 	sInput.RTS[0] = g->RTS[2];
 	sInput.RTS[1] = sm->RTS[0];
 	sInput.RTS[2] = g->RTS[3];
-	sInput.mats = new Matrix4x4[1];
-	sInput.mats[0] = sm->mats[0];
+	sInput.mats = sm->mats;
 	PassOutput* shadow = shadowPass.Draw(&sInput);//shadow
 
 	PassOutput aoInput;
@@ -65,10 +64,11 @@ void RenderPassManager::Draw()
 	PassOutput* ao = ssaoPass.Draw(&aoInput);//shadow and ao
 
 	PassOutput blurInput;
-	blurInput.cout = 2;
+	blurInput.cout = 3;
 	blurInput.RTS = new GLuint[blurInput.cout];
 	blurInput.RTS[0] = ao->RTS[0];
 	blurInput.RTS[1] = g->RTS[3];
+	blurInput.RTS[2] = g->RTS[1];
 	PassOutput* shadowBlured = shadowBlurPass.Draw(&blurInput);
 
 	PassOutput giInput;
@@ -80,8 +80,7 @@ void RenderPassManager::Draw()
 	giInput.RTS[3] = sm->RTS[1];
 	giInput.RTS[4] = sm->RTS[2];
 	giInput.RTS[5] = g->RTS[3];
-	giInput.mats = new Matrix4x4[1];
-	giInput.mats[0] = sm->mats[0];
+	giInput.mats = sm->mats;
 	PassOutput* gi = giPass.Draw(&giInput);//GI
 
 	PassOutput lInput;

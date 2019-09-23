@@ -91,6 +91,7 @@
     <None Include="Resources\Scene\LivingRoom.scene">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Resources\Scene\ShadowTest.scene" />
     <None Include="Resources\Shader\Atmosphere.frag" />
     <None Include="Resources\Shader\Atmosphere.vert" />
     <None Include="Resources\Shader\GIDenoise.frag" />
@@ -124,7 +125,7 @@
     <ProjectGuid>{27CD77C7-6F75-434C-A429-CE1E1D982CBA}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>CarbonRender</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -184,7 +185,7 @@
       </Message>
       <Command>del "$(TargetDir)*.*"
 
-echo Y | XCOPY "$(ProjectDir)*.xml" "$(TargetDir)"
+echo Y | XCOPY "$(ProjectDir)Config.cfg" "$(TargetDir)"
 echo Y | XCOPY "$(ProjectDir)Third\GL\dll\*.*" "$(TargetDir)"
 
 echo Y | XCOPY "$(ProjectDir)Third\FBX\dll\*.*" "$(TargetDir)"

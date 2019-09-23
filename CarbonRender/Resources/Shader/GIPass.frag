@@ -11,7 +11,8 @@ uniform sampler2D vplPMap;
 uniform sampler2D vplAMap;
 uniform sampler2D vplNMap;
 uniform sampler2D stenMap;
-uniform mat4 smMat;
+uniform mat4 smViewMat;
+uniform mat4 smProMat;
 uniform vec2 stepUnit;
 uniform vec3 sunColor;
 
@@ -52,7 +53,7 @@ void main ()
 
 	vec3 wsP = texture2D(pMap, uv).xyz;
 	vec3 wsN = texture2D(nMap, uv).xyz;
-	vec3 smP = (smMat * vec4(wsP, 1.0f)).xyz;
+	vec3 smP = (smProMat * (smViewMat * vec4(wsP, 1.0f))).xyz;
 	vec2 smUV = smP.xy * 0.5f + 0.5f;
 	vec3 gi = vec3(0.0f, 0.0f, 0.0f);
 	vec2 sampleR = stepUnit * r;

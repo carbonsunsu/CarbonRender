@@ -39,6 +39,11 @@ void GPass::Render(PassOutput * input)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	ShaderManager::Instance()->UseShader(shaderProgram);
+
+	GLint location = glGetUniformLocation(shaderProgram, "depthClampPara");
+	Camera* curCam = CameraManager::Instance()->GetCurrentCamera();
+	glUniform1f(location, 1.0f / curCam->GetFarClip());
+
 	SceneManager::Instance()->DrawScene(shaderProgram);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);

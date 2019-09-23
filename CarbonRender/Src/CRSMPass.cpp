@@ -23,7 +23,7 @@ void SMPass::GetReady4Render(PassOutput * input)
 	output.RTS[0] = posDepth;
 	output.RTS[1] = vplAlbedo;
 	output.RTS[2] = vplNormal;
-	output.mats = new Matrix4x4[1];
+	output.mats = new Matrix4x4[2];
 }
 
 void SMPass::Render(PassOutput * input)
@@ -37,7 +37,8 @@ void SMPass::Render(PassOutput * input)
 	cam.SetRotation(sun->GetRotation());
 	CameraManager::Instance()->Push(cam);
 	CameraManager::Instance()->GetCurrentCamera()->UpdateViewMatrix();
-	output.mats[0] = CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix() * CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix();
+	output.mats[0] = CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix();
+	output.mats[1] = CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix();
 
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
@@ -46,9 +47,13 @@ void SMPass::Render(PassOutput * input)
 
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 	glBindRenderbuffer(GL_RENDERBUFFER, dBuffer);
-	glClear(GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	ShaderManager::Instance()->UseShader(shaderProgram);
+
+	GLint location = glGetUniformLocation(shaderProgram, "depthClampPara");
+	glUniform1f(location, 1.0f / farCip);
+
 	SceneManager::Instance()->DrawScene(shaderProgram);
 
 	glBindTexture(GL_TEXTURE_2D, output.RTS[0]);

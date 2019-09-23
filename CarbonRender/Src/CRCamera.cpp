@@ -34,12 +34,28 @@ void Camera::SetPerspectiveCamera(float iFov, float iNearClip, float iFarClip, i
 	UpdateProjectionMatrix();
 }
 
-void Camera::SetNearFar(float iNearClip, float iFarClip)
+void Camera::SetNearClip(float iNearClip)
 {
 	nearClip = iNearClip;
+
+	UpdateProjectionMatrix();
+}
+
+float Camera::GetNearClip()
+{
+	return nearClip;
+}
+
+void Camera::SetFarClip(float iFarClip)
+{
 	farClip = iFarClip;
 
 	UpdateProjectionMatrix();
+}
+
+float Camera::GetFarClip()
+{
+	return farClip;
 }
 
 void Camera::SetFov(float iFov)
@@ -47,6 +63,11 @@ void Camera::SetFov(float iFov)
 	fov = iFov;
 
 	UpdateProjectionMatrix();
+}
+
+float Camera::GetFov()
+{
+	return fov;
 }
 
 void Camera::SetOrthoSize(float size)

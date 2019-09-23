@@ -27,8 +27,12 @@ public:
 	~Camera();
 	void SetPerspectiveCamera(float iFov, float iNearClip, float iFarClip);
 	void SetPerspectiveCamera(float iFov, float iNearClip, float iFarClip, int size);
-	void SetNearFar(float iNearClip, float iFarClip);
+	void SetNearClip(float iNearClip);
+	float GetNearClip();
+	void SetFarClip(float iFarClip);
+	float GetFarClip();
 	void SetFov(float iFov);
+	float GetFov();
 	void SetOrthoSize(float size);
 	float3 GetCameraPara();
 	void SetOrthoCamera(float size, float iNearClip, float iFarClip);

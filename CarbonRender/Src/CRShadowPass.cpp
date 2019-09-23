@@ -39,9 +39,14 @@ void ShadowPass::Render(PassOutput * input)
 	glUniform1i(location, 3);
 	location = glGetUniformLocation(shaderProgram, "stepUnit");
 	glUniform2f(location, 1.0f / size.w, 1.0f / size.h);
+	location = glGetUniformLocation(shaderProgram, "depthClampPara");
+	Light* sun = LightManager::Instance()->GetLight(0);
+	glUniform1f(location, 1.0f / (sun->GetPosition().Length() * 1.5f));
 
-	location = glGetUniformLocation(shaderProgram, "smMat");
+	location = glGetUniformLocation(shaderProgram, "smViewMat");
 	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[0].matrix);
+	location = glGetUniformLocation(shaderProgram, "smProMat");
+	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[1].matrix);
 
 	DrawFullScreenQuad();
 

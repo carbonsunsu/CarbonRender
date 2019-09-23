@@ -17,7 +17,7 @@ uniform mat3 viewMat;
 const int minRadius = 1;
 const int maxRadius = 10;
 const float scale = 0.5f;
-const float k = 3.0f;
+const float k = 1.0f;
 const float bias = 0.0001;
 const float epsilon = 0.01;
 const int sampleNum = 12;

@@ -48,8 +48,10 @@ void GIPass::Render(PassOutput * input)
 	location = glGetUniformLocation(shaderProgram, "stenMap");
 	glUniform1i(location, 6);
 
-	location = glGetUniformLocation(shaderProgram, "smMat");
+	location = glGetUniformLocation(shaderProgram, "smViewMat");
 	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[0].matrix);
+	location = glGetUniformLocation(shaderProgram, "smProMat");
+	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[1].matrix);
 
 	location = glGetUniformLocation(shaderProgram, "stepUnit");
 	glUniform2f(location, 1.0f / size.w, 1.0f / size.h);
