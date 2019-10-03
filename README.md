@@ -12,7 +12,9 @@ A real-time rendering engine based on C++ and OpenGL
 
 * Linear space lighting
 
-* ESM shadow
+* PCSS shadow
+
+![AO](CarbonRender/ScreenShots/PCSS.png)
 
 * Alchemy AO
 
