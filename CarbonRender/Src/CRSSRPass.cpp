@@ -7,7 +7,7 @@ void SSRPass::GetReady4Render(PassOutput * input)
 
 	GLuint reflectionRt;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	reflectionRt = GLHelper::SetGLRenderTexture(size.w * targetScale, size.h * targetScale, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT0, true);
+	reflectionRt = GLHelper::SetGLRenderTexture(size.w * targetScale, size.h * targetScale, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_LINEAR_MIPMAP_LINEAR, GL_COLOR_ATTACHMENT0, true);
 
 	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
 	glDrawBuffers(1, drawBuffers);
@@ -52,6 +52,11 @@ void SSRPass::Render(PassOutput * input)
 	glUniformMatrix4fv(location, 1, GL_FALSE, CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix().matrix);
 	location = glGetUniformLocation(shaderProgram, "wsCamPos");
 	glUniform4f(location, camPos.x, camPos.y, camPos.z, 1.0f);
+	location = glGetUniformLocation(shaderProgram, "depthClampPara");
+	Camera* curCam = CameraManager::Instance()->GetCurrentCamera();
+	float nearClip = curCam->GetNearClip();
+	float farClip = curCam->GetFarClip();
+	glUniform2f(location, nearClip, 1.0f / (farClip - nearClip));
 
 	DrawFullScreenQuad();
 

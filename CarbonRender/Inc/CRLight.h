@@ -17,6 +17,9 @@ private:
 	float intensity;
 	float3 color;
 
+	float nearClip;
+	float farClip;
+
 public:
 	Light(LightType iType, float iIntensity);
 	~Light();
@@ -26,6 +29,11 @@ public:
 	void SetIntensity(float iIntensity);
 	float3 GetColor();
 	void SetColor(float3 iColor);
+
+	void SetNearClip(float near);
+	float GetNearClip();
+	void SetFarClip(float far);
+	float GetFarClip();
 };
 
 #endif

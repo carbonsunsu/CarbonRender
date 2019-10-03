@@ -46,11 +46,12 @@ void RenderPassManager::Draw()
 	PassOutput* cloud = cloudPass.Draw(&cInput);//cloud
 
 	PassOutput sInput;
-	sInput.cout = 3;
+	sInput.cout = 4;
 	sInput.RTS = new GLuint[sInput.cout];
 	sInput.RTS[0] = g->RTS[2];
 	sInput.RTS[1] = sm->RTS[0];
 	sInput.RTS[2] = g->RTS[3];
+	sInput.RTS[3] = g->RTS[1];
 	sInput.mats = sm->mats;
 	PassOutput* shadow = shadowPass.Draw(&sInput);//shadow
 

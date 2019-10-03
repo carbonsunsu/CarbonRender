@@ -22,11 +22,21 @@ uniform sampler2D stenMap;
 uniform samplerCube cubeMap;
 uniform sampler2D giMap;
 
-vec3 Random(vec3 p, float seed)
+float Random (vec2 i, float seed)
 {
-	float x = fract(sin(dot(p.xy * seed, vec2(12.9898f, 78.233f))) * 43758.5453f);
-	float y = fract(sin(dot(p.yz * seed, vec2(12.9898f, 78.233f))) * 43758.5453f);
-	float z = fract(sin(dot(p.zx * seed, vec2(12.9898f, 78.233f))) * 43758.5453f);
+	//golden noise ranged from -1 to 1
+	float phi = 1.61803398874989484820459 * 00000.1; // Golden Ratio   
+	float pi  = 3.14159265358979323846264 * 00000.1; // PI
+	float srt = 1.41421356237309504880169 * 10000.0; // Square Root of Two
+
+	return fract(tan(distance(i * (seed + phi), vec2(phi, pi))) * srt) * 2.0f - 1.0f;
+}
+
+vec3 Random (vec3 p, float seed)
+{
+	float x = Random(p.xy, seed * 10.0f);
+	float y = Random(p.yz, -seed * 20.0f);
+	float z = Random(p.zx, seed * 30.0f);
 	return vec3(x,y,z);
 }
 

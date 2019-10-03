@@ -35,3 +35,23 @@ void Light::SetColor(float3 iColor)
 {
 	color = iColor;
 }
+
+void Light::SetNearClip(float near)
+{
+	nearClip = near;
+}
+
+float Light::GetNearClip()
+{
+	return nearClip;
+}
+
+void Light::SetFarClip(float far)
+{
+	farClip = far;
+}
+
+float Light::GetFarClip()
+{
+	return farClip;
+}

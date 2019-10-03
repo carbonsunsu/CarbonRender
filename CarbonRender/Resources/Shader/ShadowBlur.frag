@@ -10,10 +10,11 @@ uniform vec3 stepUnit;
 uniform sampler2D shadowMap;
 uniform sampler2D stenMap;
 uniform sampler2D nMap;
+uniform vec2 depthClampPara;
 
 float GetWeight (float dis)
 {
-	return exp(-0.5f * pow(dis / SIGMA, 2.0f));
+	return exp(-0.5f * pow(dis / SIGMA, 2.0f)) / sqrt(2.0f * PI * SIGMA * SIGMA);
 }
 
 void main ()
@@ -34,6 +35,8 @@ void main ()
 	vec4 sMap = texture2D(shadowMap, uv);
 	vec4 normalDepth = texture2D(nMap, uv);
 	blurResult += sMap.rb * weight;
+	//float linearDepth01 = (normalDepth.a - depthClampPara.x) * depthClampPara.y;
+	//float scale = mix(1.0f, 1.0f, pow(linearDepth01, 100.0f));
 
 	for (int i = 1; i < 9; i++)
 	{
@@ -48,20 +51,20 @@ void main ()
 
 		vec4 sample0 = texture2D(shadowMap, sampleUV.xy);
 		vec4 sample1 = texture2D(shadowMap, sampleUV.zw);
-
-		weight.r = GetWeight(stepUnit.z * i);
-		blurResult.r += sample0.r * weight.r * mask.r;
-		sumWeight.r += weight.r * mask.r;
-		blurResult.r += sample1.r * weight.r * mask.g;
-		sumWeight.r += weight.r * mask.g;
 		
 		weight.g = GetWeight(stepUnit.z * i);
 		blurResult.g += sample0.b * weight.g * mask.r;
 		sumWeight.g += weight.g * mask.r;
 		blurResult.g += sample1.b * weight.g * mask.g;
 		sumWeight.g += weight.g * mask.g;
+
+		weight.r = GetWeight(stepUnit.z * i);
+		blurResult.r += sample0.r * weight.r * mask.r;
+		sumWeight.r += weight.r * mask.r;
+		blurResult.r += sample1.r * weight.r * mask.g;
+		sumWeight.r += weight.r * mask.g;
 	}
 	blurResult = blurResult / sumWeight;
 
-	sColor = vec4(sMap.r, 0.0f, blurResult.g, 1.0f);
+	sColor = vec4(blurResult.r, sMap.g, blurResult.g, 1.0f);
 }

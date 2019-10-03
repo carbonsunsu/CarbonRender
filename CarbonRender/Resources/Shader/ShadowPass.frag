@@ -7,21 +7,22 @@ in vec2 uv;
 uniform sampler2D pMap;
 uniform sampler2D smMap;
 uniform sampler2D stenMap;
+uniform sampler2D nMap;
 uniform mat4 smViewMat;
 uniform mat4 smProMat;
 uniform vec2 stepUnit;
-uniform float depthClampPara;
+uniform vec2 depthClampPara;
+uniform vec3 lightPos;
+uniform float lightSize;
 
-const int rad = 1;
-
-float Random(vec3 p, float seed)
+float Random (vec2 i, float seed)
 {
-	float a = 12.9898f;
-    float b = 78.233f;
-    float c = 43758.5453f;
-    float dt= dot(p.xy * seed,vec2(a,b));
-    float sn= mod(dt, 3.14f);
-    return fract(sin(sn) * c);
+	//golden noise ranged from -1 to 1
+	float phi = 1.61803398874989484820459 * 00000.1; // Golden Ratio   
+	float pi  = 3.14159265358979323846264 * 00000.1; // PI
+	float srt = 1.41421356237309504880169 * 10000.0; // Square Root of Two
+
+	return fract(tan(distance(i * (seed + phi), vec2(phi, pi))) * srt) * 2.0f - 1.0f;
 }
 
 bool IsInScreen (vec2 ssPos)
@@ -41,35 +42,69 @@ void main ()
 	vec4 pMapSample = texture2D(pMap, uv);
 	vec3 wsPos = pMapSample.xyz;
 	vec4 smPos = smViewMat * vec4(wsPos, 1.0f);
-	float d = -smPos.z;
+	float rcverDepth = -smPos.z;
 	smPos = smProMat * smPos;
-	vec2 smUV = smPos.xy * 0.5f + 0.5f;
+	vec2 smUV = smPos.xy / smPos.w * 0.5f + 0.5f;
+
+	//change bias according angle between normal and light vector
+	vec3 lightV = lightPos;
+	lightV = normalize(lightV);
+	vec4 N = texture2D(nMap, uv);
+	float shadowBias = dot(N.xyz, lightV);
+	shadowBias = 1.0f - abs(shadowBias);
+	shadowBias = max(5.0f * shadowBias, 1.0f) * 0.05f;
 	
 	float sFactor = 1.0f;
 	if (IsInScreen(smUV))
 	{	
-		float occluderDepth = texture2D(smMap, smUV).a;
-		float multiSampleDepth = occluderDepth;
-		
-		
-		int sampleCount = 4;
-		for (int i = 0; i < sampleCount; i++)
+		float searchR = (lightSize * rcverDepth) / (rcverDepth - depthClampPara.x);
+		float avgBlkerDepth = 0.0f;
+		int sampleCount = 0;
+		int sampleNum = 2;
+		for (int i = -sampleNum; i <= sampleNum; i++)
 		{
-			vec2 random = vec2(Random(wsPos, i * 10.0f), Random(wsPos, i * 20.0f));
-			vec2 sampleUV = smUV + random * stepUnit * rad;
-			if (IsInScreen(sampleUV))
-				multiSampleDepth += texture2D(smMap, sampleUV).a;
-			else
-				multiSampleDepth += occluderDepth;
+			for (int j = -sampleNum; j <= sampleNum; j++)
+			{
+				vec2 sampleUV = smUV + stepUnit * vec2(i, j) * searchR * 2.0f / lightSize;
+				if (IsInScreen(sampleUV))
+				{
+					float blkerDepth = texture2D(smMap, sampleUV).a;
+					if (blkerDepth < rcverDepth - shadowBias)
+					{
+						avgBlkerDepth += blkerDepth;
+						sampleCount += 1;
+					}
+				}
+			}
 		}
-		multiSampleDepth /= (sampleCount + 1);
-
-		sFactor = multiSampleDepth - d + 0.1f < 0.0f ? 0.0f : 1.0f;
-		//sFactor = exp(1.0f * (multiSampleDepth - d));
+		if (sampleCount <= 0)
+		{
+			sColor = vec4(1.0f, 0.0f, 1.0f, 1.0f);
+			return;
+		}
+		avgBlkerDepth /= sampleCount;
+		
+		float penumbraSize = lightSize * (rcverDepth - avgBlkerDepth) / avgBlkerDepth;
+		sFactor = 0.0f;
+		sampleCount = 0;
+		sampleNum = 4;
+		for (int i = -sampleNum; i <= sampleNum; i++)
+		{
+			for (int j = -sampleNum; j <= sampleNum; j++)
+			{
+				vec2 sampleUV = smUV + stepUnit * vec2(i, j) * penumbraSize;
+				if (IsInScreen(sampleUV))
+				{
+					float blkerDepth = texture2D(smMap, sampleUV).a;
+					sFactor += blkerDepth < rcverDepth - shadowBias ? 0.0f : 1.0f;
+					sampleCount += 1;
+				}
+			}
+		}
+		sFactor /= sampleCount;
+		sColor = vec4(sFactor, 0.0f, 1.0f, 1.0f);
+		return;
 	}
 
-	float lightSize = 10.0f;
-	float searchR = 10.0f - 1.0f / abs(d);
-
-	sColor = vec4(sFactor, d, 1.0f, 1.0f);
+	sColor = vec4(1.0f, 0.0f, 1.0f, 1.0f);
 }

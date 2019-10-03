@@ -7,7 +7,7 @@ void ShadowPass::GetReady4Render(PassOutput * input)
 
 	GLuint sRt;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	sRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT0, false);
+	sRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0, false);
 
 	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
 	glDrawBuffers(1, drawBuffers);
@@ -37,11 +37,20 @@ void ShadowPass::Render(PassOutput * input)
 	glUniform1i(location, 2);
 	location = glGetUniformLocation(shaderProgram, "stenMap");
 	glUniform1i(location, 3);
+	location = glGetUniformLocation(shaderProgram, "nMap");
+	glUniform1i(location, 4);
 	location = glGetUniformLocation(shaderProgram, "stepUnit");
 	glUniform2f(location, 1.0f / size.w, 1.0f / size.h);
 	location = glGetUniformLocation(shaderProgram, "depthClampPara");
 	Light* sun = LightManager::Instance()->GetLight(0);
-	glUniform1f(location, 1.0f / (sun->GetPosition().Length() * 1.5f));
+	float nearClip = sun->GetNearClip();
+	float farClip = sun->GetFarClip();
+	glUniform2f(location, nearClip, 1.0f / (farClip - nearClip));
+	location = glGetUniformLocation(shaderProgram, "lightPos");
+	float3 sunPos = sun->GetPosition();
+	glUniform3f(location, sunPos.x, sunPos.y, sunPos.z);
+	location = glGetUniformLocation(shaderProgram, "lightSize");
+	glUniform1f(location, 200.0f);
 
 	location = glGetUniformLocation(shaderProgram, "smViewMat");
 	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[0].matrix);

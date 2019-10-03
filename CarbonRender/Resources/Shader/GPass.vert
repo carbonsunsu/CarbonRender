@@ -10,7 +10,7 @@ layout(location = 5) in vec3 msB;
 uniform mat4 modelMat;
 uniform mat4 viewMat;
 uniform mat4 proMat;
-uniform float depthClampPara;
+uniform vec2 depthClampPara;
 
 out vec3 wsP;
 out vec2 uv;
@@ -20,7 +20,7 @@ out float d;
 void main ()
 {
 	gl_Position = viewMat * (modelMat * msPos);
-	d = -gl_Position.z * depthClampPara;
+	d = -gl_Position.z;
 	gl_Position = proMat * gl_Position;
 	vec3 T = normalize(msT);
 	vec3 N = normalize(msN);

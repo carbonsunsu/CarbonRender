@@ -20,14 +20,14 @@ const float vplLod = 5.5f;
 const int r = 50;
 const int sampleNum = 8;
 
-float Random(vec3 p, float seed)
+float Random (vec2 i, float seed)
 {
-	float a = 12.9898f;
-    float b = 78.233f;
-    float c = 43758.5453f;
-    float dt= dot(p.xy * seed,vec2(a,b));
-    float sn= mod(dt, 3.14f);
-    return fract(sin(sn) * c);
+	//golden noise ranged from -1 to 1
+	float phi = 1.61803398874989484820459 * 00000.1; // Golden Ratio   
+	float pi  = 3.14159265358979323846264 * 00000.1; // PI
+	float srt = 1.41421356237309504880169 * 10000.0; // Square Root of Two
+
+	return fract(tan(distance(i * (seed + phi), vec2(phi, pi))) * srt) * 2.0f - 1.0f;
 }
 
 vec3 SampleVPL (vec2 uv, vec3 wsP, vec3 wsN)
@@ -39,7 +39,7 @@ vec3 SampleVPL (vec2 uv, vec3 wsP, vec3 wsN)
 	float d = max(distance(wsP, vplPos), 1.0f);
 
 	float intensity = max(0.0f, dot(vplN, v)) * max(0.0f, dot(wsN, -v)) / (d*d);
-	return intensity * vplColor;
+	return intensity * vplColor * sunColor * 0.5f;
 }
 
 void main ()
@@ -64,12 +64,12 @@ void main ()
 		float lx = floor(i / sampleNum) / sampleNum * 2.0f - 1.0f;
 		float ly = mod(i, sampleNum) / sampleNum * 2.0f - 1.0f;
 		vec2 subl = sampleR * 2.0f / sampleNum;
-		float rx = Random(wsP, i * 20.0f) * subl.x;
-		float ry = Random(wsP, i * 10.0f) * subl.y;
+		float rx = Random(smUV, i * 20.0f) * subl.x;
+		float ry = Random(smUV, -i * 10.0f) * subl.y;
 		vec2 vplUv = smUV + vec2(sampleR.x * lx + rx, sampleR.y * ly + ry);
 
 		gi += SampleVPL(vplUv, wsP, wsN);
 	}
 
-	giColor = vec4(gi / sampleNum * sunColor, 1.0f);
+	giColor = vec4(gi, 1.0f);
 }

@@ -27,5 +27,5 @@ void main ()
 	fColor.rgb = mix(fColor.rgb, cloudColor.rgb, cloudColor.a);
 	fColor.rgb = pow(fColor.rgb, vec3(0.45454545f));
 	fColor.a = 1.0f;
-	//fColor.rgb = texture2D(lightBuffer, uv).rrr;
+	//fColor.rgb = texture2D(lightBuffer, uv).ggg;
 }

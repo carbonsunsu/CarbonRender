@@ -13,6 +13,7 @@ uniform sampler2D stenMap;
 uniform mat4 viewMat;
 uniform mat4 projectMat;
 uniform vec4 wsCamPos;
+uniform vec2 depthClampPara;
 
 const float maxStepSize = 1.0f;
 const int MaxStep = 32;
@@ -44,26 +45,28 @@ void main ()
 		 stepCount++;
 
 		 v += wsR * stepSize;
-		 vec4 ssP = projectMat * (viewMat * vec4(wsP.xyz + v, 1.0f));
+		 vec4 ssP = viewMat * vec4(wsP.xyz + v, 1.0f);
+		 float depth = -ssP.z;
+		 ssP = projectMat * ssP;
 		 ssP.xy = ssP.xy/ssP.w;
 		 vec2 sampleUV = ssP.xy * 0.5f + 0.5f;
 		 if (sampleUV.x > 1.0f || sampleUV.x < 0.0f || sampleUV.y > 1.0f || sampleUV.y < 0.0f) continue;
 		 vec4 sampleN = texture2D(nMap, sampleUV);
 
-		 if (abs(ssP.w) - sampleN.a > 0.0f)
+		 if (depth - sampleN.a > 0.0f)
 		 {
 			v -= wsR * stepSize;
 			stepSize *= 0.5f;
 			continue;
 		 }
-		 else if (abs(abs(ssP.w) - sampleN.a) <= 0.1f)
+		 else if (abs(depth - sampleN.a) <= 0.1f)
 		 {
-			float d = distance(v, vec3(0.0f));
+			float dis = distance(v, vec3(0.0f));
 			float fadingFactor = 1.0f;
 			fadingFactor *= (0.9 - abs(ssP.x)) / (1.0f - edgeFadingStart);
 			fadingFactor *= (0.9 - abs(ssP.y)) / (1.0f - edgeFadingStart);
 			fadingFactor *=  1.0f - dot(wsN.xyz, sampleN.xyz);
-			fadingFactor *= 1.0f / (d + 1.0f);
+			fadingFactor *= 1.0f / (dis + 1.0f);
 			fadingFactor = clamp(fadingFactor, 0.0f, 1.0f);
 			reflection.rgb = texture2D(pureLightMap, sampleUV).rgb + texture2D(refMap, sampleUV).rgb;
 			reflection.a = fadingFactor;

@@ -7,9 +7,9 @@ void SMPass::GetReady4Render(PassOutput * input)
 
 	GLuint posDepth, vplAlbedo, vplNormal;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	posDepth = GLHelper::SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT0, true);
-	vplAlbedo = GLHelper::SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT1, false);
-	vplNormal = GLHelper::SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT2, true);
+	posDepth = GLHelper::SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_LINEAR_MIPMAP_LINEAR, GL_COLOR_ATTACHMENT0, true);
+	vplAlbedo = GLHelper::SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT1, false);
+	vplNormal = GLHelper::SetGLRenderTexture(size.w * shadowMapScale, size.h * shadowMapScale, GL_RGB32F, GL_RGB, GL_FLOAT, GL_LINEAR_MIPMAP_LINEAR, GL_COLOR_ATTACHMENT2, true);
 
 	dBuffer = GLHelper::SetGLDepthBuffer(size.w * shadowMapScale, size.h * shadowMapScale);
 
@@ -29,10 +29,15 @@ void SMPass::GetReady4Render(PassOutput * input)
 void SMPass::Render(PassOutput * input)
 {
 	Light* sun = LightManager::Instance()->GetLight(0);
-	float farCip = sun->GetPosition().Length() * 1.5f;
+	float farClip = sun->GetPosition().Length() * 1.5f;
+	float nearClip = 1.0f;
+	sun->SetNearClip(nearClip);
+	sun->SetFarClip(farClip);
+
 	float3 lookPos = followCam ? CameraManager::Instance()->GetCurrentCamera()->GetPosition() : float3(0.0f);
 	Camera cam;
-	cam.SetOrthoCamera(30.0f, 1.0f, farCip);
+	cam.SetOrthoCamera(30.0f, nearClip, farClip);
+	//cam.SetPerspectiveCamera(3.0f, nearClip, farClip);
 	cam.SetPosition(sun->GetPosition() + lookPos);
 	cam.SetRotation(sun->GetRotation());
 	CameraManager::Instance()->Push(cam);
@@ -52,7 +57,7 @@ void SMPass::Render(PassOutput * input)
 	ShaderManager::Instance()->UseShader(shaderProgram);
 
 	GLint location = glGetUniformLocation(shaderProgram, "depthClampPara");
-	glUniform1f(location, 1.0f / farCip);
+	glUniform2f(location, nearClip, 1.0f / (farClip - nearClip));
 
 	SceneManager::Instance()->DrawScene(shaderProgram);
 

@@ -1,7 +1,7 @@
 #version 430
 #define PI 3.14159265359f
-#define SIGMA_D 5.0f
-#define SIGMA_S 5.0f
+#define SIGMA_D 10.0f
+#define SIGMA_C 1.0f
 
 layout(location = 0) out vec4 sColor;
 
@@ -14,7 +14,7 @@ uniform sampler2D nMap;
 
 float GetWeight (float dis, float s)
 {
-	return exp(-0.5f * pow(dis / s, 2.0f));
+	return exp(-0.5f * pow(dis / s, 2.0f)) / sqrt(2.0f * PI * s * s);;
 }
 
 void main ()
@@ -31,7 +31,7 @@ void main ()
 	float weight;
 	
 	vec3 giColor = texture2D(giMap, uv).rgb;
-	weight = GetWeight(0.0f, SIGMA_S) * GetWeight(0.0f, SIGMA_D);
+	weight = GetWeight(0.0f, SIGMA_C) * GetWeight(0.0f, SIGMA_D);
 	sumWeight += weight;
 	sumColor += giColor * weight;
 
@@ -39,12 +39,12 @@ void main ()
 	{
 		float gaussianWeight = GetWeight(length(stepUnit.z * i), SIGMA_D);
 		vec3 sampleColor = texture2D(giMap, uv + stepUnit.xy * i).rgb;
-		weight = GetWeight(distance(giColor, sampleColor), SIGMA_S) * gaussianWeight;
+		weight = GetWeight(distance(giColor, sampleColor), SIGMA_C) * gaussianWeight;
 		sumWeight += weight;
 		sumColor += sampleColor * weight;
 
 		sampleColor = texture2D(giMap, uv + stepUnit.xy * -i).rgb;
-		weight = GetWeight(distance(giColor, sampleColor), SIGMA_S) * gaussianWeight;
+		weight = GetWeight(distance(giColor, sampleColor), SIGMA_C) * gaussianWeight;
 		sumWeight += weight;
 		sumColor += sampleColor * weight;
 	}

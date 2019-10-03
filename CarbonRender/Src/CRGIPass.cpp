@@ -7,8 +7,8 @@ void GIPass::GetReady4Render(PassOutput * input)
 
 	GLuint giRt;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	giRt = GLHelper::SetGLRenderTexture(size.w * targetScale, size.h * targetScale, GL_RGB16F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT0, false);
-	denoiseRt = GLHelper::SetGLRenderTexture(size.w * targetScale, size.h * targetScale, GL_RGB16F, GL_RGB, GL_FLOAT, GL_COLOR_ATTACHMENT1, false);
+	giRt = GLHelper::SetGLRenderTexture(size.w * targetScale, size.h * targetScale, GL_RGB16F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0, false);
+	denoiseRt = GLHelper::SetGLRenderTexture(size.w * targetScale, size.h * targetScale, GL_RGB16F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT1, false);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 

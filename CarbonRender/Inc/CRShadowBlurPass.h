@@ -2,6 +2,7 @@
 #define CR_BLURPASS
 
 #include "..\Inc\CRRenderPass.h"
+#include "..\Inc\CRCameraManager.h"
 
 class ShadowBlurPass : public RenderPass
 {

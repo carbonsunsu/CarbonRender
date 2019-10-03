@@ -12,7 +12,7 @@ uniform mat4 viewMat;
 uniform mat4 proMat;
 uniform mat3 normalMat;
 
-uniform float depthClampPara;
+uniform vec2 depthClampPara;
 
 out vec3 wsP;
 out vec2 uv;
@@ -22,7 +22,7 @@ out vec3 wsN;
 void main ()
 {
 	gl_Position = viewMat * (modelMat * msPos);
-	d = -gl_Position.z;// * depthClampPara;//exp(-gl_Position.z * 1.0f);
+	d = -gl_Position.z;
 	gl_Position = proMat * gl_Position;
 	
 	wsP = (modelMat * msPos).xyz;

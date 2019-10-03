@@ -64,5 +64,5 @@ void main ()
 	aoFactor = 1.0f - 2 * s / sampleNum * aoFactor;
 	aoFactor = pow(aoFactor, k);
 
-	sColor = vec4(shadow.r, 0.0f, aoFactor, 1.0f);
+	sColor = vec4(shadow.r, shadow.g, aoFactor, 1.0f);
 }

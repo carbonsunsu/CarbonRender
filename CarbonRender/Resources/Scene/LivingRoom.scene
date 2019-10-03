@@ -2,15 +2,15 @@
 	<World>
 		<Latitude>0.000000</Latitude>
 		<Day>180</Day>
-		<Time>17.633741</Time>
+		<Time>18.033743</Time>
 		<Turbidity>4.000000</Turbidity>
 		<Exposure>30.000000</Exposure>
 		<TimeSpeed>1500.000000</TimeSpeed>
 		<WindDirection x="0.500000" y="0.000000" z="1.000000" w="10.000000"/>
 	</World>
 	<Camera>
-		<Position x="8.959112" y="4.011511" z="-2.680590"/>
-		<Rotation x="-1.799978" y="-1100.799683" z="0.000000"/>
+		<Position x="4.947715" y="3.391177" z="-3.912703"/>
+		<Rotation x="20.800014" y="-1063.599365" z="0.000000"/>
 		<FOV>60.000000</FOV>
 		<NearClip>0.010000</NearClip>
 		<FarClip>3000.000000</FarClip>
