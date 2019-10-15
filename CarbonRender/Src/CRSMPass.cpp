@@ -39,7 +39,7 @@ void SMPass::Render(PassOutput * input)
 	//Mipmap level 0
 	float3 lookPos = followCam ? CameraManager::Instance()->GetCurrentCamera()->GetPosition() : float3(0.0f);
 	Camera cam;
-	cam.SetOrthoCamera(30.0f, nearClip, farClip);
+	cam.SetOrthoCamera(10.0f, nearClip, farClip);
 	//cam.SetPerspectiveCamera(3.0f, nearClip, farClip);
 	cam.SetPosition(sun->GetPosition() + lookPos);
 	cam.SetRotation(sun->GetRotation());
@@ -68,7 +68,7 @@ void SMPass::Render(PassOutput * input)
 	SceneManager::Instance()->DrawScene(shaderProgram);
 
 	//Mipmap level 1
-	CameraManager::Instance()->GetCurrentCamera()->SetOrthoCamera(300.0f, nearClip, farClip);
+	CameraManager::Instance()->GetCurrentCamera()->SetOrthoCamera(50.0f, nearClip, farClip);
 	output.mats[2] = CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix();
 
 	glDrawBuffer(GL_COLOR_ATTACHMENT4);
@@ -80,7 +80,7 @@ void SMPass::Render(PassOutput * input)
 	SceneManager::Instance()->DrawScene(shaderProgram);
 
 	//Mipmap level 2
-	CameraManager::Instance()->GetCurrentCamera()->SetOrthoCamera(3000.0f, nearClip, farClip);
+	CameraManager::Instance()->GetCurrentCamera()->SetOrthoCamera(1000.0f, nearClip, farClip);
 	output.mats[3] = CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix();
 
 	glDrawBuffer(GL_COLOR_ATTACHMENT5);

@@ -6,7 +6,7 @@ void ShadowBlurPass::GetReady4Render(PassOutput * input)
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	tempRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB, GL_RGB, GL_UNSIGNED_BYTE, GL_LINEAR, GL_COLOR_ATTACHMENT0);
+	GLHelper::SetGLRenderTexture(GLHelper::GetSharedRT(), GL_COLOR_ATTACHMENT0);
 	GLHelper::SetGLRenderTexture(input->RTS[0], GL_COLOR_ATTACHMENT1);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -21,8 +21,7 @@ void ShadowBlurPass::Render(PassOutput * input)
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
 	//blur x
-	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
-	glDrawBuffers(1, drawBuffers);
+	glDrawBuffer(GL_COLOR_ATTACHMENT0);
 
 	for (int i = 0; i < input->cout; i++)
 	{
@@ -49,11 +48,10 @@ void ShadowBlurPass::Render(PassOutput * input)
 	DrawFullScreenQuad();
 
 	//blur y
-	drawBuffers[0] = GL_COLOR_ATTACHMENT1;
-	glDrawBuffers(1, drawBuffers);
+	glDrawBuffer(GL_COLOR_ATTACHMENT1);
 
 	glActiveTexture(GL_TEXTURE1 + input->cout);
-	glBindTexture(GL_TEXTURE_2D, tempRt);
+	glBindTexture(GL_TEXTURE_2D, GLHelper::GetSharedRT());
 
 	location = glGetUniformLocation(shaderProgram, "stenMap");
 	glUniform1i(location, 2);

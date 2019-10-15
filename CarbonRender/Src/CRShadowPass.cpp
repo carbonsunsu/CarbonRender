@@ -9,8 +9,7 @@ void ShadowPass::GetReady4Render(PassOutput * input)
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
 	sRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0);
 
-	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
-	glDrawBuffers(1, drawBuffers);
+	glDrawBuffer(GL_COLOR_ATTACHMENT0);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 

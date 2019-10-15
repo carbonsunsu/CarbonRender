@@ -11,7 +11,6 @@ private:
 	void Render(PassOutput* input);
 
 	float stepSize = 1.0f;
-	GLuint tempRt;
 public:
 	void Init();
 };

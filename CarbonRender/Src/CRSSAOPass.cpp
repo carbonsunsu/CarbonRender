@@ -5,16 +5,16 @@ void SSAOPass::GetReady4Render(PassOutput * input)
 	glGenFramebuffers(1, &fbo);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-	GLHelper::SetGLRenderTexture(input->RTS[2], GL_COLOR_ATTACHMENT0);
+	WindowSize size = WindowManager::Instance()->GetWindowSize();
+	GLuint aoRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0);
 
-	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
-	glDrawBuffers(1, drawBuffers);
+	glDrawBuffer(GL_COLOR_ATTACHMENT0);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	output.cout = 1;
 	output.RTS = new GLuint[output.cout];
-	output.RTS[0] = input->RTS[2];
+	output.RTS[0] = aoRt;
 }
 
 void SSAOPass::Render(PassOutput * input)

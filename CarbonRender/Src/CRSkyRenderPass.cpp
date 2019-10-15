@@ -19,8 +19,7 @@ void SkyRenderPass::GetReady4Render(PassOutput* input)
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
 	rt0 = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB16F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0);
 
-	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
-	glDrawBuffers(1, drawBuffers);
+	glDrawBuffer(GL_COLOR_ATTACHMENT0);
 
 	glGenFramebuffers(1, &fboCube);
 	glBindFramebuffer(GL_FRAMEBUFFER, fboCube);
@@ -89,8 +88,7 @@ void SkyRenderPass::Render(PassOutput* input)
 					float3(0.0f, 0.0f, 180.0f) };
 
 	glBindFramebuffer(GL_FRAMEBUFFER, fboCube);
-	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT1 };
-	glDrawBuffers(1, drawBuffers);
+	glDrawBuffer(GL_COLOR_ATTACHMENT1);
 	for (int i = 0; i < 6; i++)
 	{
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, output.RTS[1], 0);

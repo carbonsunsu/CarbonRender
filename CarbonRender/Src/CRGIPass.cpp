@@ -21,8 +21,7 @@ void GIPass::Render(PassOutput * input)
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
-	glDrawBuffers(1, drawBuffers);
+	glDrawBuffer(GL_COLOR_ATTACHMENT0);
 
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
 	glViewport(0, 0, size.w * targetScale, size.h * targetScale);
@@ -68,8 +67,7 @@ void GIPass::Render(PassOutput * input)
 	}
 	/**/ 
 	//Denoise x 
-	drawBuffers[0] = GL_COLOR_ATTACHMENT1;
-	glDrawBuffers(1, drawBuffers);
+	glDrawBuffer(GL_COLOR_ATTACHMENT1);
 
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, input->RTS[5]);
@@ -93,8 +91,7 @@ void GIPass::Render(PassOutput * input)
 	DrawFullScreenQuad();
 
 	//Denoise y
-	drawBuffers[0] = GL_COLOR_ATTACHMENT0;
-	glDrawBuffers(1, drawBuffers);
+	glDrawBuffer(GL_COLOR_ATTACHMENT0);
 
 	glActiveTexture(GL_TEXTURE3);
 	glBindTexture(GL_TEXTURE_2D, denoiseRt);
