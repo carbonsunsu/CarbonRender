@@ -29,10 +29,14 @@ void WeatherSystem::Init()
 	exposure = 30.0f;
 	timeSpeed = 150.0f;
 	isTimeStop = true;
-	lightR = 1000.0f;
+	lightR = 3000.0f;
 	windDir = float4(0.5f, 0.0f, 1.0f, 10.0f);
 	cloudBias = float3(0.0f);
 	Light sun(LightType::eDirection, 1.0f);
+	sun.SetNearClip(1.0f);
+	sun.SetFarClip(lightR * 1.5f);
+	sun.SetLightSize(0.009342f * lightR);
+	sun.SetShadowMapSize(2048);
 	sunLight = LightManager::Instance()->AddLight(sun);
 	cloudCoverage = 0.32f;
 

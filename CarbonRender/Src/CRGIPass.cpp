@@ -7,8 +7,8 @@ void GIPass::GetReady4Render(PassOutput * input)
 
 	GLuint giRt;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	giRt = GLHelper::SetGLRenderTexture(size.w * targetScale, size.h * targetScale, GL_RGB16F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0, false);
-	denoiseRt = GLHelper::SetGLRenderTexture(size.w * targetScale, size.h * targetScale, GL_RGB16F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT1, false);
+	giRt = GLHelper::SetGLRenderTexture(size.w * targetScale, size.h * targetScale, GL_RGB16F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0);
+	denoiseRt = GLHelper::SetGLRenderTexture(size.w * targetScale, size.h * targetScale, GL_RGB16F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT1);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
@@ -53,8 +53,9 @@ void GIPass::Render(PassOutput * input)
 	location = glGetUniformLocation(shaderProgram, "smProMat");
 	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[1].matrix);
 
+	int shadowMapSize = LightManager::Instance()->GetLight(0)->GetShadowMapSize();
 	location = glGetUniformLocation(shaderProgram, "stepUnit");
-	glUniform2f(location, 1.0f / size.w, 1.0f / size.h);
+	glUniform2f(location, 1.0f / shadowMapSize, 1.0f / shadowMapSize);
 	location = glGetUniformLocation(shaderProgram, "sunColor");
 	glUniform3f(location, sunColor.x, sunColor.y, sunColor.z);
 

@@ -5,11 +5,15 @@ layout(location = 0) out vec4 sColor;
 in vec2 uv;
 
 uniform sampler2D pMap;
-uniform sampler2D smMap;
+uniform sampler2D smMapLv0;
+uniform sampler2D smMapLv1;
+uniform sampler2D smMapLv2;
 uniform sampler2D stenMap;
 uniform sampler2D nMap;
 uniform mat4 smViewMat;
-uniform mat4 smProMat;
+uniform mat4 smProMatLv0;
+uniform mat4 smProMatLv1;
+uniform mat4 smProMatLv2;
 uniform vec2 stepUnit;
 uniform vec2 depthClampPara;
 uniform vec3 lightPos;
@@ -30,6 +34,39 @@ bool IsInScreen (vec2 ssPos)
 	return ssPos.x >= 0.0f && ssPos.x <= 1.0f && ssPos.y >= 0.0f && ssPos.y <= 1.0f;
 }
 
+vec2 GetShadowUV (vec4 pos, out int level)
+{
+	level = 0;
+	vec4 smPos = smProMatLv0 * pos;
+	vec2 smUV = smPos.xy / smPos.w * 0.5f + 0.5f;
+	
+	if (!IsInScreen(smUV))
+	{
+		level = 1;
+		smPos = smProMatLv1 * pos;
+		smUV = smPos.xy / smPos.w * 0.5f + 0.5f;
+		
+		if (!IsInScreen(smUV))
+		{
+			level = 2;
+			smPos = smProMatLv2 * pos;
+			smUV = smPos.xy / smPos.w * 0.5f + 0.5f;
+		}
+	}
+
+	return smUV;
+}
+
+sampler2D GetShadowSampler(int level)
+{
+	if (level == 0)
+		return smMapLv0;
+	else if (level == 1)
+		return smMapLv1;
+	else
+		return smMapLv2;
+}
+
 void main ()
 {
 	vec4 stencil = texture2D(stenMap, uv);
@@ -43,8 +80,8 @@ void main ()
 	vec3 wsPos = pMapSample.xyz;
 	vec4 smPos = smViewMat * vec4(wsPos, 1.0f);
 	float rcverDepth = -smPos.z;
-	smPos = smProMat * smPos;
-	vec2 smUV = smPos.xy / smPos.w * 0.5f + 0.5f;
+	int shadowLv = 0;
+	vec2 smUV = GetShadowUV(smPos, shadowLv);
 
 	//change bias according angle between normal and light vector
 	vec3 lightV = lightPos;
@@ -60,7 +97,7 @@ void main ()
 		float searchR = (lightSize * rcverDepth) / (rcverDepth - depthClampPara.x);
 		float avgBlkerDepth = 0.0f;
 		int sampleCount = 0;
-		int sampleNum = 2;
+		int sampleNum = shadowLv == 0 ? 2 : 0;
 		for (int i = -sampleNum; i <= sampleNum; i++)
 		{
 			for (int j = -sampleNum; j <= sampleNum; j++)
@@ -68,7 +105,7 @@ void main ()
 				vec2 sampleUV = smUV + stepUnit * vec2(i, j) * searchR * 2.0f / lightSize;
 				if (IsInScreen(sampleUV))
 				{
-					float blkerDepth = texture2D(smMap, sampleUV).a;
+					float blkerDepth = texture2D(GetShadowSampler(shadowLv), sampleUV).r;
 					if (blkerDepth < rcverDepth - shadowBias)
 					{
 						avgBlkerDepth += blkerDepth;
@@ -85,9 +122,10 @@ void main ()
 		avgBlkerDepth /= sampleCount;
 		
 		float penumbraSize = lightSize * (rcverDepth - avgBlkerDepth) / avgBlkerDepth;
+		penumbraSize = shadowLv == 0 ? penumbraSize : 0.0f;
 		sFactor = 0.0f;
 		sampleCount = 0;
-		sampleNum = 4;
+		sampleNum = shadowLv == 0 ? 4 : 0;
 		for (int i = -sampleNum; i <= sampleNum; i++)
 		{
 			for (int j = -sampleNum; j <= sampleNum; j++)
@@ -95,7 +133,7 @@ void main ()
 				vec2 sampleUV = smUV + stepUnit * vec2(i, j) * penumbraSize;
 				if (IsInScreen(sampleUV))
 				{
-					float blkerDepth = texture2D(smMap, sampleUV).a;
+					float blkerDepth = texture2D(GetShadowSampler(shadowLv), sampleUV).r;
 					sFactor += blkerDepth < rcverDepth - shadowBias ? 0.0f : 1.0f;
 					sampleCount += 1;
 				}

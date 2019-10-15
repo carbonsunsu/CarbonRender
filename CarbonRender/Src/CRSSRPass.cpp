@@ -7,7 +7,7 @@ void SSRPass::GetReady4Render(PassOutput * input)
 
 	GLuint reflectionRt;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	reflectionRt = GLHelper::SetGLRenderTexture(size.w * targetScale, size.h * targetScale, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_LINEAR_MIPMAP_LINEAR, GL_COLOR_ATTACHMENT0, true);
+	reflectionRt = GLHelper::SetGLRenderTexture(size.w * targetScale, size.h * targetScale, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_LINEAR_MIPMAP_LINEAR, GL_COLOR_ATTACHMENT0);
 
 	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
 	glDrawBuffers(1, drawBuffers);

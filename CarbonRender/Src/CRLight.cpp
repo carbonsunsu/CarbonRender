@@ -5,6 +5,10 @@ Light::Light(LightType iType, float iIntensity)
 	objType = ObjectType::eLight;
 	lightType = iType;
 	SetIntensity(iIntensity);
+	lightSize = 1.0f;
+	nearClip = 1.0f;
+	farClip = 100.0f;
+	shadowMapSize = 2048;
 }
 
 Light::~Light()
@@ -54,4 +58,24 @@ void Light::SetFarClip(float far)
 float Light::GetFarClip()
 {
 	return farClip;
+}
+
+void Light::SetLightSize(float size)
+{
+	lightSize = size;
+}
+
+float Light::GetLightSize()
+{
+	return lightSize;
+}
+
+void Light::SetShadowMapSize(int size)
+{
+	shadowMapSize = size;
+}
+
+int Light::GetShadowMapSize()
+{
+	return shadowMapSize;
 }

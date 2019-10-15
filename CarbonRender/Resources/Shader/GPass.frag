@@ -9,6 +9,7 @@ in vec3 wsP;
 in vec2 uv;
 in mat3 TBN;
 in float d;
+in vec4 vertexColor;
 
 uniform mat3 normalMat;
 uniform sampler2D albedoMap;

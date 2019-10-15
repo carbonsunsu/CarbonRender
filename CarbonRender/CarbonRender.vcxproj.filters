@@ -310,6 +310,9 @@
     <None Include="Resources\Scene\ShadowTest.scene">
       <Filter>Scene</Filter>
     </None>
+    <None Include="Resources\Scene\ShadowTest_BigScene.scene">
+      <Filter>Scene</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Resources\Scene\Sponza.scene">

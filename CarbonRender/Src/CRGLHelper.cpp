@@ -1,5 +1,7 @@
 #include "..\Inc\CRGLHelper.h"
 
+GLuint GLHelper::sharedRT = -1;
+
 void GLHelper::SetGLArrayBuffer(GLuint bIndex, GLsizeiptr bSize, const GLvoid* bData, GLuint eSize, GLenum eType, GLuint aPos)
 {
 	glBindBuffer(GL_ARRAY_BUFFER, bIndex);
@@ -9,22 +11,14 @@ void GLHelper::SetGLArrayBuffer(GLuint bIndex, GLsizeiptr bSize, const GLvoid* b
 	glBindBuffer(GL_ARRAY_BUFFER, NULL);
 }
 
-GLuint GLHelper::SetGLRenderTexture(GLsizei w, GLsizei h, GLint internalFormat, GLenum format, GLenum type, GLint filter, GLenum attach, bool mipmap)
+GLuint GLHelper::SetGLRenderTexture(GLsizei w, GLsizei h, GLint internalFormat, GLenum format, GLenum type, GLint filter, GLenum attach)
 {
 	GLuint rt;
 	glGenTextures(1, &rt);
 	glBindTexture(GL_TEXTURE_2D, rt);
 	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, w, h, 0, format, type, NULL);
-	if (mipmap)
-	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
-	}
-	else
-	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
-	}
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, attach, GL_TEXTURE_2D, rt, 0);
@@ -69,4 +63,21 @@ GLuint GLHelper::SetGLDepthBuffer(GLsizei w, GLsizei h)
 	glBindRenderbuffer(GL_RENDERBUFFER, 0);
 
 	return buffer;
+}
+
+void GLHelper::InitSharedRT(GLsizei w, GLsizei h, GLint internalFormat, GLenum format, GLenum type, GLint filter)
+{
+	glGenTextures(1, &sharedRT);
+	glBindTexture(GL_TEXTURE_2D, sharedRT);
+	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, w, h, 0, format, type, NULL);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+GLuint GLHelper::GetSharedRT()
+{
+	return sharedRT;
 }

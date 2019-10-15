@@ -20,6 +20,8 @@ RenderPassManager * RenderPassManager::Instance()
 
 void RenderPassManager::Init()
 {
+	WindowSize size = WindowManager::Instance()->GetWindowSize();
+	GLHelper::InitSharedRT(size.w, size.h, GL_RGB32F, GL_RGB, GL_FLOAT, GL_LINEAR);
 	skyPass.Init();
 	finalPass.Init();
 	gPass.Init();
@@ -35,9 +37,9 @@ void RenderPassManager::Init()
 
 void RenderPassManager::Draw()
 {
-	PassOutput* sm = smPass.Draw(NULL);//pos and depth, albedo, normal
-	PassOutput* sky = skyPass.Draw(NULL);//sky, sky cube
-	PassOutput* g = gPass.Draw(NULL);//albedo, normal and depth, position, stensil
+	PassOutput* sm = smPass.Draw(NULL);//0:pos, 1:albedo, 2:normal, 3:depthMapLv0, 4:depthMapLv1, 5:depthMapLv2
+	PassOutput* sky = skyPass.Draw(NULL);//0:sky, 1:sky cube
+	PassOutput* g = gPass.Draw(NULL);//0:albedo, 1:normal and depth, 2:position, 3:stensil
 
 	PassOutput cInput;
 	cInput.cout = 1;
@@ -46,12 +48,14 @@ void RenderPassManager::Draw()
 	PassOutput* cloud = cloudPass.Draw(&cInput);//cloud
 
 	PassOutput sInput;
-	sInput.cout = 4;
+	sInput.cout = 6;
 	sInput.RTS = new GLuint[sInput.cout];
 	sInput.RTS[0] = g->RTS[2];
-	sInput.RTS[1] = sm->RTS[0];
+	sInput.RTS[1] = sm->RTS[3];
 	sInput.RTS[2] = g->RTS[3];
 	sInput.RTS[3] = g->RTS[1];
+	sInput.RTS[4] = sm->RTS[4];
+	sInput.RTS[5] = sm->RTS[5];
 	sInput.mats = sm->mats;
 	PassOutput* shadow = shadowPass.Draw(&sInput);//shadow
 

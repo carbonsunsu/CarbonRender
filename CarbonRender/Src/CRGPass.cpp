@@ -7,10 +7,10 @@ void GPass::GetReady4Render(PassOutput * input)
 
 	GLuint rt_n, rt_albedo, rt_p, rt_stencil;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	rt_albedo = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE, GL_LINEAR, GL_COLOR_ATTACHMENT0, false);
-	rt_n = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT1, false);
-	rt_p = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT2, false);
-	rt_stencil = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB, GL_RGB, GL_UNSIGNED_INT, GL_LINEAR, GL_COLOR_ATTACHMENT3, false);
+	rt_albedo = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE, GL_LINEAR, GL_COLOR_ATTACHMENT0);
+	rt_n = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT1);
+	rt_p = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT2);
+	rt_stencil = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB, GL_RGB, GL_UNSIGNED_INT, GL_LINEAR, GL_COLOR_ATTACHMENT3);
 
 	dBuffer = GLHelper::SetGLDepthBuffer(size.w, size.h);
 

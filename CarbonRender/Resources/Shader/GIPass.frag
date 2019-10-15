@@ -16,7 +16,7 @@ uniform mat4 smProMat;
 uniform vec2 stepUnit;
 uniform vec3 sunColor;
 
-const float vplLod = 5.5f;
+const float vplLod = 0.0f;
 const int r = 50;
 const int sampleNum = 8;
 
@@ -30,16 +30,24 @@ float Random (vec2 i, float seed)
 	return fract(tan(distance(i * (seed + phi), vec2(phi, pi))) * srt) * 2.0f - 1.0f;
 }
 
+bool IsInScreen (vec2 ssPos)
+{
+	return ssPos.x >= 0.0f && ssPos.x <= 1.0f && ssPos.y >= 0.0f && ssPos.y <= 1.0f;
+}
+
 vec3 SampleVPL (vec2 uv, vec3 wsP, vec3 wsN)
 {
-	vec3 vplPos = textureLod(vplPMap, uv, vplLod).xyz;
+	if (!IsInScreen(uv))
+		return vec3(0.0f, 0.0f, 0.0f);
+
+	vec3 vplPos = texture2D(vplPMap, uv).xyz;
 	vec3 vplColor = texture2D(vplAMap, uv).xyz;
-	vec3 vplN = textureLod(vplNMap, uv, vplLod).xyz;
+	vec3 vplN = texture2D(vplNMap, uv).xyz;
 	vec3 v = normalize(wsP - vplPos);
 	float d = max(distance(wsP, vplPos), 1.0f);
 
 	float intensity = max(0.0f, dot(vplN, v)) * max(0.0f, dot(wsN, -v)) / (d*d);
-	return intensity * vplColor * sunColor * 0.5f;
+	return intensity * vplColor * sunColor;
 }
 
 void main ()

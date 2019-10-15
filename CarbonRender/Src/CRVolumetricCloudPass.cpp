@@ -7,7 +7,7 @@ void VolumetricCloudPass::GetReady4Render(PassOutput * input)
 
 	GLuint couldRt;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	couldRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0, false);
+	couldRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0);
 	dBuffer = GLHelper::SetGLDepthBuffer(size.w, size.h);
 
 	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };

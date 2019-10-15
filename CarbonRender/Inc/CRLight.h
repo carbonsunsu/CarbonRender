@@ -19,6 +19,8 @@ private:
 
 	float nearClip;
 	float farClip;
+	float lightSize;
+	int shadowMapSize;
 
 public:
 	Light(LightType iType, float iIntensity);
@@ -34,6 +36,10 @@ public:
 	float GetNearClip();
 	void SetFarClip(float far);
 	float GetFarClip();
+	void SetLightSize(float size);
+	float GetLightSize();
+	void SetShadowMapSize(int size);
+	int GetShadowMapSize();
 };
 
 #endif

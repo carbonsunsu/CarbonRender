@@ -92,6 +92,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Resources\Scene\ShadowTest.scene" />
+    <None Include="Resources\Scene\ShadowTest_BigScene.scene" />
     <None Include="Resources\Shader\Atmosphere.frag" />
     <None Include="Resources\Shader\Atmosphere.vert" />
     <None Include="Resources\Shader\GIDenoise.frag" />

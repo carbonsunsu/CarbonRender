@@ -16,6 +16,7 @@ out vec3 wsP;
 out vec2 uv;
 out mat3 TBN;
 out float d;
+out vec4 vertexColor;
 
 void main ()
 {
@@ -31,4 +32,5 @@ void main ()
 	
 	wsP = (modelMat * msPos).xyz;
 	uv = uvs.xy;
+	vertexColor = vColor;
 }
