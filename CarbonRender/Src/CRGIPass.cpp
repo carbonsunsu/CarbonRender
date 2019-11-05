@@ -33,7 +33,7 @@ void GIPass::Render(PassOutput * input)
 	}
 
 	ShaderManager::Instance()->UseShader(shaderProgram);
-	float3 sunColor = LightManager::Instance()->GetLight(0)->GetColor() * 2.0f;
+	float3 sunColor = LightManager::Instance()->GetLight(0)->GetColor();
 	GLint location = glGetUniformLocation(shaderProgram, "pMap");
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "nMap");

@@ -25,7 +25,7 @@ void MenuManager::InitMenu()
 
 	glutSetMenu(mainMenu);
 
-	glutAttachMenu(GLUT_RIGHT_BUTTON);
+	glutAttachMenu(GLUT_MIDDLE_BUTTON);
 }
 
 void MenuManager::OnMainMenu(int value)

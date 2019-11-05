@@ -202,7 +202,7 @@ void Controller::MouseMotionCallback(int x, int y)
 {
 	switch (curMouseButton)
 	{
-	case GLUT_LEFT_BUTTON:
+	case GLUT_RIGHT_BUTTON:
 		float3 curR = CameraManager::Instance()->GetCurrentCamera()->GetRotation();
 		curR.y += (x - lastMousePos[0]) * sensitivity[0];
 		curR.x += (y - lastMousePos[1]) * sensitivity[1];
