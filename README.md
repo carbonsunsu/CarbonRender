@@ -12,9 +12,10 @@ A real-time rendering engine based on C++ and OpenGL
 
 * Linear space lighting
 
-* PCSS shadow
+* PCSS & CSM shadow
 
-![AO](CarbonRender/ScreenShots/PCSS.png)
+![PCSS](CarbonRender/ScreenShots/PCSS.png)
+![CSM](CarbonRender/ScreenShots/CSM.png)
 
 * Alchemy AO
 
@@ -27,14 +28,14 @@ A real-time rendering engine based on C++ and OpenGL
 * Screen space reflection
 
 
-![GI](CarbonRender/ScreenShots/SSR.png)
+![SSR](CarbonRender/ScreenShots/SSR.png)
 
 * Real-time volumetric cloud
 
 * Real-time atmosphere scattering
 
 
-![GI](CarbonRender/ScreenShots/VolumetricCloud.gif)
+![CLOUD](CarbonRender/ScreenShots/VolumetricCloud.gif)
 
 
 ### **Future Work:**
