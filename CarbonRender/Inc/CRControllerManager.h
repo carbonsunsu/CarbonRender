@@ -2,18 +2,19 @@
 #define CR_CTRLMANAGER
 
 #include "..\Inc\CRController.h"
+#include "..\Inc\CRFreeController.h"
 
 class ControllerManager 
 {
 private:
 	ControllerManager();
 	static ControllerManager* ins;
-	stack<Controller> ctrls;
+	stack<Controller*> ctrls;
 
 public:
 	~ControllerManager();
 	static ControllerManager* Instance();
-	void Push(Controller ctrl);
+	void Push(Controller* ctrl);
 	void Pop();
 	Controller* GetCurrentController();
 };

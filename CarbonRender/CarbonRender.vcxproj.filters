@@ -141,6 +141,9 @@
     <ClCompile Include="Src\CRMenuManager.cpp">
       <Filter>源文件\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Src\CRFreeController.cpp">
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRFinalPass.h">
@@ -246,6 +249,9 @@
       <Filter>头文件\Core</Filter>
     </ClInclude>
     <ClInclude Include="Inc\CRMenuManager.h">
+      <Filter>头文件\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRFreeController.h">
       <Filter>头文件\Core</Filter>
     </ClInclude>
   </ItemGroup>

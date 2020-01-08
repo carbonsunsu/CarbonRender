@@ -88,8 +88,8 @@ void SceneManager::LoadScene(char* sceneName)
 	cam.SetPerspectiveCamera(a[0], a[1], a[2]);
 	CameraManager::Instance()->Push(cam);
 
-	Controller ctrl;
-	ctrl.Init();
+	FreeController *ctrl = new FreeController();
+	ctrl->Init();
 	ControllerManager::Instance()->Push(ctrl);
 
 	l1Node = root->first_node("Objects");

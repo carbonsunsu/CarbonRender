@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\CRConfigManager.cpp" />
+    <ClCompile Include="Src\CRFreeController.cpp" />
     <ClCompile Include="Src\CRGIPass.cpp" />
     <ClCompile Include="Src\CRGLHelper.cpp" />
     <ClCompile Include="Src\CRLight.cpp" />
@@ -49,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRConfigManager.h" />
+    <ClInclude Include="Inc\CRFreeController.h" />
     <ClInclude Include="Inc\CRGIPass.h" />
     <ClInclude Include="Inc\CRGLHelper.h" />
     <ClInclude Include="Inc\CRLight.h" />

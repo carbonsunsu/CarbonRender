@@ -22,17 +22,18 @@ ControllerManager * ControllerManager::Instance()
 	return ins;
 }
 
-void ControllerManager::Push(Controller ctrl)
+void ControllerManager::Push(Controller* ctrl)
 {
 	ctrls.push(ctrl);
 }
 
 void ControllerManager::Pop()
 {
+	delete ctrls.top();
 	ctrls.pop();
 }
 
 Controller * ControllerManager::GetCurrentController()
 {
-	return &ctrls.top();
+	return ctrls.top();
 }
