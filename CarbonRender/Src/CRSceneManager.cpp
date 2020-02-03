@@ -233,14 +233,12 @@ void SceneManager::ReadObjFromXMLNode(xml_node<>* xmlNode, Object * sceneNodePar
 	transInfo.z = atof(l0Node->first_attribute("z")->value());
 	newObj->SetPosition(transInfo);
 
-	transInfo;
 	l0Node = xmlNode->first_node("Rotation");
 	transInfo.x = atof(l0Node->first_attribute("x")->value());
 	transInfo.y = atof(l0Node->first_attribute("y")->value());
 	transInfo.z = atof(l0Node->first_attribute("z")->value());
 	newObj->SetRotation(transInfo);
 
-	transInfo;
 	l0Node = xmlNode->first_node("Scale");
 	transInfo.x = atof(l0Node->first_attribute("x")->value());
 	transInfo.y = atof(l0Node->first_attribute("y")->value());

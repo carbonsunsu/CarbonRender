@@ -75,6 +75,7 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	glUniform3f(location, sunColor.x, sunColor.y, sunColor.z);
 	location = glGetUniformLocation(shaderProgram, "zenithColor");
 	glUniform3f(location, zenithColor.x, zenithColor.y, zenithColor.z);
+	
 
 	location = glGetUniformLocation(shaderProgram, "wsCamPos");
 	glUniform3f(location, camPos.x, camPos.y, camPos.z);
@@ -84,11 +85,12 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	location = glGetUniformLocation(shaderProgram, "cloudBias");
 	glUniform3f(location, cloudBias.x, cloudBias.y, cloudBias.z);
 
-	location = glGetUniformLocation(shaderProgram, "Coverage");
+	location = glGetUniformLocation(shaderProgram, "CoverageFactor");
 	glUniform1f(location, WeatherSystem::Instance()->GetCloudCoverage());
+	cout << WeatherSystem::Instance()->GetCloudCoverage() << endl;
 
 	cloudBox.SetPosition(camPos);
-	cloudBox.SetScale(float3(5.0f, 5.0f, 5.0f));
+	cloudBox.SetScale(float3(20.0f, 20.0f, 20.0f));
 	cloudBox.SetRotation(camRot);
 	MeshObject* cloudBoxMesh = (MeshObject*)cloudBox.GetFirstChild();
 	cloudBoxMesh->Render(shaderProgram, false);
@@ -143,7 +145,7 @@ void VolumetricCloudPass::GenerateTex()
 		for (int j = 0; j < 128; j++)
 			for (int k = 0; k < 128; k++)
 			{
-				float3 uv = float3(i / 128.0f, j / 128.0f, k / 128.0f);
+				float3 uv = float3(i * 0.0078125f, j * 0.0078125f, k * 0.0078125f);
 				if (fileExist)
 				{
 					float noise;
@@ -161,23 +163,31 @@ void VolumetricCloudPass::GenerateTex()
 				}
 				else
 				{
-					float freqs0[3] = { 2.0f, 8.0f, 14.0f };
-					float noise = Math::Remap(Noise::PerlinFbm(uv, 8.0f, 3), 0.0f, 1.0f, Noise::WorleyFbm(uv, 4.0f, freqs0), 1.0f) * 255;
+					float cellCount = 16.0f;
+					float worleyNoise0 = Noise::WorleyNoise(uv, cellCount * 2.0f);
+					float worleyNoise1 = Noise::WorleyNoise(uv, cellCount * 4.0f);
+					float worleyNoise2 = Noise::WorleyNoise(uv, cellCount * 8.0f);
+					float worleyNoise3 = Noise::WorleyNoise(uv, cellCount * 14.0f);
+					float worleyNoise4 = Noise::WorleyNoise(uv, cellCount * 16.0f);
+					float worleyNoise5 = Noise::WorleyNoise(uv, cellCount * 32.0f);
+					
+					float worleyFbm = worleyNoise0 * 0.625f + worleyNoise2 * 0.25f + worleyNoise3 * 0.125f;
+					float noise = Math::Remap(Noise::PerlinFbm(uv, 8.0f, 3), 0.0f, 1.0f, worleyFbm, 1.0f) * 255;
 					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 0] = (GLubyte)noise;
 					pwNoiseFile.write((char*)&noise, sizeof(float));
 
-					float freqs1[3] = { 1.0f, 2.0f, 4.0f };
-					noise = Noise::WorleyFbm(uv, 4.0f, freqs1) * 255;
+					worleyFbm = worleyNoise0 * 0.625f + worleyNoise1 * 0.25f + worleyNoise2 * 0.125f;
+					noise = worleyFbm * 255;
 					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 1] = (GLubyte)noise;
 					pwNoiseFile.write((char*)&noise, sizeof(float));
 
-					float freqs2[3] = { 2.0f, 4.0f, 8.0f };
-					noise = Noise::WorleyFbm(uv, 4.0f, freqs2) * 255;
+					worleyFbm = worleyNoise1 * 0.625f + worleyNoise2 * 0.25f + worleyNoise3 * 0.125f;
+					noise = worleyFbm * 255;
 					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 2] = (GLubyte)noise;
 					pwNoiseFile.write((char*)&noise, sizeof(float));
 
-					float freqs3[3] = { 4.0f, 8.0f, 14.0f };
-					noise = Noise::WorleyFbm(uv, 4.0f, freqs3) * 255;
+					worleyFbm = worleyNoise2 * 0.625f + worleyNoise4 * 0.25f + worleyNoise5 * 0.125f;
+					noise = worleyFbm * 255;
 					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 3] = (GLubyte)noise;
 					pwNoiseFile.write((char*)&noise, sizeof(float));
 				}
@@ -196,7 +206,7 @@ void VolumetricCloudPass::GenerateTex()
 		for (int j = 0; j < 32; j++)
 			for (int k = 0; k < 32; k++)
 			{
-				float3 uv = float3(i / 32.0f, j / 32.0f, k / 32.0f);
+				float3 uv = float3(i * 0.03125f, j * 0.03125f, k * 0.03125f);
 				if (fileExist)
 				{
 					float noise;
@@ -211,18 +221,25 @@ void VolumetricCloudPass::GenerateTex()
 				}
 				else
 				{
-					float freqs0[3] = { 1.0f, 2.0f, 4.0f };
-					float noise = Noise::WorleyFbm(uv, 2.0f, freqs0) * 255;
+					float cellCount = 8.0f;
+					float worleyNoise0 = Noise::WorleyNoise(uv, cellCount * 1.0f);
+					float worleyNoise1 = Noise::WorleyNoise(uv, cellCount * 2.0f);
+					float worleyNoise2 = Noise::WorleyNoise(uv, cellCount * 4.0f);
+					float worleyNoise3 = Noise::WorleyNoise(uv, cellCount * 8.0f);
+					float worleyNoise4 = Noise::WorleyNoise(uv, cellCount * 16.0f);
+
+					float worleyFbm = worleyNoise0 * 0.625f + worleyNoise1 * 0.25f + worleyNoise2 * 0.125f;
+					float noise = worleyFbm * 255;
 					worley[i * 32 * 32 * 3 + j * 32 * 3 + k * 3 + 0] = (GLubyte)noise;
 					wNoiseFile.write((char*)&noise, sizeof(float));
 
-					float freqs1[3] = { 2.0f, 4.0f, 8.0f };
-					noise = Noise::WorleyFbm(uv, 2.0f, freqs1) * 255;
+					worleyFbm = worleyNoise1 * 0.625f + worleyNoise2 * 0.25f + worleyNoise3 * 0.125f;
+					noise = worleyFbm * 255;
 					worley[i * 32 * 32 * 3 + j * 32 * 3 + k * 3 + 1] = (GLubyte)noise;
 					wNoiseFile.write((char*)&noise, sizeof(float));
 
-					float freqs2[3] = { 4.0f, 8.0f, 16.0f };
-					noise = Noise::WorleyFbm(uv, 2.0f, freqs2) * 255;
+					worleyFbm = worleyNoise2 * 0.625f + worleyNoise3 * 0.25f + worleyNoise4 * 0.125f;
+					noise = worleyFbm * 255;
 					worley[i * 32 * 32 * 3 + j * 32 * 3 + k * 3 + 2] = (GLubyte)noise;
 					wNoiseFile.write((char*)&noise, sizeof(float));
 				}
@@ -250,5 +267,5 @@ void VolumetricCloudPass::GenerateTex()
 
 	noises[2] = TextureManager::Instance()->LoadTexture("CurlNoise");
 
-	weatherData = TextureManager::Instance()->LoadTexture("Weather2");
+	weatherData = TextureManager::Instance()->LoadTexture("Weather1");
 }
