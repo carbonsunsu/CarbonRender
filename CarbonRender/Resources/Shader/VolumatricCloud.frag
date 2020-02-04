@@ -41,8 +41,10 @@ const vec3 randomV[6] = vec3[6](vec3(0.38051305f,  0.92453449f, -0.02111345f),
 								 vec3(-0.16852403f,  0.14748697f,  0.97460106f));
 
 const vec4 StratusFactor = vec4(0.0f, 0.1f, 0.2f, 0.3f);
-const vec4 CumulusFactor = vec4(0.5f, 0.6f, 0.9f, 1.0f);//vec4(0.05f, 0.25f, 0.45f, 0.65f);
+const vec4 CumulusFactor = vec4(0.05f, 0.25f, 0.45f, 0.65f);
 const vec4 CumulonumbisFactor = vec4(0.0f, 0.05f, 0.7f, 0.9f);
+
+const float MAX_FOG_ALTITUDE = 10.0f;
 
 float Remap(float value, float oldMin, float oldMax, float newMin, float newMax)
 {
@@ -117,10 +119,10 @@ float SampleCloudDensity(vec3 pos, float mipmap, bool useCheapWay)
 	lfFbm = Remap(noise.r, lfFbm - 1.0f, 1.0f, 0.0f, 1.0f);
 	lfFbm = clamp(lfFbm, 0.0f, 1.0f);
 
-	vec4 sf = StratusFactor * (1.0f - clamp(weather.b * 2.0f, 0.0f, 1.0f));
-	vec4 cf = CumulusFactor * (1.0f - abs(weather.b - 0.5f) * 2.0f);
-	vec4 cbf = CumulonumbisFactor * clamp(weather.b - 0.5f, 0.0f, 1.0f) * 2.0f;
-	float typeGrad = GetCloudTypeGradient(heightF, sf + cf + cbf);
+	vec4 typeFactor = StratusFactor * (1.0f - clamp(weather.b * 2.0f, 0.0f, 1.0f));
+	typeFactor += CumulusFactor * (1.0f - abs(weather.b - 0.5f) * 2.0f);
+	typeFactor += CumulonumbisFactor * clamp(weather.b - 0.5f, 0.0f, 1.0f) * 2.0f;
+	float typeGrad = GetCloudTypeGradient(heightF, typeFactor);
 	lfFbm *= typeGrad;
 
 	float coverage = weather.r;
@@ -131,11 +133,12 @@ float SampleCloudDensity(vec3 pos, float mipmap, bool useCheapWay)
 	{
 		//do curl
 		vec4 curlNoise = texture2D(curlMap, uvw.xz);
-		uvw.xz += curlNoise.xz * clamp(heightF * 2.0f, 0.0f, 1.0f);
+		uvw.xz += curlNoise.xz * clamp(heightF * 5.0f, 0.0f, 1.0f);
 
-		noise = textureLod(worleyMap, uvw * 0.15f, mipmap);
+		noise = textureLod(worleyMap, uvw * 0.6f, mipmap);
 		float hfFbm = noise.r * 0.625f + noise.g * 0.25f + noise.b * 0.125f;
 		hfFbm = 1.0f - hfFbm;
+		hfFbm *= clamp((heightF - typeFactor.x) / (typeFactor.w - typeFactor.x) * 10.0f * 0.12f, 0.0f, 1.0f);
 		lfFbm = Remap(lfFbm, hfFbm * 0.5f, 1.0f, 0.0f, 1.0f);
 	}
 
@@ -165,13 +168,15 @@ vec3 ConeTracingLight(vec3 pos, float density, vec3 lightRay, float stepSize, ve
 		float sampleDensity = SampleCloudDensity(lightSamplePos, mipmapLev, false);
 
 		if (sampleDensity > 0.0f)
-		{
-			accumDensity += sampleDensity;
 			lightRayDensity += sampleDensity;
-		}
 
 		centerPos += sampleStep;
 	}
+
+	lightSamplePos = pos + sampleStep * 8.0f;
+	float sampleDensity = SampleCloudDensity(lightSamplePos, mipmapLev, false);
+	if (sampleDensity > 0.0f)
+		lightRayDensity += sampleDensity;
 
 	float vol = dot(viewRay, lightRay);
 	sColor *= 2.0f * Beers(lightRayDensity, precipitation);
@@ -184,6 +189,14 @@ void main ()
 {
 	vec3 viewRay = normalize(wsP.xyz - wsCamPos);
 	vec3 lightRay = normalize(wsSunPos);
+
+	//Volumetric fog
+	for (int i = 0; i < SAMPLE_COUNT; i++)
+	{
+		
+	}
+
+	//Volumetric cloud
 	vec3 vL = normalize(PLANET_CENTER - wsCamPos);
 	float L = distance(PLANET_CENTER, wsCamPos);
 	float alpha = dot(vL, viewRay);
@@ -205,13 +218,13 @@ void main ()
 	if (IsInCloud(wsCamPos))
 	{
 		samplePos = wsCamPos;
-		stepSize = 40000.0f / SAMPLE_COUNT;
+		stepSize = min(256.0f, stepSize);
 	}
 	
 	vec4 cloudColor = vec4(0.0f);
 	float cloudDensity = 0.0f;
 	float mipmapLev = 0.0f;
-
+	
 	for(int i = 0; i < SAMPLE_COUNT; i++)
 	{
 		vec4 ssP = (proMat * (viewMat * vec4(samplePos.x, samplePos.y, samplePos.z, 1.0f)));
@@ -221,7 +234,7 @@ void main ()
 		vec4 objN = texture2D(depthMap, ssP.xy);
 		
 		if ((ssP.w >= objN.w && distance(objN.xyz, vec3(0.0f)) > 0.0f)
-			|| samplePos.y < 0.0f
+			|| samplePos.y < -100.0f
 			|| (distance(samplePos, PLANET_CENTER) - PLANET_RADIUS) > MAX_CLOUD_ALTITUDE
 			) break;
 			
@@ -229,7 +242,7 @@ void main ()
 
 		if (sampleDensity > 0.0f)
 		{
-			vec3 sampleColor = ConeTracingLight(samplePos, sampleDensity, lightRay, stepSize, viewRay, mipmapLev + 0.0f);
+			vec3 sampleColor = ConeTracingLight(samplePos, sampleDensity, lightRay, stepSize, viewRay, mipmapLev);
 			cloudColor.rgb += sampleColor;
 			cloudColor.a += sampleDensity;
 

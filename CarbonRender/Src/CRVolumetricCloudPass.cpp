@@ -163,7 +163,7 @@ void VolumetricCloudPass::GenerateTex()
 				}
 				else
 				{
-					float cellCount = 16.0f;
+					float cellCount = 8.0f;
 					float worleyNoise0 = Noise::WorleyNoise(uv, cellCount * 2.0f);
 					float worleyNoise1 = Noise::WorleyNoise(uv, cellCount * 4.0f);
 					float worleyNoise2 = Noise::WorleyNoise(uv, cellCount * 8.0f);
@@ -221,7 +221,7 @@ void VolumetricCloudPass::GenerateTex()
 				}
 				else
 				{
-					float cellCount = 8.0f;
+					float cellCount = 2.0f;
 					float worleyNoise0 = Noise::WorleyNoise(uv, cellCount * 1.0f);
 					float worleyNoise1 = Noise::WorleyNoise(uv, cellCount * 2.0f);
 					float worleyNoise2 = Noise::WorleyNoise(uv, cellCount * 4.0f);

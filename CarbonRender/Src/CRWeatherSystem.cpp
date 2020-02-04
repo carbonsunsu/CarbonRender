@@ -38,7 +38,7 @@ void WeatherSystem::Init()
 	sun.SetLightSize(0.009342f * lightR);
 	sun.SetShadowMapSize(2048);
 	sunLight = LightManager::Instance()->AddLight(sun);
-	cloudCoverage = 0.8f;// 0.32f;
+	cloudCoverage = 0.55f;// 0.32f;
 
 	Update();
 }
