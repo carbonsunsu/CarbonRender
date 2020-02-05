@@ -1,6 +1,6 @@
 #version 430
 #define LIGHT_SAMPLE_COUNT 6
-#define SAMPLE_COUNT 128
+#define CLOUD_SAMPLE_COUNT 128
 #define Pi 3.1415926
 
 layout(location = 0) out vec4 cColor;
@@ -97,6 +97,23 @@ float HG(float vol, float g)
 	return (1.0f - g*g) / (4.0f * Pi * pow(1.0f + g*g - 2.0f * g * vol, 1.5f));
 }
 
+float GetDepth(vec3 pos)
+{
+	vec4 csP = viewMat * vec4(pos, 1.0f);
+	return -csP.z;
+}
+
+vec3 GetScreenPosAndDepth(vec3 pos)
+{
+	vec4 ssP = viewMat * vec4(pos, 1.0f);
+	float d = -ssP.z;
+	ssP = proMat * ssP;
+	ssP.xy = ssP.xy / ssP.w;
+	ssP.xy = ssP.xy * 0.5f + 0.5f;
+
+	return vec3(ssP.xy, d);
+}
+
 vec3 SampleWeather(vec3 pos)
 {
 	vec3 weatherData = texture2D(weatherMap, UVW(pos + cloudBias * 2.0f, 1.0f).xz).rgb;//R - coverage; G - precipitation; B - cloud type
@@ -178,7 +195,7 @@ vec3 ConeTracingLight(vec3 pos, float density, vec3 lightRay, float stepSize, ve
 	if (sampleDensity > 0.0f)
 		lightRayDensity += sampleDensity;
 
-	float vol = dot(viewRay, lightRay);
+	float vol = clamp(dot(viewRay, lightRay), 0.0f, 1.0f);
 	sColor *= 2.0f * Beers(lightRayDensity, precipitation);
 	sColor *= Powder(density);
 	sColor *= mix(HG(vol, 0.7f), HG(vol, -0.1f), 0.5f);
@@ -190,11 +207,9 @@ void main ()
 	vec3 viewRay = normalize(wsP.xyz - wsCamPos);
 	vec3 lightRay = normalize(wsSunPos);
 
-	//Volumetric fog
-	for (int i = 0; i < SAMPLE_COUNT; i++)
-	{
-		
-	}
+	vec3 ssP = GetScreenPosAndDepth(wsP.xyz);
+	vec4 normalAndDepth = texture2D(depthMap, ssP.xy);
+	bool isObj = distance(normalAndDepth.xyz, vec3(0.0f)) > 0.0f;
 
 	//Volumetric cloud
 	vec3 vL = normalize(PLANET_CENTER - wsCamPos);
@@ -213,27 +228,22 @@ void main ()
 	vec3 samplePos = nearPos;
 	float sampleDis = distance(samplePos, farPos);
 	float invSampleDis = 1.0f / sampleDis;
-	float stepSize = sampleDis / SAMPLE_COUNT;
+	float stepSize = sampleDis / CLOUD_SAMPLE_COUNT;
 
 	if (IsInCloud(wsCamPos))
 	{
-		samplePos = wsCamPos;
-		stepSize = min(256.0f, stepSize);
+		samplePos = wsCamPos.xyz;
+		stepSize = min(128.0f, stepSize);
 	}
 	
+	vec3 sampleStep = viewRay * stepSize;
 	vec4 cloudColor = vec4(0.0f);
 	float cloudDensity = 0.0f;
 	float mipmapLev = 0.0f;
 	
-	for(int i = 0; i < SAMPLE_COUNT; i++)
-	{
-		vec4 ssP = (proMat * (viewMat * vec4(samplePos.x, samplePos.y, samplePos.z, 1.0f)));
-		ssP.xy = ssP.xy / ssP.w;
-		ssP.xy = ssP.xy * 0.5f + 0.5f;
-
-		vec4 objN = texture2D(depthMap, ssP.xy);
-		
-		if ((ssP.w >= objN.w && distance(objN.xyz, vec3(0.0f)) > 0.0f)
+	for(int i = 0; i < CLOUD_SAMPLE_COUNT; i++)
+	{	
+		if ((GetDepth(samplePos) >= normalAndDepth.w && isObj)
 			|| samplePos.y < -100.0f
 			|| (distance(samplePos, PLANET_CENTER) - PLANET_RADIUS) > MAX_CLOUD_ALTITUDE
 			) break;
@@ -249,7 +259,7 @@ void main ()
 			if (cloudColor.a >= 1.0f) break;
 		}
 
-		samplePos += viewRay * stepSize;	
+		samplePos += sampleStep;	
 	}
 
 	cColor = cloudColor;

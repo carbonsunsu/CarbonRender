@@ -87,7 +87,6 @@ void VolumetricCloudPass::Render(PassOutput * input)
 
 	location = glGetUniformLocation(shaderProgram, "CoverageFactor");
 	glUniform1f(location, WeatherSystem::Instance()->GetCloudCoverage());
-	cout << WeatherSystem::Instance()->GetCloudCoverage() << endl;
 
 	cloudBox.SetPosition(camPos);
 	cloudBox.SetScale(float3(20.0f, 20.0f, 20.0f));
