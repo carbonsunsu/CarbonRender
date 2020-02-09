@@ -5,7 +5,10 @@ void FreeController::Init()
 	sensitivity[0] = 0.2f;
 	sensitivity[1] = 0.1f;
 
-	moveSpeed = 20.0f;
+	moveSpeedLow = 20.0f;
+	moveSpeedHigh = 2000.0f;
+	moveSpeed = moveSpeedLow;
+	highSpeed = false;
 	v = float3(0.0f);
 }
 
@@ -134,6 +137,17 @@ void FreeController::KeyUpCallback(unsigned char key, int x, int y)
 		v.z = 0.0f;
 	}
 	break;
+	case 'm':
+	case 'M':
+	{
+		highSpeed = !highSpeed;
+
+		if (highSpeed)
+			moveSpeed = moveSpeedHigh;
+		else
+			moveSpeed = moveSpeedLow;
+	}
+	break;
 	}
 }
 
@@ -143,11 +157,6 @@ void FreeController::SpecialKeyDownCallback(int key, int x, int y)
 	{
 	default:
 		break;
-	case GLUT_ACTIVE_SHIFT:
-	{
-		moveSpeed *= 10.0f;
-	}
-	break;
 	}
 }
 
@@ -157,11 +166,6 @@ void FreeController::SpecialKeyUpCallback(int key, int x, int y)
 	{
 	default:
 		break;
-	case GLUT_ACTIVE_SHIFT:
-	{
-		moveSpeed *= 0.1f;
-	}
-	break;
 	}
 }
 

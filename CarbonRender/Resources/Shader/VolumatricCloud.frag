@@ -170,7 +170,7 @@ vec3 ConeTracingLight(vec3 pos, float density, vec3 lightRay, float stepSize, ve
 	vec3 sampleStep = lightRay * stepSize;
 	float h = GetHeightGradient(pos);
 	vec3 sColor = mix(zenithColor, sunColor, h);
-	h = mix(1.0f, 10.0f, h);
+	h = mix(2.0f, 10.0f, h);
 	float accumDensity = 0.0f;
 	float lightRayDensity = 0.0f;
 	float invSumLength = 1.0f / (stepSize * LIGHT_SAMPLE_COUNT);
@@ -238,7 +238,6 @@ void main ()
 	
 	vec3 sampleStep = viewRay * stepSize;
 	vec4 cloudColor = vec4(0.0f);
-	float cloudDensity = 0.0f;
 	float mipmapLev = 0.0f;
 	
 	for(int i = 0; i < CLOUD_SAMPLE_COUNT; i++)
@@ -259,7 +258,7 @@ void main ()
 			if (cloudColor.a >= 1.0f) break;
 		}
 
-		samplePos += sampleStep;	
+		samplePos += sampleStep;
 	}
 
 	cColor = cloudColor;

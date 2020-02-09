@@ -2,6 +2,7 @@
 #define CR_WEATHERSYS
 
 #include "..\Inc\CRLightManager.h"
+#include "..\Inc\CRTextureManager.h"
 
 class WeatherSystem
 {
@@ -29,7 +30,10 @@ private:
 
 	int sunLight;
 
+	char* weatherMapPath;
+	GLuint weatherMapId;
 	float cloudCoverage;
+	GLuint cloudNoises[3];//PerlinWorley, Worley, Curl
 
 	void Init();
 	void UpdateAtmosphere();
@@ -62,6 +66,13 @@ public:
 	void SetCloudCoverage(float c);
 	void AddCloudCoverage(float c);
 	float GetCloudCoverage();
+	void SetWeatherMap(char* path);
+	char* GetWeatherMapPath();
+	GLuint GetWeatherMapId();
+	void GenerateCloudNoise();
+	GLuint GetBaseNoise();
+	GLuint GetDetailNoise();
+	GLuint GetCurlNoise();
 	void ToggleTimeLapse();
 	void SetTimeStop(bool bStop);
 	bool IsTimeStop();

@@ -38,13 +38,13 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_3D, noises[0]);
+	glBindTexture(GL_TEXTURE_3D, WeatherSystem::Instance()->GetBaseNoise());
 	glActiveTexture(GL_TEXTURE2);
-	glBindTexture(GL_TEXTURE_3D, noises[1]);
+	glBindTexture(GL_TEXTURE_3D, WeatherSystem::Instance()->GetDetailNoise());
 	glActiveTexture(GL_TEXTURE3);
-	glBindTexture(GL_TEXTURE_2D, noises[2]);
+	glBindTexture(GL_TEXTURE_2D, WeatherSystem::Instance()->GetCurlNoise());
 	glActiveTexture(GL_TEXTURE4);
-	glBindTexture(GL_TEXTURE_2D, weatherData);
+	glBindTexture(GL_TEXTURE_2D, WeatherSystem::Instance()->GetWeatherMapId());
 
 	for (int i = 0; i < input->cout; i++)
 	{
@@ -123,148 +123,4 @@ void VolumetricCloudPass::Init()
 {
 	FbxImportManager::Instance()->ImportFbxModel("Box", &cloudBox);
 	shaderProgram = ShaderManager::Instance()->LoadShader("VolumatricCloud.vert", "VolumatricCloud.frag");
-	GenerateTex();
-}
-
-void VolumetricCloudPass::GenerateTex()
-{
-	GLubyte* perlinWorley = new GLubyte[128 * 128 * 128 * 4];
-	GLubyte* worley = new GLubyte[32 * 32 * 32 * 3];
-	GLubyte* curl = new GLubyte[128 * 128 * 3];
-	
-	bool fileExist = true;
-	fstream pwNoiseFile;
-	pwNoiseFile.open("Resources\\Textures\\PerlinWorley.noise", ios::in | ios::binary);
-	if (!pwNoiseFile)
-	{
-		fileExist = false;
-		pwNoiseFile.open("Resources\\Textures\\PerlinWorley.noise", ios::out | ios::binary);
-	}
-	for (int i = 0; i < 128; i++)
-		for (int j = 0; j < 128; j++)
-			for (int k = 0; k < 128; k++)
-			{
-				float3 uv = float3(i * 0.0078125f, j * 0.0078125f, k * 0.0078125f);
-				if (fileExist)
-				{
-					float noise;
-					pwNoiseFile.read((char*)&noise, sizeof(float));
-					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 0] = (GLubyte)noise;
-
-					pwNoiseFile.read((char*)&noise, sizeof(float));
-					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 1] = (GLubyte)noise;
-
-					pwNoiseFile.read((char*)&noise, sizeof(float));
-					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 2] = (GLubyte)noise;
-
-					pwNoiseFile.read((char*)&noise, sizeof(float));
-					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 3] = (GLubyte)noise;
-				}
-				else
-				{
-					float cellCount = 8.0f;
-					float worleyNoise0 = Noise::WorleyNoise(uv, cellCount * 2.0f);
-					float worleyNoise1 = Noise::WorleyNoise(uv, cellCount * 4.0f);
-					float worleyNoise2 = Noise::WorleyNoise(uv, cellCount * 8.0f);
-					float worleyNoise3 = Noise::WorleyNoise(uv, cellCount * 14.0f);
-					float worleyNoise4 = Noise::WorleyNoise(uv, cellCount * 16.0f);
-					float worleyNoise5 = Noise::WorleyNoise(uv, cellCount * 32.0f);
-					
-					float worleyFbm = worleyNoise0 * 0.625f + worleyNoise2 * 0.25f + worleyNoise3 * 0.125f;
-					float noise = Math::Remap(Noise::PerlinFbm(uv, 8.0f, 3), 0.0f, 1.0f, worleyFbm, 1.0f) * 255;
-					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 0] = (GLubyte)noise;
-					pwNoiseFile.write((char*)&noise, sizeof(float));
-
-					worleyFbm = worleyNoise0 * 0.625f + worleyNoise1 * 0.25f + worleyNoise2 * 0.125f;
-					noise = worleyFbm * 255;
-					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 1] = (GLubyte)noise;
-					pwNoiseFile.write((char*)&noise, sizeof(float));
-
-					worleyFbm = worleyNoise1 * 0.625f + worleyNoise2 * 0.25f + worleyNoise3 * 0.125f;
-					noise = worleyFbm * 255;
-					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 2] = (GLubyte)noise;
-					pwNoiseFile.write((char*)&noise, sizeof(float));
-
-					worleyFbm = worleyNoise2 * 0.625f + worleyNoise4 * 0.25f + worleyNoise5 * 0.125f;
-					noise = worleyFbm * 255;
-					perlinWorley[i * 128 * 128 * 4 + j * 128 * 4 + k * 4 + 3] = (GLubyte)noise;
-					pwNoiseFile.write((char*)&noise, sizeof(float));
-				}
-			}
-	pwNoiseFile.close();
-
-	fileExist = true;
-	fstream wNoiseFile;
-	wNoiseFile.open("Resources\\Textures\\Worley.noise", ios::in | ios::binary);
-	if (!wNoiseFile)
-	{
-		fileExist = false;
-		wNoiseFile.open("Resources\\Textures\\Worley.noise", ios::out | ios::binary);
-	}
-	for (int i = 0; i < 32; i++)
-		for (int j = 0; j < 32; j++)
-			for (int k = 0; k < 32; k++)
-			{
-				float3 uv = float3(i * 0.03125f, j * 0.03125f, k * 0.03125f);
-				if (fileExist)
-				{
-					float noise;
-					wNoiseFile.read((char*)&noise, sizeof(float));
-					worley[i * 32 * 32 * 3 + j * 32 * 3 + k * 3 + 0] = (GLubyte)noise;
-
-					wNoiseFile.read((char*)&noise, sizeof(float));
-					worley[i * 32 * 32 * 3 + j * 32 * 3 + k * 3 + 1] = (GLubyte)noise;
-
-					wNoiseFile.read((char*)&noise, sizeof(float));
-					worley[i * 32 * 32 * 3 + j * 32 * 3 + k * 3 + 2] = (GLubyte)noise;
-				}
-				else
-				{
-					float cellCount = 2.0f;
-					float worleyNoise0 = Noise::WorleyNoise(uv, cellCount * 1.0f);
-					float worleyNoise1 = Noise::WorleyNoise(uv, cellCount * 2.0f);
-					float worleyNoise2 = Noise::WorleyNoise(uv, cellCount * 4.0f);
-					float worleyNoise3 = Noise::WorleyNoise(uv, cellCount * 8.0f);
-					float worleyNoise4 = Noise::WorleyNoise(uv, cellCount * 16.0f);
-
-					float worleyFbm = worleyNoise0 * 0.625f + worleyNoise1 * 0.25f + worleyNoise2 * 0.125f;
-					float noise = worleyFbm * 255;
-					worley[i * 32 * 32 * 3 + j * 32 * 3 + k * 3 + 0] = (GLubyte)noise;
-					wNoiseFile.write((char*)&noise, sizeof(float));
-
-					worleyFbm = worleyNoise1 * 0.625f + worleyNoise2 * 0.25f + worleyNoise3 * 0.125f;
-					noise = worleyFbm * 255;
-					worley[i * 32 * 32 * 3 + j * 32 * 3 + k * 3 + 1] = (GLubyte)noise;
-					wNoiseFile.write((char*)&noise, sizeof(float));
-
-					worleyFbm = worleyNoise2 * 0.625f + worleyNoise3 * 0.25f + worleyNoise4 * 0.125f;
-					noise = worleyFbm * 255;
-					worley[i * 32 * 32 * 3 + j * 32 * 3 + k * 3 + 2] = (GLubyte)noise;
-					wNoiseFile.write((char*)&noise, sizeof(float));
-				}
-			}
-	wNoiseFile.close();
-
-	glGenTextures(3, noises);
-	glBindTexture(GL_TEXTURE_3D, noises[0]);
-	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_REPEAT);
-	glTexImage3D(GL_TEXTURE_3D, 0, GL_RGBA, 128, 128, 128, 0, GL_RGBA, GL_UNSIGNED_BYTE, perlinWorley);
-	glGenerateMipmap(GL_TEXTURE_3D);
-
-	glBindTexture(GL_TEXTURE_3D, noises[1]);
-	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_REPEAT);
-	glTexImage3D(GL_TEXTURE_3D, 0, GL_RGB, 32, 32, 32, 0, GL_RGB, GL_UNSIGNED_BYTE, worley);
-	glGenerateMipmap(GL_TEXTURE_3D);
-
-	noises[2] = TextureManager::Instance()->LoadTexture("CurlNoise");
-
-	weatherData = TextureManager::Instance()->LoadTexture("Weather1");
 }

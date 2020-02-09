@@ -7,6 +7,8 @@
 		<Exposure>30.000000</Exposure>
 		<TimeSpeed>1500.000000</TimeSpeed>
 		<WindDirection x="0.500000" y="0.000000" z="1.000000" w="10.000000"/>
+    <WeatherMap>Weather0</WeatherMap>
+    <CloudCoverage>0.674998</CloudCoverage>
 	</World>
 	<Camera>
 		<Position x="-134.423615" y="2.694734" z="-6.599586"/>

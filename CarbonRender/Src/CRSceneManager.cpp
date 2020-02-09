@@ -60,6 +60,10 @@ void SceneManager::LoadScene(char* sceneName)
 	}
 	WeatherSystem::Instance()->SetWindDirection(float3(a[0], a[1], a[2]));
 	WeatherSystem::Instance()->SetWindStrength(atof(attri->value()));
+	l2Node = l1Node->first_node("WeatherMap");
+	WeatherSystem::Instance()->SetWeatherMap(l2Node->value());
+	l2Node = l1Node->first_node("CloudCoverage");
+	WeatherSystem::Instance()->SetCloudCoverage(atof(l2Node->value()));
 
 	Camera cam;
 	l1Node = root->first_node("Camera");
@@ -311,6 +315,14 @@ void SceneManager::SaveScene(char * sceneName)
 	attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("w"),
 		sceneDoc.allocate_string(to_string(WeatherSystem::Instance()->GetWindStrength()).c_str()));
 	l1Node->append_attribute(attrib);
+	l0Node->append_node(l1Node);
+	
+	l1Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("WeatherMap"),
+		sceneDoc.allocate_string(WeatherSystem::Instance()->GetWeatherMapPath()));
+	l0Node->append_node(l1Node);
+
+	l1Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("CloudCoverage"),
+		sceneDoc.allocate_string(to_string(WeatherSystem::Instance()->GetCloudCoverage()).c_str()));
 	l0Node->append_node(l1Node);
 
 	//Camera info
