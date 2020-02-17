@@ -68,8 +68,12 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	glUniform1i(location, 3);
 	location = glGetUniformLocation(shaderProgram, "weatherMap");
 	glUniform1i(location, 4);
-	location = glGetUniformLocation(shaderProgram, "depthMap");
+	location = glGetUniformLocation(shaderProgram, "posMap");
 	glUniform1i(location, 5);
+	location = glGetUniformLocation(shaderProgram, "stencilMap");
+	glUniform1i(location, 6);
+	location = glGetUniformLocation(shaderProgram, "shadowMap");
+	glUniform1i(location, 7);
 
 	location = glGetUniformLocation(shaderProgram, "sunColor");
 	glUniform3f(location, sunColor.x, sunColor.y, sunColor.z);
@@ -87,6 +91,9 @@ void VolumetricCloudPass::Render(PassOutput * input)
 
 	location = glGetUniformLocation(shaderProgram, "CoverageFactor");
 	glUniform1f(location, WeatherSystem::Instance()->GetCloudCoverage());
+
+	location = glGetUniformLocation(shaderProgram, "smMat");
+	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[0].matrix);
 
 	cloudBox.SetPosition(camPos);
 	cloudBox.SetScale(float3(20.0f, 20.0f, 20.0f));

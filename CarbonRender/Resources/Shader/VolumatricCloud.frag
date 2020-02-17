@@ -10,8 +10,10 @@ in vec4 wsP;
 uniform sampler3D perlinWorleyMap;
 uniform sampler3D worleyMap;
 uniform sampler2D curlMap;
-uniform sampler2D depthMap;
+uniform sampler2D posMap;
 uniform sampler2D weatherMap;
+uniform sampler2D stencilMap;
+uniform sampler2D shadowMap;
 
 uniform vec3 wsCamPos;
 uniform vec3 wsSunPos;
@@ -21,15 +23,16 @@ uniform vec3 zenithColor;
 
 uniform mat4 viewMat;
 uniform mat4 proMat;
+uniform mat4 smMat;
 
 uniform vec3 cloudBias;
 uniform float CoverageFactor;
 uniform float PrecipitationFactor = 1.0f;
 
-const float PLANET_RADIUS = 6500000.0f;
+const float PLANET_RADIUS = 6356755.0f;
 const vec3 PLANET_CENTER = vec3(0.0f, -PLANET_RADIUS, 0.0f);
-const float MIN_CLOUD_ALTITUDE = 1500.0f;
-const float MAX_CLOUD_ALTITUDE = 6000.0f;
+const float MIN_CLOUD_ALTITUDE = 150.0f;
+const float MAX_CLOUD_ALTITUDE = 600.0f;
 const float CLOUD_HEIGHT = MAX_CLOUD_ALTITUDE - MIN_CLOUD_ALTITUDE;
 const float CLOUD_HEIGHT_INV = 1.0f / CLOUD_HEIGHT;
 
@@ -44,7 +47,7 @@ const vec4 StratusFactor = vec4(0.0f, 0.1f, 0.2f, 0.3f);
 const vec4 CumulusFactor = vec4(0.05f, 0.25f, 0.45f, 0.65f);
 const vec4 CumulonumbisFactor = vec4(0.0f, 0.05f, 0.7f, 0.9f);
 
-const float MAX_FOG_ALTITUDE = 10.0f;
+const float MAX_FOG_ALTITUDE = 20.0f;
 
 float Remap(float value, float oldMin, float oldMax, float newMin, float newMax)
 {
@@ -68,15 +71,14 @@ float GetCloudTypeGradient(float heightGrad, vec4 typePara)
 	return a;	
 }
 
-bool IsInCloud(vec3 pos)
-{
-	float a = distance(pos, PLANET_CENTER) - PLANET_RADIUS;
-	return a >= MIN_CLOUD_ALTITUDE && a <= MAX_CLOUD_ALTITUDE;
-}
-
 vec3 UVW(vec3 p, float scale)
 {
-	vec3 uvw = p * 0.00002f * 0.5f + 0.5f;
+	vec3 uvw;
+
+	float a = 0.1f / (MAX_CLOUD_ALTITUDE - MIN_CLOUD_ALTITUDE);
+	uvw.xz = p.xz * a * 0.5f + 0.5f;
+	uvw.y = p.y * a * 0.5f + 0.5f;
+
 	uvw *= scale;
 
 	return uvw;
@@ -162,7 +164,7 @@ float SampleCloudDensity(vec3 pos, float mipmap, bool useCheapWay)
 	return clamp(lfFbm, 0.0f, 1.0f);
 }
 
-vec3 ConeTracingLight(vec3 pos, float density, vec3 lightRay, float stepSize, vec3 viewRay, float mipmapLev)
+vec3 CloudLighting(vec3 pos, float density, vec3 lightRay, float stepSize, vec3 viewRay, float mipmapLev)
 {
 	vec3 centerPos = pos;
 	float precipitation = SampleWeather(centerPos).g;
@@ -201,57 +203,150 @@ vec3 ConeTracingLight(vec3 pos, float density, vec3 lightRay, float stepSize, ve
 	sColor *= mix(HG(vol, 0.7f), HG(vol, -0.1f), 0.5f);
 	return sColor * h;
 }
-
-void main ()
+/*
+vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, bool stensilMark)
 {
-	vec3 viewRay = normalize(wsP.xyz - wsCamPos);
-	vec3 lightRay = normalize(wsSunPos);
+	//Volumetric fog
+	vec3 samplePos = wsCamPos;
+	vec3 startPos = wsCamPos;
+	vec3 endPos = intersectPos;
 
-	vec3 ssP = GetScreenPosAndDepth(wsP.xyz);
-	vec4 normalAndDepth = texture2D(depthMap, ssP.xy);
-	bool isObj = distance(normalAndDepth.xyz, vec3(0.0f)) > 0.0f;
+	float fogStepSize = 1.0f;
+	float fogDensity = 0.1f;
 
-	//Volumetric cloud
-	vec3 vL = normalize(PLANET_CENTER - wsCamPos);
-	float L = distance(PLANET_CENTER, wsCamPos);
-	float alpha = dot(vL, viewRay);
-	float l1 = L * abs(alpha);
-	float d = sqrt(L * L - l1 * l1);
-	float r = PLANET_RADIUS + MIN_CLOUD_ALTITUDE;
-	float l2 = sqrt(r * r - d * d);
-	vec3 nearPos = alpha >= 0.0f ? wsCamPos + viewRay * (l1 + l2) : wsCamPos + viewRay * (l2 - l1);
+	vec3 sampleStep = viewRay * fogStepSize;
+	float fogMaxSampleDis;
 
-	r = PLANET_RADIUS + MAX_CLOUD_ALTITUDE;
-	l2 = sqrt(r * r - d * d);
-	vec3 farPos = alpha >= 0.0f ? wsCamPos + viewRay * (l1 + l2) : wsCamPos + viewRay * (l2 - l1);
+	float sampleDisSum = 0.0f;
+	float fogSampleDensity = 0.0f;
+	vec3 fogLightColor = vec3(0.0f);
 
-	vec3 samplePos = nearPos;
-	float sampleDis = distance(samplePos, farPos);
-	float invSampleDis = 1.0f / sampleDis;
-	float stepSize = sampleDis / CLOUD_SAMPLE_COUNT;
+	float fogDensityStep = fogDensity * fogStepSize;
+	int fogSampleCount = int(1.0f / fogDensity);
+	fogSampleCount = min(128, fogSampleCount);	
 
-	if (IsInCloud(wsCamPos))
+	if (wsCamPos.y > MAX_FOG_ALTITUDE)
 	{
-		samplePos = wsCamPos.xyz;
-		stepSize = min(128.0f, stepSize);
+		float d = (wsCamPos.y - MAX_FOG_ALTITUDE) / dot(viewRay, vec3(0.0f, -1.0f, 0.0f));
+		startPos = wsCamPos + viewRay * d;
+		sampleDisSum += d;
+	}
+	else
+	{
+		if (!stensilMark)
+		{
+			endPos = wsCamPos + viewRay * (MAX_FOG_ALTITUDE - wsCamPos.y) / dot(viewRay, vec3(0.0f, 1.0f, 0.0f));
+		}
 	}
 	
-	vec3 sampleStep = viewRay * stepSize;
+
+	for (int i = 0; i < fogSampleCount; i++)
+	{	
+		if (samplePos.y > MAX_FOG_ALTITUDE || 
+			fogSampleDensity > 1.0f)
+			break;
+
+		if (sampleDisSum >= fogMaxSampleDis)
+			samplePos = objPos;
+
+		float lightRayDensity = 0.0f;
+		vec3 lightSamplePos = samplePos;
+		vec3 lightSampleStep = lightRay * fogStepSize;
+		for (int j = 0; j < 6; j++)
+		{
+			if (lightSamplePos.y > MAX_FOG_ALTITUDE)
+				break;
+
+			lightRayDensity += fogDensityStep;
+			lightSamplePos += lightSampleStep;
+		}
+
+		vec3 fogSampleColor = sunColor;
+		float vol = clamp(dot(viewRay, lightRay), 0.0f, 1.0f);
+		fogSampleColor *= 2.0f * Beers(lightRayDensity, 5.0f);
+		fogSampleColor *= Powder(fogDensityStep);
+		fogLightColor += fogSampleColor;		
+
+		if (sampleDisSum >= fogMaxSampleDis)
+		{	
+			fogSampleDensity += fogDensityStep * (fogStepSize - sampleDisSum + fogMaxSampleDis) / fogStepSize;
+			break;
+		}
+		else
+			fogSampleDensity += fogDensityStep;
+
+		samplePos += sampleStep;
+		sampleDisSum += fogStepSize;
+	}
+	
+	cColor.a = min(fogSampleDensity, 1.0f);
+	cColor.rgb = cColor.aaa;//fogLightColor;
+	return vec4(0.0f);
+}
+*/
+vec4 GetCloud(vec3 viewRay, vec3 lightRay, vec3 intersectPos, bool stensilMark)
+{
+	//Volumetric cloud
+	float intersectDis = distance(wsCamPos, intersectPos);
+
+	vec3 startPos;
+	vec3 endPos;
+	if (wsCamPos.y < MIN_CLOUD_ALTITUDE)
+	{
+		float L = distance(PLANET_CENTER, wsCamPos);
+		float alpha = dot( normalize(PLANET_CENTER - wsCamPos), viewRay);
+		float l1 = L * abs(alpha);
+		float d = sqrt(L * L - l1 * l1);
+		float r = PLANET_RADIUS + MIN_CLOUD_ALTITUDE;
+		float l2 = sqrt(r * r - d * d);
+		startPos = alpha >= 0.0f ? wsCamPos + viewRay * (l1 + l2) : wsCamPos + viewRay * (l2 - l1);
+
+		r = PLANET_RADIUS + MAX_CLOUD_ALTITUDE;
+		l2 = sqrt(r * r - d * d);
+		endPos = alpha >= 0.0f ? wsCamPos + viewRay * (l1 + l2) : wsCamPos + viewRay * (l2 - l1);
+	}
+	else if (wsCamPos.y > MAX_CLOUD_ALTITUDE)
+	{
+		float L = wsCamPos.y + PLANET_RADIUS;
+		float alpha = dot(vec3(0.0f, -1.0f, 0.0f), viewRay);
+		if (alpha < 0.0) return vec4(0.0);
+		float l1 = L * alpha;
+		float d = sqrt(L * L - l1 * l1);
+		float r = PLANET_RADIUS + MAX_CLOUD_ALTITUDE;
+		float l2 = sqrt(r * r - d * d);
+		startPos = wsCamPos + viewRay * (l1 - l2 + 1.0f);
+
+		r = PLANET_RADIUS + MIN_CLOUD_ALTITUDE;
+		l2 = sqrt(r * r - d * d);
+		endPos = wsCamPos + viewRay * (l1 - l2);
+	}
+	else
+	{
+		startPos = wsCamPos;
+		endPos = wsCamPos + viewRay * 1000.0f;
+	}
+
+	vec3 samplePos = startPos;
+	float sampleDisSum = distance(startPos, wsCamPos);
+	float sampleDis = distance(wsCamPos, endPos);
+	float invSampleDis = 1.0f / sampleDis;
+	float cloudStepSize = sampleDis / CLOUD_SAMPLE_COUNT;
+	vec3 sampleStep = viewRay * cloudStepSize;
 	vec4 cloudColor = vec4(0.0f);
 	float mipmapLev = 0.0f;
 	
 	for(int i = 0; i < CLOUD_SAMPLE_COUNT; i++)
-	{	
-		if ((GetDepth(samplePos) >= normalAndDepth.w && isObj)
-			|| samplePos.y < -100.0f
-			|| (distance(samplePos, PLANET_CENTER) - PLANET_RADIUS) > MAX_CLOUD_ALTITUDE
+	{
+		if (sampleDisSum >= intersectDis || 
+			samplePos.y < -100.0f ||
+			sampleDisSum > sampleDis
 			) break;
 			
 		float sampleDensity = SampleCloudDensity(samplePos, mipmapLev, false);
 
 		if (sampleDensity > 0.0f)
 		{
-			vec3 sampleColor = ConeTracingLight(samplePos, sampleDensity, lightRay, stepSize, viewRay, mipmapLev);
+			vec3 sampleColor = CloudLighting(samplePos, sampleDensity, lightRay, cloudStepSize, viewRay, mipmapLev);
 			cloudColor.rgb += sampleColor;
 			cloudColor.a += sampleDensity;
 
@@ -259,8 +354,30 @@ void main ()
 		}
 
 		samplePos += sampleStep;
+		sampleDisSum += cloudStepSize;
 	}
 
-	cColor = cloudColor;
+	return cloudColor;
+}
+
+void main ()
+{
+	cColor = vec4(0.0f);
+	vec3 viewRay = normalize(wsP.xyz - wsCamPos);
+	vec3 lightRay = normalize(wsSunPos);
+
+	vec3 ssP = GetScreenPosAndDepth(wsP.xyz);
+	vec3 intersectPos = texture2D(posMap, ssP.xy).xyz;
+	bool stensilMark = texture2D(stencilMap, ssP.xy).r >= 1.0f;
+	if (!stensilMark) intersectPos = wsCamPos + viewRay * 100000000.0f;
+	
+	//cColor = GetFog(viewRay, lightRay, intersectPos, stensilMark);
+	if (cColor.a >= 1.0f)
+		return;
+
+	vec4 cloudColor = GetCloud(viewRay, lightRay, intersectPos, stensilMark);
+
+	cColor.rgb += cloudColor.rgb * (1.0f - cColor.a);
+	cColor.a += cloudColor.a;
 	cColor = clamp(cColor, 0.0f, 1.0f);
 }

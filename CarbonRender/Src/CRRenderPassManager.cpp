@@ -42,9 +42,12 @@ void RenderPassManager::Draw()
 	PassOutput* g = gPass.Draw(NULL);//0:albedo, 1:normal and depth, 2:position, 3:stensil
 
 	PassOutput cInput;
-	cInput.cout = 1;
+	cInput.cout = 3;
 	cInput.RTS = new GLuint[cInput.cout];
-	cInput.RTS[0] = g->RTS[1];
+	cInput.RTS[0] = g->RTS[2];
+	cInput.RTS[1] = g->RTS[3];
+	cInput.RTS[2] = sm->RTS[4];
+	cInput.mats = sm->mats;
 	PassOutput* cloud = cloudPass.Draw(&cInput);//cloud
 
 	PassOutput sInput;
