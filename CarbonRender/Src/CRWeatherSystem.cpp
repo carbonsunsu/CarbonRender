@@ -39,7 +39,9 @@ void WeatherSystem::Init()
 	sun.SetShadowMapSize(2048);
 	sunLight = LightManager::Instance()->AddLight(sun);
 	cloudCoverage = 0.55f;// 0.32f;
+	cloudPrecipitation = 1.0f;
 	GenerateCloudNoise();
+	fogDensity = 0.1f;
 
 	Update();
 }
@@ -199,6 +201,21 @@ void WeatherSystem::AddCloudCoverage(float c)
 float WeatherSystem::GetCloudCoverage()
 {
 	return cloudCoverage;
+}
+
+void WeatherSystem::SetCloudPrecipitation(float p)
+{
+	cloudPrecipitation = p;
+}
+
+void WeatherSystem::AddCloudPrecipitation(float p)
+{
+	cloudPrecipitation += p;
+}
+
+float WeatherSystem::GetCloudPrecipitation()
+{
+	return cloudPrecipitation;
 }
 
 void WeatherSystem::SetWeatherMap(char* path)
@@ -371,6 +388,21 @@ GLuint WeatherSystem::GetDetailNoise()
 GLuint WeatherSystem::GetCurlNoise()
 {
 	return cloudNoises[2];
+}
+
+void WeatherSystem::SetFogDensity(float d)
+{
+	fogDensity = d;
+}
+
+void WeatherSystem::AddFogDensity(float d)
+{
+	fogDensity += d;
+}
+
+float WeatherSystem::GetFogDensity()
+{
+	return fogDensity;
 }
 
 void WeatherSystem::ToggleTimeLapse()

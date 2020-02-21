@@ -33,7 +33,10 @@ private:
 	char* weatherMapPath;
 	GLuint weatherMapId;
 	float cloudCoverage;
+	float cloudPrecipitation;
 	GLuint cloudNoises[3];//PerlinWorley, Worley, Curl
+
+	float fogDensity;
 
 	void Init();
 	void UpdateAtmosphere();
@@ -66,6 +69,9 @@ public:
 	void SetCloudCoverage(float c);
 	void AddCloudCoverage(float c);
 	float GetCloudCoverage();
+	void SetCloudPrecipitation(float p);
+	void AddCloudPrecipitation(float p);
+	float GetCloudPrecipitation();
 	void SetWeatherMap(char* path);
 	char* GetWeatherMapPath();
 	GLuint GetWeatherMapId();
@@ -73,6 +79,9 @@ public:
 	GLuint GetBaseNoise();
 	GLuint GetDetailNoise();
 	GLuint GetCurlNoise();
+	void SetFogDensity(float d);
+	void AddFogDensity(float d);
+	float GetFogDensity();
 	void ToggleTimeLapse();
 	void SetTimeStop(bool bStop);
 	bool IsTimeStop();

@@ -88,9 +88,13 @@ void VolumetricCloudPass::Render(PassOutput * input)
 
 	location = glGetUniformLocation(shaderProgram, "cloudBias");
 	glUniform3f(location, cloudBias.x, cloudBias.y, cloudBias.z);
-
 	location = glGetUniformLocation(shaderProgram, "CoverageFactor");
 	glUniform1f(location, WeatherSystem::Instance()->GetCloudCoverage());
+	location = glGetUniformLocation(shaderProgram, "PrecipitationFactor");
+	glUniform1f(location, WeatherSystem::Instance()->GetCloudPrecipitation());
+	
+	location = glGetUniformLocation(shaderProgram, "fogDensity");
+	glUniform1f(location, WeatherSystem::Instance()->GetFogDensity());
 
 	location = glGetUniformLocation(shaderProgram, "smMat");
 	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[0].matrix);

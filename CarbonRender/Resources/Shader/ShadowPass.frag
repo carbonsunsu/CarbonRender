@@ -15,7 +15,7 @@ uniform mat4 smProMatLv0;
 uniform mat4 smProMatLv1;
 uniform mat4 smProMatLv2;
 uniform vec2 stepUnit;
-uniform vec2 depthClampPara;
+uniform vec2 depthClampPara;//(nearClip, 1.0/(farClip - nearClip))
 uniform vec3 lightPos;
 uniform float lightSize;
 
