@@ -59,6 +59,7 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	float4 zenithColor = LightManager::Instance()->GetZenithColor();
 	float3 sunPos = sun->GetPosition();
 	float3 cloudBias = WeatherSystem::Instance()->GetCloudBias();
+	float3 fogColor = WeatherSystem::Instance()->GetFogColor();
 	ShaderManager::Instance()->UseShader(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "perlinWorleyMap");
 	glUniform1i(location, 1);
@@ -72,32 +73,51 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	glUniform1i(location, 5);
 	location = glGetUniformLocation(shaderProgram, "stencilMap");
 	glUniform1i(location, 6);
-	location = glGetUniformLocation(shaderProgram, "shadowMap");
+	location = glGetUniformLocation(shaderProgram, "smMapLv0");
 	glUniform1i(location, 7);
+	location = glGetUniformLocation(shaderProgram, "smMapLv1");
+	glUniform1i(location, 8);
 
 	location = glGetUniformLocation(shaderProgram, "sunColor");
 	glUniform3f(location, sunColor.x, sunColor.y, sunColor.z);
 	location = glGetUniformLocation(shaderProgram, "zenithColor");
 	glUniform3f(location, zenithColor.x, zenithColor.y, zenithColor.z);
-	
 
 	location = glGetUniformLocation(shaderProgram, "wsCamPos");
 	glUniform3f(location, camPos.x, camPos.y, camPos.z);
 	location = glGetUniformLocation(shaderProgram, "wsSunPos");
 	glUniform3f(location, sunPos.x, sunPos.y, sunPos.z);
 
+	float cloudMaxAltitude = WeatherSystem::Instance()->GetCloudMaxAltitude();
+	float cloudMinAltitude = WeatherSystem::Instance()->GetCloudMinAltitude();
+	location = glGetUniformLocation(shaderProgram, "cloudMaxAltitude");
+	glUniform1f(location, cloudMaxAltitude);
+	location = glGetUniformLocation(shaderProgram, "cloudMinAltitude");
+	glUniform1f(location, cloudMinAltitude);
+	location = glGetUniformLocation(shaderProgram, "cloudHeightInv");
+	glUniform1f(location, 1.0f / (cloudMaxAltitude - cloudMinAltitude));
 	location = glGetUniformLocation(shaderProgram, "cloudBias");
 	glUniform3f(location, cloudBias.x, cloudBias.y, cloudBias.z);
-	location = glGetUniformLocation(shaderProgram, "CoverageFactor");
+	location = glGetUniformLocation(shaderProgram, "cloudCoverageScale");
 	glUniform1f(location, WeatherSystem::Instance()->GetCloudCoverage());
-	location = glGetUniformLocation(shaderProgram, "PrecipitationFactor");
+	location = glGetUniformLocation(shaderProgram, "cloudPrecipitationScale");
 	glUniform1f(location, WeatherSystem::Instance()->GetCloudPrecipitation());
 	
 	location = glGetUniformLocation(shaderProgram, "fogDensity");
 	glUniform1f(location, WeatherSystem::Instance()->GetFogDensity());
+	location = glGetUniformLocation(shaderProgram, "fogColorScale");
+	glUniform3f(location, fogColor.x, fogColor.y, fogColor.z);
+	location = glGetUniformLocation(shaderProgram, "fogPrecipitaion");
+	glUniform1f(location, WeatherSystem::Instance()->GetFogPrecipitation());
+	location = glGetUniformLocation(shaderProgram, "fogMaxAltitude");
+	glUniform1f(location, WeatherSystem::Instance()->GetFogMaxAltitude());
 
 	location = glGetUniformLocation(shaderProgram, "smMat");
 	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[0].matrix);
+	location = glGetUniformLocation(shaderProgram, "smProMatLv0");
+	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[1].matrix);
+	location = glGetUniformLocation(shaderProgram, "smProMatLv1");
+	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[2].matrix);
 
 	cloudBox.SetPosition(camPos);
 	cloudBox.SetScale(float3(20.0f, 20.0f, 20.0f));

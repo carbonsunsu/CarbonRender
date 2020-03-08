@@ -35,21 +35,28 @@ void SceneManager::LoadScene(char* sceneName)
 	xml_document<> sceneData;
 	sceneData.parse<0>(sceneFile.data);
 
+	//World info
 	xml_node<>* root = sceneData.first_node();
 	xml_node<>* l1Node = root->first_node();
 	xml_node<>* l2Node = l1Node->first_node("Latitude");
 	xml_attribute<>* attri;
 	WeatherSystem::Instance()->SetLatitude(atof(l2Node->value()));
+
 	l2Node = l1Node->first_node("Day");
 	WeatherSystem::Instance()->SetDay(atoi(l2Node->value()));
+
 	l2Node = l1Node->first_node("Time");
 	WeatherSystem::Instance()->SetHour(atof(l2Node->value()));
+
 	l2Node = l1Node->first_node("Turbidity");
 	WeatherSystem::Instance()->SetTurbidity(atof(l2Node->value()));
+
 	l2Node = l1Node->first_node("Exposure");
 	WeatherSystem::Instance()->SetExposure(atof(l2Node->value()));
+
 	l2Node = l1Node->first_node("TimeSpeed");
 	WeatherSystem::Instance()->SetTimeSpeed(atof(l2Node->value()));
+
 	l2Node = l1Node->first_node("WindDirection");
 	attri = l2Node->first_attribute();
 	float a[3];
@@ -60,11 +67,41 @@ void SceneManager::LoadScene(char* sceneName)
 	}
 	WeatherSystem::Instance()->SetWindDirection(float3(a[0], a[1], a[2]));
 	WeatherSystem::Instance()->SetWindStrength(atof(attri->value()));
+
 	l2Node = l1Node->first_node("WeatherMap");
 	WeatherSystem::Instance()->SetWeatherMap(l2Node->value());
+
+	l2Node = l1Node->first_node("CloudMaxAltitude");
+	WeatherSystem::Instance()->SetCloudMaxAltitude(atof(l2Node->value()));
+
+	l2Node = l1Node->first_node("CloudMinAltitude");
+	WeatherSystem::Instance()->SetCloudMinAltitude(atof(l2Node->value()));
+
 	l2Node = l1Node->first_node("CloudCoverage");
 	WeatherSystem::Instance()->SetCloudCoverage(atof(l2Node->value()));
 
+	l2Node = l1Node->first_node("CloudPrecipitation");
+	WeatherSystem::Instance()->SetCloudPrecipitation(atof(l2Node->value()));
+
+	l2Node = l1Node->first_node("FogDensity");
+	WeatherSystem::Instance()->SetFogDensity(atof(l2Node->value()));
+
+	l2Node = l1Node->first_node("FogColor");
+	attri = l2Node->first_attribute();
+	for (int i = 0; i < 3; i++)
+	{
+		a[i] = atof(attri->value());
+		attri = attri->next_attribute();
+	}
+	WeatherSystem::Instance()->SetFogColor(float3(a[0], a[1], a[2]));
+
+	l2Node = l1Node->first_node("FogMaxAltitude");
+	WeatherSystem::Instance()->SetFogMaxAltitude(atof(l2Node->value()));
+
+	l2Node = l1Node->first_node("FogPrecipitation");
+	WeatherSystem::Instance()->SetFogPrecipitation(atof(l2Node->value()));
+
+	//Camera info
 	Camera cam;
 	l1Node = root->first_node("Camera");
 	l2Node = l1Node->first_node("Position");
@@ -75,6 +112,7 @@ void SceneManager::LoadScene(char* sceneName)
 		attri = attri->next_attribute();
 	}
 	cam.SetPosition(float3(a[0], a[1], a[2]));
+
 	l2Node = l1Node->first_node("Rotation");
 	attri = l2Node->first_attribute();
 	for (int i = 0; i < 3; i++)
@@ -83,19 +121,25 @@ void SceneManager::LoadScene(char* sceneName)
 		attri = attri->next_attribute();
 	}
 	cam.SetRotation(float3(a[0], a[1], a[2]));
+
 	l2Node = l1Node->first_node("FOV");
 	a[0] = atof(l2Node->value());
+
 	l2Node = l1Node->first_node("NearClip");
 	a[1] = atof(l2Node->value());
+
 	l2Node = l1Node->first_node("FarClip");
 	a[2] = atof(l2Node->value());
 	cam.SetPerspectiveCamera(a[0], a[1], a[2]);
+
 	CameraManager::Instance()->Push(cam);
 
+	//Create controller
 	FreeController *ctrl = new FreeController();
 	ctrl->Init();
 	ControllerManager::Instance()->Push(ctrl);
 
+	//Objs
 	l1Node = root->first_node("Objects");
 	l2Node = l1Node->first_node();
 
@@ -321,8 +365,45 @@ void SceneManager::SaveScene(char * sceneName)
 		sceneDoc.allocate_string(WeatherSystem::Instance()->GetWeatherMapPath()));
 	l0Node->append_node(l1Node);
 
+	l1Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("CloudMaxAltitude"),
+		sceneDoc.allocate_string(to_string(WeatherSystem::Instance()->GetCloudMaxAltitude()).c_str()));
+	l0Node->append_node(l1Node);
+
+	l1Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("CloudMinAltitude"),
+		sceneDoc.allocate_string(to_string(WeatherSystem::Instance()->GetCloudMinAltitude()).c_str()));
+	l0Node->append_node(l1Node);
+
 	l1Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("CloudCoverage"),
 		sceneDoc.allocate_string(to_string(WeatherSystem::Instance()->GetCloudCoverage()).c_str()));
+	l0Node->append_node(l1Node);
+
+	l1Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("CloudPrecipitation"),
+		sceneDoc.allocate_string(to_string(WeatherSystem::Instance()->GetCloudPrecipitation()).c_str()));
+	l0Node->append_node(l1Node);
+
+	l1Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("FogDensity"),
+		sceneDoc.allocate_string(to_string(WeatherSystem::Instance()->GetFogDensity()).c_str()));
+	l0Node->append_node(l1Node);
+
+	float3 fogColor = WeatherSystem::Instance()->GetFogColor();
+	l1Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("FogColor"));
+	attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("r"),
+		sceneDoc.allocate_string(to_string(fogColor.x).c_str()));
+	l1Node->append_attribute(attrib);
+	attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("g"),
+		sceneDoc.allocate_string(to_string(fogColor.y).c_str()));
+	l1Node->append_attribute(attrib);
+	attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("b"),
+		sceneDoc.allocate_string(to_string(fogColor.z).c_str()));
+	l1Node->append_attribute(attrib);
+	l0Node->append_node(l1Node);
+
+	l1Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("FogMaxAltitude"),
+		sceneDoc.allocate_string(to_string(WeatherSystem::Instance()->GetFogMaxAltitude()).c_str()));
+	l0Node->append_node(l1Node);
+
+	l1Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("FogPrecipitation"),
+		sceneDoc.allocate_string(to_string(WeatherSystem::Instance()->GetFogPrecipitation()).c_str()));
 	l0Node->append_node(l1Node);
 
 	//Camera info

@@ -85,6 +85,46 @@ void FreeController::KeyDownCallback(unsigned char key, int x, int y)
 		WeatherSystem::Instance()->AddCloudCoverage(-0.001f);
 	}
 	break;
+	case '8':
+	{
+		WeatherSystem::Instance()->AddCloudPrecipitation(0.1f);
+	}
+	break;
+	case '7':
+	{
+		WeatherSystem::Instance()->AddCloudPrecipitation(-0.1f);
+	}
+	break;
+	case '6':
+	{
+		WeatherSystem::Instance()->AddFogDensity(0.0001f);
+	}
+	break;
+	case '5':
+	{
+		WeatherSystem::Instance()->AddFogDensity(-0.0001f);
+	}
+	break;
+	case '4':
+	{
+		WeatherSystem::Instance()->AddFogMaxAltitude(0.1f);
+	}
+	break;
+	case '3':
+	{
+		WeatherSystem::Instance()->AddFogMaxAltitude(-0.1f);
+	}
+	break;
+	case '2':
+	{
+		WeatherSystem::Instance()->AddFogPrecipitation(0.1f);
+	}
+	break;
+	case '1':
+	{
+		WeatherSystem::Instance()->AddFogPrecipitation(-0.1f);
+	}
+	break;
 	case 't':
 	case 'T':
 	{

@@ -32,11 +32,16 @@ private:
 
 	char* weatherMapPath;
 	GLuint weatherMapId;
+	float cloudMaxAltitude;
+	float cloudMinAltitude;
 	float cloudCoverage;
 	float cloudPrecipitation;
 	GLuint cloudNoises[3];//PerlinWorley, Worley, Curl
 
 	float fogDensity;
+	float3 fogColor;
+	float fogMaxAltitude;
+	float fogPrecipitation;
 
 	void Init();
 	void UpdateAtmosphere();
@@ -50,6 +55,7 @@ public:
 	
 	void Update();
 
+	//Atmosphere
 	void SetLatitude(float l);
 	float GetLatitude();
 	void SetDay(int d);
@@ -60,12 +66,18 @@ public:
 	float GetTurbidity();
 	void SetExposure(float exp);
 	float GetExposure();
-	void SetTimeSpeed(float t);
-	float GetTimeSpeed();
+
+	//Wind
 	void SetWindDirection(float3 d);
 	float3 GetWindDirection();
 	void SetWindStrength(float s);
 	float GetWindStrength();
+
+	//Cloud
+	void SetCloudMaxAltitude(float a);
+	float GetCloudMaxAltitude();
+	void SetCloudMinAltitude(float a);
+	float GetCloudMinAltitude();
 	void SetCloudCoverage(float c);
 	void AddCloudCoverage(float c);
 	float GetCloudCoverage();
@@ -79,9 +91,23 @@ public:
 	GLuint GetBaseNoise();
 	GLuint GetDetailNoise();
 	GLuint GetCurlNoise();
+
+	//Fog
 	void SetFogDensity(float d);
 	void AddFogDensity(float d);
 	float GetFogDensity();
+	void SetFogColor(float3 c);
+	float3 GetFogColor();
+	void SetFogMaxAltitude(float a);
+	void AddFogMaxAltitude(float a);
+	float GetFogMaxAltitude();
+	void SetFogPrecipitation(float p);
+	void AddFogPrecipitation(float p);
+	float GetFogPrecipitation();
+
+	//Time
+	void SetTimeSpeed(float t);
+	float GetTimeSpeed();
 	void ToggleTimeLapse();
 	void SetTimeStop(bool bStop);
 	bool IsTimeStop();

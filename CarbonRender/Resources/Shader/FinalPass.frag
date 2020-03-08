@@ -24,8 +24,7 @@ void main ()
 					 lightColor.rgb + mix(cubeColor.rgb, ssrColor.rgb, ssrColor.a), 
 					 stencil.r);
 	
-	fColor.rgb = mix(fColor.rgb, cloudColor.rgb, cloudColor.a);
+	fColor.rgb = fColor.rgb * cloudColor.a + cloudColor.rgb;
 	fColor.rgb = pow(fColor.rgb, vec3(0.45454545f));
 	fColor.a = 1.0f;
-	//fColor.rgb = texture2D(lightBuffer, uv).rgb;
 }

@@ -13,7 +13,8 @@ uniform sampler2D curlMap;
 uniform sampler2D posMap;
 uniform sampler2D weatherMap;
 uniform sampler2D stencilMap;
-uniform sampler2D shadowMap;
+uniform sampler2D smMapLv0;
+uniform sampler2D smMapLv1;
 
 uniform vec3 wsCamPos;
 uniform vec3 wsSunPos;
@@ -24,19 +25,23 @@ uniform vec3 zenithColor;
 uniform mat4 viewMat;
 uniform mat4 proMat;
 uniform mat4 smMat;
+uniform mat4 smProMatLv0;
+uniform mat4 smProMatLv1;
 
+uniform float cloudMaxAltitude;
+uniform float cloudMinAltitude;
+uniform float cloudHeightInv;
 uniform vec3 cloudBias;
-uniform float CoverageFactor;
-uniform float PrecipitationFactor;
+uniform float cloudCoverageScale;
+uniform float cloudPrecipitationScale;
 
 uniform float fogDensity;
+uniform vec3 fogColorScale;
+uniform float fogPrecipitaion;
+uniform float fogMaxAltitude;
 
 const float PLANET_RADIUS = 6356755.0f;
 const vec3 PLANET_CENTER = vec3(0.0f, -PLANET_RADIUS, 0.0f);
-const float MIN_CLOUD_ALTITUDE = 150.0f;
-const float MAX_CLOUD_ALTITUDE = 600.0f;
-const float CLOUD_HEIGHT = MAX_CLOUD_ALTITUDE - MIN_CLOUD_ALTITUDE;
-const float CLOUD_HEIGHT_INV = 1.0f / CLOUD_HEIGHT;
 
 const vec3 randomV[6] = vec3[6](vec3(0.38051305f,  0.92453449f, -0.02111345f),
 			                     vec3(-0.50625799f, -0.03590792f, -0.86163418f),
@@ -49,8 +54,8 @@ const vec4 StratusFactor = vec4(0.0f, 0.1f, 0.2f, 0.3f);
 const vec4 CumulusFactor = vec4(0.05f, 0.25f, 0.45f, 0.65f);
 const vec4 CumulonumbisFactor = vec4(0.0f, 0.05f, 0.7f, 0.9f);
 
-const float MAX_FOG_ALTITUDE = 20.0f;
-const float FOG_STEP_SIZE = 1.0f;
+const float FOG_STEP_SIZE_SHORT = 0.1f;
+const float FOG_STEP_SIZE_LONG = 2.0f;
 
 float Remap(float value, float oldMin, float oldMax, float newMin, float newMax)
 {
@@ -60,7 +65,7 @@ float Remap(float value, float oldMin, float oldMax, float newMin, float newMax)
 float GetHeightGradient(vec3 pos)
 {
 	float d = distance(pos, PLANET_CENTER);
-	d = (d - MIN_CLOUD_ALTITUDE - PLANET_RADIUS) * CLOUD_HEIGHT_INV;
+	d = (d - cloudMinAltitude - PLANET_RADIUS) * cloudHeightInv;
 	d = clamp(d, 0.0f, 1.0f);
 
 	return d;
@@ -78,7 +83,7 @@ vec3 UVW(vec3 p, float scale)
 {
 	vec3 uvw;
 
-	float a = 0.1f / (MAX_CLOUD_ALTITUDE - MIN_CLOUD_ALTITUDE);
+	float a = 0.1f / (cloudMaxAltitude - cloudMinAltitude);
 	uvw.xz = p.xz * a * 0.5f + 0.5f;
 	uvw.y = p.y * a * 0.5f + 0.5f;
 
@@ -122,9 +127,9 @@ vec3 GetScreenPosAndDepth(vec3 pos)
 vec3 SampleWeather(vec3 pos)
 {
 	vec3 weatherData = texture2D(weatherMap, UVW(pos + cloudBias * 2.0f, 1.0f).xz).rgb;//R - coverage; G - precipitation; B - cloud type
-	weatherData.r = weatherData.r * CoverageFactor;
+	weatherData.r = weatherData.r * cloudCoverageScale;
 	weatherData.g = mix(1.0f, 2.0f, weatherData.g); 
-	weatherData.g *= PrecipitationFactor;
+	weatherData.g *= cloudPrecipitationScale;
 	weatherData.b = weatherData.b;
 
 	return weatherData;
@@ -207,41 +212,75 @@ vec3 CloudLighting(vec3 pos, float density, vec3 lightRay, float stepSize, vec3 
 	return sColor * h;
 }
 
-vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis, bool stensilMark)
+bool IsInScreen (vec2 ssPos)
+{
+	return ssPos.x >= 0.0f && ssPos.x <= 1.0f && ssPos.y >= 0.0f && ssPos.y <= 1.0f;
+}
+
+vec2 GetShadowUV (vec4 pos, out int level)
+{
+	level = 0;
+	vec4 smPos = smProMatLv0 * pos;
+	vec2 smUV = smPos.xy / smPos.w * 0.5f + 0.5f;
+	
+	if (!IsInScreen(smUV))
+	{
+		level = 1;
+		smPos = smProMatLv1 * pos;
+		smUV = smPos.xy / smPos.w * 0.5f + 0.5f;
+		
+		if (!IsInScreen(smUV))
+			level = -1;
+	}
+
+	return smUV;
+}
+
+vec4 GetShadowMap(int level, vec2 uv)
+{
+	if (level == 0)
+		return texture2D(smMapLv0, uv);
+	else
+		return texture2D(smMapLv1, uv);
+}
+
+vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis, bool stensilMark, out float startToCamDis)
 {
 	//Volumetric fog
+	if (fogDensity <= 0.0f)
+		return vec4(0.0f);
+
 	vec3 startPos;
 	vec3 endPos;
 
-	vec3 sampleStep = viewRay * FOG_STEP_SIZE;
-	float fogDensityStep = 0.05f * FOG_STEP_SIZE;//fogDensity * FOG_STEP_SIZE;
-	int fogSampleCount = int(ceil(1.0f / fogDensityStep));
-	fogSampleCount = min(128, fogSampleCount);
+	float sampleStep = FOG_STEP_SIZE_SHORT;
+	vec3 sampleStepV = viewRay * sampleStep;
+	float fogDensityStep = fogDensity * sampleStep;
+	int fogSampleCount = 512;
+	int fogSampleCountAccur = 256;
+	int fogSampleCountUnaccur = fogSampleCount - fogSampleCountAccur;
 
 	float sampleDisSum;
 	float sampleDisMax;
 	
-	if (wsCamPos.y > MAX_FOG_ALTITUDE)
+	if (wsCamPos.y > fogMaxAltitude)
 	{
 		float theta = dot(viewRay, vec3(0.0f, -1.0f, 0.0f));
 
 		if (theta > 0)
 		{
-			sampleDisSum = (wsCamPos.y - MAX_FOG_ALTITUDE) / theta;
+			sampleDisSum = (wsCamPos.y - fogMaxAltitude) / theta;
 			sampleDisSum += 0.1f;
 			startPos = wsCamPos + viewRay * sampleDisSum;
 
-			sampleDisMax = sampleDisSum + fogSampleCount * FOG_STEP_SIZE;
+			sampleDisMax = sampleDisSum + fogSampleCountAccur * FOG_STEP_SIZE_SHORT + fogSampleCountUnaccur * FOG_STEP_SIZE_LONG;
 			endPos = wsCamPos + viewRay * sampleDisMax;
 		}
 		else
 		{
-			sampleDisSum = 0.0f;
-			sampleDisMax = 0.0f;
-			startPos = wsCamPos;
-			endPos = wsCamPos;
+			startToCamDis = 1000000000.0f;
+			return vec4(0.0f);
 		}
-		
 	}
 	else
 	{
@@ -251,13 +290,14 @@ vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis,
 		float theta = dot(viewRay, vec3(0.0f, 1.0f, 0.0f));
 
 		if (theta > 0.0f)
-			sampleDisMax = (MAX_FOG_ALTITUDE - wsCamPos.y) / theta;
+			sampleDisMax = (fogMaxAltitude - wsCamPos.y) / theta;
 		else
-			sampleDisMax = sampleDisSum + fogSampleCount * FOG_STEP_SIZE;
+			sampleDisMax = sampleDisSum + fogSampleCountAccur * FOG_STEP_SIZE_SHORT + fogSampleCountUnaccur * FOG_STEP_SIZE_LONG;
 
 		endPos = wsCamPos + viewRay * sampleDisMax;
 		
 	}
+	startToCamDis = sampleDisSum;
 
 	if (intersectDis <= sampleDisMax)
 	{
@@ -265,53 +305,67 @@ vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis,
 		sampleDisMax = intersectDis;
 	}
 
+	float LoU = dot(lightRay, vec3(0.0f, 1.0f, 0.0f));
 	float fogSampleDensity = 0.0f;
 	vec3 fogLightColor = vec3(0.0f);
 	vec3 samplePos = startPos;
 
 	for (int i = 0; i < fogSampleCount; i++)
 	{
-		if (samplePos.y > MAX_FOG_ALTITUDE) break;
-
 		if (sampleDisSum >= sampleDisMax)
 			samplePos = endPos;
 
-		float lightRayDensity = 0.0f;
-		vec3 lightSamplePos = samplePos;
-		vec3 lightSampleStep = lightRay * FOG_STEP_SIZE;
-		for (int j = 0; j < 6; j++)
-		{
-			if (lightSamplePos.y > MAX_FOG_ALTITUDE)
-				break;
+		if (samplePos.y > fogMaxAltitude) break;
 
-			lightRayDensity += fogDensityStep;
-			lightSamplePos += lightSampleStep;
+		vec3 fogSampleColor = vec3(0.0f);
+
+		vec4 smsPos = smMat * vec4(samplePos, 1.0f);
+		float sampleDepth = -smsPos.z;
+		int shadowLevel;
+		vec2 smUV = GetShadowUV(smsPos, shadowLevel);
+		float blkerDepth = GetShadowMap(shadowLevel, smUV).r;
+		if (shadowLevel < 0 || sampleDepth <= blkerDepth)
+		{
+			float lightRayDensity = fogDensity * max(fogMaxAltitude - samplePos.y, 0.0f) / LoU;
+			//lightRayDensity = min(1.0f, lightRayDensity);
+
+			fogSampleColor = sunColor * fogColorScale;
+			fogSampleColor *= Beers(lightRayDensity, fogPrecipitaion);
+			fogSampleColor *= Beers(fogSampleDensity, fogPrecipitaion);
 		}
 
-		vec3 fogSampleColor = sunColor;
-		float vol = clamp(dot(viewRay, lightRay), 0.0f, 1.0f);
-		fogSampleColor *= 2.0f * Beers(lightRayDensity, 5.0f);
-		fogSampleColor *= Powder(fogDensityStep);
-		fogSampleColor *= HG(vol, 0.7f);
-		fogLightColor += fogSampleColor;		
+		fogLightColor += fogSampleColor;
 
+		if (i == fogSampleCountAccur)
+		{
+			sampleStep = FOG_STEP_SIZE_LONG;
+			sampleStepV = viewRay * sampleStep;
+			fogDensityStep = fogDensity * sampleStep;
+		}
+
+		//vec3 uvw = UVW(samplePos + cloudBias, 8.0f);
+		float noise = 1.0f;//textureLod(perlinWorleyMap, uvw, 0.0f).g;
 		if (sampleDisSum >= sampleDisMax)
 		{	
-			fogSampleDensity += fogDensityStep * (FOG_STEP_SIZE - sampleDisSum + sampleDisMax) / FOG_STEP_SIZE;
+			fogSampleDensity += noise * fogDensityStep * (sampleStep - sampleDisSum + sampleDisMax) / sampleStep;
 			break;
 		}
-		fogSampleDensity += fogDensityStep;
+		fogSampleDensity += noise * fogDensityStep;
 
-		samplePos += sampleStep;
-		sampleDisSum += FOG_STEP_SIZE;
+		if (fogSampleDensity >= 1.0f)
+			break;
+
+		samplePos += sampleStepV;
+		sampleDisSum += sampleStep;
 	}
 	
-	cColor.a = min(fogSampleDensity, 1.0f);
-	cColor.rgb = cColor.aaa;//fogLightColor;
-	return cColor;
+	vec4 fogColor;
+	fogColor.a = fogSampleDensity;
+	fogColor.rgb = fogLightColor;
+	return clamp(fogColor, 0.0f, 1.0f);
 }
 
-vec4 GetCloud(vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis, bool stensilMark)
+vec4 GetCloud(vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis, bool stensilMark, out float startToCamDis)
 {
 	//Volumetric cloud
 	vec3 startPos;
@@ -319,35 +373,35 @@ vec4 GetCloud(vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis
 	float sampleDisSum;
 	float sampleDisMax;
 
-	if (wsCamPos.y < MIN_CLOUD_ALTITUDE)
+	if (wsCamPos.y < cloudMinAltitude)
 	{
 		float L = distance(PLANET_CENTER, wsCamPos);
 		float alpha = dot( normalize(PLANET_CENTER - wsCamPos), viewRay);
 		float l1 = L * abs(alpha);
 		float d = sqrt(L * L - l1 * l1);
-		float r = PLANET_RADIUS + MIN_CLOUD_ALTITUDE;
+		float r = PLANET_RADIUS + cloudMinAltitude;
 		float l2 = sqrt(r * r - d * d);
 		sampleDisSum = alpha >= 0.0f ? (l1 + l2) : (l2 - l1);
 		startPos = wsCamPos + viewRay * sampleDisSum;
 
-		r = PLANET_RADIUS + MAX_CLOUD_ALTITUDE;
+		r = PLANET_RADIUS + cloudMaxAltitude;
 		l2 = sqrt(r * r - d * d);
 		sampleDisMax = alpha >= 0.0f ? (l1 + l2) : (l2 - l1);
 		endPos = wsCamPos + viewRay * sampleDisMax;
 	}
-	else if (wsCamPos.y > MAX_CLOUD_ALTITUDE)
+	else if (wsCamPos.y > cloudMaxAltitude)
 	{
 		float L = wsCamPos.y + PLANET_RADIUS;
 		float alpha = dot(vec3(0.0f, -1.0f, 0.0f), viewRay);
 		if (alpha < 0.0) return vec4(0.0);
 		float l1 = L * alpha;
 		float d = sqrt(L * L - l1 * l1);
-		float r = PLANET_RADIUS + MAX_CLOUD_ALTITUDE;
+		float r = PLANET_RADIUS + cloudMaxAltitude;
 		float l2 = sqrt(r * r - d * d);
 		sampleDisSum = l1 - l2 + 1.0f;
 		startPos = wsCamPos + viewRay * sampleDisSum;
 
-		r = PLANET_RADIUS + MIN_CLOUD_ALTITUDE;
+		r = PLANET_RADIUS + cloudMinAltitude;
 		l2 = sqrt(r * r - d * d);
 		sampleDisMax = l1 - l2;
 		endPos = wsCamPos + viewRay * sampleDisMax;
@@ -359,6 +413,7 @@ vec4 GetCloud(vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis
 		startPos = wsCamPos;
 		endPos = wsCamPos + viewRay * sampleDisMax;
 	}
+	startToCamDis = sampleDisSum;
 
 	vec3 samplePos = startPos;
 	float cloudStepSize = sampleDisMax / CLOUD_SAMPLE_COUNT;
@@ -374,9 +429,11 @@ vec4 GetCloud(vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis
 	
 	for(int i = 0; i < CLOUD_SAMPLE_COUNT; i++)
 	{
-		if (samplePos.y < -100.0f ||
-			sampleDisSum >= sampleDisMax
+		if (samplePos.y < -100.0f //||
 			) break;
+
+		if (sampleDisSum >= sampleDisMax)
+			samplePos = endPos;
 			
 		float sampleDensity = SampleCloudDensity(samplePos, mipmapLev, false);
 
@@ -389,11 +446,14 @@ vec4 GetCloud(vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis
 			if (cloudColor.a >= 1.0f) break;
 		}
 
+		if (sampleDisSum >= sampleDisMax)
+			break;
+
 		samplePos += sampleStep;
 		sampleDisSum += cloudStepSize;
 	}
 
-	return cloudColor;
+	return clamp(cloudColor, 0.0f, 1.0f);
 }
 
 void main ()
@@ -408,13 +468,20 @@ void main ()
 	if (!stensilMark) intersectPos = wsCamPos + viewRay * 100000000.0f;
 	float intersectDis = distance(wsCamPos, intersectPos);
 	
-	cColor = GetFog(viewRay, lightRay, intersectPos, intersectDis, stensilMark);
-	if (cColor.a >= 1.0f && wsCamPos.y <= MAX_FOG_ALTITUDE)
-		return;
+	float fogStartToCamDis;
+	vec4 fogColor = GetFog(viewRay, lightRay, intersectPos, intersectDis, stensilMark, fogStartToCamDis);
+	fogColor.rgb *= fogColor.a;
 
-	vec4 cloudColor = GetCloud(viewRay, lightRay, intersectPos, intersectDis, stensilMark);
+	float cloudStartToCamDis;
+	vec4 cloudColor = GetCloud(viewRay, lightRay, intersectPos, intersectDis, stensilMark, cloudStartToCamDis);
+	//cloudColor.rgb *= cloudColor.a;
 
-	cColor.rgb += cloudColor.rgb * (1.0f - cColor.a);
-	cColor.a += cloudColor.a;
+	if(fogStartToCamDis <= cloudStartToCamDis)
+		cColor.rgb = cloudColor.rgb * (1.0f - fogColor.a) + fogColor.rgb;
+	else
+		cColor.rgb = cloudColor.rgb + fogColor.rgb * (1.0f - cloudColor.a);
+
+	cColor.a = (1.0f - fogColor.a) * (1.0f - cloudColor.a);
+	//cColor.rgb = fogColor.rgb;
 	cColor = clamp(cColor, 0.0f, 1.0f);
 }

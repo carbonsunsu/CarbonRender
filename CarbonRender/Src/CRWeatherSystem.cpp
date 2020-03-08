@@ -38,10 +38,10 @@ void WeatherSystem::Init()
 	sun.SetLightSize(0.009342f * lightR);
 	sun.SetShadowMapSize(2048);
 	sunLight = LightManager::Instance()->AddLight(sun);
-	cloudCoverage = 0.55f;// 0.32f;
+	cloudCoverage = 0.55f;
 	cloudPrecipitation = 1.0f;
 	GenerateCloudNoise();
-	fogDensity = 0.1f;
+	fogDensity = 0.02f;
 
 	Update();
 }
@@ -182,6 +182,26 @@ void WeatherSystem::SetWindStrength(float s)
 float WeatherSystem::GetWindStrength()
 {
 	return windDir.w;
+}
+
+void WeatherSystem::SetCloudMaxAltitude(float a)
+{
+	cloudMaxAltitude = a;
+}
+
+float WeatherSystem::GetCloudMaxAltitude()
+{
+	return cloudMaxAltitude;
+}
+
+void WeatherSystem::SetCloudMinAltitude(float a)
+{
+	cloudMinAltitude = a;
+}
+
+float WeatherSystem::GetCloudMinAltitude()
+{
+	return cloudMinAltitude;
 }
 
 void WeatherSystem::SetCloudCoverage(float c)
@@ -403,6 +423,46 @@ void WeatherSystem::AddFogDensity(float d)
 float WeatherSystem::GetFogDensity()
 {
 	return fogDensity;
+}
+
+void WeatherSystem::SetFogColor(float3 c)
+{
+	fogColor = c;
+}
+
+float3 WeatherSystem::GetFogColor()
+{
+	return fogColor;
+}
+
+void WeatherSystem::SetFogMaxAltitude(float a)
+{
+	fogMaxAltitude = a;
+}
+
+void WeatherSystem::AddFogMaxAltitude(float a)
+{
+	fogMaxAltitude += a;
+}
+
+float WeatherSystem::GetFogMaxAltitude()
+{
+	return fogMaxAltitude;
+}
+
+void WeatherSystem::SetFogPrecipitation(float p)
+{
+	fogPrecipitation = p;
+}
+
+void WeatherSystem::AddFogPrecipitation(float p)
+{
+	fogPrecipitation += p;
+}
+
+float WeatherSystem::GetFogPrecipitation()
+{
+	return fogPrecipitation;
 }
 
 void WeatherSystem::ToggleTimeLapse()

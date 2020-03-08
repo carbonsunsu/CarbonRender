@@ -7,8 +7,15 @@
 		<Exposure>30.000000</Exposure>
 		<TimeSpeed>1500.000000</TimeSpeed>
 		<WindDirection x="0.500000" y="0.000000" z="1.000000" w="10.000000"/>
-    <WeatherMap>Weather0</WeatherMap>
-    <CloudCoverage>0.674998</CloudCoverage>
+		<WeatherMap>Weather0</WeatherMap>
+		<CloudMaxAltitude>6000.000000</CloudMaxAltitude>
+		<CloudMinAltitude>1500.000000</CloudMinAltitude>
+		<CloudCoverage>0.674998</CloudCoverage>
+		<CloudPrecipitation>1.000000</CloudPrecipitation>
+		<FogDensity>0.010000</FogDensity>
+		<FogColor r="1.000000" g="1.000000" b="1.000000"/>
+		<FogMaxAltitude>20.000000</FogMaxAltitude>
+		<FogPrecipitation>20.000000</FogPrecipitation>
 	</World>
 	<Camera>
 		<Position x="0.525556" y="13.547342" z="13.303885"/>
