@@ -39,7 +39,7 @@ A real-time rendering engine based on C++ and OpenGL
 
 * Real-time volumetric fog
 
-![FOG0](CarbonRender/ScreenShots/VolumetricFog0.gif)
+![FOG0](CarbonRender/ScreenShots/VolumetricFog0.png)
 
 ![FOG1](CarbonRender/ScreenShots/VolumetricFog1.gif)
 
