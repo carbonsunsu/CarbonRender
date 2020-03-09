@@ -352,7 +352,7 @@ vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis,
 		}
 		fogSampleDensity += noise * fogDensityStep;
 
-		if (fogSampleDensity >= 5.0f)
+		if (fogSampleDensity >= 1.0f)
 			break;
 
 		samplePos += sampleStepV;
