@@ -231,6 +231,7 @@ void WeatherSystem::SetCloudPrecipitation(float p)
 void WeatherSystem::AddCloudPrecipitation(float p)
 {
 	cloudPrecipitation += p;
+	cloudPrecipitation = Math::Max(cloudPrecipitation, 0.0f);
 }
 
 float WeatherSystem::GetCloudPrecipitation()
@@ -418,6 +419,7 @@ void WeatherSystem::SetFogDensity(float d)
 void WeatherSystem::AddFogDensity(float d)
 {
 	fogDensity += d;
+	fogDensity = Math::Max(fogDensity, 0.0f);
 }
 
 float WeatherSystem::GetFogDensity()
@@ -458,6 +460,7 @@ void WeatherSystem::SetFogPrecipitation(float p)
 void WeatherSystem::AddFogPrecipitation(float p)
 {
 	fogPrecipitation += p;
+	fogPrecipitation = Math::Max(fogPrecipitation, 0.0f);
 }
 
 float WeatherSystem::GetFogPrecipitation()

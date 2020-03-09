@@ -2,7 +2,7 @@
 	<World>
 		<Latitude>0.000000</Latitude>
 		<Day>180</Day>
-		<Time>17.800022</Time>
+		<Time>15.200012</Time>
 		<Turbidity>4.000000</Turbidity>
 		<Exposure>30.000000</Exposure>
 		<TimeSpeed>1500.000000</TimeSpeed>
@@ -12,14 +12,14 @@
 		<CloudMinAltitude>1500.000000</CloudMinAltitude>
 		<CloudCoverage>0.674998</CloudCoverage>
 		<CloudPrecipitation>1.000000</CloudPrecipitation>
-		<FogDensity>0.010000</FogDensity>
+		<FogDensity>0.000600</FogDensity>
 		<FogColor r="1.000000" g="1.000000" b="1.000000"/>
-		<FogMaxAltitude>20.000000</FogMaxAltitude>
-		<FogPrecipitation>20.000000</FogPrecipitation>
+		<FogMaxAltitude>11.099966</FogMaxAltitude>
+		<FogPrecipitation>41.199944</FogPrecipitation>
 	</World>
 	<Camera>
-		<Position x="-15.873531" y="3.715676" z="14.829822"/>
-		<Rotation x="11.700003" y="56.599979" z="0.000000"/>
+		<Position x="-1.704789" y="3.148877" z="-19.087137"/>
+		<Rotation x="3.700041" y="171.200043" z="0.000000"/>
 		<FOV>60.000000</FOV>
 		<NearClip>0.010000</NearClip>
 		<FarClip>3000.000000</FarClip>

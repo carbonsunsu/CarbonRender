@@ -327,14 +327,14 @@ vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis,
 		if (shadowLevel < 0 || sampleDepth <= blkerDepth)
 		{
 			float lightRayDensity = fogDensity * max(fogMaxAltitude - samplePos.y, 0.0f) / LoU;
-			//lightRayDensity = min(1.0f, lightRayDensity);
 
 			fogSampleColor = sunColor * fogColorScale;
 			fogSampleColor *= Beers(lightRayDensity, fogPrecipitaion);
-			fogSampleColor *= Beers(fogSampleDensity, fogPrecipitaion);
 		}
+		fogSampleColor += sunColor * 0.01f * fogColorScale * Beers((fogMaxAltitude - samplePos.y) * fogDensity, fogPrecipitaion);
+		fogSampleColor *= Beers(fogSampleDensity, fogPrecipitaion);
 
-		fogLightColor += fogSampleColor;
+		fogLightColor += fogSampleColor * fogSampleDensity;
 
 		if (i == fogSampleCountAccur)
 		{
@@ -343,7 +343,7 @@ vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis,
 			fogDensityStep = fogDensity * sampleStep;
 		}
 
-		//vec3 uvw = UVW(samplePos + cloudBias, 8.0f);
+		//vec3 uvw = UVW(samplePos + cloudBias, 128.0f);
 		float noise = 1.0f;//textureLod(perlinWorleyMap, uvw, 0.0f).g;
 		if (sampleDisSum >= sampleDisMax)
 		{	
@@ -352,7 +352,7 @@ vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis,
 		}
 		fogSampleDensity += noise * fogDensityStep;
 
-		if (fogSampleDensity >= 1.0f)
+		if (fogSampleDensity >= 5.0f)
 			break;
 
 		samplePos += sampleStepV;
@@ -362,7 +362,7 @@ vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis,
 	vec4 fogColor;
 	fogColor.a = fogSampleDensity;
 	fogColor.rgb = fogLightColor;
-	return clamp(fogColor, 0.0f, 1.0f);
+	return fogColor;//clamp(fogColor, 0.0f, 1.0f);
 }
 
 vec4 GetCloud(vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis, bool stensilMark, out float startToCamDis)
@@ -470,18 +470,17 @@ void main ()
 	
 	float fogStartToCamDis;
 	vec4 fogColor = GetFog(viewRay, lightRay, intersectPos, intersectDis, stensilMark, fogStartToCamDis);
-	fogColor.rgb *= fogColor.a;
 
 	float cloudStartToCamDis;
 	vec4 cloudColor = GetCloud(viewRay, lightRay, intersectPos, intersectDis, stensilMark, cloudStartToCamDis);
-	//cloudColor.rgb *= cloudColor.a;
+	cloudColor.rgb *= cloudColor.a;
 
 	if(fogStartToCamDis <= cloudStartToCamDis)
-		cColor.rgb = cloudColor.rgb * (1.0f - fogColor.a) + fogColor.rgb;
+		cColor.rgb = cloudColor.rgb * Beers(fogColor.a, fogPrecipitaion) + fogColor.rgb;//cloudColor.rgb * (1.0f - fogColor.a) + fogColor.rgb;
 	else
 		cColor.rgb = cloudColor.rgb + fogColor.rgb * (1.0f - cloudColor.a);
 
-	cColor.a = (1.0f - fogColor.a) * (1.0f - cloudColor.a);
+	cColor.a = (1.0f - cloudColor.a) * Beers(fogColor.a, fogPrecipitaion);//(1.0f - fogColor.a) * (1.0f - cloudColor.a);
 	//cColor.rgb = fogColor.rgb;
 	cColor = clamp(cColor, 0.0f, 1.0f);
 }
