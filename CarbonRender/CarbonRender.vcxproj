@@ -99,6 +99,12 @@
     <None Include="Resources\Scene\ShadowTest_BigScene.scene">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Resources\Scene\WoTBasicHangar.scene">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\Scene\WoTBasicHangarOpen.scene" />
+    <None Include="Resources\Scene\WoTPremiumHangar.scene" />
+    <None Include="Resources\Scene\WoTPremiumHangarOpen.scene" />
     <None Include="Resources\Shader\Atmosphere.frag" />
     <None Include="Resources\Shader\Atmosphere.vert" />
     <None Include="Resources\Shader\GIDenoise.frag" />

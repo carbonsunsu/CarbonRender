@@ -325,6 +325,18 @@
     <None Include="Resources\Scene\ShadowTest_BigScene.scene">
       <Filter>Scene</Filter>
     </None>
+    <None Include="Resources\Scene\WoTBasicHangar.scene">
+      <Filter>Scene</Filter>
+    </None>
+    <None Include="Resources\Scene\WoTPremiumHangar.scene">
+      <Filter>Scene</Filter>
+    </None>
+    <None Include="Resources\Scene\WoTBasicHangarOpen.scene">
+      <Filter>Scene</Filter>
+    </None>
+    <None Include="Resources\Scene\WoTPremiumHangarOpen.scene">
+      <Filter>Scene</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Resources\Scene\Sponza.scene">

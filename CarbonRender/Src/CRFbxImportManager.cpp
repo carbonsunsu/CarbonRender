@@ -382,15 +382,15 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMes
 					break;
 				case FbxNodeAttribute::eMesh:
 				{
-					FbxMesh* mesh = node->GetMesh();									
+					FbxMesh* mesh = node->GetMesh();
 
-					MeshData* meshData = MeshManager::Instance()->GetMeshData(fileName, mesh->GetName());
+					MeshData* meshData = MeshManager::Instance()->GetMeshData(fileName, node->GetName());
 					if (meshData == nullptr)
 					{
 						meshData = new MeshData();
 
 						int ctrlPointsCount = mesh->GetControlPointsCount();
-						meshData->SetPath(fileName, mesh->GetName());
+						meshData->SetPath(fileName, node->GetName());
 						meshData->SetPolygonCount(mesh->GetPolygonCount());
 						meshData->SetVertexCount(meshData->GetPolygonCount() * 3);
 						meshData->CreateIndexArray(meshData->GetPolygonCount() * 3);
@@ -547,7 +547,7 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMes
 						FbxDouble3 scaling = node->LclScaling.Get();
 
 						MeshObject* newMeshObj = new MeshObject();
-						newMeshObj->SetName(mesh->GetName());
+						newMeshObj->SetName(node->GetName());
 						newMeshObj->SetPosition(translation);
 						newMeshObj->SetRotation(rotation);
 						newMeshObj->SetScale(scaling);

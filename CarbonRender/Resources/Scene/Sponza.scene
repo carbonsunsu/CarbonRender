@@ -64,7 +64,7 @@
 			<Rotation x="0.000000" y="90.000000" z="0.000000"/>
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
-				<StaticMeshObject Name="dragon_vrip.001" Path="dragon" SubMesh="dragon_vrip.001">
+				<StaticMeshObject Name="dragon_vrip" Path="dragon" SubMesh="dragon_vrip">
 					<Material Metallic="1.000000" Roughness="1.000000">
 						<Diffuse/>
 						<Normal/>
@@ -361,7 +361,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Line371" Path="Sponza" SubMesh="Line371">
+				<StaticMeshObject Name="Frame" Path="Sponza" SubMesh="Frame">
 					<Material Metallic="1.000000" Roughness="1.000000">
 						<Diffuse>Sponza\Frame_D</Diffuse>
 						<Normal/>
@@ -371,7 +371,7 @@
 					<Rotation x="0.000009" y="-89.999992" z="0.000000"/>
 					<Scale x="0.002000" y="0.002000" z="0.002000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="______01" Path="Sponza" SubMesh="______01">
+				<StaticMeshObject Name="Picture" Path="Sponza" SubMesh="Picture">
 					<Material Metallic="1.000000" Roughness="1.000000">
 						<Diffuse>Sponza\Picture_D</Diffuse>
 						<Normal/>
@@ -428,7 +428,7 @@
 					<Rotation x="90.000008" y="0.000000" z="-179.999985"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="segment1.002" Path="M48" SubMesh="segment1.002">
+				<StaticMeshObject Name="segment1" Path="M48" SubMesh="segment1">
 					<Material Metallic="1.000000" Roughness="1.000000">
 						<Diffuse>M48\T97_segment_track_D</Diffuse>
 						<Normal>M48\T97_segment_track_N</Normal>
@@ -438,7 +438,7 @@
 					<Rotation x="-90.000008" y="-0.000005" z="179.999985"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="segment1.003" Path="M48" SubMesh="segment1.003">
+				<StaticMeshObject Name="segment1.001" Path="M48" SubMesh="segment1.001">
 					<Material Metallic="1.000000" Roughness="1.000000">
 						<Diffuse>M48\T97_segment_track_D</Diffuse>
 						<Normal>M48\T97_segment_track_N</Normal>
@@ -448,7 +448,7 @@
 					<Rotation x="-90.000008" y="-0.000005" z="179.999985"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="segment2.002" Path="M48" SubMesh="segment2.002">
+				<StaticMeshObject Name="segment2" Path="M48" SubMesh="segment2">
 					<Material Metallic="1.000000" Roughness="1.000000">
 						<Diffuse>M48\T97_segment_track_D</Diffuse>
 						<Normal>M48\T97_segment_track_N</Normal>
@@ -458,7 +458,7 @@
 					<Rotation x="-90.000008" y="-0.000005" z="179.999985"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="segment2.003" Path="M48" SubMesh="segment2.003">
+				<StaticMeshObject Name="segment2.001" Path="M48" SubMesh="segment2.001">
 					<Material Metallic="1.000000" Roughness="1.000000">
 						<Diffuse>M48\T97_segment_track_D</Diffuse>
 						<Normal>M48\T97_segment_track_N</Normal>

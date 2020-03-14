@@ -8,6 +8,7 @@ layout(location = 4) in vec4 vColor;
 layout(location = 5) in vec3 msB;
 
 uniform mat4 modelMat;
+uniform mat3 normalMat;
 uniform mat4 viewMat;
 uniform mat4 proMat;
 uniform vec2 depthClampPara;
@@ -23,12 +24,10 @@ void main ()
 	gl_Position = viewMat * (modelMat * msPos);
 	d = -gl_Position.z;
 	gl_Position = proMat * gl_Position;
-	vec3 T = normalize(msT);
-	vec3 N = normalize(msN);
-	vec3 B = normalize(msB);
-	TBN = (mat3(T.x, T.y, T.z,
-				B.x, B.y, B.z,
-				N.x, N.y, N.z));
+	vec3 T = normalize(normalMat * msT);
+	vec3 N = normalize(normalMat * msN);
+	vec3 B = normalize(normalMat * msB);
+	TBN = mat3(T, B, N);
 	
 	wsP = (modelMat * msPos).xyz;
 	uv = uvs.xy;

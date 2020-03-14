@@ -117,12 +117,12 @@ void FreeController::KeyDownCallback(unsigned char key, int x, int y)
 	break;
 	case '2':
 	{
-		WeatherSystem::Instance()->AddFogPrecipitation(0.1f);
+		WeatherSystem::Instance()->AddFogPrecipitation(1.0f);
 	}
 	break;
 	case '1':
 	{
-		WeatherSystem::Instance()->AddFogPrecipitation(-0.1f);
+		WeatherSystem::Instance()->AddFogPrecipitation(-1.0f);
 	}
 	break;
 	case 't':
