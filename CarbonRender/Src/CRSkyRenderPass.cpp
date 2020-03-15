@@ -23,7 +23,7 @@ void SkyRenderPass::GetReady4Render(PassOutput* input)
 
 	glGenFramebuffers(1, &fboCube);
 	glBindFramebuffer(GL_FRAMEBUFFER, fboCube);
-	cubeRt = GLHelper::SetGLCubeRenderTexture(cubeSize, GL_RGB, GL_RGB, GL_UNSIGNED_BYTE);
+	cubeRt = GLHelper::SetGLCubeRenderTexture(cubeSize, GL_RGB8, GL_RGB, GL_FLOAT);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
@@ -69,7 +69,7 @@ void SkyRenderPass::Render(PassOutput* input)
 	glUniform1i(location, 4);
 
 	MeshObject* sphereMesh = (MeshObject*)sphere.GetFirstChild();
-	sphereMesh->Render(shaderProgram);
+	sphereMesh->Render(shaderProgram, false);
 
 	//render cube
 	Camera camCube;
@@ -94,11 +94,12 @@ void SkyRenderPass::Render(PassOutput* input)
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, output.RTS[1], 0);
 		CameraManager::Instance()->GetCurrentCamera()->SetRotation(rs[i]);
 		CameraManager::Instance()->GetCurrentCamera()->UpdateViewMatrix();
-		sphereMesh->Render(shaderProgram);
+		sphereMesh->Render(shaderProgram, false);
 	}
 
 	glBindTexture(GL_TEXTURE_CUBE_MAP, output.RTS[1]);
 	glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 
 	glViewport(0, 0, size.w, size.h);
 	CameraManager::Instance()->Pop();

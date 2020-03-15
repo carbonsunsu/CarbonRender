@@ -49,7 +49,7 @@ void LightPass::Render(PassOutput * input)
 	location = glGetUniformLocation(shaderProgram, "giMap");
 	glUniform1i(location, 6);
 	location = glGetUniformLocation(shaderProgram, "cubeMap");
-	glUniform1i(location, input->cout);
+	glUniform1i(location, 7);
 	
 	Light* sun = LightManager::Instance()->GetLight(0);
 	float3 sColor = sun->GetColor() * 3.0f;

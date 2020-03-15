@@ -7,8 +7,8 @@ void VolumetricCloudPass::GetReady4Render(PassOutput * input)
 
 	GLuint couldRt;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	couldRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0);
-	dBuffer = GLHelper::SetGLDepthBuffer(size.w, size.h);
+	couldRt = GLHelper::SetGLRenderTexture(size.w * targetSizeScaler, size.h * targetSizeScaler, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0);
+	//dBuffer = GLHelper::SetGLDepthBuffer(size.w * targetSizeScaler, size.h * targetSizeScaler);
 
 	glDrawBuffer(GL_COLOR_ATTACHMENT0);
 
@@ -21,20 +21,14 @@ void VolumetricCloudPass::GetReady4Render(PassOutput * input)
 
 void VolumetricCloudPass::Render(PassOutput * input)
 {
-	Camera cam;
-	Camera* curCam = CameraManager::Instance()->GetCurrentCamera();
-	cam.SetPerspectiveCamera(curCam->GetCameraPara().x, 1.0f, 100.0f);
-	cam.SetPosition(curCam->GetPosition());
-	cam.SetRotation(curCam->GetRotation());
-	cam.UpdateViewMatrix();
-	CameraManager::Instance()->Push(cam);
-
+	WindowSize size = WindowManager::Instance()->GetWindowSize();
+	glViewport(0, 0, size.w * targetSizeScaler, size.h * targetSizeScaler);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_FRONT);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-	glBindRenderbuffer(GL_RENDERBUFFER, dBuffer);
+	//glBindRenderbuffer(GL_RENDERBUFFER, dBuffer);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glActiveTexture(GL_TEXTURE1);
@@ -52,9 +46,10 @@ void VolumetricCloudPass::Render(PassOutput * input)
 		glBindTexture(GL_TEXTURE_2D, input->RTS[i]);
 	}
 
+	Camera* cam = CameraManager::Instance()->GetCurrentCamera();
 	Light* sun = LightManager::Instance()->GetLight(0);
-	float3 camPos = cam.GetPosition();
-	float3 camRot = cam.GetRotation();
+	float3 camPos = cam->GetPosition();
+	float3 camRot = cam->GetRotation();
 	float3 sunColor = sun->GetColor();
 	float4 zenithColor = LightManager::Instance()->GetZenithColor();
 	float3 sunPos = sun->GetPosition();
@@ -146,12 +141,12 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
-
-	CameraManager::Instance()->Pop();
+	glViewport(0, 0, size.w, size.h);
 }
 
 void VolumetricCloudPass::Init()
 {
+	targetSizeScaler = 0.5f;
 	FbxImportManager::Instance()->ImportFbxModel("Box", &cloudBox);
 	shaderProgram = ShaderManager::Instance()->LoadShader("VolumatricCloud.vert", "VolumatricCloud.frag");
 }

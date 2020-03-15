@@ -50,7 +50,7 @@ void MeshObject::Render(GLuint shaderProgram, bool useTex)
 		finalMat = modelMatrix;
 	Matrix3x3 normalMat = finalMat;
 
-	if (material != nullptr)
+	if (useTex)
 	{
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, material->GetDiffuse());

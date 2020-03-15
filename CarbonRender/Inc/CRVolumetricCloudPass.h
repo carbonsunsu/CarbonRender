@@ -14,7 +14,7 @@ private:
 
 	GLuint dBuffer;
 	Object cloudBox;
-
+	float targetSizeScaler;
 public:
 	void Init();
 };

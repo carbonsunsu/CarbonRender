@@ -393,6 +393,8 @@ void WeatherSystem::GenerateCloudNoise()
 	glTexImage3D(GL_TEXTURE_3D, 0, GL_RGB, 32, 32, 32, 0, GL_RGB, GL_UNSIGNED_BYTE, worley);
 	glGenerateMipmap(GL_TEXTURE_3D);
 
+	glBindTexture(GL_TEXTURE_3D, 0);
+
 	cloudNoises[2] = TextureManager::Instance()->LoadTexture("CurlNoise");
 }
 

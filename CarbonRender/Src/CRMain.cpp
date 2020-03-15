@@ -55,6 +55,7 @@ void Init(int argc, char** argv)
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_TEXTURE_3D);
+	glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 
 	TextureManager::Instance();
 	MeshManager::Instance();

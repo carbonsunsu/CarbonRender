@@ -159,8 +159,8 @@ float SampleCloudDensity(vec3 pos, float mipmap, bool useCheapWay)
 	if (!useCheapWay)
 	{
 		//do curl
-		vec4 curlNoise = texture2D(curlMap, uvw.xz);
-		uvw.xz += curlNoise.xz * clamp(heightF * 5.0f, 0.0f, 1.0f);
+		//vec4 curlNoise = texture2D(curlMap, uvw.xz);
+		//uvw.xz += curlNoise.xz * clamp(heightF * 5.0f, 0.0f, 1.0f);
 
 		noise = textureLod(worleyMap, uvw * 0.6f, mipmap);
 		float hfFbm = noise.r * 0.625f + noise.g * 0.25f + noise.b * 0.125f;
