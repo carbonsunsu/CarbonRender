@@ -12,14 +12,14 @@
 		<CloudMinAltitude>1500.000000</CloudMinAltitude>
 		<CloudCoverage>0.674998</CloudCoverage>
 		<CloudPrecipitation>1.000000</CloudPrecipitation>
-		<FogDensity>0.002600</FogDensity>
+		<FogDensity>0.000300</FogDensity>
 		<FogColor r="1.000000" g="1.000000" b="1.000000"/>
 		<FogMaxAltitude>20.000000</FogMaxAltitude>
-		<FogPrecipitation>26.999969</FogPrecipitation>
+		<FogPrecipitation>117.000000</FogPrecipitation>
 	</World>
 	<Camera>
-		<Position x="6.234265" y="3.226612" z="9.321391"/>
-		<Rotation x="8.999997" y="-402.399719" z="0.000000"/>
+		<Position x="9.181990" y="4.586628" z="12.067819"/>
+		<Rotation x="12.599996" y="-755.999939" z="0.000000"/>
 		<FOV>60.000000</FOV>
 		<NearClip>0.010000</NearClip>
 		<FarClip>3000.000000</FarClip>

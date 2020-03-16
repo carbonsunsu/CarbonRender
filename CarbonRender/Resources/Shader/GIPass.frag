@@ -18,7 +18,7 @@ uniform vec3 sunColor;
 
 const float vplLod = 0.0f;
 const int r = 100;
-const int sampleNum = 8;
+const int sampleUnitCount = 4;
 
 float Random (vec2 i, float seed)
 {
@@ -47,7 +47,7 @@ vec3 SampleVPL (vec2 uv, vec3 wsP, vec3 wsN)
 	float d = max(distance(wsP, vplPos), 1.0f);
 
 	float intensity = max(0.0f, dot(vplN, v)) * max(0.0f, dot(wsN, -v)) / (d*d);
-	return intensity * vplColor * sunColor;
+	return intensity * vplColor * sunColor * 4.0f;
 }
 
 void main ()
@@ -65,15 +65,16 @@ void main ()
 	vec2 smUV = smP.xy * 0.5f + 0.5f;
 	vec3 gi = vec3(0.0f, 0.0f, 0.0f);
 	vec2 sampleR = stepUnit * r;
-	int sampleNum2 = sampleNum * sampleNum;
+	int sampleCountSum = sampleUnitCount * 5;
+	float unitCountInv = 1.0f / sampleUnitCount;
 
-	for (int i = 0; i < sampleNum2; i++)
+	for (int i = 0; i < sampleCountSum; i++)
 	{
-		float lx = floor(i / sampleNum) / sampleNum * 2.0f - 1.0f;
-		float ly = mod(i, sampleNum) / sampleNum * 2.0f - 1.0f;
-		vec2 subl = sampleR * 2.0f / sampleNum;
+		float lx = floor(i * unitCountInv) * unitCountInv * 2.0f - 1.0f;
+		float ly = mod(i, sampleUnitCount) * unitCountInv * 2.0f - 1.0f;
+		vec2 subl = sampleR * unitCountInv;
 		float rx = Random(smUV, i * 20.0f) * subl.x;
-		float ry = Random(smUV, -i * 10.0f) * subl.y;
+		float ry = Random(smUV, -i * 5.0f) * subl.y;
 		vec2 vplUv = smUV + vec2(sampleR.x * lx + rx, sampleR.y * ly + ry);
 
 		gi += SampleVPL(vplUv, wsP, wsN);
