@@ -94,6 +94,9 @@ void MenuManager::UpdateModelList()
 
 MenuManager::~MenuManager()
 {
+	modelList.clear();
+	modelList.shrink_to_fit();
+	ins = nullptr;
 }
 
 MenuManager * MenuManager::Instance()

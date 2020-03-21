@@ -9,7 +9,10 @@ ControllerManager::ControllerManager()
 ControllerManager::~ControllerManager()
 {
 	while (!ctrls.empty())
+	{
+		delete ctrls.top();
 		ctrls.pop();
+	}
 
 	ins = nullptr;
 }

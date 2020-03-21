@@ -3,16 +3,13 @@
 MeshData::MeshData()
 {
 	bReady4Rending = false;
-	vao = -1;
-	ebo = -1;
-	vBuffer = -1;
-	cBuffer = -1;
-	uvBuffer = -1;
-	nBuffer = -1;
-	tBuffer = -1;
-	bBuffer = -1;
+
+	for (int i = 0; i < 8; i++)
+		vertexArrayBuffers[i] = -1;
+
 	vertexCount = 0;
 	polygonCount = 0;
+
 	indexArray = nullptr;
 	vertexArray = nullptr;
 	colorArray = nullptr;
@@ -24,24 +21,25 @@ MeshData::MeshData()
 
 MeshData::~MeshData()
 {
-	delete indexArray;
-	delete vertexArray;
-	delete colorArray;
-	delete normalArray;
-	delete tangentArray;
-	delete binormalArray;
-	delete uvArray;
+	if (bReady4Rending)
+	{
+		glDeleteVertexArrays(1, vertexArrayBuffers);
+		glDeleteBuffers(7, vertexArrayBuffers + 1);
+	}
 
-	vao = -1;
-	ebo = -1;
-	vBuffer = -1;
-	cBuffer = -1;
-	uvBuffer = -1;
-	nBuffer = -1;
-	tBuffer = -1;
-	bBuffer = -1;
+	for (int i = 0; i < 8; i++)
+		vertexArrayBuffers[i] = -1;
+
 	vertexCount = 0;
 	polygonCount = 0;
+
+	delete[] indexArray;
+	delete[] vertexArray;
+	delete[] colorArray;
+	delete[] normalArray;
+	delete[] tangentArray;
+	delete[] binormalArray;
+	delete[] uvArray;
 }
 
 void MeshData::CreateArraies()
@@ -143,12 +141,12 @@ void MeshData::CopyToUVArray(float * data)
 
 GLuint MeshData::GetVertexArrayObject()
 {
-	return vao;
+	return vertexArrayBuffers[0];
 }
 
 GLuint MeshData::GetElementBufferObject()
 {
-	return ebo;
+	return vertexArrayBuffers[1];
 }
 
 unsigned int MeshData::GetVertexCount()
@@ -176,36 +174,30 @@ void MeshData::GetReady4Rending()
 	if (bReady4Rending)
 		return;
 
-	glGenVertexArrays(1, &vao);
-	glGenBuffers(1, &ebo);
-	glGenBuffers(1, &vBuffer);
-	glGenBuffers(1, &cBuffer);
-	glGenBuffers(1, &uvBuffer);
-	glGenBuffers(1, &nBuffer);
-	glGenBuffers(1, &tBuffer);
-	glGenBuffers(1, &bBuffer);
+	glGenVertexArrays(1, vertexArrayBuffers);
+	glGenBuffers(7, vertexArrayBuffers + 1);
 
-	glBindVertexArray(vao);
+	glBindVertexArray(vertexArrayBuffers[0]);
 
-	GLHelper::SetGLArrayBuffer(vBuffer, sizeof(float)*vertexCount * 3, vertexArray, 3, GL_FLOAT, CR_VERTATTRIPOS_POS);
+	GLHelper::SetGLArrayBuffer(vertexArrayBuffers[2], sizeof(float)*vertexCount * 3, vertexArray, 3, GL_FLOAT, CR_VERTATTRIPOS_POS);
 	glEnableVertexAttribArray(CR_VERTATTRIPOS_POS);
 
-	GLHelper::SetGLArrayBuffer(cBuffer, sizeof(float)*vertexCount * 4, colorArray, 4, GL_FLOAT, CR_VERTATTRIPOS_COL);
+	GLHelper::SetGLArrayBuffer(vertexArrayBuffers[3], sizeof(float)*vertexCount * 4, colorArray, 4, GL_FLOAT, CR_VERTATTRIPOS_COL);
 	glEnableVertexAttribArray(CR_VERTATTRIPOS_COL);
 
-	GLHelper::SetGLArrayBuffer(uvBuffer, sizeof(float)*vertexCount * 4, uvArray, 4, GL_FLOAT, CR_VERTATTRIPOS_UVS);
+	GLHelper::SetGLArrayBuffer(vertexArrayBuffers[4], sizeof(float)*vertexCount * 4, uvArray, 4, GL_FLOAT, CR_VERTATTRIPOS_UVS);
 	glEnableVertexAttribArray(CR_VERTATTRIPOS_UVS);
 
-	GLHelper::SetGLArrayBuffer(nBuffer, sizeof(float)*vertexCount * 3, normalArray, 3, GL_FLOAT, CR_VERTATTRIPOS_NOR);
+	GLHelper::SetGLArrayBuffer(vertexArrayBuffers[5], sizeof(float)*vertexCount * 3, normalArray, 3, GL_FLOAT, CR_VERTATTRIPOS_NOR);
 	glEnableVertexAttribArray(CR_VERTATTRIPOS_NOR);
 
-	GLHelper::SetGLArrayBuffer(tBuffer, sizeof(float)*vertexCount * 3, tangentArray, 3, GL_FLOAT, CR_VERTATTRIPOS_TAG);
+	GLHelper::SetGLArrayBuffer(vertexArrayBuffers[6], sizeof(float)*vertexCount * 3, tangentArray, 3, GL_FLOAT, CR_VERTATTRIPOS_TAG);
 	glEnableVertexAttribArray(CR_VERTATTRIPOS_TAG);
 
-	GLHelper::SetGLArrayBuffer(bBuffer, sizeof(float)*vertexCount * 3, binormalArray, 3, GL_FLOAT, CR_VERTATTRIPOS_BNL);
+	GLHelper::SetGLArrayBuffer(vertexArrayBuffers[7], sizeof(float)*vertexCount * 3, binormalArray, 3, GL_FLOAT, CR_VERTATTRIPOS_BNL);
 	glEnableVertexAttribArray(CR_VERTATTRIPOS_BNL);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexArrayBuffers[1]);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int)*polygonCount * 3, indexArray, GL_STATIC_DRAW);
 
 	glBindVertexArray(NULL);
@@ -218,11 +210,216 @@ MeshManager* MeshManager::ins = nullptr;
 
 MeshManager::MeshManager()
 {
+	InitBuildinBoxMesh();
+}
+
+void MeshManager::InitBuildinBoxMesh()
+{
+	float vertexPos[72] = {
+		-0.5f, -0.5f, -0.5f,
+		-0.5f, -0.5f, 0.5f,
+		-0.5f, 0.5f, -0.5f,
+		-0.5f, 0.5f, 0.5f,
+		0.5f, -0.5f, -0.5f,
+		0.5f, -0.5f, 0.5f,
+		0.5f, 0.5f, -0.5f,
+		0.5f, 0.5f, 0.5f,
+		-0.5f, 0.5f, -0.5f,
+		0.5f, 0.5f, -0.5f,
+		-0.5f, -0.5f, -0.5f,
+		0.5f, -0.5f, -0.5f,
+		0.5f, 0.5f, -0.5f,
+		-0.5f, -0.5f, -0.5f,
+		-0.5f, 0.5f, -0.5f,
+		-0.5f, 0.5f, 0.5f,
+		0.5f, -0.5f, 0.5f,
+		0.5f, 0.5f, 0.5f,
+		-0.5f, 0.5f, 0.5f,
+		0.5f, 0.5f, 0.5f,
+		0.5f, -0.5f, 0.5f,
+		-0.5f, -0.5f, 0.5f,
+		0.5f, -0.5f, -0.5f,
+		-0.5f, -0.5f, 0.5f,
+	};
+
+	float vertexUV[96] = {
+		1.0f, 1.0f, -1.0f, -1.0f,
+		0.0f, 1.0f, -1.0f, -1.0f,
+		1.0f, 0.0f, -1.0f, -1.0f,
+		0.0f, 1.0f, -1.0f, -1.0f,
+		1.0f, 0.0f, -1.0f, -1.0f,
+		0.0f, 0.0f, -1.0f, -1.0f,
+		1.0f, 0.0f, -1.0f, -1.0f,
+		0.0f, 1.0f, -1.0f, -1.0f,
+		1.0f, 1.0f, -1.0f, -1.0f,
+		1.0f, 1.0f, -1.0f, -1.0f,
+		1.0f, 1.0f, -1.0f, -1.0f,
+		0.0f, 1.0f, -1.0f, -1.0f,
+		0.0f, 1.0f, -1.0f, -1.0f,
+		1.0f, 0.0f, -1.0f, -1.0f,
+		1.0f, 1.0f, -1.0f, -1.0f,
+		1.0f, 1.0f, -1.0f, -1.0f,
+		0.0f, 0.0f, -1.0f, -1.0f,
+		1.0f, 0.0f, -1.0f, -1.0f,
+		0.0f, 0.0f, -1.0f, -1.0f,
+		0.0f, 0.0f, -1.0f, -1.0f,
+		0.0f, 0.0f, -1.0f, -1.0f,
+		1.0f, 0.0f, -1.0f, -1.0f
+	};
+
+	float vertexColor[96] = {
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, 1.0f
+	};
+
+	float vertexNormal[72] = {
+		-1.0f, 0.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f,
+		0.0f,1.0f, 0.0f,
+		1.0f, 0.0f, 0.0f,
+		0.0f, -1.0f, 0.0f,
+		0.0f,1.0f, 0.0f,
+		1.0f, 0.0f, 0.0f,
+		0.0f,1.0f, 0.0f,
+		1.0f, 0.0f, 0.0f,
+		0.0f, -1.0f, 0.0f,
+		0.0f, -1.0f, 0.0f,
+		0.0f, 0.0f, -1.0f,
+		0.0f, 0.0f, -1.0f,
+		0.0f, 0.0f, -1.0f,
+		0.0f, 0.0f,1.0f,
+		0.0f, 0.0f,1.0f,
+		0.0f, 0.0f,1.0f,
+		-1.0f, 0.0f, 0.0f,
+		0.0f,1.0f, 0.0f,
+		1.0f, 0.0f, 0.0f,
+		0.0f, -1.0f, 0.0f,
+		0.0f, 0.0f, -1.0f,
+		0.0f, 0.0f,1.0f
+	};
+
+	float vertexTangent[72] = {
+		0.0f, 0.0f, -1.0f,
+		0.0f, 0.0f, -1.0f,
+		0.0f, 0.0f, -1.0f,
+		0.0f, 0.0f, -1.0f,
+		0.0f, 0.0f, -1.0f,
+		-1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, -1.0f,
+		0.0f, 0.0f, -1.0f,
+		0.0f, 0.0f, -1.0f,
+		0.0f, 0.0f, -1.0f,
+		-1.0f, 0.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, -1.0f,
+		0.0f, 0.0f, -1.0f,
+		0.0f, 0.0f, -1.0f,
+		-1.0f, 0.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f
+	};
+
+	float vertexBinormal[72] = {
+		0.0f, -1.0f, 0.0f,
+		0.0f, -1.0f, 0.0f,
+		0.0f, -1.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f,
+		-0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, -1.0f,
+		-1.0f, 0.0f, 0.0f,
+		-0.0f, 1.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f,
+		-0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, -1.0f,
+		-0.0f, -0.0f, -1.0f,
+		0.0f, 1.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f,
+		0.0f, -1.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f,
+		-0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, -1.0f,
+		0.0f, 1.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f
+	};
+
+	unsigned int index[36] = {
+		1, 2, 0,
+		3, 6, 8,
+		7, 4, 9,
+		5, 10, 11,
+		12, 13, 14,
+		15, 16, 17,
+		1, 18, 2,
+		3, 19, 6,
+		7, 20, 4,
+		5, 21, 10,
+		12, 22, 13,
+		15, 23, 16,
+	};
+
+	buildinBox.SetVertexCount(24);
+	buildinBox.SetPolygonCount(12);
+
+	buildinBox.CreateIndexArray(36);
+	buildinBox.CreateVertexArray(72);
+	buildinBox.CreateVertexColorArray(96);
+	buildinBox.CreateUVArray(96);
+	buildinBox.CreateNormalArray(72);
+	buildinBox.CreateTangentArray(72);
+	buildinBox.CreateBinormalArray(72);
+
+	buildinBox.CopyToVertexArray(vertexPos);
+	buildinBox.CopyToVertexColorArray(vertexColor);
+	buildinBox.CopyToUVArray(vertexUV);
+	buildinBox.CopyToNormalrray(vertexNormal);
+	buildinBox.CopyToTangentArray(vertexTangent);
+	buildinBox.CopyToBinormalArray(vertexBinormal);
+
+	for (int i = 0; i < 36; i++)
+		buildinBox.SetIndexAt(i, index[i]);
+
+	buildinBox.GetReady4Rending();
 }
 
 MeshManager::~MeshManager()
 {
+	for (unordered_map<string, MeshData*>::iterator i = meshDatas.begin(); i != meshDatas.end(); i++)
+		delete i->second;
+
 	meshDatas.clear();
+	ins = nullptr;
 }
 
 MeshManager * MeshManager::Instance()
@@ -231,18 +428,6 @@ MeshManager * MeshManager::Instance()
 		ins = new MeshManager();
 
 	return ins;
-}
-
-void MeshManager::AddMeshData(MeshData* data)
-{
-	char* index = FileReader::BindString((char*)data->GetPath().c_str(), ":");
-	index = FileReader::BindString(index, (char*)data->GetSubMeshName().c_str());
-
-	if (meshDatas.find(index) == meshDatas.end())
-	{
-		data->GetReady4Rending();
-		meshDatas[index] = data;
-	}
 }
 
 MeshData * MeshManager::GetMeshData(string meshPath, string subMeshName)
@@ -256,10 +441,27 @@ MeshData * MeshManager::GetMeshData(string meshPath, string subMeshName)
 		return nullptr;
 }
 
+MeshData * MeshManager::CreateNewMeshData(string meshPath, string subMeshName)
+{
+	char* index = FileReader::BindString((char*)meshPath.c_str(), ":");
+	index = FileReader::BindString(index, (char*)subMeshName.c_str());
+
+	MeshData* newMeshData = new MeshData();
+	newMeshData->SetPath(meshPath, subMeshName);
+	meshDatas[index] = newMeshData;
+
+	return newMeshData;
+}
+
 bool MeshManager::Find(string meshPath, string subMeshName)
 {
 	char* index = FileReader::BindString((char*)meshPath.c_str(), ":");
 	index = FileReader::BindString(index, (char*)subMeshName.c_str());
 
 	return meshDatas.find(index) != meshDatas.end();
+}
+
+MeshData * MeshManager::GetBuildinBox()
+{
+	return &buildinBox;
 }

@@ -37,13 +37,14 @@ private:
 	MaterialManager();
 	static MaterialManager* ins;
 	
-	vector<Material> materials;
-
+	vector<Material*> materials;
+	Material defaultMaterial;
 public:
 	~MaterialManager();
 	static MaterialManager* Instance();
 
 	Material* CreateNewMaterial();
+	Material* GetDefaultMaterial();
 };
 
 #endif

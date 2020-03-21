@@ -4,11 +4,16 @@ LightManager* LightManager::ins = nullptr;
 
 LightManager::LightManager()
 {
+	lightID = 0;
 }
 
 LightManager::~LightManager()
 {
-	lights.shrink_to_fit();
+	for (unordered_map<unsigned int, Light*>::iterator i = lights.begin(); i != lights.end(); i++)
+		delete i->second;
+
+	lights.clear();
+	ins = nullptr;
 }
 
 LightManager * LightManager::Instance()
@@ -19,20 +24,26 @@ LightManager * LightManager::Instance()
 	return ins;
 }
 
-int LightManager::AddLight(Light light)
+unsigned int LightManager::CreateNewLight(LightType type, float i)
 {
-	lights.emplace_back(light);
-	return lights.size() - 1;
+	unsigned int newLightID = lightID;
+	lightID++;
+
+	Light* newLight = new Light(type, i);
+	lights[newLightID] = newLight;
+
+	return newLightID;
 }
 
 Light* LightManager::GetLight(int index)
 {
-	return &lights[index];
+	return lights[index];
 }
 
-void LightManager::ClearLight()
+void LightManager::DeleteLight(int index)
 {
-	lights.shrink_to_fit();
+	delete lights[index];
+	lights.erase(index);
 }
 
 float4 LightManager::GetZenithColor()

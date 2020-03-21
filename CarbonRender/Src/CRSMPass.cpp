@@ -6,7 +6,9 @@ void SMPass::GetReady4Render(PassOutput * input)
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
 	GLuint depthMapLv0, depthMapLv1, depthMapLv2, vplPos, vplAlbedo, vplNormal;
-	int shadowMapSize = LightManager::Instance()->GetLight(0)->GetShadowMapSize();
+	unsigned int sunLightID = WeatherSystem::Instance()->GetSunLightID();
+	Light* sunLight = LightManager::Instance()->GetLight(sunLightID);
+	int shadowMapSize = sunLight->GetShadowMapSize();
 	depthMapLv0 = GLHelper::SetGLRenderTexture(shadowMapSize, shadowMapSize, GL_R32F, GL_RED, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0);
 	vplPos = GLHelper::SetGLRenderTexture(shadowMapSize, shadowMapSize, GL_RGB32F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT1);
 	vplAlbedo = GLHelper::SetGLRenderTexture(shadowMapSize, shadowMapSize, GL_RGB8, GL_RGB, GL_UNSIGNED_BYTE, GL_LINEAR, GL_COLOR_ATTACHMENT2);
@@ -31,22 +33,21 @@ void SMPass::GetReady4Render(PassOutput * input)
 
 void SMPass::Render(PassOutput * input)
 {
-	Light* sun = LightManager::Instance()->GetLight(0);
-	float farClip = sun->GetFarClip();
-	float nearClip = sun->GetNearClip();
-	int shadowMapSize = sun->GetShadowMapSize();
+	unsigned int sunLightID = WeatherSystem::Instance()->GetSunLightID();
+	Light* sunLight = LightManager::Instance()->GetLight(sunLightID);
+	float farClip = sunLight->GetFarClip();
+	float nearClip = sunLight->GetNearClip();
+	int shadowMapSize = sunLight->GetShadowMapSize();
 
 	//Mipmap level 0
 	float3 lookPos = followCam ? CameraManager::Instance()->GetCurrentCamera()->GetPosition() : float3(0.0f);
-	Camera cam;
-	cam.SetOrthoCamera(10.0f, nearClip, farClip);
-	//cam.SetPerspectiveCamera(3.0f, nearClip, farClip);
-	cam.SetPosition(sun->GetPosition() + lookPos);
-	cam.SetRotation(sun->GetRotation());
-	CameraManager::Instance()->Push(cam);
-	CameraManager::Instance()->GetCurrentCamera()->UpdateViewMatrix();
-	output.mats[0] = CameraManager::Instance()->GetCurrentCamera()->GetViewMatrix();
-	output.mats[1] = CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix();
+	Camera* cam = CameraManager::Instance()->Push();
+	cam->SetOrthoCamera(10.0f, nearClip, farClip);
+	cam->SetPosition(sunLight->GetPosition() + lookPos);
+	cam->SetRotation(sunLight->GetRotation());
+	cam->UpdateViewMatrix();
+	output.mats[0] = cam->GetViewMatrix();
+	output.mats[1] = cam->GetProjectionMatrix();
 
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
@@ -68,8 +69,8 @@ void SMPass::Render(PassOutput * input)
 	SceneManager::Instance()->DrawScene(shaderProgram);
 
 	//Mipmap level 1
-	CameraManager::Instance()->GetCurrentCamera()->SetOrthoCamera(50.0f, nearClip, farClip);
-	output.mats[2] = CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix();
+	cam->SetOrthoCamera(50.0f, nearClip, farClip);
+	output.mats[2] = cam->GetProjectionMatrix();
 
 	glDrawBuffer(GL_COLOR_ATTACHMENT4);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -80,8 +81,8 @@ void SMPass::Render(PassOutput * input)
 	SceneManager::Instance()->DrawScene(shaderProgram);
 
 	//Mipmap level 2
-	CameraManager::Instance()->GetCurrentCamera()->SetOrthoCamera(1000.0f, nearClip, farClip);
-	output.mats[3] = CameraManager::Instance()->GetCurrentCamera()->GetProjectionMatrix();
+	cam->SetOrthoCamera(1000.0f, nearClip, farClip);
+	output.mats[3] = cam->GetProjectionMatrix();
 
 	glDrawBuffer(GL_COLOR_ATTACHMENT5);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

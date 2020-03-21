@@ -10,17 +10,17 @@ private:
 	SceneManager();
 	static SceneManager* ins;
 	
-	Object* sceneRoot;
+	Object sceneRoot;
 
 	void Init();
 public:
 	~SceneManager();
 	static SceneManager* Instance();
 	
-	void LoadScene(char* sceneName);
+	void LoadScene(string sceneName);
 	void WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent, Object* obj);
 	void ReadObjFromXMLNode(xml_node<>* xmlNode, Object* sceneNodeParent);
-	void SaveScene(char* sceneName);
+	void SaveScene(string sceneName);
 	void Draw (Object* node, GLuint shaderProgram);
 	void DrawScene(GLuint shaderProgram);
 

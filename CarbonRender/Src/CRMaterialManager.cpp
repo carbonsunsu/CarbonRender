@@ -4,10 +4,17 @@ MaterialManager* MaterialManager::ins = nullptr;
 
 MaterialManager::MaterialManager()
 {
+	defaultMaterial.SetDiffuse("");
+	defaultMaterial.SetNormal("");
+	defaultMaterial.SetSpecular("");
 }
 
 MaterialManager::~MaterialManager()
 {
+	for (vector<Material*>::iterator i = materials.begin(); i != materials.end(); i++)
+		delete *i;
+
+	ins = nullptr;
 }
 
 MaterialManager * MaterialManager::Instance()
@@ -21,9 +28,14 @@ MaterialManager * MaterialManager::Instance()
 Material * MaterialManager::CreateNewMaterial()
 {
 	Material* newMat = new Material();
-	materials.emplace_back(*newMat);
+	materials.emplace_back(newMat);
 	
 	return newMat;
+}
+
+Material * MaterialManager::GetDefaultMaterial()
+{
+	return &defaultMaterial;
 }
 
 Material::Material()

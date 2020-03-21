@@ -8,6 +8,7 @@ ConfigManager::ConfigManager()
 
 ConfigManager::~ConfigManager()
 {
+	ins = nullptr;
 }
 
 ConfigManager * ConfigManager::Instance()
@@ -38,7 +39,7 @@ void ConfigManager::LoadConfig()
 	screenSize.h = atoi(l1Node->value());
 }
 
-char * ConfigManager::GetScenePath()
+string ConfigManager::GetScenePath()
 {
 	return scenePath;
 }

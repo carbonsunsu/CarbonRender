@@ -32,12 +32,13 @@ void WeatherSystem::Init()
 	lightR = 3000.0f;
 	windDir = float4(0.5f, 0.0f, 1.0f, 10.0f);
 	cloudBias = float3(0.0f);
-	Light sun(LightType::eDirection, 1.0f);
-	sun.SetNearClip(1.0f);
-	sun.SetFarClip(lightR * 1.5f);
-	sun.SetLightSize(0.009342f * lightR);
-	sun.SetShadowMapSize(2048);
-	sunLight = LightManager::Instance()->AddLight(sun);
+	sunLightID = LightManager::Instance()->CreateNewLight(LightType::eDirection, 1.0f);
+	Light* sun = LightManager::Instance()->GetLight(sunLightID);
+	sun->SetNearClip(1.0f);
+	sun->SetFarClip(lightR * 1.5f);
+	sun->SetLightSize(0.009342f * lightR);
+	sun->SetShadowMapSize(2048);
+	
 	cloudCoverage = 0.55f;
 	cloudPrecipitation = 1.0f;
 	GenerateCloudNoise();
@@ -80,7 +81,7 @@ void WeatherSystem::UpdateAtmosphere()
 		turbidity * 0.00516f + 0.26688f);
 	zenith.y = ThetaS_3 * temp.x + ThetaS_2 * temp.y + thetaS * temp.z + temp.w;
 
-	Light* sun = LightManager::Instance()->GetLight(sunLight);
+	Light* sun = LightManager::Instance()->GetLight(sunLightID);
 	sun->SetPosition(wsSunPos);
 	sun->SetColor(GetSunColor());
 	sun->LookAt(float3(0.0f));
@@ -100,6 +101,11 @@ void WeatherSystem::Update()
 
 	UpdateAtmosphere();
 	UpdateCloud();
+}
+
+unsigned int WeatherSystem::GetSunLightID()
+{
+	return sunLightID;
 }
 
 void WeatherSystem::SetLatitude(float l)
@@ -239,13 +245,13 @@ float WeatherSystem::GetCloudPrecipitation()
 	return cloudPrecipitation;
 }
 
-void WeatherSystem::SetWeatherMap(char* path)
+void WeatherSystem::SetWeatherMap(string path)
 {
 	weatherMapPath = path;
 	weatherMapId = TextureManager::Instance()->LoadTexture(path);
 }
 
-char * WeatherSystem::GetWeatherMapPath()
+string WeatherSystem::GetWeatherMapPath()
 {
 	return weatherMapPath;
 }

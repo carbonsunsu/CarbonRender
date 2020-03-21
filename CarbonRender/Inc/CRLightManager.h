@@ -8,17 +8,17 @@ class LightManager
 private:
 	LightManager();
 	static LightManager* ins;
-	vector<Light> lights;
+	unordered_map<unsigned int, Light*> lights;
 	float4 zenithColor;
+	unsigned int lightID;
 
 public:
 	~LightManager();
 	static LightManager* Instance();
 
-	int AddLight(Light light);
+	unsigned int CreateNewLight(LightType type, float i);
 	Light* GetLight(int index);
-	void DeleteLight();
-	void ClearLight();
+	void DeleteLight(int index);
 	float4 GetZenithColor();
 	void SetZenithColor(float4 c);
 };

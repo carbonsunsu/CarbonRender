@@ -36,12 +36,12 @@ void SkyRenderPass::GetReady4Render(PassOutput* input)
 void SkyRenderPass::Render(PassOutput* input)
 {
 	float3 para = CameraManager::Instance()->GetCurrentCamera()->GetCameraPara();
-	Camera cam;
-	cam.SetPerspectiveCamera(para.x, 1000.0f, 20000.0f);
-	cam.SetPosition(float3(0.0f));
-	cam.SetRotation(CameraManager::Instance()->GetCurrentCamera()->GetRotation());
-	cam.UpdateViewMatrix();
-	CameraManager::Instance()->Push(cam);
+	float3 r = CameraManager::Instance()->GetCurrentCamera()->GetRotation();
+	Camera* cam = CameraManager::Instance()->Push();
+	cam->SetPerspectiveCamera(para.x, 1000.0f, 20000.0f);
+	cam->SetPosition(float3(0.0f));
+	cam->SetRotation(r);
+	cam->UpdateViewMatrix();
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
 	glViewport(0, 0, size.w, size.h);
 
@@ -72,12 +72,11 @@ void SkyRenderPass::Render(PassOutput* input)
 	sphereMesh->Render(shaderProgram, false);
 
 	//render cube
-	Camera camCube;
-	camCube.SetPerspectiveCamera(90.0f, 1000.0f, 20000.0f, cubeSize);
-	camCube.SetPosition(CameraManager::Instance()->GetCurrentCamera()->GetPosition());
-	camCube.SetRotation(CameraManager::Instance()->GetCurrentCamera()->GetRotation());
-	camCube.UpdateViewMatrix();
-	CameraManager::Instance()->Push(camCube);
+	Camera* camCube = CameraManager::Instance()->Push();
+	camCube->SetPerspectiveCamera(90.0f, 1000.0f, 20000.0f, cubeSize);
+	camCube->SetPosition(cam->GetPosition());
+	camCube->SetRotation(cam->GetRotation());
+	camCube->UpdateViewMatrix();
 	glViewport(0, 0, cubeSize, cubeSize);
 
 	float3 rs[6] = { float3(180.0f, -90.0f, 0.0f),

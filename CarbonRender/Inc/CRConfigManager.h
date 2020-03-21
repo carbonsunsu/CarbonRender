@@ -10,7 +10,7 @@ private:
 	ConfigManager();
 	static ConfigManager* ins;
 
-	char* scenePath;
+	string scenePath;
 	bool bFullScreen;
 	WindowSize screenSize;
 
@@ -19,7 +19,7 @@ public:
 	static ConfigManager* Instance();
 
 	void LoadConfig();
-	char* GetScenePath();
+	string GetScenePath();
 	bool IsFullScreen();
 	WindowSize GetScreenSize();
 };

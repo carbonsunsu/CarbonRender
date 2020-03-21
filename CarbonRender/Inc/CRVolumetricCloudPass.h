@@ -13,7 +13,7 @@ private:
 	void Render(PassOutput* input);
 
 	GLuint dBuffer;
-	Object cloudBox;
+	MeshObject cloudBox;
 	float targetSizeScaler;
 public:
 	void Init();

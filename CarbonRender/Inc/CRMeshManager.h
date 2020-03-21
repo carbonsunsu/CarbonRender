@@ -8,14 +8,17 @@
 class MeshData
 {
 private:
-	GLuint vao;
-	GLuint ebo;
-	GLuint vBuffer;
-	GLuint cBuffer;
-	GLuint uvBuffer;
-	GLuint nBuffer;
-	GLuint tBuffer;
-	GLuint bBuffer;
+	/*
+	0:vertex array object
+	1:element array buffer
+	2:vertex position buffer
+	3:vertex color buffer
+	4:vertex UV buffer
+	5:vertex normal buffer
+	6:vertex tangent buffer
+	7:vertex binormal buffer
+	*/
+	GLuint vertexArrayBuffers[8];
 
 	unsigned int vertexCount;
 	unsigned int polygonCount;
@@ -73,15 +76,18 @@ private:
 	static MeshManager* ins;
 
 	unordered_map<string, MeshData*> meshDatas;
+	MeshData buildinBox;
 
+	void InitBuildinBoxMesh();
 public:
 	~MeshManager();
 	static MeshManager* Instance();
 
-	void AddMeshData(MeshData* data);
-
 	MeshData* GetMeshData(string meshPath, string subMeshName);
+	MeshData* CreateNewMeshData(string meshPath, string subMeshName);
 	bool Find(string meshPath, string subMeshName);
+	
+	MeshData* GetBuildinBox();
 };
 
 #endif

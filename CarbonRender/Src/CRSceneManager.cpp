@@ -9,6 +9,7 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
+	ins = nullptr;
 }
 
 SceneManager * SceneManager::Instance()
@@ -21,14 +22,13 @@ SceneManager * SceneManager::Instance()
 
 void SceneManager::Init()
 {
-	sceneRoot = new Object();
-	sceneRoot->SetName("Root");
+	sceneRoot.SetName("Root");
 }
 
-void SceneManager::LoadScene(char* sceneName)
+void SceneManager::LoadScene(string sceneName)
 {
 	char* realDir = "Resources\\Scene\\";
-	realDir = FileReader::BindString(realDir, sceneName);
+	realDir = FileReader::BindString(realDir, (char*)sceneName.c_str());
 	realDir = FileReader::BindString(realDir, ".scene");
 
 	TextFile sceneFile = FileReader::ReadTextFile(realDir);
@@ -102,7 +102,7 @@ void SceneManager::LoadScene(char* sceneName)
 	WeatherSystem::Instance()->SetFogPrecipitation(atof(l2Node->value()));
 
 	//Camera info
-	Camera cam;
+	Camera* cam = CameraManager::Instance()->Push();
 	l1Node = root->first_node("Camera");
 	l2Node = l1Node->first_node("Position");
 	attri = l2Node->first_attribute();
@@ -111,7 +111,7 @@ void SceneManager::LoadScene(char* sceneName)
 		a[i] = atof(attri->value());
 		attri = attri->next_attribute();
 	}
-	cam.SetPosition(float3(a[0], a[1], a[2]));
+	cam->SetPosition(float3(a[0], a[1], a[2]));
 
 	l2Node = l1Node->first_node("Rotation");
 	attri = l2Node->first_attribute();
@@ -120,7 +120,7 @@ void SceneManager::LoadScene(char* sceneName)
 		a[i] = atof(attri->value());
 		attri = attri->next_attribute();
 	}
-	cam.SetRotation(float3(a[0], a[1], a[2]));
+	cam->SetRotation(float3(a[0], a[1], a[2]));
 
 	l2Node = l1Node->first_node("FOV");
 	a[0] = atof(l2Node->value());
@@ -130,9 +130,7 @@ void SceneManager::LoadScene(char* sceneName)
 
 	l2Node = l1Node->first_node("FarClip");
 	a[2] = atof(l2Node->value());
-	cam.SetPerspectiveCamera(a[0], a[1], a[2]);
-
-	CameraManager::Instance()->Push(cam);
+	cam->SetPerspectiveCamera(a[0], a[1], a[2]);
 
 	//Create controller
 	FreeController *ctrl = new FreeController();
@@ -144,7 +142,7 @@ void SceneManager::LoadScene(char* sceneName)
 	l2Node = l1Node->first_node();
 
 	if (l2Node != nullptr)
-		ReadObjFromXMLNode(l2Node, sceneRoot);
+		ReadObjFromXMLNode(l2Node, &sceneRoot);
 }
 
 void SceneManager::WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent, Object * obj)
@@ -306,10 +304,10 @@ void SceneManager::ReadObjFromXMLNode(xml_node<>* xmlNode, Object * sceneNodePar
 		ReadObjFromXMLNode(xmlNode->next_sibling(), sceneNodeParent);
 }
 
-void SceneManager::SaveScene(char * sceneName)
+void SceneManager::SaveScene(string sceneName)
 {
 	char* realDir = "Resources\\Scene\\";
-	realDir = FileReader::BindString(realDir, sceneName);
+	realDir = FileReader::BindString(realDir, (char*)sceneName.c_str());
 	realDir = FileReader::BindString(realDir, ".scene");
 
 	xml_document<> sceneDoc;
@@ -362,7 +360,7 @@ void SceneManager::SaveScene(char * sceneName)
 	l0Node->append_node(l1Node);
 	
 	l1Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("WeatherMap"),
-		sceneDoc.allocate_string(WeatherSystem::Instance()->GetWeatherMapPath()));
+		sceneDoc.allocate_string(WeatherSystem::Instance()->GetWeatherMapPath().c_str()));
 	l0Node->append_node(l1Node);
 
 	l1Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("CloudMaxAltitude"),
@@ -453,7 +451,7 @@ void SceneManager::SaveScene(char * sceneName)
 	l0Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("Objects"), nullptr);
 	rootNode->append_node(l0Node);
 
-	WriteObj2XMLNode(&sceneDoc, l0Node, sceneRoot->GetFirstChild());
+	WriteObj2XMLNode(&sceneDoc, l0Node, sceneRoot.GetFirstChild());
 
 	TextFile sceneData = FileReader::XML2Text(rootNode);
 	FileReader::WriteTextFile(realDir, sceneData);
@@ -486,10 +484,10 @@ void SceneManager::Draw(Object * node, GLuint shaderProgram)
 
 void SceneManager::DrawScene(GLuint shaderProgram)
 {
-	Draw(sceneRoot, shaderProgram);
+	Draw(&sceneRoot, shaderProgram);
 }
 
 Object * SceneManager::GetRootNode()
 {
-	return sceneRoot;
+	return &sceneRoot;
 }

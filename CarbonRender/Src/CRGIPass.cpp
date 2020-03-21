@@ -33,7 +33,9 @@ void GIPass::Render(PassOutput * input)
 	}
 
 	ShaderManager::Instance()->UseShader(shaderProgram);
-	float3 sunColor = LightManager::Instance()->GetLight(0)->GetColor();
+	unsigned int sunLightID = WeatherSystem::Instance()->GetSunLightID();
+	Light* sunLight = LightManager::Instance()->GetLight(sunLightID);
+	float3 sunColor = sunLight->GetColor();
 	GLint location = glGetUniformLocation(shaderProgram, "pMap");
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "nMap");
@@ -52,7 +54,7 @@ void GIPass::Render(PassOutput * input)
 	location = glGetUniformLocation(shaderProgram, "smProMat");
 	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[1].matrix);
 
-	int shadowMapSize = LightManager::Instance()->GetLight(0)->GetShadowMapSize();
+	int shadowMapSize = sunLight->GetShadowMapSize();
 	location = glGetUniformLocation(shaderProgram, "stepUnit");
 	glUniform2f(location, 1.0f / shadowMapSize, 1.0f / shadowMapSize);
 	location = glGetUniformLocation(shaderProgram, "sunColor");

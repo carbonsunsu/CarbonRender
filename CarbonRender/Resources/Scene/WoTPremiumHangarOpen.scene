@@ -19,7 +19,7 @@
 	</World>
 	<Camera>
 		<Position x="9.181990" y="4.586628" z="12.067819"/>
-		<Rotation x="12.599996" y="-755.999939" z="0.000000"/>
+		<Rotation x="12.099995" y="-761.799927" z="0.000000"/>
 		<FOV>60.000000</FOV>
 		<NearClip>0.010000</NearClip>
 		<FarClip>3000.000000</FarClip>

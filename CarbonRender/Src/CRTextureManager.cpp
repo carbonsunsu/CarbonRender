@@ -64,6 +64,10 @@ TextureManager::TextureManager()
 TextureManager::~TextureManager()
 {
 	glDeleteTextures(3, defaultTex);
+
+	for (unordered_map<string, GLuint>::iterator i = texturesMap.begin(); i != texturesMap.end(); i++)
+		glDeleteTextures(1, &(i->second));
+
 	texturesMap.clear();
 	ins = nullptr;
 }

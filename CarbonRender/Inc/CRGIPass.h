@@ -2,6 +2,7 @@
 #define CR_GIPASS
 
 #include "..\Inc\CRRenderPass.h"
+#include "..\Inc\CRWeatherSystem.h"
 
 class GIPass : public RenderPass
 {

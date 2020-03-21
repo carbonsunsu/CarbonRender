@@ -9,7 +9,10 @@ CameraManager::CameraManager()
 CameraManager::~CameraManager()
 {
 	while (!cams.empty())
+	{
+		delete cams.top();
 		cams.pop();
+	}
 
 	ins = nullptr;
 }
@@ -22,9 +25,11 @@ CameraManager * CameraManager::Instance()
 	return ins;
 }
 
-void CameraManager::Push(Camera newCam)
+Camera* CameraManager::Push()
 {
+	Camera* newCam = new Camera();
 	cams.push(newCam);
+	return newCam;
 }
 
 void CameraManager::Pop()
@@ -37,5 +42,5 @@ Camera* CameraManager::GetCurrentCamera()
 	if (cams.empty())
 		return nullptr;
 
-	return &cams.top();
+	return cams.top();
 }

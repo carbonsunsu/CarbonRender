@@ -387,10 +387,9 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMes
 					MeshData* meshData = MeshManager::Instance()->GetMeshData(fileName, node->GetName());
 					if (meshData == nullptr)
 					{
-						meshData = new MeshData();
+						meshData = MeshManager::Instance()->CreateNewMeshData(fileName, node->GetName());
 
 						int ctrlPointsCount = mesh->GetControlPointsCount();
-						meshData->SetPath(fileName, node->GetName());
 						meshData->SetPolygonCount(mesh->GetPolygonCount());
 						meshData->SetVertexCount(meshData->GetPolygonCount() * 3);
 						meshData->CreateIndexArray(meshData->GetPolygonCount() * 3);
@@ -514,12 +513,14 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMes
 						}
 
 						meshData->SetVertexCount(ctrlPointsCount + addVertexCount);
+
 						meshData->CreateVertexArray(meshData->GetVertexCount() * 3);
 						meshData->CreateVertexColorArray(meshData->GetVertexCount() * 4);
 						meshData->CreateUVArray(meshData->GetVertexCount() * 4);
 						meshData->CreateNormalArray(meshData->GetVertexCount() * 3);
 						meshData->CreateTangentArray(meshData->GetVertexCount() * 3);
 						meshData->CreateBinormalArray(meshData->GetVertexCount() * 3);
+
 						meshData->CopyToVertexArray(tempVertexArray);
 						meshData->CopyToVertexColorArray(tempColorArray);
 						meshData->CopyToUVArray(tempUVArray);
@@ -527,16 +528,16 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMes
 						meshData->CopyToTangentArray(tempTangentArray);
 						meshData->CopyToBinormalArray(tempBinormalArray);
 
-						MeshManager::Instance()->AddMeshData(meshData);
+						meshData->GetReady4Rending();
 
-						delete mark;
-						delete multiNormalIndex;
-						delete tempVertexArray;
-						delete tempColorArray;
-						delete tempUVArray;
-						delete tempNormalArray;
-						delete tempTangentArray;
-						delete tempBinormalArray;
+						delete[] mark;
+						delete[] multiNormalIndex;
+						delete[] tempVertexArray;
+						delete[] tempColorArray;
+						delete[] tempUVArray;
+						delete[] tempNormalArray;
+						delete[] tempTangentArray;
+						delete[] tempBinormalArray;
 					}				
 
 					if (newAMeshObj)

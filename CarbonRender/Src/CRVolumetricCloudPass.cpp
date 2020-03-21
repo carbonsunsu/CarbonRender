@@ -47,12 +47,13 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	}
 
 	Camera* cam = CameraManager::Instance()->GetCurrentCamera();
-	Light* sun = LightManager::Instance()->GetLight(0);
+	unsigned int sunLightID = WeatherSystem::Instance()->GetSunLightID();
+	Light* sunLight = LightManager::Instance()->GetLight(sunLightID);
 	float3 camPos = cam->GetPosition();
 	float3 camRot = cam->GetRotation();
-	float3 sunColor = sun->GetColor();
+	float3 sunColor = sunLight->GetColor();
 	float4 zenithColor = LightManager::Instance()->GetZenithColor();
-	float3 sunPos = sun->GetPosition();
+	float3 sunPos = sunLight->GetPosition();
 	float3 cloudBias = WeatherSystem::Instance()->GetCloudBias();
 	float3 fogColor = WeatherSystem::Instance()->GetFogColor();
 	ShaderManager::Instance()->UseShader(shaderProgram);
@@ -117,8 +118,7 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	cloudBox.SetPosition(camPos);
 	cloudBox.SetScale(float3(20.0f, 20.0f, 20.0f));
 	cloudBox.SetRotation(camRot);
-	MeshObject* cloudBoxMesh = (MeshObject*)cloudBox.GetFirstChild();
-	cloudBoxMesh->Render(shaderProgram, false);
+	cloudBox.Render(shaderProgram, false);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glBindRenderbuffer(GL_RENDERBUFFER, 0);
@@ -147,6 +147,7 @@ void VolumetricCloudPass::Render(PassOutput * input)
 void VolumetricCloudPass::Init()
 {
 	targetSizeScaler = 0.5f;
-	FbxImportManager::Instance()->ImportFbxModel("Box", &cloudBox);
+	cloudBox.SetMeshData(MeshManager::Instance()->GetBuildinBox());
+	cloudBox.SetMaterial(MaterialManager::Instance()->GetDefaultMaterial());
 	shaderProgram = ShaderManager::Instance()->LoadShader("VolumatricCloud.vert", "VolumatricCloud.frag");
 }

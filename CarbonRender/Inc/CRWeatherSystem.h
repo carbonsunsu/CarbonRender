@@ -28,9 +28,9 @@ private:
 
 	float shaderParas[10];
 
-	int sunLight;
+	unsigned int sunLightID;
 
-	char* weatherMapPath;
+	string weatherMapPath;
 	GLuint weatherMapId;
 	float cloudMaxAltitude;
 	float cloudMinAltitude;
@@ -54,6 +54,9 @@ public:
 	~WeatherSystem();
 	
 	void Update();
+
+	//Sun
+	unsigned int GetSunLightID();
 
 	//Atmosphere
 	void SetLatitude(float l);
@@ -84,8 +87,8 @@ public:
 	void SetCloudPrecipitation(float p);
 	void AddCloudPrecipitation(float p);
 	float GetCloudPrecipitation();
-	void SetWeatherMap(char* path);
-	char* GetWeatherMapPath();
+	void SetWeatherMap(string path);
+	string GetWeatherMapPath();
 	GLuint GetWeatherMapId();
 	void GenerateCloudNoise();
 	GLuint GetBaseNoise();
