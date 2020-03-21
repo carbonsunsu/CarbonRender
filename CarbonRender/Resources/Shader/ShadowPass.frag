@@ -15,7 +15,7 @@ uniform mat4 smProMatLv0;
 uniform mat4 smProMatLv1;
 uniform mat4 smProMatLv2;
 uniform vec2 stepUnit;
-uniform vec2 depthClampPara;//(nearClip, 1.0/(farClip - nearClip))
+uniform vec3 depthClampPara;//(nearClip, farClip, 1.0/(farClip - nearClip))
 uniform vec3 lightPos;
 uniform float lightSize;
 
@@ -51,6 +51,9 @@ vec2 GetShadowUV (vec4 pos, out int level)
 			level = 2;
 			smPos = smProMatLv2 * pos;
 			smUV = smPos.xy / smPos.w * 0.5f + 0.5f;
+
+			if (!IsInScreen(smUV))
+				level = -1;
 		}
 	}
 
@@ -80,6 +83,11 @@ void main ()
 	vec3 wsPos = pMapSample.xyz;
 	vec4 smPos = smViewMat * vec4(wsPos, 1.0f);
 	float rcverDepth = -smPos.z;
+	if (rcverDepth >= depthClampPara.y)
+	{
+		sColor = vec4(1.0f, 0.0f, 1.0f, 1.0f);
+		return;
+	}
 	int shadowLv = 0;
 	vec2 smUV = GetShadowUV(smPos, shadowLv);
 
@@ -92,7 +100,7 @@ void main ()
 	shadowBias = max(5.0f * shadowBias, 1.0f) * 0.05f;
 	
 	float sFactor = 1.0f;
-	if (IsInScreen(smUV))
+	if (shadowLv >= 0)
 	{	
 		float searchR = (lightSize * rcverDepth) / (rcverDepth - depthClampPara.x);
 		float avgBlkerDepth = 0.0f;
@@ -139,8 +147,13 @@ void main ()
 				}
 			}
 		}
+		if (sampleCount <= 0)
+		{
+			sColor = vec4(1.0f, 0.0f, 1.0f, 1.0f);
+			return;
+		}
 		sFactor /= sampleCount;
-		sColor = vec4(sFactor, 0.0f, 1.0f, 1.0f);
+		sColor = vec4(max(sFactor, 0.0f), 0.0f, 1.0f, 1.0f);
 		return;
 	}
 

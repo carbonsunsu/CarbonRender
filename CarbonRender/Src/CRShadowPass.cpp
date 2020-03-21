@@ -51,7 +51,7 @@ void ShadowPass::Render(PassOutput * input)
 	location = glGetUniformLocation(shaderProgram, "stepUnit");
 	glUniform2f(location, 1.0f / shadowMapSize, 1.0f / shadowMapSize);
 	location = glGetUniformLocation(shaderProgram, "depthClampPara");
-	glUniform2f(location, nearClip, 1.0f / (farClip - nearClip));
+	glUniform3f(location, nearClip, farClip, 1.0f / (farClip - nearClip));
 	location = glGetUniformLocation(shaderProgram, "lightPos");
 	glUniform3f(location, sunPos.x, sunPos.y, sunPos.z);
 	location = glGetUniformLocation(shaderProgram, "lightSize");

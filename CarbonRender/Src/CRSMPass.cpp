@@ -81,7 +81,7 @@ void SMPass::Render(PassOutput * input)
 	SceneManager::Instance()->DrawScene(shaderProgram);
 
 	//Mipmap level 2
-	cam->SetOrthoCamera(1000.0f, nearClip, farClip);
+	cam->SetOrthoCamera(500.0f, nearClip, farClip);
 	output.mats[3] = cam->GetProjectionMatrix();
 
 	glDrawBuffer(GL_COLOR_ATTACHMENT5);
