@@ -38,11 +38,18 @@ void SMPass::Render(PassOutput * input)
 	float farClip = sunLight->GetFarClip();
 	float nearClip = sunLight->GetNearClip();
 	int shadowMapSize = sunLight->GetShadowMapSize();
+	float3 depthClampPara = sunLight->GetDepthClampPara();
+	unsigned int* levelSetting = LightManager::Instance()->GetShadowMapLevelSetting();
 
 	//Mipmap level 0
-	float3 lookPos = followCam ? CameraManager::Instance()->GetCurrentCamera()->GetPosition() : float3(0.0f);
+	float3 lookPos = float3(0.0f);
+	if (followCam)
+	{
+		lookPos = CameraManager::Instance()->GetCurrentCamera()->GetPosition();
+		lookPos.y = 0.0f;
+	}
 	Camera* cam = CameraManager::Instance()->Push();
-	cam->SetOrthoCamera(10.0f, nearClip, farClip);
+	cam->SetOrthoCamera(levelSetting[0], nearClip, farClip, shadowMapSize);
 	cam->SetPosition(sunLight->GetPosition() + lookPos);
 	cam->SetRotation(sunLight->GetRotation());
 	cam->UpdateViewMatrix();
@@ -57,19 +64,20 @@ void SMPass::Render(PassOutput * input)
 	glBindRenderbuffer(GL_RENDERBUFFER, dBuffer);
 	GLenum drawBuffers[4] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2, GL_COLOR_ATTACHMENT3 };
 	glDrawBuffers(4, drawBuffers);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	ShaderManager::Instance()->UseShader(shaderProgram);
 
 	GLint location = glGetUniformLocation(shaderProgram, "depthClampPara");
-	glUniform2f(location, nearClip, 1.0f / (farClip - nearClip));
+	glUniform2f(location, depthClampPara.x, depthClampPara.z);
 	location = glGetUniformLocation(shaderProgram, "depthOnly");
 	glUniform1i(location, 0);
 
 	SceneManager::Instance()->DrawScene(shaderProgram);
 
 	//Mipmap level 1
-	cam->SetOrthoCamera(50.0f, nearClip, farClip);
+	cam->SetOrthoCamera(levelSetting[1], nearClip, farClip, shadowMapSize);
 	output.mats[2] = cam->GetProjectionMatrix();
 
 	glDrawBuffer(GL_COLOR_ATTACHMENT4);
@@ -81,7 +89,7 @@ void SMPass::Render(PassOutput * input)
 	SceneManager::Instance()->DrawScene(shaderProgram);
 
 	//Mipmap level 2
-	cam->SetOrthoCamera(500.0f, nearClip, farClip);
+	cam->SetOrthoCamera(levelSetting[2], nearClip, farClip, shadowMapSize);
 	output.mats[3] = cam->GetProjectionMatrix();
 
 	glDrawBuffer(GL_COLOR_ATTACHMENT5);
@@ -95,6 +103,7 @@ void SMPass::Render(PassOutput * input)
 	glBindRenderbuffer(GL_RENDERBUFFER, 0);
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
 	glViewport(0, 0, size.w, size.h);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
 	CameraManager::Instance()->Pop();
 }

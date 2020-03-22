@@ -95,6 +95,18 @@ void Camera::SetOrthoCamera(float size, float iNearClip, float iFarClip)
 	UpdateProjectionMatrix();
 }
 
+void Camera::SetOrthoCamera(float size, float iNearClip, float iFarClip, float sideSize)
+{
+	orthoSize = size;
+	nearClip = iNearClip;
+	farClip = iFarClip;
+	wInPixel = sideSize;
+	hInPixel = sideSize;
+	curCameraMode = CameraProjectMode::eOrtho;
+
+	UpdateProjectionMatrix();
+}
+
 void Camera::UpdateProjectionMatrix()
 {
 	switch (curCameraMode)

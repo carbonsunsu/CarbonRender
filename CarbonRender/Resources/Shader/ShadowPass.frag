@@ -15,9 +15,10 @@ uniform mat4 smProMatLv0;
 uniform mat4 smProMatLv1;
 uniform mat4 smProMatLv2;
 uniform vec2 stepUnit;
-uniform vec3 depthClampPara;//(nearClip, farClip, 1.0/(farClip - nearClip))
+uniform vec3 depthClampPara;//(nearClip, 1.0/(farClip - nearClip))
 uniform vec3 lightPos;
 uniform float lightSize;
+uniform vec3 shadowMapSizes;
 
 float Random (vec2 i, float seed)
 {
@@ -34,21 +35,24 @@ bool IsInScreen (vec2 ssPos)
 	return ssPos.x >= 0.0f && ssPos.x <= 1.0f && ssPos.y >= 0.0f && ssPos.y <= 1.0f;
 }
 
-vec2 GetShadowUV (vec4 pos, out int level)
+vec2 GetShadowUV (vec4 pos, out int level, out float scaler)
 {
 	level = 0;
+	scaler = 0.5f / shadowMapSizes.x;
 	vec4 smPos = smProMatLv0 * pos;
 	vec2 smUV = smPos.xy / smPos.w * 0.5f + 0.5f;
 	
 	if (!IsInScreen(smUV))
 	{
 		level = 1;
+		scaler = 0.5f / shadowMapSizes.y;
 		smPos = smProMatLv1 * pos;
 		smUV = smPos.xy / smPos.w * 0.5f + 0.5f;
 		
 		if (!IsInScreen(smUV))
 		{
 			level = 2;
+			scaler = 0.5f / shadowMapSizes.z;
 			smPos = smProMatLv2 * pos;
 			smUV = smPos.xy / smPos.w * 0.5f + 0.5f;
 
@@ -73,87 +77,81 @@ vec4 GetShadowMap(int level, vec2 uv)
 void main ()
 {
 	vec4 stencil = texture2D(stenMap, uv);
-	if (stencil.r <= 0)
-	{
-		discard;
-		return;
-	}
+	if (stencil.r <= 0){discard;return;}
 	
 	vec4 pMapSample = texture2D(pMap, uv);
 	vec3 wsPos = pMapSample.xyz;
 	vec4 smPos = smViewMat * vec4(wsPos, 1.0f);
 	float rcverDepth = -smPos.z;
-	if (rcverDepth >= depthClampPara.y)
-	{
-		sColor = vec4(1.0f, 0.0f, 1.0f, 1.0f);
-		return;
-	}
+	rcverDepth = rcverDepth * depthClampPara.y;
+	rcverDepth = clamp(rcverDepth, 0.0f, 1.0f);
+	float nearClip01 = depthClampPara.x * depthClampPara.y;
 	int shadowLv = 0;
-	vec2 smUV = GetShadowUV(smPos, shadowLv);
+	float searchRadiusScaler = 1.0f;
+	vec2 smUV = GetShadowUV(smPos, shadowLv, searchRadiusScaler);
 
 	//change bias according angle between normal and light vector
 	vec3 lightV = lightPos;
 	lightV = normalize(lightV);
 	vec4 N = texture2D(nMap, uv);
-	float shadowBias = dot(N.xyz, lightV);
-	shadowBias = 1.0f - abs(shadowBias);
-	shadowBias = max(5.0f * shadowBias, 1.0f) * 0.05f;
+	float depthBias = abs(dot(N.xyz, lightV));
+	depthBias = 1.0f - min(depthBias, 1.0f);
+	depthBias = clamp(depthBias, 0.1f, 1.0f);
+	depthBias *= 0.05f * depthClampPara.y;
 	
-	float sFactor = 1.0f;
 	if (shadowLv >= 0)
 	{	
-		float searchR = (lightSize * rcverDepth) / (rcverDepth - depthClampPara.x);
+		//calculate avarage blocker depth
+		float searchR = lightSize * (rcverDepth - nearClip01) * searchRadiusScaler / rcverDepth;
 		float avgBlkerDepth = 0.0f;
-		int sampleCount = 0;
-		int sampleNum = shadowLv == 0 ? 2 : 0;
+		int blkerCount = 0;
+		int sampleNum = 6;
+		float sampleNumInv = 1.0f / sampleNum;
 		for (int i = -sampleNum; i <= sampleNum; i++)
 		{
 			for (int j = -sampleNum; j <= sampleNum; j++)
 			{
-				vec2 sampleUV = smUV + stepUnit * vec2(i, j) * searchR * 2.0f / lightSize;
+				vec2 sampleUV = smUV + stepUnit * vec2(i, j) * sampleNumInv * searchR;
 				if (IsInScreen(sampleUV))
 				{
 					float blkerDepth = GetShadowMap(shadowLv, sampleUV).r;
-					if (blkerDepth < rcverDepth - shadowBias)
+					if (blkerDepth < rcverDepth - depthBias)
 					{
 						avgBlkerDepth += blkerDepth;
-						sampleCount += 1;
+						blkerCount += 1;
 					}
 				}
 			}
 		}
-		if (sampleCount <= 0)
-		{
-			sColor = vec4(1.0f, 0.0f, 1.0f, 1.0f);
-			return;
-		}
-		avgBlkerDepth /= sampleCount;
+		if (blkerCount == 0){sColor = vec4(1.0f, 0.0f, 1.0f, 1.0f);return;}
+
+		avgBlkerDepth /= blkerCount;
 		
-		float penumbraSize = lightSize * (rcverDepth - avgBlkerDepth) / avgBlkerDepth;
-		penumbraSize = shadowLv == 0 ? penumbraSize : 0.0f;
-		sFactor = 0.0f;
-		sampleCount = 0;
-		sampleNum = shadowLv == 0 ? 4 : 0;
+		//calculate penumbra size
+		float penumbraSize = lightSize * (rcverDepth - avgBlkerDepth) * searchRadiusScaler / avgBlkerDepth;
+
+		//sample blokers by penumbra size and calculate shadow
+		float sFactor = 0.0f;
+		blkerCount = 0;
+		sampleNum = 6;
+		sampleNumInv = 1.0f / sampleNum;
 		for (int i = -sampleNum; i <= sampleNum; i++)
 		{
 			for (int j = -sampleNum; j <= sampleNum; j++)
 			{
-				vec2 sampleUV = smUV + stepUnit * vec2(i, j) * penumbraSize;
+				vec2 sampleUV = smUV + stepUnit * vec2(i, j) * sampleNumInv * penumbraSize;
 				if (IsInScreen(sampleUV))
 				{
 					float blkerDepth = GetShadowMap(shadowLv, sampleUV).r;
-					sFactor += blkerDepth < rcverDepth - shadowBias ? 0.0f : 1.0f;
-					sampleCount += 1;
+					sFactor += blkerDepth < rcverDepth - depthBias ? 0.0f : 1.0f;
+					blkerCount += 1;
 				}
 			}
 		}
-		if (sampleCount <= 0)
-		{
-			sColor = vec4(1.0f, 0.0f, 1.0f, 1.0f);
-			return;
-		}
-		sFactor /= sampleCount;
-		sColor = vec4(max(sFactor, 0.0f), 0.0f, 1.0f, 1.0f);
+		if (blkerCount == 0){sColor = vec4(1.0f, 0.0f, 1.0f, 1.0f);return;}
+
+		sFactor /= blkerCount;
+		sColor = vec4(clamp(sFactor, 0.0f, 1.0f), 0.0f, 1.0f, 1.0f);
 		return;
 	}
 

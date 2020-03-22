@@ -34,6 +34,8 @@ void ShadowPass::Render(PassOutput * input)
 	float nearClip = sunLight->GetNearClip();
 	float farClip = sunLight->GetFarClip();
 	float3 sunPos = sunLight->GetPosition();
+	float3 depthClampPara = sunLight->GetDepthClampPara();
+	unsigned int* levelSetting = LightManager::Instance()->GetShadowMapLevelSetting();
 
 	ShaderManager::Instance()->UseShader(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "pMap");
@@ -51,11 +53,13 @@ void ShadowPass::Render(PassOutput * input)
 	location = glGetUniformLocation(shaderProgram, "stepUnit");
 	glUniform2f(location, 1.0f / shadowMapSize, 1.0f / shadowMapSize);
 	location = glGetUniformLocation(shaderProgram, "depthClampPara");
-	glUniform3f(location, nearClip, farClip, 1.0f / (farClip - nearClip));
+	glUniform3f(location, depthClampPara.x, depthClampPara.z, depthClampPara.y);
 	location = glGetUniformLocation(shaderProgram, "lightPos");
 	glUniform3f(location, sunPos.x, sunPos.y, sunPos.z);
 	location = glGetUniformLocation(shaderProgram, "lightSize");
 	glUniform1f(location, sunLight->GetLightSize());
+	location = glGetUniformLocation(shaderProgram, "shadowMapSizes");
+	glUniform3f(location, levelSetting[0], levelSetting[1], levelSetting[2]);
 
 	location = glGetUniformLocation(shaderProgram, "smViewMat");
 	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[0].matrix);

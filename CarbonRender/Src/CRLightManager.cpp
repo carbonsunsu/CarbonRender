@@ -5,6 +5,9 @@ LightManager* LightManager::ins = nullptr;
 LightManager::LightManager()
 {
 	lightID = 0;
+	shadowMapLevelSetting[0] = 10;
+	shadowMapLevelSetting[1] = 100;
+	shadowMapLevelSetting[2] = 1000;
 }
 
 LightManager::~LightManager()
@@ -54,5 +57,9 @@ float4 LightManager::GetZenithColor()
 void LightManager::SetZenithColor(float4 c)
 {
 	zenithColor = c;
+}
+unsigned int * LightManager::GetShadowMapLevelSetting()
+{
+	return shadowMapLevelSetting;
 }
 /**/

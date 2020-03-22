@@ -23,6 +23,8 @@ void main ()
 {
 	gl_Position = viewMat * (modelMat * msPos);
 	d = -gl_Position.z;
+	d = d * depthClampPara.y;
+	d = clamp(d, 0.0f, 1.0f);
 	gl_Position = proMat * gl_Position;
 	
 	wsP = (modelMat * msPos).xyz;

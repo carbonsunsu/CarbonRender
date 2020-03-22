@@ -79,3 +79,8 @@ int Light::GetShadowMapSize()
 {
 	return shadowMapSize;
 }
+
+float3 Light::GetDepthClampPara()
+{
+	return float3(nearClip, farClip, 1.0f / farClip);
+}

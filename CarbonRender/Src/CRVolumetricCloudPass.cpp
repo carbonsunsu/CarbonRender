@@ -54,6 +54,7 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	float3 sunColor = sunLight->GetColor();
 	float4 zenithColor = LightManager::Instance()->GetZenithColor();
 	float3 sunPos = sunLight->GetPosition();
+	float3 depthClampPara = sunLight->GetDepthClampPara();
 	float3 cloudBias = WeatherSystem::Instance()->GetCloudBias();
 	float3 fogColor = WeatherSystem::Instance()->GetFogColor();
 	ShaderManager::Instance()->UseShader(shaderProgram);
@@ -114,6 +115,8 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[1].matrix);
 	location = glGetUniformLocation(shaderProgram, "smProMatLv1");
 	glUniformMatrix4fv(location, 1, GL_FALSE, input->mats[2].matrix);
+	location = glGetUniformLocation(shaderProgram, "depthClampPara");
+	glUniform2f(location, depthClampPara.x, depthClampPara.z);
 
 	cloudBox.SetPosition(camPos);
 	cloudBox.SetScale(float3(20.0f, 20.0f, 20.0f));

@@ -11,6 +11,7 @@ private:
 	unordered_map<unsigned int, Light*> lights;
 	float4 zenithColor;
 	unsigned int lightID;
+	unsigned int shadowMapLevelSetting[3];//Use this to set the size of shadow map camera
 
 public:
 	~LightManager();
@@ -21,6 +22,7 @@ public:
 	void DeleteLight(int index);
 	float4 GetZenithColor();
 	void SetZenithColor(float4 c);
+	unsigned int* GetShadowMapLevelSetting();
 };
 /**/
 #endif

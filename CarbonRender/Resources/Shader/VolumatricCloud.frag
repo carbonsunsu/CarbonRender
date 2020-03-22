@@ -28,6 +28,8 @@ uniform mat4 smMat;
 uniform mat4 smProMatLv0;
 uniform mat4 smProMatLv1;
 
+uniform vec2 depthClampPara;
+
 uniform float cloudMaxAltitude;
 uniform float cloudMinAltitude;
 uniform float cloudHeightInv;
@@ -321,6 +323,8 @@ vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis,
 
 		vec4 smsPos = smMat * vec4(samplePos, 1.0f);
 		float sampleDepth = -smsPos.z;
+		sampleDepth = sampleDepth * depthClampPara.y;
+		sampleDepth = clamp(sampleDepth, 0.0f, 1.0f);
 		int shadowLevel;
 		vec2 smUV = GetShadowUV(smsPos, shadowLevel);
 		float blkerDepth = GetShadowMap(shadowLevel, smUV).r;

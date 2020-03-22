@@ -40,6 +40,7 @@ public:
 	float GetLightSize();
 	void SetShadowMapSize(int size);
 	int GetShadowMapSize();
+	float3 GetDepthClampPara();
 };
 
 #endif
