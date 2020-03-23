@@ -121,7 +121,7 @@ void main ()
 		{
 			for (int j = -sampleNum; j <= sampleNum; j++)
 			{
-				vec2 sampleBias = stepUnit * vec2(i, j) * sampleNumInv * searchR;
+				vec2 sampleBias = vec2(i, j) * sampleNumInv * searchR;
 				vec2 sampleUV = smUV + sampleBias * searchRadiusScaler;
 				float blkerDepth = GetShadowMap(shadowLv, sampleUV, smPos, sampleBias).r;
 				if (blkerDepth < rcverDepth - depthBias)
@@ -146,7 +146,7 @@ void main ()
 		{
 			for (int j = -sampleNum; j <= sampleNum; j++)
 			{
-				vec2 sampleBias = stepUnit * vec2(i, j) * sampleNumInv * penumbraSize;
+				vec2 sampleBias = vec2(i, j) * sampleNumInv * penumbraSize;
 				vec2 sampleUV = smUV + sampleBias * searchRadiusScaler;
 				float blkerDepth = GetShadowMap(shadowLv, sampleUV, smPos, sampleBias).r;
 				sFactor += blkerDepth < rcverDepth - depthBias ? 0.0f : 1.0f;

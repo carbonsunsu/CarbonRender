@@ -36,7 +36,7 @@ void WeatherSystem::Init()
 	Light* sun = LightManager::Instance()->GetLight(sunLightID);
 	sun->SetNearClip(0.01f);
 	sun->SetFarClip(Math::Max(lightR * 2.0f, 1000.0f));
-	sun->SetLightSize(0.009342f * lightR);
+	sun->SetLightSize(6);
 	sun->SetShadowMapSize(2048);
 	
 	cloudCoverage = 0.55f;
