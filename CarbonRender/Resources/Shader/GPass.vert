@@ -11,25 +11,21 @@ uniform mat4 modelMat;
 uniform mat3 normalMat;
 uniform mat4 viewMat;
 uniform mat4 proMat;
-uniform vec2 depthClampPara;
 
-out vec3 wsP;
+out vec4 wsP;
 out vec2 uv;
 out mat3 TBN;
-out float d;
 out vec4 vertexColor;
 
 void main ()
 {
-	gl_Position = viewMat * (modelMat * msPos);
-	d = -gl_Position.z;
-	gl_Position = proMat * gl_Position;
+	wsP = modelMat * msPos;
+	gl_Position = proMat * viewMat * wsP;
 	vec3 T = normalize(normalMat * msT);
 	vec3 N = normalize(normalMat * msN);
 	vec3 B = normalize(normalMat * msB);
 	TBN = mat3(T, B, N);
 	
-	wsP = (modelMat * msPos).xyz;
 	uv = uvs.xy;
 	vertexColor = vColor;
 }

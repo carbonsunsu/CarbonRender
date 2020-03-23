@@ -5,10 +5,9 @@ layout(location = 1) out vec4 nColor;
 layout(location = 2) out vec4 pColor;
 layout(location = 3) out vec4 sColor;
 
-in vec3 wsP;
+in vec4 wsP;
 in vec2 uv;
 in mat3 TBN;
-in float d;
 in vec4 vertexColor;
 
 uniform sampler2D albedoMap;
@@ -16,6 +15,8 @@ uniform sampler2D msMap;
 uniform sampler2D normalMap;
 uniform float roughnessScale;
 uniform float metallicScale;
+uniform mat4 viewMat;
+uniform vec2 depthClampPara;
 
 void main ()
 {
@@ -27,6 +28,8 @@ void main ()
 
 	vec3 wsN = TBN * N;
 	wsN = normalize(wsN);
+
+	float d = -(viewMat * wsP).z;
 
 	aColor = vec4(albedo.xyz, min(ms.g * metallicScale, 1.0f));
 	nColor = vec4(wsN.x, wsN.y, wsN.z, d);

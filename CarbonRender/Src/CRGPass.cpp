@@ -42,9 +42,8 @@ void GPass::Render(PassOutput * input)
 
 	GLint location = glGetUniformLocation(shaderProgram, "depthClampPara");
 	Camera* curCam = CameraManager::Instance()->GetCurrentCamera();
-	float nearClip = curCam->GetNearClip();
-	float farClip = curCam->GetFarClip();
-	glUniform2f(location, nearClip, 1.0f / (farClip - nearClip));
+	float3 camPara = curCam->GetCameraPara();
+	glUniform2f(location, camPara.y, 1.0f / camPara.z);
 
 	SceneManager::Instance()->DrawScene(shaderProgram);
 

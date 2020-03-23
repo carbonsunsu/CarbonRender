@@ -5,7 +5,7 @@ LightManager* LightManager::ins = nullptr;
 LightManager::LightManager()
 {
 	lightID = 0;
-	shadowMapLevelSetting[0] = 20;
+	shadowMapLevelSetting[0] = 10;
 	shadowMapLevelSetting[1] = 100;
 	shadowMapLevelSetting[2] = 500;
 }

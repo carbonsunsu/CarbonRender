@@ -53,9 +53,8 @@ void SSRPass::Render(PassOutput * input)
 	glUniform4f(location, camPos.x, camPos.y, camPos.z, 1.0f);
 	location = glGetUniformLocation(shaderProgram, "depthClampPara");
 	Camera* curCam = CameraManager::Instance()->GetCurrentCamera();
-	float nearClip = curCam->GetNearClip();
-	float farClip = curCam->GetFarClip();
-	glUniform2f(location, nearClip, 1.0f / (farClip - nearClip));
+	float3 camPara = curCam->GetCameraPara();
+	glUniform2f(location, camPara.y, 1.0f / camPara.z);
 
 	DrawFullScreenQuad();
 
