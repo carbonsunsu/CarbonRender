@@ -12,22 +12,15 @@ uniform mat4 viewMat;
 uniform mat4 proMat;
 uniform mat3 normalMat;
 
-uniform vec2 depthClampPara;
-
-out vec3 wsP;
+out vec4 wsP;
 out vec2 uv;
-out float d;
 out vec3 wsN;
 
 void main ()
 {
-	gl_Position = viewMat * (modelMat * msPos);
-	d = -gl_Position.z;
-	d = d * depthClampPara.y;
-	d = clamp(d, 0.0f, 1.0f);
-	gl_Position = proMat * gl_Position;
-	
-	wsP = (modelMat * msPos).xyz;
+	wsP = modelMat * msPos;
+	gl_Position = proMat * viewMat * wsP;
+
 	wsN = normalize(normalMat * msN);
 	uv = uvs.xy;
 }

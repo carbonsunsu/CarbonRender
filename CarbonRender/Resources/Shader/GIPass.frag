@@ -17,7 +17,7 @@ uniform vec2 stepUnit;
 uniform vec3 sunColor;
 
 const float vplLod = 0.0f;
-const int r = 100;
+const int r = 50;
 const int sampleUnitCount = 4;
 
 float Random (vec2 i, float seed)

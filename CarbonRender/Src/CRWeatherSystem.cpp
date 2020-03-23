@@ -34,8 +34,8 @@ void WeatherSystem::Init()
 	cloudBias = float3(0.0f);
 	sunLightID = LightManager::Instance()->CreateNewLight(LightType::eDirection, 1.0f);
 	Light* sun = LightManager::Instance()->GetLight(sunLightID);
-	sun->SetNearClip(1.0f);
-	sun->SetFarClip(Math::Max(lightR * 3.0f, 10000.0f));
+	sun->SetNearClip(0.01f);
+	sun->SetFarClip(Math::Max(lightR * 2.0f, 1000.0f));
 	sun->SetLightSize(0.009342f * lightR);
 	sun->SetShadowMapSize(2048);
 	
