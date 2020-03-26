@@ -619,6 +619,16 @@ float Math::Dot(float4 a, float4 b)
 	return a.x*b.x + a.y*b.y + a.z*b.z + a.w*b.w;
 }
 
+float3 Math::Cross(float3 a, float3 b)
+{
+	return float3(a.y*b.z - a.z*b.y, a.z*b.x - a.x*b.z, a.x*b.y-a.y*b.x);
+}
+
+float4 Math::Cross(float4 a, float4 b)
+{
+	return float4(a.y*b.z - a.z*b.y, a.z*b.x - a.x*b.z, a.x*b.y - a.y*b.x, 0.0f);
+}
+
 float Math::Exp(float a)
 {
 	return exp(a);

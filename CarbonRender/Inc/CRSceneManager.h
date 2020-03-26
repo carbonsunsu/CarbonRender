@@ -3,6 +3,7 @@
 
 #include "..\Inc\CRFbxImportManager.h"
 #include "..\Inc\CRControllerManager.h"
+#include "..\Inc\CRTerrainManager.h"
 
 class SceneManager
 {

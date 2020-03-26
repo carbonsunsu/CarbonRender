@@ -144,7 +144,7 @@
     <ClCompile Include="Src\CRFreeController.cpp">
       <Filter>源文件\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Src\CRTerrain.cpp">
+    <ClCompile Include="Src\CRTerrainManager.cpp">
       <Filter>源文件\Core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -257,7 +257,7 @@
     <ClInclude Include="Inc\CRFreeController.h">
       <Filter>头文件\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\CRTerrain.h">
+    <ClInclude Include="Inc\CRTerrainManager.h">
       <Filter>头文件\Core</Filter>
     </ClInclude>
   </ItemGroup>

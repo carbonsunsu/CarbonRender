@@ -63,6 +63,13 @@ public:
 	GLuint GetElementBufferObject();
 	unsigned int GetVertexCount();
 	unsigned int GetPolygonCount();
+	unsigned int* GetIndexArray();
+	float* GetVertexArray();
+	float* GetColorArray();
+	float* GetNormalArray();
+	float* GetTangentArray();
+	float* GetBinormalArray();
+	float* GetUVArray();
 	string GetPath();
 	string GetSubMeshName();
 

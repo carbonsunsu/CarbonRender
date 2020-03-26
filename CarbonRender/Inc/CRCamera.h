@@ -22,6 +22,18 @@ private:
 	Matrix4x4 projectionMatrix;
 
 	CameraProjectMode curCameraMode;
+
+	float3 nearClipPtLT;
+	float3 nearClipPtLB;
+	float3 nearClipPtRT;
+	float3 nearClipPtRB;
+
+	float3 groundPtLT;
+	float3 groundPtLB;
+	float3 groundPtRT;
+	float3 groundPtRB;
+
+	float3 GetIntersectionPoint(float3 v, float3 o, float3 terrainPlane);
 public:
 	Camera();
 	~Camera();
@@ -42,6 +54,13 @@ public:
 	void UpdateViewMatrix();
 	Matrix4x4 GetViewMatrix();
 	Matrix4x4 GetProjectionMatrix();
+
+	float3 GetIntersectionPtLT();
+	float3 GetIntersectionPtLB();
+	float3 GetIntersectionPtRT();
+	float3 GetIntersectionPtRB();
+
+	void UpdateIntersectionWithTerrain(float3 terrainPlane);
 };
 
 #endif

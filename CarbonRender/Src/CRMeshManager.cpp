@@ -159,6 +159,41 @@ unsigned int MeshData::GetPolygonCount()
 	return polygonCount;
 }
 
+unsigned int * MeshData::GetIndexArray()
+{
+	return indexArray;
+}
+
+float * MeshData::GetVertexArray()
+{
+	return vertexArray;
+}
+
+float * MeshData::GetColorArray()
+{
+	return colorArray;
+}
+
+float * MeshData::GetNormalArray()
+{
+	return normalArray;
+}
+
+float * MeshData::GetTangentArray()
+{
+	return tangentArray;
+}
+
+float * MeshData::GetBinormalArray()
+{
+	return binormalArray;
+}
+
+float * MeshData::GetUVArray()
+{
+	return uvArray;
+}
+
 string MeshData::GetPath()
 {
 	return meshPath;

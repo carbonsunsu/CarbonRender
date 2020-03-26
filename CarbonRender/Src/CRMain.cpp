@@ -15,6 +15,7 @@
 #include "..\Inc\CRMaterialManager.h"
 #include "..\Inc\CRMeshManager.h"
 #include "..\Inc\CRMenuManager.h"
+#include "..\Inc\CRTerrainManager.h"
 
 void MainDisplay()
 {
@@ -64,12 +65,21 @@ void Init(int argc, char** argv)
 	SceneManager::Instance()->LoadScene(ConfigManager::Instance()->GetScenePath());
 
 	RenderPassManager::Instance()->Init();
+	TerrainManager::Instance();
 }
 
 void FixedUpdate(int value)
 {
 	WeatherSystem::Instance()->Update();
 	ControllerManager::Instance()->GetCurrentController()->Update();
+
+	if (TerrainManager::Instance()->UseTerrain())
+	{
+		CameraManager::Instance()->GetCurrentCamera()->UpdateIntersectionWithTerrain(TerrainManager::Instance()->GetTerrainObject()->GetPosition());
+		TerrainManager::Instance()->GetTerrainObject()->Update(CameraManager::Instance()->GetCurrentCamera());
+	}
+	else
+		CameraManager::Instance()->GetCurrentCamera()->UpdateIntersectionWithTerrain(float3(0.0f));
 
 	glutTimerFunc((unsigned int)(FIXEDUPDATE_TIME * 1000.0f), FixedUpdate, 0);
 }

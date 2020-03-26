@@ -160,6 +160,8 @@ public:
 
 	static float Dot(float3 a, float3 b);
 	static float Dot(float4 a, float4 b);
+	static float3 Cross(float3 a, float3 b);
+	static float4 Cross(float4 a, float4 b);
 	static float Exp(float a);
 	static float3 Exp(float3 v);
 	static float4 Exp(float4 v);

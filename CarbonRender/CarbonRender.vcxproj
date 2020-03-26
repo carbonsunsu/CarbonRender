@@ -42,7 +42,7 @@
     <ClCompile Include="Src\CRSkyRenderPass.cpp" />
     <ClCompile Include="Src\CRSSAOPass.cpp" />
     <ClCompile Include="Src\CRSSRPass.cpp" />
-    <ClCompile Include="Src\CRTerrain.cpp" />
+    <ClCompile Include="Src\CRTerrainManager.cpp" />
     <ClCompile Include="Src\CRTextureManager.cpp" />
     <ClCompile Include="Src\CRVolumetricCloudPass.cpp" />
     <ClCompile Include="Src\CRWeatherSystem.cpp" />
@@ -81,7 +81,7 @@
     <ClInclude Include="Inc\CRSkyRenderPass.h" />
     <ClInclude Include="Inc\CRSSAOPass.h" />
     <ClInclude Include="Inc\CRSSRPass.h" />
-    <ClInclude Include="Inc\CRTerrain.h" />
+    <ClInclude Include="Inc\CRTerrainManager.h" />
     <ClInclude Include="Inc\CRTextureManager.h" />
     <ClInclude Include="Inc\CRVolumetricCloudPass.h" />
     <ClInclude Include="Inc\CRWindowManager.h" />
@@ -95,7 +95,9 @@
     <None Include="Resources\Scene\LivingRoom.scene">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Resources\Scene\ShadowTest.scene" />
+    <None Include="Resources\Scene\ShadowTest.scene">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Resources\Scene\ShadowTest_BigScene.scene">
       <SubType>Designer</SubType>
     </None>
@@ -200,7 +202,6 @@
 
 echo Y | XCOPY "$(ProjectDir)Config.cfg" "$(TargetDir)"
 echo Y | XCOPY "$(ProjectDir)Third\GL\dll\*.*" "$(TargetDir)"
-
 echo Y | XCOPY "$(ProjectDir)Third\FBX\dll\*.*" "$(TargetDir)"
 
 md "$(TargetDir)Resources"
@@ -241,7 +242,6 @@ echo A | XCOPY /s /q "$(ProjectDir)Resources\*.*" "$(TargetDir)Resources\*.*"</C
 
 echo Y | XCOPY "$(ProjectDir)Config.cfg" "$(TargetDir)"
 echo Y | XCOPY "$(ProjectDir)Third\GL\dll\*.*" "$(TargetDir)"
-
 echo Y | XCOPY "$(ProjectDir)Third\FBX\dll\*.*" "$(TargetDir)"
 
 md "$(TargetDir)Resources"
