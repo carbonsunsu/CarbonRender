@@ -7,8 +7,10 @@ layout(location = 3) out vec4 sColor;
 
 in vec4 wsP;
 in vec2 uv;
-in mat3 TBN;
 in vec4 vertexColor;
+in vec3 N;
+in vec3 T;
+in vec3 B;
 
 uniform sampler2D albedoMap;
 uniform sampler2D msMap;
@@ -16,17 +18,22 @@ uniform sampler2D normalMap;
 uniform float roughnessScale;
 uniform float metallicScale;
 uniform mat4 viewMat;
+uniform mat3 normalMat;
 uniform vec2 depthClampPara;
 
 void main ()
 {
-	vec3 N = texture2D(normalMap, uv).xyz;
-	N = N * 2.0f - 1.0f;
+	vec3 tsN = texture2D(normalMap, uv).xyz;
+	tsN = tsN * 2.0f - 1.0f;
 	vec4 ms = texture2D(msMap, uv);
 	vec4 albedo = texture2D(albedoMap, uv);
 	albedo.rgb = pow(albedo.rgb, vec3(2.2f));
 
-	vec3 wsN = TBN * N;
+	vec3 wsT = normalize(normalMat * T);
+	vec3 wsN = normalize(normalMat * N);
+	vec3 wsB = normalize(normalMat * B);
+	mat3 TBN = mat3(wsT, wsB, wsN);
+	wsN = TBN * tsN;
 	wsN = normalize(wsN);
 
 	float d = -(viewMat * wsP).z;

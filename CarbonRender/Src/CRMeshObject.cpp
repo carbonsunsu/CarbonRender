@@ -40,14 +40,14 @@ void MeshObject::Render(GLuint shaderProgram, bool useTex)
 
 	UpdateModelMatrix();
 
-	Matrix4x4 finalMat;
-	if (parent != nullptr)
+	Matrix4x4 finalMat = modelMatrix;
+	Object* curP = parent;
+	while (curP != nullptr)
 	{
-		parent->UpdateModelMatrix();
-		finalMat = modelMatrix * parent->GetModelMatrix();
+		curP->UpdateModelMatrix();
+		finalMat = finalMat * curP->GetModelMatrix();
+		curP = curP->GetParent();
 	}
-	else
-		finalMat = modelMatrix;
 	Matrix3x3 normalMat = finalMat;
 
 	if (useTex)

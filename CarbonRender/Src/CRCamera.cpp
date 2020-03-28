@@ -233,14 +233,14 @@ void Camera::UpdateIntersectionWithTerrain(float3 terrainPlane)
 	float3 camU = Math::Cross(camR, camF).normalize();
 	float3 camPos = this->GetPosition();
 
-	float tanAlpha = tan(halfFov);
+	float tanAlpha = tan(Math::Angle2Radian(halfFov));
 	float halfH = nearClip * tanAlpha;
 	WindowSize wSize = WindowManager::Instance()->GetWindowSize();
 	float halfW = wSize.w * halfH / wSize.h;
-	nearClipPtLT = camPos - camR * halfW + camU * halfH + camF * nearClip * 10.0f;
-	nearClipPtLB = camPos - camR * halfW - camU * halfH + camF * nearClip * 10.0f;
-	nearClipPtRT = camPos + camR * halfW + camU * halfH + camF * nearClip * 10.0f;
-	nearClipPtRB = camPos + camR * halfW - camU * halfH + camF * nearClip * 10.0f;
+	nearClipPtLT = camPos - camR * halfW + camU * halfH + camF * nearClip;
+	nearClipPtLB = camPos - camR * halfW - camU * halfH + camF * nearClip;
+	nearClipPtRT = camPos + camR * halfW + camU * halfH + camF * nearClip;
+	nearClipPtRB = camPos + camR * halfW - camU * halfH + camF * nearClip;
 
 	float3 vLT = (nearClipPtLT - camPos).normalize();
 	float3 vLB = (nearClipPtLB - camPos).normalize();

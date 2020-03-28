@@ -168,6 +168,12 @@ public:
 	static float Sin(float a);
 	static float3 Sin(float3 v);
 	static float4 Sin(float4 v);
+	static float Angle2Radian(float a);
+	static float3 Angle2Radian(float3 a);
+	static float4 Angle2Radian(float4 a);
+	static float Radian2Angle(float a);
+	static float3 Radian2Angle(float3 a);
+	static float4 Radian2Angle(float4 a);
 	static float FastInvSqrt(float a);
 	static float3 FastInvSqrt(float3 a);
 	static float4 FastInvSqrt(float4 a);

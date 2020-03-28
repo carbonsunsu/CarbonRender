@@ -5,10 +5,20 @@ GLuint GLHelper::sharedRT = -1;
 void GLHelper::SetGLArrayBuffer(GLuint bIndex, GLsizeiptr bSize, const GLvoid* bData, GLuint eSize, GLenum eType, GLuint aPos)
 {
 	glBindBuffer(GL_ARRAY_BUFFER, bIndex);
-	glBufferData(GL_ARRAY_BUFFER, bSize, bData, GL_STATIC_DRAW);
+	glNamedBufferData(bIndex, bSize, bData, GL_STATIC_DRAW);
 	glVertexAttribPointer(aPos, eSize, eType, GL_FALSE, 0, NULL);
 	glEnableVertexAttribArray(aPos);
 	glBindBuffer(GL_ARRAY_BUFFER, NULL);
+}
+
+void * GLHelper::GetGLArrayBufferPointer(GLuint bIndex, GLenum access)
+{
+	return glMapNamedBuffer(bIndex, access);
+}
+
+void GLHelper::UnmapGLArrayBuffer(GLuint bIndex)
+{
+	glUnmapNamedBuffer(bIndex);
 }
 
 GLuint GLHelper::SetGLRenderTexture(GLsizei w, GLsizei h, GLint internalFormat, GLenum format, GLenum type, GLint filter, GLenum attach)

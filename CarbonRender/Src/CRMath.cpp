@@ -659,6 +659,36 @@ float4 Math::Sin(float4 v)
 	return float4(sinf(v.x), sinf(v.y), sinf(v.z), sinf(v.w));
 }
 
+float Math::Angle2Radian(float a)
+{
+	return a * A2R;
+}
+
+float3 Math::Angle2Radian(float3 a)
+{
+	return a * A2R;
+}
+
+float4 Math::Angle2Radian(float4 a)
+{
+	return a * A2R;
+}
+
+float Math::Radian2Angle(float a)
+{
+	return a * R2A;
+}
+
+float3 Math::Radian2Angle(float3 a)
+{
+	return a * R2A;
+}
+
+float4 Math::Radian2Angle(float4 a)
+{
+	return a * R2A;
+}
+
 float Math::FastInvSqrt(float a)
 {
 	float half = a * 0.5f;

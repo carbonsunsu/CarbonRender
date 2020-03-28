@@ -13,7 +13,7 @@ class TerrainObject : public Object
 public:
 	friend class TerrainManager;
 
-	void Render(GLuint shader);
+	void Render(GLuint shaderProgram);
 	void Update(Camera* cam);
 private:
 	TerrainObject();
@@ -24,13 +24,13 @@ private:
 	MeshObject testBoxRT;
 	MeshObject testBoxRB;
 
-	MeshObject terrainMeshObj;
-	MeshData terrainMeshData;
+	GLuint vertexArrayBuffers[8];
 };
 
 class TerrainManager
 {
 public:
+	~TerrainManager();
 	static TerrainManager* Instance();
 
 	void CreateTerrainObject();
@@ -39,7 +39,6 @@ public:
 	bool UseTerrain();
 private:
 	TerrainManager();
-	~TerrainManager();
 
 	static TerrainManager* ins;
 	bool useTerrain;

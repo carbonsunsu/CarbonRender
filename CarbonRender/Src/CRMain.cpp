@@ -19,6 +19,14 @@
 
 void MainDisplay()
 {
+	if (TerrainManager::Instance()->UseTerrain())
+	{
+		CameraManager::Instance()->GetCurrentCamera()->UpdateIntersectionWithTerrain(TerrainManager::Instance()->GetTerrainObject()->GetPosition());
+		TerrainManager::Instance()->GetTerrainObject()->Update(CameraManager::Instance()->GetCurrentCamera());
+	}
+	else
+		CameraManager::Instance()->GetCurrentCamera()->UpdateIntersectionWithTerrain(float3(0.0f));
+
 	RenderPassManager::Instance()->Draw();
 
 	glutSwapBuffers();
@@ -72,14 +80,6 @@ void FixedUpdate(int value)
 {
 	WeatherSystem::Instance()->Update();
 	ControllerManager::Instance()->GetCurrentController()->Update();
-
-	if (TerrainManager::Instance()->UseTerrain())
-	{
-		CameraManager::Instance()->GetCurrentCamera()->UpdateIntersectionWithTerrain(TerrainManager::Instance()->GetTerrainObject()->GetPosition());
-		TerrainManager::Instance()->GetTerrainObject()->Update(CameraManager::Instance()->GetCurrentCamera());
-	}
-	else
-		CameraManager::Instance()->GetCurrentCamera()->UpdateIntersectionWithTerrain(float3(0.0f));
 
 	glutTimerFunc((unsigned int)(FIXEDUPDATE_TIME * 1000.0f), FixedUpdate, 0);
 }
