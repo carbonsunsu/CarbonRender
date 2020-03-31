@@ -19,13 +19,13 @@
 
 void MainDisplay()
 {
+	CameraManager::Instance()->GetCurrentCamera()->UpdateViewMatrix();
+	
 	if (TerrainManager::Instance()->UseTerrain())
-	{
-		CameraManager::Instance()->GetCurrentCamera()->UpdateIntersectionWithTerrain(TerrainManager::Instance()->GetTerrainObject()->GetPosition());
 		TerrainManager::Instance()->GetTerrainObject()->Update(CameraManager::Instance()->GetCurrentCamera());
-	}
-	else
-		CameraManager::Instance()->GetCurrentCamera()->UpdateIntersectionWithTerrain(float3(0.0f));
+
+	if (TerrainManager::Instance()->UseOcean())
+		TerrainManager::Instance()->GetOceanObject()->Update(CameraManager::Instance()->GetCurrentCamera());
 
 	RenderPassManager::Instance()->Draw();
 

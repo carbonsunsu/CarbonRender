@@ -9,7 +9,7 @@
 #define CR_VERTATTRIPOS_UVS 3
 #define CR_VERTATTRIPOS_COL 4
 #define CR_VERTATTRIPOS_BNL 5
-#define FIXEDUPDATE_TIME 0.02f
+#define FIXEDUPDATE_TIME 0.01f
 
 #include <fstream>
 #include <iostream>

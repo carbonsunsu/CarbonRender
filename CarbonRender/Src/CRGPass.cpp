@@ -29,8 +29,6 @@ void GPass::GetReady4Render(PassOutput * input)
 
 void GPass::Render(PassOutput * input)
 {
-	CameraManager::Instance()->GetCurrentCamera()->UpdateViewMatrix();
-
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 

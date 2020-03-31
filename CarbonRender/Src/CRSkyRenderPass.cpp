@@ -91,8 +91,8 @@ void SkyRenderPass::Render(PassOutput* input)
 	for (int i = 0; i < 6; i++)
 	{
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, output.RTS[1], 0);
-		CameraManager::Instance()->GetCurrentCamera()->SetRotation(rs[i]);
-		CameraManager::Instance()->GetCurrentCamera()->UpdateViewMatrix();
+		camCube->SetRotation(rs[i]);
+		camCube->UpdateViewMatrix();
 		sphereMesh->Render(shaderProgram, false);
 	}
 

@@ -487,6 +487,9 @@ void SceneManager::DrawScene(GLuint shaderProgram)
 	Draw(&sceneRoot, shaderProgram);
 	if (TerrainManager::Instance()->UseTerrain())
 		TerrainManager::Instance()->GetTerrainObject()->Render(shaderProgram);
+
+	if (TerrainManager::Instance()->UseOcean())
+		TerrainManager::Instance()->GetOceanObject()->Render(shaderProgram);
 }
 
 Object * SceneManager::GetRootNode()
