@@ -25,23 +25,6 @@
 		<FarClip>3000.000000</FarClip>
 	</Camera>
 	<Objects>
-		<Object Name="Plane">
-			<Position x="0.000000" y="0.000000" z="0.000000"/>
-			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
-			<Scale x="1.000000" y="1.000000" z="1.000000"/>
-			<Children>
-				<StaticMeshObject Name="Plane" Path="Plane" SubMesh="Plane">
-					<Material Metallic="1.000000" Roughness="1.000000">
-						<Diffuse>Plane\Plane_D</Diffuse>
-						<Normal>Plane\Plane_N</Normal>
-						<Specular>Plane\Plane_S</Specular>
-					</Material>
-					<Position x="0.000000" y="0.000000" z="0.000000"/>
-					<Rotation x="90.000008" y="0.000000" z="-179.999985"/>
-					<Scale x="1.000000" y="1.000000" z="1.000000"/>
-				</StaticMeshObject>
-			</Children>
-		</Object>
 		<Object Name="HappyRecon">
 			<Position x="-6.000000" y="0.000000" z="6.000000"/>
 			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
