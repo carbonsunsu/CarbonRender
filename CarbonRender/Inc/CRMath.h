@@ -86,6 +86,8 @@ public:
 	Matrix3x3(float a[9]);
 	Matrix3x3(Matrix4x4 &mat);
 
+	Matrix3x3 Inverse();
+
 	void operator = (float a[9]);
 	void operator = (Matrix3x3 mat);
 	void operator = (Matrix4x4 mat);
@@ -105,6 +107,9 @@ public:
 	Matrix4x4();
 
 	Matrix4x4(float a[16]);
+	Matrix4x4(Matrix4x4 &mat);
+
+	Matrix4x4 Inverse();
 
 	void operator = (float a[16]);
 	void operator = (Matrix4x4 mat);
@@ -244,5 +249,7 @@ float3 operator + (float3 v1, float3 v2);
 float4 operator + (float4 v1, float4 v2);
 float3 operator - (float3 v1, float3 v2);
 float4 operator - (float4 v1, float4 v2);
+float3 operator - (float3 v1);
+float4 operator - (float4 v1);
 
 #endif

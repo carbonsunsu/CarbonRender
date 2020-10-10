@@ -166,6 +166,17 @@ Matrix3x3::Matrix3x3(Matrix4x4 &mat)
 	}
 }
 
+Matrix3x3 Matrix3x3::Inverse()
+{
+	float inv[9] = {
+		matrix[8], -matrix[1], -matrix[2],
+		-matrix[3], matrix[4], -matrix[5],
+		-matrix[6], -matrix[7], matrix[0]
+	};
+
+	return Matrix3x3(inv);
+}
+
 void Matrix3x3::operator=(float a[9])
 {
 	for (int i = 0; i < 9; i++)
@@ -194,6 +205,24 @@ Matrix4x4::Matrix4x4(float a[16])
 {
 	for (int i = 0; i < 16; i++)
 		matrix[i] = a[i];
+}
+
+Matrix4x4::Matrix4x4(Matrix4x4 & mat)
+{
+	for (int i = 0; i < 16; i++)
+		matrix[i] = mat.matrix[i];
+}
+
+Matrix4x4 Matrix4x4::Inverse()
+{
+	float inv[16] = {
+		matrix[15], -matrix[1], -matrix[2], -matrix[3],
+		-matrix[4], matrix[10], -matrix[6], -matrix[7],
+		-matrix[8], -matrix[9], matrix[5], -matrix[11],
+		-matrix[12], -matrix[13], -matrix[14], matrix[0]
+	};
+
+	return Matrix4x4(inv);
 }
 
 void Matrix4x4::operator=(float a[16])
@@ -592,6 +621,16 @@ float3 operator-(float3 v1, float3 v2)
 float4 operator-(float4 v1, float4 v2)
 {
 	return float4(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w);
+}
+
+float3 operator-(float3 v1)
+{
+	return float3(-v1.x, -v1.y, -v1.z);
+}
+
+float4 operator-(float4 v1)
+{
+	return float4(-v1.x, -v1.y, -v1.z, -v1.w);
 }
 
 float3 Math::UnitAxisX()
