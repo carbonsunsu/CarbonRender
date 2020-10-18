@@ -13,12 +13,12 @@ uniform sampler2D cloudBuffer;
 
 void main ()
 {
-	vec4 skyColor = texture2D(skyBuffer, uv);
-	vec4 lightColor = texture2D(lightBuffer, uv);
-	vec4 cubeColor = texture2D(cubeBuffer, uv);
-	vec4 ssrColor = textureLod(ssrBuffer, uv, cubeColor.a * 6.0f);
-	vec4 stencil = texture2D(stencilBuffer, uv);
-	vec4 cloudColor = texture2D(cloudBuffer, uv);
+	vec4 skyColor = texture(skyBuffer, uv);
+	vec4 lightColor = texture(lightBuffer, uv);
+	vec4 cubeColor = texture(cubeBuffer, uv);
+	vec4 ssrColor = texture(ssrBuffer, uv, cubeColor.a * 10.0f);
+	vec4 stencil = texture(stencilBuffer, uv);
+	vec4 cloudColor = texture(cloudBuffer, uv);
 
 	fColor.rgb = mix(skyColor.rgb,
 					 lightColor.rgb + mix(cubeColor.rgb, ssrColor.rgb, ssrColor.a), 

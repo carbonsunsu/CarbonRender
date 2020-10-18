@@ -21,16 +21,16 @@ const float edgeFadingStart = 0.75f;
 
 void main ()
 {
-	vec4 stencil = texture2D(stenMap, uv);
+	vec4 stencil = texture(stenMap, uv);
 	if (stencil.r <= 0)
 	{
 		discard;
 		return;
 	}
 
-	vec4 para = texture2D(paraMap, uv);
-	vec4 wsP = texture2D(pMap, uv);
-	vec4 wsN = texture2D(nMap, uv);
+	vec4 para = texture(paraMap, uv);
+	vec4 wsP = texture(pMap, uv);
+	vec4 wsN = texture(nMap, uv);
 	vec3 wsV = wsP.xyz - wsCamPos.xyz;
 	wsV = normalize(wsV);
 	vec3 wsR = reflect(wsV, wsN.xyz);
@@ -51,7 +51,7 @@ void main ()
 		 ssP.xy = ssP.xy/ssP.w;
 		 vec2 sampleUV = ssP.xy * 0.5f + 0.5f;
 		 if (sampleUV.x > 1.0f || sampleUV.x < 0.0f || sampleUV.y > 1.0f || sampleUV.y < 0.0f) continue;
-		 vec4 sampleN = texture2D(nMap, sampleUV);
+		 vec4 sampleN = texture(nMap, sampleUV);
 
 		 if (depth - sampleN.a > 0.0f)
 		 {
@@ -68,7 +68,7 @@ void main ()
 			fadingFactor *=  1.0f - dot(wsN.xyz, sampleN.xyz);
 			fadingFactor *= 1.0f / (dis + 1.0f);
 			fadingFactor = clamp(fadingFactor, 0.0f, 1.0f);
-			reflection.rgb = texture2D(pureLightMap, sampleUV).rgb + texture2D(refMap, sampleUV).rgb;
+			reflection.rgb = texture(pureLightMap, sampleUV).rgb + texture(refMap, sampleUV).rgb;
 			reflection.a = fadingFactor;
 			break;
 		 }

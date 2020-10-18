@@ -8,55 +8,29 @@ void Controller::Update()
 {
 }
 
-void Controller::KeyDownCallback(unsigned char key, int x, int y)
+void Controller::KeyInputCallback(GLFWwindow* window, int key, int scanCode, int action, int mods)
 {
 }
 
-void Controller::KeyUpCallback(unsigned char key, int x, int y)
+void Controller::MouseKeyCallback(GLFWwindow* window, int button, int state)
 {
-}
-
-void Controller::SpecialKeyDownCallback(int key, int x, int y)
-{
-}
-
-void Controller::SpecialKeyUpCallback(int key, int x, int y)
-{
-}
-
-void Controller::MouseKeyCallback(int button, int state, int x, int y)
-{
-	switch (button)
+	switch (state)
 	{
-	case GLUT_LEFT_BUTTON:
+	case GLFW_PRESS:
 	{
-		if (state == GLUT_DOWN)
-		{
-			curMouseButton = GLUT_LEFT_BUTTON;
-		}
+		curMouseButton = button;
 	}
 	break;
-	case GLUT_RIGHT_BUTTON:
+	case GLFW_RELEASE:
 	{	
-		if (state == GLUT_DOWN)
-		{
-			curMouseButton = GLUT_RIGHT_BUTTON;
-		}
-	}
-	break;
-	case GLUT_MIDDLE_BUTTON:
-	{
-		if (state == GLUT_DOWN)
-		{
-			curMouseButton = GLUT_MIDDLE_BUTTON;
-		}
+		curMouseButton = -1;
 	}
 	break;
 	}
-	lastMousePos[0] = x;
-	lastMousePos[1] = y;
+
+	glfwGetCursorPos(window, &lastMousePos[0], &lastMousePos[1]);
 }
 
-void Controller::MouseMotionCallback(int x, int y)
+void Controller::MouseMotionCallback(GLFWwindow* window, double x, double y)
 {
 }

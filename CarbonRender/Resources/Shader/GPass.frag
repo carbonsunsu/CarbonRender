@@ -23,10 +23,10 @@ uniform vec2 depthClampPara;
 
 void main ()
 {
-	vec3 tsN = texture2D(normalMap, uv).xyz;
+	vec3 tsN = texture(normalMap, uv).xyz;
 	tsN = tsN * 2.0f - 1.0f;
-	vec4 ms = texture2D(msMap, uv);
-	vec4 albedo = texture2D(albedoMap, uv);
+	vec4 ms = texture(msMap, uv);
+	vec4 albedo = texture(albedoMap, uv);
 	albedo.rgb = pow(albedo.rgb, vec3(2.2f));
 
 	vec3 wsT = normalize(normalMat * T);

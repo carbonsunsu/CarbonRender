@@ -31,14 +31,21 @@ void WindowManager::CreateWindow(unsigned int w, unsigned int h, char * title, b
 {
 	size.w = w;
 	size.h = h;
-	glutInitWindowSize((int)size.w, (int)size.h);
-	glutCreateWindow(title);
-	glViewport(0, 0, (GLsizei)size.w, (GLsizei)size.h);
 	if (fullScreen)
-		glutFullScreen();
+		window = glfwCreateWindow((int)size.w, (int)size.h, title, glfwGetPrimaryMonitor(), NULL);
+	else
+		window = glfwCreateWindow((int)size.w, (int)size.h, title, NULL, NULL);
+	glfwSetWindowAttrib(window, GLFW_RESIZABLE, GLFW_FALSE);
+	glfwMakeContextCurrent(window);
+	glViewport(0, 0, (GLsizei)size.w, (GLsizei)size.h);
 }
 
 WindowSize WindowManager::GetWindowSize()
 {
 	return size;
+}
+
+GLFWwindow * WindowManager::GetWindow()
+{
+	return window;
 }

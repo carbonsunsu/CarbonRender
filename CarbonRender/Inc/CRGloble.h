@@ -9,7 +9,7 @@
 #define CR_VERTATTRIPOS_UVS 3
 #define CR_VERTATTRIPOS_COL 4
 #define CR_VERTATTRIPOS_BNL 5
-#define FIXEDUPDATE_TIME 0.01f
+#define FIXEDUPDATE_TIME 0.01f//In seconds
 
 #include <fstream>
 #include <iostream>
@@ -22,12 +22,17 @@
 
 #include "..\Third\GL\include\glew.h"
 #pragma comment(lib, "glew32.lib")
-#include "..\Third\GL\include\glut.h"
-#pragma comment(lib, "glut32.lib")
+#pragma comment(lib, "opengl32.lib")
+
+#include "..\Third\GLFW\include\glfw3.h"
+#pragma comment(lib, "glfw3.lib")
+
 #include "..\Third\FBX\include\fbxsdk.h"
 #pragma comment(lib, "libfbxsdk.lib")
+
 #include "..\Third\Simple OpenGL Image Library\src\SOIL.h"
 #pragma comment(lib, "SOIL.lib")
+
 #include "..\Third\RapidXML\rapidxml.hpp"
 #include "..\Third\RapidXML\rapidxml_print.hpp"
 

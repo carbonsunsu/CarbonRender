@@ -7,20 +7,16 @@
 class Controller
 {
 protected:
-	int lastMousePos[2];
+	double lastMousePos[2];
 	int curMouseButton;
 
 public:
 	virtual void Init();
 	virtual void Update();
-	virtual void KeyDownCallback(unsigned char key, int x, int y);
-	virtual void KeyUpCallback(unsigned char key, int x, int y);
+	virtual void KeyInputCallback(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
-	virtual void SpecialKeyDownCallback(int key, int x, int y);
-	virtual void SpecialKeyUpCallback(int key, int x, int y);
-
-	virtual void MouseKeyCallback(int button, int state, int x, int y);
-	virtual void MouseMotionCallback(int x, int y);
+	virtual void MouseKeyCallback(GLFWwindow* window, int button, int state);
+	virtual void MouseMotionCallback(GLFWwindow* window, double x, double y);
 };
 
 #endif

@@ -16,13 +16,9 @@ protected:
 public:
 	void Init();
 	void Update();
-	void KeyDownCallback(unsigned char key, int x, int y);
-	void KeyUpCallback(unsigned char key, int x, int y);
+	void KeyInputCallback(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
-	void SpecialKeyDownCallback(int key, int x, int y);
-	void SpecialKeyUpCallback(int key, int x, int y);
-
-	void MouseMotionCallback(int x, int y);
+	void MouseMotionCallback(GLFWwindow* window, double x, double y);
 };
 
 #endif

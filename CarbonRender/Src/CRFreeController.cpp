@@ -22,47 +22,46 @@ void FreeController::Update()
 	CameraManager::Instance()->GetCurrentCamera()->SetPosition(curPos);
 }
 
-void FreeController::KeyDownCallback(unsigned char key, int x, int y)
+void FreeController::KeyInputCallback(GLFWwindow* window, int key, int scanCode, int action, int mods)
 {
 	switch (key)
 	{
 
 	default:
 		break;
-	case 'w':
-	case 'W':
+	case GLFW_KEY_W:
 	{
-		v.x = 1.0f;
+		v.x = (action == GLFW_PRESS || action == GLFW_REPEAT) ? 1.0f : 0.0f;
 	}
 	break;
-	case 's':
-	case 'S':
+	case GLFW_KEY_S:
 	{
-		v.x = -1.0f;
+		v.x = (action == GLFW_PRESS || action == GLFW_REPEAT) ? -1.0f : 0.0f;
 	}
 	break;
-	case 'a':
-	case 'A':
+	case GLFW_KEY_A:
 	{
-		v.y = -1.0f;
+		v.y = (action == GLFW_PRESS || action == GLFW_REPEAT) ? -1.0f : 0.0f;
 	}
 	break;
-	case 'd':
-	case 'D':
+	case GLFW_KEY_D:
 	{
-		v.y = 1.0f;
+		v.y = (action == GLFW_PRESS || action == GLFW_REPEAT) ? 1.0f : 0.0f;
 	}
 	break;
-	case 'q':
-	case 'Q':
+	case GLFW_KEY_Q:
 	{
-		v.z = 1.0f;
+		v.z = (action == GLFW_PRESS || action == GLFW_REPEAT) ? 1.0f : 0.0f;
 	}
 	break;
-	case 'e':
-	case 'E':
+	case GLFW_KEY_E:
 	{
-		v.z = -1.0f;
+		v.z = (action == GLFW_PRESS || action == GLFW_REPEAT) ? -1.0f : 0.0f;
+	}
+	break;
+	case GLFW_KEY_LEFT_SHIFT:
+	{
+		moveSpeed = (action == GLFW_PRESS || action == GLFW_REPEAT) ? moveSpeedHigh : moveSpeedLow;
 	}
 	break;
 	case '=':
@@ -125,108 +124,35 @@ void FreeController::KeyDownCallback(unsigned char key, int x, int y)
 		WeatherSystem::Instance()->AddFogPrecipitation(-1.0f);
 	}
 	break;
-	case 't':
-	case 'T':
+	case GLFW_KEY_T:
 	{
-		WeatherSystem::Instance()->ToggleTimeLapse();
+		if (action == GLFW_PRESS)
+			WeatherSystem::Instance()->ToggleTimeLapse();
 	}
 	break;
 
 	}
 }
 
-void FreeController::KeyUpCallback(unsigned char key, int x, int y)
-{
-	switch (key)
-	{
-	default:
-		break;
-	case 'w':
-	case 'W':
-	{
-		v.x = 0.0f;
-	}
-	break;
-	case 's':
-	case 'S':
-	{
-		v.x = 0.0f;
-	}
-	break;
-	case 'a':
-	case 'A':
-	{
-		v.y = 0.0f;
-	}
-	break;
-	case 'd':
-	case 'D':
-	{
-		v.y = 0.0f;
-	}
-	break;
-	case 'q':
-	case 'Q':
-	{
-		v.z = 0.0f;
-	}
-	break;
-	case 'e':
-	case 'E':
-	{
-		v.z = 0.0f;
-	}
-	break;
-	case 'm':
-	case 'M':
-	{
-		highSpeed = !highSpeed;
-
-		if (highSpeed)
-			moveSpeed = moveSpeedHigh;
-		else
-			moveSpeed = moveSpeedLow;
-	}
-	break;
-	}
-}
-
-void FreeController::SpecialKeyDownCallback(int key, int x, int y)
-{
-	switch (key)
-	{
-	default:
-		break;
-	}
-}
-
-void FreeController::SpecialKeyUpCallback(int key, int x, int y)
-{
-	switch (key)
-	{
-	default:
-		break;
-	}
-}
-
-void FreeController::MouseMotionCallback(int x, int y)
+void FreeController::MouseMotionCallback(GLFWwindow* window, double x, double y)
 {
 	switch (curMouseButton)
 	{
-	case GLUT_RIGHT_BUTTON:
+	case GLFW_MOUSE_BUTTON_RIGHT:
+	{
 		float3 curR = CameraManager::Instance()->GetCurrentCamera()->GetRotation();
 		curR.y += (x - lastMousePos[0]) * sensitivity[0];
 		curR.x += (y - lastMousePos[1]) * sensitivity[1];
 		if (curR.x > 90.0f) curR.x = 90.0f;
 		if (curR.x < -90.0f) curR.x = -90.0f;
 		CameraManager::Instance()->GetCurrentCamera()->SetRotation(curR);
+	}
 		break;
-		//case GLUT_RIGHT_BUTTON:
-			//break;
-		//case GLUT_MIDDLE_BUTTON:
-			//break;
+	case GLFW_MOUSE_BUTTON_LEFT:
+		break;
+	case GLFW_MOUSE_BUTTON_MIDDLE:
+		break;
 	}
 	lastMousePos[0] = x;
 	lastMousePos[1] = y;
-	glutPostRedisplay();
 }

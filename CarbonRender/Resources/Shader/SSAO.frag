@@ -36,7 +36,7 @@ const vec3 vSphere[12] = vec3[](vec3(-0.010735935, 0.01647018, 0.0062425877),
 
 void main ()
 {
-	vec4 stencil = texture2D(stenMap, uv);
+	vec4 stencil = texture(stenMap, uv);
 	if (stencil.r <= 0)
 	{
 		discard;
@@ -44,10 +44,10 @@ void main ()
 	}
 
 	vec2 rnUV = uv * 20.0f;
-	vec4 shadow = texture2D(sMap, uv);
-	vec4 wsN = texture2D(nMap, uv);
-	vec3 rn = texture2D(rnMap, uv * 20.0f).rgb;
-	vec3 wsPos = texture2D(pMap, uv).rgb;
+	vec4 shadow = texture(sMap, uv);
+	vec4 wsN = texture(nMap, uv);
+	vec3 rn = texture(rnMap, uv * 20.0f).rgb;
+	vec3 wsPos = texture(pMap, uv).rgb;
 
 	float aoFactor = 0.0f;
 	float s = scale * PI_INV;
@@ -56,7 +56,7 @@ void main ()
 	for (int i = 0; i < sampleNum; i++)
 	{
 		vec2 ray = normalize(reflect(vSphere[i], rn).xy) * vec2(r * scalePara.x, r * scalePara.y);
-		vec3 samplePos = texture2D(pMap, uv + sign(dot(ray, wsN.xy)) * ray).rgb;
+		vec3 samplePos = texture(pMap, uv + sign(dot(ray, wsN.xy)) * ray).rgb;
 		vec3 v = samplePos - wsPos;
 
 		aoFactor += max(0.0f, dot(wsN.xyz, v) - bias)/(dot(v, v) + epsilon);

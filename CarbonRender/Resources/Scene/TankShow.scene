@@ -1,0 +1,106 @@
+<Scene>
+	<World>
+		<Latitude>0.000000</Latitude>
+		<Day>180</Day>
+		<Time>13.304154</Time>
+		<Turbidity>4.000000</Turbidity>
+		<Exposure>30.000000</Exposure>
+		<TimeSpeed>1500.000000</TimeSpeed>
+		<WindDirection x="0.500000" y="0.000000" z="1.000000" w="10.000000"/>
+		<WeatherMap>Weather0</WeatherMap>
+		<CloudMaxAltitude>6000.000000</CloudMaxAltitude>
+		<CloudMinAltitude>1500.000000</CloudMinAltitude>
+		<CloudCoverage>0.674998</CloudCoverage>
+		<CloudPrecipitation>0.900000</CloudPrecipitation>
+		<FogDensity>0.000000</FogDensity>
+		<FogColor r="1.000000" g="1.000000" b="1.000000"/>
+		<FogMaxAltitude>20.000000</FogMaxAltitude>
+		<FogPrecipitation>20.000000</FogPrecipitation>
+	</World>
+	<Camera>
+		<Position x="-3.988786" y="0.881436" z="-7.403852"/>
+		<Rotation x="-7.499999" y="-574.000244" z="0.000000"/>
+		<FOV>60.000000</FOV>
+		<NearClip>0.010000</NearClip>
+		<FarClip>3000.000000</FarClip>
+	</Camera>
+	<Objects>
+		<Object Name="Obj430U">
+			<Position x="0.000000" y="0.000000" z="0.000000"/>
+			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
+			<Scale x="1.000000" y="1.000000" z="1.000000"/>
+			<Children>
+				<StaticMeshObject Name="gun_01_Shape" Path="Obj430U" SubMesh="gun_01_Shape">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse>Obj430U\Object_430_U_3Dst_guns_AM_hd</Diffuse>
+						<Normal>Obj430U\Object_430_U_3Dst_guns_ANM_hd</Normal>
+						<Specular>Obj430U\Object_430_U_3Dst_guns_GMM_hd</Specular>
+					</Material>
+					<Position x="0.000000" y="1.552558" z="-1.156930"/>
+					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Hull" Path="Obj430U" SubMesh="Hull">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse>Obj430U\Object_430_U_3Dst_hull_01_AM_hd</Diffuse>
+						<Normal>Obj430U\Object_430_U_3Dst_hull_01_ANM_hd</Normal>
+						<Specular>Obj430U\Object_430_U_3Dst_hull_01_GMM_hd</Specular>
+					</Material>
+					<Position x="0.000000" y="0.775023" z="0.000000"/>
+					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Turret_01" Path="Obj430U" SubMesh="Turret_01">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse>Obj430U\Object_430_U_3Dst_turret_01_AM_hd</Diffuse>
+						<Normal>Obj430U\Object_430_U_3Dst_turret_01_ANM_hd</Normal>
+						<Specular>Obj430U\Object_430_U_3Dst_turret_01_GMM_hd</Specular>
+					</Material>
+					<Position x="0.000000" y="1.336601" z="-0.085060"/>
+					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="segment.001" Path="Obj430U" SubMesh="segment.001">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse>Obj430U\Object_430U_segment_track_AM_hd</Diffuse>
+						<Normal>Obj430U\Object_430U_segment_track_ANM_hd</Normal>
+						<Specular>Obj430U\Object_430U_segment_track_GMM_hd</Specular>
+					</Material>
+					<Position x="0.000000" y="0.000000" z="-0.128866"/>
+					<Rotation x="-180.000000" y="-0.000005" z="0.000005"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="segment" Path="Obj430U" SubMesh="segment">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse>Obj430U\Object_430U_segment_track_AM_hd</Diffuse>
+						<Normal>Obj430U\Object_430U_segment_track_ANM_hd</Normal>
+						<Specular>Obj430U\Object_430U_segment_track_GMM_hd</Specular>
+					</Material>
+					<Position x="0.000000" y="0.000000" z="-0.128866"/>
+					<Rotation x="-180.000000" y="-0.000005" z="0.000005"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="exportChassR1_Shape" Path="Obj430U" SubMesh="exportChassR1_Shape">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse>Obj430U\Object_430_U_3Dst_chassis_01_AM_hd</Diffuse>
+						<Normal>Obj430U\Object_430_U_3Dst_chassis_01_ANM_hd</Normal>
+						<Specular>Obj430U\Object_430_U_3Dst_chassis_01_GMM_hd</Specular>
+					</Material>
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="exportChassL1_Shape" Path="Obj430U" SubMesh="exportChassL1_Shape">
+					<Material Metallic="1.000000" Roughness="1.000000">
+						<Diffuse>Obj430U\Object_430_U_3Dst_chassis_01_AM_hd</Diffuse>
+						<Normal>Obj430U\Object_430_U_3Dst_chassis_01_ANM_hd</Normal>
+						<Specular>Obj430U\Object_430_U_3Dst_chassis_01_GMM_hd</Specular>
+					</Material>
+					<Position x="0.000000" y="0.000000" z="0.000000"/>
+					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+			</Children>
+		</Object>
+	</Objects>
+</Scene>

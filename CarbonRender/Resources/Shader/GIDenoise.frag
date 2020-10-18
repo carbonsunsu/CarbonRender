@@ -20,7 +20,7 @@ float GetWeight (float dis, float s)
 
 void main ()
 {
-	vec4 stencil = texture2D(stenMap, uv);
+	vec4 stencil = texture(stenMap, uv);
 	if (stencil.r <= 0)
 	{
 		discard;
@@ -31,8 +31,8 @@ void main ()
 	float sumWeight = 0.0f;
 	float weight;
 	
-	vec4 normalDepth = texture2D(nMap, uv);
-	vec3 giColor = texture2D(giMap, uv).rgb;
+	vec4 normalDepth = texture(nMap, uv);
+	vec3 giColor = texture(giMap, uv).rgb;
 	weight = GetWeight(0.0f, SIGMA_D) * GetWeight(0.0f, SIGMA_N);
 	sumWeight += weight;
 	sumColor += giColor * weight;
@@ -42,18 +42,18 @@ void main ()
 		vec4 sampleUV;
 		sampleUV.xy = uv + stepUnit.xy * i;
 		sampleUV.zw = uv + stepUnit.xy * -i;
-		vec4 normalDepth0 = texture2D(nMap, sampleUV.xy);
-		vec4 normalDepth1 = texture2D(nMap, sampleUV.zw);
+		vec4 normalDepth0 = texture(nMap, sampleUV.xy);
+		vec4 normalDepth1 = texture(nMap, sampleUV.zw);
 		
 		float gaussianWeight = GetWeight(length(stepUnit.z * i), SIGMA_D);
-		vec3 sampleColor = texture2D(giMap, sampleUV.xy).rgb;
+		vec3 sampleColor = texture(giMap, sampleUV.xy).rgb;
 		weight = gaussianWeight;
 		weight *= GetWeight(distance(normalDepth0.xyz, normalDepth.xyz), SIGMA_N);
 		weight *= GetWeight(abs(normalDepth0.a - normalDepth.a), SIGMA_DEPTH);
 		sumWeight += weight;
 		sumColor += sampleColor * weight;
 
-		sampleColor = texture2D(giMap, sampleUV.zw).rgb;
+		sampleColor = texture(giMap, sampleUV.zw).rgb;
 		weight = gaussianWeight;
 		weight *= GetWeight(distance(normalDepth1.xyz, normalDepth.xyz), SIGMA_N);
 		weight *= GetWeight(abs(normalDepth1.a - normalDepth.a), SIGMA_DEPTH);

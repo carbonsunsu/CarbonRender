@@ -40,9 +40,9 @@ vec3 SampleVPL (vec2 uv, vec3 wsP, vec3 wsN)
 	if (!IsInScreen(uv))
 		return vec3(0.0f, 0.0f, 0.0f);
 
-	vec3 vplPos = texture2D(vplPMap, uv).xyz;
-	vec3 vplColor = texture2D(vplAMap, uv).xyz;
-	vec3 vplN = texture2D(vplNMap, uv).xyz;
+	vec3 vplPos = texture(vplPMap, uv).xyz;
+	vec3 vplColor = texture(vplAMap, uv).xyz;
+	vec3 vplN = texture(vplNMap, uv).xyz;
 	vec3 v = normalize(wsP - vplPos);
 	float d = max(distance(wsP, vplPos), 1.0f);
 
@@ -52,15 +52,15 @@ vec3 SampleVPL (vec2 uv, vec3 wsP, vec3 wsN)
 
 void main ()
 {
-	vec4 stencil = texture2D(stenMap, uv);
+	vec4 stencil = texture(stenMap, uv);
 	if (stencil.r <= 0)
 	{
 		discard;
 		return;
 	}
 
-	vec3 wsP = texture2D(pMap, uv).xyz;
-	vec3 wsN = texture2D(nMap, uv).xyz;
+	vec3 wsP = texture(pMap, uv).xyz;
+	vec3 wsN = texture(nMap, uv).xyz;
 	vec3 smP = (smProMat * (smViewMat * vec4(wsP, 1.0f))).xyz;
 	vec2 smUV = smP.xy * 0.5f + 0.5f;
 	vec3 gi = vec3(0.0f, 0.0f, 0.0f);

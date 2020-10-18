@@ -63,10 +63,10 @@ vec4 GetShadowMap(int level, vec2 uv, vec4 pos, vec2 uvBias)
 			vec4 smPos = smProMatLv1 * pos;
 			vec2 newUV = smPos.xy / smPos.w * 0.5f + 0.5f;
 			newUV += uvBias * (0.5f / shadowMapSizes.y);
-			return texture2D(smMapLv1, newUV);
+			return texture(smMapLv1, newUV);
 		}
 		else
-			return texture2D(smMapLv0, uv);
+			return texture(smMapLv0, uv);
 	}
 	else if (level == 1)
 	{	
@@ -75,21 +75,21 @@ vec4 GetShadowMap(int level, vec2 uv, vec4 pos, vec2 uvBias)
 			vec4 smPos = smProMatLv2 * pos;
 			vec2 newUV = smPos.xy / smPos.w * 0.5f + 0.5f;
 			newUV += uvBias * (0.5f / shadowMapSizes.z);
-			return texture2D(smMapLv2, newUV);
+			return texture(smMapLv2, newUV);
 		}
 		else
-			return texture2D(smMapLv1, uv);
+			return texture(smMapLv1, uv);
 	}
 	else
-		return texture2D(smMapLv2, clamp(uv, 0.0f, 1.0f));
+		return texture(smMapLv2, clamp(uv, 0.0f, 1.0f));
 }
 
 void main ()
 {
-	vec4 stencil = texture2D(stenMap, uv);
+	vec4 stencil = texture(stenMap, uv);
 	if (stencil.r <= 0){discard;return;}
 	
-	vec4 pMapSample = texture2D(pMap, uv);
+	vec4 pMapSample = texture(pMap, uv);
 	vec3 wsPos = pMapSample.xyz;
 	vec4 smPos = smViewMat * vec4(wsPos, 1.0f);
 	float rcverDepth = -smPos.z;
@@ -105,7 +105,7 @@ void main ()
 		//change bias according angle between normal and light vector
 		vec3 lightV = lightPos;
 		lightV = normalize(lightV);
-		vec4 N = texture2D(nMap, uv);
+		vec4 N = texture(nMap, uv);
 		float depthBias = abs(dot(N.xyz, lightV));
 		depthBias = 1.0f - min(depthBias, 1.0f);
 		depthBias = clamp(depthBias, 0.1f, 1.0f);

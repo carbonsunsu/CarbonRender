@@ -28,7 +28,7 @@ void main()
 	
 	vec4 dayColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 	vec4 nightColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	nightColor = texture2D(milkwayTex, uv);
+	nightColor = texture(milkwayTex, uv);
 	nightColor.rgb = pow(nightColor.rgb, vec3(2.2f));
 	//night 
 	if (wsSunPos.y <= 0.0f)

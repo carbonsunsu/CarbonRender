@@ -11,6 +11,7 @@ MenuManager::MenuManager()
 
 void MenuManager::InitMenu()
 {
+	/**
 	mainMenu = glutCreateMenu(OnMainMenu);
 	importModelMenu = glutCreateMenu(OnImportModelMenu);
 
@@ -26,10 +27,12 @@ void MenuManager::InitMenu()
 	glutSetMenu(mainMenu);
 
 	glutAttachMenu(GLUT_MIDDLE_BUTTON);
+	/**/
 }
 
 void MenuManager::OnMainMenu(int value)
 {
+	/**
 	switch (value)
 	{
 	case 0:
@@ -40,10 +43,12 @@ void MenuManager::OnMainMenu(int value)
 	default:
 		break;
 	}
+	/**/
 }
 
 void MenuManager::OnImportModelMenu(int value)
 {
+	/**
 	switch (value)
 	{
 	case 0:
@@ -65,10 +70,12 @@ void MenuManager::OnImportModelMenu(int value)
 	}
 	break;
 	}
+	/**/
 }
 
 void MenuManager::UpdateModelList()
 {
+	/**
 	glutSetMenu(importModelMenu);
 
 	modelList.clear();
@@ -90,6 +97,7 @@ void MenuManager::UpdateModelList()
 	}
 
 	itemCount = glutGet(GLUT_MENU_NUM_ITEMS);
+	/**/
 }
 
 MenuManager::~MenuManager()

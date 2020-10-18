@@ -3,8 +3,6 @@
 
 #include "..\Inc\CRGloble.h"
 
-class Camera;
-
 struct  WindowSize
 {
 	unsigned int w;
@@ -17,6 +15,7 @@ private:
 	static WindowManager* ins;
 	WindowManager();
 	WindowSize size;
+	GLFWwindow* window;
 
 public :
 	~WindowManager();
@@ -24,6 +23,7 @@ public :
 	void ReSize(unsigned int w, unsigned h);
 	void CreateWindow(unsigned int w, unsigned int h, char* tittle, bool fullScreen);
 	WindowSize GetWindowSize();
+	GLFWwindow* GetWindow();
 
 };
 

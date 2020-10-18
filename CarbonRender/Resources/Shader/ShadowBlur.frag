@@ -19,7 +19,7 @@ float GetWeight (float dis)
 
 void main ()
 {
-	vec4 stencil = texture2D(stenMap, uv);
+	vec4 stencil = texture(stenMap, uv);
 	if (stencil.r <= 0)
 	{
 		discard;
@@ -32,8 +32,8 @@ void main ()
 	
 	weight.rg = GetWeight(0).rr;
 	sumWeight += weight;
-	vec4 sMap = texture2D(shadowMap, uv);
-	vec4 normalDepth = texture2D(nMap, uv);
+	vec4 sMap = texture(shadowMap, uv);
+	vec4 normalDepth = texture(nMap, uv);
 	blurResult += sMap.rb * weight;
 	//float linearDepth01 = (normalDepth.a - depthClampPara.x) * depthClampPara.y;
 	//float scale = mix(1.0f, 1.0f, pow(linearDepth01, 100.0f));
@@ -43,14 +43,14 @@ void main ()
 		vec4 sampleUV;
 		sampleUV.xy = uv + stepUnit.xy * i;
 		sampleUV.zw = uv + stepUnit.xy * -i;
-		vec4 normalDepth0 = texture2D(nMap, sampleUV.xy);
-		vec4 normalDepth1 = texture2D(nMap, sampleUV.zw);
+		vec4 normalDepth0 = texture(nMap, sampleUV.xy);
+		vec4 normalDepth1 = texture(nMap, sampleUV.zw);
 		vec2 mask = vec2(1.0f);
 		mask.r = (1.0f - min(abs(normalDepth.w - normalDepth0.w), 1.0f)) * max(dot(normalDepth0.xyz, normalDepth.xyz), 0.0f);
 		mask.g = (1.0f - min(abs(normalDepth.w - normalDepth1.w), 1.0f)) * max(dot(normalDepth1.xyz, normalDepth.xyz), 0.0f);
 
-		vec4 sample0 = texture2D(shadowMap, sampleUV.xy);
-		vec4 sample1 = texture2D(shadowMap, sampleUV.zw);
+		vec4 sample0 = texture(shadowMap, sampleUV.xy);
+		vec4 sample1 = texture(shadowMap, sampleUV.zw);
 		
 		weight.g = GetWeight(stepUnit.z * i);
 		blurResult.g += sample0.b * weight.g * mask.r;

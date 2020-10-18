@@ -16,7 +16,7 @@ uniform vec2 depthClampPara;
 
 void main ()
 {
-	vec4 albedo = texture2D(albedoMap, uv);
+	vec4 albedo = texture(albedoMap, uv);
 	albedo.rgb = pow(albedo.rgb, vec3(2.2f));
 
 	float d = -(viewMat * wsP).z;

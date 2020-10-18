@@ -128,7 +128,7 @@ vec3 GetScreenPosAndDepth(vec3 pos)
 
 vec3 SampleWeather(vec3 pos)
 {
-	vec3 weatherData = texture2D(weatherMap, UVW(pos + cloudBias * 2.0f, 1.0f).xz).rgb;//R - coverage; G - precipitation; B - cloud type
+	vec3 weatherData = texture(weatherMap, UVW(pos + cloudBias * 2.0f, 1.0f).xz).rgb;//R - coverage; G - precipitation; B - cloud type
 	weatherData.r = weatherData.r * cloudCoverageScale;
 	weatherData.g = mix(1.0f, 2.0f, weatherData.g); 
 	weatherData.g *= cloudPrecipitationScale;
@@ -143,7 +143,7 @@ float SampleCloudDensity(vec3 pos, float mipmap, bool useCheapWay)
 	vec3 weather = SampleWeather(samplePos);
 	float heightF = GetHeightGradient(samplePos);
 	vec3 uvw = UVW(samplePos + cloudBias, 8.0f);
-	vec4 noise = textureLod(perlinWorleyMap, uvw, mipmap);
+	vec4 noise = texture(perlinWorleyMap, uvw, mipmap);
 	float lfFbm = noise.g * 0.625f + noise.b * 0.25f + noise.a * 0.125f;
 	lfFbm = Remap(noise.r, lfFbm - 1.0f, 1.0f, 0.0f, 1.0f);
 	lfFbm = clamp(lfFbm, 0.0f, 1.0f);
@@ -161,10 +161,10 @@ float SampleCloudDensity(vec3 pos, float mipmap, bool useCheapWay)
 	if (!useCheapWay)
 	{
 		//do curl
-		//vec4 curlNoise = texture2D(curlMap, uvw.xz);
+		//vec4 curlNoise = texture(curlMap, uvw.xz);
 		//uvw.xz += curlNoise.xz * clamp(heightF * 5.0f, 0.0f, 1.0f);
 
-		noise = textureLod(worleyMap, uvw * 0.6f, mipmap);
+		noise = texture(worleyMap, uvw * 0.6f, mipmap);
 		float hfFbm = noise.r * 0.625f + noise.g * 0.25f + noise.b * 0.125f;
 		hfFbm = 1.0f - hfFbm;
 		hfFbm *= clamp((heightF - typeFactor.x) / (typeFactor.w - typeFactor.x) * 10.0f * 0.12f, 0.0f, 1.0f);
@@ -241,9 +241,9 @@ vec2 GetShadowUV (vec4 pos, out int level)
 vec4 GetShadowMap(int level, vec2 uv)
 {
 	if (level == 0)
-		return texture2D(smMapLv0, uv);
+		return texture(smMapLv0, uv);
 	else
-		return texture2D(smMapLv1, uv);
+		return texture(smMapLv1, uv);
 }
 
 vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis, bool stensilMark, out float startToCamDis)
@@ -348,7 +348,7 @@ vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis,
 		}
 
 		//vec3 uvw = UVW(samplePos + cloudBias, 128.0f);
-		float noise = 1.0f;//textureLod(perlinWorleyMap, uvw, 0.0f).g;
+		float noise = 1.0f;//texture(perlinWorleyMap, uvw, 0.0f).g;
 		if (sampleDisSum >= sampleDisMax)
 		{	
 			fogSampleDensity += noise * fogDensityStep * (sampleStep - sampleDisSum + sampleDisMax) / sampleStep;
@@ -467,8 +467,8 @@ void main ()
 	vec3 lightRay = normalize(wsSunPos);
 
 	vec3 ssP = GetScreenPosAndDepth(wsP.xyz);
-	vec3 intersectPos = texture2D(posMap, ssP.xy).xyz;
-	bool stensilMark = texture2D(stencilMap, ssP.xy).r >= 1.0f;
+	vec3 intersectPos = texture(posMap, ssP.xy).xyz;
+	bool stensilMark = texture(stencilMap, ssP.xy).r >= 1.0f;
 	if (!stensilMark) intersectPos = wsCamPos + viewRay * 100000000.0f;
 	float intersectDis = distance(wsCamPos, intersectPos);
 	

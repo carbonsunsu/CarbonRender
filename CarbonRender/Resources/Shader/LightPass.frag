@@ -42,13 +42,14 @@ vec3 Random (vec3 p, float seed)
 
 vec3 ConeTracingCube (vec3 uvw, float roughness)
 {
+	//return texture(cubeMap, uvw, roughness * 10.0f).rgb;
 	vec3 ambientColor = vec3(0.0f);
 	for (int i = 0; i < 4; i++)
 	{
 		vec3 wsNoiseR = normalize(Random(uvw, i * 10.0f + 10.0f));
 		wsNoiseR = uvw + wsNoiseR * roughness;
 		wsNoiseR = normalize(wsNoiseR);
-		ambientColor += textureCube(cubeMap, wsNoiseR).rgb;
+		ambientColor += texture(cubeMap, wsNoiseR).rgb;
 	}
 	ambientColor *= 0.25f;
 
@@ -140,18 +141,18 @@ float Luminance(vec3 color)
 
 void main ()
 {
-	vec4 stencil = texture2D(stenMap, uv);
+	vec4 stencil = texture(stenMap, uv);
 	if (stencil.r <= 0)
 	{
 		discard;
 		return;
 	}
 	
-	vec4 albedo = texture2D(albedoMap, uv);
-	vec4 N = texture2D(normalMap, uv);
-	vec4 P = texture2D(pMap, uv);
-	vec4 shadowFactor = texture2D(sMap, uv);
-	vec4 gi = texture2D(giMap, uv);
+	vec4 albedo = texture(albedoMap, uv);
+	vec4 N = texture(normalMap, uv);
+	vec4 P = texture(pMap, uv);
+	vec4 shadowFactor = texture(sMap, uv);
+	vec4 gi = texture(giMap, uv);
 
 	vec3 wsN = N.xyz;
 	vec3 wsP = P.xyz;

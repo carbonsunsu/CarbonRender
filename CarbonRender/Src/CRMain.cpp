@@ -16,6 +16,7 @@
 #include "..\Inc\CRMeshManager.h"
 #include "..\Inc\CRMenuManager.h"
 #include "..\Inc\CRTerrainManager.h"
+#include "..\Inc\CRTimer.h"
 
 void MainDisplay()
 {
@@ -29,7 +30,7 @@ void MainDisplay()
 
 	RenderPassManager::Instance()->Draw();
 
-	glutSwapBuffers();
+	glfwSwapBuffers(WindowManager::Instance()->GetWindow());
 }
 
 void ReSizeCallback(int w, int h)
@@ -40,21 +41,22 @@ void ReSizeCallback(int w, int h)
 		cam->UpdateProjectionMatrix();
 }
 
-
 void Init(int argc, char** argv)
 {
 	ConfigManager::Instance()->LoadConfig();
 
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
+	if (!glfwInit())
+		cout << "GLFW init fail" << endl;
 
 	WindowSize size = ConfigManager::Instance()->GetScreenSize();
 	WindowManager::Instance()->CreateWindow(size.w, size.h, "CarbonRender", ConfigManager::Instance()->IsFullScreen());
-	MenuManager::Instance();
-	MenuManager::InitMenu();
+	glfwSwapInterval(1);
+	//MenuManager::Instance();
+	//MenuManager::InitMenu();
 
-	if (glewInit())
-		cout << "GLEW init fail" << endl;
+	const GLenum glewError = glewInit();
+	if (glewError)
+		cout << glewGetErrorString(glewError) << endl;
 
 	string str = "@carbonsunsu";
 	cout << str << endl;
@@ -76,62 +78,55 @@ void Init(int argc, char** argv)
 	TerrainManager::Instance();
 }
 
-void FixedUpdate(int value)
+void FixedUpdate()
 {
 	WeatherSystem::Instance()->Update();
 	ControllerManager::Instance()->GetCurrentController()->Update();
-
-	glutTimerFunc((unsigned int)(FIXEDUPDATE_TIME * 1000.0f), FixedUpdate, 0);
 }
 
-void KeyDownCallback(unsigned char key, int x, int y)
+void KeyInputCallback(GLFWwindow* window, int key, int scanCode, int action, int mods)
 {
-	ControllerManager::Instance()->GetCurrentController()->KeyDownCallback(key, x, y);
+	ControllerManager::Instance()->GetCurrentController()->KeyInputCallback(window, key, scanCode, action, mods);
 }
 
-void KeyUpCallback(unsigned char key, int x, int y)
+void MouseKeyCallback(GLFWwindow* window, int button, int state, int mods)
 {
-	ControllerManager::Instance()->GetCurrentController()->KeyUpCallback(key, x, y);
+	ControllerManager::Instance()->GetCurrentController()->MouseKeyCallback(window, button, state);
 }
 
-void SpecialKeyDownCallback(int key, int x, int y)
+void MouseMotionCallback(GLFWwindow* window, double x, double y) 
 {
-	ControllerManager::Instance()->GetCurrentController()->SpecialKeyDownCallback(key, x, y);
-}
-
-void SpecialKeyUpCallback(int key, int x, int y)
-{
-	ControllerManager::Instance()->GetCurrentController()->SpecialKeyUpCallback(key, x, y);
-}
-
-void MouseKeyCallback(int button, int state, int x, int y)
-{
-	ControllerManager::Instance()->GetCurrentController()->MouseKeyCallback(button, state, x, y);
-}
-
-void MouseMotionCallback(int x, int y) 
-{
-	ControllerManager::Instance()->GetCurrentController()->MouseMotionCallback(x, y);
+	ControllerManager::Instance()->GetCurrentController()->MouseMotionCallback(window, x, y);
 }
 
 void main(int argc, char** argv)
 {
 	Init(argc, argv);
-	
-	glutDisplayFunc(MainDisplay);
-	glutIdleFunc(MainDisplay);
-	glutReshapeFunc(ReSizeCallback);
 
-	glutTimerFunc((unsigned int)(FIXEDUPDATE_TIME * 1000.0f), FixedUpdate, 0);
+	//glutKeyboardFunc(KeyDownCallback);
+	//glutKeyboardUpFunc(KeyUpCallback);
 
-	glutKeyboardFunc(KeyDownCallback);
-	glutKeyboardUpFunc(KeyUpCallback);
+	//glutSpecialFunc(SpecialKeyDownCallback);
+	//glutSpecialUpFunc(SpecialKeyUpCallback);
 
-	glutSpecialFunc(SpecialKeyDownCallback);
-	glutSpecialUpFunc(SpecialKeyUpCallback);
+	unsigned int timerID = Timer::Instance()->NewTimer();
 
-	glutMouseFunc(MouseKeyCallback);
-	glutMotionFunc(MouseMotionCallback);
+	glfwSetMouseButtonCallback(WindowManager::Instance()->GetWindow(), MouseKeyCallback);
+	glfwSetCursorPosCallback(WindowManager::Instance()->GetWindow(), MouseMotionCallback);
+	glfwSetKeyCallback(WindowManager::Instance()->GetWindow(), KeyInputCallback);
 
-	glutMainLoop();
+	while (!glfwWindowShouldClose(WindowManager::Instance()->GetWindow()))
+	{
+		if (Timer::Instance()->GetTime() - Timer::Instance()->LastUpdateTime(timerID) >= FIXEDUPDATE_TIME)
+		{
+			Timer::Instance()->UpdateTimer(timerID);
+			FixedUpdate();
+		}
+
+		MainDisplay();
+		glfwPollEvents();
+	}
+
+	glfwDestroyWindow(WindowManager::Instance()->GetWindow());
+	glfwTerminate();
 }

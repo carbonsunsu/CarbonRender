@@ -44,6 +44,7 @@
     <ClCompile Include="Src\CRSSRPass.cpp" />
     <ClCompile Include="Src\CRTerrainManager.cpp" />
     <ClCompile Include="Src\CRTextureManager.cpp" />
+    <ClCompile Include="Src\CRTimer.cpp" />
     <ClCompile Include="Src\CRVolumetricCloudPass.cpp" />
     <ClCompile Include="Src\CRWeatherSystem.cpp" />
     <ClCompile Include="Src\CRWindowManager.cpp" />
@@ -83,6 +84,7 @@
     <ClInclude Include="Inc\CRSSRPass.h" />
     <ClInclude Include="Inc\CRTerrainManager.h" />
     <ClInclude Include="Inc\CRTextureManager.h" />
+    <ClInclude Include="Inc\CRTimer.h" />
     <ClInclude Include="Inc\CRVolumetricCloudPass.h" />
     <ClInclude Include="Inc\CRWindowManager.h" />
     <ClInclude Include="Inc\CRRenderPass.h" />
@@ -99,6 +101,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Resources\Scene\ShadowTest_BigScene.scene">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\Scene\TankShow.scene">
       <SubType>Designer</SubType>
     </None>
     <None Include="Resources\Scene\WoTBasicHangar.scene">
@@ -168,15 +173,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)Third\FBX\include;$(ProjectDir)Third\GL\include;$(ProjectDir)Third\Simple OpenGL Image Library\src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)Third\FBX\lib;$(ProjectDir)Third\GL\lib;$(ProjectDir)Third\Simple OpenGL Image Library\lib;$(LibraryPath)</LibraryPath>
-    <ExecutablePath>$(ProjectDir)Third\FBX\dll;$(ProjectDir)Third\GL\dll;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(ProjectDir)Third\FBX\include;$(ProjectDir)Third\GL\include;$(ProjectDir)Third\Simple OpenGL Image Library\src;$(ProjectDir)Third\GLFW\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)Third\FBX\lib;$(ProjectDir)Third\GL\lib;$(ProjectDir)Third\Simple OpenGL Image Library\lib;$(ProjectDir)Third\GLFW\lib;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(ProjectDir)Third\FBX\dll;$(ProjectDir)Third\GLFW\dll;$(ProjectDir)Third\GL\dll;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)Third\FBX\include;$(ProjectDir)Third\GL\include;$(ProjectDir)Third\Simple OpenGL Image Library\src;$(IncludePath)</IncludePath>
-    <ExecutablePath>$(ProjectDir)Third\FBX\dll;$(ProjectDir)Third\GL\dll;$(ExecutablePath)</ExecutablePath>
-    <LibraryPath>$(ProjectDir)Third\FBX\lib;$(ProjectDir)Third\GL\lib;$(ProjectDir)Third\Simple OpenGL Image Library\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)Third\FBX\include;$(ProjectDir)Third\GL\include;$(ProjectDir)Third\Simple OpenGL Image Library\src;$(ProjectDir)Third\GLFW\include;$(IncludePath)</IncludePath>
+    <ExecutablePath>$(ProjectDir)Third\FBX\dll;$(ProjectDir)Third\GLFW\dll;$(ProjectDir)Third\GL\dll;$(ExecutablePath)</ExecutablePath>
+    <LibraryPath>$(ProjectDir)Third\FBX\lib;$(ProjectDir)Third\GL\lib;$(ProjectDir)Third\Simple OpenGL Image Library\lib;$(ProjectDir)Third\GLFW\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -203,6 +208,7 @@
 echo Y | XCOPY "$(ProjectDir)Config.cfg" "$(TargetDir)"
 echo Y | XCOPY "$(ProjectDir)Third\GL\dll\*.*" "$(TargetDir)"
 echo Y | XCOPY "$(ProjectDir)Third\FBX\dll\*.*" "$(TargetDir)"
+echo Y | XCOPY "$(ProjectDir)Third\GLFW\dll\*.*" "$(TargetDir)"
 
 md "$(TargetDir)Resources"
 
@@ -243,6 +249,7 @@ echo A | XCOPY /s /q "$(ProjectDir)Resources\*.*" "$(TargetDir)Resources\*.*"</C
 echo Y | XCOPY "$(ProjectDir)Config.cfg" "$(TargetDir)"
 echo Y | XCOPY "$(ProjectDir)Third\GL\dll\*.*" "$(TargetDir)"
 echo Y | XCOPY "$(ProjectDir)Third\FBX\dll\*.*" "$(TargetDir)"
+echo Y | XCOPY "$(ProjectDir)Third\GLFW\dll\*.*" "$(TargetDir)"
 
 md "$(TargetDir)Resources"
 
