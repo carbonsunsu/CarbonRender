@@ -32,9 +32,9 @@ public:
 	float3 GetColor();
 	void SetColor(float3 iColor);
 
-	void SetNearClip(float near);
+	void SetNearClip(float nearDis);
 	float GetNearClip();
-	void SetFarClip(float far);
+	void SetFarClip(float farDis);
 	float GetFarClip();
 	void SetLightSize(float size);
 	float GetLightSize();

@@ -20,11 +20,14 @@
 #include <vector>
 #include <filesystem>
 
+#define IMGUI_IMPL_OPENGL_LOADER_GLEW
 #include "..\Third\GL\include\glew.h"
 #pragma comment(lib, "glew32.lib")
 #pragma comment(lib, "opengl32.lib")
 
+#define GLFW_EXPOSE_NATIVE_WIN32
 #include "..\Third\GLFW\include\glfw3.h"
+#include "..\Third\GLFW\include\glfw3native.h"
 #pragma comment(lib, "glfw3.lib")
 
 #include "..\Third\FBX\include\fbxsdk.h"
@@ -35,6 +38,10 @@
 
 #include "..\Third\RapidXML\rapidxml.hpp"
 #include "..\Third\RapidXML\rapidxml_print.hpp"
+
+#include "..\Third\imgui\imgui.h"
+#include "..\Third\imgui\imgui_impl_glfw.h"
+#include "..\Third\imgui\imgui_impl_opengl3.h"
 
 using namespace std;
 using namespace rapidxml;

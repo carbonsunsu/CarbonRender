@@ -16,10 +16,13 @@ private:
 	static void OnMainMenu(int value);
 	static void OnImportModelMenu(int value);
 	static void UpdateModelList();
+
 public:
 	~MenuManager();
 	static MenuManager* Instance();
-	static void InitMenu();
+	void InitMenu();
+	void RenderMenu();
+	void UpdateMenu();
 };
 
 #endif

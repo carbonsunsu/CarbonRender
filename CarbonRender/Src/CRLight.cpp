@@ -40,9 +40,9 @@ void Light::SetColor(float3 iColor)
 	color = iColor;
 }
 
-void Light::SetNearClip(float near)
+void Light::SetNearClip(float nearDis)
 {
-	nearClip = near;
+	nearClip = nearDis;
 }
 
 float Light::GetNearClip()
@@ -50,9 +50,9 @@ float Light::GetNearClip()
 	return nearClip;
 }
 
-void Light::SetFarClip(float far)
+void Light::SetFarClip(float farDis)
 {
-	farClip = far;
+	farClip = farDis;
 }
 
 float Light::GetFarClip()

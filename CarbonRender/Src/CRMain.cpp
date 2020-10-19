@@ -30,6 +30,9 @@ void MainDisplay()
 
 	RenderPassManager::Instance()->Draw();
 
+	MenuManager::Instance()->UpdateMenu();
+	MenuManager::Instance()->RenderMenu();
+
 	glfwSwapBuffers(WindowManager::Instance()->GetWindow());
 }
 
@@ -49,14 +52,14 @@ void Init(int argc, char** argv)
 		cout << "GLFW init fail" << endl;
 
 	WindowSize size = ConfigManager::Instance()->GetScreenSize();
-	WindowManager::Instance()->CreateWindow(size.w, size.h, "CarbonRender", ConfigManager::Instance()->IsFullScreen());
+	WindowManager::Instance()->CreateMainWindow(size.w, size.h, "CarbonRender", ConfigManager::Instance()->IsFullScreen());
 	glfwSwapInterval(1);
-	//MenuManager::Instance();
-	//MenuManager::InitMenu();
 
 	const GLenum glewError = glewInit();
 	if (glewError)
 		cout << glewGetErrorString(glewError) << endl;
+
+	MenuManager::Instance()->InitMenu();
 
 	string str = "@carbonsunsu";
 	cout << str << endl;
@@ -102,12 +105,6 @@ void MouseMotionCallback(GLFWwindow* window, double x, double y)
 void main(int argc, char** argv)
 {
 	Init(argc, argv);
-
-	//glutKeyboardFunc(KeyDownCallback);
-	//glutKeyboardUpFunc(KeyUpCallback);
-
-	//glutSpecialFunc(SpecialKeyDownCallback);
-	//glutSpecialUpFunc(SpecialKeyUpCallback);
 
 	unsigned int timerID = Timer::Instance()->NewTimer();
 

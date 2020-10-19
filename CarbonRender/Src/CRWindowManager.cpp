@@ -27,7 +27,7 @@ void WindowManager::ReSize(unsigned int newW, unsigned newH)
 	glViewport(0, 0, (GLsizei)size.w, (GLsizei)size.h);
 }
 
-void WindowManager::CreateWindow(unsigned int w, unsigned int h, char * title, bool fullScreen)
+void WindowManager::CreateMainWindow(unsigned int w, unsigned int h, char * title, bool fullScreen)
 {
 	size.w = w;
 	size.h = h;
