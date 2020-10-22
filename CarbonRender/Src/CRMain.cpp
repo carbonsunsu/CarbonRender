@@ -102,6 +102,11 @@ void MouseMotionCallback(GLFWwindow* window, double x, double y)
 	ControllerManager::Instance()->GetCurrentController()->MouseMotionCallback(window, x, y);
 }
 
+void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset)
+{
+	ControllerManager::Instance()->GetCurrentController()->ScrollCallback(window, xOffset, yOffset);
+}
+
 void main(int argc, char** argv)
 {
 	Init(argc, argv);
@@ -111,6 +116,7 @@ void main(int argc, char** argv)
 	glfwSetMouseButtonCallback(WindowManager::Instance()->GetWindow(), MouseKeyCallback);
 	glfwSetCursorPosCallback(WindowManager::Instance()->GetWindow(), MouseMotionCallback);
 	glfwSetKeyCallback(WindowManager::Instance()->GetWindow(), KeyInputCallback);
+	glfwSetScrollCallback(WindowManager::Instance()->GetWindow(), ScrollCallback);
 
 	while (!glfwWindowShouldClose(WindowManager::Instance()->GetWindow()))
 	{

@@ -34,3 +34,7 @@ void Controller::MouseKeyCallback(GLFWwindow* window, int button, int state)
 void Controller::MouseMotionCallback(GLFWwindow* window, double x, double y)
 {
 }
+
+void Controller::ScrollCallback(GLFWwindow * window, double xOffset, double yOffset)
+{
+}

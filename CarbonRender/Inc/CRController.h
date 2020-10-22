@@ -17,6 +17,7 @@ public:
 
 	virtual void MouseKeyCallback(GLFWwindow* window, int button, int state);
 	virtual void MouseMotionCallback(GLFWwindow* window, double x, double y);
+	virtual void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset);
 };
 
 #endif

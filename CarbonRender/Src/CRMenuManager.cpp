@@ -121,17 +121,17 @@ void MenuManager::UpdateMenu()
 	ImGui::Begin("CarbonRender");                          // Create a window called "Hello, world!" and append into it.
 
 	ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-	bool tmp0 = true;
-	bool tmp1 = false;
+	static bool tmp0 = true;
+	static bool tmp1 = false;
 	ImGui::Checkbox("Demo Window", &tmp0);      // Edit bools storing our window open/close state
 	ImGui::Checkbox("Another Window", &tmp1);
 
-	float f = 0.0f;
+	static float f = 0.0f;
 	ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
 	ImVec4 tmp2 = ImVec4(0.5, 0.2, 0.4, 0.1);
 	ImGui::ColorEdit3("clear color", (float*)&tmp2); // Edit 3 floats representing a color
 
-	int counter = 0;
+	static int counter = 0;
 	if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
 		counter++;
 	ImGui::SameLine();

@@ -6,7 +6,8 @@
 class FreeController : public Controller
 {
 protected:
-	float sensitivity[2] = { 0.02f, 0.01f };
+	float rotSensitivity[2] = { 0.02f, 0.01f };
+	float mouseMovSensitivity[3] = { 0.2f, 0.1f, 0.1f };
 	float moveSpeedLow = 2.0f;
 	float moveSpeedHigh;
 	float moveSpeed;
@@ -19,6 +20,7 @@ public:
 	void KeyInputCallback(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
 	void MouseMotionCallback(GLFWwindow* window, double x, double y);
+	void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset);
 };
 
 #endif
