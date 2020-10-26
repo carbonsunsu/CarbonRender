@@ -10,14 +10,16 @@ private:
 	static WeatherSystem* ins;
 	WeatherSystem();
 
+	bool isTimeStop;
+
 	float latitude;
 	int day;
 	float hour;
 	float turbidity;
 	float exposure;
 	float timeSpeed;
-	bool isTimeStop;
 	float lightR;
+	bool updateSunPos;
 
 	float thetaS;
 	float4 wsSunPos;
@@ -37,6 +39,7 @@ private:
 	float cloudCoverage;
 	float cloudPrecipitation;
 	GLuint cloudNoises[3];//PerlinWorley, Worley, Curl
+	bool updateCloudPos;
 
 	float fogDensity;
 	float3 fogColor;
@@ -87,6 +90,8 @@ public:
 	void SetCloudPrecipitation(float p);
 	void AddCloudPrecipitation(float p);
 	float GetCloudPrecipitation();
+	void SetCloudBias(float3 b);
+	float3 GetCloudBias();
 	void SetWeatherMap(string path);
 	string GetWeatherMapPath();
 	GLuint GetWeatherMapId();
@@ -116,7 +121,6 @@ public:
 	bool IsTimeStop();
 
 	float* GetShaderParas();
-	float3 GetCloudBias();
 };
 
 #endif

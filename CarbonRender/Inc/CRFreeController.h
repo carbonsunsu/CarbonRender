@@ -2,6 +2,7 @@
 #define CR_FREE_CONTROLLER
 
 #include "..\Inc\CRController.h"
+#include "..\Inc\CRMenuManager.h"
 
 class FreeController : public Controller
 {
@@ -12,7 +13,8 @@ protected:
 	float moveSpeedHigh;
 	float moveSpeed;
 	float3 v;
-	bool highSpeed;
+	bool ctrlPressed;
+
 
 public:
 	void Init();

@@ -22,16 +22,20 @@ WeatherSystem::~WeatherSystem()
 
 void WeatherSystem::Init()
 {
+	isTimeStop = true;
+
 	latitude = 0.0f;
 	day = 180;
 	hour = 12.0f;
 	turbidity = 4.0f;
 	exposure = 30.0f;
 	timeSpeed = 150.0f;
-	isTimeStop = true;
 	lightR = 3000.0f;
+	updateSunPos = true;
+
 	windDir = float4(0.5f, 0.0f, 1.0f, 10.0f);
 	cloudBias = float3(0.0f);
+
 	sunLightID = LightManager::Instance()->CreateNewLight(LightType::eDirection, 1.0f);
 	Light* sun = LightManager::Instance()->GetLight(sunLightID);
 	sun->SetNearClip(0.01f);
@@ -39,10 +43,17 @@ void WeatherSystem::Init()
 	sun->SetLightSize(6);
 	sun->SetShadowMapSize(2048);
 	
+	cloudMaxAltitude = 6000.0f;
+	cloudMinAltitude = 1500.0f;
 	cloudCoverage = 0.55f;
 	cloudPrecipitation = 1.0f;
+	updateCloudPos = true;
 	GenerateCloudNoise();
+
 	fogDensity = 0.02f;
+	fogColor = float3(1.0f, 1.0f, 1.0f);
+	fogMaxAltitude = 20.0f;
+	fogPrecipitation = 20.0f;
 
 	Update();
 }
@@ -97,10 +108,18 @@ void WeatherSystem::Update()
 {
 	hour += FIXEDUPDATE_TIME * 0.0002778f * timeSpeed * (isTimeStop ? 0.0f : 1.0f);
 	if (hour >= 24.0f)
+	{
 		hour = 0.0f;
+		day += 1;
+		if (day >= 365)
+			day = 0;
+	}
 
-	UpdateAtmosphere();
-	UpdateCloud();
+	if (updateSunPos)
+		UpdateAtmosphere();
+
+	if (updateCloudPos)
+		UpdateCloud();
 }
 
 unsigned int WeatherSystem::GetSunLightID()
@@ -192,7 +211,7 @@ float WeatherSystem::GetWindStrength()
 
 void WeatherSystem::SetCloudMaxAltitude(float a)
 {
-	cloudMaxAltitude = a;
+	cloudMaxAltitude = Math::Max(cloudMinAltitude, a);
 }
 
 float WeatherSystem::GetCloudMaxAltitude()
@@ -202,7 +221,7 @@ float WeatherSystem::GetCloudMaxAltitude()
 
 void WeatherSystem::SetCloudMinAltitude(float a)
 {
-	cloudMinAltitude = a;
+	cloudMinAltitude = Math::Min(cloudMaxAltitude, a);
 }
 
 float WeatherSystem::GetCloudMinAltitude()
@@ -243,6 +262,11 @@ void WeatherSystem::AddCloudPrecipitation(float p)
 float WeatherSystem::GetCloudPrecipitation()
 {
 	return cloudPrecipitation;
+}
+
+void WeatherSystem::SetCloudBias(float3 b)
+{
+	cloudBias = b;
 }
 
 void WeatherSystem::SetWeatherMap(string path)

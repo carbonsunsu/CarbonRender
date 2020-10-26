@@ -12,7 +12,7 @@ void FreeController::Init()
 	moveSpeedLow = 20.0f;
 	moveSpeedHigh = 2000.0f;
 	moveSpeed = moveSpeedLow;
-	highSpeed = false;
+	ctrlPressed = false;
 	v = float3(0.0f);
 }
 
@@ -68,70 +68,24 @@ void FreeController::KeyInputCallback(GLFWwindow* window, int key, int scanCode,
 		moveSpeed = (action == GLFW_PRESS || action == GLFW_REPEAT) ? moveSpeedHigh : moveSpeedLow;
 	}
 	break;
-	case '=':
-	{
-		WeatherSystem::Instance()->SetHour(WeatherSystem::Instance()->GetHour() + 0.1f);
-	}
-	break;
-	case '-':
-	{
-		WeatherSystem::Instance()->SetHour(WeatherSystem::Instance()->GetHour() - 0.1f);
-	}
-	break;
-	case '0':
-	{
-		WeatherSystem::Instance()->AddCloudCoverage(0.001f);
-	}
-	break;
-	case '9':
-	{
-		WeatherSystem::Instance()->AddCloudCoverage(-0.001f);
-	}
-	break;
-	case '8':
-	{
-		WeatherSystem::Instance()->AddCloudPrecipitation(0.1f);
-	}
-	break;
-	case '7':
-	{
-		WeatherSystem::Instance()->AddCloudPrecipitation(-0.1f);
-	}
-	break;
-	case '6':
-	{
-		WeatherSystem::Instance()->AddFogDensity(0.0001f);
-	}
-	break;
-	case '5':
-	{
-		WeatherSystem::Instance()->AddFogDensity(-0.0001f);
-	}
-	break;
-	case '4':
-	{
-		WeatherSystem::Instance()->AddFogMaxAltitude(0.1f);
-	}
-	break;
-	case '3':
-	{
-		WeatherSystem::Instance()->AddFogMaxAltitude(-0.1f);
-	}
-	break;
-	case '2':
-	{
-		WeatherSystem::Instance()->AddFogPrecipitation(1.0f);
-	}
-	break;
-	case '1':
-	{
-		WeatherSystem::Instance()->AddFogPrecipitation(-1.0f);
-	}
-	break;
 	case GLFW_KEY_T:
 	{
 		if (action == GLFW_PRESS)
 			WeatherSystem::Instance()->ToggleTimeLapse();
+	}
+	break;
+	case GLFW_KEY_H:
+	{
+		if (action == GLFW_PRESS)
+			MenuManager::Instance()->ToogleMenu();
+	}
+	break;
+	case GLFW_KEY_LEFT_CONTROL:
+	{
+		if (action == GLFW_PRESS || action == GLFW_REPEAT)
+			ctrlPressed = true;
+		else
+			ctrlPressed = false;
 	}
 	break;
 
@@ -144,12 +98,24 @@ void FreeController::MouseMotionCallback(GLFWwindow* window, double x, double y)
 	{
 	case GLFW_MOUSE_BUTTON_RIGHT:
 	{
-		float3 curR = CameraManager::Instance()->GetCurrentCamera()->GetRotation();
-		curR.y += (x - lastMousePos[0]) * rotSensitivity[0];
-		curR.x += (y - lastMousePos[1]) * rotSensitivity[1];
-		if (curR.x > 90.0f) curR.x = 90.0f;
-		if (curR.x < -90.0f) curR.x = -90.0f;
-		CameraManager::Instance()->GetCurrentCamera()->SetRotation(curR);
+		if (!ctrlPressed)
+		{
+			float3 curR = CameraManager::Instance()->GetCurrentCamera()->GetRotation();
+			curR.y += (x - lastMousePos[0]) * rotSensitivity[0];
+			curR.x += (y - lastMousePos[1]) * rotSensitivity[1];
+			if (curR.x > 90.0f) curR.x = 90.0f;
+			if (curR.x < -90.0f) curR.x = -90.0f;
+			CameraManager::Instance()->GetCurrentCamera()->SetRotation(curR);
+		}
+		else
+		{
+			Camera* curCam = CameraManager::Instance()->GetCurrentCamera();
+			float3 curPos = curCam->GetPosition();
+			float3 curFoward = curCam->GetForward();
+
+			curPos = curPos - (y - lastMousePos[1]) * mouseMovSensitivity[2] * curFoward;
+			curCam->SetPosition(curPos);
+		}
 	}
 		break;
 	case GLFW_MOUSE_BUTTON_LEFT:

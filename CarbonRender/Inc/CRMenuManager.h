@@ -10,12 +10,24 @@ private:
 	MenuManager();
 	static MenuManager* ins;
 
-	static int mainMenu, importModelMenu;
-	static vector<string> modelList;
-	
-	static void OnMainMenu(int value);
-	static void OnImportModelMenu(int value);
-	static void UpdateModelList();
+	bool showMenu;
+	ImGuiContext* guiContext;
+	vector<string> modelList;
+
+	Object* selectedObj;
+
+	bool showModelImportDialog;
+	bool showWorldEditorDialog;
+	bool showSceneEditorDialog;
+	bool showObjectEditorDialog;
+
+	void DrawMainMenuBar();
+	void DrawMainMenuBar_Scene();
+	void DrawMainMenuBar_Editor();
+	void DrawImportModelDialog();
+	void DrawWorldEditorDialog();
+	void DrawSceneEditorDialog();
+	void DrawObjectEditorDialog();
 
 public:
 	~MenuManager();
@@ -23,6 +35,7 @@ public:
 	void InitMenu();
 	void RenderMenu();
 	void UpdateMenu();
+	void ToogleMenu();
 };
 
 #endif

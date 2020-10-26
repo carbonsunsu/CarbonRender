@@ -42,7 +42,7 @@ vec3 Random (vec3 p, float seed)
 
 vec3 ConeTracingCube (vec3 uvw, float roughness)
 {
-	//return texture(cubeMap, uvw, roughness * 10.0f).rgb;
+	return texture(cubeMap, vec3(uvw.x, max(uvw.y, 0.0f), uvw.z), roughness * 10.0f).rgb;/*
 	vec3 ambientColor = vec3(0.0f);
 	for (int i = 0; i < 4; i++)
 	{
@@ -53,7 +53,7 @@ vec3 ConeTracingCube (vec3 uvw, float roughness)
 	}
 	ambientColor *= 0.25f;
 
-	return ambientColor;
+	return ambientColor;*/
 }
 
 void GetDiffSpec (vec3 albedo, float metallic, out vec3 diffColor, out vec3 specColor, out float oneMinusMetallic)
@@ -129,8 +129,8 @@ void BRDF(vec3 diff, vec3 spec, float oneMinusMetallic, float roughness,
 	float reduction = 1.0f / (roughness2*roughness2 + 1.0f); 
 
 	float grazingTerm = clamp(1.0f - roughness + (1-oneMinusMetallic), 0.0f, 1.0f);
-	pureLight = diff * (indDiff + lColor * diffTerm)
-				+ specTerm * lColor * FresnelTerm (spec, LoH);
+	pureLight = diff * indDiff + lColor * diffTerm * diff
+				+ FresnelTerm (spec, LoH) * (specTerm * lColor + indSpec);
 	indSpecPara = reduction * FresnelLerp (spec, grazingTerm.xxx, NoV);
 }
 
@@ -177,7 +177,7 @@ void main ()
 	GetDiffSpec(albedo.rgb, metallic, diffColor, specColor, oneMinusMetallic);
 	
 	vec3 inditectSpec = ConeTracingCube(wsR, roughness) * indirectShadow;
-	vec3 indirectDiff = roughness >= 1.0f ? inditectSpec : ConeTracingCube(wsN, 1.0f) * indirectShadow;
+	vec3 indirectDiff = ConeTracingCube(wsN, 1.0f) * indirectShadow;
 	indirectDiff += gi.rgb * indirectShadow;
 
 	BRDF(diffColor, specColor, oneMinusMetallic, roughness, 

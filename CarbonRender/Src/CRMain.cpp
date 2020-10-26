@@ -116,7 +116,7 @@ void main(int argc, char** argv)
 	glfwSetMouseButtonCallback(WindowManager::Instance()->GetWindow(), MouseKeyCallback);
 	glfwSetCursorPosCallback(WindowManager::Instance()->GetWindow(), MouseMotionCallback);
 	glfwSetKeyCallback(WindowManager::Instance()->GetWindow(), KeyInputCallback);
-	glfwSetScrollCallback(WindowManager::Instance()->GetWindow(), ScrollCallback);
+	//glfwSetScrollCallback(WindowManager::Instance()->GetWindow(), ScrollCallback);
 
 	while (!glfwWindowShouldClose(WindowManager::Instance()->GetWindow()))
 	{
