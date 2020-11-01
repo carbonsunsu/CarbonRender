@@ -271,20 +271,14 @@ void SceneManager::ReadObjFromXMLNode(xml_node<>* xmlNode, Object * sceneNodePar
 
 		newMeshObj->SetMaterial(MaterialManager::Instance()->CreateNewMaterial());
 		xml_node<>* matNode = xmlNode->first_node("Material");
-		/**/
-		newMeshObj->GetMaterial()->SetMetallic(atof(matNode->first_attribute("Metallic")->value()));
-		newMeshObj->GetMaterial()->SetRoughness(atof(matNode->first_attribute("Roughness")->value()));
-		/**
 		newMeshObj->GetMaterial()->SetMetallic(atof(matNode->first_node("Metallic")->value()));
 		newMeshObj->GetMaterial()->SetRoughness(atof(matNode->first_node("Roughness")->value()));
-		/**
 		xml_node<>* colorNode = matNode->first_node("Color");
 		newMeshObj->GetMaterial()->SetColor(float4(atof(colorNode->first_attribute("R")->value()),
 													atof(colorNode->first_attribute("G")->value()),
 													atof(colorNode->first_attribute("B")->value()),
 													atof(colorNode->first_attribute("A")->value())
 													));
-		/**/
 		newMeshObj->GetMaterial()->SetDiffuse(matNode->first_node("Diffuse")->value());
 		newMeshObj->GetMaterial()->SetNormal(matNode->first_node("Normal")->value());
 		newMeshObj->GetMaterial()->SetSpecular(matNode->first_node("Specular")->value());
