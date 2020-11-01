@@ -18,8 +18,8 @@
 		<FogPrecipitation>20.000000</FogPrecipitation>
 	</World>
 	<Camera>
-		<Position x="3.144986" y="2.863964" z="-4.030005"/>
-		<Rotation x="-10.200000" y="-146.400009" z="0.000000"/>
+		<Position x="5.282855" y="2.612335" z="-3.423526"/>
+		<Rotation x="3.700001" y="-139.800018" z="0.000000"/>
 		<FOV>60.000000</FOV>
 		<NearClip>0.010000</NearClip>
 		<FarClip>3000.000000</FarClip>
@@ -31,7 +31,10 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="bun_zipper" Path="Bunny" SubMesh="bun_zipper">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Bunny\Bunny_D</Diffuse>
 						<Normal/>
 						<Specular>Bunny\Bunny_S_0</Specular>
@@ -48,7 +51,10 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="bun_zipper" Path="Bunny" SubMesh="bun_zipper">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Bunny\Bunny_D</Diffuse>
 						<Normal/>
 						<Specular>Bunny\Bunny_S_1</Specular>
@@ -65,7 +71,10 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="bun_zipper" Path="Bunny" SubMesh="bun_zipper">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Bunny\Bunny_D</Diffuse>
 						<Normal/>
 						<Specular>Bunny\Bunny_S_2</Specular>
@@ -82,7 +91,10 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="bun_zipper" Path="Bunny" SubMesh="bun_zipper">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Bunny\Bunny_D</Diffuse>
 						<Normal/>
 						<Specular>Bunny\Bunny_S_3</Specular>
@@ -99,7 +111,10 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="bun_zipper" Path="Bunny" SubMesh="bun_zipper">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Bunny\Bunny_D</Diffuse>
 						<Normal/>
 						<Specular>Bunny\Bunny_S_4</Specular>
@@ -116,7 +131,10 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="bun_zipper" Path="Bunny" SubMesh="bun_zipper">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Bunny\Bunny_D</Diffuse>
 						<Normal/>
 						<Specular>Bunny\Bunny_S_5</Specular>
@@ -133,7 +151,10 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="bun_zipper" Path="Bunny" SubMesh="bun_zipper">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Bunny\Bunny_D</Diffuse>
 						<Normal/>
 						<Specular>Bunny\Bunny_S_6</Specular>
@@ -150,7 +171,10 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="bun_zipper" Path="Bunny" SubMesh="bun_zipper">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Bunny\Bunny_D</Diffuse>
 						<Normal/>
 						<Specular>Bunny\Bunny_S_7</Specular>
@@ -167,7 +191,10 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="bun_zipper" Path="Bunny" SubMesh="bun_zipper">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Bunny\Bunny_D</Diffuse>
 						<Normal/>
 						<Specular>Bunny\Bunny_S_8</Specular>
@@ -184,7 +211,10 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="bun_zipper" Path="Bunny" SubMesh="bun_zipper">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Bunny\Bunny_D</Diffuse>
 						<Normal/>
 						<Specular>Bunny\Bunny_S_9</Specular>

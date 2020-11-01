@@ -11,13 +11,14 @@ void MenuManager::InitMenu()
 	showMenu = true;
 	IMGUI_CHECKVERSION();
 	guiContext = ImGui::CreateContext();
-	ImGui::StyleColorsLight();
+	ImGui::StyleColorsDark();
 	ImGui_ImplGlfw_InitForOpenGL(WindowManager::Instance()->GetWindow(), true);
 	ImGui_ImplOpenGL3_Init();
 
 	showModelImportDialog = false;
-	showWorldEditorDialog = false;
-	showSceneEditorDialog = false;
+	showWorldEditorDialog = true;
+	showSceneEditorDialog = true;
+	showObjectEditorDialog = true;
 }
 
 void MenuManager::DrawMainMenuBar()
@@ -56,6 +57,10 @@ void MenuManager::DrawMainMenuBar_Editor()
 	if (ImGui::MenuItem("Scene Editor"))
 	{
 		showSceneEditorDialog = true;
+	}
+	if (ImGui::MenuItem("Object Editor"))
+	{
+		showObjectEditorDialog = true;
 	}
 	if (ImGui::MenuItem("World Editor"))
 	{
@@ -114,18 +119,21 @@ void MenuManager::DrawImportModelDialog()
 
 void MenuManager::DrawWorldEditorDialog()
 {
-	ImGui::SetNextWindowSize(ImVec2(500, 800), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(300, 570), ImGuiCond_FirstUseEver);
 	ImGuiWindowFlags flags = 0;
-	flags |= flags |= ImGuiWindowFlags_NoCollapse;
-	flags |= ImGuiWindowFlags_AlwaysAutoResize;
+	flags |= ImGuiWindowFlags_NoCollapse;
 
 	if (ImGui::Begin("World Editor", &showWorldEditorDialog, flags))
 	{
 		ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x * 0.5f);
 		ImGui::Text("Time");
 		{
+			bool useTimeLapse = !WeatherSystem::Instance()->IsTimeStop();
+			ImGui::Checkbox("Time Lapse", &useTimeLapse);
+			WeatherSystem::Instance()->SetTimeStop(!useTimeLapse);
+
 			float timeSpeed = WeatherSystem::Instance()->GetTimeSpeed();
-			ImGui::DragFloat("Time Lapse Speed", &timeSpeed, 0.1f, -FLT_MAX, +FLT_MAX);
+			ImGui::DragFloat("Time Lapse Speed", &timeSpeed, 1.0f, -FLT_MAX, +FLT_MAX);
 			WeatherSystem::Instance()->SetTimeSpeed(timeSpeed);
 
 			int day = WeatherSystem::Instance()->GetDay();
@@ -208,7 +216,7 @@ void MenuManager::DrawWorldEditorDialog()
 		ImGui::Text("Fog");
 		{
 			float3 fogColor = WeatherSystem::Instance()->GetFogColor();
-			static float tempColor[3] = { fogColor.x, fogColor.y, fogColor.z };
+			float tempColor[3] = { fogColor.x, fogColor.y, fogColor.z };
 			ImGui::ColorEdit3("Fog Color", tempColor);
 			WeatherSystem::Instance()->SetFogColor(float3(tempColor[0], tempColor[1], tempColor[2]));
 
@@ -231,13 +239,167 @@ void MenuManager::DrawWorldEditorDialog()
 	ImGui::End();
 }
 
+void MenuManager::DrawSceneNode(Object * node, ImGuiTreeNodeFlags flags)
+{
+	ImGuiTreeNodeFlags trueFlags = flags;
+
+	if (node->GetChildCount() == 0)
+		trueFlags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen;
+	if (selectedObj == node)
+		trueFlags |= ImGuiTreeNodeFlags_Selected;
+
+	bool isExtend = ImGui::TreeNodeEx(node->GetName().c_str(), trueFlags);
+	if (ImGui::IsItemClicked())
+	{
+		selectedObj = node;
+		showObjectEditorDialog = true;
+	}
+
+	if (node->GetChildCount() > 0)
+	{
+		if (isExtend)
+		{
+			Object* child = node->GetFirstChild();
+			DrawSceneNode(child, flags);
+			ImGui::TreePop();
+		}
+	}
+	if (node->GetNext() != nullptr)
+	{
+		DrawSceneNode(node->GetNext(), flags);
+	}
+}
+
 void MenuManager::DrawSceneEditorDialog()
 {
-	Object* sceneRoot = SceneManager::Instance()->GetRootNode();
+	ImGui::SetNextWindowSize(ImVec2(250, 800), ImGuiCond_FirstUseEver);
+	ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoCollapse;
+
+	if (ImGui::Begin("Scene Editor", &showSceneEditorDialog, windowFlags))
+	{
+		Object* sceneRoot = SceneManager::Instance()->GetRootNode();
+		ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_SpanAvailWidth;
+
+		DrawSceneNode(sceneRoot, flags);
+	}
+	ImGui::End();
 }
 
 void MenuManager::DrawObjectEditorDialog()
 {
+	ImGui::SetNextWindowSize(ImVec2(300, 400), ImGuiCond_FirstUseEver);
+	ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoCollapse;
+
+	if (ImGui::Begin("Object Editor", &showObjectEditorDialog, windowFlags))
+	{
+		string objName = "";
+		if (selectedObj != nullptr)
+			objName = selectedObj->GetName();
+
+		char objNameChar[32];
+		strcpy_s(objNameChar, objName.c_str());
+		ImGui::InputText("Object Name", objNameChar, IM_ARRAYSIZE(objNameChar));
+
+		if (selectedObj != nullptr)
+			selectedObj->SetName(string(objNameChar));
+
+		ImGui::Text("Transform");
+		{
+			float pos[3] = { 0.0f, 0.0f, 0.0f };
+			float rot[3] = { 0.0f, 0.0f, 0.0f };
+			float scale[3] = { 0.0f, 0.0f, 0.0f };
+
+			if (selectedObj != nullptr)
+			{
+				float3 objPos = selectedObj->GetPosition();
+				float3 objRot = selectedObj->GetRotation();
+				float3 objScale = selectedObj->GetScale();
+
+				pos[0] = objPos.x;
+				pos[1] = objPos.y;
+				pos[2] = objPos.z;
+
+				rot[0] = objRot.x;
+				rot[1] = objRot.y;
+				rot[2] = objRot.z;
+
+				scale[0] = objScale.x;
+				scale[1] = objScale.y;
+				scale[2] = objScale.z;
+			}
+
+			ImGui::DragFloat3("Position", pos, 0.01f, -FLT_MAX, +FLT_MAX, "%.6f");
+			ImGui::DragFloat3("Rotation", rot, 0.1f, -FLT_MAX, +FLT_MAX, "%.6f");
+			ImGui::DragFloat3("Scale", scale, 0.1f, -FLT_MAX, +FLT_MAX, "%.6f");
+
+			if (selectedObj != nullptr)
+			{
+				selectedObj->SetPosition(float3(pos[0], pos[1], pos[2]));
+				selectedObj->SetRotation(float3(rot[0], rot[1], rot[2]));
+				selectedObj->SetScale(float3(scale[0], scale[1], scale[2]));
+			}
+		}
+
+		ImGui::Separator();
+		ImGui::Spacing();
+
+		if (selectedObj != nullptr && selectedObj->GetType() == ObjectType::eMesh)
+		{
+			MeshObject* meshObj = (MeshObject*)selectedObj;
+
+			ImGui::Text("Material");
+			{
+				Material* mat = meshObj->GetMaterial();
+				float4 matColor = mat->GetColor();
+				float tempColor[4] = { matColor.x, matColor.y, matColor.z, matColor.w };
+				ImGui::ColorEdit4("Color", tempColor);
+				mat->SetColor(float4(tempColor[0], tempColor[1], tempColor[2], tempColor[3]));
+
+				ImTextureID texID;
+				if (mat->HasDiffuseTexture())
+					texID = (ImTextureID)mat->GetDiffuse();
+				else
+					texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
+
+				ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f));
+
+				ImGui::SameLine();
+				ImGui::Text("Albedo");
+
+				if (mat->HasNormalTexture())
+					texID = (ImTextureID)mat->GetNormal();
+				else
+					texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
+
+				ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f));
+
+				ImGui::SameLine();
+				ImGui::Text("Normal");
+
+				if (mat->HasSpecularTexture())
+					texID = (ImTextureID)mat->GetSpecular();
+				else
+					texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
+
+				ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f));
+
+				ImGui::SameLine();
+				ImGui::Text("Specular(r:Roughness g:Metallic)");
+
+				if (!mat->HasSpecularTexture())
+				{
+					float roughness = mat->GetRoughness();
+					ImGui::DragFloat("Roughness", &roughness, 0.01f, 0.0f, 1.0f, "%.2f");
+					mat->SetRoughness(roughness);
+
+					float metallic = mat->GetMetallic();
+					ImGui::DragFloat("Metallic", &metallic, 0.01f, 0.0f, 1.0f, "%.2f");
+					mat->SetMetallic(metallic);
+				}
+			}
+		}
+	}
+	ImGui::End();
 }
 
 void MenuManager::RenderMenu()
@@ -299,6 +461,17 @@ void MenuManager::UpdateMenu()
 void MenuManager::ToogleMenu()
 {
 	showMenu = !showMenu;
+}
+
+bool MenuManager::MenuStatus()
+{
+	return showMenu;
+}
+
+bool MenuManager::MouseOnMenu()
+{
+	ImGuiIO& io = ImGui::GetIO();
+	return io.WantCaptureMouse;
 }
 
 MenuManager::~MenuManager()

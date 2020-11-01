@@ -12,10 +12,10 @@
 		<CloudMinAltitude>1500.000000</CloudMinAltitude>
 		<CloudCoverage>0.674998</CloudCoverage>
 		<CloudPrecipitation>1.000000</CloudPrecipitation>
-    <FogDensity>0.000300</FogDensity>
-    <FogColor r="1.000000" g="1.000000" b="1.000000"/>
-    <FogMaxAltitude>20.000000</FogMaxAltitude>
-    <FogPrecipitation>117.000000</FogPrecipitation>
+		<FogDensity>0.000300</FogDensity>
+		<FogColor r="1.000000" g="1.000000" b="1.000000"/>
+		<FogMaxAltitude>20.000000</FogMaxAltitude>
+		<FogPrecipitation>117.000000</FogPrecipitation>
 	</World>
 	<Camera>
 		<Position x="-5.664857" y="3.235809" z="-10.646948"/>
@@ -31,7 +31,10 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="hangar_v2_part02.006" Path="BasicHangarOpen" SubMesh="hangar_v2_part02.006">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_floor_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_floor_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_floor_GMM_hd</Specular>
@@ -41,7 +44,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part02.005" Path="BasicHangarOpen" SubMesh="hangar_v2_part02.005">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_008_hangar_premium_v2_tech_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_008_hangar_premium_v2_tech_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_008_hangar_premium_v2_tech_GMM_hd</Specular>
@@ -51,7 +57,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part02.004" Path="BasicHangarOpen" SubMesh="hangar_v2_part02.004">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_GMM_hd</Specular>
@@ -61,7 +70,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part02.003" Path="BasicHangarOpen" SubMesh="hangar_v2_part02.003">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_008_props_props_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_008_props_props_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_008_props_props_GMM_hd</Specular>
@@ -71,7 +83,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part02.002" Path="BasicHangarOpen" SubMesh="hangar_v2_part02.002">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_03_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_03_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_03_GMM_hd</Specular>
@@ -81,7 +96,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part02.001" Path="BasicHangarOpen" SubMesh="hangar_v2_part02.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_elements_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_elements_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_elements_GMM_hd</Specular>
@@ -91,7 +109,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part01.011" Path="BasicHangarOpen" SubMesh="hangar_v2_part01.011">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_GMM_hd</Specular>
@@ -101,7 +122,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part01.010" Path="BasicHangarOpen" SubMesh="hangar_v2_part01.010">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_008_hangar_premium_v2_tech_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_008_hangar_premium_v2_tech_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_008_hangar_premium_v2_tech_GMM_hd</Specular>
@@ -111,7 +135,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part01.009" Path="BasicHangarOpen" SubMesh="hangar_v2_part01.009">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_06_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_06_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_06_GMM_hd</Specular>
@@ -121,7 +148,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part01.008" Path="BasicHangarOpen" SubMesh="hangar_v2_part01.008">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/evnIN_007_hangar_posters_AM_hd</Diffuse>
 						<Normal>WoTHangar/evnIN_007_hangar_posters_ANM_hd</Normal>
 						<Specular>WoTHangar/evnIN_007_hangar_posters_GMM_hd</Specular>
@@ -131,7 +161,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part01.007" Path="BasicHangarOpen" SubMesh="hangar_v2_part01.007">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_008_props_props_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_008_props_props_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_008_props_props_GMM_hd</Specular>
@@ -141,7 +174,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part01.006" Path="BasicHangarOpen" SubMesh="hangar_v2_part01.006">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_06_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_06_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_06_GMM_hd</Specular>
@@ -151,7 +187,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part01.005" Path="BasicHangarOpen" SubMesh="hangar_v2_part01.005">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_008_hangar_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_008_hangar_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_008_hangar_GMM_hd</Specular>
@@ -161,7 +200,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part01.004" Path="BasicHangarOpen" SubMesh="hangar_v2_part01.004">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_elements_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_elements_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_elements_GMM_hd</Specular>
@@ -171,7 +213,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part01.003" Path="BasicHangarOpen" SubMesh="hangar_v2_part01.003">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_hangar_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_hangar_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_hangar_GMM_hd</Specular>
@@ -181,7 +226,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part01.002" Path="BasicHangarOpen" SubMesh="hangar_v2_part01.002">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_floor_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_floor_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_floor_GMM_hd</Specular>
@@ -191,7 +239,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part01.001" Path="BasicHangarOpen" SubMesh="hangar_v2_part01.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_alpha_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_alpha_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_alpha_GMM_hd</Specular>
@@ -201,7 +252,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="group6.001" Path="BasicHangarOpen" SubMesh="group6.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_06_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_06_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_06_GMM_hd</Specular>
@@ -211,7 +265,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="group5.001" Path="BasicHangarOpen" SubMesh="group5.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_008_props_props_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_008_props_props_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_008_props_props_GMM_hd</Specular>
@@ -221,7 +278,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="group4.002" Path="BasicHangarOpen" SubMesh="group4.002">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_008_props_props_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_008_props_props_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_008_props_props_GMM_hd</Specular>
@@ -231,7 +291,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="group4.001" Path="BasicHangarOpen" SubMesh="group4.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_06_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_06_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_06_GMM_hd</Specular>
@@ -241,7 +304,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="group3.002" Path="BasicHangarOpen" SubMesh="group3.002">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_008_props_props_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_008_props_props_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_008_props_props_GMM_hd</Specular>
@@ -251,7 +317,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="group3.001" Path="BasicHangarOpen" SubMesh="group3.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_06_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_06_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_06_GMM_hd</Specular>
@@ -261,7 +330,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="group2.001" Path="BasicHangarOpen" SubMesh="group2.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_06_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_06_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_06_GMM_hd</Specular>
@@ -271,7 +343,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="group1.001" Path="BasicHangarOpen" SubMesh="group1.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_06_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_06_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_06_GMM_hd</Specular>
@@ -281,7 +356,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Floor_part01.003" Path="BasicHangarOpen" SubMesh="Floor_part01.003">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_floor_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_floor_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_floor_GMM_hd</Specular>
@@ -291,7 +369,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Floor_part01.002" Path="BasicHangarOpen" SubMesh="Floor_part01.002">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_elements_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_elements_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_elements_GMM_hd</Specular>
@@ -301,7 +382,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Floor_part01.001" Path="BasicHangarOpen" SubMesh="Floor_part01.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_alpha_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_alpha_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_alpha_GMM_hd</Specular>
@@ -311,7 +395,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Background2" Path="BasicHangarOpen" SubMesh="Background2">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/basic_background_hd</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -321,7 +408,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="group6" Path="BasicHangarOpen" SubMesh="group6">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_GMM_hd</Specular>
@@ -331,7 +421,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="group5" Path="BasicHangarOpen" SubMesh="group5">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_GMM_hd</Specular>
@@ -341,7 +434,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="group4" Path="BasicHangarOpen" SubMesh="group4">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_GMM_hd</Specular>
@@ -351,7 +447,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="group3" Path="BasicHangarOpen" SubMesh="group3">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_GMM_hd</Specular>
@@ -361,7 +460,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="group2" Path="BasicHangarOpen" SubMesh="group2">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_GMM_hd</Specular>
@@ -371,7 +473,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="group1" Path="BasicHangarOpen" SubMesh="group1">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_props_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_props_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_props_GMM_hd</Specular>
@@ -381,7 +486,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part02" Path="BasicHangarOpen" SubMesh="hangar_v2_part02">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_hangar_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_hangar_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_hangar_GMM_hd</Specular>
@@ -391,7 +499,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="hangar_v2_part01" Path="BasicHangarOpen" SubMesh="hangar_v2_part01">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_008_hangar_premium_v2_tech_2_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_008_hangar_premium_v2_tech_2_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_008_hangar_premium_v2_tech_2_GMM_hd</Specular>
@@ -401,7 +512,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Floor_part01" Path="BasicHangarOpen" SubMesh="Floor_part01">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>WoTHangar/envIN_007_floor_AM_hd</Diffuse>
 						<Normal>WoTHangar/envIN_007_floor_ANM_hd</Normal>
 						<Specular>WoTHangar/envIN_007_floor_GMM_hd</Specular>
@@ -418,70 +532,91 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="gun_01_Shape" Path="Obj268v5" SubMesh="gun_01_Shape">
-					<Material Metallic="1.000000" Roughness="1.000000">
-            <Diffuse>obj268v5/Object_730_5_guns_AM</Diffuse>
-            <Normal>obj268v5/Object_730_5_guns_ANM</Normal>
-            <Specular>obj268v5/Object_730_5_guns_GMM</Specular>
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Diffuse>obj268v5/Object_730_5_guns_AM</Diffuse>
+						<Normal>obj268v5/Object_730_5_guns_ANM</Normal>
+						<Specular>obj268v5/Object_730_5_guns_GMM</Specular>
 					</Material>
 					<Position x="0.000000" y="1.834441" z="-2.017879"/>
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Hull" Path="Obj268v5" SubMesh="Hull">
-					<Material Metallic="1.000000" Roughness="1.000000">
-            <Diffuse>obj268v5/Object_730_5_hull_01_AM</Diffuse>
-            <Normal>obj268v5/Object_730_5_hull_01_ANM</Normal>
-            <Specular>obj268v5/Object_730_5_hull_01_GMM</Specular>
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Diffuse>obj268v5/Object_730_5_hull_01_AM</Diffuse>
+						<Normal>obj268v5/Object_730_5_hull_01_ANM</Normal>
+						<Specular>obj268v5/Object_730_5_hull_01_GMM</Specular>
 					</Material>
 					<Position x="0.000000" y="0.887143" z="0.000000"/>
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Turret_01" Path="Obj268v5" SubMesh="Turret_01">
-					<Material Metallic="1.000000" Roughness="1.000000">
-            <Diffuse>obj268v5/Object_730_5_turret_01_AM</Diffuse>
-            <Normal>obj268v5/Object_730_5_turret_01_ANM</Normal>
-            <Specular>obj268v5/Object_730_5_turret_01_GMM</Specular>
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Diffuse>obj268v5/Object_730_5_turret_01_AM</Diffuse>
+						<Normal>obj268v5/Object_730_5_turret_01_ANM</Normal>
+						<Specular>obj268v5/Object_730_5_turret_01_GMM</Specular>
 					</Material>
 					<Position x="0.000000" y="1.526256" z="-0.636499"/>
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="segment.001" Path="Obj268v5" SubMesh="segment.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
-            <Diffuse>obj268v5/T-10M_segment_track_AM</Diffuse>
-            <Normal>obj268v5/T-10M_segment_track_ANM</Normal>
-            <Specular>obj268v5/T-10M_segment_track_GMM</Specular>
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Diffuse>obj268v5/T-10M_segment_track_AM</Diffuse>
+						<Normal>obj268v5/T-10M_segment_track_ANM</Normal>
+						<Specular>obj268v5/T-10M_segment_track_GMM</Specular>
 					</Material>
 					<Position x="0.000000" y="0.000000" z="0.048000"/>
 					<Rotation x="-180.000000" y="-0.000005" z="0.000005"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="segment" Path="Obj268v5" SubMesh="segment">
-					<Material Metallic="1.000000" Roughness="1.000000">
-            <Diffuse>obj268v5/T-10M_segment_track_AM</Diffuse>
-            <Normal>obj268v5/T-10M_segment_track_ANM</Normal>
-            <Specular>obj268v5/T-10M_segment_track_GMM</Specular>
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Diffuse>obj268v5/T-10M_segment_track_AM</Diffuse>
+						<Normal>obj268v5/T-10M_segment_track_ANM</Normal>
+						<Specular>obj268v5/T-10M_segment_track_GMM</Specular>
 					</Material>
 					<Position x="0.000000" y="0.000000" z="0.048000"/>
 					<Rotation x="-180.000000" y="-0.000005" z="0.000005"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="exportChassR1_Shape" Path="Obj268v5" SubMesh="exportChassR1_Shape">
-					<Material Metallic="1.000000" Roughness="1.000000">
-            <Diffuse>obj268v5/Object_730_5_chassis_01_AM</Diffuse>
-            <Normal>obj268v5/Object_730_5_chassis_01_ANM</Normal>
-            <Specular>obj268v5/Object_730_5_chassis_01_GMM</Specular>
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Diffuse>obj268v5/Object_730_5_chassis_01_AM</Diffuse>
+						<Normal>obj268v5/Object_730_5_chassis_01_ANM</Normal>
+						<Specular>obj268v5/Object_730_5_chassis_01_GMM</Specular>
 					</Material>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="exportChassL1_Shape" Path="Obj268v5" SubMesh="exportChassL1_Shape">
-					<Material Metallic="1.000000" Roughness="1.000000">
-            <Diffuse>obj268v5/Object_730_5_chassis_01_AM</Diffuse>
-            <Normal>obj268v5/Object_730_5_chassis_01_ANM</Normal>
-            <Specular>obj268v5/Object_730_5_chassis_01_GMM</Specular>
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Diffuse>obj268v5/Object_730_5_chassis_01_AM</Diffuse>
+						<Normal>obj268v5/Object_730_5_chassis_01_ANM</Normal>
+						<Specular>obj268v5/Object_730_5_chassis_01_GMM</Specular>
 					</Material>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>

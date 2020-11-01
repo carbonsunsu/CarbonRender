@@ -26,6 +26,7 @@ private:
 	void DrawMainMenuBar_Editor();
 	void DrawImportModelDialog();
 	void DrawWorldEditorDialog();
+	void DrawSceneNode(Object * node, ImGuiTreeNodeFlags flags);
 	void DrawSceneEditorDialog();
 	void DrawObjectEditorDialog();
 
@@ -36,6 +37,8 @@ public:
 	void RenderMenu();
 	void UpdateMenu();
 	void ToogleMenu();
+	bool MenuStatus();
+	bool MouseOnMenu();
 };
 
 #endif

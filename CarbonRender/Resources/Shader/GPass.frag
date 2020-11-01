@@ -12,6 +12,7 @@ in vec3 N;
 in vec3 T;
 in vec3 B;
 
+uniform vec4 albedoScaler;
 uniform sampler2D albedoMap;
 uniform sampler2D msMap;
 uniform sampler2D normalMap;
@@ -28,6 +29,7 @@ void main ()
 	vec4 ms = texture(msMap, uv);
 	vec4 albedo = texture(albedoMap, uv);
 	albedo.rgb = pow(albedo.rgb, vec3(2.2f));
+	albedo.rgb *= albedoScaler.rgb;
 
 	vec3 wsT = normalize(normalMat * T);
 	vec3 wsN = normalize(normalMat * N);

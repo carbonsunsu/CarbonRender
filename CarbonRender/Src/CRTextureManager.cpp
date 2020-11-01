@@ -7,14 +7,15 @@ TextureManager::TextureManager()
 	GLubyte D[8][8][3];
 	GLubyte N[8][8][3];
 	GLubyte S[8][8][3];
+	GLubyte nullTexData[8][8][4];
 	int i, j;
 	for (i = 0; i < 8; i++) 
 	{
 		for (j = 0; j < 8; j++) 
 		{
-			D[i][j][0] = (GLubyte)128;
-			D[i][j][1] = (GLubyte)128;
-			D[i][j][2] = (GLubyte)128;
+			D[i][j][0] = (GLubyte)255;
+			D[i][j][1] = (GLubyte)255;
+			D[i][j][2] = (GLubyte)255;
 		}
 	}
 
@@ -33,8 +34,19 @@ TextureManager::TextureManager()
 		for (j = 0; j < 8; j++)
 		{
 			S[i][j][0] = (GLubyte)255;//Roughness
-			S[i][j][1] = (GLubyte)0;//Metallic
+			S[i][j][1] = (GLubyte)255;//Metallic
 			S[i][j][2] = (GLubyte)0;
+		}
+	}
+
+	for (i = 0; i < 8; i++)
+	{
+		for (j = 0; j < 8; j++)
+		{
+			nullTexData[i][j][0] = (GLubyte)0;
+			nullTexData[i][j][1] = (GLubyte)0;
+			nullTexData[i][j][2] = (GLubyte)0;
+			nullTexData[i][j][3] = (GLubyte)0;
 		}
 	}
 
@@ -59,6 +71,14 @@ TextureManager::TextureManager()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 8, 8, 0, GL_RGB, GL_UNSIGNED_BYTE, S);
+
+	glGenTextures(1, &nullTex);
+	glBindTexture(GL_TEXTURE_2D, nullTex);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 8, 8, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullTexData);
 }
 
 TextureManager::~TextureManager()
@@ -115,4 +135,9 @@ GLuint TextureManager::LoadDefaultN()
 GLuint TextureManager::LoadDefaultS()
 {
 	return defaultTex[2];
+}
+
+GLuint TextureManager::GetNullTex()
+{
+	return nullTex;
 }

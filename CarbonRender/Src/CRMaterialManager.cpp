@@ -40,11 +40,15 @@ Material * MaterialManager::GetDefaultMaterial()
 
 Material::Material()
 {
-	roughness = 1.0f;
-	metallic = 1.0f;
+	roughness = 0.5f;
+	metallic = 0.5f;
 	texIns[0] = 0;
 	texIns[1] = 0;
 	texIns[2] = 0;
+	hasDiffuseTex = false;
+	hasNormalTex = false;
+	hasSpecularTex = false;
+	color = float4(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
 Material::~Material()
@@ -101,6 +105,26 @@ GLuint Material::GetSpecular()
 	return texIns[2];
 }
 
+float4 Material::GetColor()
+{
+	return color;
+}
+
+bool Material::HasDiffuseTexture()
+{
+	return hasDiffuseTex;
+}
+
+bool Material::HasNormalTexture()
+{
+	return hasNormalTex;
+}
+
+bool Material::HasSpecularTexture()
+{
+	return hasSpecularTex;
+}
+
 void Material::SetDiffuse(string dir)
 {
 	texDirs[0] = dir;
@@ -111,6 +135,8 @@ void Material::SetDiffuse(string dir)
 		texIns[0] = TextureManager::Instance()->LoadTexture(dir);
 		if (texIns[0] == 0)
 			texIns[0] = TextureManager::Instance()->LoadDefaultD();
+		else
+			hasDiffuseTex = true;
 	}
 }
 
@@ -124,6 +150,8 @@ void Material::SetNormal(string dir)
 		texIns[1] = TextureManager::Instance()->LoadTexture(dir);
 		if (texIns[1] == 0)
 			texIns[1] = TextureManager::Instance()->LoadDefaultN();
+		else
+			hasNormalTex = true;
 	}
 }
 
@@ -137,5 +165,12 @@ void Material::SetSpecular(string dir)
 		texIns[2] = TextureManager::Instance()->LoadTexture(dir);
 		if (texIns[2] == 0)
 			texIns[3] = TextureManager::Instance()->LoadDefaultS();
+		else
+			hasSpecularTex = true;
 	}
+}
+
+void Material::SetColor(float4 c)
+{
+	color = c;
 }

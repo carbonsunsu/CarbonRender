@@ -9,6 +9,7 @@ in vec4 wsP;
 in vec2 uv;
 in vec3 wsN;
 
+uniform vec4 albedoScaler;
 uniform sampler2D albedoMap;
 uniform bool depthOnly;
 uniform mat4 viewMat;
@@ -18,6 +19,7 @@ void main ()
 {
 	vec4 albedo = texture(albedoMap, uv);
 	albedo.rgb = pow(albedo.rgb, vec3(2.2f));
+	albedo.rgb *= albedoScaler.rgb;
 
 	float d = -(viewMat * wsP).z;
 	d = d * depthClampPara.y;

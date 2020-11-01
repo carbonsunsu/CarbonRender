@@ -77,9 +77,12 @@ void MeshObject::Render(GLuint shaderProgram, bool useTex)
 	location = glGetUniformLocation(shaderProgram, "msMap");
 	glUniform1i(location, 3);
 	location = glGetUniformLocation(shaderProgram, "roughnessScale");
-	glUniform1f(location, material->GetRoughness());
+	glUniform1f(location, material->HasSpecularTexture() ? 1.0f : material->GetRoughness());
 	location = glGetUniformLocation(shaderProgram, "metallicScale");
-	glUniform1f(location, material->GetMetallic());
+	glUniform1f(location, material->HasSpecularTexture() ? 1.0f : material->GetMetallic());
+	float4 colorScaler = material->GetColor();
+	location = glGetUniformLocation(shaderProgram, "albedoScaler");
+	glUniform4f(location, colorScaler.x, colorScaler.y, colorScaler.z, colorScaler.w);
 
 	glBindVertexArray(meshData->GetVertexArrayObject());
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, meshData->GetElementBufferObject());

@@ -31,7 +31,10 @@
 			<Scale x="4.000000" y="4.000000" z="4.000000"/>
 			<Children>
 				<StaticMeshObject Name="Mesh016.001" Path="LivingRoom2" SubMesh="Mesh016.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -41,7 +44,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh015.001" Path="LivingRoom2" SubMesh="Mesh015.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -51,7 +57,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh016" Path="LivingRoom2" SubMesh="Mesh016">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -61,7 +70,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh015" Path="LivingRoom2" SubMesh="Mesh015">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -71,7 +83,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh064.001" Path="LivingRoom2" SubMesh="Mesh064.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\fabric02_D</Diffuse>
 						<Normal>LivingRoom2\fabric02_N</Normal>
 						<Specular/>
@@ -81,7 +96,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh063.001" Path="LivingRoom2" SubMesh="Mesh063.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -91,7 +109,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh062.001" Path="LivingRoom2" SubMesh="Mesh062.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\Leather04_D</Diffuse>
 						<Normal>LivingRoom2\Leather04_N</Normal>
 						<Specular>LivingRoom2\Leather04_S</Specular>
@@ -101,7 +122,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh061.001" Path="LivingRoom2" SubMesh="Mesh061.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\T_Wood_Oak_D</Diffuse>
 						<Normal>LivingRoom2\T_Wood_Oak_N</Normal>
 						<Specular>LivingRoom2\T_Wood_Oak_S</Specular>
@@ -111,7 +135,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh059.001" Path="LivingRoom2" SubMesh="Mesh059.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\Wall_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\Wall_S</Specular>
@@ -121,7 +148,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh057.001" Path="LivingRoom2" SubMesh="Mesh057.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -131,7 +161,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh056.001" Path="LivingRoom2" SubMesh="Mesh056.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\Black_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -141,7 +174,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh055.002" Path="LivingRoom2" SubMesh="Mesh055.002">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -151,7 +187,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh054.001" Path="LivingRoom2" SubMesh="Mesh054.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -161,7 +200,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh053.001" Path="LivingRoom2" SubMesh="Mesh053.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -171,7 +213,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh052.001" Path="LivingRoom2" SubMesh="Mesh052.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -181,7 +226,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh051.001" Path="LivingRoom2" SubMesh="Mesh051.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -191,7 +239,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh050.001" Path="LivingRoom2" SubMesh="Mesh050.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -201,7 +252,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh049.001" Path="LivingRoom2" SubMesh="Mesh049.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -211,7 +265,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh048.001" Path="LivingRoom2" SubMesh="Mesh048.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -221,7 +278,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh047.001" Path="LivingRoom2" SubMesh="Mesh047.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\Leather04_D</Diffuse>
 						<Normal>LivingRoom2\Leather04_N</Normal>
 						<Specular>LivingRoom2\Leather04_S</Specular>
@@ -231,7 +291,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh046.001" Path="LivingRoom2" SubMesh="Mesh046.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -241,7 +304,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh045.001" Path="LivingRoom2" SubMesh="Mesh045.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -251,7 +317,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh043.001" Path="LivingRoom2" SubMesh="Mesh043.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -261,7 +330,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh042.001" Path="LivingRoom2" SubMesh="Mesh042.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -271,7 +343,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh041.001" Path="LivingRoom2" SubMesh="Mesh041.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -281,7 +356,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh040.001" Path="LivingRoom2" SubMesh="Mesh040.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -291,7 +369,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh039.001" Path="LivingRoom2" SubMesh="Mesh039.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -301,7 +382,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh038.001" Path="LivingRoom2" SubMesh="Mesh038.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -311,7 +395,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh037.001" Path="LivingRoom2" SubMesh="Mesh037.001">
-					<Material Metallic="1.000000" Roughness="0.500000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>0.500000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\T_Wood_Oak_D</Diffuse>
 						<Normal>LivingRoom2\T_Wood_Oak_N</Normal>
 						<Specular>LivingRoom2\T_Wood_Oak_S</Specular>
@@ -321,7 +408,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh036.001" Path="LivingRoom2" SubMesh="Mesh036.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -331,7 +421,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh035.001" Path="LivingRoom2" SubMesh="Mesh035.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -341,7 +434,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh034.001" Path="LivingRoom2" SubMesh="Mesh034.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\Leather04_D</Diffuse>
 						<Normal>LivingRoom2\Leather04_N</Normal>
 						<Specular>LivingRoom2\Leather04_S</Specular>
@@ -351,7 +447,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh033.001" Path="LivingRoom2" SubMesh="Mesh033.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -361,7 +460,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh031.001" Path="LivingRoom2" SubMesh="Mesh031.001">
-					<Material Metallic="1.000000" Roughness="0.500000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>0.500000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\T_Wood_Oak_D</Diffuse>
 						<Normal>LivingRoom2\T_Wood_Oak_N</Normal>
 						<Specular>LivingRoom2\T_Wood_Oak_S</Specular>
@@ -371,7 +473,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh029.001" Path="LivingRoom2" SubMesh="Mesh029.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -381,7 +486,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh028.001" Path="LivingRoom2" SubMesh="Mesh028.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -391,7 +499,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh027.001" Path="LivingRoom2" SubMesh="Mesh027.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -401,7 +512,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh024.001" Path="LivingRoom2" SubMesh="Mesh024.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -411,7 +525,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh023.001" Path="LivingRoom2" SubMesh="Mesh023.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\P8_D</Diffuse>
 						<Normal>LivingRoom2\paper02_N</Normal>
 						<Specular>LivingRoom2\paper02_S</Specular>
@@ -421,7 +538,10 @@
 					<Scale x="0.348962" y="0.348962" z="0.348962"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh022.001" Path="LivingRoom2" SubMesh="Mesh022.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -431,7 +551,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh021.001" Path="LivingRoom2" SubMesh="Mesh021.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -441,7 +564,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh019.001" Path="LivingRoom2" SubMesh="Mesh019.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\T_Wood_Floor_Walnut_D</Diffuse>
 						<Normal>LivingRoom2\T_Wood_Floor_Walnut_N</Normal>
 						<Specular>LivingRoom2\T_Wood_Floor_Walnut_S</Specular>
@@ -451,7 +577,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh014.001" Path="LivingRoom2" SubMesh="Mesh014.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\fabric02_D</Diffuse>
 						<Normal>LivingRoom2\fabric02_N</Normal>
 						<Specular/>
@@ -461,7 +590,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh013.001" Path="LivingRoom2" SubMesh="Mesh013.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\fabric02_D</Diffuse>
 						<Normal>LivingRoom2\fabric02_N</Normal>
 						<Specular/>
@@ -471,7 +603,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh012.001" Path="LivingRoom2" SubMesh="Mesh012.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -481,7 +616,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh011.001" Path="LivingRoom2" SubMesh="Mesh011.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -491,7 +629,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh006.001" Path="LivingRoom2" SubMesh="Mesh006.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\paper02_D</Diffuse>
 						<Normal>LivingRoom2\paper02_N</Normal>
 						<Specular>LivingRoom2\paper02_S</Specular>
@@ -501,7 +642,10 @@
 					<Scale x="0.348962" y="0.348962" z="0.348962"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh003.001" Path="LivingRoom2" SubMesh="Mesh003.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\T_Wood_Pine_D</Diffuse>
 						<Normal>LivingRoom2\T_Wood_Pine_N</Normal>
 						<Specular>LivingRoom2\T_Wood_Pine_S</Specular>
@@ -511,7 +655,10 @@
 					<Scale x="0.348962" y="0.348962" z="0.348962"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh000.001" Path="LivingRoom2" SubMesh="Mesh000.001">
-					<Material Metallic="1.000000" Roughness="0.800000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>0.800000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\T_Wood_Oak_D</Diffuse>
 						<Normal>LivingRoom2\T_Wood_Oak_N</Normal>
 						<Specular>LivingRoom2\T_Wood_Oak_S</Specular>
@@ -521,7 +668,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh178" Path="LivingRoom2" SubMesh="Mesh178">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\Wood16_D</Diffuse>
 						<Normal>LivingRoom2\Wood16_N</Normal>
 						<Specular>LivingRoom2\Wood16_S</Specular>
@@ -531,7 +681,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh170" Path="LivingRoom2" SubMesh="Mesh170">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
 						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
 						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
@@ -541,7 +694,10 @@
 					<Scale x="1.000000" y="0.890669" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh169" Path="LivingRoom2" SubMesh="Mesh169">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\P7_D</Diffuse>
 						<Normal>LivingRoom2\paper02_N</Normal>
 						<Specular>LivingRoom2\paper02_S</Specular>
@@ -551,7 +707,10 @@
 					<Scale x="0.999846" y="0.695221" z="1.122289"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh163" Path="LivingRoom2" SubMesh="Mesh163">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\Wood16_D</Diffuse>
 						<Normal>LivingRoom2\Wood16_N</Normal>
 						<Specular>LivingRoom2\Wood16_S</Specular>
@@ -561,7 +720,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh161" Path="LivingRoom2" SubMesh="Mesh161">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
 						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
 						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
@@ -571,7 +733,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh154" Path="LivingRoom2" SubMesh="Mesh154">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -581,7 +746,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh142" Path="LivingRoom2" SubMesh="Mesh142">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -591,7 +759,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh133" Path="LivingRoom2" SubMesh="Mesh133">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -601,7 +772,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh131" Path="LivingRoom2" SubMesh="Mesh131">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
 						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
 						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
@@ -611,7 +785,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh129" Path="LivingRoom2" SubMesh="Mesh129">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\P2_D</Diffuse>
 						<Normal>LivingRoom2\paper02_N</Normal>
 						<Specular>LivingRoom2\paper02_S</Specular>
@@ -621,7 +798,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh123" Path="LivingRoom2" SubMesh="Mesh123">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\Wood16_D</Diffuse>
 						<Normal>LivingRoom2\Wood16_N</Normal>
 						<Specular>LivingRoom2\Wood16_S</Specular>
@@ -631,7 +811,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh107" Path="LivingRoom2" SubMesh="Mesh107">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -641,7 +824,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh105" Path="LivingRoom2" SubMesh="Mesh105">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\P5_D</Diffuse>
 						<Normal>LivingRoom2\paper02_N</Normal>
 						<Specular>LivingRoom2\paper02_S</Specular>
@@ -651,7 +837,10 @@
 					<Scale x="1.000000" y="0.890669" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh098" Path="LivingRoom2" SubMesh="Mesh098">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
 						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
 						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
@@ -661,7 +850,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh096" Path="LivingRoom2" SubMesh="Mesh096">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
 						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
 						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
@@ -671,7 +863,10 @@
 					<Scale x="0.999846" y="0.695221" z="1.122289"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh093" Path="LivingRoom2" SubMesh="Mesh093">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -681,7 +876,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh092" Path="LivingRoom2" SubMesh="Mesh092">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
 						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
 						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
@@ -691,7 +889,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh084" Path="LivingRoom2" SubMesh="Mesh084">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -701,7 +902,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh077" Path="LivingRoom2" SubMesh="Mesh077">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\P1_D</Diffuse>
 						<Normal>LivingRoom2\paper02_N</Normal>
 						<Specular>LivingRoom2\paper02_S</Specular>
@@ -711,7 +915,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh074" Path="LivingRoom2" SubMesh="Mesh074">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -721,7 +928,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh068" Path="LivingRoom2" SubMesh="Mesh068">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\P4_D</Diffuse>
 						<Normal>LivingRoom2\paper02_N</Normal>
 						<Specular>LivingRoom2\paper02_S</Specular>
@@ -731,7 +941,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh062" Path="LivingRoom2" SubMesh="Mesh062">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetalR_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -741,7 +954,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh061" Path="LivingRoom2" SubMesh="Mesh061">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -751,7 +967,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh060" Path="LivingRoom2" SubMesh="Mesh060">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -761,7 +980,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh059" Path="LivingRoom2" SubMesh="Mesh059">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetalB_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -771,7 +993,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh056" Path="LivingRoom2" SubMesh="Mesh056">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\P3_D</Diffuse>
 						<Normal>LivingRoom2\paper02_N</Normal>
 						<Specular>LivingRoom2\paper02_S</Specular>
@@ -781,7 +1006,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh055" Path="LivingRoom2" SubMesh="Mesh055">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
 						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
 						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
@@ -791,7 +1019,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh051" Path="LivingRoom2" SubMesh="Mesh051">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\Ceramic_S</Specular>
@@ -801,7 +1032,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh048" Path="LivingRoom2" SubMesh="Mesh048">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -811,7 +1045,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh029" Path="LivingRoom2" SubMesh="Mesh029">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -821,7 +1058,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh018" Path="LivingRoom2" SubMesh="Mesh018">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\Wood16_D</Diffuse>
 						<Normal>LivingRoom2\Wood16_N</Normal>
 						<Specular>LivingRoom2\Wood16_S</Specular>
@@ -831,7 +1071,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh012" Path="LivingRoom2" SubMesh="Mesh012">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -841,7 +1084,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh009" Path="LivingRoom2" SubMesh="Mesh009">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -851,7 +1097,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh008" Path="LivingRoom2" SubMesh="Mesh008">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\Rug01_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -861,7 +1110,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh004" Path="LivingRoom2" SubMesh="Mesh004">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\Cup_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\Cup_S</Specular>
@@ -871,7 +1123,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh003" Path="LivingRoom2" SubMesh="Mesh003">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\Ceramic_S</Specular>
@@ -881,7 +1136,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh002" Path="LivingRoom2" SubMesh="Mesh002">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\Ceramic_S</Specular>
@@ -891,7 +1149,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh001" Path="LivingRoom2" SubMesh="Mesh001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetalR_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -901,7 +1162,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh000" Path="LivingRoom2" SubMesh="Mesh000">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\radio_dial_idea_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -911,7 +1175,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh055.001" Path="LivingRoom2" SubMesh="Mesh055.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
 						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
 						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
@@ -921,7 +1188,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh003.002" Path="LivingRoom2" SubMesh="Mesh003.002">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\White_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\Ceramic_S</Specular>
@@ -931,7 +1201,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh004.002" Path="LivingRoom2" SubMesh="Mesh004.002">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\Cup_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\Cup_S</Specular>
@@ -941,7 +1214,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh061.002" Path="LivingRoom2" SubMesh="Mesh061.002">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\streakedmetal_S</Specular>
@@ -951,7 +1227,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh105.001" Path="LivingRoom2" SubMesh="Mesh105.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\P6_D</Diffuse>
 						<Normal>LivingRoom2\paper02_N</Normal>
 						<Specular>LivingRoom2\paper02_S</Specular>
@@ -961,7 +1240,10 @@
 					<Scale x="1.000000" y="0.890669" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh170.001" Path="LivingRoom2" SubMesh="Mesh170.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
 						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
 						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
@@ -971,7 +1253,10 @@
 					<Scale x="1.000000" y="0.890669" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="F2" Path="LivingRoom2" SubMesh="F2">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\Red_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -981,7 +1266,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="F1" Path="LivingRoom2" SubMesh="F1">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\Green0_D</Diffuse>
 						<Normal/>
 						<Specular/>
@@ -991,7 +1279,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh018.001" Path="LivingRoom2" SubMesh="Mesh018.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LivingRoom2\Green1_D</Diffuse>
 						<Normal/>
 						<Specular>LivingRoom2\Ceramic_S</Specular>

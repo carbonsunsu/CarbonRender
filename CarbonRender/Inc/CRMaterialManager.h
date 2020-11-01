@@ -11,6 +11,10 @@ private:
 	GLuint texIns[3];
 	float roughness;
 	float metallic;
+	float4 color;
+	bool hasDiffuseTex;
+	bool hasNormalTex;
+	bool hasSpecularTex;
 
 public:
 	Material();
@@ -20,6 +24,7 @@ public:
 	void SetDiffuse(string dir);
 	void SetNormal(string dir);
 	void SetSpecular(string dir);
+	void SetColor(float4 c);
 
 	float GetMetallic();
 	float GetRoughness();
@@ -29,6 +34,10 @@ public:
 	GLuint GetNormal();
 	string GetSpecularPath();
 	GLuint GetSpecular();
+	float4 GetColor();
+	bool HasDiffuseTexture();
+	bool HasNormalTexture();
+	bool HasSpecularTexture();
 };
 
 class MaterialManager

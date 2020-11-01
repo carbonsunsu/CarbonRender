@@ -125,7 +125,9 @@ void TerrainObject::Render(GLuint shaderProgram)
 	location = glGetUniformLocation(shaderProgram, "roughnessScale");
 	glUniform1f(location, 0.5f);
 	location = glGetUniformLocation(shaderProgram, "metallicScale");
-	glUniform1f(location, 0.5f);
+	glUniform1f(location, 0.0f);
+	location = glGetUniformLocation(shaderProgram, "albedoScaler");
+	glUniform4f(location, 0.5f, 0.5f, 0.5f, 1.0f);
 
 	glBindVertexArray(vertexArrayBuffers[0]);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexArrayBuffers[1]);
@@ -298,7 +300,9 @@ void OceanObject::Render(GLuint shaderProgram)
 	location = glGetUniformLocation(shaderProgram, "roughnessScale");
 	glUniform1f(location, 0.5f);
 	location = glGetUniformLocation(shaderProgram, "metallicScale");
-	glUniform1f(location, 0.5f);
+	glUniform1f(location, 0.0f);
+	location = glGetUniformLocation(shaderProgram, "albedoScaler");
+	glUniform4f(location, 0.5f, 0.5f, 0.5f, 1.0f);
 
 	glBindVertexArray(vertexArrayBuffers[0]);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexArrayBuffers[1]);

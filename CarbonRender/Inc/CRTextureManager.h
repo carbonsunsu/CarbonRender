@@ -10,6 +10,7 @@ private:
 	static TextureManager* ins;
 	unordered_map<string, GLuint> texturesMap;
 	GLuint defaultTex[3];
+	GLuint nullTex;
 
 public:
 	~TextureManager();
@@ -18,6 +19,7 @@ public:
 	GLuint LoadDefaultD();
 	GLuint LoadDefaultN();
 	GLuint LoadDefaultS();
+	GLuint GetNullTex();
 };
 
 #endif

@@ -19,15 +19,82 @@ void FreeController::Init()
 void FreeController::Update()
 {
 	Camera* curCam = CameraManager::Instance()->GetCurrentCamera();
-	float3 curPos = curCam->GetPosition();
-	curPos = curPos + (curCam->GetForward().normalize() * v.x  * moveSpeed +
-		curCam->GetRight().normalize() * v.y  * moveSpeed +
-		curCam->GetUp().normalize() * v.z  * moveSpeed) * FIXEDUPDATE_TIME;
-	CameraManager::Instance()->GetCurrentCamera()->SetPosition(curPos);
+	if (!MenuManager::Instance()->MenuStatus() || curMouseButton == GLFW_MOUSE_BUTTON_RIGHT)
+	{
+		float3 curPos = curCam->GetPosition();
+		curPos = curPos + (curCam->GetForward().normalize() * v.x  * moveSpeed +
+			curCam->GetRight().normalize() * v.y  * moveSpeed +
+			curCam->GetUp().normalize() * v.z  * moveSpeed) * FIXEDUPDATE_TIME;
+		CameraManager::Instance()->GetCurrentCamera()->SetPosition(curPos);
+	}
 }
 
 void FreeController::KeyInputCallback(GLFWwindow* window, int key, int scanCode, int action, int mods)
 {
+	switch (key)
+	{
+
+	default:
+		break;
+	case GLFW_KEY_F1:
+	{
+		if (action == GLFW_PRESS)
+			MenuManager::Instance()->ToogleMenu();
+	}
+	break;
+	case GLFW_KEY_W:
+	{
+		if (action == GLFW_RELEASE)
+			v.x = 0.0f;
+	}
+	break;
+	case GLFW_KEY_S:
+	{
+		if (action == GLFW_RELEASE)
+			v.x = 0.0f;
+	}
+	break;
+	case GLFW_KEY_A:
+	{
+		if (action == GLFW_RELEASE)
+			v.y = 0.0f;
+	}
+	break;
+	case GLFW_KEY_D:
+	{
+		if (action == GLFW_RELEASE)
+			v.y = 0.0f;
+	}
+	break;
+	case GLFW_KEY_Q:
+	{
+		if (action == GLFW_RELEASE)
+		v.z = 0.0f;
+	}
+	break;
+	case GLFW_KEY_E:
+	{
+		if (action == GLFW_RELEASE)
+			v.z = 0.0f;
+	}
+	break;
+	case GLFW_KEY_LEFT_SHIFT:
+	{
+		if (action == GLFW_RELEASE)
+			moveSpeed = moveSpeedLow;
+	}
+	break;
+	case GLFW_KEY_LEFT_CONTROL:
+	{
+		if (action == GLFW_RELEASE)
+			ctrlPressed = false;
+	}
+	break;
+	}
+
+	if (MenuManager::Instance()->MenuStatus() && curMouseButton != GLFW_MOUSE_BUTTON_RIGHT)
+		return;
+
 	switch (key)
 	{
 
@@ -74,12 +141,6 @@ void FreeController::KeyInputCallback(GLFWwindow* window, int key, int scanCode,
 			WeatherSystem::Instance()->ToggleTimeLapse();
 	}
 	break;
-	case GLFW_KEY_H:
-	{
-		if (action == GLFW_PRESS)
-			MenuManager::Instance()->ToogleMenu();
-	}
-	break;
 	case GLFW_KEY_LEFT_CONTROL:
 	{
 		if (action == GLFW_PRESS || action == GLFW_REPEAT)
@@ -94,6 +155,9 @@ void FreeController::KeyInputCallback(GLFWwindow* window, int key, int scanCode,
 
 void FreeController::MouseMotionCallback(GLFWwindow* window, double x, double y)
 {
+	if (MenuManager::Instance()->MouseOnMenu())
+		return;
+
 	switch (curMouseButton)
 	{
 	case GLFW_MOUSE_BUTTON_RIGHT:

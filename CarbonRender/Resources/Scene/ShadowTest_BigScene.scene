@@ -8,7 +8,7 @@
 		<TimeSpeed>1500.000000</TimeSpeed>
 		<WindDirection x="0.500000" y="0.000000" z="1.000000" w="0.500000"/>
 		<WeatherMap>Weather0</WeatherMap>
-		<CloudMaxAltitude>600.000000</CloudMaxAltitude>
+		<CloudMaxAltitude>1500.000000</CloudMaxAltitude>
 		<CloudMinAltitude>150.000000</CloudMinAltitude>
 		<CloudCoverage>0.674998</CloudCoverage>
 		<CloudPrecipitation>1.000000</CloudPrecipitation>
@@ -31,7 +31,10 @@
 			<Scale x="1.000000" y="10.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="Cube.1006" Path="BoxCity" SubMesh="Cube.1006">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -48,7 +51,10 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="Hull.002" Path="LeopardSport" SubMesh="Hull.002">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LeopardSport\VK1602_race_equipment_01_AM.tga</Diffuse>
 						<Normal>LeopardSport\VK1602_race_equipment_01_ANM.tga</Normal>
 						<Specular>LeopardSport\VK1602_race_equipment_01_GMM.tga</Specular>
@@ -58,7 +64,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Hull.001" Path="LeopardSport" SubMesh="Hull.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>\LeopardSport\VK1602_race_hull_01_AM.tga</Diffuse>
 						<Normal>\LeopardSport\VK1602_race_hull_01_ANM.tga</Normal>
 						<Specular>\LeopardSport\VK1602_race_hull_01_GMM.tga</Specular>
@@ -68,7 +77,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="gun_01_Shape" Path="LeopardSport" SubMesh="gun_01_Shape">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LeopardSport\VK1602_race_guns_AM.tga</Diffuse>
 						<Normal>LeopardSport\VK1602_race_guns_ANM.tga</Normal>
 						<Specular>LeopardSport\VK1602_race_guns_GMM.tga</Specular>
@@ -78,7 +90,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Hull" Path="LeopardSport" SubMesh="Hull">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LeopardSport\VK1602_race_equipment_02_AM.tga</Diffuse>
 						<Normal>LeopardSport\VK1602_race_equipment_02_ANM.tga</Normal>
 						<Specular>LeopardSport\VK1602_race_equipment_02_GMM.tga</Specular>
@@ -88,7 +103,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Turret_01" Path="LeopardSport" SubMesh="Turret_01">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LeopardSport\VK1602_race_turret_01_AM.tga</Diffuse>
 						<Normal>LeopardSport\VK1602_race_turret_01_ANM.tga</Normal>
 						<Specular>LeopardSport\VK1602_race_turret_01_GMM.tga</Specular>
@@ -98,7 +116,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="VK1602_track" Path="LeopardSport" SubMesh="VK1602_track">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LeopardSport\VK1602_segment_track_AM.tga</Diffuse>
 						<Normal>LeopardSport\VK1602_segment_track_ANM.tga</Normal>
 						<Specular>LeopardSport\VK1602_segment_track_GMM.tga</Specular>
@@ -108,7 +129,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="VK1602_track.001" Path="LeopardSport" SubMesh="VK1602_track.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LeopardSport\VK1602_segment_track_AM.tga</Diffuse>
 						<Normal>LeopardSport\VK1602_segment_track_ANM.tga</Normal>
 						<Specular>LeopardSport\VK1602_segment_track_GMM.tga</Specular>
@@ -118,7 +142,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="exportChassR1_Shape" Path="LeopardSport" SubMesh="exportChassR1_Shape">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LeopardSport\VK1602_race_chassis_01_AM.tga</Diffuse>
 						<Normal>LeopardSport\VK1602_race_chassis_01_ANM.tga</Normal>
 						<Specular>LeopardSport\VK1602_race_chassis_01_GMM.tga</Specular>
@@ -128,7 +155,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="exportChassL1_Shape" Path="LeopardSport" SubMesh="exportChassL1_Shape">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>LeopardSport\VK1602_race_chassis_01_AM.tga</Diffuse>
 						<Normal>LeopardSport\VK1602_race_chassis_01_ANM.tga</Normal>
 						<Specular>LeopardSport\VK1602_race_chassis_01_GMM.tga</Specular>

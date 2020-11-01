@@ -31,7 +31,10 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="gun_01_Shape" Path="Obj430U" SubMesh="gun_01_Shape">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="0.999990" B="0.999990" A="1.000000"/>
 						<Diffuse>Obj430U\Object_430_U_3Dst_guns_AM_hd</Diffuse>
 						<Normal>Obj430U\Object_430_U_3Dst_guns_ANM_hd</Normal>
 						<Specular>Obj430U\Object_430_U_3Dst_guns_GMM_hd</Specular>
@@ -41,7 +44,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Hull" Path="Obj430U" SubMesh="Hull">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Obj430U\Object_430_U_3Dst_hull_01_AM_hd</Diffuse>
 						<Normal>Obj430U\Object_430_U_3Dst_hull_01_ANM_hd</Normal>
 						<Specular>Obj430U\Object_430_U_3Dst_hull_01_GMM_hd</Specular>
@@ -51,7 +57,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Turret_01" Path="Obj430U" SubMesh="Turret_01">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Obj430U\Object_430_U_3Dst_turret_01_AM_hd</Diffuse>
 						<Normal>Obj430U\Object_430_U_3Dst_turret_01_ANM_hd</Normal>
 						<Specular>Obj430U\Object_430_U_3Dst_turret_01_GMM_hd</Specular>
@@ -61,7 +70,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="segment.001" Path="Obj430U" SubMesh="segment.001">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Obj430U\Object_430U_segment_track_AM_hd</Diffuse>
 						<Normal>Obj430U\Object_430U_segment_track_ANM_hd</Normal>
 						<Specular>Obj430U\Object_430U_segment_track_GMM_hd</Specular>
@@ -71,7 +83,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="segment" Path="Obj430U" SubMesh="segment">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Obj430U\Object_430U_segment_track_AM_hd</Diffuse>
 						<Normal>Obj430U\Object_430U_segment_track_ANM_hd</Normal>
 						<Specular>Obj430U\Object_430U_segment_track_GMM_hd</Specular>
@@ -81,7 +96,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="exportChassR1_Shape" Path="Obj430U" SubMesh="exportChassR1_Shape">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Obj430U\Object_430_U_3Dst_chassis_01_AM_hd</Diffuse>
 						<Normal>Obj430U\Object_430_U_3Dst_chassis_01_ANM_hd</Normal>
 						<Specular>Obj430U\Object_430_U_3Dst_chassis_01_GMM_hd</Specular>
@@ -91,7 +109,10 @@
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="exportChassL1_Shape" Path="Obj430U" SubMesh="exportChassL1_Shape">
-					<Material Metallic="1.000000" Roughness="1.000000">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Obj430U\Object_430_U_3Dst_chassis_01_AM_hd</Diffuse>
 						<Normal>Obj430U\Object_430_U_3Dst_chassis_01_ANM_hd</Normal>
 						<Specular>Obj430U\Object_430_U_3Dst_chassis_01_GMM_hd</Specular>
