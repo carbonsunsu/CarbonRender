@@ -18,8 +18,8 @@
 		<FogPrecipitation>37.100006</FogPrecipitation>
 	</World>
 	<Camera>
-		<Position x="-1.772384" y="5.631921" z="12.403632"/>
-		<Rotation x="13.200044" y="5.200042" z="0.000000"/>
+		<Position x="1.733362" y="4.012813" z="8.677719"/>
+		<Rotation x="14.300048" y="-21.399971" z="0.000000"/>
 		<FOV>60.000000</FOV>
 		<NearClip>0.010000</NearClip>
 		<FarClip>3000.000000</FarClip>
@@ -462,126 +462,100 @@
 				</StaticMeshObject>
 			</Children>
 		</Object>
-		<Object Name="M48">
-			<Position x="0.000000" y="0.000000" z="0.000000"/>
-			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
+		<Object Name="Obj430U">
+			<Position x="-0.370000" y="0.000000" z="0.000000"/>
+			<Rotation x="0.000000" y="180.000000" z="0.000000"/>
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
-				<StaticMeshObject Name="chassis_LShape" Path="M48" SubMesh="chassis_LShape">
+				<StaticMeshObject Name="gun_01_Shape" Path="Obj430U" SubMesh="gun_01_Shape">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="0.999990" B="0.999990" A="1.000000"/>
+						<Diffuse>Obj430U\Object_430_U_3Dst_guns_AM_hd</Diffuse>
+						<Normal>Obj430U\Object_430_U_3Dst_guns_ANM_hd</Normal>
+						<Specular>Obj430U\Object_430_U_3Dst_guns_GMM_hd</Specular>
+					</Material>
+					<Position x="0.000000" y="1.552558" z="-1.156930"/>
+					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Hull" Path="Obj430U" SubMesh="Hull">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>M48\M48A1_chassis_01_D</Diffuse>
-						<Normal>M48\M48A1_chassis_01_N</Normal>
-						<Specular>M48\M48A1_chassis_01_S</Specular>
+						<Diffuse>Obj430U\Object_430_U_3Dst_hull_01_AM_hd</Diffuse>
+						<Normal>Obj430U\Object_430_U_3Dst_hull_01_ANM_hd</Normal>
+						<Specular>Obj430U\Object_430_U_3Dst_hull_01_GMM_hd</Specular>
+					</Material>
+					<Position x="0.000000" y="0.775023" z="0.000000"/>
+					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="Turret_01" Path="Obj430U" SubMesh="Turret_01">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Diffuse>Obj430U\Object_430_U_3Dst_turret_01_AM_hd</Diffuse>
+						<Normal>Obj430U\Object_430_U_3Dst_turret_01_ANM_hd</Normal>
+						<Specular>Obj430U\Object_430_U_3Dst_turret_01_GMM_hd</Specular>
+					</Material>
+					<Position x="0.000000" y="1.336601" z="-0.085060"/>
+					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="segment.001" Path="Obj430U" SubMesh="segment.001">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Diffuse>Obj430U\Object_430U_segment_track_AM_hd</Diffuse>
+						<Normal>Obj430U\Object_430U_segment_track_ANM_hd</Normal>
+						<Specular>Obj430U\Object_430U_segment_track_GMM_hd</Specular>
+					</Material>
+					<Position x="0.000000" y="0.000000" z="-0.128866"/>
+					<Rotation x="-180.000000" y="-0.000005" z="0.000005"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="segment" Path="Obj430U" SubMesh="segment">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Diffuse>Obj430U\Object_430U_segment_track_AM_hd</Diffuse>
+						<Normal>Obj430U\Object_430U_segment_track_ANM_hd</Normal>
+						<Specular>Obj430U\Object_430U_segment_track_GMM_hd</Specular>
+					</Material>
+					<Position x="0.000000" y="0.000000" z="-0.128866"/>
+					<Rotation x="-180.000000" y="-0.000005" z="0.000005"/>
+					<Scale x="1.000000" y="1.000000" z="1.000000"/>
+				</StaticMeshObject>
+				<StaticMeshObject Name="exportChassR1_Shape" Path="Obj430U" SubMesh="exportChassR1_Shape">
+					<Material>
+						<Metallic>1.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Diffuse>Obj430U\Object_430_U_3Dst_chassis_01_AM_hd</Diffuse>
+						<Normal>Obj430U\Object_430_U_3Dst_chassis_01_ANM_hd</Normal>
+						<Specular>Obj430U\Object_430_U_3Dst_chassis_01_GMM_hd</Specular>
 					</Material>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
-					<Rotation x="90.000008" y="0.000000" z="-179.999985"/>
+					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="chassis_RShape" Path="M48" SubMesh="chassis_RShape">
+				<StaticMeshObject Name="exportChassL1_Shape" Path="Obj430U" SubMesh="exportChassL1_Shape">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>M48\M48A1_chassis_01_D</Diffuse>
-						<Normal>M48\M48A1_chassis_01_N</Normal>
-						<Specular>M48\M48A1_chassis_01_S</Specular>
+						<Diffuse>Obj430U\Object_430_U_3Dst_chassis_01_AM_hd</Diffuse>
+						<Normal>Obj430U\Object_430_U_3Dst_chassis_01_ANM_hd</Normal>
+						<Specular>Obj430U\Object_430_U_3Dst_chassis_01_GMM_hd</Specular>
 					</Material>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
-					<Rotation x="90.000008" y="0.000000" z="-179.999985"/>
-					<Scale x="1.000000" y="1.000000" z="1.000000"/>
-				</StaticMeshObject>
-				<StaticMeshObject Name="gun_03_Shape" Path="M48" SubMesh="gun_03_Shape">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>M48\M48A1_guns_D</Diffuse>
-						<Normal>M48\M48A1_guns_N</Normal>
-						<Specular>M48\M48A1_guns_S</Specular>
-					</Material>
-					<Position x="0.000000" y="2.084023" z="1.763082"/>
-					<Rotation x="90.000008" y="0.000000" z="-179.999985"/>
-					<Scale x="1.000000" y="1.000000" z="1.000000"/>
-				</StaticMeshObject>
-				<StaticMeshObject Name="Hull" Path="M48" SubMesh="Hull">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>M48\M48A1_hull_01_D</Diffuse>
-						<Normal>M48\M48A1_hull_01_N</Normal>
-						<Specular>M48\M48A1_hull_01_S</Specular>
-					</Material>
-					<Position x="0.000000" y="1.254370" z="0.000000"/>
-					<Rotation x="90.000008" y="0.000000" z="-179.999985"/>
-					<Scale x="1.000000" y="1.000000" z="1.000000"/>
-				</StaticMeshObject>
-				<StaticMeshObject Name="segment1" Path="M48" SubMesh="segment1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>M48\T97_segment_track_D</Diffuse>
-						<Normal>M48\T97_segment_track_N</Normal>
-						<Specular>M48\T97_segment_track_S</Specular>
-					</Material>
-					<Position x="0.000000" y="0.000000" z="0.000000"/>
-					<Rotation x="-90.000008" y="-0.000005" z="179.999985"/>
-					<Scale x="1.000000" y="1.000000" z="1.000000"/>
-				</StaticMeshObject>
-				<StaticMeshObject Name="segment1.001" Path="M48" SubMesh="segment1.001">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>M48\T97_segment_track_D</Diffuse>
-						<Normal>M48\T97_segment_track_N</Normal>
-						<Specular>M48\T97_segment_track_S</Specular>
-					</Material>
-					<Position x="0.000000" y="0.000000" z="0.000000"/>
-					<Rotation x="-90.000008" y="-0.000005" z="179.999985"/>
-					<Scale x="1.000000" y="1.000000" z="1.000000"/>
-				</StaticMeshObject>
-				<StaticMeshObject Name="segment2" Path="M48" SubMesh="segment2">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>M48\T97_segment_track_D</Diffuse>
-						<Normal>M48\T97_segment_track_N</Normal>
-						<Specular>M48\T97_segment_track_S</Specular>
-					</Material>
-					<Position x="0.000000" y="0.000000" z="0.090500"/>
-					<Rotation x="-90.000008" y="-0.000005" z="179.999985"/>
-					<Scale x="1.000000" y="1.000000" z="1.000000"/>
-				</StaticMeshObject>
-				<StaticMeshObject Name="segment2.001" Path="M48" SubMesh="segment2.001">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>M48\T97_segment_track_D</Diffuse>
-						<Normal>M48\T97_segment_track_N</Normal>
-						<Specular>M48\T97_segment_track_S</Specular>
-					</Material>
-					<Position x="0.000000" y="0.000000" z="0.090500"/>
-					<Rotation x="-90.000008" y="-0.000005" z="179.999985"/>
-					<Scale x="1.000000" y="1.000000" z="1.000000"/>
-				</StaticMeshObject>
-				<StaticMeshObject Name="Turret_01" Path="M48" SubMesh="Turret_01">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>M48\M48A1_turret_01_D</Diffuse>
-						<Normal>M48\M48A1_turret_01_N</Normal>
-						<Specular>M48\M48A1_turret_01_S</Specular>
-					</Material>
-					<Position x="-0.001963" y="1.689462" z="0.577502"/>
-					<Rotation x="90.000008" y="0.000000" z="-179.999985"/>
+					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 			</Children>
