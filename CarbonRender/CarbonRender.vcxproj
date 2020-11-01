@@ -50,7 +50,6 @@
     <ClCompile Include="Src\CRWindowManager.cpp" />
     <ClCompile Include="Src\CRRenderPass.cpp" />
     <ClCompile Include="Third\imgui\imgui.cpp" />
-    <ClCompile Include="Third\imgui\imgui_demo.cpp" />
     <ClCompile Include="Third\imgui\imgui_draw.cpp" />
     <ClCompile Include="Third\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="Third\imgui\imgui_impl_opengl3.cpp" />

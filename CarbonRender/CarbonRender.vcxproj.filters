@@ -156,9 +156,6 @@
     <ClCompile Include="Third\imgui\imgui.cpp">
       <Filter>ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Third\imgui\imgui_demo.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
     <ClCompile Include="Third\imgui\imgui_draw.cpp">
       <Filter>ImGui</Filter>
     </ClCompile>
