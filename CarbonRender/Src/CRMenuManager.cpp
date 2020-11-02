@@ -201,6 +201,9 @@ void MenuManager::DrawWorldEditorDialog()
 
 void MenuManager::DrawSceneNode(Object * node, ImGuiTreeNodeFlags flags)
 {
+	if (node == nullptr)
+		return;
+
 	ImGuiTreeNodeFlags trueFlags = flags;
 
 	if (node->GetChildCount() == 0)
@@ -244,7 +247,7 @@ void MenuManager::DrawSceneEditorDialog()
 		Object* sceneRoot = SceneManager::Instance()->GetRootNode();
 		ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_SpanAvailWidth;
 
-		DrawSceneNode(sceneRoot, flags);
+		DrawSceneNode(sceneRoot->GetFirstChild(), flags);
 	}
 	ImGui::End();
 }
@@ -533,6 +536,16 @@ bool MenuManager::MouseOnMenu()
 {
 	ImGuiIO& io = ImGui::GetIO();
 	return io.WantCaptureMouse;
+}
+
+Object * MenuManager::GetSelectedObj()
+{
+	return selectedObj;
+}
+
+void MenuManager::ResetSelectedObj()
+{
+	selectedObj = nullptr;
 }
 
 MenuManager::~MenuManager()

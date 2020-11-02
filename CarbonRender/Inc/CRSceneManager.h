@@ -14,6 +14,8 @@ private:
 	Object sceneRoot;
 
 	void Init();
+	void DeleteObject(Object* obj);
+
 public:
 	~SceneManager();
 	static SceneManager* Instance();
@@ -26,6 +28,7 @@ public:
 	void DrawScene(GLuint shaderProgram);
 
 	Object* GetRootNode();
+	void DeletSceneNode(Object* obj);
 };
 
 #endif

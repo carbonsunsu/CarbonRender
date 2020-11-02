@@ -4,6 +4,7 @@ Object::Object()
 {
 	firstChild = nullptr;
 	parent = nullptr;
+	previous = nullptr;
 	next = nullptr;
 	childCount = 0;
 	name = "Object";
@@ -66,15 +67,31 @@ void Object::AddChild(Object * child)
 	{
 		Object* last = GetLastChild();
 		last->next = child;
+		child->previous = last;
 	}
 
 	childCount++;
+}
+
+void Object::SetFirstChild(Object * child)
+{
+	firstChild = child;
 }
 
 void Object::SetParent(Object * prnt)
 {
 	parent = prnt;
 	prnt->AddChild(this);
+}
+
+void Object::SetPrevious(Object * pre)
+{
+	previous = pre;
+}
+
+void Object::SetNext(Object * nxt)
+{
+	next = nxt;
 }
 
 float3 Object::GetPosition()
@@ -145,6 +162,11 @@ Object * Object::GetParent()
 Object * Object::GetFirstChild()
 {
 	return firstChild;
+}
+
+Object * Object::GetPrevious()
+{
+	return previous;
 }
 
 Object * Object::GetNext()

@@ -53,7 +53,7 @@ void LightPass::Render(PassOutput * input)
 	
 	unsigned int sunLightID = WeatherSystem::Instance()->GetSunLightID();
 	Light* sunLight = LightManager::Instance()->GetLight(sunLightID);
-	float3 sColor = sunLight->GetColor() * 3.0f;
+	float3 sColor = sunLight->GetColor();
 	float3 wsSunPos = sunLight->GetPosition();
 	float3 wsCamPos = CameraManager::Instance()->GetCurrentCamera()->GetPosition();
 	location = glGetUniformLocation(shaderProgram, "sunColor");

@@ -56,6 +56,7 @@ public:
 
 	Material* CreateNewMaterial();
 	Material* GetDefaultMaterial();
+	void DeleteMaterial(Material* mat);
 };
 
 #endif

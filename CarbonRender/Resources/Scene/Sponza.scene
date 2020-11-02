@@ -2,7 +2,7 @@
 	<World>
 		<Latitude>0.000000</Latitude>
 		<Day>180</Day>
-		<Time>13.300005</Time>
+		<Time>13.230000</Time>
 		<Turbidity>4.000000</Turbidity>
 		<Exposure>30.000000</Exposure>
 		<TimeSpeed>1500.000000</TimeSpeed>
@@ -18,8 +18,8 @@
 		<FogPrecipitation>37.100006</FogPrecipitation>
 	</World>
 	<Camera>
-		<Position x="1.733362" y="4.012813" z="8.677719"/>
-		<Rotation x="14.300048" y="-21.399971" z="0.000000"/>
+		<Position x="1.547910" y="3.608449" z="9.412274"/>
+		<Rotation x="15.600070" y="-736.400940" z="0.000000"/>
 		<FOV>60.000000</FOV>
 		<NearClip>0.010000</NearClip>
 		<FarClip>3000.000000</FarClip>
@@ -32,7 +32,7 @@
 			<Children>
 				<StaticMeshObject Name="happy_vrip" Path="HappyRecon" SubMesh="happy_vrip">
 					<Material>
-						<Metallic>1.000000</Metallic>
+						<Metallic>0.000000</Metallic>
 						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
@@ -52,7 +52,7 @@
 			<Children>
 				<StaticMeshObject Name="dragon_vrip" Path="dragon" SubMesh="dragon_vrip">
 					<Material>
-						<Metallic>1.000000</Metallic>
+						<Metallic>0.000000</Metallic>
 						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
@@ -437,11 +437,11 @@
 				<StaticMeshObject Name="Frame" Path="Sponza" SubMesh="Frame">
 					<Material>
 						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>Sponza\Frame_D</Diffuse>
+						<Roughness>0.440000</Roughness>
+						<Color R="1.000000" G="0.462803" B="0.323529" A="1.000000"/>
+						<Diffuse/>
 						<Normal/>
-						<Specular>Sponza\Frame_S</Specular>
+						<Specular/>
 					</Material>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="-89.999992" z="0.000000"/>
@@ -449,7 +449,7 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Picture" Path="Sponza" SubMesh="Picture">
 					<Material>
-						<Metallic>1.000000</Metallic>
+						<Metallic>0.000000</Metallic>
 						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse>Sponza\Picture_D</Diffuse>

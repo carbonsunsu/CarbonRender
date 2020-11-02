@@ -38,6 +38,20 @@ Material * MaterialManager::GetDefaultMaterial()
 	return &defaultMaterial;
 }
 
+void MaterialManager::DeleteMaterial(Material * mat)
+{
+	if (mat == &defaultMaterial)
+		return;
+
+	for (vector<Material*>::iterator i = materials.begin(); i != materials.end(); i++)
+		if (mat == *i)
+		{
+			materials.erase(i);
+			delete mat;
+			return;
+		}
+}
+
 void Material::SetTexture(string dir, int index)
 {
 	texDirs[index] = dir;

@@ -54,6 +54,8 @@ public:
 	void ToogleMenu();
 	bool MenuStatus();
 	bool MouseOnMenu();
+	Object* GetSelectedObj();
+	void ResetSelectedObj();
 };
 
 #endif

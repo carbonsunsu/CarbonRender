@@ -90,6 +90,19 @@ void FreeController::KeyInputCallback(GLFWwindow* window, int key, int scanCode,
 			ctrlPressed = false;
 	}
 	break;
+	case GLFW_KEY_DELETE:
+	{
+		if (action == GLFW_RELEASE)
+		{
+			Object* selectedObj = MenuManager::Instance()->GetSelectedObj();
+			if (selectedObj != nullptr && selectedObj != SceneManager::Instance()->GetRootNode())
+			{
+				SceneManager::Instance()->DeletSceneNode(selectedObj);
+				MenuManager::Instance()->ResetSelectedObj();
+			}
+		}
+	}
+	break;
 	}
 
 	if (MenuManager::Instance()->MenuStatus() && curMouseButton != GLFW_MOUSE_BUTTON_RIGHT)

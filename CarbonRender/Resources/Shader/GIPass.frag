@@ -47,7 +47,7 @@ vec3 SampleVPL (vec2 uv, vec3 wsP, vec3 wsN)
 	float d = max(distance(wsP, vplPos), 1.0f);
 
 	float intensity = max(0.0f, dot(vplN, v)) * max(0.0f, dot(wsN, -v)) / (d*d);
-	return intensity * vplColor * sunColor * 4.0f;
+	return intensity * vplColor * sunColor;
 }
 
 void main ()

@@ -25,6 +25,19 @@ void SceneManager::Init()
 	sceneRoot.SetName("Root");
 }
 
+void SceneManager::DeleteObject(Object * obj)
+{
+	if (obj->GetType() == ObjectType::eMesh)
+	{
+		MeshObject* meshObj = (MeshObject*)obj;
+		delete meshObj;
+	}
+	else
+	{
+		delete obj;
+	}
+}
+
 void SceneManager::LoadScene(string sceneName)
 {
 	char* realDir = "Resources\\Scene\\";
@@ -512,4 +525,56 @@ void SceneManager::DrawScene(GLuint shaderProgram)
 Object * SceneManager::GetRootNode()
 {
 	return &sceneRoot;
+}
+
+void SceneManager::DeletSceneNode(Object * obj)
+{
+	if (obj == nullptr)return;
+
+	Object* root = obj;
+	if (obj == obj->GetParent()->GetFirstChild())
+	{
+		obj->GetParent()->SetFirstChild(obj->GetNext());
+	}
+	if (obj->GetPrevious() != nullptr)
+	{
+		obj->GetPrevious()->SetNext(obj->GetNext());
+	}
+	if (obj->GetNext() != nullptr)
+	{
+		obj->GetNext()->SetPrevious(obj->GetPrevious());
+	}
+
+	if (root->GetChildCount() > 0)
+	{
+		Object* curPtr = root->GetFirstChild();
+		while (true)
+		{
+			if (curPtr == root)
+			{
+				DeleteObject(curPtr);
+				break;
+			}
+
+			if (curPtr->GetChildCount() > 0)
+			{
+				curPtr = curPtr->GetFirstChild();
+				continue;
+			}
+			else
+			{
+				Object* temp = curPtr;
+				if (curPtr->GetNext() != nullptr)
+					curPtr = curPtr->GetNext();
+				else
+					curPtr = curPtr->GetParent();
+				DeleteObject(temp);
+				continue;
+			}
+		}
+	}
+	else
+	{
+		DeleteObject(root);
+	}
 }

@@ -11,6 +11,7 @@ MeshObject::MeshObject()
 
 MeshObject::~MeshObject()
 {
+	MaterialManager::Instance()->DeleteMaterial(material);
 }
 
 void MeshObject::SetMaterial(Material * mat)

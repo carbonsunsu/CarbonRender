@@ -31,6 +31,7 @@ protected:
 	unsigned int childCount;
 	Object* parent;
 	Object* firstChild;
+	Object* previous;
 	Object* next;
 public:
 	Object();
@@ -43,7 +44,10 @@ public:
 	void SetChildCount(unsigned int count);
 	void SetChild(Object* child, unsigned int);
 	void AddChild(Object* child);
+	void SetFirstChild(Object* child);
 	void SetParent(Object* prnt);
+	void SetPrevious(Object* pre);
+	void SetNext(Object* nxt);
 
 	float3 GetPosition();
 	float3 GetScale();
@@ -56,6 +60,7 @@ public:
 	unsigned int GetChildCount();
 	Object* GetParent();
 	Object* GetFirstChild();
+	Object* GetPrevious();
 	Object* GetNext();
 	Object* GetLastChild();
 	ObjectType GetType();
