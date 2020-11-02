@@ -9,12 +9,11 @@ class Material
 private:
 	string texDirs[3];
 	GLuint texIns[3];
+	bool hasTex[3];
 	float roughness;
 	float metallic;
 	float4 color;
-	bool hasDiffuseTex;
-	bool hasNormalTex;
-	bool hasSpecularTex;
+	void SetTexture(string dir, int index);
 
 public:
 	Material();
@@ -25,6 +24,9 @@ public:
 	void SetNormal(string dir);
 	void SetSpecular(string dir);
 	void SetColor(float4 c);
+	void RemoveDiffuse();
+	void RemoveNormal();
+	void RemoveSpecular();
 
 	float GetMetallic();
 	float GetRoughness();

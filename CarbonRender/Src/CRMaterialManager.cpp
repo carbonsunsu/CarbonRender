@@ -38,6 +38,27 @@ Material * MaterialManager::GetDefaultMaterial()
 	return &defaultMaterial;
 }
 
+void Material::SetTexture(string dir, int index)
+{
+	texDirs[index] = dir;
+	if (dir.empty())
+	{
+		texIns[index] = TextureManager::Instance()->LoadDefaultTexs()[index];
+		hasTex[index] = false;
+	}
+	else
+	{
+		texIns[index] = TextureManager::Instance()->LoadTexture((char*)dir.c_str());
+		if (texIns[index] == 0)
+		{
+			texIns[index] = TextureManager::Instance()->LoadDefaultTexs()[index];
+			hasTex[index] = false;
+		}
+		else
+			hasTex[index] = true;
+	}
+}
+
 Material::Material()
 {
 	roughness = 0.5f;
@@ -45,14 +66,17 @@ Material::Material()
 	texIns[0] = 0;
 	texIns[1] = 0;
 	texIns[2] = 0;
-	hasDiffuseTex = false;
-	hasNormalTex = false;
-	hasSpecularTex = false;
+	hasTex[0] = false;
+	hasTex[1] = false;
+	hasTex[2] = false;
 	color = float4(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
 Material::~Material()
 {
+	RemoveDiffuse();
+	RemoveNormal();
+	RemoveSpecular();
 }
 
 void Material::SetRoughness(float r)
@@ -112,65 +136,50 @@ float4 Material::GetColor()
 
 bool Material::HasDiffuseTexture()
 {
-	return hasDiffuseTex;
+	return hasTex[0];
 }
 
 bool Material::HasNormalTexture()
 {
-	return hasNormalTex;
+	return hasTex[1];
 }
 
 bool Material::HasSpecularTexture()
 {
-	return hasSpecularTex;
+	return hasTex[2];
 }
 
 void Material::SetDiffuse(string dir)
 {
-	texDirs[0] = dir;
-	if (dir.empty())
-		texIns[0] = TextureManager::Instance()->LoadDefaultD();
-	else
-	{
-		texIns[0] = TextureManager::Instance()->LoadTexture(dir);
-		if (texIns[0] == 0)
-			texIns[0] = TextureManager::Instance()->LoadDefaultD();
-		else
-			hasDiffuseTex = true;
-	}
+	SetTexture(dir, 0);
 }
 
 void Material::SetNormal(string dir)
 {
-	texDirs[1] = dir;
-	if (dir.empty())
-		texIns[1] = TextureManager::Instance()->LoadDefaultN();
-	else
-	{
-		texIns[1] = TextureManager::Instance()->LoadTexture(dir);
-		if (texIns[1] == 0)
-			texIns[1] = TextureManager::Instance()->LoadDefaultN();
-		else
-			hasNormalTex = true;
-	}
+	SetTexture(dir, 1);
 }
 
 void Material::SetSpecular(string dir)
 {
-	texDirs[2] = dir;
-	if (dir.empty())
-		texIns[2] = TextureManager::Instance()->LoadDefaultS();
-	else
-	{
-		texIns[2] = TextureManager::Instance()->LoadTexture(dir);
-		if (texIns[2] == 0)
-			texIns[3] = TextureManager::Instance()->LoadDefaultS();
-		else
-			hasSpecularTex = true;
-	}
+	SetTexture(dir, 2);
 }
 
 void Material::SetColor(float4 c)
 {
 	color = c;
+}
+
+void Material::RemoveDiffuse()
+{
+	SetTexture("", 0);
+}
+
+void Material::RemoveNormal()
+{
+	SetTexture("", 1);
+}
+
+void Material::RemoveSpecular()
+{
+	SetTexture("", 2);
 }

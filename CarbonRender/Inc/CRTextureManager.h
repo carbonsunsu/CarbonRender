@@ -15,10 +15,11 @@ private:
 public:
 	~TextureManager();
 	static TextureManager* Instance();
-	GLuint LoadTexture(string dir);
+	GLuint LoadTexture(char* filePath);
 	GLuint LoadDefaultD();
 	GLuint LoadDefaultN();
 	GLuint LoadDefaultS();
+	GLuint* LoadDefaultTexs();
 	GLuint GetNullTex();
 };
 

@@ -344,11 +344,11 @@ void FbxImportManager::ReadTexture(FbxMesh* mesh, MeshObject* meshObj, char* mes
 	meshObj->GetMaterial()->SetSpecular("");
 }
 
-int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMeshObj, bool loadTex)
+int FbxImportManager::ImportFbxModel(char * filePath, Object* root, bool newAMeshObj, bool loadTex)
 {
-	if (root != nullptr) root->SetName(fileName);
+	if (root != nullptr) root->SetName(filePath);
 	char* dir = "Resources\\Models\\";
-	char* fullName = FileReader::BindString(dir, fileName);
+	char* fullName = FileReader::BindString(dir, filePath);
 	if (strstr(fullName, ".fbx") == nullptr)
 		fullName = FileReader::BindString(fullName, ".fbx");
 	FbxImporter* importer = FbxImporter::Create(this->fbxManager, "");
@@ -384,10 +384,10 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMes
 				{
 					FbxMesh* mesh = node->GetMesh();
 
-					MeshData* meshData = MeshManager::Instance()->GetMeshData(fileName, node->GetName());
+					MeshData* meshData = MeshManager::Instance()->GetMeshData(filePath, node->GetName());
 					if (meshData == nullptr)
 					{
-						meshData = MeshManager::Instance()->CreateNewMeshData(fileName, node->GetName());
+						meshData = MeshManager::Instance()->CreateNewMeshData(filePath, node->GetName());
 
 						int ctrlPointsCount = mesh->GetControlPointsCount();
 						meshData->SetPolygonCount(mesh->GetPolygonCount());
@@ -556,7 +556,7 @@ int FbxImportManager::ImportFbxModel(char * fileName, Object* root, bool newAMes
 						//Get Textures
 						newMeshObj->SetMaterial(MaterialManager::Instance()->CreateNewMaterial());
 						if (loadTex)
-							ReadTexture(mesh, newMeshObj, fileName);
+							ReadTexture(mesh, newMeshObj, filePath);
 						else
 						{
 							newMeshObj->GetMaterial()->SetDiffuse("");

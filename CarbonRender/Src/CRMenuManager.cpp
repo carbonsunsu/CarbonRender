@@ -15,13 +15,19 @@ void MenuManager::InitMenu()
 	ImGui_ImplGlfw_InitForOpenGL(WindowManager::Instance()->GetWindow(), true);
 	ImGui_ImplOpenGL3_Init();
 
-	showModelImportDialog = false;
+	showFileBroser = false;
 	showWorldEditorDialog = true;
 	showSceneEditorDialog = true;
 	showObjectEditorDialog = true;
+	sceneTreeNodeIndex = 0;
 
 	ImGuiIO& io = ImGui::GetIO();
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
+	ImGuiStyle& style = ImGui::GetStyle();
+	style.FrameBorderSize = 2.0f;
+	style.WindowBorderSize = 2.0f;
+	style.PopupBorderSize = 2.0f;
 }
 
 void MenuManager::DrawMainMenuBar()
@@ -51,7 +57,7 @@ void MenuManager::DrawMainMenuBar_Scene()
 	}
 	if (ImGui::MenuItem("Import Model"))
 	{
-		showModelImportDialog = true;
+		InitFileBrowser("Resources\\Models", ".fbx", &MenuManager::ImportModel);
 	}
 }
 
@@ -69,55 +75,6 @@ void MenuManager::DrawMainMenuBar_Editor()
 	{
 		showWorldEditorDialog = true;
 	}
-}
-
-void MenuManager::DrawImportModelDialog()
-{
-	string modelResourcePath = "Resources\\Models";
-	static int selected = -1;
-	static string selectedFileName = "";
-	modelList.clear();
-	for (const auto & entry : directory_iterator(modelResourcePath))
-	{
-		if (strstr(entry.path().string().c_str(), ".fbx"))
-		{
-			modelList.emplace_back(entry.path().filename().string());
-		}
-	}
-
-	ImGui::SetNextWindowSize(ImVec2(300, 440), ImGuiCond_FirstUseEver);
-	ImGuiWindowFlags flags = 0;
-	flags |= ImGuiWindowFlags_NoResize;
-	flags |= ImGuiWindowFlags_NoCollapse;
-	//flags |= ImGuiWindowFlags_AlwaysAutoResize;
-
-	if (ImGui::Begin("Import Model", &showModelImportDialog, flags))
-	{
-		ImGui::BeginChild("Model List", ImVec2(200, 0), true);
-		for (int i = 0; i < modelList.size(); i++)
-		{
-			string fileName = modelList[i];
-			if (ImGui::Selectable(fileName.c_str(), selected == i))
-			{
-				selected = i;
-				selectedFileName = fileName;
-			}
-		}
-		ImGui::EndChild();
-
-		ImGui::SameLine();
-		ImGui::BeginChild("Op Panel", ImVec2(0, -ImGui::GetFrameHeightWithSpacing()));
-		if (ImGui::Button("Import") && !selectedFileName.empty())
-		{
-			Object* newObj = new Object();
-			SceneManager::Instance()->GetRootNode()->AddChild(newObj);
-			int pos = selectedFileName.find(".fbx");
-			if (pos >= 0)
-				FbxImportManager::Instance()->ImportFbxModel((char *)selectedFileName.erase(pos).c_str(), newObj);
-		}
-		ImGui::EndChild();
-	}
-	ImGui::End();
 }
 
 void MenuManager::DrawWorldEditorDialog()
@@ -251,7 +208,9 @@ void MenuManager::DrawSceneNode(Object * node, ImGuiTreeNodeFlags flags)
 	if (selectedObj == node)
 		trueFlags |= ImGuiTreeNodeFlags_Selected;
 
-	bool isExtend = ImGui::TreeNodeEx(node->GetName().c_str(), trueFlags);
+	bool isExtend = ImGui::TreeNodeEx((node->GetName() + "##" + to_string(sceneTreeNodeIndex)).c_str(), trueFlags);
+	sceneTreeNodeIndex++;
+
 	if (ImGui::IsItemClicked())
 	{
 		selectedObj = node;
@@ -280,6 +239,8 @@ void MenuManager::DrawSceneEditorDialog()
 
 	if (ImGui::Begin("Scene Editor", &showSceneEditorDialog, windowFlags))
 	{
+		sceneTreeNodeIndex = 0;
+
 		Object* sceneRoot = SceneManager::Instance()->GetRootNode();
 		ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_SpanAvailWidth;
 
@@ -364,30 +325,45 @@ void MenuManager::DrawObjectEditorDialog()
 				else
 					texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
 
-				ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f));
+				if (ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f)))
+					InitFileBrowser("Resources\\Textures", ".tga", &MenuManager::ImportDiffuse);
 
 				ImGui::SameLine();
+				ImGui::BeginGroup();
 				ImGui::Text("Albedo");
+				if (ImGui::Button("Clear##D"))
+					mat->RemoveDiffuse();
+				ImGui::EndGroup();
 
 				if (mat->HasNormalTexture())
 					texID = (ImTextureID)mat->GetNormal();
 				else
 					texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
 
-				ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f));
+				if (ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f)))
+					InitFileBrowser("Resources\\Textures", ".tga", &MenuManager::ImportNormal);
 
 				ImGui::SameLine();
+				ImGui::BeginGroup();
 				ImGui::Text("Normal");
+				if (ImGui::Button("Clear##N"))
+					mat->RemoveNormal();
+				ImGui::EndGroup();
 
 				if (mat->HasSpecularTexture())
 					texID = (ImTextureID)mat->GetSpecular();
 				else
 					texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
 
-				ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f));
+				if (ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f)))
+					InitFileBrowser("Resources\\Textures", ".tga", &MenuManager::ImportSpecular);
 
 				ImGui::SameLine();
+				ImGui::BeginGroup();
 				ImGui::Text("Specular(r:Roughness g:Metallic)");
+				if (ImGui::Button("Clear##S"))
+					mat->RemoveSpecular();
+				ImGui::EndGroup();
 
 				if (!mat->HasSpecularTexture())
 				{
@@ -403,6 +379,109 @@ void MenuManager::DrawObjectEditorDialog()
 		}
 	}
 	ImGui::End();
+}
+
+void MenuManager::InitFileBrowser(string path, string suffix, FileImportCallback callback)
+{
+	selectedFileName = "";
+	startPath = path;
+	curPath = path;
+	fileSuffix = suffix;
+	fileImportCallback = callback;
+	showFileBroser = true;
+}
+
+void MenuManager::DrawFileBrowser()
+{
+	ImGui::SetNextWindowSize(ImVec2(600, 450), ImGuiCond_FirstUseEver);
+	ImGuiWindowFlags flags = 0;
+	flags |= ImGuiWindowFlags_NoCollapse;
+
+	if (ImGui::Begin("Files", &showFileBroser, flags))
+	{
+		ImGui::Text(curPath.c_str());
+		ImGui::Separator();
+		ImGui::Spacing();
+
+		ImGui::BeginChild("filelist", ImVec2(ImGui::GetWindowSize().x - 20, ImGui::GetWindowSize().y - 100), true);
+		if (curPath != startPath)
+		{
+			if (ImGui::Selectable(".."))
+			{
+				int pos = curPath.find_last_of("\\");
+				curPath = curPath.erase(pos);
+			}
+		}
+		for (const auto & entry : directory_iterator(curPath))
+		{
+			string fName = entry.path().filename().string();
+			if (entry.is_directory())
+			{
+				if (ImGui::Selectable(fName.c_str()))
+				{
+					curPath = curPath + "\\" + fName;
+					ImGui::EndChild();
+					ImGui::End();
+					return;
+				}
+			}
+		}
+		for (const auto & entry : directory_iterator(curPath))
+		{
+			string fName = entry.path().filename().string();
+			if (!entry.is_directory() && (int)fName.find(fileSuffix) >= 0)
+			{
+				string fileFullPath = curPath + "\\" + fName;
+				if (ImGui::Selectable(fName.c_str(), selectedFileName == fileFullPath))
+				{
+					selectedFileName = fileFullPath;
+				}
+			}
+		}
+		ImGui::EndChild();
+
+		ImGui::BeginChild("buttons", ImVec2(ImGui::GetWindowSize().x - 20, 20));
+		if (ImGui::Button("Import"))
+		{
+
+			(this->*fileImportCallback)(selectedFileName.erase(0, startPath.length() + 1));
+		}
+		ImGui::EndChild();
+	}
+	ImGui::End();
+}
+
+void MenuManager::ImportModel(string path)
+{
+	Object* newObj = new Object();
+	SceneManager::Instance()->GetRootNode()->AddChild(newObj);
+	int pos = path.find(".fbx");
+	if (pos >= 0)
+		FbxImportManager::Instance()->ImportFbxModel((char *)path.erase(pos).c_str(), newObj);
+}
+
+void MenuManager::ImportDiffuse(string path)
+{
+	MeshObject* meshObj = (MeshObject*)selectedObj;
+	int pos = path.find(".tga");
+	if (meshObj != nullptr && pos >= 0)
+		meshObj->GetMaterial()->SetDiffuse(path.erase(pos));
+}
+
+void MenuManager::ImportNormal(string path)
+{
+	MeshObject* meshObj = (MeshObject*)selectedObj;
+	int pos = path.find(".tga");
+	if (meshObj != nullptr && pos >= 0)
+		meshObj->GetMaterial()->SetNormal(path.erase(pos));
+}
+
+void MenuManager::ImportSpecular(string path)
+{
+	MeshObject* meshObj = (MeshObject*)selectedObj;
+	int pos = path.find(".tga");
+	if (meshObj != nullptr && pos >= 0)
+		meshObj->GetMaterial()->SetSpecular(path.erase(pos));
 }
 
 void MenuManager::RenderMenu()
@@ -427,9 +506,6 @@ void MenuManager::UpdateMenu()
 
 	DrawMainMenuBar();
 
-	if (showModelImportDialog)
-		DrawImportModelDialog();
-
 	if (showWorldEditorDialog)
 		DrawWorldEditorDialog();
 
@@ -438,6 +514,9 @@ void MenuManager::UpdateMenu()
 
 	if (showObjectEditorDialog)
 		DrawObjectEditorDialog();
+
+	if (showFileBroser)
+		DrawFileBrowser();
 }
 
 void MenuManager::ToogleMenu()
@@ -458,8 +537,6 @@ bool MenuManager::MouseOnMenu()
 
 MenuManager::~MenuManager()
 {
-	modelList.clear();
-	modelList.shrink_to_fit();
 	ins = nullptr;
 }
 

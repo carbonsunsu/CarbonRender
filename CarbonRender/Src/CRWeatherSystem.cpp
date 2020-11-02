@@ -272,7 +272,7 @@ void WeatherSystem::SetCloudBias(float3 b)
 void WeatherSystem::SetWeatherMap(string path)
 {
 	weatherMapPath = path;
-	weatherMapId = TextureManager::Instance()->LoadTexture(path);
+	weatherMapId = TextureManager::Instance()->LoadTexture((char*)path.c_str());
 }
 
 string WeatherSystem::GetWeatherMapPath()

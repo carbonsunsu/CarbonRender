@@ -90,11 +90,13 @@ void FixedUpdate()
 void KeyInputCallback(GLFWwindow* window, int key, int scanCode, int action, int mods)
 {
 	ControllerManager::Instance()->GetCurrentController()->KeyInputCallback(window, key, scanCode, action, mods);
+	ImGui_ImplGlfw_KeyCallback(window, key, scanCode, action, mods);
 }
 
 void MouseKeyCallback(GLFWwindow* window, int button, int state, int mods)
 {
 	ControllerManager::Instance()->GetCurrentController()->MouseKeyCallback(window, button, state);
+	ImGui_ImplGlfw_MouseButtonCallback(window, button, state, mods);
 }
 
 void MouseMotionCallback(GLFWwindow* window, double x, double y) 
@@ -105,6 +107,7 @@ void MouseMotionCallback(GLFWwindow* window, double x, double y)
 void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset)
 {
 	ControllerManager::Instance()->GetCurrentController()->ScrollCallback(window, xOffset, yOffset);
+	ImGui_ImplGlfw_ScrollCallback(window, xOffset, yOffset);
 }
 
 void main(int argc, char** argv)

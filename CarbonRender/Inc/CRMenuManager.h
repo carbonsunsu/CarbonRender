@@ -4,6 +4,9 @@
 #include "..\Inc\CRSceneManager.h"
 #include "..\Inc\CRConfigManager.h"
 
+class MenuManager;
+typedef void (MenuManager::*FileImportCallback)(string);
+
 class MenuManager
 {
 private:
@@ -12,23 +15,35 @@ private:
 
 	bool showMenu;
 	ImGuiContext* guiContext;
-	vector<string> modelList;
 
 	Object* selectedObj;
+	string selectedFileName;
+	string startPath;
+	string curPath;
+	string fileSuffix;
+	FileImportCallback fileImportCallback;
+	int sceneTreeNodeIndex;
 
-	bool showModelImportDialog;
 	bool showWorldEditorDialog;
 	bool showSceneEditorDialog;
 	bool showObjectEditorDialog;
+	bool showFileBroser;
 
 	void DrawMainMenuBar();
 	void DrawMainMenuBar_Scene();
 	void DrawMainMenuBar_Editor();
-	void DrawImportModelDialog();
 	void DrawWorldEditorDialog();
 	void DrawSceneNode(Object * node, ImGuiTreeNodeFlags flags);
 	void DrawSceneEditorDialog();
 	void DrawObjectEditorDialog();
+
+	void InitFileBrowser(string path, string suffix, FileImportCallback callback);
+	void DrawFileBrowser();
+
+	void ImportModel(string path);
+	void ImportDiffuse(string path);
+	void ImportNormal(string path);
+	void ImportSpecular(string path);
 
 public:
 	~MenuManager();

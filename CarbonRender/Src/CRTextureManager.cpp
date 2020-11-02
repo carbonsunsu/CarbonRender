@@ -100,24 +100,24 @@ TextureManager * TextureManager::Instance()
 	return ins;
 }
 
-GLuint TextureManager::LoadTexture(string dir)
+GLuint TextureManager::LoadTexture(char* filePath)
 {
-	char* fullDir = "Resources\\Textures\\";
-	fullDir = FileReader::BindString(fullDir, (char*)dir.c_str());
-	if (strstr(fullDir, ".tga") == nullptr)
-		fullDir = FileReader::BindString(fullDir, ".tga");
-	if (texturesMap.find(fullDir) != texturesMap.end())
-		return texturesMap[fullDir];
+	char* dir = "Resources\\Textures\\";
+	char* fullName = FileReader::BindString(dir, filePath);
+	if (strstr(fullName, ".tga") == nullptr)
+		fullName = FileReader::BindString(fullName, ".tga");
+	if (texturesMap.find(filePath) != texturesMap.end())
+		return texturesMap[filePath];
 
-	GLuint tex = SOIL_load_OGL_texture(fullDir,
+	GLuint tex = SOIL_load_OGL_texture(fullName,
 		SOIL_LOAD_AUTO, 
 		SOIL_CREATE_NEW_ID, 
 		SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_TEXTURE_REPEATS);
 
 	if (tex == 0)
-		cout << "SOIL loading error: " << SOIL_last_result() << " : " << fullDir << endl;
+		cout << "SOIL loading error: " << SOIL_last_result() << " : " << fullName << endl;
 	else
-		texturesMap[fullDir] = tex;
+		texturesMap[filePath] = tex;
 
 	return tex;
 }
@@ -135,6 +135,11 @@ GLuint TextureManager::LoadDefaultN()
 GLuint TextureManager::LoadDefaultS()
 {
 	return defaultTex[2];
+}
+
+GLuint * TextureManager::LoadDefaultTexs()
+{
+	return defaultTex;
 }
 
 GLuint TextureManager::GetNullTex()
