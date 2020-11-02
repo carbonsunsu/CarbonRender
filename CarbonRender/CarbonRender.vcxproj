@@ -216,7 +216,7 @@
     <PreBuildEvent>
       <Message>
       </Message>
-      <Command>del "$(TargetDir)*.*"
+      <Command>del "$(TargetDir)*.*" /q
 
 echo Y | XCOPY "$(ProjectDir)Config.cfg" "$(TargetDir)"
 echo Y | XCOPY "$(ProjectDir)Third\GL\dll\*.*" "$(TargetDir)"
@@ -257,7 +257,7 @@ echo A | XCOPY /s /q "$(ProjectDir)Resources\*.*" "$(TargetDir)Resources\*.*"</C
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PreBuildEvent>
-      <Command>del "$(TargetDir)*.*"
+      <Command>del "$(TargetDir)*.*" /q
 
 echo Y | XCOPY "$(ProjectDir)Config.cfg" "$(TargetDir)"
 echo Y | XCOPY "$(ProjectDir)Third\GL\dll\*.*" "$(TargetDir)"
