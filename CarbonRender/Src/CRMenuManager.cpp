@@ -260,6 +260,9 @@ void MenuManager::DrawSceneEditorDialog()
 
 	if (ImGui::Begin("Scene Editor", &showSceneEditorDialog, windowFlags))
 	{
+		if (ImGui::Selectable("Main Camera##Main", selectedObj == CameraManager::Instance()->GetCurrentCamera()))
+			selectedObj = CameraManager::Instance()->GetCurrentCamera();
+
 		sceneTreeNodeIndex = 0;
 
 		Object* sceneRoot = SceneManager::Instance()->GetRootNode();
@@ -328,7 +331,13 @@ void MenuManager::DrawObjectEditorDialog()
 		ImGui::Separator();
 		ImGui::Spacing();
 
-		if (selectedObj != nullptr && selectedObj->GetType() == ObjectType::eMesh)
+		if (selectedObj == nullptr)
+		{
+			ImGui::End();
+			return;
+		}
+
+		if (selectedObj->GetType() == ObjectType::eMesh)
 		{
 			MeshObject* meshObj = (MeshObject*)selectedObj;
 
@@ -409,6 +418,20 @@ void MenuManager::DrawObjectEditorDialog()
 					mat->SetMetallic(metallic);
 				}
 			}
+		}
+		else if (selectedObj->GetType() == ObjectType::eCamera)
+		{
+			Camera* camObj = (Camera*)selectedObj;
+			
+			float fov = camObj->GetFov();
+			ImGui::DragFloat("FOV", &fov, 0.1f, 1.0f, 179.0f, "%.1f");
+			camObj->SetFov(fov);
+
+			float nearClip = camObj->GetNearClip();
+			float farClip = camObj->GetFarClip();
+			ImGui::DragFloatRange2("Clip Range", &nearClip, &farClip, 0.001f, 0.001f, FLT_MAX);
+			camObj->SetNearClip(nearClip);
+			camObj->SetFarClip(farClip);
 		}
 	}
 	ImGui::End();

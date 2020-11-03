@@ -2,7 +2,7 @@
 	<World>
 		<Latitude>0.000000</Latitude>
 		<Day>180</Day>
-		<Time>15.870000</Time>
+		<Time>16.190001</Time>
 		<Turbidity>4.000000</Turbidity>
 		<Exposure>30.000000</Exposure>
 		<TimeSpeed>1500.000000</TimeSpeed>
@@ -18,8 +18,8 @@
 		<FogPrecipitation>14.000000</FogPrecipitation>
 	</World>
 	<Camera>
-		<Position x="7.801593" y="6.032876" z="-1.838024"/>
-		<Rotation x="0.999919" y="-386.000153" z="0.000000"/>
+		<Position x="13.988536" y="6.663981" z="-12.585709"/>
+		<Rotation x="13.399934" y="-749.600525" z="0.000000"/>
 		<FOV>60.000000</FOV>
 		<NearClip>0.010000</NearClip>
 		<FarClip>3000.000000</FarClip>
@@ -74,9 +74,9 @@
 						<Metallic>0.500000</Metallic>
 						<Roughness>0.500000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
+						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
+						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
+						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
 					</Material>
 					<Position x="187.297012" y="9.740960" z="-188.453400"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
@@ -87,9 +87,9 @@
 						<Metallic>0.500000</Metallic>
 						<Roughness>0.500000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
+						<Diffuse>LivingRoom2\Wall_D</Diffuse>
 						<Normal/>
-						<Specular/>
+						<Specular>LivingRoom2\Wall_S</Specular>
 					</Material>
 					<Position x="295.769562" y="151.047699" z="-210.585953"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
@@ -97,8 +97,8 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Roof" Path="LivingRoom" SubMesh="Roof" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
@@ -110,9 +110,9 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Fireplace2" Path="LivingRoom" SubMesh="Fireplace2" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Metallic>0.000000</Metallic>
+						<Roughness>0.300000</Roughness>
+						<Color R="0.000001" G="0.000001" B="0.000001" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -123,8 +123,8 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Window3" Path="LivingRoom" SubMesh="Window3" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
@@ -136,9 +136,9 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Fireplace1" Path="LivingRoom" SubMesh="Fireplace1" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Metallic>0.000000</Metallic>
+						<Roughness>1.000000</Roughness>
+						<Color R="0.000001" G="0.000001" B="0.000001" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -150,8 +150,8 @@
 				<StaticMeshObject Name="Horse" Path="LivingRoom" SubMesh="Horse" Visible="1">
 					<Material>
 						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Roughness>1.000000</Roughness>
+						<Color R="0.475490" G="0.475485" B="0.475485" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -162,9 +162,9 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Window2_3" Path="LivingRoom" SubMesh="Window2_3" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
+						<Metallic>1.000000</Metallic>
 						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Color R="0.501961" G="0.501961" B="0.501961" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -175,8 +175,8 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Wall1" Path="LivingRoom" SubMesh="Wall1" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
@@ -188,8 +188,8 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Window2_2" Path="LivingRoom" SubMesh="Window2_2" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
@@ -201,9 +201,9 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Window0_3" Path="LivingRoom" SubMesh="Window0_3" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
+						<Metallic>1.000000</Metallic>
 						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Color R="0.501961" G="0.501961" B="0.501961" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -214,8 +214,8 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Window2_1" Path="LivingRoom" SubMesh="Window2_1" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
@@ -230,9 +230,9 @@
 						<Metallic>0.500000</Metallic>
 						<Roughness>0.500000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
+						<Diffuse>LivingRoom2\Leather04_D</Diffuse>
+						<Normal>LivingRoom2\Leather04_N</Normal>
+						<Specular>LivingRoom2\Leather04_S</Specular>
 					</Material>
 					<Position x="190.392166" y="33.343189" z="-334.187775"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
@@ -240,8 +240,8 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Window0_2" Path="LivingRoom" SubMesh="Window0_2" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
@@ -253,8 +253,8 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Frame1_0" Path="LivingRoom" SubMesh="Frame1_0" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>1.000000</Metallic>
+						<Roughness>0.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
@@ -266,8 +266,8 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Wall0" Path="LivingRoom" SubMesh="Wall0" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
@@ -279,8 +279,8 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Window2_0" Path="LivingRoom" SubMesh="Window2_0" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
@@ -292,8 +292,8 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Window1" Path="LivingRoom" SubMesh="Window1" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
@@ -308,9 +308,9 @@
 						<Metallic>0.500000</Metallic>
 						<Roughness>0.500000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
+						<Diffuse>LivingRoom2\Leather04_D</Diffuse>
+						<Normal>LivingRoom2\Leather04_N</Normal>
+						<Specular>LivingRoom2\Leather04_S</Specular>
 					</Material>
 					<Position x="191.001740" y="57.130360" z="-337.514771"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
@@ -318,8 +318,8 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Window0_1" Path="LivingRoom" SubMesh="Window0_1" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
@@ -331,8 +331,8 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Window0_0" Path="LivingRoom" SubMesh="Window0_0" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
@@ -344,8 +344,8 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Fireplace0" Path="LivingRoom" SubMesh="Fireplace0" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
@@ -357,22 +357,22 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Frame0_2" Path="LivingRoom" SubMesh="Frame0_2" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>0.400000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
+						<Diffuse>LivingRoom2\P8_D</Diffuse>
 						<Normal/>
 						<Specular/>
 					</Material>
 					<Position x="185.024399" y="80.163536" z="-160.755173"/>
-					<Rotation x="0.000081" y="19.999992" z="-90.000031"/>
+					<Rotation x="17.000000" y="18.000000" z="-90.000031"/>
 					<Scale x="34.896198" y="34.896202" z="34.896198"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Sofa0" Path="LivingRoom" SubMesh="Sofa0" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
+						<Metallic>1.000000</Metallic>
 						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Color R="0.504902" G="0.504897" B="0.504897" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -383,12 +383,12 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Floor" Path="LivingRoom" SubMesh="Floor" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>0.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
+						<Diffuse>LivingRoom2\T_Wood_Floor_Walnut_D</Diffuse>
+						<Normal>LivingRoom2\T_Wood_Floor_Walnut_N</Normal>
+						<Specular>LivingRoom2\T_Wood_Floor_Walnut_S</Specular>
 					</Material>
 					<Position x="242.949585" y="0.000028" z="-172.096466"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
@@ -399,9 +399,9 @@
 						<Metallic>0.500000</Metallic>
 						<Roughness>0.500000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
+						<Diffuse>LivingRoom2\fabric02_D</Diffuse>
+						<Normal>LivingRoom2\fabric02_N</Normal>
+						<Specular>LivingRoom2\fabric02_S</Specular>
 					</Material>
 					<Position x="133.542007" y="52.022015" z="-315.863190"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
@@ -412,9 +412,9 @@
 						<Metallic>0.500000</Metallic>
 						<Roughness>0.500000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
+						<Diffuse>LivingRoom2\fabric02_D</Diffuse>
+						<Normal>LivingRoom2\fabric02_N</Normal>
+						<Specular>LivingRoom2\fabric02_S</Specular>
 					</Material>
 					<Position x="271.482300" y="53.365337" z="-311.381378"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
@@ -422,15 +422,15 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Frame0_1" Path="LivingRoom" SubMesh="Frame0_1" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>0.400000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
+						<Diffuse>LivingRoom2\paper02_D</Diffuse>
+						<Normal>LivingRoom2\paper02_N</Normal>
 						<Specular/>
 					</Material>
 					<Position x="185.010941" y="80.121765" z="-160.285431"/>
-					<Rotation x="0.000081" y="19.999992" z="-90.000031"/>
+					<Rotation x="17.000000" y="18.000000" z="-90.000031"/>
 					<Scale x="34.896198" y="34.896202" z="34.896198"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Frame0_0" Path="LivingRoom" SubMesh="Frame0_0" Visible="1">
@@ -438,20 +438,20 @@
 						<Metallic>0.500000</Metallic>
 						<Roughness>0.500000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
+						<Diffuse>LivingRoom2\T_Wood_Pine_D</Diffuse>
+						<Normal>LivingRoom2\T_Wood_Pine_N</Normal>
+						<Specular>LivingRoom2\T_Wood_Pine_S</Specular>
 					</Material>
 					<Position x="185.008377" y="79.847427" z="-159.779480"/>
-					<Rotation x="0.000081" y="19.999992" z="-90.000031"/>
+					<Rotation x="17.000000" y="18.000000" z="-90.000000"/>
 					<Scale x="34.896198" y="34.896202" z="34.896198"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Table" Path="LivingRoom" SubMesh="Table" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>1.000000</Metallic>
+						<Roughness>0.570000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
+						<Diffuse>LivingRoom2\T_Wood_Oak_D</Diffuse>
 						<Normal/>
 						<Specular/>
 					</Material>
@@ -490,9 +490,9 @@
 						<Metallic>0.500000</Metallic>
 						<Roughness>0.500000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
+						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
+						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
+						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
 					</Material>
 					<Position x="345.472992" y="68.574432" z="-337.874115"/>
 					<Rotation x="0.000030" y="89.999985" z="0.000000"/>
@@ -526,9 +526,9 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Cabinet1_0" Path="LivingRoom" SubMesh="Cabinet1_0" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
+						<Metallic>1.000000</Metallic>
 						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Color R="0.500000" G="0.499995" B="0.499995" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -585,7 +585,7 @@
 						<Normal/>
 						<Specular/>
 					</Material>
-					<Position x="48.463596" y="62.202465" z="-345.799316"/>
+					<Position x="44.373596" y="62.202465" z="-345.799316"/>
 					<Rotation x="0.000030" y="89.999985" z="0.000000"/>
 					<Scale x="100.000000" y="100.000000" z="100.000000"/>
 				</StaticMeshObject>
@@ -630,9 +630,9 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="SpoonQ" Path="LivingRoom" SubMesh="SpoonQ" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
+						<Metallic>1.000000</Metallic>
 						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Color R="0.501961" G="0.501961" B="0.501961" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -643,9 +643,9 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Radio3" Path="LivingRoom" SubMesh="Radio3" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
+						<Metallic>0.990000</Metallic>
 						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Color R="0.504902" G="0.504897" B="0.504897" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -708,10 +708,10 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Radio2" Path="LivingRoom" SubMesh="Radio2" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
+						<Metallic>0.000000</Metallic>
 						<Roughness>0.500000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
+						<Diffuse>LivingRoom2\T_Wood_Oak_D</Diffuse>
 						<Normal/>
 						<Specular/>
 					</Material>
@@ -721,10 +721,10 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Carpet" Path="LivingRoom" SubMesh="Carpet" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
-						<Roughness>0.500000</Roughness>
+						<Metallic>0.000000</Metallic>
+						<Roughness>1.000000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
+						<Diffuse>LivingRoom2\Rug01_D</Diffuse>
 						<Normal/>
 						<Specular/>
 					</Material>
@@ -736,10 +736,10 @@
 					<Material>
 						<Metallic>0.500000</Metallic>
 						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
+						<Color R="1.000000" G="0.999990" B="0.999990" A="1.000000"/>
+						<Diffuse>LivingRoom2\Cup_D</Diffuse>
 						<Normal/>
-						<Specular/>
+						<Specular>LivingRoom2\Cup_S</Specular>
 					</Material>
 					<Position x="220.003128" y="66.136940" z="-169.018723"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
@@ -815,19 +815,19 @@
 						<Metallic>0.500000</Metallic>
 						<Roughness>0.500000</Roughness>
 						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
+						<Diffuse>LivingRoom2\Cup_D</Diffuse>
 						<Normal/>
-						<Specular/>
+						<Specular>LivingRoom2\Cup_S</Specular>
 					</Material>
 					<Position x="203.711029" y="66.136940" z="-172.356064"/>
-					<Rotation x="0.000014" y="60.259800" z="-0.000006"/>
+					<Rotation x="0.000014" y="144.359802" z="-0.000006"/>
 					<Scale x="100.000000" y="100.000000" z="100.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="SpoonS" Path="LivingRoom" SubMesh="SpoonS" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
+						<Metallic>1.000000</Metallic>
 						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Color R="0.501961" G="0.501961" B="0.501961" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -866,7 +866,7 @@
 					<Material>
 						<Metallic>0.500000</Metallic>
 						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Color R="0.116713" G="0.490196" B="0.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -877,9 +877,9 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Flower leaf" Path="LivingRoom" SubMesh="Flower leaf" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
+						<Metallic>0.000000</Metallic>
 						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Color R="1.000000" G="0.000000" B="0.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>
@@ -890,9 +890,9 @@
 				</StaticMeshObject>
 				<StaticMeshObject Name="Vase" Path="LivingRoom" SubMesh="Vase" Visible="1">
 					<Material>
-						<Metallic>0.500000</Metallic>
+						<Metallic>0.000000</Metallic>
 						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+						<Color R="0.000000" G="0.205882" B="0.000000" A="1.000000"/>
 						<Diffuse/>
 						<Normal/>
 						<Specular/>

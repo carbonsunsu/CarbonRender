@@ -42,18 +42,19 @@ vec3 Random (vec3 p, float seed)
 
 vec3 ConeTracingCube (vec3 uvw, float roughness)
 {
-	return texture(cubeMap, vec3(uvw.x, max(uvw.y, 0.0f), uvw.z), roughness * 10.0f).rgb;/*
+	//return texture(cubeMap, vec3(uvw.x, max(uvw.y, 0.0f), uvw.z), roughness * 10.0f).rgb;/*
 	vec3 ambientColor = vec3(0.0f);
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		vec3 wsNoiseR = normalize(Random(uvw, i * 10.0f + 10.0f));
 		wsNoiseR = uvw + wsNoiseR * roughness;
+		wsNoiseR.y = max(wsNoiseR.y, 0.0f);
 		wsNoiseR = normalize(wsNoiseR);
 		ambientColor += texture(cubeMap, wsNoiseR).rgb;
 	}
-	ambientColor *= 0.25f;
+	ambientColor *= 0.125f;
 
-	return ambientColor;*/
+	return ambientColor;
 }
 
 void GetDiffSpec (vec3 albedo, float metallic, out vec3 diffColor, out vec3 specColor, out float oneMinusMetallic)

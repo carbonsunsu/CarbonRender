@@ -86,7 +86,9 @@ void FreeController::KeyInputCallback(GLFWwindow* window, int key, int scanCode,
 	break;
 	case GLFW_KEY_LEFT_CONTROL:
 	{
-		if (action == GLFW_RELEASE)
+		if (action == GLFW_PRESS || action == GLFW_REPEAT)
+			ctrlPressed = true;
+		else
 			ctrlPressed = false;
 	}
 	break;
@@ -95,6 +97,9 @@ void FreeController::KeyInputCallback(GLFWwindow* window, int key, int scanCode,
 		if (action == GLFW_RELEASE)
 		{
 			Object* selectedObj = MenuManager::Instance()->GetSelectedObj();
+			if (selectedObj->GetType() == ObjectType::eCamera)
+				break;
+
 			if (selectedObj != nullptr && selectedObj != SceneManager::Instance()->GetRootNode())
 			{
 				SceneManager::Instance()->DeleteSceneNode(selectedObj);
@@ -154,15 +159,6 @@ void FreeController::KeyInputCallback(GLFWwindow* window, int key, int scanCode,
 			WeatherSystem::Instance()->ToggleTimeLapse();
 	}
 	break;
-	case GLFW_KEY_LEFT_CONTROL:
-	{
-		if (action == GLFW_PRESS || action == GLFW_REPEAT)
-			ctrlPressed = true;
-		else
-			ctrlPressed = false;
-	}
-	break;
-
 	}
 }
 
