@@ -27,6 +27,9 @@ void SceneManager::Init()
 
 void SceneManager::DeleteObject(Object * obj)
 {
+	if (obj->GetParent() != nullptr)
+		obj->GetParent()->SetChildCount(obj->GetParent()->GetChildCount() - 1);
+
 	if (obj->GetType() == ObjectType::eMesh)
 	{
 		MeshObject* meshObj = (MeshObject*)obj;

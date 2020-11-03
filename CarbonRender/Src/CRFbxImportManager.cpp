@@ -397,7 +397,7 @@ int FbxImportManager::ImportFbxModel(char * filePath, Object* root, bool newAMes
 						bool* mark = new bool[ctrlPointsCount];
 						for (int i = 0; i < ctrlPointsCount; i++)
 							mark[i] = false;
-						int maxShareFace = 60;
+						int maxShareFace = 120;
 						int* multiNormalIndex = new int[ctrlPointsCount * maxShareFace];
 						float* tempVertexArray = new float[meshData->GetVertexCount() * 3];
 						float* tempColorArray = new float[meshData->GetVertexCount() * 4];

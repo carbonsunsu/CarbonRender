@@ -177,7 +177,7 @@ void main ()
 	GetDiffSpec(albedo.rgb, metallic, diffColor, specColor, oneMinusMetallic);
 	
 	vec3 inditectSpec = ConeTracingCube(wsR, roughness) * indirectShadow;
-	vec3 indirectDiff = ConeTracingCube(wsN, 1.0f) * indirectShadow;
+	vec3 indirectDiff = ConeTracingCube(wsR, 1.0f) * indirectShadow;
 	indirectDiff += gi.rgb * indirectShadow;
 
 	BRDF(diffColor, specColor, oneMinusMetallic, roughness, 

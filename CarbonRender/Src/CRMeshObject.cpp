@@ -36,7 +36,7 @@ MeshData * MeshObject::GetMeshData()
 
 void MeshObject::Render(GLuint shaderProgram, bool useTex)
 {
-	if (meshData == nullptr)
+	if (meshData == nullptr || !visible)
 		return;
 
 	UpdateModelMatrix();

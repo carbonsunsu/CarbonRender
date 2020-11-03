@@ -204,6 +204,10 @@ void MenuManager::DrawSceneNode(Object * node, ImGuiTreeNodeFlags flags)
 	if (node == nullptr)
 		return;
 
+	bool visiable = node->IsVisible();
+	if (ImGui::Checkbox(("##" + to_string(-sceneTreeNodeIndex)).c_str(), &visiable))
+		node->SetVisible(visiable);
+
 	ImGuiTreeNodeFlags trueFlags = flags;
 
 	if (node->GetChildCount() == 0)
@@ -211,6 +215,7 @@ void MenuManager::DrawSceneNode(Object * node, ImGuiTreeNodeFlags flags)
 	if (selectedObj == node)
 		trueFlags |= ImGuiTreeNodeFlags_Selected;
 
+	ImGui::SameLine();
 	bool isExtend = ImGui::TreeNodeEx((node->GetName() + "##" + to_string(sceneTreeNodeIndex)).c_str(), trueFlags);
 	sceneTreeNodeIndex++;
 
@@ -328,14 +333,18 @@ void MenuManager::DrawObjectEditorDialog()
 				else
 					texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
 
+				ImGui::PushID(1);
 				if (ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f)))
 					InitFileBrowser("Resources\\Textures", ".tga", &MenuManager::ImportDiffuse);
+				ImGui::PopID();
 
 				ImGui::SameLine();
 				ImGui::BeginGroup();
 				ImGui::Text("Albedo");
 				if (ImGui::Button("Clear##D"))
 					mat->RemoveDiffuse();
+				ImGui::SameLine();
+				ImGui::Text(mat->GetDiffusePath().c_str());
 				ImGui::EndGroup();
 
 				if (mat->HasNormalTexture())
@@ -343,14 +352,18 @@ void MenuManager::DrawObjectEditorDialog()
 				else
 					texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
 
+				ImGui::PushID(2);
 				if (ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f)))
 					InitFileBrowser("Resources\\Textures", ".tga", &MenuManager::ImportNormal);
+				ImGui::PopID();
 
 				ImGui::SameLine();
 				ImGui::BeginGroup();
 				ImGui::Text("Normal");
 				if (ImGui::Button("Clear##N"))
 					mat->RemoveNormal();
+				ImGui::SameLine();
+				ImGui::Text(mat->GetNormalPath().c_str());
 				ImGui::EndGroup();
 
 				if (mat->HasSpecularTexture())
@@ -358,14 +371,18 @@ void MenuManager::DrawObjectEditorDialog()
 				else
 					texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
 
+				ImGui::PushID(3);
 				if (ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f)))
 					InitFileBrowser("Resources\\Textures", ".tga", &MenuManager::ImportSpecular);
+				ImGui::PopID();
 
 				ImGui::SameLine();
 				ImGui::BeginGroup();
 				ImGui::Text("Specular(r:Roughness g:Metallic)");
 				if (ImGui::Button("Clear##S"))
 					mat->RemoveSpecular();
+				ImGui::SameLine();
+				ImGui::Text(mat->GetSpecularPath().c_str());
 				ImGui::EndGroup();
 
 				if (!mat->HasSpecularTexture())
@@ -399,6 +416,11 @@ void MenuManager::DrawFileBrowser()
 	ImGui::SetNextWindowSize(ImVec2(600, 450), ImGuiCond_FirstUseEver);
 	ImGuiWindowFlags flags = 0;
 	flags |= ImGuiWindowFlags_NoCollapse;
+	flags |= ImGuiWindowFlags_NoResize;
+
+	bool isTexFiles = false;
+	if (fileSuffix == ".tga")
+		isTexFiles = true;
 
 	if (ImGui::Begin("Files", &showFileBroser, flags))
 	{
@@ -406,7 +428,7 @@ void MenuManager::DrawFileBrowser()
 		ImGui::Separator();
 		ImGui::Spacing();
 
-		ImGui::BeginChild("filelist", ImVec2(ImGui::GetWindowSize().x - 20, ImGui::GetWindowSize().y - 100), true);
+		ImGui::BeginChild("filelist", ImVec2(ImGui::GetWindowSize().x - (isTexFiles ? 286 : 20), ImGui::GetWindowSize().y - 100), true);
 		if (curPath != startPath)
 		{
 			if (ImGui::Selectable(".."))
@@ -443,11 +465,32 @@ void MenuManager::DrawFileBrowser()
 		}
 		ImGui::EndChild();
 
+		if (isTexFiles)
+		{
+			ImGui::SameLine();
+			ImGui::BeginChild("preview", ImVec2(256, 276));
+			ImGui::Text("Texture Preview");
+
+			ImTextureID texID = 0;
+			string temp = selectedFileName;
+			if (!temp.empty())
+			{
+				temp = temp.erase(0, startPath.length() + 1);
+				int pos = temp.find(".tga");
+				if (pos >= 0)
+					temp.erase(pos);
+				texID = (ImTextureID)TextureManager::Instance()->LoadTexture((char*)temp.c_str());
+			}
+			ImGui::Image(texID, ImVec2(256, 256));
+
+			ImGui::EndChild();
+		}	
+
 		ImGui::BeginChild("buttons", ImVec2(ImGui::GetWindowSize().x - 20, 20));
 		if (ImGui::Button("Import"))
 		{
-
 			(this->*fileImportCallback)(selectedFileName.erase(0, startPath.length() + 1));
+			showFileBroser = false;
 		}
 		ImGui::EndChild();
 	}

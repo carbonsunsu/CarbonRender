@@ -27,6 +27,7 @@ protected:
 	Matrix4x4 modelMatrix;
 
 	string name;
+	bool visible;
 
 	unsigned int childCount;
 	Object* parent;
@@ -48,6 +49,7 @@ public:
 	void SetParent(Object* prnt);
 	void SetPrevious(Object* pre);
 	void SetNext(Object* nxt);
+	void SetVisible(bool v);
 
 	float3 GetPosition();
 	float3 GetScale();
@@ -64,6 +66,7 @@ public:
 	Object* GetNext();
 	Object* GetLastChild();
 	ObjectType GetType();
+	bool IsVisible();
 	void LookAt(float3 p);
 };
 

@@ -9,6 +9,7 @@ Object::Object()
 	childCount = 0;
 	name = "Object";
 	objType = ObjectType::eNull;
+	visible = true;
 }
 
 Object::~Object()
@@ -92,6 +93,18 @@ void Object::SetPrevious(Object * pre)
 void Object::SetNext(Object * nxt)
 {
 	next = nxt;
+}
+
+void Object::SetVisible(bool v)
+{
+	visible = v;
+
+	Object* curChild = firstChild;
+	while (curChild != nullptr)
+	{
+		curChild->SetVisible(v);
+		curChild = curChild->GetNext();
+	}
 }
 
 float3 Object::GetPosition()
@@ -192,6 +205,11 @@ Object * Object::GetLastChild()
 ObjectType Object::GetType()
 {
 	return objType;
+}
+
+bool Object::IsVisible()
+{
+	return visible;
 }
 
 void Object::LookAt(float3 p)
