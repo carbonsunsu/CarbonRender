@@ -54,6 +54,7 @@ void MenuManager::DrawMainMenuBar_Scene()
 {
 	if (ImGui::MenuItem("New Scene"))
 	{
+		selectedObj = nullptr;
 		SceneManager::Instance()->SetCurSceneName("New Scene");
 		SceneManager::Instance()->ClearCurScene();
 		SceneManager::Instance()->LoadDefaultScene();
@@ -575,8 +576,8 @@ void MenuManager::OpenNewScene(string path)
 	if (pos >= 0)
 	{
 		sceneName = path.erase(pos);
+		selectedObj = nullptr;
 		SceneManager::Instance()->SetCurSceneName(sceneName);
-
 		SceneManager::Instance()->ClearCurScene();
 		SceneManager::Instance()->LoadScene(sceneName);
 	}

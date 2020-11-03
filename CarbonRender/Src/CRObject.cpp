@@ -102,17 +102,24 @@ void Object::SetVisible(bool v)
 
 void Object::SetVisible(bool v, bool setAllChild, bool setAllParent)
 {
+	visible = v;
+
 	if (setAllParent)
 	{
 		Object* curParent = parent;
 		while (curParent != nullptr)
 		{
-			curParent->SetVisible(v, false, true);
+			Object* curChild = curParent->GetFirstChild();
+			bool isParentVisible = v;
+			while (curChild != nullptr)
+			{
+				isParentVisible = isParentVisible || curChild->IsVisible();
+				curChild = curChild->GetNext();
+			}
+			curParent->SetVisible(isParentVisible, false, true);
 			curParent = curParent->GetParent();
 		}
 	}
-
-	visible = v;
 
 	if (setAllChild)
 	{
