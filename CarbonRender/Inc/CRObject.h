@@ -50,6 +50,7 @@ public:
 	void SetPrevious(Object* pre);
 	void SetNext(Object* nxt);
 	void SetVisible(bool v);
+	void SetVisible(bool v, bool setAllChild, bool setAllParent);
 
 	float3 GetPosition();
 	float3 GetScale();

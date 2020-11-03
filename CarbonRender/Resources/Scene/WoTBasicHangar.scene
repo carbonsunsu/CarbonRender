@@ -25,12 +25,12 @@
 		<FarClip>3000.000000</FarClip>
 	</Camera>
 	<Objects>
-		<Object Name="BasicHangar">
+		<Object Name="BasicHangar" Visible="1">
 			<Position x="0.000000" y="0.000000" z="0.000000"/>
 			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
-				<StaticMeshObject Name="hangar_v2_part02.006" Path="BasicHangar" SubMesh="hangar_v2_part02.006">
+				<StaticMeshObject Name="hangar_v2_part02.006" Path="BasicHangar" SubMesh="hangar_v2_part02.006" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -43,7 +43,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part02.005" Path="BasicHangar" SubMesh="hangar_v2_part02.005">
+				<StaticMeshObject Name="hangar_v2_part02.005" Path="BasicHangar" SubMesh="hangar_v2_part02.005" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -56,7 +56,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part02.004" Path="BasicHangar" SubMesh="hangar_v2_part02.004">
+				<StaticMeshObject Name="hangar_v2_part02.004" Path="BasicHangar" SubMesh="hangar_v2_part02.004" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -69,7 +69,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part02.003" Path="BasicHangar" SubMesh="hangar_v2_part02.003">
+				<StaticMeshObject Name="hangar_v2_part02.003" Path="BasicHangar" SubMesh="hangar_v2_part02.003" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -82,7 +82,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part02.002" Path="BasicHangar" SubMesh="hangar_v2_part02.002">
+				<StaticMeshObject Name="hangar_v2_part02.002" Path="BasicHangar" SubMesh="hangar_v2_part02.002" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -95,7 +95,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part02.001" Path="BasicHangar" SubMesh="hangar_v2_part02.001">
+				<StaticMeshObject Name="hangar_v2_part02.001" Path="BasicHangar" SubMesh="hangar_v2_part02.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -108,7 +108,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part01.011" Path="BasicHangar" SubMesh="hangar_v2_part01.011">
+				<StaticMeshObject Name="hangar_v2_part01.011" Path="BasicHangar" SubMesh="hangar_v2_part01.011" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -121,7 +121,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part01.010" Path="BasicHangar" SubMesh="hangar_v2_part01.010">
+				<StaticMeshObject Name="hangar_v2_part01.010" Path="BasicHangar" SubMesh="hangar_v2_part01.010" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -134,7 +134,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part01.009" Path="BasicHangar" SubMesh="hangar_v2_part01.009">
+				<StaticMeshObject Name="hangar_v2_part01.009" Path="BasicHangar" SubMesh="hangar_v2_part01.009" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -147,7 +147,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part01.008" Path="BasicHangar" SubMesh="hangar_v2_part01.008">
+				<StaticMeshObject Name="hangar_v2_part01.008" Path="BasicHangar" SubMesh="hangar_v2_part01.008" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -160,7 +160,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part01.007" Path="BasicHangar" SubMesh="hangar_v2_part01.007">
+				<StaticMeshObject Name="hangar_v2_part01.007" Path="BasicHangar" SubMesh="hangar_v2_part01.007" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -173,7 +173,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part01.006" Path="BasicHangar" SubMesh="hangar_v2_part01.006">
+				<StaticMeshObject Name="hangar_v2_part01.006" Path="BasicHangar" SubMesh="hangar_v2_part01.006" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -186,7 +186,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part01.005" Path="BasicHangar" SubMesh="hangar_v2_part01.005">
+				<StaticMeshObject Name="hangar_v2_part01.005" Path="BasicHangar" SubMesh="hangar_v2_part01.005" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -199,7 +199,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part01.004" Path="BasicHangar" SubMesh="hangar_v2_part01.004">
+				<StaticMeshObject Name="hangar_v2_part01.004" Path="BasicHangar" SubMesh="hangar_v2_part01.004" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -212,7 +212,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part01.003" Path="BasicHangar" SubMesh="hangar_v2_part01.003">
+				<StaticMeshObject Name="hangar_v2_part01.003" Path="BasicHangar" SubMesh="hangar_v2_part01.003" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -225,7 +225,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part01.002" Path="BasicHangar" SubMesh="hangar_v2_part01.002">
+				<StaticMeshObject Name="hangar_v2_part01.002" Path="BasicHangar" SubMesh="hangar_v2_part01.002" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -238,7 +238,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part01.001" Path="BasicHangar" SubMesh="hangar_v2_part01.001">
+				<StaticMeshObject Name="hangar_v2_part01.001" Path="BasicHangar" SubMesh="hangar_v2_part01.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -251,7 +251,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="group6.001" Path="BasicHangar" SubMesh="group6.001">
+				<StaticMeshObject Name="group6.001" Path="BasicHangar" SubMesh="group6.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -264,7 +264,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="group5.001" Path="BasicHangar" SubMesh="group5.001">
+				<StaticMeshObject Name="group5.001" Path="BasicHangar" SubMesh="group5.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -277,7 +277,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="group4.002" Path="BasicHangar" SubMesh="group4.002">
+				<StaticMeshObject Name="group4.002" Path="BasicHangar" SubMesh="group4.002" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -290,7 +290,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="group4.001" Path="BasicHangar" SubMesh="group4.001">
+				<StaticMeshObject Name="group4.001" Path="BasicHangar" SubMesh="group4.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -303,7 +303,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="group3.002" Path="BasicHangar" SubMesh="group3.002">
+				<StaticMeshObject Name="group3.002" Path="BasicHangar" SubMesh="group3.002" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -316,7 +316,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="group3.001" Path="BasicHangar" SubMesh="group3.001">
+				<StaticMeshObject Name="group3.001" Path="BasicHangar" SubMesh="group3.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -329,7 +329,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="group2.001" Path="BasicHangar" SubMesh="group2.001">
+				<StaticMeshObject Name="group2.001" Path="BasicHangar" SubMesh="group2.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -342,7 +342,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="group1.001" Path="BasicHangar" SubMesh="group1.001">
+				<StaticMeshObject Name="group1.001" Path="BasicHangar" SubMesh="group1.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -355,7 +355,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Floor_part01.003" Path="BasicHangar" SubMesh="Floor_part01.003">
+				<StaticMeshObject Name="Floor_part01.003" Path="BasicHangar" SubMesh="Floor_part01.003" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -368,7 +368,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Floor_part01.002" Path="BasicHangar" SubMesh="Floor_part01.002">
+				<StaticMeshObject Name="Floor_part01.002" Path="BasicHangar" SubMesh="Floor_part01.002" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -381,7 +381,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Floor_part01.001" Path="BasicHangar" SubMesh="Floor_part01.001">
+				<StaticMeshObject Name="Floor_part01.001" Path="BasicHangar" SubMesh="Floor_part01.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -394,7 +394,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Background2" Path="BasicHangar" SubMesh="Background2">
+				<StaticMeshObject Name="Background2" Path="BasicHangar" SubMesh="Background2" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -407,7 +407,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="group6" Path="BasicHangar" SubMesh="group6">
+				<StaticMeshObject Name="group6" Path="BasicHangar" SubMesh="group6" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -420,7 +420,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="group5" Path="BasicHangar" SubMesh="group5">
+				<StaticMeshObject Name="group5" Path="BasicHangar" SubMesh="group5" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -433,7 +433,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="group4" Path="BasicHangar" SubMesh="group4">
+				<StaticMeshObject Name="group4" Path="BasicHangar" SubMesh="group4" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -446,7 +446,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="group3" Path="BasicHangar" SubMesh="group3">
+				<StaticMeshObject Name="group3" Path="BasicHangar" SubMesh="group3" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -459,7 +459,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="group2" Path="BasicHangar" SubMesh="group2">
+				<StaticMeshObject Name="group2" Path="BasicHangar" SubMesh="group2" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -472,7 +472,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="group1" Path="BasicHangar" SubMesh="group1">
+				<StaticMeshObject Name="group1" Path="BasicHangar" SubMesh="group1" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -485,7 +485,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part02" Path="BasicHangar" SubMesh="hangar_v2_part02">
+				<StaticMeshObject Name="hangar_v2_part02" Path="BasicHangar" SubMesh="hangar_v2_part02" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -498,7 +498,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="hangar_v2_part01" Path="BasicHangar" SubMesh="hangar_v2_part01">
+				<StaticMeshObject Name="hangar_v2_part01" Path="BasicHangar" SubMesh="hangar_v2_part01" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -511,7 +511,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Floor_part01" Path="BasicHangar" SubMesh="Floor_part01">
+				<StaticMeshObject Name="Floor_part01" Path="BasicHangar" SubMesh="Floor_part01" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -526,12 +526,12 @@
 				</StaticMeshObject>
 			</Children>
 		</Object>
-		<Object Name="M48A2">
+		<Object Name="M48A2" Visible="1">
 			<Position x="0.000000" y="0.000000" z="0.000000"/>
 			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
-				<StaticMeshObject Name="gun_01Shape" Path="M48A2" SubMesh="gun_01Shape">
+				<StaticMeshObject Name="gun_01Shape" Path="M48A2" SubMesh="gun_01Shape" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -544,7 +544,7 @@
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Hull" Path="M48A2" SubMesh="Hull">
+				<StaticMeshObject Name="Hull" Path="M48A2" SubMesh="Hull" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -557,7 +557,7 @@
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Turret_01" Path="M48A2" SubMesh="Turret_01">
+				<StaticMeshObject Name="Turret_01" Path="M48A2" SubMesh="Turret_01" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -570,7 +570,7 @@
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="segment2.001" Path="M48A2" SubMesh="segment2.001">
+				<StaticMeshObject Name="segment2.001" Path="M48A2" SubMesh="segment2.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -583,7 +583,7 @@
 					<Rotation x="-180.000000" y="-0.000005" z="0.000005"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="segment1.001" Path="M48A2" SubMesh="segment1.001">
+				<StaticMeshObject Name="segment1.001" Path="M48A2" SubMesh="segment1.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -596,7 +596,7 @@
 					<Rotation x="-180.000000" y="-0.000005" z="0.000005"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="segment2" Path="M48A2" SubMesh="segment2">
+				<StaticMeshObject Name="segment2" Path="M48A2" SubMesh="segment2" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -609,7 +609,7 @@
 					<Rotation x="-180.000000" y="-0.000005" z="0.000005"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="segment1" Path="M48A2" SubMesh="segment1">
+				<StaticMeshObject Name="segment1" Path="M48A2" SubMesh="segment1" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -622,7 +622,7 @@
 					<Rotation x="-180.000000" y="-0.000005" z="0.000005"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="chassis_LShape" Path="M48A2" SubMesh="chassis_LShape">
+				<StaticMeshObject Name="chassis_LShape" Path="M48A2" SubMesh="chassis_LShape" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -635,7 +635,7 @@
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="chassis_RShape" Path="M48A2" SubMesh="chassis_RShape">
+				<StaticMeshObject Name="chassis_RShape" Path="M48A2" SubMesh="chassis_RShape" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>

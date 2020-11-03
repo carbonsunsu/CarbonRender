@@ -21,6 +21,7 @@ private:
 	string startPath;
 	string curPath;
 	string fileSuffix;
+	char curSceneNameChar[32];
 	FileImportCallback fileImportCallback;
 	int sceneTreeNodeIndex;
 
@@ -28,6 +29,7 @@ private:
 	bool showSceneEditorDialog;
 	bool showObjectEditorDialog;
 	bool showFileBroser;
+	bool showSaveSceneDialog;
 
 	void DrawMainMenuBar();
 	void DrawMainMenuBar_Scene();
@@ -36,6 +38,7 @@ private:
 	void DrawSceneNode(Object * node, ImGuiTreeNodeFlags flags);
 	void DrawSceneEditorDialog();
 	void DrawObjectEditorDialog();
+	void DrawSaveSceneDialog();
 
 	void InitFileBrowser(string path, string suffix, FileImportCallback callback);
 	void DrawFileBrowser();
@@ -44,6 +47,7 @@ private:
 	void ImportDiffuse(string path);
 	void ImportNormal(string path);
 	void ImportSpecular(string path);
+	void OpenNewScene(string path);
 
 public:
 	~MenuManager();

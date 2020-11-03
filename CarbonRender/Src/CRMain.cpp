@@ -75,7 +75,12 @@ void Init(int argc, char** argv)
 	MeshManager::Instance();
 	WeatherSystem::Instance();
 
-	SceneManager::Instance()->LoadScene(ConfigManager::Instance()->GetScenePath());
+	SceneManager::Instance()->LoadDefaultScene();
+
+	//Create controller
+	FreeController *ctrl = new FreeController();
+	ctrl->Init();
+	ControllerManager::Instance()->Push(ctrl);
 
 	RenderPassManager::Instance()->Init();
 	TerrainManager::Instance();

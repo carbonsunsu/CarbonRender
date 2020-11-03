@@ -25,12 +25,12 @@
 		<FarClip>3000.000000</FarClip>
 	</Camera>
 	<Objects>
-		<Object Name="LivingRoom2">
+		<Object Name="LivingRoom2" Visible="1">
 			<Position x="0.000000" y="1.000000" z="0.000000"/>
 			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
 			<Scale x="4.000000" y="4.000000" z="4.000000"/>
 			<Children>
-				<StaticMeshObject Name="Mesh016.001" Path="LivingRoom2" SubMesh="Mesh016.001">
+				<StaticMeshObject Name="Mesh016.001" Path="LivingRoom2" SubMesh="Mesh016.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -43,7 +43,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh015.001" Path="LivingRoom2" SubMesh="Mesh015.001">
+				<StaticMeshObject Name="Mesh015.001" Path="LivingRoom2" SubMesh="Mesh015.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -56,7 +56,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh016" Path="LivingRoom2" SubMesh="Mesh016">
+				<StaticMeshObject Name="Mesh016" Path="LivingRoom2" SubMesh="Mesh016" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -69,7 +69,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh015" Path="LivingRoom2" SubMesh="Mesh015">
+				<StaticMeshObject Name="Mesh015" Path="LivingRoom2" SubMesh="Mesh015" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -82,7 +82,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh064.001" Path="LivingRoom2" SubMesh="Mesh064.001">
+				<StaticMeshObject Name="Mesh064.001" Path="LivingRoom2" SubMesh="Mesh064.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -95,7 +95,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh063.001" Path="LivingRoom2" SubMesh="Mesh063.001">
+				<StaticMeshObject Name="Mesh063.001" Path="LivingRoom2" SubMesh="Mesh063.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -108,7 +108,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh062.001" Path="LivingRoom2" SubMesh="Mesh062.001">
+				<StaticMeshObject Name="Mesh062.001" Path="LivingRoom2" SubMesh="Mesh062.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -121,7 +121,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh061.001" Path="LivingRoom2" SubMesh="Mesh061.001">
+				<StaticMeshObject Name="Mesh061.001" Path="LivingRoom2" SubMesh="Mesh061.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -134,7 +134,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh059.001" Path="LivingRoom2" SubMesh="Mesh059.001">
+				<StaticMeshObject Name="Mesh059.001" Path="LivingRoom2" SubMesh="Mesh059.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -147,7 +147,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh057.001" Path="LivingRoom2" SubMesh="Mesh057.001">
+				<StaticMeshObject Name="Mesh057.001" Path="LivingRoom2" SubMesh="Mesh057.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -160,7 +160,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh056.001" Path="LivingRoom2" SubMesh="Mesh056.001">
+				<StaticMeshObject Name="Mesh056.001" Path="LivingRoom2" SubMesh="Mesh056.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -173,7 +173,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh055.002" Path="LivingRoom2" SubMesh="Mesh055.002">
+				<StaticMeshObject Name="Mesh055.002" Path="LivingRoom2" SubMesh="Mesh055.002" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -186,7 +186,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh054.001" Path="LivingRoom2" SubMesh="Mesh054.001">
+				<StaticMeshObject Name="Mesh054.001" Path="LivingRoom2" SubMesh="Mesh054.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -199,7 +199,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh053.001" Path="LivingRoom2" SubMesh="Mesh053.001">
+				<StaticMeshObject Name="Mesh053.001" Path="LivingRoom2" SubMesh="Mesh053.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -212,7 +212,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh052.001" Path="LivingRoom2" SubMesh="Mesh052.001">
+				<StaticMeshObject Name="Mesh052.001" Path="LivingRoom2" SubMesh="Mesh052.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -225,7 +225,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh051.001" Path="LivingRoom2" SubMesh="Mesh051.001">
+				<StaticMeshObject Name="Mesh051.001" Path="LivingRoom2" SubMesh="Mesh051.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -238,7 +238,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh050.001" Path="LivingRoom2" SubMesh="Mesh050.001">
+				<StaticMeshObject Name="Mesh050.001" Path="LivingRoom2" SubMesh="Mesh050.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -251,7 +251,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh049.001" Path="LivingRoom2" SubMesh="Mesh049.001">
+				<StaticMeshObject Name="Mesh049.001" Path="LivingRoom2" SubMesh="Mesh049.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -264,7 +264,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh048.001" Path="LivingRoom2" SubMesh="Mesh048.001">
+				<StaticMeshObject Name="Mesh048.001" Path="LivingRoom2" SubMesh="Mesh048.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -277,7 +277,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh047.001" Path="LivingRoom2" SubMesh="Mesh047.001">
+				<StaticMeshObject Name="Mesh047.001" Path="LivingRoom2" SubMesh="Mesh047.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -290,7 +290,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh046.001" Path="LivingRoom2" SubMesh="Mesh046.001">
+				<StaticMeshObject Name="Mesh046.001" Path="LivingRoom2" SubMesh="Mesh046.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -303,7 +303,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh045.001" Path="LivingRoom2" SubMesh="Mesh045.001">
+				<StaticMeshObject Name="Mesh045.001" Path="LivingRoom2" SubMesh="Mesh045.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -316,7 +316,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh043.001" Path="LivingRoom2" SubMesh="Mesh043.001">
+				<StaticMeshObject Name="Mesh043.001" Path="LivingRoom2" SubMesh="Mesh043.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -329,7 +329,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh042.001" Path="LivingRoom2" SubMesh="Mesh042.001">
+				<StaticMeshObject Name="Mesh042.001" Path="LivingRoom2" SubMesh="Mesh042.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -342,7 +342,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh041.001" Path="LivingRoom2" SubMesh="Mesh041.001">
+				<StaticMeshObject Name="Mesh041.001" Path="LivingRoom2" SubMesh="Mesh041.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -355,7 +355,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh040.001" Path="LivingRoom2" SubMesh="Mesh040.001">
+				<StaticMeshObject Name="Mesh040.001" Path="LivingRoom2" SubMesh="Mesh040.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -368,7 +368,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh039.001" Path="LivingRoom2" SubMesh="Mesh039.001">
+				<StaticMeshObject Name="Mesh039.001" Path="LivingRoom2" SubMesh="Mesh039.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -381,7 +381,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh038.001" Path="LivingRoom2" SubMesh="Mesh038.001">
+				<StaticMeshObject Name="Mesh038.001" Path="LivingRoom2" SubMesh="Mesh038.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -394,7 +394,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh037.001" Path="LivingRoom2" SubMesh="Mesh037.001">
+				<StaticMeshObject Name="Mesh037.001" Path="LivingRoom2" SubMesh="Mesh037.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>0.500000</Roughness>
@@ -407,7 +407,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh036.001" Path="LivingRoom2" SubMesh="Mesh036.001">
+				<StaticMeshObject Name="Mesh036.001" Path="LivingRoom2" SubMesh="Mesh036.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -420,7 +420,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh035.001" Path="LivingRoom2" SubMesh="Mesh035.001">
+				<StaticMeshObject Name="Mesh035.001" Path="LivingRoom2" SubMesh="Mesh035.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -433,7 +433,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh034.001" Path="LivingRoom2" SubMesh="Mesh034.001">
+				<StaticMeshObject Name="Mesh034.001" Path="LivingRoom2" SubMesh="Mesh034.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -446,7 +446,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh033.001" Path="LivingRoom2" SubMesh="Mesh033.001">
+				<StaticMeshObject Name="Mesh033.001" Path="LivingRoom2" SubMesh="Mesh033.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -459,7 +459,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh031.001" Path="LivingRoom2" SubMesh="Mesh031.001">
+				<StaticMeshObject Name="Mesh031.001" Path="LivingRoom2" SubMesh="Mesh031.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>0.500000</Roughness>
@@ -472,7 +472,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh029.001" Path="LivingRoom2" SubMesh="Mesh029.001">
+				<StaticMeshObject Name="Mesh029.001" Path="LivingRoom2" SubMesh="Mesh029.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -485,7 +485,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh028.001" Path="LivingRoom2" SubMesh="Mesh028.001">
+				<StaticMeshObject Name="Mesh028.001" Path="LivingRoom2" SubMesh="Mesh028.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -498,7 +498,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh027.001" Path="LivingRoom2" SubMesh="Mesh027.001">
+				<StaticMeshObject Name="Mesh027.001" Path="LivingRoom2" SubMesh="Mesh027.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -511,7 +511,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh024.001" Path="LivingRoom2" SubMesh="Mesh024.001">
+				<StaticMeshObject Name="Mesh024.001" Path="LivingRoom2" SubMesh="Mesh024.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -524,7 +524,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh023.001" Path="LivingRoom2" SubMesh="Mesh023.001">
+				<StaticMeshObject Name="Mesh023.001" Path="LivingRoom2" SubMesh="Mesh023.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -537,7 +537,7 @@
 					<Rotation x="15.000002" y="20.000000" z="-90.000008"/>
 					<Scale x="0.348962" y="0.348962" z="0.348962"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh022.001" Path="LivingRoom2" SubMesh="Mesh022.001">
+				<StaticMeshObject Name="Mesh022.001" Path="LivingRoom2" SubMesh="Mesh022.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -550,7 +550,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh021.001" Path="LivingRoom2" SubMesh="Mesh021.001">
+				<StaticMeshObject Name="Mesh021.001" Path="LivingRoom2" SubMesh="Mesh021.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -563,7 +563,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh019.001" Path="LivingRoom2" SubMesh="Mesh019.001">
+				<StaticMeshObject Name="Mesh019.001" Path="LivingRoom2" SubMesh="Mesh019.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -576,7 +576,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh014.001" Path="LivingRoom2" SubMesh="Mesh014.001">
+				<StaticMeshObject Name="Mesh014.001" Path="LivingRoom2" SubMesh="Mesh014.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -589,7 +589,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh013.001" Path="LivingRoom2" SubMesh="Mesh013.001">
+				<StaticMeshObject Name="Mesh013.001" Path="LivingRoom2" SubMesh="Mesh013.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -602,7 +602,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh012.001" Path="LivingRoom2" SubMesh="Mesh012.001">
+				<StaticMeshObject Name="Mesh012.001" Path="LivingRoom2" SubMesh="Mesh012.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -615,7 +615,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh011.001" Path="LivingRoom2" SubMesh="Mesh011.001">
+				<StaticMeshObject Name="Mesh011.001" Path="LivingRoom2" SubMesh="Mesh011.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -628,7 +628,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh006.001" Path="LivingRoom2" SubMesh="Mesh006.001">
+				<StaticMeshObject Name="Mesh006.001" Path="LivingRoom2" SubMesh="Mesh006.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -641,7 +641,7 @@
 					<Rotation x="15.000002" y="20.000000" z="-90.000008"/>
 					<Scale x="0.348962" y="0.348962" z="0.348962"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh003.001" Path="LivingRoom2" SubMesh="Mesh003.001">
+				<StaticMeshObject Name="Mesh003.001" Path="LivingRoom2" SubMesh="Mesh003.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -654,7 +654,7 @@
 					<Rotation x="15.000002" y="20.000000" z="-90.000008"/>
 					<Scale x="0.348962" y="0.348962" z="0.348962"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh000.001" Path="LivingRoom2" SubMesh="Mesh000.001">
+				<StaticMeshObject Name="Mesh000.001" Path="LivingRoom2" SubMesh="Mesh000.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>0.800000</Roughness>
@@ -667,7 +667,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh178" Path="LivingRoom2" SubMesh="Mesh178">
+				<StaticMeshObject Name="Mesh178" Path="LivingRoom2" SubMesh="Mesh178" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -680,7 +680,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh170" Path="LivingRoom2" SubMesh="Mesh170">
+				<StaticMeshObject Name="Mesh170" Path="LivingRoom2" SubMesh="Mesh170" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -693,7 +693,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="0.890669" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh169" Path="LivingRoom2" SubMesh="Mesh169">
+				<StaticMeshObject Name="Mesh169" Path="LivingRoom2" SubMesh="Mesh169" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -706,7 +706,7 @@
 					<Rotation x="0.000009" y="-89.999992" z="2.000000"/>
 					<Scale x="0.999846" y="0.695221" z="1.122289"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh163" Path="LivingRoom2" SubMesh="Mesh163">
+				<StaticMeshObject Name="Mesh163" Path="LivingRoom2" SubMesh="Mesh163" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -719,7 +719,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh161" Path="LivingRoom2" SubMesh="Mesh161">
+				<StaticMeshObject Name="Mesh161" Path="LivingRoom2" SubMesh="Mesh161" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -732,7 +732,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh154" Path="LivingRoom2" SubMesh="Mesh154">
+				<StaticMeshObject Name="Mesh154" Path="LivingRoom2" SubMesh="Mesh154" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -745,7 +745,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh142" Path="LivingRoom2" SubMesh="Mesh142">
+				<StaticMeshObject Name="Mesh142" Path="LivingRoom2" SubMesh="Mesh142" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -758,7 +758,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh133" Path="LivingRoom2" SubMesh="Mesh133">
+				<StaticMeshObject Name="Mesh133" Path="LivingRoom2" SubMesh="Mesh133" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -771,7 +771,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh131" Path="LivingRoom2" SubMesh="Mesh131">
+				<StaticMeshObject Name="Mesh131" Path="LivingRoom2" SubMesh="Mesh131" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -784,7 +784,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh129" Path="LivingRoom2" SubMesh="Mesh129">
+				<StaticMeshObject Name="Mesh129" Path="LivingRoom2" SubMesh="Mesh129" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -797,7 +797,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh123" Path="LivingRoom2" SubMesh="Mesh123">
+				<StaticMeshObject Name="Mesh123" Path="LivingRoom2" SubMesh="Mesh123" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -810,7 +810,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh107" Path="LivingRoom2" SubMesh="Mesh107">
+				<StaticMeshObject Name="Mesh107" Path="LivingRoom2" SubMesh="Mesh107" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -823,7 +823,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh105" Path="LivingRoom2" SubMesh="Mesh105">
+				<StaticMeshObject Name="Mesh105" Path="LivingRoom2" SubMesh="Mesh105" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -836,7 +836,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="0.890669" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh098" Path="LivingRoom2" SubMesh="Mesh098">
+				<StaticMeshObject Name="Mesh098" Path="LivingRoom2" SubMesh="Mesh098" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -849,7 +849,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh096" Path="LivingRoom2" SubMesh="Mesh096">
+				<StaticMeshObject Name="Mesh096" Path="LivingRoom2" SubMesh="Mesh096" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -862,7 +862,7 @@
 					<Rotation x="0.000009" y="-89.999992" z="2.000000"/>
 					<Scale x="0.999846" y="0.695221" z="1.122289"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh093" Path="LivingRoom2" SubMesh="Mesh093">
+				<StaticMeshObject Name="Mesh093" Path="LivingRoom2" SubMesh="Mesh093" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -875,7 +875,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh092" Path="LivingRoom2" SubMesh="Mesh092">
+				<StaticMeshObject Name="Mesh092" Path="LivingRoom2" SubMesh="Mesh092" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -888,7 +888,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh084" Path="LivingRoom2" SubMesh="Mesh084">
+				<StaticMeshObject Name="Mesh084" Path="LivingRoom2" SubMesh="Mesh084" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -901,7 +901,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh077" Path="LivingRoom2" SubMesh="Mesh077">
+				<StaticMeshObject Name="Mesh077" Path="LivingRoom2" SubMesh="Mesh077" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -914,7 +914,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh074" Path="LivingRoom2" SubMesh="Mesh074">
+				<StaticMeshObject Name="Mesh074" Path="LivingRoom2" SubMesh="Mesh074" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -927,7 +927,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh068" Path="LivingRoom2" SubMesh="Mesh068">
+				<StaticMeshObject Name="Mesh068" Path="LivingRoom2" SubMesh="Mesh068" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -940,7 +940,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh062" Path="LivingRoom2" SubMesh="Mesh062">
+				<StaticMeshObject Name="Mesh062" Path="LivingRoom2" SubMesh="Mesh062" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -953,7 +953,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh061" Path="LivingRoom2" SubMesh="Mesh061">
+				<StaticMeshObject Name="Mesh061" Path="LivingRoom2" SubMesh="Mesh061" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -966,7 +966,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh060" Path="LivingRoom2" SubMesh="Mesh060">
+				<StaticMeshObject Name="Mesh060" Path="LivingRoom2" SubMesh="Mesh060" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -979,7 +979,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh059" Path="LivingRoom2" SubMesh="Mesh059">
+				<StaticMeshObject Name="Mesh059" Path="LivingRoom2" SubMesh="Mesh059" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -992,7 +992,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh056" Path="LivingRoom2" SubMesh="Mesh056">
+				<StaticMeshObject Name="Mesh056" Path="LivingRoom2" SubMesh="Mesh056" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1005,7 +1005,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh055" Path="LivingRoom2" SubMesh="Mesh055">
+				<StaticMeshObject Name="Mesh055" Path="LivingRoom2" SubMesh="Mesh055" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1018,7 +1018,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh051" Path="LivingRoom2" SubMesh="Mesh051">
+				<StaticMeshObject Name="Mesh051" Path="LivingRoom2" SubMesh="Mesh051" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1031,7 +1031,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh048" Path="LivingRoom2" SubMesh="Mesh048">
+				<StaticMeshObject Name="Mesh048" Path="LivingRoom2" SubMesh="Mesh048" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1044,7 +1044,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh029" Path="LivingRoom2" SubMesh="Mesh029">
+				<StaticMeshObject Name="Mesh029" Path="LivingRoom2" SubMesh="Mesh029" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1057,7 +1057,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh018" Path="LivingRoom2" SubMesh="Mesh018">
+				<StaticMeshObject Name="Mesh018" Path="LivingRoom2" SubMesh="Mesh018" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1070,7 +1070,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh012" Path="LivingRoom2" SubMesh="Mesh012">
+				<StaticMeshObject Name="Mesh012" Path="LivingRoom2" SubMesh="Mesh012" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1083,7 +1083,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh009" Path="LivingRoom2" SubMesh="Mesh009">
+				<StaticMeshObject Name="Mesh009" Path="LivingRoom2" SubMesh="Mesh009" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1096,7 +1096,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh008" Path="LivingRoom2" SubMesh="Mesh008">
+				<StaticMeshObject Name="Mesh008" Path="LivingRoom2" SubMesh="Mesh008" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1109,7 +1109,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh004" Path="LivingRoom2" SubMesh="Mesh004">
+				<StaticMeshObject Name="Mesh004" Path="LivingRoom2" SubMesh="Mesh004" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1122,7 +1122,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh003" Path="LivingRoom2" SubMesh="Mesh003">
+				<StaticMeshObject Name="Mesh003" Path="LivingRoom2" SubMesh="Mesh003" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1135,7 +1135,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh002" Path="LivingRoom2" SubMesh="Mesh002">
+				<StaticMeshObject Name="Mesh002" Path="LivingRoom2" SubMesh="Mesh002" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1148,7 +1148,7 @@
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh001" Path="LivingRoom2" SubMesh="Mesh001">
+				<StaticMeshObject Name="Mesh001" Path="LivingRoom2" SubMesh="Mesh001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1161,7 +1161,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh000" Path="LivingRoom2" SubMesh="Mesh000">
+				<StaticMeshObject Name="Mesh000" Path="LivingRoom2" SubMesh="Mesh000" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1174,7 +1174,7 @@
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh055.001" Path="LivingRoom2" SubMesh="Mesh055.001">
+				<StaticMeshObject Name="Mesh055.001" Path="LivingRoom2" SubMesh="Mesh055.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1187,7 +1187,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh003.002" Path="LivingRoom2" SubMesh="Mesh003.002">
+				<StaticMeshObject Name="Mesh003.002" Path="LivingRoom2" SubMesh="Mesh003.002" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1200,7 +1200,7 @@
 					<Rotation x="0.000009" y="60.259800" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh004.002" Path="LivingRoom2" SubMesh="Mesh004.002">
+				<StaticMeshObject Name="Mesh004.002" Path="LivingRoom2" SubMesh="Mesh004.002" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1213,7 +1213,7 @@
 					<Rotation x="0.000009" y="150.259796" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh061.002" Path="LivingRoom2" SubMesh="Mesh061.002">
+				<StaticMeshObject Name="Mesh061.002" Path="LivingRoom2" SubMesh="Mesh061.002" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1226,7 +1226,7 @@
 					<Rotation x="0.000009" y="60.259800" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh105.001" Path="LivingRoom2" SubMesh="Mesh105.001">
+				<StaticMeshObject Name="Mesh105.001" Path="LivingRoom2" SubMesh="Mesh105.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1239,7 +1239,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="0.890669" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh170.001" Path="LivingRoom2" SubMesh="Mesh170.001">
+				<StaticMeshObject Name="Mesh170.001" Path="LivingRoom2" SubMesh="Mesh170.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1252,7 +1252,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="0.890669" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="F2" Path="LivingRoom2" SubMesh="F2">
+				<StaticMeshObject Name="F2" Path="LivingRoom2" SubMesh="F2" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1265,7 +1265,7 @@
 					<Rotation x="0.000000" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="F1" Path="LivingRoom2" SubMesh="F1">
+				<StaticMeshObject Name="F1" Path="LivingRoom2" SubMesh="F1" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -1278,7 +1278,7 @@
 					<Rotation x="0.000000" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Mesh018.001" Path="LivingRoom2" SubMesh="Mesh018.001">
+				<StaticMeshObject Name="Mesh018.001" Path="LivingRoom2" SubMesh="Mesh018.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>

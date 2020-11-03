@@ -25,12 +25,12 @@
 		<FarClip>3000.000000</FarClip>
 	</Camera>
 	<Objects>
-		<Object Name="Box">
+		<Object Name="Box" Visible="1">
 			<Position x="0.000000" y="6.000000" z="0.000000"/>
 			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
 			<Scale x="1.000000" y="6.000000" z="1.000000"/>
 			<Children>
-				<StaticMeshObject Name="Cube" Path="Box" SubMesh="Cube">
+				<StaticMeshObject Name="Cube" Path="Box" SubMesh="Cube" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -45,12 +45,12 @@
 				</StaticMeshObject>
 			</Children>
 		</Object>
-		<Object Name="Box">
+		<Object Name="Box" Visible="1">
 			<Position x="15.000000" y="6.000000" z="0.000000"/>
 			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
 			<Scale x="1.000000" y="6.000000" z="20.000000"/>
 			<Children>
-				<StaticMeshObject Name="Cube" Path="Box" SubMesh="Cube">
+				<StaticMeshObject Name="Cube" Path="Box" SubMesh="Cube" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -65,12 +65,12 @@
 				</StaticMeshObject>
 			</Children>
 		</Object>
-		<Object Name="sphere">
+		<Object Name="sphere" Visible="1">
 			<Position x="0.000000" y="7.000000" z="5.000000"/>
 			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
-				<StaticMeshObject Name="Sphere" Path="sphere" SubMesh="Sphere">
+				<StaticMeshObject Name="Sphere" Path="sphere" SubMesh="Sphere" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -85,12 +85,12 @@
 				</StaticMeshObject>
 			</Children>
 		</Object>
-		<Object Name="sphere">
+		<Object Name="sphere" Visible="1">
 			<Position x="5.000000" y="7.000000" z="8.000000"/>
 			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
-				<StaticMeshObject Name="Sphere" Path="sphere" SubMesh="Sphere">
+				<StaticMeshObject Name="Sphere" Path="sphere" SubMesh="Sphere" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -105,12 +105,12 @@
 				</StaticMeshObject>
 			</Children>
 		</Object>
-		<Object Name="sphere">
+		<Object Name="sphere" Visible="1">
 			<Position x="10.000000" y="7.000000" z="11.000000"/>
 			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
-				<StaticMeshObject Name="Sphere" Path="sphere" SubMesh="Sphere">
+				<StaticMeshObject Name="Sphere" Path="sphere" SubMesh="Sphere" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>

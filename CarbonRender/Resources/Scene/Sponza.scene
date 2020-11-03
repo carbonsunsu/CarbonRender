@@ -25,12 +25,12 @@
 		<FarClip>3000.000000</FarClip>
 	</Camera>
 	<Objects>
-		<Object Name="HappyRecon">
+		<Object Name="HappyRecon" Visible="1">
 			<Position x="-6.000000" y="0.000000" z="6.000000"/>
 			<Rotation x="0.000000" y="0.000000" z="0.000000"/>
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
-				<StaticMeshObject Name="happy_vrip" Path="HappyRecon" SubMesh="happy_vrip">
+				<StaticMeshObject Name="happy_vrip" Path="HappyRecon" SubMesh="happy_vrip" Visible="1">
 					<Material>
 						<Metallic>0.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -45,12 +45,12 @@
 				</StaticMeshObject>
 			</Children>
 		</Object>
-		<Object Name="dragon">
+		<Object Name="dragon" Visible="1">
 			<Position x="-6.000000" y="0.000000" z="-4.000000"/>
 			<Rotation x="0.000000" y="90.000000" z="0.000000"/>
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
-				<StaticMeshObject Name="dragon_vrip" Path="dragon" SubMesh="dragon_vrip">
+				<StaticMeshObject Name="dragon_vrip" Path="dragon" SubMesh="dragon_vrip" Visible="1">
 					<Material>
 						<Metallic>0.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -65,12 +65,12 @@
 				</StaticMeshObject>
 			</Children>
 		</Object>
-		<Object Name="Sponza">
+		<Object Name="Sponza" Visible="1">
 			<Position x="0.000000" y="0.000000" z="0.000000"/>
 			<Rotation x="0.000000" y="180.000000" z="0.000000"/>
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
-				<StaticMeshObject Name="sponza_06" Path="Sponza" SubMesh="sponza_06">
+				<StaticMeshObject Name="sponza_06" Path="Sponza" SubMesh="sponza_06" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -83,7 +83,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_119" Path="Sponza" SubMesh="sponza_119">
+				<StaticMeshObject Name="sponza_119" Path="Sponza" SubMesh="sponza_119" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -96,7 +96,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_122" Path="Sponza" SubMesh="sponza_122">
+				<StaticMeshObject Name="sponza_122" Path="Sponza" SubMesh="sponza_122" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -109,7 +109,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_17" Path="Sponza" SubMesh="sponza_17">
+				<StaticMeshObject Name="sponza_17" Path="Sponza" SubMesh="sponza_17" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -122,7 +122,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_20" Path="Sponza" SubMesh="sponza_20">
+				<StaticMeshObject Name="sponza_20" Path="Sponza" SubMesh="sponza_20" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -135,7 +135,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_22" Path="Sponza" SubMesh="sponza_22">
+				<StaticMeshObject Name="sponza_22" Path="Sponza" SubMesh="sponza_22" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -148,7 +148,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_224" Path="Sponza" SubMesh="sponza_224">
+				<StaticMeshObject Name="sponza_224" Path="Sponza" SubMesh="sponza_224" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -161,7 +161,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_282" Path="Sponza" SubMesh="sponza_282">
+				<StaticMeshObject Name="sponza_282" Path="Sponza" SubMesh="sponza_282" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -174,7 +174,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_283" Path="Sponza" SubMesh="sponza_283">
+				<StaticMeshObject Name="sponza_283" Path="Sponza" SubMesh="sponza_283" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -187,7 +187,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_284" Path="Sponza" SubMesh="sponza_284">
+				<StaticMeshObject Name="sponza_284" Path="Sponza" SubMesh="sponza_284" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -200,7 +200,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_285" Path="Sponza" SubMesh="sponza_285">
+				<StaticMeshObject Name="sponza_285" Path="Sponza" SubMesh="sponza_285" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -213,7 +213,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_286" Path="Sponza" SubMesh="sponza_286">
+				<StaticMeshObject Name="sponza_286" Path="Sponza" SubMesh="sponza_286" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -226,7 +226,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_287" Path="Sponza" SubMesh="sponza_287">
+				<StaticMeshObject Name="sponza_287" Path="Sponza" SubMesh="sponza_287" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -239,7 +239,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_288" Path="Sponza" SubMesh="sponza_288">
+				<StaticMeshObject Name="sponza_288" Path="Sponza" SubMesh="sponza_288" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -252,7 +252,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_289" Path="Sponza" SubMesh="sponza_289">
+				<StaticMeshObject Name="sponza_289" Path="Sponza" SubMesh="sponza_289" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -265,7 +265,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_320" Path="Sponza" SubMesh="sponza_320">
+				<StaticMeshObject Name="sponza_320" Path="Sponza" SubMesh="sponza_320" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -278,7 +278,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_321" Path="Sponza" SubMesh="sponza_321">
+				<StaticMeshObject Name="sponza_321" Path="Sponza" SubMesh="sponza_321" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -291,7 +291,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_322" Path="Sponza" SubMesh="sponza_322">
+				<StaticMeshObject Name="sponza_322" Path="Sponza" SubMesh="sponza_322" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -304,7 +304,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_323" Path="Sponza" SubMesh="sponza_323">
+				<StaticMeshObject Name="sponza_323" Path="Sponza" SubMesh="sponza_323" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -317,7 +317,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_324" Path="Sponza" SubMesh="sponza_324">
+				<StaticMeshObject Name="sponza_324" Path="Sponza" SubMesh="sponza_324" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -330,7 +330,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_325" Path="Sponza" SubMesh="sponza_325">
+				<StaticMeshObject Name="sponza_325" Path="Sponza" SubMesh="sponza_325" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -343,7 +343,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_326" Path="Sponza" SubMesh="sponza_326">
+				<StaticMeshObject Name="sponza_326" Path="Sponza" SubMesh="sponza_326" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -356,7 +356,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_327" Path="Sponza" SubMesh="sponza_327">
+				<StaticMeshObject Name="sponza_327" Path="Sponza" SubMesh="sponza_327" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -369,7 +369,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_328" Path="Sponza" SubMesh="sponza_328">
+				<StaticMeshObject Name="sponza_328" Path="Sponza" SubMesh="sponza_328" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -382,7 +382,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_329" Path="Sponza" SubMesh="sponza_329">
+				<StaticMeshObject Name="sponza_329" Path="Sponza" SubMesh="sponza_329" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -395,7 +395,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_35.001" Path="Sponza" SubMesh="sponza_35.001">
+				<StaticMeshObject Name="sponza_35.001" Path="Sponza" SubMesh="sponza_35.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -408,7 +408,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_36.003" Path="Sponza" SubMesh="sponza_36.003">
+				<StaticMeshObject Name="sponza_36.003" Path="Sponza" SubMesh="sponza_36.003" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -421,7 +421,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="sponza_36.008" Path="Sponza" SubMesh="sponza_36.008">
+				<StaticMeshObject Name="sponza_36.008" Path="Sponza" SubMesh="sponza_36.008" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -434,7 +434,7 @@
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Frame" Path="Sponza" SubMesh="Frame">
+				<StaticMeshObject Name="Frame" Path="Sponza" SubMesh="Frame" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>0.440000</Roughness>
@@ -447,7 +447,7 @@
 					<Rotation x="0.000009" y="-89.999992" z="0.000000"/>
 					<Scale x="0.002000" y="0.002000" z="0.002000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Picture" Path="Sponza" SubMesh="Picture">
+				<StaticMeshObject Name="Picture" Path="Sponza" SubMesh="Picture" Visible="1">
 					<Material>
 						<Metallic>0.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -462,12 +462,12 @@
 				</StaticMeshObject>
 			</Children>
 		</Object>
-		<Object Name="Obj430U">
+		<Object Name="Obj430U" Visible="1">
 			<Position x="-0.370000" y="0.000000" z="0.000000"/>
 			<Rotation x="0.000000" y="180.000000" z="0.000000"/>
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
-				<StaticMeshObject Name="gun_01_Shape" Path="Obj430U" SubMesh="gun_01_Shape">
+				<StaticMeshObject Name="gun_01_Shape" Path="Obj430U" SubMesh="gun_01_Shape" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -480,7 +480,7 @@
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Hull" Path="Obj430U" SubMesh="Hull">
+				<StaticMeshObject Name="Hull" Path="Obj430U" SubMesh="Hull" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -493,7 +493,7 @@
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="Turret_01" Path="Obj430U" SubMesh="Turret_01">
+				<StaticMeshObject Name="Turret_01" Path="Obj430U" SubMesh="Turret_01" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -506,7 +506,7 @@
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="segment.001" Path="Obj430U" SubMesh="segment.001">
+				<StaticMeshObject Name="segment.001" Path="Obj430U" SubMesh="segment.001" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -519,7 +519,7 @@
 					<Rotation x="-180.000000" y="-0.000005" z="0.000005"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="segment" Path="Obj430U" SubMesh="segment">
+				<StaticMeshObject Name="segment" Path="Obj430U" SubMesh="segment" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -532,7 +532,7 @@
 					<Rotation x="-180.000000" y="-0.000005" z="0.000005"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="exportChassR1_Shape" Path="Obj430U" SubMesh="exportChassR1_Shape">
+				<StaticMeshObject Name="exportChassR1_Shape" Path="Obj430U" SubMesh="exportChassR1_Shape" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>
@@ -545,7 +545,7 @@
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
-				<StaticMeshObject Name="exportChassL1_Shape" Path="Obj430U" SubMesh="exportChassL1_Shape">
+				<StaticMeshObject Name="exportChassL1_Shape" Path="Obj430U" SubMesh="exportChassL1_Shape" Visible="1">
 					<Material>
 						<Metallic>1.000000</Metallic>
 						<Roughness>1.000000</Roughness>

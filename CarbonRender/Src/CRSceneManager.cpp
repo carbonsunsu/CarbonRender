@@ -22,6 +22,7 @@ SceneManager * SceneManager::Instance()
 
 void SceneManager::Init()
 {
+	curSceneName = "New Scene";
 	sceneRoot.SetName("Root");
 }
 
@@ -148,17 +149,40 @@ void SceneManager::LoadScene(string sceneName)
 	a[2] = atof(l2Node->value());
 	cam->SetPerspectiveCamera(a[0], a[1], a[2]);
 
-	//Create controller
-	FreeController *ctrl = new FreeController();
-	ctrl->Init();
-	ControllerManager::Instance()->Push(ctrl);
-
 	//Objs
 	l1Node = root->first_node("Objects");
 	l2Node = l1Node->first_node();
 
 	if (l2Node != nullptr)
 		ReadObjFromXMLNode(l2Node, &sceneRoot);
+}
+
+void SceneManager::LoadDefaultScene()
+{
+	//World info
+	WeatherSystem::Instance()->SetLatitude(0.0f);
+	WeatherSystem::Instance()->SetDay(180);
+	WeatherSystem::Instance()->SetHour(15.0f);
+	WeatherSystem::Instance()->SetTurbidity(4.0f);
+	WeatherSystem::Instance()->SetExposure(30.0f);
+	WeatherSystem::Instance()->SetTimeSpeed(1500.0f);
+	WeatherSystem::Instance()->SetWindDirection(float3(0.5f, 0.0f, 1.0f));
+	WeatherSystem::Instance()->SetWindStrength(10.0f);
+	WeatherSystem::Instance()->SetWeatherMap("Weather0");
+	WeatherSystem::Instance()->SetCloudMaxAltitude(6000.0f);
+	WeatherSystem::Instance()->SetCloudMinAltitude(1500.0f);
+	WeatherSystem::Instance()->SetCloudCoverage(0.675f);
+	WeatherSystem::Instance()->SetCloudPrecipitation(1.0f);
+	WeatherSystem::Instance()->SetFogDensity(0.01f);
+	WeatherSystem::Instance()->SetFogColor(float3(1.0f, 1.0f, 1.0f));
+	WeatherSystem::Instance()->SetFogMaxAltitude(20.0f);
+	WeatherSystem::Instance()->SetFogPrecipitation(14.0f);
+
+	//Camera info
+	Camera* cam = CameraManager::Instance()->Push();
+	cam->SetPosition(float3(0.0f, 1.0f, 3.0f));
+	cam->SetRotation(float3(0.0f, 0.0f, 0.0f));
+	cam->SetPerspectiveCamera(60.0f, 0.01f, 3000.0f);
 }
 
 void SceneManager::WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent, Object * obj)
@@ -181,6 +205,8 @@ void SceneManager::WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent
 			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("Path"), sceneDoc->allocate_string(meshObj->GetMeshData()->GetPath().c_str()));
 			l1Node->append_attribute(attrib);
 			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("SubMesh"), sceneDoc->allocate_string(meshObj->GetMeshData()->GetSubMeshName().c_str()));
+			l1Node->append_attribute(attrib);
+			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("Visible"), sceneDoc->allocate_string(meshObj->IsVisible() ? "1" : "0"));
 			l1Node->append_attribute(attrib);
 			parent->append_node(l1Node);
 
@@ -214,6 +240,8 @@ void SceneManager::WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent
 		{
 			l1Node->name(sceneDoc->allocate_string("Object"));
 			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("Name"), sceneDoc->allocate_string(obj->GetName().c_str()));
+			l1Node->append_attribute(attrib);
+			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("Visible"), sceneDoc->allocate_string(obj->IsVisible() ? "1" : "0"));
 			l1Node->append_attribute(attrib);
 			parent->append_node(l1Node);
 		}
@@ -275,7 +303,7 @@ void SceneManager::ReadObjFromXMLNode(xml_node<>* xmlNode, Object * sceneNodePar
 	{
 		Object* newObj = new Object();
 		sceneNodeParent->AddChild(newObj);
-
+		newObj->SetVisible((int)atof(xmlNode->first_attribute("Visible")->value()));
 	}
 	else if (strcmp(xmlNode->name(), "StaticMeshObject") == 0)
 	{
@@ -284,6 +312,7 @@ void SceneManager::ReadObjFromXMLNode(xml_node<>* xmlNode, Object * sceneNodePar
 
 		MeshData* data = FbxImportManager::Instance()->ImportFbxModel(xmlNode->first_attribute("Path")->value(), xmlNode->first_attribute("SubMesh")->value());
 		newMeshObj->SetMeshData(data);
+		newMeshObj->SetVisible((int)atof(xmlNode->first_attribute("Visible")->value()));
 
 		newMeshObj->SetMaterial(MaterialManager::Instance()->CreateNewMaterial());
 		xml_node<>* matNode = xmlNode->first_node("Material");
@@ -530,7 +559,7 @@ Object * SceneManager::GetRootNode()
 	return &sceneRoot;
 }
 
-void SceneManager::DeletSceneNode(Object * obj)
+void SceneManager::DeleteSceneNode(Object * obj)
 {
 	if (obj == nullptr)return;
 
@@ -580,4 +609,24 @@ void SceneManager::DeletSceneNode(Object * obj)
 	{
 		DeleteObject(root);
 	}
+}
+
+void SceneManager::ClearCurScene()
+{
+	Object* child = sceneRoot.GetFirstChild();
+	while (child != nullptr)
+	{
+		DeleteSceneNode(child);
+		child = sceneRoot.GetFirstChild();
+	}
+}
+
+void SceneManager::SetCurSceneName(string name)
+{
+	curSceneName = name;
+}
+
+string SceneManager::GetCurSceneName()
+{
+	return curSceneName;
 }

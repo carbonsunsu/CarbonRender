@@ -98,12 +98,30 @@ void Object::SetNext(Object * nxt)
 void Object::SetVisible(bool v)
 {
 	visible = v;
+}
 
-	Object* curChild = firstChild;
-	while (curChild != nullptr)
+void Object::SetVisible(bool v, bool setAllChild, bool setAllParent)
+{
+	if (setAllParent)
 	{
-		curChild->SetVisible(v);
-		curChild = curChild->GetNext();
+		Object* curParent = parent;
+		while (curParent != nullptr)
+		{
+			curParent->SetVisible(v, false, true);
+			curParent = curParent->GetParent();
+		}
+	}
+
+	visible = v;
+
+	if (setAllChild)
+	{
+		Object* curChild = firstChild;
+		while (curChild != nullptr)
+		{
+			curChild->SetVisible(v, true, false);
+			curChild = curChild->GetNext();
+		}
 	}
 }
 

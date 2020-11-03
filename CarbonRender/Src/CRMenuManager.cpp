@@ -34,6 +34,7 @@ void MenuManager::DrawMainMenuBar()
 {
 	if (ImGui::BeginMainMenuBar())
 	{
+		ImGui::Text(("<" + SceneManager::Instance()->GetCurSceneName() + ">").c_str());
 		if (ImGui::BeginMenu("Scene"))
 		{
 			DrawMainMenuBar_Scene();
@@ -51,9 +52,20 @@ void MenuManager::DrawMainMenuBar()
 
 void MenuManager::DrawMainMenuBar_Scene()
 {
+	if (ImGui::MenuItem("New Scene"))
+	{
+		SceneManager::Instance()->SetCurSceneName("New Scene");
+		SceneManager::Instance()->ClearCurScene();
+		SceneManager::Instance()->LoadDefaultScene();
+	}
+	if (ImGui::MenuItem("Open Scene"))
+	{
+		InitFileBrowser("Resources\\Scene", ".scene", &MenuManager::OpenNewScene);
+	}
 	if (ImGui::MenuItem("Save Scene"))
 	{
-		SceneManager::Instance()->SaveScene(ConfigManager::Instance()->GetScenePath());
+		strcpy_s(curSceneNameChar, SceneManager::Instance()->GetCurSceneName().c_str());
+		showSaveSceneDialog = true;
 	}
 	if (ImGui::MenuItem("Import Model"))
 	{
@@ -206,7 +218,7 @@ void MenuManager::DrawSceneNode(Object * node, ImGuiTreeNodeFlags flags)
 
 	bool visiable = node->IsVisible();
 	if (ImGui::Checkbox(("##" + to_string(-sceneTreeNodeIndex)).c_str(), &visiable))
-		node->SetVisible(visiable);
+		node->SetVisible(visiable, true, true);
 
 	ImGuiTreeNodeFlags trueFlags = flags;
 
@@ -401,6 +413,32 @@ void MenuManager::DrawObjectEditorDialog()
 	ImGui::End();
 }
 
+void MenuManager::DrawSaveSceneDialog()
+{
+	ImGui::OpenPopup("Save Scene");
+
+	ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.5f), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+	ImGui::SetNextWindowSize(ImVec2(200, 50), ImGuiCond_FirstUseEver);
+	ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoCollapse;
+	windowFlags |= ImGuiWindowFlags_NoResize;
+
+	if (ImGui::BeginPopupModal("Save Scene", &showSaveSceneDialog, windowFlags))
+	{
+		ImGui::InputText("", curSceneNameChar, IM_ARRAYSIZE(curSceneNameChar));
+		ImGui::Separator();
+		ImGui::Spacing();
+		
+		if (ImGui::Button("Save") && string(curSceneNameChar).length() > 0)
+		{
+			SceneManager::Instance()->SetCurSceneName(string(curSceneNameChar));
+			SceneManager::Instance()->SaveScene(SceneManager::Instance()->GetCurSceneName());
+			ImGui::CloseCurrentPopup();
+			showSaveSceneDialog = false;
+		}
+		ImGui::EndPopup();
+	}
+}
+
 void MenuManager::InitFileBrowser(string path, string suffix, FileImportCallback callback)
 {
 	selectedFileName = "";
@@ -487,7 +525,7 @@ void MenuManager::DrawFileBrowser()
 		}	
 
 		ImGui::BeginChild("buttons", ImVec2(ImGui::GetWindowSize().x - 20, 20));
-		if (ImGui::Button("Import"))
+		if (ImGui::Button("Open"))
 		{
 			(this->*fileImportCallback)(selectedFileName.erase(0, startPath.length() + 1));
 			showFileBroser = false;
@@ -530,6 +568,20 @@ void MenuManager::ImportSpecular(string path)
 		meshObj->GetMaterial()->SetSpecular(path.erase(pos));
 }
 
+void MenuManager::OpenNewScene(string path)
+{
+	int pos = path.find(".scene");
+	string sceneName;
+	if (pos >= 0)
+	{
+		sceneName = path.erase(pos);
+		SceneManager::Instance()->SetCurSceneName(sceneName);
+
+		SceneManager::Instance()->ClearCurScene();
+		SceneManager::Instance()->LoadScene(sceneName);
+	}
+}
+
 void MenuManager::RenderMenu()
 {
 	if (!showMenu)
@@ -563,6 +615,9 @@ void MenuManager::UpdateMenu()
 
 	if (showFileBroser)
 		DrawFileBrowser();
+
+	if (showSaveSceneDialog)
+		DrawSaveSceneDialog();
 }
 
 void MenuManager::ToogleMenu()

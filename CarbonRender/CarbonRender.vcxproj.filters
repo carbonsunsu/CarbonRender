@@ -361,9 +361,6 @@
     <None Include="Resources\Shader\GIDenoise.frag">
       <Filter>Shader</Filter>
     </None>
-    <None Include="Resources\Scene\Empty.scene">
-      <Filter>Scene</Filter>
-    </None>
     <None Include="Resources\Scene\LivingRoom.scene">
       <Filter>Scene</Filter>
     </None>
@@ -383,9 +380,6 @@
       <Filter>Scene</Filter>
     </None>
     <None Include="Resources\Scene\WoTPremiumHangarOpen.scene">
-      <Filter>Scene</Filter>
-    </None>
-    <None Include="Resources\Scene\TankShow.scene">
       <Filter>Scene</Filter>
     </None>
   </ItemGroup>

@@ -11,6 +11,7 @@ private:
 	SceneManager();
 	static SceneManager* ins;
 	
+	string curSceneName;
 	Object sceneRoot;
 
 	void Init();
@@ -21,6 +22,7 @@ public:
 	static SceneManager* Instance();
 	
 	void LoadScene(string sceneName);
+	void LoadDefaultScene();
 	void WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent, Object* obj);
 	void ReadObjFromXMLNode(xml_node<>* xmlNode, Object* sceneNodeParent);
 	void SaveScene(string sceneName);
@@ -28,7 +30,11 @@ public:
 	void DrawScene(GLuint shaderProgram);
 
 	Object* GetRootNode();
-	void DeletSceneNode(Object* obj);
+	void DeleteSceneNode(Object* obj);
+	void ClearCurScene();
+
+	void SetCurSceneName(string name);
+	string GetCurSceneName();
 };
 
 #endif

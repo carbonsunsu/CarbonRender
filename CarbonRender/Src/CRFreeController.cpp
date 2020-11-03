@@ -97,7 +97,7 @@ void FreeController::KeyInputCallback(GLFWwindow* window, int key, int scanCode,
 			Object* selectedObj = MenuManager::Instance()->GetSelectedObj();
 			if (selectedObj != nullptr && selectedObj != SceneManager::Instance()->GetRootNode())
 			{
-				SceneManager::Instance()->DeletSceneNode(selectedObj);
+				SceneManager::Instance()->DeleteSceneNode(selectedObj);
 				MenuManager::Instance()->ResetSelectedObj();
 			}
 		}

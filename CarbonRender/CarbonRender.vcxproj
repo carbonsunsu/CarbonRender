@@ -104,9 +104,6 @@
     <ClInclude Include="Third\imgui\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Scene\Empty.scene">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Resources\Scene\LivingRoom.scene">
       <SubType>Designer</SubType>
     </None>
@@ -114,9 +111,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Resources\Scene\ShadowTest_BigScene.scene">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Resources\Scene\TankShow.scene">
       <SubType>Designer</SubType>
     </None>
     <None Include="Resources\Scene\WoTBasicHangar.scene">

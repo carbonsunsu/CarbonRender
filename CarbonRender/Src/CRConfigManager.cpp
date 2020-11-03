@@ -26,10 +26,7 @@ void ConfigManager::LoadConfig()
 	configData.parse<0>(configFile.data);
 
 	xml_node<>* root = configData.first_node();
-	xml_node<>* l1Node = root->first_node("LoadScene");
-	scenePath = l1Node->value();
-
-	l1Node = root->first_node("FullScreen");
+	xml_node<>* l1Node = root->first_node("FullScreen");
 	bFullScreen = (bool)atoi(l1Node->value());
 
 	l1Node = root->first_node("ScreenWidth");
@@ -37,11 +34,6 @@ void ConfigManager::LoadConfig()
 
 	l1Node = root->first_node("ScreenHeight");
 	screenSize.h = atoi(l1Node->value());
-}
-
-string ConfigManager::GetScenePath()
-{
-	return scenePath;
 }
 
 bool ConfigManager::IsFullScreen()
