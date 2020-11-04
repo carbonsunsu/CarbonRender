@@ -48,6 +48,7 @@ private:
 	void ImportNormal(string path);
 	void ImportSpecular(string path);
 	void OpenNewScene(string path);
+	void ImportWeatherMap(string path);
 
 public:
 	~MenuManager();

@@ -155,6 +155,17 @@ void MenuManager::DrawWorldEditorDialog()
 
 		ImGui::Text("Cloud");
 		{
+			ImTextureID texID = (ImTextureID)WeatherSystem::Instance()->GetWeatherMapId();
+			ImGui::PushID("cloudMap");
+			if (ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f)))
+				InitFileBrowser("Resources\\Textures", ".tga", &MenuManager::ImportWeatherMap);
+			ImGui::PopID();
+			ImGui::SameLine();
+			ImGui::BeginGroup();
+			ImGui::Text("Weather Map");
+			ImGui::Text(WeatherSystem::Instance()->GetWeatherMapPath().c_str());
+			ImGui::EndGroup();
+
 			float cloudMax = WeatherSystem::Instance()->GetCloudMaxAltitude();
 			float cloudMin = WeatherSystem::Instance()->GetCloudMinAltitude();
 			ImGui::DragFloatRange2("Cloud Altitude", &cloudMin, &cloudMax, 1.0f, -FLT_MAX, +FLT_MAX, "Min: %.0f", "Max: %.0f");
@@ -604,6 +615,13 @@ void MenuManager::OpenNewScene(string path)
 		SceneManager::Instance()->ClearCurScene();
 		SceneManager::Instance()->LoadScene(sceneName);
 	}
+}
+
+void MenuManager::ImportWeatherMap(string path)
+{
+	int pos = path.find(".tga");
+	if (pos >= 0)
+		WeatherSystem::Instance()->SetWeatherMap(path.erase(pos));
 }
 
 void MenuManager::RenderMenu()
