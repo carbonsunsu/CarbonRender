@@ -6,7 +6,9 @@ layout(location = 2) out vec4 pColor;
 layout(location = 3) out vec4 sColor;
 
 in vec4 wsP;
-in vec2 uv;
+in vec2 uvD;
+in vec2 uvN;
+in vec2 uvS;
 in vec4 vertexColor;
 in vec3 N;
 in vec3 T;
@@ -14,7 +16,7 @@ in vec3 B;
 
 uniform vec4 albedoScaler;
 uniform sampler2D albedoMap;
-uniform sampler2D msMap;
+uniform sampler2D rmMap;
 uniform sampler2D normalMap;
 uniform float roughnessScale;
 uniform float metallicScale;
@@ -24,10 +26,10 @@ uniform vec2 depthClampPara;
 
 void main ()
 {
-	vec3 tsN = texture(normalMap, uv).xyz;
+	vec3 tsN = texture(normalMap, uvN).xyz;
 	tsN = tsN * 2.0f - 1.0f;
-	vec4 ms = texture(msMap, uv);
-	vec4 albedo = texture(albedoMap, uv);
+	vec4 rm = texture(rmMap, uvS);
+	vec4 albedo = texture(albedoMap, uvD);
 	albedo.rgb = pow(albedo.rgb, vec3(2.2f));
 	albedo.rgb *= albedoScaler.rgb;
 
@@ -40,8 +42,8 @@ void main ()
 
 	float d = -(viewMat * wsP).z;
 
-	aColor = vec4(albedo.xyz, min(ms.g * metallicScale, 1.0f));
+	aColor = vec4(albedo.xyz, min(rm.g * metallicScale, 1.0f));
 	nColor = vec4(wsN.x, wsN.y, wsN.z, d);
-	pColor = vec4(wsP.x, wsP.y, wsP.z, min(ms.r * roughnessScale, 1.0f));
+	pColor = vec4(wsP.x, wsP.y, wsP.z, min(rm.r * roughnessScale, 1.0f));
 	sColor = vec4(1,0,0,0);
 }

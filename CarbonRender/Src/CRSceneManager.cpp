@@ -216,6 +216,7 @@ void SceneManager::WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent
 			l2Node->append_node(l3Node);
 			l3Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Roughness"), sceneDoc->allocate_string(to_string(meshObj->GetMaterial()->GetRoughness()).c_str()));
 			l2Node->append_node(l3Node);
+
 			l3Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Color"));
 			float4 color = meshObj->GetMaterial()->GetColor();
 			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("R"), sceneDoc->allocate_string(to_string(color.x).c_str()));
@@ -227,11 +228,29 @@ void SceneManager::WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent
 			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("A"), sceneDoc->allocate_string(to_string(color.w).c_str()));
 			l3Node->append_attribute(attrib);
 			l2Node->append_node(l3Node);
+
 			l3Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Diffuse"), sceneDoc->allocate_string(meshObj->GetMaterial()->GetDiffusePath().c_str()));
+			float3 diffTilling = meshObj->GetMaterial()->GetDiffuseTilling();
+			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("tillingX"), sceneDoc->allocate_string(to_string(diffTilling.x).c_str()));
+			l3Node->append_attribute(attrib);
+			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("tillingY"), sceneDoc->allocate_string(to_string(diffTilling.y).c_str()));
+			l3Node->append_attribute(attrib);
 			l2Node->append_node(l3Node);
+
 			l3Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Normal"), sceneDoc->allocate_string(meshObj->GetMaterial()->GetNormalPath().c_str()));
+			float3 norlTilling = meshObj->GetMaterial()->GetNormalTilling();
+			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("tillingX"), sceneDoc->allocate_string(to_string(norlTilling.x).c_str()));
+			l3Node->append_attribute(attrib);
+			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("tillingY"), sceneDoc->allocate_string(to_string(norlTilling.y).c_str()));
+			l3Node->append_attribute(attrib);
 			l2Node->append_node(l3Node);
+
 			l3Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Specular"), sceneDoc->allocate_string(meshObj->GetMaterial()->GetSpecularPath().c_str()));
+			float3 specTilling = meshObj->GetMaterial()->GetSpecularTilling();
+			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("tillingX"), sceneDoc->allocate_string(to_string(specTilling.x).c_str()));
+			l3Node->append_attribute(attrib);
+			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("tillingY"), sceneDoc->allocate_string(to_string(specTilling.y).c_str()));
+			l3Node->append_attribute(attrib);
 			l2Node->append_node(l3Node);
 			l1Node->append_node(l2Node);
 		}

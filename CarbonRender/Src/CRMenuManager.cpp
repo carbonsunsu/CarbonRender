@@ -72,6 +72,18 @@ void MenuManager::DrawMainMenuBar_Scene()
 	{
 		InitFileBrowser("Resources\\Models", ".fbx", &MenuManager::ImportModel);
 	}
+	if (ImGui::MenuItem("Add a Cube"))
+	{
+		MeshObject* cube = new MeshObject();
+		cube->SetName("Cube");
+		cube->SetMeshData(MeshManager::Instance()->GetBuildinBox());
+		cube->SetMaterial(MaterialManager::Instance()->CreateNewMaterial());
+		SceneManager::Instance()->GetRootNode()->AddChild(cube);
+	}
+	if (ImGui::MenuItem("Add a Sphere"))
+	{
+
+	}
 }
 
 void MenuManager::DrawMainMenuBar_Editor()
@@ -360,6 +372,7 @@ void MenuManager::DrawObjectEditorDialog()
 				ImGui::ColorEdit4("Color", tempColor);
 				mat->SetColor(float4(tempColor[0], tempColor[1], tempColor[2], tempColor[3]));
 
+				//Diffuse
 				ImTextureID texID;
 				if (mat->HasDiffuseTexture())
 					texID = (ImTextureID)mat->GetDiffuse();
@@ -380,6 +393,13 @@ void MenuManager::DrawObjectEditorDialog()
 				ImGui::Text(mat->GetDiffusePath().c_str());
 				ImGui::EndGroup();
 
+				float3 diffTilling = mat->GetDiffuseTilling();
+				float tillingD[2] = { diffTilling.x, diffTilling.y };
+				ImGui::DragFloat2("Tilling##D", tillingD, 0.1f, -FLT_MAX, FLT_MAX, "%.1f");
+				mat->SetDiffuseTilling(tillingD[0], tillingD[1]);
+				ImGui::Spacing();
+
+				//Normal
 				if (mat->HasNormalTexture())
 					texID = (ImTextureID)mat->GetNormal();
 				else
@@ -399,6 +419,13 @@ void MenuManager::DrawObjectEditorDialog()
 				ImGui::Text(mat->GetNormalPath().c_str());
 				ImGui::EndGroup();
 
+				float3 norlTilling = mat->GetNormalTilling();
+				float tillingN[2] = { norlTilling.x, norlTilling.y };
+				ImGui::DragFloat2("Tilling##N", tillingN, 0.1f, -FLT_MAX, FLT_MAX, "%.1f");
+				mat->SetNormalTilling(tillingN[0], tillingN[1]);
+				ImGui::Spacing();
+
+				//Specular
 				if (mat->HasSpecularTexture())
 					texID = (ImTextureID)mat->GetSpecular();
 				else
@@ -417,6 +444,12 @@ void MenuManager::DrawObjectEditorDialog()
 				ImGui::SameLine();
 				ImGui::Text(mat->GetSpecularPath().c_str());
 				ImGui::EndGroup();
+
+				float3 specTilling = mat->GetSpecularTilling();
+				float tillingS[2] = { specTilling.x, specTilling.y };
+				ImGui::DragFloat2("Tilling##S", tillingS, 0.1f, -FLT_MAX, FLT_MAX, "%.1f");
+				mat->SetSpecularTilling(tillingS[0], tillingS[1]);
+				ImGui::Spacing();
 
 				if (!mat->HasSpecularTexture())
 				{

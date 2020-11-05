@@ -52,6 +52,7 @@ public:
 	void SetIndexAt(unsigned int i, unsigned index);
 	void SetPath(string pathStr, string subMeshStr);
 
+	void CopyToIndexArray(unsigned int* data);
 	void CopyToVertexArray(float* data);
 	void CopyToVertexColorArray(float* data);
 	void CopyToNormalrray(float* data);
@@ -84,8 +85,10 @@ private:
 
 	unordered_map<string, MeshData*> meshDatas;
 	MeshData buildinBox;
+	MeshData buildinSphere;
 
 	void InitBuildinBoxMesh();
+	void InitBuildinSphereMesh();
 public:
 	~MeshManager();
 	static MeshManager* Instance();
@@ -95,6 +98,7 @@ public:
 	bool Find(string meshPath, string subMeshName);
 	
 	MeshData* GetBuildinBox();
+	MeshData* GetBuildinSphere();
 };
 
 #endif

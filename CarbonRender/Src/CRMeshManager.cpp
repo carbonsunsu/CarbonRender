@@ -109,6 +109,11 @@ void MeshData::SetPath(string pathStr, string subMeshStr)
 	subMeshName = subMeshStr;
 }
 
+void MeshData::CopyToIndexArray(unsigned int * data)
+{
+	memcpy(indexArray, data, sizeof(unsigned int) * GetPolygonCount() * 3);
+}
+
 void MeshData::CopyToVertexArray(float * data)
 {
 	memcpy(vertexArray, data, sizeof(float) * GetVertexCount() * 3);
@@ -435,6 +440,7 @@ void MeshManager::InitBuildinBoxMesh()
 	buildinBox.CreateTangentArray(72);
 	buildinBox.CreateBinormalArray(72);
 
+	buildinBox.CopyToIndexArray(index);
 	buildinBox.CopyToVertexArray(vertexPos);
 	buildinBox.CopyToVertexColorArray(vertexColor);
 	buildinBox.CopyToUVArray(vertexUV);
@@ -442,10 +448,46 @@ void MeshManager::InitBuildinBoxMesh()
 	buildinBox.CopyToTangentArray(vertexTangent);
 	buildinBox.CopyToBinormalArray(vertexBinormal);
 
-	for (int i = 0; i < 36; i++)
-		buildinBox.SetIndexAt(i, index[i]);
-
 	buildinBox.GetReady4Rending();
+}
+
+void MeshManager::InitBuildinSphereMesh()
+{
+	float radius = 0.5f;
+	int slices = 360;
+	int stacks = 360;
+
+	int vertexCount = slices * (2 * stacks - 1) + 2;
+	int polygonCount = slices * (stacks * 4 - 2);
+
+	unsigned int* index = new unsigned int[polygonCount * 3];
+	float* vertexPos = new float[vertexCount * 3];
+	float* vertexUV = new float[vertexCount * 4];
+	float* vertexColor = new float[vertexCount * 4];
+	float* vertexNormal = new float[vertexCount * 3];
+	float* vertexTangent = new float[vertexCount * 3];
+	float* vertexBinormal = new float[vertexCount * 3];
+
+	for (int i = 0; i < slices; i++)
+	{
+		for (int j = 0; j < stacks; j++)
+		{
+			 
+		}
+	}
+
+	buildinSphere.SetVertexCount(vertexCount);
+	buildinSphere.SetPolygonCount(polygonCount);
+
+	buildinSphere.CreateIndexArray(polygonCount * 3);
+	buildinSphere.CreateVertexArray(vertexCount * 3);
+	buildinSphere.CreateVertexColorArray(vertexCount * 4);
+	buildinSphere.CreateUVArray(vertexCount * 4);
+	buildinSphere.CreateNormalArray(vertexCount * 3);
+	buildinSphere.CreateTangentArray(vertexCount * 3);
+	buildinSphere.CreateBinormalArray(vertexCount * 3);
+
+	
 }
 
 MeshManager::~MeshManager()
@@ -499,4 +541,9 @@ bool MeshManager::Find(string meshPath, string subMeshName)
 MeshData * MeshManager::GetBuildinBox()
 {
 	return &buildinBox;
+}
+
+MeshData * MeshManager::GetBuildinSphere()
+{
+	return &buildinSphere;
 }

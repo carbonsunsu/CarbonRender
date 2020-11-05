@@ -10,9 +10,13 @@ layout(location = 5) in vec3 msB;
 uniform mat4 modelMat;
 uniform mat4 viewMat;
 uniform mat4 proMat;
+uniform vec2 uvTilling0;
+uniform vec4 uvTilling1;
 
 out vec4 wsP;
-out vec2 uv;
+out vec2 uvD;
+out vec2 uvN;
+out vec2 uvS;
 out vec4 vertexColor;
 out vec3 N;
 out vec3 T;
@@ -27,6 +31,8 @@ void main ()
 	B = msB;
 	N = msN;
 	
-	uv = uvs.xy;
+	uvD = uvs.xy * uvTilling0.xy;
+	uvN = uvs.xy * uvTilling1.xy;
+	uvS = uvs.xy * uvTilling1.zw;
 	vertexColor = vColor;
 }

@@ -11,9 +11,10 @@ uniform mat4 modelMat;
 uniform mat4 viewMat;
 uniform mat4 proMat;
 uniform mat3 normalMat;
+uniform vec2 uvTilling0;
 
 out vec4 wsP;
-out vec2 uv;
+out vec2 uvD;
 out vec3 wsN;
 
 void main ()
@@ -22,5 +23,5 @@ void main ()
 	gl_Position = proMat * viewMat * wsP;
 
 	wsN = normalize(normalMat * msN);
-	uv = uvs.xy;
+	uvD = uvs.xy * uvTilling0.xy;
 }

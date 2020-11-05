@@ -6,7 +6,7 @@ layout(location = 2) out vec3 vplAlbedoColor;
 layout(location = 3) out vec3 vplNormalColor;
 
 in vec4 wsP;
-in vec2 uv;
+in vec2 uvD;
 in vec3 wsN;
 
 uniform vec4 albedoScaler;
@@ -17,7 +17,7 @@ uniform vec2 depthClampPara;
 
 void main ()
 {
-	vec4 albedo = texture(albedoMap, uv);
+	vec4 albedo = texture(albedoMap, uvD);
 	albedo.rgb = pow(albedo.rgb, vec3(2.2f));
 	albedo.rgb *= albedoScaler.rgb;
 

@@ -107,18 +107,13 @@
     <None Include="Resources\Scene\LivingRoom.scene">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Resources\Scene\LivingRoom2.scene" />
     <None Include="Resources\Scene\ShadowTest.scene">
       <SubType>Designer</SubType>
     </None>
     <None Include="Resources\Scene\ShadowTest_BigScene.scene">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Resources\Scene\WoTBasicHangar.scene">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Resources\Scene\WoTBasicHangarOpen.scene" />
-    <None Include="Resources\Scene\WoTPremiumHangar.scene" />
-    <None Include="Resources\Scene\WoTPremiumHangarOpen.scene" />
     <None Include="Resources\Shader\Atmosphere.frag" />
     <None Include="Resources\Shader\Atmosphere.vert" />
     <None Include="Resources\Shader\GIDenoise.frag" />
@@ -139,9 +134,6 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Config.cfg">
-      <SubType>Designer</SubType>
-    </Xml>
-    <Xml Include="Resources\Scene\Bunnies.scene">
       <SubType>Designer</SubType>
     </Xml>
     <Xml Include="Resources\Scene\Sponza.scene">

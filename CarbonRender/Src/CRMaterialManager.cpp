@@ -73,6 +73,11 @@ void Material::SetTexture(string dir, int index)
 	}
 }
 
+void Material::SetID(unsigned int newID)
+{
+	id = newID;
+}
+
 Material::Material()
 {
 	roughness = 0.5f;
@@ -83,7 +88,17 @@ Material::Material()
 	hasTex[0] = false;
 	hasTex[1] = false;
 	hasTex[2] = false;
+	texTilling[0] = 1.0f;
+	texTilling[1] = 1.0f;
+	texTilling[2] = 1.0f;
+	texTilling[3] = 1.0f;
+	texTilling[4] = 1.0f;
+	texTilling[5] = 1.0f;
 	color = float4(1.0f, 1.0f, 1.0f, 1.0f);
+	emissionColor = float3(0.0f, 0.0f, 0.0f);
+	SetDiffuse("");
+	SetNormal("");
+	SetSpecular("");
 }
 
 Material::~Material()
@@ -91,6 +106,11 @@ Material::~Material()
 	RemoveDiffuse();
 	RemoveNormal();
 	RemoveSpecular();
+}
+
+void Material::SetName(string n)
+{
+	name = n;
 }
 
 void Material::SetRoughness(float r)
@@ -148,6 +168,21 @@ float4 Material::GetColor()
 	return color;
 }
 
+float3 Material::GetDiffuseTilling()
+{
+	return float3(texTilling[0], texTilling[1], 0.0f);
+}
+
+float3 Material::GetNormalTilling()
+{
+	return float3(texTilling[2], texTilling[3], 0.0f);
+}
+
+float3 Material::GetSpecularTilling()
+{
+	return float3(texTilling[4], texTilling[5], 0.0f);
+}
+
 bool Material::HasDiffuseTexture()
 {
 	return hasTex[0];
@@ -183,6 +218,24 @@ void Material::SetColor(float4 c)
 	color = c;
 }
 
+void Material::SetDiffuseTilling(float x, float y)
+{
+	texTilling[0] = x;
+	texTilling[1] = y;
+}
+
+void Material::SetNormalTilling(float x, float y)
+{
+	texTilling[2] = x;
+	texTilling[3] = y;
+}
+
+void Material::SetSpecularTilling(float x, float y)
+{
+	texTilling[4] = x;
+	texTilling[5] = y;
+}
+
 void Material::RemoveDiffuse()
 {
 	SetTexture("", 0);
@@ -196,4 +249,14 @@ void Material::RemoveNormal()
 void Material::RemoveSpecular()
 {
 	SetTexture("", 2);
+}
+
+unsigned int Material::GetID()
+{
+	return id;
+}
+
+string Material::GetName()
+{
+	return name;
 }

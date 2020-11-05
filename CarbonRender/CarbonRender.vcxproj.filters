@@ -370,24 +370,12 @@
     <None Include="Resources\Scene\ShadowTest_BigScene.scene">
       <Filter>Scene</Filter>
     </None>
-    <None Include="Resources\Scene\WoTBasicHangar.scene">
-      <Filter>Scene</Filter>
-    </None>
-    <None Include="Resources\Scene\WoTPremiumHangar.scene">
-      <Filter>Scene</Filter>
-    </None>
-    <None Include="Resources\Scene\WoTBasicHangarOpen.scene">
-      <Filter>Scene</Filter>
-    </None>
-    <None Include="Resources\Scene\WoTPremiumHangarOpen.scene">
+    <None Include="Resources\Scene\LivingRoom2.scene">
       <Filter>Scene</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Resources\Scene\Sponza.scene">
-      <Filter>Scene</Filter>
-    </Xml>
-    <Xml Include="Resources\Scene\Bunnies.scene">
       <Filter>Scene</Filter>
     </Xml>
     <Xml Include="Config.cfg">
