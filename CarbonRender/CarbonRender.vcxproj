@@ -107,13 +107,6 @@
     <None Include="Resources\Scene\LivingRoom.scene">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Resources\Scene\LivingRoom2.scene" />
-    <None Include="Resources\Scene\ShadowTest.scene">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Resources\Scene\ShadowTest_BigScene.scene">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Resources\Shader\Atmosphere.frag" />
     <None Include="Resources\Shader\Atmosphere.vert" />
     <None Include="Resources\Shader\GIDenoise.frag" />

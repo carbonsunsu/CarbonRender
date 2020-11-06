@@ -60,6 +60,8 @@ public:
 
 	//Sun
 	unsigned int GetSunLightID();
+	float GetSunR();
+	void SetSunR(float r);
 
 	//Atmosphere
 	void SetLatitude(float l);

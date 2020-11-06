@@ -132,6 +132,10 @@ void MenuManager::DrawWorldEditorDialog()
 			float hour = WeatherSystem::Instance()->GetHour();
 			ImGui::DragFloat("Hour", &hour, 0.01f, 0.0f, 24.0f);
 			WeatherSystem::Instance()->SetHour(hour);
+
+			//float sunR = WeatherSystem::Instance()->GetSunR();
+			//ImGui::DragFloat("Sun Distance", &sunR, 1.0f, 0.0f, FLT_MAX, "%.0f");
+			//WeatherSystem::Instance()->SetSunR(sunR);
 		}
 		ImGui::Separator();
 		ImGui::Spacing();
@@ -289,6 +293,9 @@ void MenuManager::DrawSceneEditorDialog()
 	{
 		if (ImGui::Selectable("Main Camera##Main", selectedObj == CameraManager::Instance()->GetCurrentCamera()))
 			selectedObj = CameraManager::Instance()->GetCurrentCamera();
+
+		//if (ImGui::Selectable("Main Light##Main", selectedObj == LightManager::Instance()->GetLight(WeatherSystem::Instance()->GetSunLightID())))
+			//selectedObj = LightManager::Instance()->GetLight(WeatherSystem::Instance()->GetSunLightID());
 
 		sceneTreeNodeIndex = 0;
 
@@ -502,6 +509,14 @@ void MenuManager::DrawObjectEditorDialog()
 			ImGui::DragFloatRange2("Clip Range", &nearClip, &farClip, 0.001f, 0.001f, FLT_MAX);
 			camObj->SetNearClip(nearClip);
 			camObj->SetFarClip(farClip);
+		}
+		else if (selectedObj->GetType() == ObjectType::eLight)
+		{
+			Light* lightObj = (Light*)selectedObj;
+
+			float lightSize = lightObj->GetLightSize();
+			ImGui::DragFloat("Light Size", &lightSize, 1.0f, 0.0f, +FLT_MAX, "%.0f");
+			lightObj->SetLightSize(lightSize);
 		}
 	}
 	ImGui::End();

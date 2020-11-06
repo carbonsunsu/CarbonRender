@@ -127,6 +127,16 @@ unsigned int WeatherSystem::GetSunLightID()
 	return sunLightID;
 }
 
+float WeatherSystem::GetSunR()
+{
+	return lightR;
+}
+
+void WeatherSystem::SetSunR(float r)
+{
+	lightR = Math::Max(r, 0.0f);
+}
+
 void WeatherSystem::SetLatitude(float l)
 {
 	latitude = l;
