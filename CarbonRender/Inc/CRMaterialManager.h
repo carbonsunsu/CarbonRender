@@ -7,6 +7,8 @@
 class Material
 {
 private:
+	Material();
+	~Material();
 	unsigned int id;
 	string name;
 	string texDirs[3];
@@ -22,8 +24,7 @@ private:
 
 public:
 	friend class MaterialManager;
-	Material();
-	~Material();
+	
 	void SetName(string n);
 	void SetRoughness(float r);
 	void SetMetallic(float m);
@@ -63,17 +64,23 @@ private:
 	MaterialManager();
 	static MaterialManager* ins;
 	
-	vector<Material*> materials;
+	unordered_map<unsigned int, Material*> materials;
 	Material defaultMaterial;
 
 	unsigned int nextMatID;
 public:
+	friend class SceneManager;
+	friend class MenuManager;
 	~MaterialManager();
 	static MaterialManager* Instance();
 
+	Material* CreateNewMaterial(unsigned int id, string name);
 	Material* CreateNewMaterial();
+	Material* CreateNewMaterial(string name, bool findSame = true);
+	Material* GetMaterial(unsigned int id);
 	Material* GetDefaultMaterial();
-	void DeleteMaterial(Material* mat);
+	void DeleteMaterial(unsigned int id);
+	void RemoveAllMaterials();
 };
 
 #endif

@@ -18,12 +18,334 @@
 		<FogPrecipitation>37.100006</FogPrecipitation>
 	</World>
 	<Camera>
-		<Position x="0.297587" y="2.015575" z="3.981922"/>
-		<Rotation x="19.400070" y="-734.000977" z="0.000000"/>
+		<Position x="0.596379" y="3.025064" z="6.856570"/>
+		<Rotation x="11.900063" y="-738.201111" z="0.000000"/>
 		<FOV>60.000000</FOV>
 		<NearClip>0.010000</NearClip>
 		<FarClip>3000.000000</FarClip>
 	</Camera>
+	<Materials>
+		<Material ID="1" Name="New Material 1">
+			<Metallic>0.500000</Metallic>
+			<Roughness>0.500000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="226" Name="New Material 226">
+			<Metallic>0.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="260" Name="430U_turret">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_turret_01_AM_hd</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_turret_01_ANM_hd</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_turret_01_GMM_hd</Specular>
+		</Material>
+		<Material ID="227" Name="New Material 227">
+			<Metallic>0.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="228" Name="New Material 228">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_S</Specular>
+		</Material>
+		<Material ID="229" Name="New Material 229">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\ColumnA_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\ColumnA_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\ColumnA_S</Specular>
+		</Material>
+		<Material ID="230" Name="New Material 230">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\Arch_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Arch_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Arch_S</Specular>
+		</Material>
+		<Material ID="231" Name="New Material 231">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\Arch_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Arch_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Arch_S</Specular>
+		</Material>
+		<Material ID="232" Name="New Material 232">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\Arch_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Arch_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Arch_S</Specular>
+		</Material>
+		<Material ID="258" Name="430U_gun">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="0.999990" B="0.999990" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_guns_AM_hd</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_guns_ANM_hd</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_guns_GMM_hd</Specular>
+		</Material>
+		<Material ID="233" Name="New Material 233">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\ColumnC_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\ColumnC_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\ColumnC_S</Specular>
+		</Material>
+		<Material ID="234" Name="New Material 234">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\ColumnB_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\ColumnB_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\ColumnB_S</Specular>
+		</Material>
+		<Material ID="235" Name="New Material 235">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricG_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
+		</Material>
+		<Material ID="236" Name="New Material 236">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricB_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
+		</Material>
+		<Material ID="262" Name="430_segment_1">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_AM_hd</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_ANM_hd</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_GMM_hd</Specular>
+		</Material>
+		<Material ID="237" Name="New Material 237">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricR_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
+		</Material>
+		<Material ID="238" Name="New Material 238">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricG_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
+		</Material>
+		<Material ID="256" Name="New Material 256">
+			<Metallic>1.000000</Metallic>
+			<Roughness>0.440000</Roughness>
+			<Color R="1.000000" G="0.462803" B="0.323529" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="239" Name="New Material 239">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricB_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
+		</Material>
+		<Material ID="240" Name="New Material 240">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricG_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
+		</Material>
+		<Material ID="241" Name="New Material 241">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricR_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
+		</Material>
+		<Material ID="242" Name="New Material 242">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricB_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
+		</Material>
+		<Material ID="243" Name="New Material 243">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainR_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+		</Material>
+		<Material ID="244" Name="New Material 244">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainG_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+		</Material>
+		<Material ID="245" Name="New Material 245">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainB_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+		</Material>
+		<Material ID="246" Name="New Material 246">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainR_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+		</Material>
+		<Material ID="264" Name="430U_chass_l">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_AM_hd</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_ANM_hd</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_GMM_hd</Specular>
+		</Material>
+		<Material ID="247" Name="New Material 247">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainG_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+		</Material>
+		<Material ID="248" Name="New Material 248">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainB_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+		</Material>
+		<Material ID="249" Name="New Material 249">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainB_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+		</Material>
+		<Material ID="250" Name="New Material 250">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainG_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+		</Material>
+		<Material ID="251" Name="New Material 251">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainR_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+		</Material>
+		<Material ID="252" Name="New Material 252">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainB_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+		</Material>
+		<Material ID="253" Name="New Material 253">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CeilingA_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\CeilingA_S</Specular>
+		</Material>
+		<Material ID="254" Name="New Material 254">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\Flagpole_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Flagpole_S</Specular>
+		</Material>
+		<Material ID="255" Name="New Material 255">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_S</Specular>
+		</Material>
+		<Material ID="257" Name="New Material 257">
+			<Metallic>0.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\Picture_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="259" Name="430U_hull">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_hull_01_AM_hd</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_hull_01_ANM_hd</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_hull_01_GMM_hd</Specular>
+		</Material>
+		<Material ID="261" Name="430U_segment_0">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_AM_hd</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_ANM_hd</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_GMM_hd</Specular>
+		</Material>
+		<Material ID="263" Name="430U_chass_r">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_AM_hd</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_ANM_hd</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_GMM_hd</Specular>
+		</Material>
+	</Materials>
 	<Objects>
 		<Object Name="HappyRecon" Visible="1">
 			<Position x="-6.000000" y="0.000000" z="6.000000"/>
@@ -31,14 +353,7 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="happy_vrip" Path="HappyRecon" SubMesh="happy_vrip" Visible="1">
-					<Material>
-						<Metallic>0.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000"/>
-						<Normal tillingX="1.000000" tillingY="1.000000"/>
-						<Specular tillingX="1.000000" tillingY="1.000000"/>
-					</Material>
+					<MaterialID>226</MaterialID>
 					<Position x="0.000000" y="-1.000347" z="0.000000"/>
 					<Rotation x="0.000003" y="180.000000" z="-0.000000"/>
 					<Scale x="20.000000" y="20.000000" z="20.000000"/>
@@ -51,14 +366,7 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="dragon_vrip" Path="dragon" SubMesh="dragon_vrip" Visible="1">
-					<Material>
-						<Metallic>0.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000"/>
-						<Normal tillingX="1.000000" tillingY="1.000000"/>
-						<Specular tillingX="1.000000" tillingY="1.000000"/>
-					</Material>
+					<MaterialID>227</MaterialID>
 					<Position x="0.000000" y="-1.049830" z="0.000000"/>
 					<Rotation x="0.000009" y="-179.999985" z="0.000000"/>
 					<Scale x="19.999998" y="19.999998" z="19.999998"/>
@@ -71,391 +379,181 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="sponza_06" Path="Sponza" SubMesh="sponza_06" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_S</Specular>
-					</Material>
+					<MaterialID>228</MaterialID>
 					<Position x="0.000000" y="-0.010509" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_119" Path="Sponza" SubMesh="sponza_119" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\ColumnA_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\ColumnA_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\ColumnA_S</Specular>
-					</Material>
+					<MaterialID>229</MaterialID>
 					<Position x="0.000000" y="-0.010509" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_122" Path="Sponza" SubMesh="sponza_122" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\Arch_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Arch_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Arch_S</Specular>
-					</Material>
+					<MaterialID>230</MaterialID>
 					<Position x="0.000000" y="-0.010509" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_17" Path="Sponza" SubMesh="sponza_17" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\Arch_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Arch_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Arch_S</Specular>
-					</Material>
+					<MaterialID>231</MaterialID>
 					<Position x="0.000000" y="-0.010509" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_20" Path="Sponza" SubMesh="sponza_20" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\Arch_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Arch_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Arch_S</Specular>
-					</Material>
+					<MaterialID>232</MaterialID>
 					<Position x="0.000000" y="-0.010509" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_22" Path="Sponza" SubMesh="sponza_22" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\ColumnC_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\ColumnC_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\ColumnC_S</Specular>
-					</Material>
+					<MaterialID>233</MaterialID>
 					<Position x="0.000000" y="-0.010509" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_224" Path="Sponza" SubMesh="sponza_224" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\ColumnB_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\ColumnB_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\ColumnB_S</Specular>
-					</Material>
+					<MaterialID>234</MaterialID>
 					<Position x="0.000000" y="-0.010509" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_282" Path="Sponza" SubMesh="sponza_282" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricG_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
-					</Material>
+					<MaterialID>235</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_283" Path="Sponza" SubMesh="sponza_283" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricB_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
-					</Material>
+					<MaterialID>236</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_284" Path="Sponza" SubMesh="sponza_284" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricR_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
-					</Material>
+					<MaterialID>237</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_285" Path="Sponza" SubMesh="sponza_285" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricG_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
-					</Material>
+					<MaterialID>238</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_286" Path="Sponza" SubMesh="sponza_286" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricB_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
-					</Material>
+					<MaterialID>239</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_287" Path="Sponza" SubMesh="sponza_287" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricG_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
-					</Material>
+					<MaterialID>240</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_288" Path="Sponza" SubMesh="sponza_288" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricR_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
-					</Material>
+					<MaterialID>241</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_289" Path="Sponza" SubMesh="sponza_289" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricB_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
-					</Material>
+					<MaterialID>242</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_320" Path="Sponza" SubMesh="sponza_320" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainR_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
-					</Material>
+					<MaterialID>243</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_321" Path="Sponza" SubMesh="sponza_321" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainG_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
-					</Material>
+					<MaterialID>244</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_322" Path="Sponza" SubMesh="sponza_322" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainB_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
-					</Material>
+					<MaterialID>245</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_323" Path="Sponza" SubMesh="sponza_323" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainR_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
-					</Material>
+					<MaterialID>246</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_324" Path="Sponza" SubMesh="sponza_324" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainG_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
-					</Material>
+					<MaterialID>247</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_325" Path="Sponza" SubMesh="sponza_325" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainB_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
-					</Material>
+					<MaterialID>248</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_326" Path="Sponza" SubMesh="sponza_326" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainB_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
-					</Material>
+					<MaterialID>249</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_327" Path="Sponza" SubMesh="sponza_327" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainG_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
-					</Material>
+					<MaterialID>250</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_328" Path="Sponza" SubMesh="sponza_328" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainR_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
-					</Material>
+					<MaterialID>251</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_329" Path="Sponza" SubMesh="sponza_329" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainB_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
-					</Material>
+					<MaterialID>252</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_35.001" Path="Sponza" SubMesh="sponza_35.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CeilingA_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000"/>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\CeilingA_S</Specular>
-					</Material>
+					<MaterialID>253</MaterialID>
 					<Position x="0.000000" y="-7.355992" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_36.003" Path="Sponza" SubMesh="sponza_36.003" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\Flagpole_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000"/>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Flagpole_S</Specular>
-					</Material>
+					<MaterialID>254</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="sponza_36.008" Path="Sponza" SubMesh="sponza_36.008" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_N</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_S</Specular>
-					</Material>
+					<MaterialID>255</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="0.015000" y="0.015000" z="0.015000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Frame" Path="Sponza" SubMesh="Frame" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>0.440000</Roughness>
-						<Color R="1.000000" G="0.462803" B="0.323529" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000"/>
-						<Normal tillingX="1.000000" tillingY="1.000000"/>
-						<Specular tillingX="1.000000" tillingY="1.000000"/>
-					</Material>
+					<MaterialID>256</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="-89.999992" z="0.000000"/>
 					<Scale x="0.002000" y="0.002000" z="0.002000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Picture" Path="Sponza" SubMesh="Picture" Visible="1">
-					<Material>
-						<Metallic>0.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\Picture_D</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000"/>
-						<Specular tillingX="1.000000" tillingY="1.000000"/>
-					</Material>
+					<MaterialID>257</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000009" y="-89.999992" z="0.000000"/>
 					<Scale x="0.002000" y="0.002000" z="0.002000"/>
@@ -468,92 +566,43 @@
 			<Scale x="1.000000" y="1.000000" z="1.000000"/>
 			<Children>
 				<StaticMeshObject Name="gun_01_Shape" Path="Obj430U" SubMesh="gun_01_Shape" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="0.999990" B="0.999990" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_guns_AM_hd</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_guns_ANM_hd</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_guns_GMM_hd</Specular>
-					</Material>
+					<MaterialID>258</MaterialID>
 					<Position x="0.000000" y="1.552558" z="-1.156930"/>
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Hull" Path="Obj430U" SubMesh="Hull" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_hull_01_AM_hd</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_hull_01_ANM_hd</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_hull_01_GMM_hd</Specular>
-					</Material>
+					<MaterialID>259</MaterialID>
 					<Position x="0.000000" y="0.775023" z="0.000000"/>
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Turret_01" Path="Obj430U" SubMesh="Turret_01" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_turret_01_AM_hd</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_turret_01_ANM_hd</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_turret_01_GMM_hd</Specular>
-					</Material>
+					<MaterialID>260</MaterialID>
 					<Position x="0.000000" y="1.336601" z="-0.085060"/>
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="segment.001" Path="Obj430U" SubMesh="segment.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_AM_hd</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_ANM_hd</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_GMM_hd</Specular>
-					</Material>
+					<MaterialID>261</MaterialID>
 					<Position x="0.000000" y="0.000000" z="-0.128866"/>
 					<Rotation x="-180.000000" y="-0.000005" z="0.000005"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="segment" Path="Obj430U" SubMesh="segment" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_AM_hd</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_ANM_hd</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_GMM_hd</Specular>
-					</Material>
+					<MaterialID>262</MaterialID>
 					<Position x="0.000000" y="0.000000" z="-0.128866"/>
 					<Rotation x="-180.000000" y="-0.000005" z="0.000005"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="exportChassR1_Shape" Path="Obj430U" SubMesh="exportChassR1_Shape" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_AM_hd</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_ANM_hd</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_GMM_hd</Specular>
-					</Material>
+					<MaterialID>263</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="exportChassL1_Shape" Path="Obj430U" SubMesh="exportChassL1_Shape" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_AM_hd</Diffuse>
-						<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_ANM_hd</Normal>
-						<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_GMM_hd</Specular>
-					</Material>
+					<MaterialID>264</MaterialID>
 					<Position x="0.000000" y="0.000000" z="0.000000"/>
 					<Rotation x="0.000000" y="-0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>

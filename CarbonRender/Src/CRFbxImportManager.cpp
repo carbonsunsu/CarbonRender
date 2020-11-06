@@ -344,7 +344,7 @@ void FbxImportManager::ReadTexture(FbxMesh* mesh, MeshObject* meshObj, char* mes
 	meshObj->GetMaterial()->SetSpecular("");
 }
 
-int FbxImportManager::ImportFbxModel(char * filePath, Object* root, bool newAMeshObj, bool loadTex)
+int FbxImportManager::ImportFbxModel(char * filePath, Object* root, bool newAMeshObj)
 {
 	if (root != nullptr) root->SetName(filePath);
 	char* dir = "Resources\\Models\\";
@@ -540,6 +540,9 @@ int FbxImportManager::ImportFbxModel(char * filePath, Object* root, bool newAMes
 						delete[] tempBinormalArray;
 					}				
 
+					//If the newAMeshObj == false, the mesh will load into database only and then get it from MeshManager
+					//this case is used for loading mesh from scene file
+					//other case is used for importing a mesh into the current scene
 					if (newAMeshObj)
 					{
 						FbxDouble3 translation = node->LclTranslation.Get();
@@ -553,16 +556,18 @@ int FbxImportManager::ImportFbxModel(char * filePath, Object* root, bool newAMes
 						newMeshObj->SetRotation(rotation);
 						newMeshObj->SetScale(scaling);
 
-						//Get Textures
-						newMeshObj->SetMaterial(MaterialManager::Instance()->CreateNewMaterial());
-						if (loadTex)
-							ReadTexture(mesh, newMeshObj, filePath);
+						//Create material
+						FbxSurfaceMaterial* fbxMat = mesh->GetNode()->GetMaterial(0);
+						Material* newMat;
+						if (fbxMat != nullptr)
+							newMat = MaterialManager::Instance()->CreateNewMaterial(fbxMat->GetName());
 						else
-						{
-							newMeshObj->GetMaterial()->SetDiffuse("");
-							newMeshObj->GetMaterial()->SetNormal("");
-							newMeshObj->GetMaterial()->SetSpecular("");
-						}
+							newMat = MaterialManager::Instance()->CreateNewMaterial();
+
+						newMat->SetDiffuse("");
+						newMat->SetNormal("");
+						newMat->SetSpecular("");
+						newMeshObj->SetMaterial(newMat->GetID());
 
 						newMeshObj->SetMeshData(meshData);
 						if (root != nullptr) root->AddChild((Object*)newMeshObj);
@@ -592,7 +597,7 @@ MeshData * FbxImportManager::ImportFbxModel(string pathStr, string subMeshStr)
 	if (data != nullptr)
 		return data;
 
-	ImportFbxModel((char*)pathStr.c_str(), (Object*)nullptr, false, false);
+	ImportFbxModel((char*)pathStr.c_str(), (Object*)nullptr, false);
 
 	return MeshManager::Instance()->GetMeshData(pathStr, subMeshStr);
 }

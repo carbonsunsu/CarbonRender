@@ -5,18 +5,18 @@ MeshObject::MeshObject()
 	Object();
 
 	objType = ObjectType::eMesh;
-	material = nullptr;
+	materialID = 0;
 	meshData = nullptr;
 }
 
 MeshObject::~MeshObject()
 {
-	MaterialManager::Instance()->DeleteMaterial(material);
+	MaterialManager::Instance()->DeleteMaterial(materialID);
 }
 
-void MeshObject::SetMaterial(Material * mat)
+void MeshObject::SetMaterial(unsigned int id)
 {
-	material = mat;
+	materialID = id;
 }
 
 void MeshObject::SetMeshData(MeshData * data)
@@ -26,7 +26,7 @@ void MeshObject::SetMeshData(MeshData * data)
 
 Material * MeshObject::GetMaterial()
 {
-	return material;
+	return MaterialManager::Instance()->GetMaterial(materialID);
 }
 
 MeshData * MeshObject::GetMeshData()
@@ -50,6 +50,8 @@ void MeshObject::Render(GLuint shaderProgram, bool useTex)
 		curP = curP->GetParent();
 	}
 	Matrix3x3 normalMat = finalMat;
+
+	Material* material = GetMaterial();
 
 	if (useTex)
 	{

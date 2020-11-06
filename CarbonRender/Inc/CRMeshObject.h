@@ -11,13 +11,13 @@
 class MeshObject : public Object
 {
 private:
-	Material* material;
+	unsigned int materialID;
 	MeshData* meshData;
 public:
 	MeshObject();
 	~MeshObject();
 
-	void SetMaterial(Material* mat);
+	void SetMaterial(unsigned int id);
 	void SetMeshData(MeshData* data);
 
 	Material* GetMaterial();

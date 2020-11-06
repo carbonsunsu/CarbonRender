@@ -77,7 +77,7 @@ void MenuManager::DrawMainMenuBar_Scene()
 		MeshObject* cube = new MeshObject();
 		cube->SetName("Cube");
 		cube->SetMeshData(MeshManager::Instance()->GetBuildinBox());
-		cube->SetMaterial(MaterialManager::Instance()->CreateNewMaterial());
+		cube->SetMaterial(MaterialManager::Instance()->CreateNewMaterial()->GetID());
 		SceneManager::Instance()->GetRootNode()->AddChild(cube);
 	}
 	if (ImGui::MenuItem("Add a Sphere"))
@@ -367,99 +367,120 @@ void MenuManager::DrawObjectEditorDialog()
 			ImGui::Text("Material");
 			{
 				Material* mat = meshObj->GetMaterial();
-				float4 matColor = mat->GetColor();
-				float tempColor[4] = { matColor.x, matColor.y, matColor.z, matColor.w };
-				ImGui::ColorEdit4("Color", tempColor);
-				mat->SetColor(float4(tempColor[0], tempColor[1], tempColor[2], tempColor[3]));
-
-				//Diffuse
-				ImTextureID texID;
-				if (mat->HasDiffuseTexture())
-					texID = (ImTextureID)mat->GetDiffuse();
-				else
-					texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
-
-				ImGui::PushID(1);
-				if (ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f)))
-					InitFileBrowser("Resources\\Textures", ".tga", &MenuManager::ImportDiffuse);
-				ImGui::PopID();
-
-				ImGui::SameLine();
-				ImGui::BeginGroup();
-				ImGui::Text("Albedo");
-				if (ImGui::Button("Clear##D"))
-					mat->RemoveDiffuse();
-				ImGui::SameLine();
-				ImGui::Text(mat->GetDiffusePath().c_str());
-				ImGui::EndGroup();
-
-				float3 diffTilling = mat->GetDiffuseTilling();
-				float tillingD[2] = { diffTilling.x, diffTilling.y };
-				ImGui::DragFloat2("Tilling##D", tillingD, 0.1f, -FLT_MAX, FLT_MAX, "%.1f");
-				mat->SetDiffuseTilling(tillingD[0], tillingD[1]);
-				ImGui::Spacing();
-
-				//Normal
-				if (mat->HasNormalTexture())
-					texID = (ImTextureID)mat->GetNormal();
-				else
-					texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
-
-				ImGui::PushID(2);
-				if (ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f)))
-					InitFileBrowser("Resources\\Textures", ".tga", &MenuManager::ImportNormal);
-				ImGui::PopID();
-
-				ImGui::SameLine();
-				ImGui::BeginGroup();
-				ImGui::Text("Normal");
-				if (ImGui::Button("Clear##N"))
-					mat->RemoveNormal();
-				ImGui::SameLine();
-				ImGui::Text(mat->GetNormalPath().c_str());
-				ImGui::EndGroup();
-
-				float3 norlTilling = mat->GetNormalTilling();
-				float tillingN[2] = { norlTilling.x, norlTilling.y };
-				ImGui::DragFloat2("Tilling##N", tillingN, 0.1f, -FLT_MAX, FLT_MAX, "%.1f");
-				mat->SetNormalTilling(tillingN[0], tillingN[1]);
-				ImGui::Spacing();
-
-				//Specular
-				if (mat->HasSpecularTexture())
-					texID = (ImTextureID)mat->GetSpecular();
-				else
-					texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
-
-				ImGui::PushID(3);
-				if (ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f)))
-					InitFileBrowser("Resources\\Textures", ".tga", &MenuManager::ImportSpecular);
-				ImGui::PopID();
-
-				ImGui::SameLine();
-				ImGui::BeginGroup();
-				ImGui::Text("Specular(r:Roughness g:Metallic)");
-				if (ImGui::Button("Clear##S"))
-					mat->RemoveSpecular();
-				ImGui::SameLine();
-				ImGui::Text(mat->GetSpecularPath().c_str());
-				ImGui::EndGroup();
-
-				float3 specTilling = mat->GetSpecularTilling();
-				float tillingS[2] = { specTilling.x, specTilling.y };
-				ImGui::DragFloat2("Tilling##S", tillingS, 0.1f, -FLT_MAX, FLT_MAX, "%.1f");
-				mat->SetSpecularTilling(tillingS[0], tillingS[1]);
-				ImGui::Spacing();
-
-				if (!mat->HasSpecularTexture())
+				//Name
+				if (ImGui::Button("Change"))
 				{
-					float roughness = mat->GetRoughness();
-					ImGui::DragFloat("Roughness", &roughness, 0.01f, 0.0f, 1.0f, "%.2f");
-					mat->SetRoughness(roughness);
 
-					float metallic = mat->GetMetallic();
-					ImGui::DragFloat("Metallic", &metallic, 0.01f, 0.0f, 1.0f, "%.2f");
-					mat->SetMetallic(metallic);
+				}
+
+				if (mat == MaterialManager::Instance()->GetDefaultMaterial())
+				{
+					ImGui::SameLine();
+					ImGui::Text("Missing Material");
+				}
+				else
+				{
+					ImGui::SameLine();
+					char matNameChar[128];
+					strcpy_s(matNameChar, mat->GetName().c_str());
+					ImGui::InputText("##MatName", matNameChar, IM_ARRAYSIZE(matNameChar));
+					mat->SetName(matNameChar);
+
+					//Color
+					float4 matColor = mat->GetColor();
+					float tempColor[4] = { matColor.x, matColor.y, matColor.z, matColor.w };
+					ImGui::ColorEdit4("Color", tempColor);
+					mat->SetColor(float4(tempColor[0], tempColor[1], tempColor[2], tempColor[3]));
+
+					//Diffuse
+					ImTextureID texID;
+					if (mat->HasDiffuseTexture())
+						texID = (ImTextureID)mat->GetDiffuse();
+					else
+						texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
+
+					ImGui::PushID(1);
+					if (ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f)))
+						InitFileBrowser("Resources\\Textures", ".tga", &MenuManager::ImportDiffuse);
+					ImGui::PopID();
+
+					ImGui::SameLine();
+					ImGui::BeginGroup();
+					ImGui::Text("Albedo");
+					if (ImGui::Button("Clear##D"))
+						mat->RemoveDiffuse();
+					ImGui::SameLine();
+					ImGui::Text(mat->GetDiffusePath().c_str());
+					ImGui::EndGroup();
+
+					float3 diffTilling = mat->GetDiffuseTilling();
+					float tillingD[2] = { diffTilling.x, diffTilling.y };
+					ImGui::DragFloat2("Tilling##D", tillingD, 0.1f, -FLT_MAX, FLT_MAX, "%.1f");
+					mat->SetDiffuseTilling(tillingD[0], tillingD[1]);
+					ImGui::Spacing();
+
+					//Normal
+					if (mat->HasNormalTexture())
+						texID = (ImTextureID)mat->GetNormal();
+					else
+						texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
+
+					ImGui::PushID(2);
+					if (ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f)))
+						InitFileBrowser("Resources\\Textures", ".tga", &MenuManager::ImportNormal);
+					ImGui::PopID();
+
+					ImGui::SameLine();
+					ImGui::BeginGroup();
+					ImGui::Text("Normal");
+					if (ImGui::Button("Clear##N"))
+						mat->RemoveNormal();
+					ImGui::SameLine();
+					ImGui::Text(mat->GetNormalPath().c_str());
+					ImGui::EndGroup();
+
+					float3 norlTilling = mat->GetNormalTilling();
+					float tillingN[2] = { norlTilling.x, norlTilling.y };
+					ImGui::DragFloat2("Tilling##N", tillingN, 0.1f, -FLT_MAX, FLT_MAX, "%.1f");
+					mat->SetNormalTilling(tillingN[0], tillingN[1]);
+					ImGui::Spacing();
+
+					//Specular
+					if (mat->HasSpecularTexture())
+						texID = (ImTextureID)mat->GetSpecular();
+					else
+						texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
+
+					ImGui::PushID(3);
+					if (ImGui::ImageButton(texID, ImVec2(32.0f, 32.0f)))
+						InitFileBrowser("Resources\\Textures", ".tga", &MenuManager::ImportSpecular);
+					ImGui::PopID();
+
+					ImGui::SameLine();
+					ImGui::BeginGroup();
+					ImGui::Text("Specular(r:Roughness g:Metallic)");
+					if (ImGui::Button("Clear##S"))
+						mat->RemoveSpecular();
+					ImGui::SameLine();
+					ImGui::Text(mat->GetSpecularPath().c_str());
+					ImGui::EndGroup();
+
+					float3 specTilling = mat->GetSpecularTilling();
+					float tillingS[2] = { specTilling.x, specTilling.y };
+					ImGui::DragFloat2("Tilling##S", tillingS, 0.1f, -FLT_MAX, FLT_MAX, "%.1f");
+					mat->SetSpecularTilling(tillingS[0], tillingS[1]);
+					ImGui::Spacing();
+
+					if (!mat->HasSpecularTexture())
+					{
+						float roughness = mat->GetRoughness();
+						ImGui::DragFloat("Roughness", &roughness, 0.01f, 0.0f, 1.0f, "%.2f");
+						mat->SetRoughness(roughness);
+
+						float metallic = mat->GetMetallic();
+						ImGui::DragFloat("Metallic", &metallic, 0.01f, 0.0f, 1.0f, "%.2f");
+						mat->SetMetallic(metallic);
+					}
 				}
 			}
 		}

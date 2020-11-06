@@ -4,6 +4,7 @@ MaterialManager* MaterialManager::ins = nullptr;
 
 MaterialManager::MaterialManager()
 {
+	nextMatID = 1;
 	defaultMaterial.SetDiffuse("");
 	defaultMaterial.SetNormal("");
 	defaultMaterial.SetSpecular("");
@@ -11,9 +12,7 @@ MaterialManager::MaterialManager()
 
 MaterialManager::~MaterialManager()
 {
-	for (vector<Material*>::iterator i = materials.begin(); i != materials.end(); i++)
-		delete *i;
-
+	RemoveAllMaterials();
 	ins = nullptr;
 }
 
@@ -25,12 +24,51 @@ MaterialManager * MaterialManager::Instance()
 	return ins;
 }
 
+Material * MaterialManager::CreateNewMaterial(unsigned int id, string name)
+{
+	if (materials.find(id) != materials.end())
+		return materials[id];
+
+	Material* newMat = new Material();
+	newMat->SetID(id);
+	newMat->SetName(name);
+	nextMatID = Math::Max(id, nextMatID);
+	materials[id] = newMat;
+
+	return newMat;
+}
+
 Material * MaterialManager::CreateNewMaterial()
 {
+	return CreateNewMaterial("New Material " + to_string(nextMatID), false);
+}
+
+Material * MaterialManager::CreateNewMaterial(string name, bool findSame)
+{
+	if (findSame)
+	{
+		for (unordered_map<unsigned int, Material*>::iterator i = materials.begin(); i != materials.end(); i++)
+		{
+			if (i->second->GetName() == name)
+				return i->second;
+		}
+	}
+
 	Material* newMat = new Material();
-	materials.emplace_back(newMat);
-	
+	newMat->SetID(nextMatID);
+	nextMatID++;
+	newMat->SetName(name);
+	materials[newMat->GetID()] = newMat;
+
 	return newMat;
+}
+
+Material * MaterialManager::GetMaterial(unsigned int id)
+{
+	if (materials.find(id) != materials.end())
+		return materials[id];
+	else
+		return GetDefaultMaterial();
 }
 
 Material * MaterialManager::GetDefaultMaterial()
@@ -38,18 +76,22 @@ Material * MaterialManager::GetDefaultMaterial()
 	return &defaultMaterial;
 }
 
-void MaterialManager::DeleteMaterial(Material * mat)
+void MaterialManager::DeleteMaterial(unsigned int id)
 {
-	if (mat == &defaultMaterial)
-		return;
+	if (materials.find(id) != materials.end())
+	{
+		delete materials[id];
+		materials.erase(id);
+	}
+}
 
-	for (vector<Material*>::iterator i = materials.begin(); i != materials.end(); i++)
-		if (mat == *i)
-		{
-			materials.erase(i);
-			delete mat;
-			return;
-		}
+void MaterialManager::RemoveAllMaterials()
+{
+	for (unordered_map<unsigned int, Material*>::iterator i = materials.begin(); i != materials.end(); i++)
+	{
+		delete i->second;
+		materials.erase(i->first);
+	}
 }
 
 void Material::SetTexture(string dir, int index)
@@ -80,6 +122,8 @@ void Material::SetID(unsigned int newID)
 
 Material::Material()
 {
+	id = 0;
+	name = "New Material";
 	roughness = 0.5f;
 	metallic = 0.5f;
 	texIns[0] = 0;

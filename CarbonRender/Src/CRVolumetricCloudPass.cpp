@@ -151,6 +151,6 @@ void VolumetricCloudPass::Init()
 {
 	targetSizeScaler = 0.5f;
 	cloudBox.SetMeshData(MeshManager::Instance()->GetBuildinBox());
-	cloudBox.SetMaterial(MaterialManager::Instance()->GetDefaultMaterial());
+	cloudBox.SetMaterial(0);
 	shaderProgram = ShaderManager::Instance()->LoadShader("VolumatricCloud.vert", "VolumatricCloud.frag");
 }

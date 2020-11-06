@@ -149,6 +149,38 @@ void SceneManager::LoadScene(string sceneName)
 	a[2] = atof(l2Node->value());
 	cam->SetPerspectiveCamera(a[0], a[1], a[2]);
 
+	//Materials
+	l1Node = root->first_node("Materials");
+	l2Node = l1Node->first_node("Material");
+	while (l2Node != nullptr)
+	{
+		unsigned int matID = (unsigned int)atoi(l2Node->first_attribute("ID")->value());
+		string matName = l2Node->first_attribute("Name")->value();
+		Material* newMat = MaterialManager::Instance()->CreateNewMaterial(matID, matName);
+
+		newMat->SetMetallic(atof(l2Node->first_node("Metallic")->value()));
+		newMat->SetRoughness(atof(l2Node->first_node("Roughness")->value()));
+		xml_node<>* colorNode = l2Node->first_node("Color");
+		newMat->SetColor(float4(atof(colorNode->first_attribute("R")->value()),
+			atof(colorNode->first_attribute("G")->value()),
+			atof(colorNode->first_attribute("B")->value()),
+			atof(colorNode->first_attribute("A")->value())
+		));
+		xml_node<>* l3Node = l2Node->first_node("Diffuse");
+		newMat->SetDiffuse(l3Node->value());
+		newMat->SetDiffuseTilling(atof(l3Node->first_attribute("tillingX")->value()), atof(l3Node->first_attribute("tillingY")->value()));
+
+		l3Node = l2Node->first_node("Normal");
+		newMat->SetNormal(l3Node->value());
+		newMat->SetNormalTilling(atof(l3Node->first_attribute("tillingX")->value()), atof(l3Node->first_attribute("tillingY")->value()));
+
+		l3Node = l2Node->first_node("Specular");
+		newMat->SetSpecular(l3Node->value());
+		newMat->SetSpecularTilling(atof(l3Node->first_attribute("tillingX")->value()), atof(l3Node->first_attribute("tillingY")->value()));
+
+		l2Node = l2Node->next_sibling();
+	}
+
 	//Objs
 	l1Node = root->first_node("Objects");
 	l2Node = l1Node->first_node();
@@ -211,47 +243,7 @@ void SceneManager::WriteObj2XMLNode(xml_document<>* sceneDoc, xml_node<>* parent
 			parent->append_node(l1Node);
 
 			//write material 
-			xml_node<>* l2Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Material"));
-			xml_node<>* l3Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Metallic"), sceneDoc->allocate_string(to_string(meshObj->GetMaterial()->GetMetallic()).c_str()));
-			l2Node->append_node(l3Node);
-			l3Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Roughness"), sceneDoc->allocate_string(to_string(meshObj->GetMaterial()->GetRoughness()).c_str()));
-			l2Node->append_node(l3Node);
-
-			l3Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Color"));
-			float4 color = meshObj->GetMaterial()->GetColor();
-			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("R"), sceneDoc->allocate_string(to_string(color.x).c_str()));
-			l3Node->append_attribute(attrib);
-			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("G"), sceneDoc->allocate_string(to_string(color.y).c_str()));
-			l3Node->append_attribute(attrib);
-			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("B"), sceneDoc->allocate_string(to_string(color.z).c_str()));
-			l3Node->append_attribute(attrib);
-			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("A"), sceneDoc->allocate_string(to_string(color.w).c_str()));
-			l3Node->append_attribute(attrib);
-			l2Node->append_node(l3Node);
-
-			l3Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Diffuse"), sceneDoc->allocate_string(meshObj->GetMaterial()->GetDiffusePath().c_str()));
-			float3 diffTilling = meshObj->GetMaterial()->GetDiffuseTilling();
-			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("tillingX"), sceneDoc->allocate_string(to_string(diffTilling.x).c_str()));
-			l3Node->append_attribute(attrib);
-			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("tillingY"), sceneDoc->allocate_string(to_string(diffTilling.y).c_str()));
-			l3Node->append_attribute(attrib);
-			l2Node->append_node(l3Node);
-
-			l3Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Normal"), sceneDoc->allocate_string(meshObj->GetMaterial()->GetNormalPath().c_str()));
-			float3 norlTilling = meshObj->GetMaterial()->GetNormalTilling();
-			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("tillingX"), sceneDoc->allocate_string(to_string(norlTilling.x).c_str()));
-			l3Node->append_attribute(attrib);
-			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("tillingY"), sceneDoc->allocate_string(to_string(norlTilling.y).c_str()));
-			l3Node->append_attribute(attrib);
-			l2Node->append_node(l3Node);
-
-			l3Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("Specular"), sceneDoc->allocate_string(meshObj->GetMaterial()->GetSpecularPath().c_str()));
-			float3 specTilling = meshObj->GetMaterial()->GetSpecularTilling();
-			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("tillingX"), sceneDoc->allocate_string(to_string(specTilling.x).c_str()));
-			l3Node->append_attribute(attrib);
-			attrib = sceneDoc->allocate_attribute(sceneDoc->allocate_string("tillingY"), sceneDoc->allocate_string(to_string(specTilling.y).c_str()));
-			l3Node->append_attribute(attrib);
-			l2Node->append_node(l3Node);
+			xml_node<>* l2Node = sceneDoc->allocate_node(node_element, sceneDoc->allocate_string("MaterialID"), sceneDoc->allocate_string(to_string(meshObj->GetMaterial()->GetID()).c_str()));
 			l1Node->append_node(l2Node);
 		}
 			break;
@@ -331,21 +323,10 @@ void SceneManager::ReadObjFromXMLNode(xml_node<>* xmlNode, Object * sceneNodePar
 
 		MeshData* data = FbxImportManager::Instance()->ImportFbxModel(xmlNode->first_attribute("Path")->value(), xmlNode->first_attribute("SubMesh")->value());
 		newMeshObj->SetMeshData(data);
-		newMeshObj->SetVisible((int)atof(xmlNode->first_attribute("Visible")->value()));
+		newMeshObj->SetVisible((bool)atoi(xmlNode->first_attribute("Visible")->value()));
 
-		newMeshObj->SetMaterial(MaterialManager::Instance()->CreateNewMaterial());
-		xml_node<>* matNode = xmlNode->first_node("Material");
-		newMeshObj->GetMaterial()->SetMetallic(atof(matNode->first_node("Metallic")->value()));
-		newMeshObj->GetMaterial()->SetRoughness(atof(matNode->first_node("Roughness")->value()));
-		xml_node<>* colorNode = matNode->first_node("Color");
-		newMeshObj->GetMaterial()->SetColor(float4(atof(colorNode->first_attribute("R")->value()),
-													atof(colorNode->first_attribute("G")->value()),
-													atof(colorNode->first_attribute("B")->value()),
-													atof(colorNode->first_attribute("A")->value())
-													));
-		newMeshObj->GetMaterial()->SetDiffuse(matNode->first_node("Diffuse")->value());
-		newMeshObj->GetMaterial()->SetNormal(matNode->first_node("Normal")->value());
-		newMeshObj->GetMaterial()->SetSpecular(matNode->first_node("Specular")->value());
+		unsigned int matID = (unsigned int)atoi(xmlNode->first_node("MaterialID")->value());
+		newMeshObj->SetMaterial(matID);
 	}
 
 	//read transform info
@@ -527,6 +508,60 @@ void SceneManager::SaveScene(string sceneName)
 	l1Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("FarClip"),
 		sceneDoc.allocate_string(to_string(camPara.z).c_str()));
 	l0Node->append_node(l1Node);
+
+	//Materials
+	l0Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("Materials"), nullptr);
+	rootNode->append_node(l0Node);
+	for (unordered_map<unsigned int, Material*>::iterator i = MaterialManager::Instance()->materials.begin(); i != MaterialManager::Instance()->materials.end(); i++)
+	{
+		l1Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("Material"), nullptr);
+		l0Node->append_node(l1Node);
+		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("ID"), sceneDoc.allocate_string(to_string(i->second->GetID()).c_str()));
+		l1Node->append_attribute(attrib);
+		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("Name"), sceneDoc.allocate_string(i->second->GetName().c_str()));
+		l1Node->append_attribute(attrib);
+
+		xml_node<>* l2Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("Metallic"), sceneDoc.allocate_string(to_string(i->second->GetMetallic()).c_str()));
+		l1Node->append_node(l2Node);
+		l2Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("Roughness"), sceneDoc.allocate_string(to_string(i->second->GetRoughness()).c_str()));
+		l1Node->append_node(l2Node);
+
+		l2Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("Color"));
+		float4 color = i->second->GetColor();
+		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("R"), sceneDoc.allocate_string(to_string(color.x).c_str()));
+		l2Node->append_attribute(attrib);
+		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("G"), sceneDoc.allocate_string(to_string(color.y).c_str()));
+		l2Node->append_attribute(attrib);
+		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("B"), sceneDoc.allocate_string(to_string(color.z).c_str()));
+		l2Node->append_attribute(attrib);
+		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("A"), sceneDoc.allocate_string(to_string(color.w).c_str()));
+		l2Node->append_attribute(attrib);
+		l1Node->append_node(l2Node);
+
+		l2Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("Diffuse"), sceneDoc.allocate_string(i->second->GetDiffusePath().c_str()));
+		float3 diffTilling = i->second->GetDiffuseTilling();
+		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("tillingX"), sceneDoc.allocate_string(to_string(diffTilling.x).c_str()));
+		l2Node->append_attribute(attrib);
+		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("tillingY"), sceneDoc.allocate_string(to_string(diffTilling.y).c_str()));
+		l2Node->append_attribute(attrib);
+		l1Node->append_node(l2Node);
+
+		l2Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("Normal"), sceneDoc.allocate_string(i->second->GetNormalPath().c_str()));
+		float3 norlTilling = i->second->GetNormalTilling();
+		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("tillingX"), sceneDoc.allocate_string(to_string(norlTilling.x).c_str()));
+		l2Node->append_attribute(attrib);
+		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("tillingY"), sceneDoc.allocate_string(to_string(norlTilling.y).c_str()));
+		l2Node->append_attribute(attrib);
+		l1Node->append_node(l2Node);
+
+		l2Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("Specular"), sceneDoc.allocate_string(i->second->GetSpecularPath().c_str()));
+		float3 specTilling = i->second->GetSpecularTilling();
+		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("tillingX"), sceneDoc.allocate_string(to_string(specTilling.x).c_str()));
+		l2Node->append_attribute(attrib);
+		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("tillingY"), sceneDoc.allocate_string(to_string(specTilling.y).c_str()));
+		l2Node->append_attribute(attrib);
+		l1Node->append_node(l2Node);
+	}
 
 	//Objs
 	l0Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("Objects"), nullptr);

@@ -24,6 +24,792 @@
 		<NearClip>0.010000</NearClip>
 		<FarClip>3000.000000</FarClip>
 	</Camera>
+	<Materials>
+		<Material ID="9" Name="New Material 9">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_S</Specular>
+		</Material>
+		<Material ID="65" Name="New Material 65">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+		</Material>
+		<Material ID="1" Name="New Material 1">
+			<Metallic>0.500000</Metallic>
+			<Roughness>0.500000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="2" Name="New Material 2">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="3" Name="New Material 3">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="4" Name="New Material 4">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="5" Name="New Material 5">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="6" Name="New Material 6">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\fabric02_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\fabric02_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="7" Name="New Material 7">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="8" Name="New Material 8">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_S</Specular>
+		</Material>
+		<Material ID="10" Name="New Material 10">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wall_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wall_S</Specular>
+		</Material>
+		<Material ID="11" Name="New Material 11">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="12" Name="New Material 12">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Black_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="13" Name="New Material 13">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="14" Name="New Material 14">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="15" Name="New Material 15">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="16" Name="New Material 16">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="17" Name="New Material 17">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="18" Name="New Material 18">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="19" Name="New Material 19">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="20" Name="New Material 20">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="21" Name="New Material 21">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_S</Specular>
+		</Material>
+		<Material ID="22" Name="New Material 22">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="23" Name="New Material 23">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="24" Name="New Material 24">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="25" Name="New Material 25">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="26" Name="New Material 26">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="27" Name="New Material 27">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="28" Name="New Material 28">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="29" Name="New Material 29">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="30" Name="New Material 30">
+			<Metallic>1.000000</Metallic>
+			<Roughness>0.500000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_S</Specular>
+		</Material>
+		<Material ID="31" Name="New Material 31">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="32" Name="New Material 32">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="33" Name="New Material 33">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_S</Specular>
+		</Material>
+		<Material ID="34" Name="New Material 34">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="35" Name="New Material 35">
+			<Metallic>1.000000</Metallic>
+			<Roughness>0.500000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_S</Specular>
+		</Material>
+		<Material ID="36" Name="New Material 36">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="37" Name="New Material 37">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="38" Name="New Material 38">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="39" Name="New Material 39">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="40" Name="New Material 40">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P8_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+		</Material>
+		<Material ID="41" Name="New Material 41">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="42" Name="New Material 42">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="43" Name="New Material 43">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Floor_Walnut_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Floor_Walnut_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Floor_Walnut_S</Specular>
+		</Material>
+		<Material ID="44" Name="New Material 44">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\fabric02_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\fabric02_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="45" Name="New Material 45">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\fabric02_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\fabric02_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="46" Name="New Material 46">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="47" Name="New Material 47">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="48" Name="New Material 48">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+		</Material>
+		<Material ID="49" Name="New Material 49">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Pine_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Pine_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Pine_S</Specular>
+		</Material>
+		<Material ID="50" Name="New Material 50">
+			<Metallic>1.000000</Metallic>
+			<Roughness>0.800000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_S</Specular>
+		</Material>
+		<Material ID="51" Name="New Material 51">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_S</Specular>
+		</Material>
+		<Material ID="52" Name="New Material 52">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+		</Material>
+		<Material ID="53" Name="New Material 53">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P7_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+		</Material>
+		<Material ID="54" Name="New Material 54">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_S</Specular>
+		</Material>
+		<Material ID="55" Name="New Material 55">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+		</Material>
+		<Material ID="56" Name="New Material 56">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="57" Name="New Material 57">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="58" Name="New Material 58">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="59" Name="New Material 59">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+		</Material>
+		<Material ID="60" Name="New Material 60">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P2_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+		</Material>
+		<Material ID="61" Name="New Material 61">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_S</Specular>
+		</Material>
+		<Material ID="62" Name="New Material 62">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="63" Name="New Material 63">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P5_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+		</Material>
+		<Material ID="64" Name="New Material 64">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+		</Material>
+		<Material ID="66" Name="New Material 66">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="67" Name="New Material 67">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+		</Material>
+		<Material ID="68" Name="New Material 68">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="69" Name="New Material 69">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P1_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+		</Material>
+		<Material ID="70" Name="New Material 70">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="71" Name="New Material 71">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P4_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+		</Material>
+		<Material ID="72" Name="New Material 72">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetalR_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="73" Name="New Material 73">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="74" Name="New Material 74">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="75" Name="New Material 75">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetalB_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="76" Name="New Material 76">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P3_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+		</Material>
+		<Material ID="77" Name="New Material 77">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+		</Material>
+		<Material ID="78" Name="New Material 78">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Ceramic_S</Specular>
+		</Material>
+		<Material ID="79" Name="New Material 79">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="80" Name="New Material 80">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="81" Name="New Material 81">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_S</Specular>
+		</Material>
+		<Material ID="82" Name="New Material 82">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="83" Name="New Material 83">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="84" Name="New Material 84">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Rug01_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="85" Name="New Material 85">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Cup_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Cup_S</Specular>
+		</Material>
+		<Material ID="86" Name="New Material 86">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Ceramic_S</Specular>
+		</Material>
+		<Material ID="87" Name="New Material 87">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Ceramic_S</Specular>
+		</Material>
+		<Material ID="88" Name="New Material 88">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetalR_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="89" Name="New Material 89">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\radio_dial_idea_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="90" Name="New Material 90">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+		</Material>
+		<Material ID="91" Name="New Material 91">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Ceramic_S</Specular>
+		</Material>
+		<Material ID="92" Name="New Material 92">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Cup_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Cup_S</Specular>
+		</Material>
+		<Material ID="93" Name="New Material 93">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+		</Material>
+		<Material ID="94" Name="New Material 94">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P6_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+		</Material>
+		<Material ID="95" Name="New Material 95">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+		</Material>
+		<Material ID="96" Name="New Material 96">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Red_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="97" Name="New Material 97">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Green0_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+		</Material>
+		<Material ID="98" Name="New Material 98">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Green1_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Ceramic_S</Specular>
+		</Material>
+	</Materials>
 	<Objects>
 		<Object Name="LivingRoom2" Visible="1">
 			<Position x="0.000000" y="1.000000" z="0.000000"/>
@@ -31,1262 +817,583 @@
 			<Scale x="4.000000" y="4.000000" z="4.000000"/>
 			<Children>
 				<StaticMeshObject Name="Mesh016.001" Path="LivingRoom2" SubMesh="Mesh016.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>2</MaterialID>
 					<Position x="1.481510" y="1.030520" z="-0.101527"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh015.001" Path="LivingRoom2" SubMesh="Mesh015.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>3</MaterialID>
 					<Position x="2.279676" y="1.030549" z="-0.101533"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh016" Path="LivingRoom2" SubMesh="Mesh016" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>4</MaterialID>
 					<Position x="1.481511" y="1.361687" z="-0.101528"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh015" Path="LivingRoom2" SubMesh="Mesh015" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>5</MaterialID>
 					<Position x="2.279683" y="1.361687" z="-0.101528"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh064.001" Path="LivingRoom2" SubMesh="Mesh064.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\fabric02_D</Diffuse>
-						<Normal>LivingRoom2\fabric02_N</Normal>
-						<Specular/>
-					</Material>
+					<MaterialID>6</MaterialID>
 					<Position x="1.118845" y="0.533653" z="-3.117239"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh063.001" Path="LivingRoom2" SubMesh="Mesh063.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>7</MaterialID>
 					<Position x="1.877966" y="1.613693" z="-0.030121"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh062.001" Path="LivingRoom2" SubMesh="Mesh062.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\Leather04_D</Diffuse>
-						<Normal>LivingRoom2\Leather04_N</Normal>
-						<Specular>LivingRoom2\Leather04_S</Specular>
-					</Material>
+					<MaterialID>8</MaterialID>
 					<Position x="1.901600" y="0.305255" z="-3.123804"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh061.001" Path="LivingRoom2" SubMesh="Mesh061.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\T_Wood_Oak_D</Diffuse>
-						<Normal>LivingRoom2\T_Wood_Oak_N</Normal>
-						<Specular>LivingRoom2\T_Wood_Oak_S</Specular>
-					</Material>
+					<MaterialID>9</MaterialID>
 					<Position x="1.872970" y="0.097410" z="-1.884534"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh059.001" Path="LivingRoom2" SubMesh="Mesh059.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\Wall_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\Wall_S</Specular>
-					</Material>
+					<MaterialID>10</MaterialID>
 					<Position x="2.957696" y="1.510477" z="-2.105860"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh057.001" Path="LivingRoom2" SubMesh="Mesh057.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>11</MaterialID>
 					<Position x="2.561002" y="2.879001" z="-1.816399"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh056.001" Path="LivingRoom2" SubMesh="Mesh056.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\Black_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>12</MaterialID>
 					<Position x="1.892485" y="0.030057" z="-0.064604"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh055.002" Path="LivingRoom2" SubMesh="Mesh055.002" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>13</MaterialID>
 					<Position x="-0.259454" y="1.442977" z="-0.586576"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh054.001" Path="LivingRoom2" SubMesh="Mesh054.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>14</MaterialID>
 					<Position x="1.882599" y="0.412652" z="0.185878"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh053.001" Path="LivingRoom2" SubMesh="Mesh053.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>15</MaterialID>
 					<Position x="1.726740" y="1.113462" z="-0.107922"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh052.001" Path="LivingRoom2" SubMesh="Mesh052.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>16</MaterialID>
 					<Position x="3.008586" y="0.758483" z="0.429385"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh051.001" Path="LivingRoom2" SubMesh="Mesh051.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>17</MaterialID>
 					<Position x="2.561003" y="2.825366" z="-1.816400"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh050.001" Path="LivingRoom2" SubMesh="Mesh050.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>18</MaterialID>
 					<Position x="3.000170" y="1.159923" z="0.471485"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh049.001" Path="LivingRoom2" SubMesh="Mesh049.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>19</MaterialID>
 					<Position x="0.749392" y="0.759665" z="0.427982"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh048.001" Path="LivingRoom2" SubMesh="Mesh048.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>20</MaterialID>
 					<Position x="3.000170" y="1.974790" z="0.543539"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh047.001" Path="LivingRoom2" SubMesh="Mesh047.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\Leather04_D</Diffuse>
-						<Normal>LivingRoom2\Leather04_N</Normal>
-						<Specular>LivingRoom2\Leather04_S</Specular>
-					</Material>
+					<MaterialID>21</MaterialID>
 					<Position x="1.903922" y="0.333432" z="-3.341878"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh046.001" Path="LivingRoom2" SubMesh="Mesh046.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>22</MaterialID>
 					<Position x="0.748763" y="1.159923" z="0.471485"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh045.001" Path="LivingRoom2" SubMesh="Mesh045.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>23</MaterialID>
 					<Position x="1.877964" y="1.613693" z="-0.023468"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh043.001" Path="LivingRoom2" SubMesh="Mesh043.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>24</MaterialID>
 					<Position x="0.758588" y="1.502879" z="0.250778"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh042.001" Path="LivingRoom2" SubMesh="Mesh042.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>25</MaterialID>
 					<Position x="0.822328" y="0.295717" z="-0.587734"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh041.001" Path="LivingRoom2" SubMesh="Mesh041.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>26</MaterialID>
 					<Position x="3.056033" y="1.769325" z="-3.583209"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh040.001" Path="LivingRoom2" SubMesh="Mesh040.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>27</MaterialID>
 					<Position x="0.816515" y="1.769962" z="-3.586607"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh039.001" Path="LivingRoom2" SubMesh="Mesh039.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>28</MaterialID>
 					<Position x="3.006641" y="1.531735" z="0.414266"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh038.001" Path="LivingRoom2" SubMesh="Mesh038.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>29</MaterialID>
 					<Position x="-0.259454" y="1.442977" z="-2.532049"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh037.001" Path="LivingRoom2" SubMesh="Mesh037.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\T_Wood_Oak_D</Diffuse>
-						<Normal>LivingRoom2\T_Wood_Oak_N</Normal>
-						<Specular>LivingRoom2\T_Wood_Oak_S</Specular>
-					</Material>
+					<MaterialID>30</MaterialID>
 					<Position x="1.947152" y="0.099583" z="-1.693894"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh036.001" Path="LivingRoom2" SubMesh="Mesh036.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>31</MaterialID>
 					<Position x="3.088250" y="1.725389" z="-3.587420"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh035.001" Path="LivingRoom2" SubMesh="Mesh035.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>32</MaterialID>
 					<Position x="3.055698" y="1.770007" z="-3.618675"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh034.001" Path="LivingRoom2" SubMesh="Mesh034.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\Leather04_D</Diffuse>
-						<Normal>LivingRoom2\Leather04_N</Normal>
-						<Specular>LivingRoom2\Leather04_S</Specular>
-					</Material>
+					<MaterialID>33</MaterialID>
 					<Position x="1.910017" y="0.571304" z="-3.375148"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh033.001" Path="LivingRoom2" SubMesh="Mesh033.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>34</MaterialID>
 					<Position x="0.748763" y="1.974791" z="0.543539"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh031.001" Path="LivingRoom2" SubMesh="Mesh031.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>0.500000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\T_Wood_Oak_D</Diffuse>
-						<Normal>LivingRoom2\T_Wood_Oak_N</Normal>
-						<Specular>LivingRoom2\T_Wood_Oak_S</Specular>
-					</Material>
+					<MaterialID>35</MaterialID>
 					<Position x="1.947152" y="0.337350" z="-1.693894"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh029.001" Path="LivingRoom2" SubMesh="Mesh029.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>36</MaterialID>
 					<Position x="0.759914" y="1.532063" z="0.414280"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh028.001" Path="LivingRoom2" SubMesh="Mesh028.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>37</MaterialID>
 					<Position x="0.816440" y="1.770007" z="-3.618675"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh027.001" Path="LivingRoom2" SubMesh="Mesh027.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>38</MaterialID>
 					<Position x="2.999895" y="1.501964" z="0.250602"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh024.001" Path="LivingRoom2" SubMesh="Mesh024.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>39</MaterialID>
 					<Position x="1.882601" y="0.582819" z="-0.094677"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh023.001" Path="LivingRoom2" SubMesh="Mesh023.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\P8_D</Diffuse>
-						<Normal>LivingRoom2\paper02_N</Normal>
-						<Specular>LivingRoom2\paper02_S</Specular>
-					</Material>
+					<MaterialID>40</MaterialID>
 					<Position x="1.850244" y="0.799440" z="-1.606753"/>
 					<Rotation x="15.000002" y="20.000000" z="-90.000008"/>
 					<Scale x="0.348962" y="0.348962" z="0.348962"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh022.001" Path="LivingRoom2" SubMesh="Mesh022.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>41</MaterialID>
 					<Position x="0.816775" y="1.769325" z="-3.583209"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh021.001" Path="LivingRoom2" SubMesh="Mesh021.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>42</MaterialID>
 					<Position x="1.907070" y="0.050010" z="-3.257993"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh019.001" Path="LivingRoom2" SubMesh="Mesh019.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\T_Wood_Floor_Walnut_D</Diffuse>
-						<Normal>LivingRoom2\T_Wood_Floor_Walnut_N</Normal>
-						<Specular>LivingRoom2\T_Wood_Floor_Walnut_S</Specular>
-					</Material>
+					<MaterialID>43</MaterialID>
 					<Position x="2.429496" y="0.000000" z="-1.720965"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh014.001" Path="LivingRoom2" SubMesh="Mesh014.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\fabric02_D</Diffuse>
-						<Normal>LivingRoom2\fabric02_N</Normal>
-						<Specular/>
-					</Material>
+					<MaterialID>44</MaterialID>
 					<Position x="1.335420" y="0.520220" z="-3.158632"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh013.001" Path="LivingRoom2" SubMesh="Mesh013.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\fabric02_D</Diffuse>
-						<Normal>LivingRoom2\fabric02_N</Normal>
-						<Specular/>
-					</Material>
+					<MaterialID>45</MaterialID>
 					<Position x="2.714823" y="0.533653" z="-3.113814"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh012.001" Path="LivingRoom2" SubMesh="Mesh012.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>46</MaterialID>
 					<Position x="1.870895" y="1.018425" z="-0.095025"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh011.001" Path="LivingRoom2" SubMesh="Mesh011.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>47</MaterialID>
 					<Position x="1.726740" y="1.113455" z="-0.082095"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh006.001" Path="LivingRoom2" SubMesh="Mesh006.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\paper02_D</Diffuse>
-						<Normal>LivingRoom2\paper02_N</Normal>
-						<Specular>LivingRoom2\paper02_S</Specular>
-					</Material>
+					<MaterialID>48</MaterialID>
 					<Position x="1.850109" y="0.799022" z="-1.602055"/>
 					<Rotation x="15.000002" y="20.000000" z="-90.000008"/>
 					<Scale x="0.348962" y="0.348962" z="0.348962"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh003.001" Path="LivingRoom2" SubMesh="Mesh003.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\T_Wood_Pine_D</Diffuse>
-						<Normal>LivingRoom2\T_Wood_Pine_N</Normal>
-						<Specular>LivingRoom2\T_Wood_Pine_S</Specular>
-					</Material>
+					<MaterialID>49</MaterialID>
 					<Position x="1.850084" y="0.796279" z="-1.596996"/>
 					<Rotation x="15.000002" y="20.000000" z="-90.000008"/>
 					<Scale x="0.348962" y="0.348962" z="0.348962"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh000.001" Path="LivingRoom2" SubMesh="Mesh000.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>0.800000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\T_Wood_Oak_D</Diffuse>
-						<Normal>LivingRoom2\T_Wood_Oak_N</Normal>
-						<Specular>LivingRoom2\T_Wood_Oak_S</Specular>
-					</Material>
+					<MaterialID>50</MaterialID>
 					<Position x="1.947152" y="0.599363" z="-1.693894"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh178" Path="LivingRoom2" SubMesh="Mesh178" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\Wood16_D</Diffuse>
-						<Normal>LivingRoom2\Wood16_N</Normal>
-						<Specular>LivingRoom2\Wood16_S</Specular>
-					</Material>
+					<MaterialID>51</MaterialID>
 					<Position x="3.289724" y="1.300533" z="-3.475063"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh170" Path="LivingRoom2" SubMesh="Mesh170" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
-						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
-						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
-					</Material>
+					<MaterialID>52</MaterialID>
 					<Position x="1.858829" y="2.062303" z="-3.618478"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="0.890669" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh169" Path="LivingRoom2" SubMesh="Mesh169" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\P7_D</Diffuse>
-						<Normal>LivingRoom2\paper02_N</Normal>
-						<Specular>LivingRoom2\paper02_S</Specular>
-					</Material>
+					<MaterialID>53</MaterialID>
 					<Position x="1.876067" y="1.348057" z="-3.618439"/>
 					<Rotation x="0.000009" y="-89.999992" z="2.000000"/>
 					<Scale x="0.999846" y="0.695221" z="1.122289"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh163" Path="LivingRoom2" SubMesh="Mesh163" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\Wood16_D</Diffuse>
-						<Normal>LivingRoom2\Wood16_N</Normal>
-						<Specular>LivingRoom2\Wood16_S</Specular>
-					</Material>
+					<MaterialID>54</MaterialID>
 					<Position x="3.254094" y="1.291624" z="-3.427234"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh161" Path="LivingRoom2" SubMesh="Mesh161" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
-						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
-						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
-					</Material>
+					<MaterialID>55</MaterialID>
 					<Position x="3.454730" y="0.685744" z="-3.378741"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh154" Path="LivingRoom2" SubMesh="Mesh154" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>56</MaterialID>
 					<Position x="3.275695" y="1.396532" z="-3.447892"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh142" Path="LivingRoom2" SubMesh="Mesh142" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>57</MaterialID>
 					<Position x="3.263572" y="1.302073" z="-3.425853"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh133" Path="LivingRoom2" SubMesh="Mesh133" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>58</MaterialID>
 					<Position x="3.287659" y="1.302052" z="-3.471177"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh131" Path="LivingRoom2" SubMesh="Mesh131" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
-						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
-						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
-					</Material>
+					<MaterialID>59</MaterialID>
 					<Position x="1.491869" y="1.906227" z="-3.613685"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh129" Path="LivingRoom2" SubMesh="Mesh129" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\P2_D</Diffuse>
-						<Normal>LivingRoom2\paper02_N</Normal>
-						<Specular>LivingRoom2\paper02_S</Specular>
-					</Material>
+					<MaterialID>60</MaterialID>
 					<Position x="1.491870" y="2.213678" z="-3.612946"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh123" Path="LivingRoom2" SubMesh="Mesh123" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\Wood16_D</Diffuse>
-						<Normal>LivingRoom2\Wood16_N</Normal>
-						<Specular>LivingRoom2\Wood16_S</Specular>
-					</Material>
+					<MaterialID>61</MaterialID>
 					<Position x="3.279114" y="1.424754" z="-3.446540"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh107" Path="LivingRoom2" SubMesh="Mesh107" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>62</MaterialID>
 					<Position x="3.456757" y="0.625217" z="-3.290647"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh105" Path="LivingRoom2" SubMesh="Mesh105" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\P5_D</Diffuse>
-						<Normal>LivingRoom2\paper02_N</Normal>
-						<Specular>LivingRoom2\paper02_S</Specular>
-					</Material>
+					<MaterialID>63</MaterialID>
 					<Position x="1.858828" y="2.062026" z="-3.619194"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="0.890669" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh098" Path="LivingRoom2" SubMesh="Mesh098" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
-						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
-						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
-					</Material>
+					<MaterialID>64</MaterialID>
 					<Position x="1.260453" y="1.906227" z="-3.613685"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh096" Path="LivingRoom2" SubMesh="Mesh096" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
-						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
-						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
-					</Material>
+					<MaterialID>65</MaterialID>
 					<Position x="1.876072" y="1.348167" z="-3.613635"/>
 					<Rotation x="0.000009" y="-89.999992" z="2.000000"/>
 					<Scale x="0.999846" y="0.695221" z="1.122289"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh093" Path="LivingRoom2" SubMesh="Mesh093" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>66</MaterialID>
 					<Position x="3.275419" y="1.301423" z="-3.448138"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh092" Path="LivingRoom2" SubMesh="Mesh092" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
-						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
-						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
-					</Material>
+					<MaterialID>67</MaterialID>
 					<Position x="0.484636" y="0.622025" z="-3.457993"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh084" Path="LivingRoom2" SubMesh="Mesh084" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>68</MaterialID>
 					<Position x="3.194573" y="1.318649" z="-3.457305"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh077" Path="LivingRoom2" SubMesh="Mesh077" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\P1_D</Diffuse>
-						<Normal>LivingRoom2\paper02_N</Normal>
-						<Specular>LivingRoom2\paper02_S</Specular>
-					</Material>
+					<MaterialID>69</MaterialID>
 					<Position x="1.260452" y="2.213678" z="-3.612946"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh074" Path="LivingRoom2" SubMesh="Mesh074" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>70</MaterialID>
 					<Position x="3.294701" y="1.312746" z="-3.402739"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh068" Path="LivingRoom2" SubMesh="Mesh068" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\P4_D</Diffuse>
-						<Normal>LivingRoom2\paper02_N</Normal>
-						<Specular>LivingRoom2\paper02_S</Specular>
-					</Material>
+					<MaterialID>71</MaterialID>
 					<Position x="1.491871" y="1.906056" z="-3.613968"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh062" Path="LivingRoom2" SubMesh="Mesh062" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetalR_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>72</MaterialID>
 					<Position x="0.538004" y="0.775073" z="-3.452881"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh061" Path="LivingRoom2" SubMesh="Mesh061" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>73</MaterialID>
 					<Position x="2.176982" y="0.639961" z="-1.657706"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh060" Path="LivingRoom2" SubMesh="Mesh060" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>74</MaterialID>
 					<Position x="3.275445" y="1.349567" z="-3.447937"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh059" Path="LivingRoom2" SubMesh="Mesh059" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetalB_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>75</MaterialID>
 					<Position x="0.532550" y="0.748524" z="-3.463247"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh056" Path="LivingRoom2" SubMesh="Mesh056" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\P3_D</Diffuse>
-						<Normal>LivingRoom2\paper02_N</Normal>
-						<Specular>LivingRoom2\paper02_S</Specular>
-					</Material>
+					<MaterialID>76</MaterialID>
 					<Position x="1.260453" y="1.906056" z="-3.613968"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh055" Path="LivingRoom2" SubMesh="Mesh055" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
-						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
-						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
-					</Material>
+					<MaterialID>77</MaterialID>
 					<Position x="1.260453" y="2.213847" z="-3.612660"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh051" Path="LivingRoom2" SubMesh="Mesh051" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\Ceramic_S</Specular>
-					</Material>
+					<MaterialID>78</MaterialID>
 					<Position x="2.081228" y="0.766742" z="-1.849285"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh048" Path="LivingRoom2" SubMesh="Mesh048" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse/>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>79</MaterialID>
 					<Position x="3.264369" y="1.300293" z="-3.427124"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh029" Path="LivingRoom2" SubMesh="Mesh029" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>80</MaterialID>
 					<Position x="3.275440" y="1.208787" z="-3.449548"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh018" Path="LivingRoom2" SubMesh="Mesh018" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\Wood16_D</Diffuse>
-						<Normal>LivingRoom2\Wood16_N</Normal>
-						<Specular>LivingRoom2\Wood16_S</Specular>
-					</Material>
+					<MaterialID>81</MaterialID>
 					<Position x="3.296795" y="1.312746" z="-3.406679"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh012" Path="LivingRoom2" SubMesh="Mesh012" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>82</MaterialID>
 					<Position x="3.195225" y="1.318735" z="-3.456948"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh009" Path="LivingRoom2" SubMesh="Mesh009" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>83</MaterialID>
 					<Position x="3.292958" y="1.312960" z="-3.399323"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh008" Path="LivingRoom2" SubMesh="Mesh008" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\Rug01_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>84</MaterialID>
 					<Position x="1.895034" y="0.015551" z="-2.801444"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh004" Path="LivingRoom2" SubMesh="Mesh004" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\Cup_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\Cup_S</Specular>
-					</Material>
+					<MaterialID>85</MaterialID>
 					<Position x="2.200031" y="0.661369" z="-1.690187"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh003" Path="LivingRoom2" SubMesh="Mesh003" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\Ceramic_S</Specular>
-					</Material>
+					<MaterialID>86</MaterialID>
 					<Position x="2.197942" y="0.634846" z="-1.691830"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh002" Path="LivingRoom2" SubMesh="Mesh002" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\Ceramic_S</Specular>
-					</Material>
+					<MaterialID>87</MaterialID>
 					<Position x="2.080001" y="0.697286" z="-1.849444"/>
 					<Rotation x="0.000009" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh001" Path="LivingRoom2" SubMesh="Mesh001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetalR_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>88</MaterialID>
 					<Position x="3.295748" y="1.312961" z="-3.404572"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh000" Path="LivingRoom2" SubMesh="Mesh000" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\radio_dial_idea_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>89</MaterialID>
 					<Position x="3.297788" y="1.312746" z="-3.408547"/>
 					<Rotation x="0.000009" y="75.386604" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh055.001" Path="LivingRoom2" SubMesh="Mesh055.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
-						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
-						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
-					</Material>
+					<MaterialID>90</MaterialID>
 					<Position x="1.492553" y="2.213847" z="-3.612660"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh003.002" Path="LivingRoom2" SubMesh="Mesh003.002" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\White_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\Ceramic_S</Specular>
-					</Material>
+					<MaterialID>91</MaterialID>
 					<Position x="2.037501" y="0.634846" z="-1.726189"/>
 					<Rotation x="0.000009" y="60.259800" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh004.002" Path="LivingRoom2" SubMesh="Mesh004.002" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\Cup_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\Cup_S</Specular>
-					</Material>
+					<MaterialID>92</MaterialID>
 					<Position x="2.037110" y="0.661369" z="-1.723561"/>
 					<Rotation x="0.000009" y="150.259796" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh061.002" Path="LivingRoom2" SubMesh="Mesh061.002" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\streakedmetal_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\streakedmetal_S</Specular>
-					</Material>
+					<MaterialID>93</MaterialID>
 					<Position x="1.997474" y="0.639961" z="-1.727461"/>
 					<Rotation x="0.000009" y="60.259800" z="-0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh105.001" Path="LivingRoom2" SubMesh="Mesh105.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\P6_D</Diffuse>
-						<Normal>LivingRoom2\paper02_N</Normal>
-						<Specular>LivingRoom2\paper02_S</Specular>
-					</Material>
+					<MaterialID>94</MaterialID>
 					<Position x="2.353244" y="2.062026" z="-3.619194"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="0.890669" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh170.001" Path="LivingRoom2" SubMesh="Mesh170.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\T_Wood_Walnut_D</Diffuse>
-						<Normal>LivingRoom2\T_Wood_Walnut_N</Normal>
-						<Specular>LivingRoom2\T_Wood_Walnut_S</Specular>
-					</Material>
+					<MaterialID>95</MaterialID>
 					<Position x="2.353244" y="2.062304" z="-3.618478"/>
 					<Rotation x="0.000009" y="89.999992" z="0.000000"/>
 					<Scale x="1.000000" y="0.890669" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="F2" Path="LivingRoom2" SubMesh="F2" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\Red_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>96</MaterialID>
 					<Position x="3.546190" y="1.511930" z="-3.446640"/>
 					<Rotation x="0.000000" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="F1" Path="LivingRoom2" SubMesh="F1" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\Green0_D</Diffuse>
-						<Normal/>
-						<Specular/>
-					</Material>
+					<MaterialID>97</MaterialID>
 					<Position x="3.552850" y="1.398160" z="-3.451860"/>
 					<Rotation x="0.000000" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
 				</StaticMeshObject>
 				<StaticMeshObject Name="Mesh018.001" Path="LivingRoom2" SubMesh="Mesh018.001" Visible="1">
-					<Material>
-						<Metallic>1.000000</Metallic>
-						<Roughness>1.000000</Roughness>
-						<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-						<Diffuse>LivingRoom2\Green1_D</Diffuse>
-						<Normal/>
-						<Specular>LivingRoom2\Ceramic_S</Specular>
-					</Material>
+					<MaterialID>98</MaterialID>
 					<Position x="3.546300" y="1.289970" z="-3.442060"/>
 					<Rotation x="0.000000" y="0.000000" z="0.000000"/>
 					<Scale x="1.000000" y="1.000000" z="1.000000"/>
