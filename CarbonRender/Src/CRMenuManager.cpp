@@ -19,6 +19,10 @@ void MenuManager::InitMenu()
 	showWorldEditorDialog = true;
 	showSceneEditorDialog = true;
 	showObjectEditorDialog = true;
+	showMaterialManager = false;
+
+	selectedObj = nullptr;
+	selectedMatID = 0;
 	sceneTreeNodeIndex = 0;
 
 	ImGuiIO& io = ImGui::GetIO();
@@ -370,7 +374,8 @@ void MenuManager::DrawObjectEditorDialog()
 				//Name
 				if (ImGui::Button("Change"))
 				{
-
+					selectedMatID = mat->GetID();
+					showMaterialManager = true;
 				}
 
 				if (mat == MaterialManager::Instance()->GetDefaultMaterial())
@@ -507,9 +512,10 @@ void MenuManager::DrawSaveSceneDialog()
 	ImGui::OpenPopup("Save Scene");
 
 	ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.5f), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
-	ImGui::SetNextWindowSize(ImVec2(200, 50), ImGuiCond_FirstUseEver);
 	ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoCollapse;
 	windowFlags |= ImGuiWindowFlags_NoResize;
+	windowFlags |= ImGuiWindowFlags_AlwaysAutoResize;
+	windowFlags |= ImGuiWindowFlags_NoSavedSettings;
 
 	if (ImGui::BeginPopupModal("Save Scene", &showSaveSceneDialog, windowFlags))
 	{
@@ -528,6 +534,135 @@ void MenuManager::DrawSaveSceneDialog()
 	}
 }
 
+void MenuManager::DrawMaterialManagerDialog()
+{
+	ImGui::SetNextWindowSize(ImVec2(650, 500), ImGuiCond_FirstUseEver);
+	ImGuiWindowFlags flags = 0;
+	flags |= ImGuiWindowFlags_NoCollapse;
+	flags |= ImGuiWindowFlags_NoResize;
+	flags |= ImGuiWindowFlags_NoSavedSettings;
+
+	if (ImGui::Begin("Material Manager", &showMaterialManager, flags))
+	{
+		ImGui::BeginChild("matlist", ImVec2(ImGui::GetWindowSize().x - 316, ImGui::GetWindowSize().y - 60), true);
+		{
+			for (unordered_map<unsigned int, Material*>::iterator i = MaterialManager::Instance()->materials.begin(); i != MaterialManager::Instance()->materials.end(); i++)
+			{
+				if (ImGui::Selectable(i->second->GetName().c_str(), selectedMatID == i->second->GetID()))
+				{
+					selectedMatID = i->second->GetID();
+				}
+			}
+		}
+		ImGui::EndChild();
+
+		ImGui::SameLine();
+		ImGui::BeginChild("matPreview", ImVec2(276, 256));
+		{
+			if (selectedMatID > 0)
+			{
+				Material* mat = MaterialManager::Instance()->GetMaterial(selectedMatID);
+
+				//Color
+				float4 matColor = mat->GetColor();
+				ImGui::ColorButton("Material Color", ImVec4(matColor.x, matColor.y, matColor.z, matColor.w), 0, ImVec2(32, 32));
+
+				//Diffuse
+				ImTextureID texID;
+				if (mat->HasDiffuseTexture())
+					texID = (ImTextureID)mat->GetDiffuse();
+				else
+					texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
+
+				ImGui::Image(texID, ImVec2(32.0f, 32.0f), ImVec2(0, 0), ImVec2(1, 1), ImVec4(1, 1, 1, 1), ImVec4(1.0f, 1.0f, 1.0f , 1.0f));
+
+				ImGui::SameLine();
+				ImGui::BeginGroup();
+				ImGui::Text("Albedo");
+				ImGui::Text(mat->GetDiffusePath().c_str());
+				ImGui::EndGroup();
+
+				float3 diffTilling = mat->GetDiffuseTilling();
+				ImGui::Text(("Tilling x:" + to_string(diffTilling.x) + " y:" + to_string(diffTilling.y)).c_str());
+				ImGui::Spacing();
+
+				//Normal
+				if (mat->HasNormalTexture())
+					texID = (ImTextureID)mat->GetNormal();
+				else
+					texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
+
+				ImGui::Image(texID, ImVec2(32.0f, 32.0f), ImVec2(0, 0), ImVec2(1, 1), ImVec4(1, 1, 1, 1), ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+
+				ImGui::SameLine();
+				ImGui::BeginGroup();
+				ImGui::Text("Normal");
+				ImGui::Text(mat->GetNormalPath().c_str());
+				ImGui::EndGroup();
+
+				float3 norlTilling = mat->GetNormalTilling();
+				ImGui::Text(("Tilling x:" + to_string(norlTilling.x) + " y:" + to_string(norlTilling.y)).c_str());
+				ImGui::Spacing();
+
+				//Specular
+				if (mat->HasSpecularTexture())
+					texID = (ImTextureID)mat->GetSpecular();
+				else
+					texID = (ImTextureID)TextureManager::Instance()->GetNullTex();
+
+				ImGui::Image(texID, ImVec2(32.0f, 32.0f), ImVec2(0, 0), ImVec2(1, 1), ImVec4(1, 1, 1, 1), ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+
+				ImGui::SameLine();
+				ImGui::BeginGroup();
+				ImGui::Text("Specular(r:Roughness g:Metallic)");
+				ImGui::Text(mat->GetSpecularPath().c_str());
+				ImGui::EndGroup();
+
+				float3 specTilling = mat->GetSpecularTilling();
+				ImGui::Text(("Tilling x:" + to_string(specTilling.x) + " y:" + to_string(specTilling.y)).c_str());
+				ImGui::Spacing();
+
+				if (!mat->HasSpecularTexture())
+				{
+					float roughness = mat->GetRoughness();
+					ImGui::Text(("Roughness: " + to_string(roughness)).c_str());
+
+					float metallic = mat->GetMetallic();
+					ImGui::Text(("Metallic: " + to_string(metallic)).c_str());
+				}
+			}
+		}
+		ImGui::EndChild();
+
+		ImGui::BeginChild("buttons", ImVec2(ImGui::GetWindowSize().x, 20));
+		if (ImGui::Button("Use", ImVec2(60, 20)))
+		{
+			MeshObject* meshObj = (MeshObject*)selectedObj;
+			if (meshObj != nullptr)
+			{
+				meshObj->SetMaterial(selectedMatID);
+				showMaterialManager = false;
+			}
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("New", ImVec2(60, 20)))
+		{
+			InitInputPopup("New Material", "new_material", &MenuManager::CreateNewMaterial);
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Delete", ImVec2(60, 20)))
+		{
+			if (selectedMatID > 0)
+			{
+				MaterialManager::Instance()->DeleteMaterial(selectedMatID);
+				selectedMatID = 0;
+			}
+		}
+		ImGui::EndChild();
+	}
+	ImGui::End();
+}
+
 void MenuManager::InitFileBrowser(string path, string suffix, FileImportCallback callback)
 {
 	selectedFileName = "";
@@ -540,10 +675,11 @@ void MenuManager::InitFileBrowser(string path, string suffix, FileImportCallback
 
 void MenuManager::DrawFileBrowser()
 {
-	ImGui::SetNextWindowSize(ImVec2(600, 450), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(650, 500), ImGuiCond_FirstUseEver);
 	ImGuiWindowFlags flags = 0;
 	flags |= ImGuiWindowFlags_NoCollapse;
 	flags |= ImGuiWindowFlags_NoResize;
+	flags |= ImGuiWindowFlags_NoSavedSettings;
 
 	bool isTexFiles = false;
 	if (fileSuffix == ".tga")
@@ -555,7 +691,7 @@ void MenuManager::DrawFileBrowser()
 		ImGui::Separator();
 		ImGui::Spacing();
 
-		ImGui::BeginChild("filelist", ImVec2(ImGui::GetWindowSize().x - (isTexFiles ? 286 : 20), ImGui::GetWindowSize().y - 100), true);
+		ImGui::BeginChild("filelist", ImVec2(ImGui::GetWindowSize().x - (isTexFiles ? 286 : 20), ImGui::GetWindowSize().y - 85), true);
 		if (curPath != startPath)
 		{
 			if (ImGui::Selectable(".."))
@@ -613,8 +749,8 @@ void MenuManager::DrawFileBrowser()
 			ImGui::EndChild();
 		}	
 
-		ImGui::BeginChild("buttons", ImVec2(ImGui::GetWindowSize().x - 20, 20));
-		if (ImGui::Button("Open"))
+		ImGui::BeginChild("buttons", ImVec2(ImGui::GetWindowSize().x, 20));
+		if (ImGui::Button("Open", ImVec2(60, 20)))
 		{
 			(this->*fileImportCallback)(selectedFileName.erase(0, startPath.length() + 1));
 			showFileBroser = false;
@@ -622,6 +758,40 @@ void MenuManager::DrawFileBrowser()
 		ImGui::EndChild();
 	}
 	ImGui::End();
+}
+
+void MenuManager::InitInputPopup(string title, string defaultChar, InputPopupCallback callback)
+{
+	strcpy_s(newInputInitChar, defaultChar.c_str());
+	inputPopupTitle = title;
+	inputPopupCallback = callback;
+	showInputPopup = true;
+}
+
+void MenuManager::DrawInputPopup()
+{
+	ImGui::OpenPopup(inputPopupTitle.c_str());
+
+	ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.5f), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+	ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoCollapse;
+	windowFlags |= ImGuiWindowFlags_NoResize;
+	windowFlags |= ImGuiWindowFlags_AlwaysAutoResize;
+	windowFlags |= ImGuiWindowFlags_NoSavedSettings;
+
+	if (ImGui::BeginPopupModal(inputPopupTitle.c_str(), &showInputPopup, windowFlags))
+	{
+		ImGui::InputText("", newInputInitChar, IM_ARRAYSIZE(newInputInitChar));
+		ImGui::Separator();
+		ImGui::Spacing();
+
+		if (ImGui::Button("Save") && string(newInputInitChar).length() > 0)
+		{
+			(this->*inputPopupCallback)(newInputInitChar);
+			ImGui::CloseCurrentPopup();
+			showInputPopup = false;
+		}
+		ImGui::EndPopup();
+	}
 }
 
 void MenuManager::ImportModel(string path)
@@ -678,6 +848,11 @@ void MenuManager::ImportWeatherMap(string path)
 		WeatherSystem::Instance()->SetWeatherMap(path.erase(pos));
 }
 
+void MenuManager::CreateNewMaterial(string name)
+{
+	selectedMatID = MaterialManager::Instance()->CreateNewMaterial(name)->GetID();
+}
+
 void MenuManager::RenderMenu()
 {
 	if (!showMenu)
@@ -714,6 +889,12 @@ void MenuManager::UpdateMenu()
 
 	if (showSaveSceneDialog)
 		DrawSaveSceneDialog();
+
+	if (showMaterialManager)
+		DrawMaterialManagerDialog();
+
+	if (showInputPopup)
+		DrawInputPopup();
 }
 
 void MenuManager::ToogleMenu()
