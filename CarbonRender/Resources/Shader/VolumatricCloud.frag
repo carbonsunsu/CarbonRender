@@ -379,8 +379,8 @@ vec4 GetCloud(vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis
 
 	if (wsCamPos.y < cloudMinAltitude)
 	{
-		float L = distance(PLANET_CENTER, wsCamPos);
-		float alpha = dot( normalize(PLANET_CENTER - wsCamPos), viewRay);
+		float L = wsCamPos.y + PLANET_RADIUS;
+		float alpha = dot(vec3(0.0f, -1.0f, 0.0f), viewRay);
 		float l1 = L * abs(alpha);
 		float d = sqrt(L * L - l1 * l1);
 		float r = PLANET_RADIUS + cloudMinAltitude;
@@ -397,7 +397,7 @@ vec4 GetCloud(vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis
 	{
 		float L = wsCamPos.y + PLANET_RADIUS;
 		float alpha = dot(vec3(0.0f, -1.0f, 0.0f), viewRay);
-		if (alpha < 0.0) return vec4(0.0);
+		if (acos(alpha) > asin((cloudMaxAltitude + PLANET_RADIUS) / L)) return vec4(0.0);
 		float l1 = L * alpha;
 		float d = sqrt(L * L - l1 * l1);
 		float r = PLANET_RADIUS + cloudMaxAltitude;
@@ -413,8 +413,27 @@ vec4 GetCloud(vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis
 	else
 	{
 		sampleDisSum = 0.0f;
-		sampleDisMax = 1000.0f;
-		startPos = wsCamPos;
+		sampleDisMax = 30000.0f;
+		startPos = wsCamPos;		
+
+		float L = wsCamPos.y + PLANET_RADIUS;
+		float alpha = dot(vec3(0.0f, -1.0f, 0.0f), viewRay);
+		if (acos(alpha) > asin((cloudMinAltitude + PLANET_RADIUS) / L))
+		{
+			float l1 = L * abs(alpha);
+			float d = sqrt(L * L - l1 * l1);
+			float r = PLANET_RADIUS + cloudMaxAltitude;
+			float l2 = sqrt(r * r - d * d);
+			sampleDisMax = min(alpha >= 0.0f ? (l1 + l2) : (l2 - l1), sampleDisMax);
+		}
+		else
+		{
+			float l1 = L * alpha;
+			float d = sqrt(L * L - l1 * l1);
+			float r = PLANET_RADIUS + cloudMinAltitude;
+			float l2 = sqrt(r * r - d * d);
+			sampleDisMax = min(l1 - l2 + 1.0f, sampleDisMax);
+		}
 		endPos = wsCamPos + viewRay * sampleDisMax;
 	}
 	startToCamDis = sampleDisSum;
