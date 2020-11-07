@@ -140,6 +140,7 @@ Material::Material()
 	texTilling[5] = 1.0f;
 	color = float4(1.0f, 1.0f, 1.0f, 1.0f);
 	emissionColor = float3(0.0f, 0.0f, 0.0f);
+	emissionIntensity = 1.0f;
 	SetDiffuse("");
 	SetNormal("");
 	SetSpecular("");
@@ -227,6 +228,16 @@ float3 Material::GetSpecularTilling()
 	return float3(texTilling[4], texTilling[5], 0.0f);
 }
 
+float3 Material::GetEmissionColor()
+{
+	return emissionColor;
+}
+
+float Material::GetEmissionIntensity()
+{
+	return emissionIntensity;
+}
+
 bool Material::HasDiffuseTexture()
 {
 	return hasTex[0];
@@ -278,6 +289,16 @@ void Material::SetSpecularTilling(float x, float y)
 {
 	texTilling[4] = x;
 	texTilling[5] = y;
+}
+
+void Material::SetEmissionColor(float3 c)
+{
+	emissionColor = c;
+}
+
+void Material::SetEmissionIntensity(float i)
+{
+	emissionIntensity = i;
 }
 
 void Material::RemoveDiffuse()

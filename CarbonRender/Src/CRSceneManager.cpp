@@ -561,6 +561,19 @@ void SceneManager::SaveScene(string sceneName)
 		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("tillingY"), sceneDoc.allocate_string(to_string(specTilling.y).c_str()));
 		l2Node->append_attribute(attrib);
 		l1Node->append_node(l2Node);
+
+		l2Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("EmissionColor"));
+		float3 emisColor = i->second->GetEmissionColor();
+		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("R"), sceneDoc.allocate_string(to_string(emisColor.x).c_str()));
+		l2Node->append_attribute(attrib);
+		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("G"), sceneDoc.allocate_string(to_string(emisColor.y).c_str()));
+		l2Node->append_attribute(attrib);
+		attrib = sceneDoc.allocate_attribute(sceneDoc.allocate_string("B"), sceneDoc.allocate_string(to_string(emisColor.z).c_str()));
+		l2Node->append_attribute(attrib);
+		l1Node->append_node(l2Node);
+
+		l2Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("EmissionIntensity"), sceneDoc.allocate_string(to_string(i->second->GetEmissionIntensity()).c_str()));
+		l1Node->append_node(l2Node);
 	}
 
 	//Objs

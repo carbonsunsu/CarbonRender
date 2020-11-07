@@ -32,6 +32,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="226" Name="New Material 226">
 			<Metallic>0.000000</Metallic>
@@ -40,14 +42,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
-		</Material>
-		<Material ID="260" Name="430U_turret">
-			<Metallic>1.000000</Metallic>
-			<Roughness>1.000000</Roughness>
-			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_turret_01_AM_hd</Diffuse>
-			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_turret_01_ANM_hd</Normal>
-			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_turret_01_GMM_hd</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="227" Name="New Material 227">
 			<Metallic>0.000000</Metallic>
@@ -56,6 +52,18 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
+		</Material>
+		<Material ID="260" Name="430U_turret">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_turret_01_AM_hd</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_turret_01_ANM_hd</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_turret_01_GMM_hd</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="228" Name="New Material 228">
 			<Metallic>1.000000</Metallic>
@@ -64,6 +72,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="229" Name="New Material 229">
 			<Metallic>1.000000</Metallic>
@@ -72,6 +82,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\ColumnA_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\ColumnA_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\ColumnA_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="230" Name="New Material 230">
 			<Metallic>1.000000</Metallic>
@@ -80,6 +92,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\Arch_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Arch_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Arch_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="231" Name="New Material 231">
 			<Metallic>1.000000</Metallic>
@@ -88,6 +102,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\Arch_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Arch_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Arch_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="232" Name="New Material 232">
 			<Metallic>1.000000</Metallic>
@@ -96,14 +112,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\Arch_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Arch_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Arch_S</Specular>
-		</Material>
-		<Material ID="258" Name="430U_gun">
-			<Metallic>1.000000</Metallic>
-			<Roughness>1.000000</Roughness>
-			<Color R="1.000000" G="0.999990" B="0.999990" A="1.000000"/>
-			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_guns_AM_hd</Diffuse>
-			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_guns_ANM_hd</Normal>
-			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_guns_GMM_hd</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="233" Name="New Material 233">
 			<Metallic>1.000000</Metallic>
@@ -112,6 +122,18 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\ColumnC_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\ColumnC_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\ColumnC_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
+		</Material>
+		<Material ID="258" Name="430U_gun">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="0.999990" B="0.999990" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_guns_AM_hd</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_guns_ANM_hd</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_guns_GMM_hd</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="234" Name="New Material 234">
 			<Metallic>1.000000</Metallic>
@@ -120,6 +142,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\ColumnB_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\ColumnB_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\ColumnB_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="235" Name="New Material 235">
 			<Metallic>1.000000</Metallic>
@@ -128,6 +152,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricG_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="236" Name="New Material 236">
 			<Metallic>1.000000</Metallic>
@@ -136,14 +162,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricB_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
-		</Material>
-		<Material ID="262" Name="430_segment_1">
-			<Metallic>1.000000</Metallic>
-			<Roughness>1.000000</Roughness>
-			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_AM_hd</Diffuse>
-			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_ANM_hd</Normal>
-			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_GMM_hd</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="237" Name="New Material 237">
 			<Metallic>1.000000</Metallic>
@@ -152,6 +172,18 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricR_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
+		</Material>
+		<Material ID="262" Name="430_segment_1">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_AM_hd</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_ANM_hd</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_GMM_hd</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="238" Name="New Material 238">
 			<Metallic>1.000000</Metallic>
@@ -160,14 +192,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricG_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
-		</Material>
-		<Material ID="256" Name="New Material 256">
-			<Metallic>1.000000</Metallic>
-			<Roughness>0.440000</Roughness>
-			<Color R="1.000000" G="0.462803" B="0.323529" A="1.000000"/>
-			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
-			<Normal tillingX="1.000000" tillingY="1.000000"/>
-			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="239" Name="New Material 239">
 			<Metallic>1.000000</Metallic>
@@ -176,6 +202,18 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricB_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
+		</Material>
+		<Material ID="256" Name="New Material 256">
+			<Metallic>1.000000</Metallic>
+			<Roughness>0.440000</Roughness>
+			<Color R="1.000000" G="0.462803" B="0.323529" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
+			<Normal tillingX="1.000000" tillingY="1.000000"/>
+			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="240" Name="New Material 240">
 			<Metallic>1.000000</Metallic>
@@ -184,6 +222,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricG_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="241" Name="New Material 241">
 			<Metallic>1.000000</Metallic>
@@ -192,6 +232,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricR_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="242" Name="New Material 242">
 			<Metallic>1.000000</Metallic>
@@ -200,6 +242,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\FabricB_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Fabric_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="243" Name="New Material 243">
 			<Metallic>1.000000</Metallic>
@@ -208,6 +252,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainR_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="244" Name="New Material 244">
 			<Metallic>1.000000</Metallic>
@@ -216,6 +262,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainG_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="245" Name="New Material 245">
 			<Metallic>1.000000</Metallic>
@@ -224,6 +272,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainB_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="246" Name="New Material 246">
 			<Metallic>1.000000</Metallic>
@@ -232,14 +282,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainR_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
-		</Material>
-		<Material ID="264" Name="430U_chass_l">
-			<Metallic>1.000000</Metallic>
-			<Roughness>1.000000</Roughness>
-			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_AM_hd</Diffuse>
-			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_ANM_hd</Normal>
-			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_GMM_hd</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="247" Name="New Material 247">
 			<Metallic>1.000000</Metallic>
@@ -248,6 +292,18 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainG_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
+		</Material>
+		<Material ID="264" Name="430U_chass_l">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_AM_hd</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_ANM_hd</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_GMM_hd</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="248" Name="New Material 248">
 			<Metallic>1.000000</Metallic>
@@ -256,6 +312,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainB_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="249" Name="New Material 249">
 			<Metallic>1.000000</Metallic>
@@ -264,6 +322,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainB_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="250" Name="New Material 250">
 			<Metallic>1.000000</Metallic>
@@ -272,6 +332,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainG_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="251" Name="New Material 251">
 			<Metallic>1.000000</Metallic>
@@ -280,6 +342,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainR_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="252" Name="New Material 252">
 			<Metallic>1.000000</Metallic>
@@ -288,6 +352,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CurtainB_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Curtain_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="253" Name="New Material 253">
 			<Metallic>1.000000</Metallic>
@@ -296,6 +362,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\CeilingA_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\CeilingA_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="254" Name="New Material 254">
 			<Metallic>1.000000</Metallic>
@@ -304,6 +372,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\Flagpole_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\Flagpole_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="255" Name="New Material 255">
 			<Metallic>1.000000</Metallic>
@@ -312,6 +382,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Sponza\BricksA_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="257" Name="New Material 257">
 			<Metallic>0.000000</Metallic>
@@ -320,6 +392,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Sponza\Picture_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="259" Name="430U_hull">
 			<Metallic>1.000000</Metallic>
@@ -328,6 +402,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_hull_01_AM_hd</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_hull_01_ANM_hd</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_hull_01_GMM_hd</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="261" Name="430U_segment_0">
 			<Metallic>1.000000</Metallic>
@@ -336,6 +412,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_AM_hd</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_ANM_hd</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430U_segment_track_GMM_hd</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="263" Name="430U_chass_r">
 			<Metallic>1.000000</Metallic>
@@ -344,6 +422,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_AM_hd</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_ANM_hd</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">Obj430U\Object_430_U_3Dst_chassis_01_GMM_hd</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 	</Materials>
 	<Objects>

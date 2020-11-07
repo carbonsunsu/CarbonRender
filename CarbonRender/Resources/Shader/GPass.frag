@@ -4,6 +4,7 @@ layout(location = 0) out vec4 aColor;
 layout(location = 1) out vec4 nColor;
 layout(location = 2) out vec4 pColor;
 layout(location = 3) out vec4 sColor;
+layout(location = 4) out vec4 eColor;
 
 in vec4 wsP;
 in vec2 uvD;
@@ -23,6 +24,7 @@ uniform float metallicScale;
 uniform mat4 viewMat;
 uniform mat3 normalMat;
 uniform vec2 depthClampPara;
+uniform vec3 emissionColor;
 
 void main ()
 {
@@ -46,4 +48,5 @@ void main ()
 	nColor = vec4(wsN.x, wsN.y, wsN.z, d);
 	pColor = vec4(wsP.x, wsP.y, wsP.z, min(rm.r * roughnessScale, 1.0f));
 	sColor = vec4(1,0,0,0);
+	eColor = vec4(emissionColor, 0.0f);
 }

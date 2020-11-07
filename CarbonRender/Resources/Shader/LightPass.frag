@@ -21,6 +21,7 @@ uniform sampler2D sMap;
 uniform sampler2D stenMap;
 uniform samplerCube cubeMap;
 uniform sampler2D giMap;
+uniform sampler2D emisMap;
 
 float Random (vec2 i, float seed)
 {
@@ -154,6 +155,7 @@ void main ()
 	vec4 P = texture(pMap, uv);
 	vec4 shadowFactor = texture(sMap, uv);
 	vec4 gi = texture(giMap, uv);
+	vec4 emis = texture(emisMap, uv);
 
 	vec3 wsN = N.xyz;
 	vec3 wsP = P.xyz;
@@ -185,6 +187,7 @@ void main ()
 		wsN, wsV, wsL, lightColor, 
 		indirectDiff, inditectSpec, pureLColor.rgb, para.rgb);
 
+	pureLColor.rgb += emis.rgb;
 	refColor.rgb = inditectSpec * para.rgb;
 	refColor.a = roughness;
 }

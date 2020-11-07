@@ -14,6 +14,7 @@ uniform sampler2D albedoMap;
 uniform bool depthOnly;
 uniform mat4 viewMat;
 uniform vec2 depthClampPara;
+uniform vec3 emissionColor;
 
 void main ()
 {
@@ -28,7 +29,7 @@ void main ()
 	if (!depthOnly)
 	{
 		vplPosColor = wsP.xyz;
-		vplAlbedoColor = albedo.xyz;
+		vplAlbedoColor = albedo.xyz + emissionColor.rgb;
 		vplNormalColor = wsN;
 	}
 }

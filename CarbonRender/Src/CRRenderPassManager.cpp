@@ -39,7 +39,7 @@ void RenderPassManager::Draw()
 {
 	PassOutput* sm = smPass.Draw(NULL);//0:pos, 1:albedo, 2:normal, 3:depthMapLv0, 4:depthMapLv1, 5:depthMapLv2
 	PassOutput* sky = skyPass.Draw(NULL);//0:sky, 1:sky cube
-	PassOutput* g = gPass.Draw(NULL);//0:albedo, 1:normal and depth, 2:position, 3:stensil
+	PassOutput* g = gPass.Draw(NULL);//0:albedo, 1:normal and depth, 2:position, 3:stensil, 4:emission
 
 	PassOutput cInput;
 	cInput.cout = 4;
@@ -49,7 +49,7 @@ void RenderPassManager::Draw()
 	cInput.RTS[2] = sm->RTS[3];
 	cInput.RTS[3] = sm->RTS[4];
 	cInput.mats = sm->mats;
-	PassOutput* cloud = cloudPass.Draw(&cInput);//cloud
+	PassOutput* cloud = cloudPass.Draw(&cInput);//cloud and fog
 
 	PassOutput sInput;
 	sInput.cout = 6;
@@ -93,7 +93,7 @@ void RenderPassManager::Draw()
 	PassOutput* gi = giPass.Draw(&giInput);//GI
 
 	PassOutput lInput;
-	lInput.cout = 7;
+	lInput.cout = 8;
 	lInput.RTS = new GLuint[lInput.cout];
 	lInput.RTS[0] = g->RTS[0];
 	lInput.RTS[1] = g->RTS[1];
@@ -101,7 +101,8 @@ void RenderPassManager::Draw()
 	lInput.RTS[3] = g->RTS[3];
 	lInput.RTS[4] = shadowBlured->RTS[0];
 	lInput.RTS[5] = gi->RTS[0];
-	lInput.RTS[6] = sky->RTS[1];
+	lInput.RTS[6] = g->RTS[4];
+	lInput.RTS[7] = sky->RTS[1];
 	PassOutput* light = lightPass.Draw(&lInput);//pureLight, refColor, indSpecPara
 
 	PassOutput rInput;

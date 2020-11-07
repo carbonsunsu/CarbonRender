@@ -93,6 +93,9 @@ void MeshObject::Render(GLuint shaderProgram, bool useTex)
 	glUniform2f(location, diffTilling.x, diffTilling.y);
 	location = glGetUniformLocation(shaderProgram, "uvTilling1");
 	glUniform4f(location, norlTilling.x, norlTilling.y, specTilling.x, specTilling.y);
+	float3 emisColor = material->GetEmissionColor() * material->GetEmissionIntensity();
+	location = glGetUniformLocation(shaderProgram, "emissionColor");
+	glUniform3f(location, emisColor.x, emisColor.y, emisColor.z);
 
 	glBindVertexArray(meshData->GetVertexArrayObject());
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, meshData->GetElementBufferObject());

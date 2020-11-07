@@ -220,9 +220,9 @@ void MenuManager::DrawWorldEditorDialog()
 		ImGui::Text("Fog");
 		{
 			float3 fogColor = WeatherSystem::Instance()->GetFogColor();
-			float tempColor[3] = { fogColor.x, fogColor.y, fogColor.z };
-			ImGui::ColorEdit3("Fog Color", tempColor);
-			WeatherSystem::Instance()->SetFogColor(float3(tempColor[0], tempColor[1], tempColor[2]));
+			float fogColorArray[3] = { fogColor.x, fogColor.y, fogColor.z };
+			ImGui::ColorEdit3("Fog Color", fogColorArray);
+			WeatherSystem::Instance()->SetFogColor(float3(fogColorArray[0], fogColorArray[1], fogColorArray[2]));
 
 			float fogDen = WeatherSystem::Instance()->GetFogDensity();
 			ImGui::DragFloat("Fog Density", &fogDen, 0.00001f, 0.0f, 1.0f, "%.5f");
@@ -400,9 +400,9 @@ void MenuManager::DrawObjectEditorDialog()
 
 					//Color
 					float4 matColor = mat->GetColor();
-					float tempColor[4] = { matColor.x, matColor.y, matColor.z, matColor.w };
-					ImGui::ColorEdit4("Color", tempColor);
-					mat->SetColor(float4(tempColor[0], tempColor[1], tempColor[2], tempColor[3]));
+					float matColorArray[4] = { matColor.x, matColor.y, matColor.z, matColor.w };
+					ImGui::ColorEdit4("Color", matColorArray);
+					mat->SetColor(float4(matColorArray[0], matColorArray[1], matColorArray[2], matColorArray[3]));
 
 					//Diffuse
 					ImTextureID texID;
@@ -492,7 +492,17 @@ void MenuManager::DrawObjectEditorDialog()
 						float metallic = mat->GetMetallic();
 						ImGui::DragFloat("Metallic", &metallic, 0.01f, 0.0f, 1.0f, "%.2f");
 						mat->SetMetallic(metallic);
+
+						ImGui::Spacing();
 					}
+
+					float3 emisColor = mat->GetEmissionColor();
+					float emisInten = mat->GetEmissionIntensity();
+					float emisColorArray[3] = { emisColor.x, emisColor.y, emisColor.z };
+					ImGui::ColorEdit3("Emission Color", emisColorArray);
+					mat->SetEmissionColor(float3(emisColorArray[0], emisColorArray[1], emisColorArray[2]));
+					ImGui::DragFloat("Emission Intensity", &emisInten, 0.1f, 0.0f, FLT_MAX, "%.2f");
+					mat->SetEmissionIntensity(emisInten);
 				}
 			}
 		}
@@ -644,7 +654,12 @@ void MenuManager::DrawMaterialManagerDialog()
 
 					float metallic = mat->GetMetallic();
 					ImGui::Text(("Metallic: " + to_string(metallic)).c_str());
+					ImGui::Spacing();
 				}
+
+				float3 emisColor = mat->GetEmissionColor();
+				ImGui::ColorButton("Emission Color", ImVec4(emisColor.x, emisColor.y, emisColor.z, 0.0), 0, ImVec2(32, 32));
+				ImGui::Text(("Emission Intensity: " + to_string(mat->GetEmissionIntensity())).c_str());
 			}
 		}
 		ImGui::EndChild();

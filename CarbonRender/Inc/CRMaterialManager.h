@@ -19,6 +19,7 @@ private:
 	float metallic;
 	float4 color;
 	float3 emissionColor;
+	float emissionIntensity;
 	void SetTexture(string dir, int index);
 	void SetID(unsigned int newID);
 
@@ -35,6 +36,9 @@ public:
 	void SetDiffuseTilling(float x, float y);
 	void SetNormalTilling(float x, float y);
 	void SetSpecularTilling(float x, float y);
+	void SetEmissionColor(float3 c);
+	void SetEmissionIntensity(float i);
+
 	void RemoveDiffuse();
 	void RemoveNormal();
 	void RemoveSpecular();
@@ -53,6 +57,8 @@ public:
 	float3 GetDiffuseTilling();
 	float3 GetNormalTilling();
 	float3 GetSpecularTilling();
+	float3 GetEmissionColor();
+	float GetEmissionIntensity();
 	bool HasDiffuseTexture();
 	bool HasNormalTexture();
 	bool HasSpecularTexture();

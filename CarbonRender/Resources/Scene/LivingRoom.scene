@@ -25,14 +25,6 @@
 		<FarClip>3000.000000</FarClip>
 	</Camera>
 	<Materials>
-		<Material ID="9" Name="New Material 9">
-			<Metallic>1.000000</Metallic>
-			<Roughness>1.000000</Roughness>
-			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
-			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_D</Diffuse>
-			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_N</Normal>
-			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_S</Specular>
-		</Material>
 		<Material ID="65" Name="New Material 65">
 			<Metallic>1.000000</Metallic>
 			<Roughness>1.000000</Roughness>
@@ -40,6 +32,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="1" Name="New Material 1">
 			<Metallic>0.500000</Metallic>
@@ -48,6 +42,18 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
+		</Material>
+		<Material ID="9" Name="New Material 9">
+			<Metallic>1.000000</Metallic>
+			<Roughness>1.000000</Roughness>
+			<Color R="1.000000" G="1.000000" B="1.000000" A="1.000000"/>
+			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_D</Diffuse>
+			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_N</Normal>
+			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="2" Name="New Material 2">
 			<Metallic>1.000000</Metallic>
@@ -56,6 +62,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="3" Name="New Material 3">
 			<Metallic>1.000000</Metallic>
@@ -64,6 +72,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="4" Name="New Material 4">
 			<Metallic>1.000000</Metallic>
@@ -72,6 +82,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="5" Name="New Material 5">
 			<Metallic>1.000000</Metallic>
@@ -80,6 +92,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="6" Name="New Material 6">
 			<Metallic>1.000000</Metallic>
@@ -88,6 +102,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\fabric02_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\fabric02_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="7" Name="New Material 7">
 			<Metallic>1.000000</Metallic>
@@ -96,6 +112,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="8" Name="New Material 8">
 			<Metallic>1.000000</Metallic>
@@ -104,6 +122,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="10" Name="New Material 10">
 			<Metallic>1.000000</Metallic>
@@ -112,6 +132,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wall_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wall_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="11" Name="New Material 11">
 			<Metallic>1.000000</Metallic>
@@ -120,6 +142,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="12" Name="New Material 12">
 			<Metallic>1.000000</Metallic>
@@ -128,6 +152,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Black_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="13" Name="New Material 13">
 			<Metallic>1.000000</Metallic>
@@ -136,6 +162,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="14" Name="New Material 14">
 			<Metallic>1.000000</Metallic>
@@ -144,6 +172,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="15" Name="New Material 15">
 			<Metallic>1.000000</Metallic>
@@ -152,6 +182,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="16" Name="New Material 16">
 			<Metallic>1.000000</Metallic>
@@ -160,6 +192,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="17" Name="New Material 17">
 			<Metallic>1.000000</Metallic>
@@ -168,6 +202,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="18" Name="New Material 18">
 			<Metallic>1.000000</Metallic>
@@ -176,6 +212,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="19" Name="New Material 19">
 			<Metallic>1.000000</Metallic>
@@ -184,6 +222,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="20" Name="New Material 20">
 			<Metallic>1.000000</Metallic>
@@ -192,6 +232,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="21" Name="New Material 21">
 			<Metallic>1.000000</Metallic>
@@ -200,6 +242,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="22" Name="New Material 22">
 			<Metallic>1.000000</Metallic>
@@ -208,6 +252,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="23" Name="New Material 23">
 			<Metallic>1.000000</Metallic>
@@ -216,6 +262,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="24" Name="New Material 24">
 			<Metallic>1.000000</Metallic>
@@ -224,6 +272,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="25" Name="New Material 25">
 			<Metallic>1.000000</Metallic>
@@ -232,6 +282,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="26" Name="New Material 26">
 			<Metallic>1.000000</Metallic>
@@ -240,6 +292,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="27" Name="New Material 27">
 			<Metallic>1.000000</Metallic>
@@ -248,6 +302,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="28" Name="New Material 28">
 			<Metallic>1.000000</Metallic>
@@ -256,6 +312,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="29" Name="New Material 29">
 			<Metallic>1.000000</Metallic>
@@ -264,6 +322,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="30" Name="New Material 30">
 			<Metallic>1.000000</Metallic>
@@ -272,6 +332,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="31" Name="New Material 31">
 			<Metallic>1.000000</Metallic>
@@ -280,6 +342,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="32" Name="New Material 32">
 			<Metallic>1.000000</Metallic>
@@ -288,6 +352,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="33" Name="New Material 33">
 			<Metallic>1.000000</Metallic>
@@ -296,6 +362,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Leather04_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="34" Name="New Material 34">
 			<Metallic>1.000000</Metallic>
@@ -304,6 +372,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="35" Name="New Material 35">
 			<Metallic>1.000000</Metallic>
@@ -312,6 +382,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="36" Name="New Material 36">
 			<Metallic>1.000000</Metallic>
@@ -320,6 +392,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="37" Name="New Material 37">
 			<Metallic>1.000000</Metallic>
@@ -328,6 +402,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="38" Name="New Material 38">
 			<Metallic>1.000000</Metallic>
@@ -336,6 +412,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="39" Name="New Material 39">
 			<Metallic>1.000000</Metallic>
@@ -344,6 +422,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="40" Name="New Material 40">
 			<Metallic>1.000000</Metallic>
@@ -352,6 +432,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P8_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="41" Name="New Material 41">
 			<Metallic>1.000000</Metallic>
@@ -360,6 +442,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="42" Name="New Material 42">
 			<Metallic>1.000000</Metallic>
@@ -368,6 +452,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="43" Name="New Material 43">
 			<Metallic>1.000000</Metallic>
@@ -376,6 +462,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Floor_Walnut_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Floor_Walnut_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Floor_Walnut_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="44" Name="New Material 44">
 			<Metallic>1.000000</Metallic>
@@ -384,6 +472,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\fabric02_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\fabric02_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="45" Name="New Material 45">
 			<Metallic>1.000000</Metallic>
@@ -392,6 +482,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\fabric02_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\fabric02_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="46" Name="New Material 46">
 			<Metallic>1.000000</Metallic>
@@ -400,6 +492,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="47" Name="New Material 47">
 			<Metallic>1.000000</Metallic>
@@ -408,6 +502,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="48" Name="New Material 48">
 			<Metallic>1.000000</Metallic>
@@ -416,6 +512,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="49" Name="New Material 49">
 			<Metallic>1.000000</Metallic>
@@ -424,6 +522,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Pine_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Pine_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Pine_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="50" Name="New Material 50">
 			<Metallic>1.000000</Metallic>
@@ -432,6 +532,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Oak_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="51" Name="New Material 51">
 			<Metallic>1.000000</Metallic>
@@ -440,6 +542,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="52" Name="New Material 52">
 			<Metallic>1.000000</Metallic>
@@ -448,6 +552,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="53" Name="New Material 53">
 			<Metallic>1.000000</Metallic>
@@ -456,6 +562,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P7_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="54" Name="New Material 54">
 			<Metallic>1.000000</Metallic>
@@ -464,6 +572,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="55" Name="New Material 55">
 			<Metallic>1.000000</Metallic>
@@ -472,6 +582,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="56" Name="New Material 56">
 			<Metallic>1.000000</Metallic>
@@ -480,6 +592,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="57" Name="New Material 57">
 			<Metallic>1.000000</Metallic>
@@ -488,6 +602,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="58" Name="New Material 58">
 			<Metallic>1.000000</Metallic>
@@ -496,6 +612,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="59" Name="New Material 59">
 			<Metallic>1.000000</Metallic>
@@ -504,6 +622,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="60" Name="New Material 60">
 			<Metallic>1.000000</Metallic>
@@ -512,6 +632,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P2_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="61" Name="New Material 61">
 			<Metallic>1.000000</Metallic>
@@ -520,6 +642,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="62" Name="New Material 62">
 			<Metallic>1.000000</Metallic>
@@ -528,6 +652,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="63" Name="New Material 63">
 			<Metallic>1.000000</Metallic>
@@ -536,6 +662,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P5_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="64" Name="New Material 64">
 			<Metallic>1.000000</Metallic>
@@ -544,6 +672,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="66" Name="New Material 66">
 			<Metallic>1.000000</Metallic>
@@ -552,6 +682,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="67" Name="New Material 67">
 			<Metallic>1.000000</Metallic>
@@ -560,6 +692,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="68" Name="New Material 68">
 			<Metallic>1.000000</Metallic>
@@ -568,6 +702,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="69" Name="New Material 69">
 			<Metallic>1.000000</Metallic>
@@ -576,6 +712,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P1_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="70" Name="New Material 70">
 			<Metallic>1.000000</Metallic>
@@ -584,6 +722,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="71" Name="New Material 71">
 			<Metallic>1.000000</Metallic>
@@ -592,6 +732,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P4_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="72" Name="New Material 72">
 			<Metallic>1.000000</Metallic>
@@ -600,6 +742,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetalR_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="73" Name="New Material 73">
 			<Metallic>1.000000</Metallic>
@@ -608,6 +752,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="74" Name="New Material 74">
 			<Metallic>1.000000</Metallic>
@@ -616,6 +762,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="75" Name="New Material 75">
 			<Metallic>1.000000</Metallic>
@@ -624,6 +772,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetalB_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="76" Name="New Material 76">
 			<Metallic>1.000000</Metallic>
@@ -632,6 +782,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P3_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="77" Name="New Material 77">
 			<Metallic>1.000000</Metallic>
@@ -640,6 +792,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="78" Name="New Material 78">
 			<Metallic>1.000000</Metallic>
@@ -648,6 +802,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Ceramic_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="79" Name="New Material 79">
 			<Metallic>1.000000</Metallic>
@@ -656,6 +812,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000"/>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="80" Name="New Material 80">
 			<Metallic>1.000000</Metallic>
@@ -664,6 +822,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="81" Name="New Material 81">
 			<Metallic>1.000000</Metallic>
@@ -672,6 +832,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Wood16_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="82" Name="New Material 82">
 			<Metallic>1.000000</Metallic>
@@ -680,6 +842,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="83" Name="New Material 83">
 			<Metallic>1.000000</Metallic>
@@ -688,6 +852,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="84" Name="New Material 84">
 			<Metallic>1.000000</Metallic>
@@ -696,6 +862,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Rug01_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="85" Name="New Material 85">
 			<Metallic>1.000000</Metallic>
@@ -704,6 +872,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Cup_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Cup_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="86" Name="New Material 86">
 			<Metallic>1.000000</Metallic>
@@ -712,6 +882,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Ceramic_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="87" Name="New Material 87">
 			<Metallic>1.000000</Metallic>
@@ -720,6 +892,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Ceramic_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="88" Name="New Material 88">
 			<Metallic>1.000000</Metallic>
@@ -728,6 +902,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetalR_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="89" Name="New Material 89">
 			<Metallic>1.000000</Metallic>
@@ -736,6 +912,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\radio_dial_idea_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="90" Name="New Material 90">
 			<Metallic>1.000000</Metallic>
@@ -744,6 +922,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="91" Name="New Material 91">
 			<Metallic>1.000000</Metallic>
@@ -752,6 +932,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\White_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Ceramic_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="92" Name="New Material 92">
 			<Metallic>1.000000</Metallic>
@@ -760,6 +942,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Cup_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Cup_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="93" Name="New Material 93">
 			<Metallic>1.000000</Metallic>
@@ -768,6 +952,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\streakedmetal_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="94" Name="New Material 94">
 			<Metallic>1.000000</Metallic>
@@ -776,6 +962,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\P6_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\paper02_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="95" Name="New Material 95">
 			<Metallic>1.000000</Metallic>
@@ -784,6 +972,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_N</Normal>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\T_Wood_Walnut_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="96" Name="New Material 96">
 			<Metallic>1.000000</Metallic>
@@ -792,6 +982,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Red_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="97" Name="New Material 97">
 			<Metallic>1.000000</Metallic>
@@ -800,6 +992,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Green0_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000"/>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 		<Material ID="98" Name="New Material 98">
 			<Metallic>1.000000</Metallic>
@@ -808,6 +1002,8 @@
 			<Diffuse tillingX="1.000000" tillingY="1.000000">LivingRoom2\Green1_D</Diffuse>
 			<Normal tillingX="1.000000" tillingY="1.000000"/>
 			<Specular tillingX="1.000000" tillingY="1.000000">LivingRoom2\Ceramic_S</Specular>
+			<EmissionColor R="0.000000" G="0.000000" B="0.000000"/>
+			<EmissionIntensity>1.000000</EmissionIntensity>
 		</Material>
 	</Materials>
 	<Objects>

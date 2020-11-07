@@ -11,7 +11,7 @@ void SMPass::GetReady4Render(PassOutput * input)
 	int shadowMapSize = sunLight->GetShadowMapSize();
 	depthMapLv0 = GLHelper::SetGLRenderTexture(shadowMapSize, shadowMapSize, GL_R32F, GL_RED, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0);
 	vplPos = GLHelper::SetGLRenderTexture(shadowMapSize, shadowMapSize, GL_RGB32F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT1);
-	vplAlbedo = GLHelper::SetGLRenderTexture(shadowMapSize, shadowMapSize, GL_RGB8, GL_RGB, GL_UNSIGNED_BYTE, GL_LINEAR, GL_COLOR_ATTACHMENT2);
+	vplAlbedo = GLHelper::SetGLRenderTexture(shadowMapSize, shadowMapSize, GL_RGB16F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT2);
 	vplNormal = GLHelper::SetGLRenderTexture(shadowMapSize, shadowMapSize, GL_RGB32F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT3);
 	depthMapLv1 = GLHelper::SetGLRenderTexture(shadowMapSize, shadowMapSize, GL_R32F, GL_RED, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT4);
 	depthMapLv2 = GLHelper::SetGLRenderTexture(shadowMapSize, shadowMapSize, GL_R32F, GL_RED, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT5);

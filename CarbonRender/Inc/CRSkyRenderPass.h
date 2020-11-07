@@ -10,7 +10,7 @@ class SkyRenderPass : public RenderPass
 {
 private:
 	MeshObject sphere;
-	int cubeSize = 256;
+	int cubeSize = 512;
 	GLuint fboCube;
 	GLuint milkwayTex;
 
