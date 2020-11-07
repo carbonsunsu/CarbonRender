@@ -207,12 +207,15 @@ void MenuManager::DrawWorldEditorDialog()
 			cloudBias.z = bias[1];
 			float3 windDir = WeatherSystem::Instance()->GetWindDirection();
 			WeatherSystem::Instance()->SetCloudBias(cloudBias);
+			ImGui::Spacing();
 
+			static float tempBiasScale = 1000.0f;
+			ImGui::DragFloat("Manually Move Scale", &tempBiasScale, 1.0f, 1.0f, FLT_MAX, "%.0f");
 			float tempBias = 0.0f;
 			if (!ImGui::DragFloat("Drag to Move Cloud", &tempBias, 1.0f, -FLT_MAX, +FLT_MAX))
 				tempBias = 0.0f;
 			else
-				WeatherSystem::Instance()->SetCloudBias(WeatherSystem::Instance()->GetCloudBias() + WeatherSystem::Instance()->GetWindDirection() * tempBias * 1000.0f);
+				WeatherSystem::Instance()->SetCloudBias(WeatherSystem::Instance()->GetCloudBias() + WeatherSystem::Instance()->GetWindDirection() * tempBias * tempBiasScale);
 		}
 		ImGui::Separator();
 		ImGui::Spacing();
@@ -225,7 +228,7 @@ void MenuManager::DrawWorldEditorDialog()
 			WeatherSystem::Instance()->SetFogColor(float3(fogColorArray[0], fogColorArray[1], fogColorArray[2]));
 
 			float fogDen = WeatherSystem::Instance()->GetFogDensity();
-			ImGui::DragFloat("Fog Density", &fogDen, 0.00001f, 0.0f, 1.0f, "%.5f");
+			ImGui::DragFloat("Fog Density", &fogDen, 0.0001f, 0.0f, 1.0f, "%.4f");
 			WeatherSystem::Instance()->SetFogDensity(fogDen);
 
 			float fogPrec = WeatherSystem::Instance()->GetFogPrecipitation();
@@ -541,6 +544,7 @@ void MenuManager::DrawSaveSceneDialog()
 	windowFlags |= ImGuiWindowFlags_NoResize;
 	windowFlags |= ImGuiWindowFlags_AlwaysAutoResize;
 	windowFlags |= ImGuiWindowFlags_NoSavedSettings;
+	windowFlags |= ImGuiWindowFlags_NoDocking;
 
 	if (ImGui::BeginPopupModal("Save Scene", &showSaveSceneDialog, windowFlags))
 	{
@@ -566,6 +570,7 @@ void MenuManager::DrawMaterialManagerDialog()
 	flags |= ImGuiWindowFlags_NoCollapse;
 	flags |= ImGuiWindowFlags_NoResize;
 	flags |= ImGuiWindowFlags_NoSavedSettings;
+	flags |= ImGuiWindowFlags_NoDocking;
 
 	if (ImGui::Begin("Material Manager", &showMaterialManager, flags))
 	{
@@ -710,6 +715,7 @@ void MenuManager::DrawFileBrowser()
 	flags |= ImGuiWindowFlags_NoCollapse;
 	flags |= ImGuiWindowFlags_NoResize;
 	flags |= ImGuiWindowFlags_NoSavedSettings;
+	flags |= ImGuiWindowFlags_NoDocking;
 
 	bool isTexFiles = false;
 	if (fileSuffix == ".tga")
@@ -807,6 +813,7 @@ void MenuManager::DrawInputPopup()
 	windowFlags |= ImGuiWindowFlags_NoResize;
 	windowFlags |= ImGuiWindowFlags_AlwaysAutoResize;
 	windowFlags |= ImGuiWindowFlags_NoSavedSettings;
+	windowFlags |= ImGuiWindowFlags_NoDocking;
 
 	if (ImGui::BeginPopupModal(inputPopupTitle.c_str(), &showInputPopup, windowFlags))
 	{
