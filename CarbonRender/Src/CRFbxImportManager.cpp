@@ -132,8 +132,8 @@ float4 FbxImportManager::ReadUV(FbxMesh * mesh, int index, int uvIndex)
 		break;
 		}
 
-		uva[i * 2] = uv[0];
-		uva[i * 2 + 1] = uv[1];
+		uva[min(i, 1) * 2] = uv[0];
+		uva[min(i, 1) * 2 + 1] = uv[1];
 	}
 
 	uvf.x = uva[0];
