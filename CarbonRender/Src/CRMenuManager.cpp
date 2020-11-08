@@ -587,7 +587,7 @@ void MenuManager::DrawMaterialManagerDialog()
 		ImGui::EndChild();
 
 		ImGui::SameLine();
-		ImGui::BeginChild("matPreview", ImVec2(276, 256));
+		ImGui::BeginChild("matPreview", ImVec2(276, ImGui::GetWindowSize().y - 60));
 		{
 			if (selectedMatID > 0)
 			{

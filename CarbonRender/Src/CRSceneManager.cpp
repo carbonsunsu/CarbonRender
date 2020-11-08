@@ -178,6 +178,13 @@ void SceneManager::LoadScene(string sceneName)
 		newMat->SetSpecular(l3Node->value());
 		newMat->SetSpecularTilling(atof(l3Node->first_attribute("tillingX")->value()), atof(l3Node->first_attribute("tillingY")->value()));
 
+		l3Node = l2Node->first_node("EmissionIntensity");
+		newMat->SetEmissionIntensity(atof(l3Node->value()));
+		l3Node = l2Node->first_node("EmissionColor");
+		newMat->SetEmissionColor(float3(atof(l3Node->first_attribute("R")->value()),
+										atof(l3Node->first_attribute("G")->value()), 
+										atof(l3Node->first_attribute("B")->value())));
+
 		l2Node = l2Node->next_sibling();
 	}
 
