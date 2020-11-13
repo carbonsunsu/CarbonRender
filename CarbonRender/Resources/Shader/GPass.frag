@@ -25,15 +25,17 @@ uniform mat4 viewMat;
 uniform mat3 normalMat;
 uniform vec2 depthClampPara;
 uniform vec3 emissionColor;
+uniform float alphaTestThreshold;
 
 void main ()
 {
+	vec4 albedo = texture(albedoMap, uvD);
+	if (albedo.a <= alphaTestThreshold) discard;
+	albedo.rgb = pow(albedo.rgb, vec3(2.2f));
+	albedo.rgb *= albedoScaler.rgb;
 	vec3 tsN = texture(normalMap, uvN).xyz;
 	tsN = tsN * 2.0f - 1.0f;
 	vec4 rm = texture(rmMap, uvS);
-	vec4 albedo = texture(albedoMap, uvD);
-	albedo.rgb = pow(albedo.rgb, vec3(2.2f));
-	albedo.rgb *= albedoScaler.rgb;
 
 	vec3 wsT = normalize(normalMat * T);
 	vec3 wsN = normalize(normalMat * N);

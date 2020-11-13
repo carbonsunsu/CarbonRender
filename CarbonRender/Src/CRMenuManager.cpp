@@ -506,6 +506,10 @@ void MenuManager::DrawObjectEditorDialog()
 					mat->SetEmissionColor(float3(emisColorArray[0], emisColorArray[1], emisColorArray[2]));
 					ImGui::DragFloat("Emission Intensity", &emisInten, 0.1f, 0.0f, FLT_MAX, "%.2f");
 					mat->SetEmissionIntensity(emisInten);
+
+					float alphaTestThreshold = mat->GetAlphaTestThreshold();
+					ImGui::DragFloat("Alpha Test Threshold", &alphaTestThreshold, 0.001f, 0.0f, 1.0f);
+					mat->SetAlphaTestThreshold(alphaTestThreshold);
 				}
 			}
 		}
@@ -665,6 +669,8 @@ void MenuManager::DrawMaterialManagerDialog()
 				float3 emisColor = mat->GetEmissionColor();
 				ImGui::ColorButton("Emission Color", ImVec4(emisColor.x, emisColor.y, emisColor.z, 0.0), 0, ImVec2(32, 32));
 				ImGui::Text(("Emission Intensity: " + to_string(mat->GetEmissionIntensity())).c_str());
+
+				ImGui::Text(("Alpha Test Threshold: " + to_string(mat->GetAlphaTestThreshold())).c_str());
 			}
 		}
 		ImGui::EndChild();

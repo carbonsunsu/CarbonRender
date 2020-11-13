@@ -141,6 +141,7 @@ Material::Material()
 	color = float4(1.0f, 1.0f, 1.0f, 1.0f);
 	emissionColor = float3(0.0f, 0.0f, 0.0f);
 	emissionIntensity = 1.0f;
+	alphaTestThreshold = 0.5f;
 	SetDiffuse("");
 	SetNormal("");
 	SetSpecular("");
@@ -238,6 +239,11 @@ float Material::GetEmissionIntensity()
 	return emissionIntensity;
 }
 
+float Material::GetAlphaTestThreshold()
+{
+	return alphaTestThreshold;
+}
+
 bool Material::HasDiffuseTexture()
 {
 	return hasTex[0];
@@ -299,6 +305,11 @@ void Material::SetEmissionColor(float3 c)
 void Material::SetEmissionIntensity(float i)
 {
 	emissionIntensity = i;
+}
+
+void Material::SetAlphaTestThreshold(float t)
+{
+	alphaTestThreshold = t;
 }
 
 void Material::RemoveDiffuse()

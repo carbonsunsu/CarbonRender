@@ -20,6 +20,8 @@ private:
 	float4 color;
 	float3 emissionColor;
 	float emissionIntensity;
+	float alphaTestThreshold;
+
 	void SetTexture(string dir, int index);
 	void SetID(unsigned int newID);
 
@@ -38,6 +40,7 @@ public:
 	void SetSpecularTilling(float x, float y);
 	void SetEmissionColor(float3 c);
 	void SetEmissionIntensity(float i);
+	void SetAlphaTestThreshold(float t);
 
 	void RemoveDiffuse();
 	void RemoveNormal();
@@ -59,6 +62,7 @@ public:
 	float3 GetSpecularTilling();
 	float3 GetEmissionColor();
 	float GetEmissionIntensity();
+	float GetAlphaTestThreshold();
 	bool HasDiffuseTexture();
 	bool HasNormalTexture();
 	bool HasSpecularTexture();

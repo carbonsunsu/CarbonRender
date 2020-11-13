@@ -15,10 +15,12 @@ uniform bool depthOnly;
 uniform mat4 viewMat;
 uniform vec2 depthClampPara;
 uniform vec3 emissionColor;
+uniform float alphaTestThreshold;
 
 void main ()
 {
 	vec4 albedo = texture(albedoMap, uvD);
+	if (albedo.a <= alphaTestThreshold) discard;
 	albedo.rgb = pow(albedo.rgb, vec3(2.2f));
 	albedo.rgb *= albedoScaler.rgb;
 

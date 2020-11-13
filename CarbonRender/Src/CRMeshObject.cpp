@@ -96,6 +96,8 @@ void MeshObject::Render(GLuint shaderProgram, bool useTex)
 	float3 emisColor = material->GetEmissionColor() * material->GetEmissionIntensity();
 	location = glGetUniformLocation(shaderProgram, "emissionColor");
 	glUniform3f(location, emisColor.x, emisColor.y, emisColor.z);
+	location = glGetUniformLocation(shaderProgram, "alphaTestThreshold");
+	glUniform1f(location, material->GetAlphaTestThreshold());
 
 	glBindVertexArray(meshData->GetVertexArrayObject());
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, meshData->GetElementBufferObject());

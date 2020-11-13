@@ -185,6 +185,9 @@ void SceneManager::LoadScene(string sceneName)
 										atof(l3Node->first_attribute("G")->value()), 
 										atof(l3Node->first_attribute("B")->value())));
 
+		l3Node = l2Node->first_node("AlphaTestThreshold");
+		newMat->SetAlphaTestThreshold(atof(l3Node->value()));
+
 		l2Node = l2Node->next_sibling();
 	}
 
@@ -580,6 +583,9 @@ void SceneManager::SaveScene(string sceneName)
 		l1Node->append_node(l2Node);
 
 		l2Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("EmissionIntensity"), sceneDoc.allocate_string(to_string(i->second->GetEmissionIntensity()).c_str()));
+		l1Node->append_node(l2Node);
+
+		l2Node = sceneDoc.allocate_node(node_element, sceneDoc.allocate_string("AlphaTestThreshold"), sceneDoc.allocate_string(to_string(i->second->GetAlphaTestThreshold()).c_str()));
 		l1Node->append_node(l2Node);
 	}
 
