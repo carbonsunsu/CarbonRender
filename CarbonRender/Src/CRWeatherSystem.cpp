@@ -24,6 +24,10 @@ void WeatherSystem::Init()
 {
 	isTimeStop = true;
 
+	skySphereMesh.SetMeshData(MeshManager::Instance()->GetBuildinSphere());
+	skySphereMesh.SetMaterial(0);
+	skySphereMesh.SetScale(float3(10000.0f, 10000.0f, 10000.0f));
+	skySphereMesh.SetPosition(float3(0.0f));
 	latitude = 0.0f;
 	day = 180;
 	hour = 12.0f;
@@ -185,6 +189,21 @@ void WeatherSystem::SetExposure(float exp)
 float WeatherSystem::GetExposure()
 {
 	return exposure;
+}
+
+MeshObject * WeatherSystem::GetSkySphereMesh()
+{
+	return &skySphereMesh;
+}
+
+void WeatherSystem::SetSkySphereMeshRotation(float3 r)
+{
+	skySphereMesh.SetRotation(r);
+}
+
+float3 WeatherSystem::GetSkySphereMeshRotation()
+{
+	return skySphereMesh.GetRotation();
 }
 
 void WeatherSystem::SetTimeSpeed(float t)

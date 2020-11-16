@@ -251,6 +251,7 @@ MeshManager* MeshManager::ins = nullptr;
 MeshManager::MeshManager()
 {
 	InitBuildinBoxMesh();
+	InitBuildinSphereMesh();
 }
 
 void MeshManager::InitBuildinBoxMesh()
@@ -454,11 +455,11 @@ void MeshManager::InitBuildinBoxMesh()
 void MeshManager::InitBuildinSphereMesh()
 {
 	float radius = 0.5f;
-	int slices = 360;
-	int stacks = 360;
+	int slices = 32;
+	int stacks = 8;
 
-	int vertexCount = slices * (2 * stacks - 1) + 2;
-	int polygonCount = slices * (stacks * 4 - 2);
+	int vertexCount = 2 * slices * stacks + 2 + stacks * 2;
+	int polygonCount = slices * stacks * 4 - 2 * slices;
 
 	unsigned int* index = new unsigned int[polygonCount * 3];
 	float* vertexPos = new float[vertexCount * 3];
@@ -468,11 +469,219 @@ void MeshManager::InitBuildinSphereMesh()
 	float* vertexTangent = new float[vertexCount * 3];
 	float* vertexBinormal = new float[vertexCount * 3];
 
-	for (int i = 0; i < slices; i++)
+	//top and bottom vertex
+	vertexPos[0] = 0.0f; vertexPos[1] = radius; vertexPos[2] = 0.0f;
+	vertexUV[0] = 0.0f; vertexUV[1] = 1.0f; vertexUV[2] = 0.0f; vertexUV[3] = 0.0f;
+	vertexColor[0] = 1.0f; vertexColor[1] = 1.0f; vertexColor[2] = 1.0f; vertexColor[3] = 1.0f;
+	vertexNormal[0] = 0.0f; vertexNormal[1] = 1.0f; vertexNormal[2] = 0.0f;
+	vertexTangent[0] = 1.0f; vertexTangent[1] = 0.0f; vertexTangent[2] = 0.0f;
+	vertexBinormal[0] = 0.0f; vertexBinormal[1] = 0.0f; vertexBinormal[2] = -1.0f;
+
+	vertexPos[3] = 0.0f; vertexPos[4] = -radius; vertexPos[5] = 0.0f;
+	vertexUV[4] = 0.0f; vertexUV[5] = 0.0f; vertexUV[6] = 0.0f; vertexUV[7] = 0.0f;
+	vertexColor[4] = 1.0f; vertexColor[5] = 1.0f; vertexColor[6] = 1.0f; vertexColor[7] = 1.0f;
+	vertexNormal[3] = 0.0f; vertexNormal[4] = -1.0f; vertexNormal[5] = 0.0f;
+	vertexTangent[3] = 1.0f; vertexTangent[4] = 0.0f; vertexTangent[5] = 0.0f;
+	vertexBinormal[3] = 0.0f; vertexBinormal[4] = 0.0f; vertexBinormal[5] = -1.0f;
+
+	float anglePerSlice = 2.0f * PI / slices;
+	float anglePerStacks = PI * 0.5f / stacks;
+	int vertexIndex = 2;
+	int polyIndex = 0;
+
+	//top sphere
+	for (int i = 0; i <= slices; i++)
+	{
+		float hAngle = anglePerSlice * i;
+
+		for (int j = 0; j < stacks; j++)
+		{
+			float vAngle = anglePerStacks * j;
+			
+			vertexPos[vertexIndex * 3] = sinf(hAngle) * cosf(vAngle) * radius;
+			vertexPos[vertexIndex * 3 + 1] = sinf(vAngle) * radius;
+			vertexPos[vertexIndex * 3 + 2] = -cosf(hAngle) * cosf(vAngle) * radius;
+
+			vertexUV[vertexIndex * 4] = (float)i / slices;
+			vertexUV[vertexIndex * 4 + 1] = 0.5f + j * 0.5f / stacks;
+			vertexUV[vertexIndex * 4 + 2] = 0.0f; vertexUV[vertexIndex * 4 + 3] = 0.0f;
+
+			vertexColor[vertexIndex * 4] = 1.0f; vertexColor[vertexIndex * 4 + 1] = 1.0f; vertexColor[vertexIndex * 4 + 2] = 1.0f; vertexColor[vertexIndex * 4 + 3] = 1.0f;
+
+			vertexNormal[vertexIndex * 3] = vertexPos[vertexIndex * 3] * 2.0f;
+			vertexNormal[vertexIndex * 3 + 1] = vertexPos[vertexIndex * 3 + 1] * 2.0f;
+			vertexNormal[vertexIndex * 3 + 2] = vertexPos[vertexIndex * 3 + 2] * 2.0f;
+
+			if (i != 0)
+			{
+				int neighboutIndex = vertexIndex - stacks;
+				float3 neighbourVertex = float3(vertexPos[neighboutIndex * 3], vertexPos[neighboutIndex * 3 + 1], vertexPos[neighboutIndex * 3 + 2]);
+				float3 neighbourT = float3(vertexPos[vertexIndex * 3] - neighbourVertex.x,
+											vertexPos[vertexIndex * 3 + 1] - neighbourVertex.y,
+											vertexPos[vertexIndex * 3 + 2] - neighbourVertex.z).normalize();
+				float3 neighbourN = float3(vertexNormal[neighboutIndex * 3], vertexNormal[neighboutIndex * 3 + 1], vertexNormal[neighboutIndex * 3 + 2]);
+				float3 neighboutB = Math::Cross(neighbourN, neighbourT).normalize();
+
+				vertexTangent[neighboutIndex * 3] = neighbourT.x;
+				vertexTangent[neighboutIndex * 3 + 1] = neighbourT.y;
+				vertexTangent[neighboutIndex * 3 + 2] = neighbourT.z;
+
+				vertexBinormal[neighboutIndex * 3] = neighboutB.x;
+				vertexBinormal[neighboutIndex * 3 + 1] = neighboutB.y;
+				vertexBinormal[neighboutIndex * 3 + 2] = neighboutB.z;
+				/**/
+				if (j == stacks - 1)
+				{
+					index[polyIndex * 3] = vertexIndex;
+					index[polyIndex * 3 + 1] = neighboutIndex;
+					index[polyIndex * 3 + 2] = 0;
+				}
+				else
+				{
+					index[polyIndex * 3] = vertexIndex;
+					index[polyIndex * 3 + 1] = neighboutIndex;
+					index[polyIndex * 3 + 2] = neighboutIndex + 1;
+				}
+				polyIndex++;
+
+				if (j != 0)
+				{
+					index[polyIndex * 3] = vertexIndex;
+					index[polyIndex * 3 + 1] = vertexIndex - 1;
+					index[polyIndex * 3 + 2] = neighboutIndex;
+					polyIndex++;
+				}
+				
+				if (0)
+				{
+					int neighboutIndex = 2 + j;
+					float3 neighbourVertex = float3(vertexPos[neighboutIndex * 3], vertexPos[neighboutIndex * 3 + 1], vertexPos[neighboutIndex * 3 + 2]);
+					float3 T = float3(-vertexPos[vertexIndex * 3] + neighbourVertex.x,
+										-vertexPos[vertexIndex * 3 + 1] + neighbourVertex.y,
+										-vertexPos[vertexIndex * 3 + 2] + neighbourVertex.z).normalize();
+					float3 N = float3(vertexNormal[vertexIndex * 3], vertexNormal[vertexIndex * 3 + 1], vertexNormal[vertexIndex * 3 + 2]);
+					float3 B = Math::Cross(N, T).normalize();
+
+					vertexTangent[vertexIndex * 3] = T.x;
+					vertexTangent[vertexIndex * 3 + 1] = T.y;
+					vertexTangent[vertexIndex * 3 + 2] = T.z;
+
+					vertexBinormal[vertexIndex * 3] = B.x;
+					vertexBinormal[vertexIndex * 3 + 1] = B.y;
+					vertexBinormal[vertexIndex * 3 + 2] = B.z;
+
+					if (j == stacks - 1)
+					{
+						index[polyIndex * 3] = vertexIndex;
+						index[polyIndex * 3 + 1] = 0;
+						index[polyIndex * 3 + 2] = neighboutIndex;
+					}
+					else
+					{
+						index[polyIndex * 3] = vertexIndex;
+						index[polyIndex * 3 + 1] = neighboutIndex + 1;
+						index[polyIndex * 3 + 2] = neighboutIndex;
+					}
+					polyIndex++;
+
+					if (j != 0)
+					{
+						index[polyIndex * 3] = vertexIndex;
+						index[polyIndex * 3 + 1] = neighboutIndex;
+						index[polyIndex * 3 + 2] = vertexIndex - 1;
+						polyIndex++;
+					}
+				}
+				
+			}
+			vertexIndex++;
+		}
+	}
+
+	//bottom sphere
+	int bottomVertexStartIndex = vertexIndex;
+	int topVertexIndex = 2;
+	for (int i = 0; i <= slices; i++)
 	{
 		for (int j = 0; j < stacks; j++)
 		{
-			 
+			vertexPos[vertexIndex * 3] = vertexPos[topVertexIndex * 3];
+			vertexPos[vertexIndex * 3 + 1] = -vertexPos[topVertexIndex * 3 + 1];
+			vertexPos[vertexIndex * 3 + 2] = vertexPos[topVertexIndex * 3 + 2];
+
+			vertexUV[vertexIndex * 4] = vertexUV[topVertexIndex * 4];
+			vertexUV[vertexIndex * 4 + 1] = 1.0f - vertexUV[topVertexIndex * 4 + 1];
+			vertexUV[vertexIndex * 4 + 2] = 0.0f; vertexUV[vertexIndex * 4 + 3] = 0.0f;
+
+			vertexColor[vertexIndex * 4] = 1.0f; vertexColor[vertexIndex * 4 + 1] = 1.0f; vertexColor[vertexIndex * 4 + 2] = 1.0f; vertexColor[vertexIndex * 4 + 3] = 1.0f;
+
+			vertexNormal[vertexIndex * 3] = vertexNormal[topVertexIndex * 3];
+			vertexNormal[vertexIndex * 3 + 1] = -vertexNormal[topVertexIndex * 3 + 1];
+			vertexNormal[vertexIndex * 3 + 2] = vertexNormal[topVertexIndex * 3 + 2];
+
+			vertexTangent[vertexIndex * 3] = vertexTangent[topVertexIndex * 3];
+			vertexTangent[vertexIndex * 3 + 1] = -vertexTangent[topVertexIndex * 3 + 1];
+			vertexTangent[vertexIndex * 3 + 2] = vertexTangent[topVertexIndex * 3 + 2];
+
+			vertexBinormal[vertexIndex * 3] = vertexBinormal[topVertexIndex * 3];
+			vertexBinormal[vertexIndex * 3 + 1] = -vertexBinormal[topVertexIndex * 3 + 1];
+			vertexBinormal[vertexIndex * 3 + 2] = vertexBinormal[topVertexIndex * 3 + 2];
+
+			if (i != 0)
+			{
+				int neighboutIndex = vertexIndex - stacks;
+
+				if (j == stacks - 1)
+				{
+					index[polyIndex * 3] = vertexIndex;
+					index[polyIndex * 3 + 1] = 1;
+					index[polyIndex * 3 + 2] = neighboutIndex;
+				}
+				else
+				{
+					index[polyIndex * 3] = vertexIndex;
+					index[polyIndex * 3 + 1] = neighboutIndex + 1;
+					index[polyIndex * 3 + 2] = neighboutIndex;
+				}
+				polyIndex++;
+
+				if (j != 0)
+				{
+					index[polyIndex * 3] = vertexIndex;
+					index[polyIndex * 3 + 1] = neighboutIndex;
+					index[polyIndex * 3 + 2] = vertexIndex - 1;
+					polyIndex++;
+				}			
+				
+				if (0)
+				{
+					int neighboutIndex = bottomVertexStartIndex + j;
+
+					if (j == stacks - 1)
+					{
+						index[polyIndex * 3] = vertexIndex;
+						index[polyIndex * 3 + 1] = neighboutIndex;
+						index[polyIndex * 3 + 2] = 1;
+					}
+					else
+					{
+						index[polyIndex * 3] = vertexIndex;
+						index[polyIndex * 3 + 1] = neighboutIndex;
+						index[polyIndex * 3 + 2] = neighboutIndex + 1;
+					}
+					polyIndex++;
+
+					if (j != 0)
+					{
+						index[polyIndex * 3] = vertexIndex;
+						index[polyIndex * 3 + 1] = vertexIndex - 1;
+						index[polyIndex * 3 + 2] = neighboutIndex;
+						polyIndex++;
+					}
+				}
+			}
+			vertexIndex++;
+			topVertexIndex++;
 		}
 	}
 
@@ -487,7 +696,15 @@ void MeshManager::InitBuildinSphereMesh()
 	buildinSphere.CreateTangentArray(vertexCount * 3);
 	buildinSphere.CreateBinormalArray(vertexCount * 3);
 
-	
+	buildinSphere.CopyToIndexArray(index);
+	buildinSphere.CopyToVertexArray(vertexPos);
+	buildinSphere.CopyToVertexColorArray(vertexColor);
+	buildinSphere.CopyToUVArray(vertexUV);
+	buildinSphere.CopyToNormalrray(vertexNormal);
+	buildinSphere.CopyToTangentArray(vertexTangent);
+	buildinSphere.CopyToBinormalArray(vertexBinormal);
+
+	buildinSphere.GetReady4Rending();
 }
 
 MeshManager::~MeshManager()

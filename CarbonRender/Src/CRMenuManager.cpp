@@ -86,7 +86,11 @@ void MenuManager::DrawMainMenuBar_Scene()
 	}
 	if (ImGui::MenuItem("Add a Sphere"))
 	{
-
+		MeshObject* sphere = new MeshObject();
+		sphere->SetName("Sphere");
+		sphere->SetMeshData(MeshManager::Instance()->GetBuildinSphere());
+		sphere->SetMaterial(MaterialManager::Instance()->CreateNewMaterial()->GetID());
+		SceneManager::Instance()->GetRootNode()->AddChild(sphere);
 	}
 }
 
@@ -153,6 +157,11 @@ void MenuManager::DrawWorldEditorDialog()
 			float exposure = WeatherSystem::Instance()->GetExposure();
 			ImGui::DragFloat("Exposure", &exposure, 0.001f, -FLT_MAX, +FLT_MAX);
 			WeatherSystem::Instance()->SetExposure(exposure);
+
+			float3 rotation = WeatherSystem::Instance()->GetSkySphereMeshRotation();
+			float rotationArray[3] = { rotation.x, rotation.y, rotation.z };
+			ImGui::DragFloat3("Sky Mesh Rotation", rotationArray, 0.1f, -FLT_MAX, FLT_MAX, "%.1f");
+			WeatherSystem::Instance()->SetSkySphereMeshRotation(float3(rotationArray[0], rotationArray[1], rotationArray[2]));
 		}
 		ImGui::Separator();
 		ImGui::Spacing();

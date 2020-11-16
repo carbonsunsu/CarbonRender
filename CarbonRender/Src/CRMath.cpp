@@ -1070,7 +1070,7 @@ float4 Math::xyY2RGB(float3 xyY)
 
 float Random::Hash(float a)
 {
-	return Math::Fract(Math::Sin(a + 1.951f) * 43758.5453123f);
+	return Math::Fract(sinf(a + 1.951f) * 43758.5453123f);
 }
 
 float3 Random::Hash(float3 a)

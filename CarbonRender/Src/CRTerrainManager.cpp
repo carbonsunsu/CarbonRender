@@ -106,7 +106,7 @@ void TerrainObject::Render(GLuint shaderProgram)
 	glBindTexture(GL_TEXTURE_2D, TextureManager::Instance()->LoadDefaultN());
 
 	glActiveTexture(GL_TEXTURE3);
-	glBindTexture(GL_TEXTURE_2D, TextureManager::Instance()->LoadDefaultN());
+	glBindTexture(GL_TEXTURE_2D, TextureManager::Instance()->LoadDefaultS());
 
 	GLint location = glGetUniformLocation(shaderProgram, "modelMat");
 	glUniformMatrix4fv(location, 1, GL_FALSE, finalMat.matrix);
@@ -120,7 +120,7 @@ void TerrainObject::Render(GLuint shaderProgram)
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "normalMap");
 	glUniform1i(location, 2);
-	location = glGetUniformLocation(shaderProgram, "msMap");
+	location = glGetUniformLocation(shaderProgram, "rmMap");
 	glUniform1i(location, 3);
 	location = glGetUniformLocation(shaderProgram, "roughnessScale");
 	glUniform1f(location, 0.5f);
@@ -281,7 +281,7 @@ void OceanObject::Render(GLuint shaderProgram)
 	glBindTexture(GL_TEXTURE_2D, TextureManager::Instance()->LoadDefaultN());
 
 	glActiveTexture(GL_TEXTURE3);
-	glBindTexture(GL_TEXTURE_2D, TextureManager::Instance()->LoadDefaultN());
+	glBindTexture(GL_TEXTURE_2D, TextureManager::Instance()->LoadDefaultS());
 
 	GLint location = glGetUniformLocation(shaderProgram, "modelMat");
 	glUniformMatrix4fv(location, 1, GL_FALSE, finalMat.matrix);
@@ -295,7 +295,7 @@ void OceanObject::Render(GLuint shaderProgram)
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "normalMap");
 	glUniform1i(location, 2);
-	location = glGetUniformLocation(shaderProgram, "msMap");
+	location = glGetUniformLocation(shaderProgram, "rmMap");
 	glUniform1i(location, 3);
 	location = glGetUniformLocation(shaderProgram, "roughnessScale");
 	glUniform1f(location, 0.5f);

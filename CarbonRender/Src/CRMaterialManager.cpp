@@ -32,7 +32,7 @@ Material * MaterialManager::CreateNewMaterial(unsigned int id, string name)
 	Material* newMat = new Material();
 	newMat->SetID(id);
 	newMat->SetName(name);
-	nextMatID = Math::Max(id, nextMatID);
+	nextMatID = Math::Max(id + 1, nextMatID);
 	materials[id] = newMat;
 
 	return newMat;

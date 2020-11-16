@@ -3,6 +3,7 @@
 
 #include "..\Inc\CRLightManager.h"
 #include "..\Inc\CRTextureManager.h"
+#include "..\Inc\CRMeshObject.h"
 
 class WeatherSystem
 {
@@ -12,6 +13,7 @@ private:
 
 	bool isTimeStop;
 
+	MeshObject skySphereMesh;
 	float latitude;
 	int day;
 	float hour;
@@ -74,6 +76,9 @@ public:
 	float GetTurbidity();
 	void SetExposure(float exp);
 	float GetExposure();
+	MeshObject* GetSkySphereMesh();
+	void SetSkySphereMeshRotation(float3 r);
+	float3 GetSkySphereMeshRotation();
 
 	//Wind
 	void SetWindDirection(float3 d);
