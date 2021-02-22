@@ -455,8 +455,8 @@ void MeshManager::InitBuildinBoxMesh()
 void MeshManager::InitBuildinSphereMesh()
 {
 	float radius = 0.5f;
-	int slices = 32;
-	int stacks = 8;
+	int slices = 128;
+	int stacks = 64;
 
 	int vertexCount = 2 * slices * stacks + 2 + stacks * 2;
 	int polygonCount = slices * stacks * 4 - 2 * slices;

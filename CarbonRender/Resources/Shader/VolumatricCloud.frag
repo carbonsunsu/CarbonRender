@@ -207,7 +207,7 @@ vec3 CloudLighting(vec3 pos, float density, vec3 lightRay, float stepSize, vec3 
 	if (sampleDensity > 0.0f)
 		lightRayDensity += sampleDensity;
 
-	float vol = clamp(dot(viewRay, lightRay), 0.0f, 1.0f);
+	float vol = dot(viewRay, lightRay);
 	sColor *= 2.0f * Beers(lightRayDensity, precipitation);
 	sColor *= Powder(density);
 	sColor *= mix(HG(vol, 0.7f), HG(vol, -0.1f), 0.5f);
@@ -267,12 +267,12 @@ vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis,
 	
 	if (wsCamPos.y > fogMaxAltitude)
 	{
-		float theta = dot(viewRay, vec3(0.0f, -1.0f, 0.0f));
+		float thetaInv = 1.0 / dot(viewRay, vec3(0.0f, -1.0f, 0.0f));
 
-		if (theta > 0)
+		if (thetaInv > 0)
 		{
-			sampleDisSum = (wsCamPos.y - fogMaxAltitude) / theta;
-			sampleDisSum += 0.1f;
+			sampleDisSum = wsCamPos.y * thetaInv - fogMaxAltitude * thetaInv;
+			sampleDisSum += 0.05f;
 			startPos = wsCamPos + viewRay * sampleDisSum;
 
 			sampleDisMax = sampleDisSum + fogSampleCountAccur * FOG_STEP_SIZE_SHORT + fogSampleCountUnaccur * FOG_STEP_SIZE_LONG;
@@ -286,13 +286,13 @@ vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis,
 	}
 	else
 	{
-		sampleDisSum = 0.0f;
-		startPos = wsCamPos;
+		sampleDisSum = fogDensityStep;
+		startPos = wsCamPos + sampleStepV;
 
-		float theta = dot(viewRay, vec3(0.0f, 1.0f, 0.0f));
+		float thetaInv = 1.0 / dot(viewRay, vec3(0.0f, 1.0f, 0.0f));
 
-		if (theta > 0.0f)
-			sampleDisMax = (fogMaxAltitude - wsCamPos.y) / theta;
+		if (thetaInv > 0.0f)
+			sampleDisMax = fogMaxAltitude * thetaInv - wsCamPos.y * thetaInv;
 		else
 			sampleDisMax = sampleDisSum + fogSampleCountAccur * FOG_STEP_SIZE_SHORT + fogSampleCountUnaccur * FOG_STEP_SIZE_LONG;
 
@@ -307,8 +307,8 @@ vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis,
 		sampleDisMax = intersectDis;
 	}
 
-	float LoU = dot(lightRay, vec3(0.0f, 1.0f, 0.0f));
-	float fogSampleDensity = 0.0f;
+	float LoUInv = 1.0f / dot(lightRay, vec3(0.0f, 1.0f, 0.0f));
+	float fogSampleDensity = fogDensityStep;
 	vec3 fogLightColor = vec3(0.0f);
 	vec3 samplePos = startPos;
 
@@ -320,6 +320,8 @@ vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis,
 		if (samplePos.y > fogMaxAltitude) break;
 
 		vec3 fogSampleColor = vec3(0.0f);
+		//vec3 uvw = UVW(samplePos + cloudBias, 128.0f);
+		//float noise = texture(perlinWorleyMap, uvw, 0.0f).g;
 
 		vec4 smsPos = smMat * vec4(samplePos, 1.0f);
 		float sampleDepth = -smsPos.z;
@@ -330,32 +332,30 @@ vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis,
 		float blkerDepth = GetShadowMap(shadowLevel, smUV).r;
 		if (shadowLevel < 0 || sampleDepth <= blkerDepth)
 		{
-			float lightRayDensity = fogDensity * max(fogMaxAltitude - samplePos.y, 0.0f) / LoU;
-
-			fogSampleColor = sunColor * fogColorScale;
-			fogSampleColor *= Beers(lightRayDensity, fogPrecipitaion);
+			float lightRayDensity = fogDensity * (fogMaxAltitude - samplePos.y) * LoUInv;
+			fogSampleColor = sunColor * fogColorScale * Beers(lightRayDensity, fogPrecipitaion);
+			float vol = dot(viewRay, lightRay);
+			fogSampleColor *= HG(vol, 0.3f);
 		}
-		fogSampleColor += sunColor * 0.01f * fogColorScale * Beers((fogMaxAltitude - samplePos.y) * fogDensity, fogPrecipitaion);
+		float verticalRayDensity = (fogMaxAltitude - samplePos.y) * fogDensity;
+		fogSampleColor += zenithColor * fogColorScale * Beers(verticalRayDensity, fogPrecipitaion) * 0.005f;
 		fogSampleColor *= Beers(fogSampleDensity, fogPrecipitaion);
 
-		fogLightColor += fogSampleColor * fogSampleDensity;
+		fogLightColor += fogSampleColor;
 
-		if (i == fogSampleCountAccur)
+		if (i == fogSampleCountAccur - 1)
 		{
 			sampleStep = FOG_STEP_SIZE_LONG;
 			sampleStepV = viewRay * sampleStep;
 			fogDensityStep = fogDensity * sampleStep;
 		}
-
-		//vec3 uvw = UVW(samplePos + cloudBias, 128.0f);
-		float noise = 1.0f;//texture(perlinWorleyMap, uvw, 0.0f).g;
+	
 		if (sampleDisSum >= sampleDisMax)
 		{	
-			fogSampleDensity += noise * fogDensityStep * (sampleStep - sampleDisSum + sampleDisMax) / sampleStep;
+			fogSampleDensity += fogDensityStep * (sampleStep - sampleDisSum + sampleDisMax) / sampleStep;
 			break;
 		}
-		fogSampleDensity += noise * fogDensityStep;
-
+		fogSampleDensity += fogDensityStep;
 		if (fogSampleDensity >= 1.0f)
 			break;
 
@@ -366,7 +366,7 @@ vec4 GetFog (vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis,
 	vec4 fogColor;
 	fogColor.a = fogSampleDensity;
 	fogColor.rgb = fogLightColor;
-	return fogColor;//clamp(fogColor, 0.0f, 1.0f);
+	return fogColor;
 }
 
 vec4 GetCloud(vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis, bool stensilMark, out float startToCamDis)
@@ -493,17 +493,18 @@ void main ()
 	
 	float fogStartToCamDis;
 	vec4 fogColor = GetFog(viewRay, lightRay, intersectPos, intersectDis, stensilMark, fogStartToCamDis);
+	float beersFog = Beers(fogColor.a, fogPrecipitaion);
 
 	float cloudStartToCamDis;
 	vec4 cloudColor = GetCloud(viewRay, lightRay, intersectPos, intersectDis, stensilMark, cloudStartToCamDis);
 	cloudColor.rgb *= cloudColor.a;
 
 	if(fogStartToCamDis <= cloudStartToCamDis)
-		cColor.rgb = cloudColor.rgb * Beers(fogColor.a, fogPrecipitaion) + fogColor.rgb;//cloudColor.rgb * (1.0f - fogColor.a) + fogColor.rgb;
+		cColor.rgb = cloudColor.rgb * beersFog + fogColor.rgb;//cloudColor.rgb * (1.0f - fogColor.a) + fogColor.rgb;
 	else
 		cColor.rgb = cloudColor.rgb + fogColor.rgb * (1.0f - cloudColor.a);
 
-	cColor.a = (1.0f - cloudColor.a) * Beers(fogColor.a, fogPrecipitaion);//(1.0f - fogColor.a) * (1.0f - cloudColor.a);
+	cColor.a = (1.0f - cloudColor.a) * beersFog;//(1.0f - fogColor.a) * (1.0f - cloudColor.a);
 	//cColor.rgb = fogColor.rgb;
 	cColor = clamp(cColor, 0.0f, 1.0f);
 }
