@@ -2,7 +2,7 @@
 
 void SkyRenderPass::Init()
 {
-	shaderProgram = ShaderManager::Instance()->LoadShader("Atmosphere.vert", "Atmosphere.frag");
+	shaderProgramIndex = ShaderManager::Instance()->LoadShader("Atmosphere.vert", "Atmosphere.frag");
 	milkwayTex = TextureManager::Instance()->LoadTexture("Milkway");
 }
 
@@ -46,7 +46,8 @@ void SkyRenderPass::Render(PassOutput* input)
 
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 	
-	ShaderManager::Instance()->UseShader(shaderProgram);
+	GLuint shaderProgram = ShaderManager::Instance()->GetShaderProgram(shaderProgramIndex);
+	glUseProgram(shaderProgram);
 	float* shaderParas = WeatherSystem::Instance()->GetShaderParas();
 	GLuint location = glGetUniformLocation(shaderProgram, "t");
 	glUniform1f(location, shaderParas[0]);

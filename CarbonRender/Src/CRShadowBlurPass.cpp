@@ -30,7 +30,8 @@ void ShadowBlurPass::Render(PassOutput * input)
 	}
 
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	ShaderManager::Instance()->UseShader(shaderProgram);
+	GLuint shaderProgram = ShaderManager::Instance()->GetShaderProgram(shaderProgramIndex);
+	glUseProgram(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "shadowMap");
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "stenMap");
@@ -74,6 +75,6 @@ void ShadowBlurPass::Render(PassOutput * input)
 
 void ShadowBlurPass::Init()
 {
-	shaderProgram = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "ShadowBlur.frag");
+	shaderProgramIndex = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "ShadowBlur.frag");
 	stepSize = 1.0f;
 }

@@ -92,6 +92,10 @@ void MenuManager::DrawMainMenuBar_Scene()
 		sphere->SetMaterial(MaterialManager::Instance()->CreateNewMaterial()->GetID());
 		SceneManager::Instance()->GetRootNode()->AddChild(sphere);
 	}
+	if (ImGui::MenuItem("Reload all shaders"))
+	{
+		ShaderManager::Instance()->RebuildShaders();
+	}
 }
 
 void MenuManager::DrawMainMenuBar_Editor()

@@ -2,7 +2,7 @@
 
 void FinalPass::Init()
 {
-	shaderProgram = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "FinalPass.frag");
+	shaderProgramIndex = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "FinalPass.frag");
 }
 
 void FinalPass::GetReady4Render(PassOutput* input)
@@ -19,7 +19,8 @@ void FinalPass::Render(PassOutput* input)
 		glBindTexture(GL_TEXTURE_2D, input->RTS[i]);
 	}
 
-	ShaderManager::Instance()->UseShader(shaderProgram);
+	GLuint shaderProgram = ShaderManager::Instance()->GetShaderProgram(shaderProgramIndex);
+	glUseProgram(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "skyBuffer");
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "lightBuffer");

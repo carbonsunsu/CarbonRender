@@ -9,9 +9,9 @@ RenderPass::~RenderPass()
 	glDeleteBuffers(3, quadBos);
 }
 
-void RenderPass::AttachShader(GLuint program)
+void RenderPass::AttachShader(char* vShaderName, char* fShaderName)
 {
-	shaderProgram = program;
+	shaderProgramIndex = ShaderManager::Instance()->LoadShader(vShaderName, fShaderName);
 }
 
 void RenderPass::Init()

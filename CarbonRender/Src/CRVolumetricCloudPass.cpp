@@ -57,7 +57,8 @@ void VolumetricCloudPass::Render(PassOutput * input)
 	float3 depthClampPara = sunLight->GetDepthClampPara();
 	float3 cloudBias = WeatherSystem::Instance()->GetCloudBias();
 	float3 fogColor = WeatherSystem::Instance()->GetFogColor();
-	ShaderManager::Instance()->UseShader(shaderProgram);
+	GLuint shaderProgram = ShaderManager::Instance()->GetShaderProgram(shaderProgramIndex);
+	glUseProgram(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "perlinWorleyMap");
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "worleyMap");
@@ -152,5 +153,5 @@ void VolumetricCloudPass::Init()
 	targetSizeScaler = 0.5f;
 	cloudBox.SetMeshData(MeshManager::Instance()->GetBuildinBox());
 	cloudBox.SetMaterial(0);
-	shaderProgram = ShaderManager::Instance()->LoadShader("VolumatricCloud.vert", "VolumatricCloud.frag");
+	shaderProgramIndex = ShaderManager::Instance()->LoadShader("VolumatricCloud.vert", "VolumatricCloud.frag");
 }

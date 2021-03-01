@@ -32,7 +32,8 @@ void GIPass::Render(PassOutput * input)
 		glBindTexture(GL_TEXTURE_2D, input->RTS[i]);
 	}
 
-	ShaderManager::Instance()->UseShader(shaderProgram);
+	GLuint shaderProgram = ShaderManager::Instance()->GetShaderProgram(shaderProgramIndex);
+	glUseProgram(shaderProgram);
 	unsigned int sunLightID = WeatherSystem::Instance()->GetSunLightID();
 	Light* sunLight = LightManager::Instance()->GetLight(sunLightID);
 	float3 sunColor = sunLight->GetColor();
@@ -79,7 +80,8 @@ void GIPass::Render(PassOutput * input)
 	glBindTexture(GL_TEXTURE_2D, output.RTS[0]);
 	
 
-	ShaderManager::Instance()->UseShader(denoiseShaderProgram);
+	GLuint denoiseShaderProgram = ShaderManager::Instance()->GetShaderProgram(denoiseShaderProgramIndex);
+	glUseProgram(denoiseShaderProgram);
 	location = glGetUniformLocation(denoiseShaderProgram, "stenMap");
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(denoiseShaderProgram, "nMap");
@@ -122,6 +124,6 @@ void GIPass::Init()
 {
 	targetScale = 0.5f;
 	denoiseStepSize = 1.0f;
-	shaderProgram = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "GIPass.frag");
-	denoiseShaderProgram = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "GIDenoise.frag");
+	shaderProgramIndex = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "GIPass.frag");
+	denoiseShaderProgramIndex = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "GIDenoise.frag");
 }

@@ -29,7 +29,8 @@ void SSAOPass::Render(PassOutput * input)
 	glActiveTexture(GL_TEXTURE1 + input->cout);
 	glBindTexture(GL_TEXTURE_2D, rnmTex);
 
-	ShaderManager::Instance()->UseShader(shaderProgram);
+	GLuint shaderProgram = ShaderManager::Instance()->GetShaderProgram(shaderProgramIndex);
+	glUseProgram(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "nMap");
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "pMap");
@@ -62,6 +63,6 @@ void SSAOPass::Render(PassOutput * input)
 
 void SSAOPass::Init()
 {
-	shaderProgram = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "SSAO.frag");
+	shaderProgramIndex = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "SSAO.frag");
 	rnmTex = TextureManager::Instance()->LoadTexture("rnm");
 }

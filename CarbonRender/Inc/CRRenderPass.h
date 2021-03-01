@@ -16,7 +16,7 @@ struct PassOutput
 class RenderPass
 {
 protected:
-	GLuint shaderProgram;
+	unsigned int shaderProgramIndex;
 	GLuint fbo;
 	GLuint dBuffer;
 
@@ -33,7 +33,7 @@ protected:
 	void DrawFullScreenQuad();
 public:
 	~RenderPass();
-	void AttachShader(GLuint program);
+	void AttachShader(char* vShaderName, char* fShaderName);
 	virtual void Init();
 	PassOutput* Draw(PassOutput* input);
 	void Enable(bool bEnable = true);

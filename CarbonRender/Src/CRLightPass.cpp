@@ -35,7 +35,8 @@ void LightPass::Render(PassOutput * input)
 	glActiveTexture(GL_TEXTURE1 + input->cout - 1);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, input->RTS[input->cout - 1]);
 
-	ShaderManager::Instance()->UseShader(shaderProgram);
+	GLuint shaderProgram = ShaderManager::Instance()->GetShaderProgram(shaderProgramIndex);
+	glUseProgram(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "albedoMap");
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "normalMap");
@@ -78,5 +79,5 @@ void LightPass::Render(PassOutput * input)
 
 void LightPass::Init()
 {
-	shaderProgram = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "LightPass.frag");
+	shaderProgramIndex = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "LightPass.frag");
 }

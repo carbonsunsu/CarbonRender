@@ -37,7 +37,8 @@ void ShadowPass::Render(PassOutput * input)
 	float3 depthClampPara = sunLight->GetDepthClampPara();
 	unsigned int* levelSetting = LightManager::Instance()->GetShadowMapLevelSetting();
 
-	ShaderManager::Instance()->UseShader(shaderProgram);
+	GLuint shaderProgram = ShaderManager::Instance()->GetShaderProgram(shaderProgramIndex);
+	glUseProgram(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "pMap");
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "smMapLv0");
@@ -81,5 +82,5 @@ void ShadowPass::Render(PassOutput * input)
 
 void ShadowPass::Init()
 {
-	shaderProgram = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "ShadowPass.frag");
+	shaderProgramIndex = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "ShadowPass.frag");
 }

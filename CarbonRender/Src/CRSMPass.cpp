@@ -67,7 +67,8 @@ void SMPass::Render(PassOutput * input)
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	ShaderManager::Instance()->UseShader(shaderProgram);
+	GLuint shaderProgram = ShaderManager::Instance()->GetShaderProgram(shaderProgramIndex);
+	glUseProgram(shaderProgram);
 
 	GLint location = glGetUniformLocation(shaderProgram, "depthClampPara");
 	glUniform2f(location, depthClampPara.x, depthClampPara.z);
@@ -111,5 +112,5 @@ void SMPass::Render(PassOutput * input)
 void SMPass::Init()
 {
 	followCam = true;
-	shaderProgram = ShaderManager::Instance()->LoadShader("SM.vert", "SM.frag");
+	shaderProgramIndex = ShaderManager::Instance()->LoadShader("SM.vert", "SM.frag");
 }

@@ -32,7 +32,8 @@ void SSRPass::Render(PassOutput * input)
 	}
 
 	float3 camPos = CameraManager::Instance()->GetCurrentCamera()->GetPosition();
-	ShaderManager::Instance()->UseShader(shaderProgram);
+	GLuint shaderProgram = ShaderManager::Instance()->GetShaderProgram(shaderProgramIndex);
+	glUseProgram(shaderProgram);
 	GLint location = glGetUniformLocation(shaderProgram, "pureLightMap");
 	glUniform1i(location, 1);
 	location = glGetUniformLocation(shaderProgram, "refMap");
@@ -73,5 +74,5 @@ void SSRPass::Render(PassOutput * input)
 void SSRPass::Init()
 {
 	targetScale = 0.5f;
-	shaderProgram = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "SSR.frag");
+	shaderProgramIndex = ShaderManager::Instance()->LoadShader("ScreenQuad.vert", "SSR.frag");
 }
