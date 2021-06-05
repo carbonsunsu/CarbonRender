@@ -146,15 +146,14 @@ void TerrainObject::Render(GLuint shaderProgram)
 void TerrainObject::Update(Camera * cam)
 {
 	float3 camPos = cam->GetPosition();
-	camPos.y = this->GetPosition().y;
-	this->SetPosition(camPos);
+	camPos.y = 0.0f;
 
 	float farClip = cam->GetFarClip();
 	float3 intersections[4];
-	intersections[0] = float3(-farClip, 0.0f, -farClip);
-	intersections[1] = float3(-farClip, 0.0f, farClip);
-	intersections[2] = float3(farClip, 0.0f, -farClip);
-	intersections[3] = float3(farClip, 0.0f, farClip);
+	intersections[0] = float3(-farClip, 0.0f, -farClip) + camPos;
+	intersections[1] = float3(-farClip, 0.0f, farClip) + camPos;
+	intersections[2] = float3(farClip, 0.0f, -farClip) + camPos;
+	intersections[3] = float3(farClip, 0.0f, farClip) + camPos;
 	
 	//update vertex pos
 	float* ptrPos = (float*)GLHelper::GetGLArrayBufferPointer(vertexArrayBuffers[2], GL_WRITE_ONLY);

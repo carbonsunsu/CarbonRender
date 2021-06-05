@@ -698,6 +698,21 @@ float4 Math::Sin(float4 v)
 	return float4(sinf(v.x), sinf(v.y), sinf(v.z), sinf(v.w));
 }
 
+float Math::Cos(float a)
+{
+	return cosf(a);
+}
+
+float3 Math::Cos(float3 v)
+{
+	return float3(cosf(v.x), cosf(v.y), cosf(v.z));
+}
+
+float4 Math::Cos(float4 v)
+{
+	return float4(cosf(v.x), cosf(v.y), cosf(v.z), cosf(v.w));
+}
+
 float Math::Angle2Radian(float a)
 {
 	return a * A2R;

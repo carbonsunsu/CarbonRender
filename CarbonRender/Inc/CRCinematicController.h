@@ -1,21 +1,18 @@
-#ifndef CR_FREE_CONTROLLER
-#define CR_FREE_CONTROLLER
+#ifndef CR_CINEMATIC_CONTROLLER
+#define CR_CINEMATIC_CONTROLLER
 
 #include "..\Inc\CRControllerManager.h"
 #include "..\Inc\CRMenuManager.h"
-#include "..\Inc\CRCinematicController.h"
+#include "..\Inc\CRCameraManager.h"
+#include "..\Inc\CRWeatherSystem.h"
 
-class FreeController : public Controller
+class CinematicController : public Controller
 {
 protected:
-	float rotSensitivity[2] = { 0.02f, 0.01f };
-	float mouseMovSensitivity[3] = { 0.2f, 0.1f, 0.1f };
-	float moveSpeedLow = 2.0f;
-	float moveSpeedHigh;
-	float moveSpeed;
-	float3 v;
-	bool ctrlPressed;
+	bool end;
+	float filmStartTime;
 
+	float GetCurrentTime();
 
 public:
 	void Init();

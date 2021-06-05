@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\CRCinematicController.cpp" />
     <ClCompile Include="Src\CRConfigManager.cpp" />
     <ClCompile Include="Src\CRFreeController.cpp" />
     <ClCompile Include="Src\CRGIPass.cpp" />
@@ -56,6 +57,7 @@
     <ClCompile Include="Third\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Inc\CRCinematicController.h" />
     <ClInclude Include="Inc\CRConfigManager.h" />
     <ClInclude Include="Inc\CRFreeController.h" />
     <ClInclude Include="Inc\CRGIPass.h" />

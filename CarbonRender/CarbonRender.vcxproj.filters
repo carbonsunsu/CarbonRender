@@ -168,6 +168,9 @@
     <ClCompile Include="Third\imgui\imgui_impl_opengl3.cpp">
       <Filter>ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="Src\CRCinematicController.cpp">
+      <Filter>源文件\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\CRFinalPass.h">
@@ -307,6 +310,9 @@
     </ClInclude>
     <ClInclude Include="Third\imgui\imgui_impl_opengl3.h">
       <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CRCinematicController.h">
+      <Filter>头文件\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

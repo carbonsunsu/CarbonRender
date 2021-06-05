@@ -19,6 +19,7 @@
 #include <unordered_map>
 #include <vector>
 #include <filesystem>
+#include <ctime>
 
 #define IMGUI_IMPL_OPENGL_LOADER_GLEW
 #include "..\Third\GL\include\glew.h"

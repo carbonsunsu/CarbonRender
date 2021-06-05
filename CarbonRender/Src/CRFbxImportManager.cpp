@@ -564,9 +564,12 @@ int FbxImportManager::ImportFbxModel(char * filePath, Object* root, bool newAMes
 						else
 							newMat = MaterialManager::Instance()->CreateNewMaterial();
 
-						newMat->SetDiffuse("");
+						if (!newMat->HasDiffuseTexture())
+							newMat->SetDiffuse("");
+						if (!newMat->HasNormalTexture())
 						newMat->SetNormal("");
-						newMat->SetSpecular("");
+						if (!newMat->HasSpecularTexture())
+							newMat->SetSpecular("");
 						newMeshObj->SetMaterial(newMat->GetID());
 
 						newMeshObj->SetMeshData(meshData);

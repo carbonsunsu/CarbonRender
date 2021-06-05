@@ -108,6 +108,16 @@ void FreeController::KeyInputCallback(GLFWwindow* window, int key, int scanCode,
 		}
 	}
 	break;
+	case GLFW_KEY_P:
+	{
+		if (action == GLFW_PRESS)
+		{
+			CinematicController* newController = new CinematicController();
+			newController->Init();
+			ControllerManager::Instance()->Push(newController);
+		}
+	}
+	break;
 	}
 
 	if (MenuManager::Instance()->MenuStatus() && curMouseButton != GLFW_MOUSE_BUTTON_RIGHT)

@@ -173,6 +173,9 @@ public:
 	static float Sin(float a);
 	static float3 Sin(float3 v);
 	static float4 Sin(float4 v);
+	static float Cos(float a);
+	static float3 Cos(float3 v);
+	static float4 Cos(float4 v);
 	static float Angle2Radian(float a);
 	static float3 Angle2Radian(float3 a);
 	static float4 Angle2Radian(float4 a);
