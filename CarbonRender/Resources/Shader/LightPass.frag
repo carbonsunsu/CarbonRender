@@ -22,6 +22,7 @@ uniform sampler2D stenMap;
 uniform samplerCube cubeMap;
 uniform sampler2D giMap;
 uniform sampler2D emisMap;
+uniform sampler2D csMap;
 
 float Random (vec2 i, float seed)
 {
@@ -154,6 +155,7 @@ void main ()
 	vec4 N = texture(normalMap, uv);
 	vec4 P = texture(pMap, uv);
 	vec4 shadowFactor = texture(sMap, uv);
+	float cloudShadowFactor = texture(csMap, uv).r;
 	vec4 gi = texture(giMap, uv);
 	vec4 emis = texture(emisMap, uv);
 
@@ -161,7 +163,7 @@ void main ()
 	vec3 wsP = P.xyz;
 	float metallic = albedo.a;
 	float roughness = P.a;
-	float directShadow = shadowFactor.r;
+	float directShadow = shadowFactor.r * cloudShadowFactor;
 	float indirectShadow = shadowFactor.b;
 	
 	vec3 wsL = wsSunPos;

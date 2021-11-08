@@ -51,8 +51,11 @@ void LightPass::Render(PassOutput * input)
 	glUniform1i(location, 6);
 	location = glGetUniformLocation(shaderProgram, "emisMap");
 	glUniform1i(location, 7);
-	location = glGetUniformLocation(shaderProgram, "cubeMap");
+	location = glGetUniformLocation(shaderProgram, "csMap");
 	glUniform1i(location, 8);
+	location = glGetUniformLocation(shaderProgram, "cubeMap");
+	glUniform1i(location, 9);
+	
 	
 	unsigned int sunLightID = WeatherSystem::Instance()->GetSunLightID();
 	Light* sunLight = LightManager::Instance()->GetLight(sunLightID);

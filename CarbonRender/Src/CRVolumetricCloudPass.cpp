@@ -5,18 +5,21 @@ void VolumetricCloudPass::GetReady4Render(PassOutput * input)
 	glGenFramebuffers(1, &fbo);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-	GLuint couldRt;
+	GLuint cloudRT, cloudShadowRT;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	couldRt = GLHelper::SetGLRenderTexture(size.w * targetSizeScaler, size.h * targetSizeScaler, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0);
+	cloudRT = GLHelper::SetGLRenderTexture(size.w * targetSizeScaler, size.h * targetSizeScaler, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0);
+	cloudShadowRT = GLHelper::SetGLRenderTexture(size.w * targetSizeScaler, size.h * targetSizeScaler, GL_R16F, GL_RED, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT1);
 	//dBuffer = GLHelper::SetGLDepthBuffer(size.w * targetSizeScaler, size.h * targetSizeScaler);
 
-	glDrawBuffer(GL_COLOR_ATTACHMENT0);
+	GLenum drawBuffers[2] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
+	glDrawBuffers(2, drawBuffers);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	output.cout = 1;
+	output.cout = 2;
 	output.RTS = new GLuint[output.cout];
-	output.RTS[0] = couldRt;
+	output.RTS[0] = cloudRT;
+	output.RTS[1] = cloudShadowRT;
 }
 
 void VolumetricCloudPass::Render(PassOutput * input)

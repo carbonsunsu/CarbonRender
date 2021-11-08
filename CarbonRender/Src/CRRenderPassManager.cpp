@@ -49,7 +49,7 @@ void RenderPassManager::Draw()
 	cInput.RTS[2] = sm->RTS[3];
 	cInput.RTS[3] = sm->RTS[4];
 	cInput.mats = sm->mats;
-	PassOutput* cloud = cloudPass.Draw(&cInput);//cloud and fog
+	PassOutput* cloud = cloudPass.Draw(&cInput);//0: cloud and fog, 1: cloud shadow
 
 	PassOutput sInput;
 	sInput.cout = 6;
@@ -93,7 +93,7 @@ void RenderPassManager::Draw()
 	PassOutput* gi = giPass.Draw(&giInput);//GI
 
 	PassOutput lInput;
-	lInput.cout = 8;
+	lInput.cout = 9;
 	lInput.RTS = new GLuint[lInput.cout];
 	lInput.RTS[0] = g->RTS[0];
 	lInput.RTS[1] = g->RTS[1];
@@ -102,8 +102,9 @@ void RenderPassManager::Draw()
 	lInput.RTS[4] = shadowBlured->RTS[0];
 	lInput.RTS[5] = gi->RTS[0];
 	lInput.RTS[6] = g->RTS[4];
-	lInput.RTS[7] = sky->RTS[1];
-	PassOutput* light = lightPass.Draw(&lInput);//pureLight, refColor, indSpecPara
+	lInput.RTS[7] = cloud->RTS[1];
+	lInput.RTS[8] = sky->RTS[1];
+	PassOutput* light = lightPass.Draw(&lInput);//0: pureLight, 1: refColor, 2: indSpecPara
 
 	PassOutput rInput;
 	rInput.cout = 6;

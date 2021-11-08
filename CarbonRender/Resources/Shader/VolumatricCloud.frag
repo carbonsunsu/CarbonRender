@@ -4,6 +4,7 @@
 #define Pi 3.1415926
 
 layout(location = 0) out vec4 cColor;
+layout(location = 1) out float csColor;
 
 in vec4 wsP;
 
@@ -479,6 +480,99 @@ vec4 GetCloud(vec3 viewRay, vec3 lightRay, vec3 intersectPos, float intersectDis
 	return clamp(cloudColor, 0.0f, 1.0f);
 }
 
+float GetCloudShadow(vec3 wsPos, vec3 lightRay)
+{
+	//Volumetric cloud shadow
+	vec3 startPos;
+	vec3 endPos;
+	float sampleDisSum;
+	float sampleDisMax;
+
+	if (wsPos.y < cloudMinAltitude)
+	{
+		float L = wsPos.y + PLANET_RADIUS;
+		float alpha = dot(vec3(0.0f, -1.0f, 0.0f), lightRay);
+		float l1 = L * abs(alpha);
+		float d = sqrt(L * L - l1 * l1);
+		float r = PLANET_RADIUS + cloudMinAltitude;
+		float l2 = sqrt(r * r - d * d);
+		sampleDisSum = alpha >= 0.0f ? (l1 + l2) : (l2 - l1);
+		startPos = wsPos + lightRay * sampleDisSum;
+
+		r = PLANET_RADIUS + cloudMaxAltitude;
+		l2 = sqrt(r * r - d * d);
+		sampleDisMax = alpha >= 0.0f ? (l1 + l2) : (l2 - l1);
+		endPos = wsPos + lightRay * sampleDisMax;
+	}
+	else if (wsPos.y > cloudMaxAltitude)
+	{
+		float L = wsPos.y + PLANET_RADIUS;
+		float alpha = dot(vec3(0.0f, -1.0f, 0.0f), lightRay);
+		if (acos(alpha) > asin((cloudMaxAltitude + PLANET_RADIUS) / L)) return 1.0;
+		float l1 = L * alpha;
+		float d = sqrt(L * L - l1 * l1);
+		float r = PLANET_RADIUS + cloudMaxAltitude;
+		float l2 = sqrt(r * r - d * d);
+		sampleDisSum = l1 - l2 + 1.0f;
+		startPos = wsPos + lightRay * sampleDisSum;
+
+		r = PLANET_RADIUS + cloudMinAltitude;
+		l2 = sqrt(r * r - d * d);
+		sampleDisMax = l1 - l2;
+		endPos = wsPos + lightRay * sampleDisMax;
+	}
+	else
+	{
+		sampleDisSum = 0.0f;
+		sampleDisMax = 30000.0f;
+		startPos = wsPos;		
+
+		float L = wsPos.y + PLANET_RADIUS;
+		float alpha = dot(vec3(0.0f, -1.0f, 0.0f), lightRay);
+		if (acos(alpha) > asin((cloudMinAltitude + PLANET_RADIUS) / L))
+		{
+			float l1 = L * abs(alpha);
+			float d = sqrt(L * L - l1 * l1);
+			float r = PLANET_RADIUS + cloudMaxAltitude;
+			float l2 = sqrt(r * r - d * d);
+			sampleDisMax = min(alpha >= 0.0f ? (l1 + l2) : (l2 - l1), sampleDisMax);
+		}
+		else
+		{
+			float l1 = L * alpha;
+			float d = sqrt(L * L - l1 * l1);
+			float r = PLANET_RADIUS + cloudMinAltitude;
+			float l2 = sqrt(r * r - d * d);
+			sampleDisMax = min(l1 - l2 + 1.0f, sampleDisMax);
+		}
+		endPos = wsPos + lightRay * sampleDisMax;
+	}
+
+	vec3 samplePos = startPos;
+	float cloudStepSize = sampleDisMax / CLOUD_SAMPLE_COUNT;
+	vec3 sampleStep = lightRay * cloudStepSize;
+	float cloudDensity = 0.0f;
+	float mipmapLev = 0.0f;
+	
+	for(int i = 0; i < CLOUD_SAMPLE_COUNT; i++)
+	{
+		if (samplePos.y < -100.0f //||
+			) break;
+
+		if (sampleDisSum >= sampleDisMax)
+			samplePos = endPos;
+			
+		cloudDensity += SampleCloudDensity(samplePos, mipmapLev, false);
+
+		if (cloudDensity >= 1.0f || sampleDisSum >= sampleDisMax) break;
+
+		samplePos += sampleStep;
+		sampleDisSum += cloudStepSize;
+	}
+	
+	return 1.0f - clamp(cloudDensity, 0.0f, 1.0f);
+}
+
 void main ()
 {
 	cColor = vec4(0.0f);
@@ -490,6 +584,12 @@ void main ()
 	bool stensilMark = texture(stencilMap, ssP.xy).r >= 1.0f;
 	if (!stensilMark) intersectPos = wsCamPos + viewRay * 100000000.0f;
 	float intersectDis = distance(wsCamPos, intersectPos);
+
+	float cloudShadowFactor = 1.0f;
+	if (stensilMark)
+		cloudShadowFactor = GetCloudShadow(intersectPos, lightRay);
+
+	csColor = cloudShadowFactor;
 	
 	float fogStartToCamDis;
 	vec4 fogColor = GetFog(viewRay, lightRay, intersectPos, intersectDis, stensilMark, fogStartToCamDis);
