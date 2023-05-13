@@ -6,7 +6,7 @@ void SSAOPass::GetReady4Render(PassOutput * input)
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	GLuint aoRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB16F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0);
+	GLuint aoRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB16F, GL_RGB, GL_FLOAT, GL_NEAREST, GL_COLOR_ATTACHMENT0);
 
 	glDrawBuffer(GL_COLOR_ATTACHMENT0);
 

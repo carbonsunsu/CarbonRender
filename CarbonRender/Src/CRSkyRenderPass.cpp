@@ -13,7 +13,7 @@ void SkyRenderPass::GetReady4Render(PassOutput* input)
 
 	GLuint rt0, cubeRt;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	rt0 = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB16F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0);
+	rt0 = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB16F, GL_RGB, GL_FLOAT, GL_NEAREST, GL_COLOR_ATTACHMENT0);
 
 	glDrawBuffer(GL_COLOR_ATTACHMENT0);
 

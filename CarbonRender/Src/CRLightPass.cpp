@@ -7,9 +7,9 @@ void LightPass::GetReady4Render(PassOutput * input)
 
 	GLuint pureLRt, refRt, paraRt;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	pureLRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB16F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT0);
-	refRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT1);
-	paraRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB16F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT2);
+	pureLRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB16F, GL_RGB, GL_FLOAT, GL_NEAREST, GL_COLOR_ATTACHMENT0);
+	refRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA16F, GL_RGBA, GL_FLOAT, GL_NEAREST, GL_COLOR_ATTACHMENT1);
+	paraRt = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA32F, GL_RGB, GL_FLOAT, GL_NEAREST, GL_COLOR_ATTACHMENT2);
 
 	GLenum drawBuffers[3] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 };
 	glDrawBuffers(3, drawBuffers);

@@ -7,11 +7,11 @@ void GPass::GetReady4Render(PassOutput * input)
 
 	GLuint rt_n, rt_albedo, rt_p, rt_stencil, rt_emis;
 	WindowSize size = WindowManager::Instance()->GetWindowSize();
-	rt_albedo = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA8, GL_RGBA, GL_UNSIGNED_BYTE, GL_LINEAR, GL_COLOR_ATTACHMENT0);
-	rt_n = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT1);
-	rt_p = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT2);
-	rt_stencil = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB8, GL_RGB, GL_UNSIGNED_BYTE, GL_LINEAR, GL_COLOR_ATTACHMENT3);
-	rt_emis = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB16F, GL_RGB, GL_FLOAT, GL_LINEAR, GL_COLOR_ATTACHMENT4);
+	rt_albedo = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA8, GL_RGBA, GL_UNSIGNED_BYTE, GL_NEAREST, GL_COLOR_ATTACHMENT0);
+	rt_n = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_NEAREST, GL_COLOR_ATTACHMENT1);
+	rt_p = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGBA32F, GL_RGBA, GL_FLOAT, GL_NEAREST, GL_COLOR_ATTACHMENT2);
+	rt_stencil = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB8, GL_RGB, GL_UNSIGNED_BYTE, GL_NEAREST, GL_COLOR_ATTACHMENT3);
+	rt_emis = GLHelper::SetGLRenderTexture(size.w, size.h, GL_RGB16F, GL_RGB, GL_FLOAT, GL_NEAREST, GL_COLOR_ATTACHMENT4);
 
 	dBuffer = GLHelper::SetGLDepthBuffer(size.w, size.h);
 
